@@ -1,0 +1,15 @@
+# Don't forget to edit the path
+
+[Unit]
+Description=Remote configurator
+After=network.target
+
+[Service]
+Environment=NODE_ENV=production
+Type=simple
+User=root
+ExecStart=/usr/bin/node /root/remote-configurator/bin/www
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
