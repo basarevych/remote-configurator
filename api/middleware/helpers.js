@@ -3,7 +3,7 @@
 const styles = require("../../common/themes");
 
 // Alias app services on request object
-module.exports = app => {
+module.exports = async app => {
   const setHelpers = req => {
     req.di = app.di;
     req.preCachePages = app.preCachePages;
@@ -43,8 +43,8 @@ module.exports = app => {
     try {
       const db = app.di.get("db");
       req.user =
-        req.session && req.session.isAuthenticated
-          ? db.users.get(db.getId(req.session.userId))
+        req.session && req.session.isAuthenticated && req.session.userId
+          ? db.UserModel.findById(req.session.userId)
           : null;
     } catch (error) {
       console.error(error);

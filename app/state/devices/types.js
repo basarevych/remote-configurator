@@ -1,4 +1,7 @@
 export const SET_LIST = "app/devices/SET_LIST";
+export const SET_SELECTED = "app/devices/SET_SELECTED";
+export const SELECT_ALL = "app/devices/SELECT_ALL";
+export const DESELECT_ALL = "app/devices/DESELECT_ALL";
 export const CLEAR = "app/devices/CLEAR";
 export const SET = "app/devices/SET";
 export const REMOVE = "app/devices/REMOVE";

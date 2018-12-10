@@ -41,7 +41,9 @@ class AuthRepository extends EventEmitter {
     if (!success) {
       let user;
       if (args.login && args.password) {
-        user = await this.db.users.findOne({ login: args.login });
+        user = await this.db.UserModel.findOne(
+          this.db.UserModel.conditions({ login: args.login })
+        );
         if (
           user &&
           !(await this.auth.checkPassword(args.password, user.password))

@@ -53,15 +53,9 @@ class AppAuthModal extends Form {
       this.getValue(props, "password")
     );
 
-    if (result && _.isObject(result)) {
-      let errors = {};
-      for (let field of _.keys(result)) {
-        errors[field] = [];
-        for (let message of result[field]) errors[field].push({ id: message });
-      }
-
-      throw new SubmissionError(errors);
-    }
+    if (result === true) await props.onLoad();
+    else if (result && _.isObject(result)) throw new SubmissionError(result);
+    else throw new SubmissionError({ _error: "APP_AUTH_FAILED" });
 
     return result;
   }
@@ -71,13 +65,10 @@ class AppAuthModal extends Form {
 
     if (prevState.isOpen !== nextProps.isOpen) {
       nextProps.dispatch(nextProps.change("password", ""));
-      nextProps.dispatch(nextProps.clearAsyncError("_"));
+      nextProps.dispatch(nextProps.clearAsyncError());
+      nextProps.dispatch(nextProps.clearSubmitErrors());
       state.isOpen = nextProps.isOpen;
-      state.errors = null;
     }
-
-    if (nextProps.error && nextProps.error.has("_"))
-      state.errors = nextProps.error.get("_");
 
     return _.keys(state).length ? state : null;
   }
@@ -86,17 +77,10 @@ class AppAuthModal extends Form {
     super(props);
 
     this.state = {
-      isOpen: props.isOpen,
-      errors: null
+      isOpen: props.isOpen
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  async handleSubmit() {
-    this.setState({ errors: null });
-    if (!(await super.submit()) && !this.state.errors)
-      this.setState({ errors: ["APP_AUTH_FAILED"] });
+    this.submit = this.submit.bind(this);
   }
 
   render() {
@@ -107,14 +91,23 @@ class AppAuthModal extends Form {
         </DialogTitle>
         {this.state.errors && (
           <DialogContent>
-            {_.map(this.state.errors, (error, index) => (
-              <DialogContentText
-                key={`error-${index}`}
-                classes={{ root: this.props.classes.error }}
-              >
-                <FormattedMessage id={error} />
-              </DialogContentText>
-            ))}
+            {_.map(
+              _.isArray(this.props.error)
+                ? this.props.error
+                : [this.props.error],
+              (error, index) => (
+                <DialogContentText
+                  key={`error-${index}`}
+                  classes={{ root: this.props.classes.error }}
+                >
+                  {_.isArray(error) ? (
+                    <FormattedMessage id={error[0]} values={error[1]} />
+                  ) : (
+                    <FormattedMessage id={error} />
+                  )}
+                </DialogContentText>
+              )
+            )}
           </DialogContent>
         )}
         <DialogContent>
@@ -124,7 +117,7 @@ class AppAuthModal extends Form {
             component="form"
             noValidate
             autoComplete="off"
-            onSubmit={this.handleSubmit}
+            onSubmit={this.submit}
           >
             <Grid item xs={12}>
               <Field
@@ -132,7 +125,7 @@ class AppAuthModal extends Form {
                 formProps={this.props}
                 name="login"
                 type="text"
-                onSubmit={this.handleSubmit}
+                onSubmit={this.submit}
               />
             </Grid>
             <Grid item xs={12}>
@@ -141,7 +134,7 @@ class AppAuthModal extends Form {
                 formProps={this.props}
                 name="password"
                 type="password"
-                onSubmit={this.handleSubmit}
+                onSubmit={this.submit}
               />
             </Grid>
           </Grid>
@@ -151,7 +144,7 @@ class AppAuthModal extends Form {
             variant="contained"
             color="secondary"
             disabled={this.props.submitting}
-            onClick={this.handleSubmit}
+            onClick={this.submit}
           >
             <FormattedMessage id="APP_AUTH_SUBMIT" />
           </Button>

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { Map, List } from "immutable";
+import { List } from "immutable";
 import { FormattedMessage, intlShape } from "react-intl";
 import { withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -10,22 +10,26 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Button from "@material-ui/core/Button";
-import MoreIcon from "@material-ui/icons/KeyboardArrowDown";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
 import Checkbox from "@material-ui/core/Checkbox";
 import EditUserModal from "../../containers/Users/EditUserModal";
 import ConfirmModal from "../Modals/ConfirmModal";
 
 const styles = () => ({
-  checkbox: {
-    padding: "0.5rem"
+  buttons: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignContent: "stretch"
   },
   button: {
     margin: "0.5rem"
   },
-  collapsing: {
+  checkboxField: {
     width: 1
+  },
+  checkbox: {
+    padding: "0.5rem 1rem"
   }
 });
 
@@ -35,70 +39,48 @@ class Users extends React.Component {
     theme: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
     users: PropTypes.instanceOf(List).isRequired,
+    isAllSelected: PropTypes.bool.isRequired,
+    isAllDeselected: PropTypes.bool.isRequired,
     onLoad: PropTypes.func.isRequired,
     onCreate: PropTypes.func.isRequired,
     onEdit: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired
+    onDelete: PropTypes.func.isRequired,
+    onSetSelected: PropTypes.func.isRequired,
+    onSelectAll: PropTypes.func.isRequired,
+    onDeselectAll: PropTypes.func.isRequired
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      checkboxes: Map({}),
       isConfirmOpen: false
     };
 
+    this.handleCreateAction = this.handleCreateAction.bind(this);
     this.handleEditAction = this.handleEditAction.bind(this);
     this.handleDeleteAction = this.handleDeleteAction.bind(this);
     this.handleCancelDelete = this.handleCancelDelete.bind(this);
     this.handleConfirmDelete = this.handleConfirmDelete.bind(this);
-    this.handleCreateAction = this.handleCreateAction.bind(this);
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (prevState.hash === nextProps.users.hashCode()) return null;
-
-    let checkboxes = Map({});
-    for (let item of nextProps.users.values()) {
-      checkboxes = checkboxes.set(
-        item.get("id"),
-        prevState.checkboxes.has(item.get("id"))
-          ? prevState.checkboxes.get(item.get("id"))
-          : false
-      );
-    }
-
-    return {
-      hash: nextProps.users.hashCode(),
-      checkboxes
-    };
-  }
-
-  getNumSelected() {
-    return this.state.checkboxes // eslint-disable-line lodash/prefer-lodash-method
-      .toList()
-      .filter(item => item === true).size;
   }
 
   handleToggleAll(forceOff = false) {
-    if (forceOff || this.state.checkboxes.size === this.getNumSelected()) {
-      this.setState({
-        checkboxes: this.state.checkboxes.map(_.constant(false)) // eslint-disable-line lodash/prefer-lodash-method
-      });
-    } else {
-      this.setState({
-        checkboxes: this.state.checkboxes.map(_.constant(true)) // eslint-disable-line lodash/prefer-lodash-method
-      });
-    }
+    if (forceOff || this.props.isAllSelected) this.props.onDeselectAll();
+    else this.props.onSelectAll();
   }
 
-  handleToggle(id, isChecked) {
-    this.setState({ checkboxes: this.state.checkboxes.set(id, isChecked) });
+  handleToggle(userId) {
+    let user = this.props.users.find(user => user.get("id") === userId);
+    let isSelected = user && user.get("isSelected");
+    this.props.onSetSelected(userId, !isSelected);
+  }
+
+  handleCreateAction() {
+    this.props.onCreate();
   }
 
   handleEditAction() {
-    this.props.onEdit(this.state.checkboxes.findKey(item => !!item));
+    this.props.onEdit();
   }
 
   handleDeleteAction() {
@@ -112,22 +94,18 @@ class Users extends React.Component {
   async handleConfirmDelete() {
     this.setState({ isConfirmOpen: false });
     await Promise.all(
-      _.compact(
-        // eslint-disable-next-line lodash/prefer-lodash-method
-        this.state.checkboxes.map((item, id) => item && this.props.onDelete(id))
-      )
+      // eslint-disable-next-line lodash/prefer-lodash-method
+      this.props.users
+        .filter(user => user.get("isSelected"))
+        .map(user => this.props.onDelete(user.get("id")))
     );
     this.props.onLoad();
-  }
-
-  handleCreateAction() {
-    this.props.onCreate();
   }
 
   render() {
     return (
       <React.Fragment>
-        <div>
+        <div className={this.props.classes.buttons}>
           <Button
             variant="contained"
             color="secondary"
@@ -143,17 +121,13 @@ class Users extends React.Component {
             <TableRow>
               <TableCell
                 padding="none"
-                classes={{ root: this.props.classes.collapsing }}
+                classes={{ root: this.props.classes.checkboxField }}
               >
                 <Checkbox
+                  checked={!!this.props.users.size && this.props.isAllSelected}
                   classes={{ root: this.props.classes.checkbox }}
-                  checked={
-                    !!this.state.checkboxes.size &&
-                    this.state.checkboxes.size === this.getNumSelected()
-                  }
                   indeterminate={
-                    !!this.getNumSelected() &&
-                    this.state.checkboxes.size !== this.getNumSelected()
+                    !this.props.isAllSelected && !this.props.isAllDeselected
                   }
                   onChange={() => this.handleToggleAll()}
                   value="on"
@@ -175,23 +149,21 @@ class Users extends React.Component {
                   padding="none"
                   className={classNames(
                     index % 2 ? "even" : "odd",
-                    this.state.checkboxes.get(row.get("id")) && "selected"
+                    row.get("isSelected") && "selected"
                   )}
-                  classes={{ root: this.props.classes.collapsing }}
+                  classes={{ root: this.props.classes.checkboxField }}
                 >
                   <Checkbox
+                    checked={!!row.get("isSelected")}
                     classes={{ root: this.props.classes.checkbox }}
-                    checked={!!this.state.checkboxes.get(row.get("id"))}
-                    onChange={event =>
-                      this.handleToggle(row.get("id"), event.target.checked)
-                    }
+                    onChange={() => this.handleToggle(row.get("id"))}
                     value="on"
                   />
                 </TableCell>
                 <TableCell
                   className={classNames(
                     index % 2 ? "even" : "odd",
-                    this.state.checkboxes.get(row.get("id")) && "selected"
+                    row.get("isSelected") && "selected"
                   )}
                   component="th"
                   scope="row"
@@ -201,7 +173,7 @@ class Users extends React.Component {
                 <TableCell
                   className={classNames(
                     index % 2 ? "even" : "odd",
-                    this.state.checkboxes.get(row.get("id")) && "selected"
+                    row.get("isSelected") && "selected"
                   )}
                 >
                   {/* eslint-disable-next-line lodash/prefer-lodash-method */}
@@ -220,11 +192,11 @@ class Users extends React.Component {
           </TableBody>
         </Table>
 
-        <div>
+        <div className={this.props.classes.buttons}>
           <Button
             variant="contained"
             color="primary"
-            disabled={!this.getNumSelected()}
+            disabled={this.props.isAllDeselected}
             classes={{ root: this.props.classes.button }}
             onClick={this.handleEditAction}
           >
@@ -233,7 +205,7 @@ class Users extends React.Component {
           <Button
             variant="contained"
             color="primary"
-            disabled={!this.getNumSelected()}
+            disabled={this.props.isAllDeselected}
             classes={{ root: this.props.classes.button }}
             onClick={this.handleDeleteAction}
           >

@@ -1,14 +1,21 @@
 const Loki = require("lokijs");
 const EventEmitter = require("events");
+const UserModel = require("../models/User");
+const DeviceModel = require("../models/Device");
 const constants = require("../../common/constants");
-const moment = require("../../common/moment");
 
 class Database extends EventEmitter {
-  constructor(config, auth) {
+  constructor(config, di, auth) {
     super();
 
     this.config = config;
+    this.di = di;
     this.auth = auth;
+
+    this.UserModel = UserModel;
+    this.UserModel.db = this;
+    this.DeviceModel = DeviceModel;
+    this.DeviceModel.db = this;
   }
 
   // eslint-disable-next-line lodash/prefer-constant
@@ -18,67 +25,12 @@ class Database extends EventEmitter {
 
   // eslint-disable-next-line lodash/prefer-constant
   static get $requires() {
-    return ["config", "auth"];
+    return ["config", "di", "auth"];
   }
 
   // eslint-disable-next-line lodash/prefer-constant
   static get $lifecycle() {
     return "singleton";
-  }
-
-  getId(object) {
-    if (object && _.isString(object)) return parseInt(object);
-    if (object && _.isObject(object) && isFinite(object.$loki))
-      return object.$loki.toString();
-    throw new Error("Invalid ID");
-  }
-
-  userTemplate(params = {}) {
-    let now = Date.now();
-
-    let roles = params.roles || [];
-    if (!_.includes(roles, constants.roles.AUTHENTICATED))
-      roles.push(constants.roles.AUTHENTICATED);
-
-    return {
-      ...params,
-      whenCreated: params.whenCreated || now,
-      whenUpdated: params.whenUpdated || now,
-      roles
-    };
-  }
-
-  userObject({ user }) {
-    let roles = Array.from(user.roles) || [];
-    let index = _.indexOf(roles, constants.roles.AUTHENTICATED);
-    if (index !== -1) roles.splice(index, 1);
-
-    return {
-      id: this.getId(user),
-      whenCreated: moment(user.whenCreated),
-      whenUpdated: moment(user.whenUpdated),
-      login: user.login,
-      roles
-    };
-  }
-
-  deviceTemplate(params = {}) {
-    let now = Date.now();
-
-    return {
-      ...params,
-      whenCreated: params.whenCreated || now,
-      whenUpdated: params.whenUpdated || now
-    };
-  }
-
-  deviceObject({ device }) {
-    return {
-      id: this.getId(device),
-      whenCreated: moment(device.whenCreated),
-      whenUpdated: moment(device.whenUpdated),
-      name: device.name
-    };
   }
 
   async init() {
@@ -103,15 +55,17 @@ class Database extends EventEmitter {
     });
 
     if (this.config.rootLogin && this.config.rootPassword) {
-      let user = this.users.findOne({ login: this.config.rootLogin });
+      let user = await this.UserModel.findOne(
+        this.UserModel.conditions({ login: this.config.rootLogin })
+      );
       if (!user) {
-        this.users.insert(
-          this.userTemplate({
-            login: this.config.rootLogin,
-            password: await this.auth.encryptPassword(this.config.rootPassword),
-            roles: [constants.roles.ADMIN]
-          })
-        );
+        user = new this.UserModel({
+          login: this.config.rootLogin,
+          password: await this.auth.encryptPassword(this.config.rootPassword),
+          roles: [constants.roles.ADMIN]
+        });
+        await user.validate();
+        await user.save();
         console.log("> Admin user created");
       }
     }

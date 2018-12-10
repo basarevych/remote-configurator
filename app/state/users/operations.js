@@ -1,19 +1,27 @@
 import * as actions from "./actions";
+import * as selectors from "./selectors";
 import { appOperations } from "../app";
 import constants from "../../../common/constants";
 
 export const showEditModal = actions.showEditModal;
 export const hideEditModal = actions.hideEditModal;
+export const setSelected = actions.setSelected;
+export const selectAll = actions.selectAll;
+export const deselectAll = actions.deselectAll;
+
+export const editFirstSelected = () => async (dispatch, getState) => {
+  let selected = selectors.getSelected(getState());
+  if (selected.size) {
+    return dispatch(
+      actions.showEditModal({ userId: selected.first().get("id") })
+    );
+  }
+};
 
 export const load = ({ req } = {}) => async dispatch => {
   let users;
   if (req) {
-    users = _.map(await req.di.get("repository.users").getUsers(req), user =>
-      _.assign({}, user, {
-        whenCreated: user.whenCreated.valueOf(),
-        whenUpdated: user.whenUpdated.valueOf()
-      })
-    );
+    users = await req.di.get("repository.users").getUsers(req);
   } else {
     let response = await dispatch(
       appOperations.gqlQuery(
@@ -33,12 +41,7 @@ export const load = ({ req } = {}) => async dispatch => {
   await dispatch(actions.setList({ list: users }));
 };
 
-export const create = ({
-  login,
-  password,
-  isAdmin,
-  isCallCenter
-}) => async dispatch => {
+export const create = ({ login, password, isAdmin }) => async dispatch => {
   let result = false;
 
   try {
@@ -54,10 +57,7 @@ export const create = ({
         {
           login,
           password,
-          roles: _.compact([
-            isAdmin && constants.roles.ADMIN,
-            isCallCenter && constants.roles.CALL_CENTER
-          ])
+          roles: _.compact([isAdmin && constants.roles.ADMIN])
         }
       )
     );
@@ -66,8 +66,13 @@ export const create = ({
       await dispatch(actions.hideEditModal());
       return true;
     } else {
-      let error = response && _.get(response, "errors.0", null);
-      if (error && error.code === "E_VALIDATION") result = error.details;
+      result = {};
+      let errors = response && _.get(response, "errors", []);
+      for (let error of errors) {
+        if (error && error.code === "E_VALIDATION")
+          _.merge(result, error.details);
+        else result._error = (result._error || []).concat([error.message]);
+      }
     }
   } catch (error) {
     console.error(error);
@@ -76,13 +81,7 @@ export const create = ({
   return result;
 };
 
-export const edit = ({
-  id,
-  login,
-  password,
-  isAdmin,
-  isCallCenter
-}) => async dispatch => {
+export const edit = ({ id, login, password, isAdmin }) => async dispatch => {
   let result = false;
 
   try {
@@ -99,10 +98,7 @@ export const edit = ({
           id,
           login,
           password,
-          roles: _.compact([
-            isAdmin && constants.roles.ADMIN,
-            isCallCenter && constants.roles.CALL_CENTER
-          ])
+          roles: _.compact([isAdmin && constants.roles.ADMIN])
         }
       )
     );
@@ -111,8 +107,13 @@ export const edit = ({
       await dispatch(actions.hideEditModal());
       return true;
     } else {
-      let error = response && _.get(response, "errors.0", null);
-      if (error && error.code === "E_VALIDATION") result = error.details;
+      result = {};
+      let errors = response && _.get(response, "errors", []);
+      for (let error of errors) {
+        if (error && error.code === "E_VALIDATION")
+          _.merge(result, error.details);
+        else result._error = (result._error || []).concat([error.message]);
+      }
     }
   } catch (error) {
     console.error(error);
@@ -136,7 +137,5 @@ export const remove = ({ id }) => async dispatch => {
       }
     )
   );
-  let success =
-    (response && _.get(response, "data.deleteUser.success")) || false;
-  return success;
+  return (response && _.get(response, "data.deleteUser.success")) || false;
 };

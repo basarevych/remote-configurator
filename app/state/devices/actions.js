@@ -2,6 +2,16 @@ import * as types from "./types";
 
 export const setList = ({ list }) => ({ type: types.SET_LIST, list });
 
+export const setSelected = ({ deviceId, isSelected }) => ({
+  type: types.SET_SELECTED,
+  deviceId,
+  isSelected
+});
+
+export const selectAll = () => ({ type: types.SELECT_ALL });
+
+export const deselectAll = () => ({ type: types.DESELECT_ALL });
+
 export const clear = () => ({ type: types.CLEAR });
 
 export const set = data => _.assign({ type: types.SET }, data);

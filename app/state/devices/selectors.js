@@ -1,7 +1,9 @@
 import { createSelector } from "reselect";
 import { Map } from "immutable";
 
-export const getList = createSelector(
+export const getList = state => state.getIn(["devices", "list"]);
+
+export const getOnline = createSelector(
   state => state.getIn(["devices", "online"]),
   state => state.getIn(["terminals", "online"]),
   (devices, terminals) => {
@@ -32,6 +34,17 @@ export const getList = createSelector(
       );
   }
 );
+
+export const getSelected = state =>
+  // eslint-disable-next-line lodash/prefer-lodash-method
+  state.getIn(["devices", "list"]).filter(item => !!item.get("isSelected"));
+
+export const getNumSelected = state => getSelected(state).size;
+
+export const isAllSelected = state =>
+  getList(state).size === getSelected(state).size;
+
+export const isAllDeselected = state => getSelected(state).size === 0;
 
 export const isEditModalOpen = state =>
   state.getIn(["devices", "isEditModalOpen"]);

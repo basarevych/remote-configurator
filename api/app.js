@@ -119,7 +119,7 @@ class App {
     this.di.registerInstance(this.store.dispatch.bind(this.store), "dispatch");
 
     // Next page renderer and cacher
-    const { renderPage, preCachePages } = render(this);
+    const { renderPage, preCachePages } = await render(this);
     server.once("listening", () => preCachePages({ user: null }));
     this.renderPage = renderPage;
     this.preCachePages = preCachePages;
@@ -150,7 +150,8 @@ class App {
     for (let route of _.keys(this.routes)) await this.routes[route].init();
 
     // Early middleware first
-    if (process.env.NODE_ENV === "production") this.express.use(cors(this));
+    if (process.env.NODE_ENV === "production")
+      this.express.use(await cors(this));
     this.express.use(compression());
     this.express.use(
       favicon(path.join(__dirname, "..", "static", "favicon.ico"))
@@ -175,7 +176,7 @@ class App {
     this.express.use(cookieParser());
 
     // Session
-    const sessionMiddleware = session(this);
+    const sessionMiddleware = await session(this);
     this.express.use(sessionMiddleware.express);
     this.di.get("ws").io.use(sessionMiddleware.socket);
 
@@ -183,15 +184,15 @@ class App {
     if (process.env.NODE_ENV === "production") this.express.use(csrf());
 
     // Set default headers
-    this.express.use(headers());
+    this.express.use(await headers());
 
     // Alias app services on request object
-    const helpersMiddleware = helpers(this);
+    const helpersMiddleware = await helpers(this);
     this.express.use(helpersMiddleware.express);
     this.di.get("ws").io.use(helpersMiddleware.socket);
 
     // GraphQL API at /graphql
-    this.express.use(constants.graphqlBase, graphql(this));
+    this.express.use(constants.graphqlBase, await graphql(this));
 
     // REST API is /api/*
     for (let route of _.keys(this.routes))
@@ -201,10 +202,10 @@ class App {
     this.express.get("*", this.renderPage);
 
     // Throw 404 if we haven't sent anything yet
-    this.express.use(throw404(this));
+    this.express.use(await throw404(this));
 
     // Catch errors thrown anywhere in above
-    this.express.use(error(this));
+    this.express.use(await error(this));
   }
 
   /**

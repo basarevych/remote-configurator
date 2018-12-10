@@ -3,10 +3,15 @@
 const session = require("express-session");
 const LokiStore = require("connect-loki")(session);
 
-module.exports = app => {
-  const store = new LokiStore({
-    path: app.config.sessionDbPath,
-    ttl: app.config.sessionMaxAge
+module.exports = async app => {
+  let store;
+  await new Promise((resolve, reject) => {
+    store = new LokiStore({
+      path: app.config.sessionDbPath,
+      ttl: app.config.sessionMaxAge
+    });
+    store.once("connect", resolve);
+    store.once("error", reject);
   });
 
   const sessionMiddleware = session({

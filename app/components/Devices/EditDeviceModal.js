@@ -23,7 +23,7 @@ const styles = theme => ({
   }
 });
 
-class EditCameraModal extends Form {
+class EditDeviceModal extends Form {
   static propTypes = {
     ...Form.propTypes,
     intl: intlShape,
@@ -66,15 +66,9 @@ class EditCameraModal extends Form {
       );
     }
 
-    if (result && _.isObject(result)) {
-      let errors = {};
-      for (let field of _.keys(result)) {
-        errors[field] = [];
-        for (let message of result[field]) errors[field].push({ id: message });
-      }
-
-      throw new SubmissionError(errors);
-    }
+    if (result === true) await props.onLoad();
+    else if (result && _.isObject(result)) throw new SubmissionError(result);
+    else throw new SubmissionError({ _error: "EDIT_DEVICE_FAILED" });
 
     return result;
   }
@@ -85,18 +79,13 @@ class EditCameraModal extends Form {
     /* eslint-disable lodash/prefer-lodash-method */
     if (prevState.isOpen !== nextProps.isOpen) {
       let name = nextProps.data && nextProps.data.get("name");
-      let password = nextProps.data && nextProps.data.get("password");
       nextProps.dispatch(nextProps.change("name", name || ""));
-      nextProps.dispatch(nextProps.change("password", password || ""));
-      nextProps.dispatch(nextProps.clearAsyncError("_"));
+      nextProps.dispatch(nextProps.change("password", ""));
+      nextProps.dispatch(nextProps.clearAsyncError());
+      nextProps.dispatch(nextProps.clearSubmitErrors());
       state.isOpen = nextProps.isOpen;
-      state.errors = null;
     }
     /* eslint-enable */
-
-    if (nextProps.error && nextProps.error.has("_"))
-      state.errors = nextProps.error.get("_");
-    else if (!nextProps.error || !nextProps.error.has("_")) state.errors = null;
 
     return _.keys(state).length ? state : null;
   }
@@ -105,17 +94,10 @@ class EditCameraModal extends Form {
     super(props);
 
     this.state = {
-      isOpen: props.isOpen,
-      errors: null
+      isOpen: props.isOpen
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  async handleSubmit() {
-    this.setState({ errors: null });
-    if (!(await super.submit()) && !this.state.errors)
-      this.setState({ errors: ["EDIT_DEVICE_FAILED"] });
+    this.submit = this.submit.bind(this);
   }
 
   render() {
@@ -137,14 +119,23 @@ class EditCameraModal extends Form {
         </DialogTitle>
         {this.state.errors && (
           <DialogContent>
-            {_.map(this.state.errors, (error, index) => (
-              <DialogContentText
-                key={`error-${index}`}
-                classes={{ root: this.props.classes.error }}
-              >
-                <FormattedMessage id={error} />
-              </DialogContentText>
-            ))}
+            {_.map(
+              _.isArray(this.props.error)
+                ? this.props.error
+                : [this.props.error],
+              (error, index) => (
+                <DialogContentText
+                  key={`error-${index}`}
+                  classes={{ root: this.props.classes.error }}
+                >
+                  {_.isArray(error) ? (
+                    <FormattedMessage id={error[0]} values={error[1]} />
+                  ) : (
+                    <FormattedMessage id={error} />
+                  )}
+                </DialogContentText>
+              )
+            )}
           </DialogContent>
         )}
         <DialogContent>
@@ -154,7 +145,7 @@ class EditCameraModal extends Form {
             component="form"
             noValidate
             autoComplete="off"
-            onSubmit={this.handleSubmit}
+            onSubmit={this.submit}
           >
             <Grid item xs={12}>
               <Field
@@ -162,7 +153,7 @@ class EditCameraModal extends Form {
                 formProps={this.props}
                 name="name"
                 type="text"
-                onSubmit={this.handleSubmit}
+                onSubmit={this.submit}
               />
             </Grid>
             <Grid item xs={12}>
@@ -171,7 +162,7 @@ class EditCameraModal extends Form {
                 formProps={this.props}
                 name="password"
                 type="password"
-                onSubmit={this.handleSubmit}
+                onSubmit={this.submit}
               />
             </Grid>
           </Grid>
@@ -189,7 +180,7 @@ class EditCameraModal extends Form {
             variant="contained"
             color="secondary"
             disabled={this.props.submitting}
-            onClick={this.handleSubmit}
+            onClick={this.submit}
           >
             <FormattedMessage id="EDIT_DEVICE_SUBMIT" />
           </Button>
@@ -199,4 +190,4 @@ class EditCameraModal extends Form {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(EditCameraModal);
+export default withStyles(styles, { withTheme: true })(EditDeviceModal);

@@ -106,7 +106,7 @@ class WebSocket extends EventEmitter {
   async broadcastStatus(user, status) {
     if (!user || !status) return;
     let sessions = usersSelectors.getSessionsMap(this.getState(), {
-      userId: user.$loki.toString()
+      userId: user.id
     });
     if (sessions && sessions.size) {
       // eslint-disable-next-line lodash/prefer-lodash-method
@@ -241,7 +241,7 @@ class WebSocket extends EventEmitter {
         return process.nextTick(() => socket.disconnect(true));
       }
 
-      const userId = user.$loki.toString();
+      const userId = user.id;
       const sessionId = socket.request.session.id;
       const socketId = uuid.v4();
 

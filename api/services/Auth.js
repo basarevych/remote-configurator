@@ -49,7 +49,7 @@ class Auth extends EventEmitter {
 
   async signIn(user, req) {
     req.session.isAuthenticated = true;
-    req.session.userId = user.$loki.toString();
+    req.session.userId = user.id;
     req.user = user;
     return req.saveSession();
   }

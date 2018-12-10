@@ -75,17 +75,9 @@ class EditUserModal extends Form {
       );
     }
 
-    if (result && _.isObject(result)) {
-      let errors = {};
-      for (let field of _.keys(result)) {
-        errors[field] = [];
-        for (let message of result[field]) errors[field].push({ id: message });
-      }
-
-      throw new SubmissionError(errors);
-    } else {
-      await props.onLoad();
-    }
+    if (result === true) await props.onLoad();
+    else if (result && _.isObject(result)) throw new SubmissionError(result);
+    else throw new SubmissionError({ _error: "EDIT_USER_FAILED" });
 
     return result;
   }
@@ -102,15 +94,11 @@ class EditUserModal extends Form {
       nextProps.dispatch(nextProps.change("login", login || ""));
       nextProps.dispatch(nextProps.change("password", ""));
       nextProps.dispatch(nextProps.change("isAdmin", isAdmin ? "on" : "off"));
-      nextProps.dispatch(nextProps.clearAsyncError("_"));
+      nextProps.dispatch(nextProps.clearAsyncError());
+      nextProps.dispatch(nextProps.clearSubmitErrors());
       state.isOpen = nextProps.isOpen;
-      state.errors = null;
     }
     /* eslint-enable */
-
-    if (nextProps.error && nextProps.error.has("_"))
-      state.errors = nextProps.error.get("_");
-    else if (!nextProps.error || !nextProps.error.has("_")) state.errors = null;
 
     return _.keys(state).length ? state : null;
   }
@@ -119,17 +107,10 @@ class EditUserModal extends Form {
     super(props);
 
     this.state = {
-      isOpen: props.isOpen,
-      errors: null
+      isOpen: props.isOpen
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  async handleSubmit() {
-    this.setState({ errors: null });
-    if (!(await super.submit()) && !this.state.errors)
-      this.setState({ errors: ["EDIT_USER_FAILED"] });
+    this.submit = this.submit.bind(this);
   }
 
   render() {
@@ -149,16 +130,25 @@ class EditUserModal extends Form {
             }
           />
         </DialogTitle>
-        {this.state.errors && (
+        {this.props.error && (
           <DialogContent>
-            {_.map(this.state.errors, (error, index) => (
-              <DialogContentText
-                key={`error-${index}`}
-                classes={{ root: this.props.classes.error }}
-              >
-                <FormattedMessage id={error} />
-              </DialogContentText>
-            ))}
+            {_.map(
+              _.isArray(this.props.error)
+                ? this.props.error
+                : [this.props.error],
+              (error, index) => (
+                <DialogContentText
+                  key={`error-${index}`}
+                  classes={{ root: this.props.classes.error }}
+                >
+                  {_.isArray(error) ? (
+                    <FormattedMessage id={error[0]} values={error[1]} />
+                  ) : (
+                    <FormattedMessage id={error} />
+                  )}
+                </DialogContentText>
+              )
+            )}
           </DialogContent>
         )}
         <DialogContent>
@@ -168,7 +158,7 @@ class EditUserModal extends Form {
             component="form"
             noValidate
             autoComplete="off"
-            onSubmit={this.handleSubmit}
+            onSubmit={this.submit}
           >
             <Grid item xs={12}>
               <Field
@@ -176,7 +166,7 @@ class EditUserModal extends Form {
                 formProps={this.props}
                 name="login"
                 type="text"
-                onSubmit={this.handleSubmit}
+                onSubmit={this.submit}
               />
             </Grid>
             <Grid item xs={12}>
@@ -185,7 +175,7 @@ class EditUserModal extends Form {
                 formProps={this.props}
                 name="password"
                 type="password"
-                onSubmit={this.handleSubmit}
+                onSubmit={this.submit}
               />
             </Grid>
             <Grid item xs={12}>
@@ -194,7 +184,7 @@ class EditUserModal extends Form {
                 formProps={this.props}
                 name="isAdmin"
                 type="checkbox"
-                onSubmit={this.handleSubmit}
+                onSubmit={this.submit}
               />
             </Grid>
           </Grid>
@@ -212,7 +202,7 @@ class EditUserModal extends Form {
             variant="contained"
             color="secondary"
             disabled={this.props.submitting}
-            onClick={this.handleSubmit}
+            onClick={this.submit}
           >
             <FormattedMessage id="EDIT_USER_SUBMIT" />
           </Button>

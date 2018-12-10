@@ -1,11 +1,15 @@
-const debug = require("debug")("app:devices");
+const debug = require("debug")("app:users");
 const EventEmitter = require("events");
 const ValidationError = require("../../lib/ValidationError");
+const constants = require("../../../common/constants");
+
+const accessLevel = constants.roles.AUTHENTICATED;
 
 class DevicesRepository extends EventEmitter {
-  constructor(db, getState, dispatch) {
+  constructor(auth, db, getState, dispatch) {
     super();
 
+    this.auth = auth;
     this.db = db;
     this.getState = getState;
     this.dispatch = dispatch;
@@ -18,23 +22,19 @@ class DevicesRepository extends EventEmitter {
 
   // eslint-disable-next-line lodash/prefer-constant
   static get $requires() {
-    return ["db", "getState", "dispatch"];
-  }
-
-  async getDevice(params) {
-    return this.db.devices.findOne(params);
+    return ["auth", "db", "getState", "dispatch"];
   }
 
   async getDevices(context) {
     debug("devices");
 
     let user = await context.getUser();
-    if (!user) return [];
+    if (!user || !_.includes(user.roles, accessLevel)) return [];
 
-    return _.map(
+    return _.invokeMap(
       // eslint-disable-next-line lodash/prefer-lodash-method
-      await this.db.devices.find({ owner: this.db.getId(user) }),
-      device => this.db.deviceObject({ device })
+      await this.db.DeviceModel.find(),
+      "toSanitizedObject"
     );
   }
 
@@ -42,7 +42,8 @@ class DevicesRepository extends EventEmitter {
     debug("createDevice");
 
     let user = await context.getUser();
-    if (!user) return { success: false };
+    if (!user || !_.includes(user.roles, accessLevel))
+      return { success: false };
 
     let errors = [];
     if (!args.name)
@@ -51,34 +52,32 @@ class DevicesRepository extends EventEmitter {
       errors.push({ key: "password", message: "ERROR_FIELD_REQUIRED" });
     if (errors.length) throw new ValidationError(errors);
 
-    let device = await this.getDevice({
-      owner: this.db.getId(user),
-      name: args.name
-    });
-    if (device) return { success: false };
-
-    device = this.db.devices.insert(
-      this.db.deviceTemplate({
-        name: args.name,
-        password: await this.auth.encryptPassword(args.password),
-        owner: this.db.getId(user)
-      })
+    let target = await this.db.DeviceModel.findOne(
+      this.db.DeviceModel.conditions({ name: args.name, owner: user.id })
     );
+    if (target) return { success: false };
 
-    return { success: true, id: this.db.getId(device) };
+    target = new this.db.DeviceModel({
+      name: args.name,
+      password: await this.auth.encryptPassword(args.password),
+      owner: user.id
+    });
+
+    await target.validate();
+    await target.save();
+    context.preCachePages({ path: "/", user }).catch(console.error);
+    return { success: true, id: target.id };
   }
 
   async editDevice(context, args) {
     debug("editDevice");
 
     let user = await context.getUser();
-    if (!user) return { success: false };
+    if (!user || !_.includes(user.roles, accessLevel))
+      return { success: false };
 
-    let device = await this.getDevice({
-      owner: this.db.getId(user),
-      name: args.name
-    });
-    if (!device) return { success: false };
+    let target = await this.db.DeviceModel.findById(args.id);
+    if (!target || target.owner !== user.id) return { success: false };
 
     if (!args.name) {
       throw new ValidationError([
@@ -86,27 +85,29 @@ class DevicesRepository extends EventEmitter {
       ]);
     }
 
-    device.whenUpdated = Date.now();
-    device.name = args.name;
+    target.name = args.name;
     if (args.password)
-      device.password = await this.auth.encryptPassword(args.password);
+      target.password = await this.auth.encryptPassword(args.password);
 
-    this.db.devices.update(device);
-    return { success: true, id: this.db.getId(device) };
+    await target.validate();
+    await target.save();
+    context.preCachePages({ path: "/", user }).catch(console.error);
+    return { success: true, id: target.id };
   }
 
   async deleteDevice(context, args) {
     debug("deleteDevice");
 
     let user = await context.getUser();
-    if (!user) return { success: false };
-
-    let device = this.db.devices.get(this.db.getId(args.id));
-    if (!device || device.owner !== this.db.getId(user))
+    if (!user || !_.includes(user.roles, accessLevel))
       return { success: false };
 
-    this.db.devices.remove(device);
-    return { success: true, id: args.id };
+    let target = await this.db.DeviceModel.findById(args.id);
+    if (!target || target.owner !== user.id) return { success: false };
+
+    await target.remove();
+    context.preCachePages({ path: "/", user }).catch(console.error);
+    return { success: true, id: target.id };
   }
 }
 

@@ -31,10 +31,10 @@ class UsersRepository extends EventEmitter {
     let user = await context.getUser();
     if (!user || !_.includes(user.roles, accessLevel)) return [];
 
-    return _.map(
+    return _.invokeMap(
       // eslint-disable-next-line lodash/prefer-lodash-method
-      await this.db.users.find(),
-      user => this.db.userObject({ user })
+      await this.db.UserModel.find(),
+      "toSanitizedObject"
     );
   }
 
@@ -52,16 +52,16 @@ class UsersRepository extends EventEmitter {
       errors.push({ key: "password", message: "ERROR_FIELD_REQUIRED" });
     if (errors.length) throw new ValidationError(errors);
 
-    let target = this.db.users.insert(
-      this.db.userTemplate({
-        login: args.login,
-        password: await this.auth.encryptPassword(args.password),
-        roles: args.roles || []
-      })
-    );
+    let target = new this.db.UserModel({
+      login: args.login,
+      password: await this.auth.encryptPassword(args.password),
+      roles: args.roles || []
+    });
 
+    await target.validate();
+    await target.save();
     context.preCachePages({ path: "/users" }).catch(console.error);
-    return { success: true, id: this.db.getId(target) };
+    return { success: true, id: target.id };
   }
 
   async editUser(context, args) {
@@ -71,7 +71,7 @@ class UsersRepository extends EventEmitter {
     if (!user || !_.includes(user.roles, accessLevel))
       return { success: false };
 
-    let target = this.db.users.get(this.db.getId(args.id));
+    let target = await this.db.UserModel.findById(args.id);
     if (!target) return { success: false };
 
     if (!args.login) {
@@ -80,15 +80,15 @@ class UsersRepository extends EventEmitter {
       ]);
     }
 
-    target.whenUpdated = Date.now();
     target.login = args.login;
     if (args.password)
       target.password = await this.auth.encryptPassword(args.password);
     target.roles = args.roles;
 
-    this.db.users.update(target);
+    await target.validate();
+    await target.save();
     context.preCachePages({ path: "/users" }).catch(console.error);
-    return { success: true, id: this.db.getId(target) };
+    return { success: true, id: target.id };
   }
 
   async deleteUser(context, args) {
@@ -98,12 +98,12 @@ class UsersRepository extends EventEmitter {
     if (!user || !_.includes(user.roles, accessLevel))
       return { success: false };
 
-    let target = this.db.users.get(this.db.getId(args.id));
+    let target = await this.db.UserModel.findById(args.id);
     if (!target) return { success: false };
 
-    this.db.users.remove(target);
+    await target.remove();
     context.preCachePages({ path: "/users" }).catch(console.error);
-    return { success: true, id: args.id };
+    return { success: true, id: target.id };
   }
 }
 

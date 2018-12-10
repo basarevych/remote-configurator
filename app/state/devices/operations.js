@@ -1,4 +1,5 @@
 import * as actions from "./actions";
+import * as selectors from "./selectors";
 import { appOperations } from "../app";
 import { terminalsSelectors, terminalsOperations } from "../terminals";
 
@@ -6,6 +7,18 @@ export const clear = actions.clear;
 export const set = actions.set;
 export const showEditModal = actions.showEditModal;
 export const hideEditModal = actions.hideEditModal;
+export const setSelected = actions.setSelected;
+export const selectAll = actions.selectAll;
+export const deselectAll = actions.deselectAll;
+
+export const editFirstSelected = () => async (dispatch, getState) => {
+  let selected = selectors.getSelected(getState());
+  if (selected.size) {
+    return dispatch(
+      actions.showEditModal({ deviceId: selected.first().get("id") })
+    );
+  }
+};
 
 export const remove = ({ deviceId }) => {
   return async (dispatch, getState) => {
@@ -79,8 +92,13 @@ export const reqCreate = ({ name, password }) => async dispatch => {
       await dispatch(actions.hideEditModal());
       return true;
     } else {
-      let error = response && _.get(response, "errors.0", null);
-      if (error && error.code === "E_VALIDATION") result = error.details;
+      result = {};
+      let errors = response && _.get(response, "errors", []);
+      for (let error of errors) {
+        if (error && error.code === "E_VALIDATION")
+          _.merge(result, error.details);
+        else result._error = (result._error || []).concat([error.message]);
+      }
     }
   } catch (error) {
     console.error(error);
@@ -114,8 +132,13 @@ export const reqEdit = ({ id, name, password }) => async dispatch => {
       await dispatch(actions.hideEditModal());
       return true;
     } else {
-      let error = response && _.get(response, "errors.0", null);
-      if (error && error.code === "E_VALIDATION") result = error.details;
+      result = {};
+      let errors = response && _.get(response, "errors", []);
+      for (let error of errors) {
+        if (error && error.code === "E_VALIDATION")
+          _.merge(result, error.details);
+        else result._error = (result._error || []).concat([error.message]);
+      }
     }
   } catch (error) {
     console.error(error);
@@ -139,7 +162,5 @@ export const reqRemove = ({ id }) => async dispatch => {
       }
     )
   );
-  let success =
-    (response && _.get(response, "data.deleteDevice.success")) || false;
-  return success;
+  return (response && _.get(response, "data.deleteDevice.success")) || false;
 };

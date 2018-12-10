@@ -2,9 +2,9 @@ import { Map } from "immutable";
 import { injectIntl } from "react-intl";
 import { getFormValues, getFormAsyncErrors } from "redux-form/immutable";
 import { startAsyncValidation, stopAsyncValidation } from "redux-form";
-import { devicesOperations, devicesSelectors } from "../../state/devices";
+import { devicesSelectors, devicesOperations } from "../../state/devices";
 import createForm from "../../lib/createForm";
-import EditDeviceModalComponent from "../../components/devices/EditDeviceModal";
+import EditDeviceModalComponent from "../../components/Devices/EditDeviceModal";
 
 const formName = EditDeviceModalComponent.formName;
 
@@ -31,9 +31,9 @@ const mapDispatchToProps = dispatch => {
     onCancel: () => dispatch(devicesOperations.hideEditModal()),
     onLoad: () => dispatch(devicesOperations.load()),
     onCreate: (name, password) =>
-      dispatch(devicesOperations.create({ name, password })),
+      dispatch(devicesOperations.reqCreate({ name, password })),
     onEdit: (id, name, password) =>
-      dispatch(devicesOperations.edit({ id, name, password }))
+      dispatch(devicesOperations.reqEdit({ id, name, password }))
   };
 };
 

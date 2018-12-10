@@ -1,22 +1,23 @@
 "use strict";
 
-const { darken } = require("@material-ui/core/styles/colorManipulator");
+const {
+  darken,
+  lighten
+} = require("@material-ui/core/styles/colorManipulator");
+const { red } = require("@material-ui/core/colors");
 
 const primary = "#4c5066";
 const secondary = "#b33711";
 
 const paperGradient = "linear-gradient(to right bottom, #3d3f4d, #222326)";
 const bgPage = "#000000";
-
 const bgNormal = "#3a3c48";
-const bgLight = "#4a4c58";
-const bgLighter = "#5a5c68";
-const bgDark = "#2a2c38";
 
 const textNormal = "rgba(255, 255, 255, 0.87)";
 const textDark = "rgba(255, 255, 255, 0.54)";
 const textDisabled = "rgba(255, 255, 255, 0.38)";
 const textContrast = "#ffffff";
+const textError = red[500];
 
 const fontSize = 14;
 
@@ -34,7 +35,7 @@ module.exports = {
     },
     background: {
       default: bgPage,
-      paper: bgLight
+      paper: lighten(bgNormal, 0.1)
     },
     text: {
       primary: textNormal,
@@ -85,9 +86,6 @@ module.exports = {
     MuiTableRow: {
       root: {
         height: ["100%", "!important"]
-      },
-      head: {
-        height: ["100%", "!important"]
       }
     },
     MuiTableBody: {
@@ -115,20 +113,26 @@ module.exports = {
       },
       contained: {
         "&:not($containedPrimary):not($containedSecondary)": {
-          background: bgNormal
+          background: [bgNormal, "!important"],
+          color: [textNormal, "!important"]
         }
       },
       disabled: {
-        color: [textDark, "!important"],
         boxShadow: [
           "0px 1px 5px 0px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14),0px 3px 1px -2px rgba(0, 0, 0, 0.12)",
           "!important"
         ],
+        "&:not($containedPrimary):not($containedSecondary)": {
+          background: [darken(bgNormal, 0.1), "!important"],
+          color: [textDark, "!important"]
+        },
         "&$containedPrimary": {
-          background: [darken(primary, 0.5), "!important"]
+          background: [darken(primary, 0.5), "!important"],
+          color: [darken(textContrast, 0.2), "!important"]
         },
         "&$containedSecondary": {
-          background: [darken(secondary, 0.5), "!important"]
+          background: [darken(secondary, 0.5), "!important"],
+          color: [darken(textContrast, 0.2), "!important"]
         }
       }
     },
@@ -144,14 +148,17 @@ module.exports = {
     },
     MuiFilledInput: {
       root: {
-        background: [bgLight, "!important"],
+        background: [lighten(bgNormal, 0.1), "!important"],
         borderRadius: 4,
         "&:hover": {
-          background: [bgLighter, "!important"]
+          background: [lighten(bgNormal, 0.2), "!important"]
         }
       },
       focused: {
-        background: [bgLighter, "!important"]
+        background: [lighten(bgNormal, 0.2), "!important"],
+        "&$error": {
+          color: [textError, "!important"]
+        }
       },
       underline: {
         "&:before": {
@@ -168,10 +175,16 @@ module.exports = {
         zIndex: 100
       },
       focused: {
-        color: [textContrast, "!important"]
+        color: [textContrast, "!important"],
+        "&$error": {
+          color: [textError, "!important"]
+        }
       },
       filled: {
-        color: [textDark, "!important"]
+        color: [textDark, "!important"],
+        "&$error": {
+          color: [textError, "!important"]
+        }
       }
     },
     MuiSwitch: {
@@ -182,6 +195,11 @@ module.exports = {
     MuiListItemIcon: {
       root: {
         margin: [0, "!important"]
+      }
+    },
+    MuiCheckbox: {
+      checked: {
+        color: [secondary, "!important"]
       }
     }
   }
