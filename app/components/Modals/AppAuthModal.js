@@ -55,7 +55,6 @@ class AppAuthModal extends Form {
 
     if (result === true) await props.onLoad();
     else if (result && _.isObject(result)) throw new SubmissionError(result);
-    else throw new SubmissionError({ _error: "APP_AUTH_FAILED" });
 
     return result;
   }
@@ -89,7 +88,7 @@ class AppAuthModal extends Form {
         <DialogTitle>
           <FormattedMessage id="APP_AUTH_TITLE" />
         </DialogTitle>
-        {this.state.errors && (
+        {this.props.error && (
           <DialogContent>
             {_.map(
               _.isArray(this.props.error)

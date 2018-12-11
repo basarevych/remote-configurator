@@ -68,7 +68,6 @@ class EditDeviceModal extends Form {
 
     if (result === true) await props.onLoad();
     else if (result && _.isObject(result)) throw new SubmissionError(result);
-    else throw new SubmissionError({ _error: "EDIT_DEVICE_FAILED" });
 
     return result;
   }
@@ -117,7 +116,7 @@ class EditDeviceModal extends Form {
             }
           />
         </DialogTitle>
-        {this.state.errors && (
+        {this.props.error && (
           <DialogContent>
             {_.map(
               _.isArray(this.props.error)

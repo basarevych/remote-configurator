@@ -70,6 +70,7 @@ class Devices extends React.Component {
   }
 
   handleToggle(deviceId) {
+    // eslint-disable-next-line lodash/prefer-lodash-method
     let device = this.props.devices.find(
       device => device.get("id") === deviceId
     );

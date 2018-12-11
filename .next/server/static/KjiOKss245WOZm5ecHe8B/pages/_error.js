@@ -178,6 +178,18 @@ module.exports = require("redux-immutable");
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports) {
+
+module.exports = require("react");
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports = require("prop-types");
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -188,17 +200,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.appSelectors = exports.appOperations = exports.appTypes = exports.default = void 0;
 
-var _reducers = _interopRequireDefault(__webpack_require__(43));
+var _reducers = _interopRequireDefault(__webpack_require__(40));
 
 var appTypes = _interopRequireWildcard(__webpack_require__(12));
 
 exports.appTypes = appTypes;
 
-var appOperations = _interopRequireWildcard(__webpack_require__(46));
+var appOperations = _interopRequireWildcard(__webpack_require__(43));
 
 exports.appOperations = appOperations;
 
-var appSelectors = _interopRequireWildcard(__webpack_require__(78));
+var appSelectors = _interopRequireWildcard(__webpack_require__(72));
 
 exports.appSelectors = appSelectors;
 
@@ -208,18 +220,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var _default = _reducers.default;
 exports.default = _default;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-module.exports = require("react");
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-module.exports = require("prop-types");
 
 /***/ }),
 /* 8 */,
@@ -236,17 +236,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.authSelectors = exports.authOperations = exports.authTypes = exports.default = void 0;
 
-var _reducers = _interopRequireDefault(__webpack_require__(51));
+var _reducers = _interopRequireDefault(__webpack_require__(48));
 
 var authTypes = _interopRequireWildcard(__webpack_require__(13));
 
 exports.authTypes = authTypes;
 
-var authOperations = _interopRequireWildcard(__webpack_require__(52));
+var authOperations = _interopRequireWildcard(__webpack_require__(49));
 
 exports.authOperations = authOperations;
 
-var authSelectors = _interopRequireWildcard(__webpack_require__(24));
+var authSelectors = _interopRequireWildcard(__webpack_require__(23));
 
 exports.authSelectors = authSelectors;
 
@@ -309,30 +309,6 @@ exports.SET_STATUS = SET_STATUS;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.HIDE_EDIT_MODAL = exports.SHOW_EDIT_MODAL = exports.DESELECT_ALL = exports.SELECT_ALL = exports.SET_SELECTED = exports.SET_LIST = void 0;
-var SET_LIST = "app/users/SET_LIST";
-exports.SET_LIST = SET_LIST;
-var SET_SELECTED = "app/users/SET_SELECTED";
-exports.SET_SELECTED = SET_SELECTED;
-var SELECT_ALL = "app/users/SELECT_ALL";
-exports.SELECT_ALL = SELECT_ALL;
-var DESELECT_ALL = "app/users/DESELECT_ALL";
-exports.DESELECT_ALL = DESELECT_ALL;
-var SHOW_EDIT_MODAL = "app/users/SHOW_EDIT_MODAL";
-exports.SHOW_EDIT_MODAL = SHOW_EDIT_MODAL;
-var HIDE_EDIT_MODAL = "app/users/HIDE_EDIT_MODAL";
-exports.HIDE_EDIT_MODAL = HIDE_EDIT_MODAL;
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 exports.HIDE_EDIT_MODAL = exports.SHOW_EDIT_MODAL = exports.REMOVE = exports.SET = exports.CLEAR = exports.DESELECT_ALL = exports.SELECT_ALL = exports.SET_SELECTED = exports.SET_LIST = void 0;
 var SET_LIST = "app/devices/SET_LIST";
 exports.SET_LIST = SET_LIST;
@@ -354,7 +330,7 @@ var HIDE_EDIT_MODAL = "app/devices/HIDE_EDIT_MODAL";
 exports.HIDE_EDIT_MODAL = HIDE_EDIT_MODAL;
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -372,7 +348,7 @@ var REMOVE = "app/terminals/REMOVE";
 exports.REMOVE = REMOVE;
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -392,7 +368,7 @@ var REMOVE_STARTING = "app/histories/REMOVE_STARTING";
 exports.REMOVE_STARTING = REMOVE_STARTING;
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -406,8 +382,8 @@ var SET = "app/activeTerminal/SET";
 exports.SET = SET;
 
 /***/ }),
-/* 19 */,
-/* 20 */
+/* 18 */,
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -418,19 +394,52 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.terminalsSelectors = exports.terminalsOperations = exports.terminalsTypes = exports.default = void 0;
 
-var _reducers = _interopRequireDefault(__webpack_require__(63));
+var _reducers = _interopRequireDefault(__webpack_require__(57));
 
-var terminalsTypes = _interopRequireWildcard(__webpack_require__(16));
+var terminalsTypes = _interopRequireWildcard(__webpack_require__(15));
 
 exports.terminalsTypes = terminalsTypes;
 
-var terminalsOperations = _interopRequireWildcard(__webpack_require__(64));
+var terminalsOperations = _interopRequireWildcard(__webpack_require__(58));
 
 exports.terminalsOperations = terminalsOperations;
 
-var terminalsSelectors = _interopRequireWildcard(__webpack_require__(75));
+var terminalsSelectors = _interopRequireWildcard(__webpack_require__(69));
 
 exports.terminalsSelectors = terminalsSelectors;
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = _reducers.default;
+exports.default = _default;
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.devicesSelectors = exports.devicesOperations = exports.devicesTypes = exports.default = void 0;
+
+var _reducers = _interopRequireDefault(__webpack_require__(54));
+
+var devicesTypes = _interopRequireWildcard(__webpack_require__(14));
+
+exports.devicesTypes = devicesTypes;
+
+var devicesOperations = _interopRequireWildcard(__webpack_require__(55));
+
+exports.devicesOperations = devicesOperations;
+
+var devicesSelectors = _interopRequireWildcard(__webpack_require__(25));
+
+exports.devicesSelectors = devicesSelectors;
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -449,52 +458,19 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.devicesSelectors = exports.devicesOperations = exports.devicesTypes = exports.default = void 0;
+exports.historiesSelectors = exports.historiesOperations = exports.historiesTypes = exports.default = void 0;
 
 var _reducers = _interopRequireDefault(__webpack_require__(60));
 
-var devicesTypes = _interopRequireWildcard(__webpack_require__(15));
-
-exports.devicesTypes = devicesTypes;
-
-var devicesOperations = _interopRequireWildcard(__webpack_require__(61));
-
-exports.devicesOperations = devicesOperations;
-
-var devicesSelectors = _interopRequireWildcard(__webpack_require__(27));
-
-exports.devicesSelectors = devicesSelectors;
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = _reducers.default;
-exports.default = _default;
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.historiesSelectors = exports.historiesOperations = exports.historiesTypes = exports.default = void 0;
-
-var _reducers = _interopRequireDefault(__webpack_require__(66));
-
-var historiesTypes = _interopRequireWildcard(__webpack_require__(17));
+var historiesTypes = _interopRequireWildcard(__webpack_require__(16));
 
 exports.historiesTypes = historiesTypes;
 
-var historiesOperations = _interopRequireWildcard(__webpack_require__(68));
+var historiesOperations = _interopRequireWildcard(__webpack_require__(62));
 
 exports.historiesOperations = historiesOperations;
 
-var historiesSelectors = _interopRequireWildcard(__webpack_require__(70));
+var historiesSelectors = _interopRequireWildcard(__webpack_require__(64));
 
 exports.historiesSelectors = historiesSelectors;
 
@@ -506,8 +482,8 @@ var _default = _reducers.default;
 exports.default = _default;
 
 /***/ }),
-/* 23 */,
-/* 24 */
+/* 22 */,
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -518,7 +494,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getRoles = exports.getLogin = exports.isAdmin = exports.isAuthenticated = exports.getCsrf = void 0;
 
-var _reselect = __webpack_require__(25);
+var _reselect = __webpack_require__(24);
 
 var _constants = _interopRequireDefault(__webpack_require__(3));
 
@@ -559,76 +535,13 @@ var getRoles = (0, _reselect.createSelector)(function (state) {
 exports.getRoles = getRoles;
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports) {
 
 module.exports = require("reselect");
 
 /***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.getEditModalData = exports.isEditModalOpen = exports.isAllDeselected = exports.isAllSelected = exports.getNumSelected = exports.getSelected = exports.getList = void 0;
-
-var getList = function getList(state) {
-  return state.getIn(["users", "list"]);
-};
-
-exports.getList = getList;
-
-var getSelected = function getSelected(state) {
-  return (// eslint-disable-next-line lodash/prefer-lodash-method
-    state.getIn(["users", "list"]).filter(function (item) {
-      return !!item.get("isSelected");
-    })
-  );
-};
-
-exports.getSelected = getSelected;
-
-var getNumSelected = function getNumSelected(state) {
-  return getSelected(state).size;
-};
-
-exports.getNumSelected = getNumSelected;
-
-var isAllSelected = function isAllSelected(state) {
-  return getList(state).size === getSelected(state).size;
-};
-
-exports.isAllSelected = isAllSelected;
-
-var isAllDeselected = function isAllDeselected(state) {
-  return getSelected(state).size === 0;
-};
-
-exports.isAllDeselected = isAllDeselected;
-
-var isEditModalOpen = function isEditModalOpen(state) {
-  return state.getIn(["users", "isEditModalOpen"]);
-};
-
-exports.isEditModalOpen = isEditModalOpen;
-
-var getEditModalData = function getEditModalData(state) {
-  var id = state.getIn(["users", "editModalUserId"]);
-  if (!id) return null; // eslint-disable-next-line
-
-  return state.getIn(["users", "list"]).find(function (item) {
-    return item.get("id") === id;
-  });
-};
-
-exports.getEditModalData = getEditModalData;
-
-/***/ }),
-/* 27 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -639,7 +552,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getEditModalData = exports.isEditModalOpen = exports.isAllDeselected = exports.isAllSelected = exports.getNumSelected = exports.getSelected = exports.getOnline = exports.getList = void 0;
 
-var _reselect = __webpack_require__(25);
+var _reselect = __webpack_require__(24);
 
 var _immutable = __webpack_require__(2);
 
@@ -723,46 +636,13 @@ var getEditModalData = function getEditModalData(state) {
 exports.getEditModalData = getEditModalData;
 
 /***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.usersSelectors = exports.usersOperations = exports.usersTypes = exports.default = void 0;
-
-var _reducers = _interopRequireDefault(__webpack_require__(54));
-
-var usersTypes = _interopRequireWildcard(__webpack_require__(14));
-
-exports.usersTypes = usersTypes;
-
-var usersOperations = _interopRequireWildcard(__webpack_require__(55));
-
-exports.usersOperations = usersOperations;
-
-var usersSelectors = _interopRequireWildcard(__webpack_require__(26));
-
-exports.usersSelectors = usersSelectors;
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = _reducers.default;
-exports.default = _default;
-
-/***/ }),
-/* 29 */
+/* 26 */
 /***/ (function(module, exports) {
 
 module.exports = require("next/router");
 
 /***/ }),
-/* 30 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -773,17 +653,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.activeTerminalSelectors = exports.activeTerminalOperations = exports.activeTerminalTypes = exports.default = void 0;
 
-var _reducers = _interopRequireDefault(__webpack_require__(71));
+var _reducers = _interopRequireDefault(__webpack_require__(65));
 
-var activeTerminalTypes = _interopRequireWildcard(__webpack_require__(18));
+var activeTerminalTypes = _interopRequireWildcard(__webpack_require__(17));
 
 exports.activeTerminalTypes = activeTerminalTypes;
 
-var activeTerminalOperations = _interopRequireWildcard(__webpack_require__(72));
+var activeTerminalOperations = _interopRequireWildcard(__webpack_require__(66));
 
 exports.activeTerminalOperations = activeTerminalOperations;
 
-var activeTerminalSelectors = _interopRequireWildcard(__webpack_require__(74));
+var activeTerminalSelectors = _interopRequireWildcard(__webpack_require__(68));
 
 exports.activeTerminalSelectors = activeTerminalSelectors;
 
@@ -795,12 +675,12 @@ var _default = _reducers.default;
 exports.default = _default;
 
 /***/ }),
+/* 28 */,
+/* 29 */,
+/* 30 */,
 /* 31 */,
 /* 32 */,
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -841,10 +721,10 @@ module.exports = function isRouteAllowed(path) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -889,30 +769,30 @@ module.exports = {
     en: "English"
   },
   messages: {
-    en: parse(__webpack_require__(44))
+    en: parse(__webpack_require__(41))
   },
   getLocaleData: function getLocaleData() {
-    return [__webpack_require__(45)];
+    return [__webpack_require__(42)];
   }
 };
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 41 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var moment = __webpack_require__(50); // Add locales:
+var moment = __webpack_require__(47); // Add locales:
 //require("moment/locale/ru.js"); // en is already there
 
 
 module.exports = moment;
 
 /***/ }),
-/* 42 */,
-/* 43 */
+/* 39 */,
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -927,7 +807,7 @@ var _reduxImmutable = __webpack_require__(4);
 
 var types = _interopRequireWildcard(__webpack_require__(12));
 
-var _locales = _interopRequireDefault(__webpack_require__(40));
+var _locales = _interopRequireDefault(__webpack_require__(37));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1036,19 +916,19 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 44 */
+/* 41 */
 /***/ (function(module) {
 
 module.exports = {"MENU_DEVICES":"Device List","TITLE_DEVICES":"Remote Configurator","MENU_DEVICE":"Device","TITLE_DEVICE":"Device","MENU_USERS":"Users","TITLE_USERS":"Users","SIDEBAR_SIGN_OUT_LINK":"Sign Out","DEVICES_INFO_HTML":["<p>Run the following command on the target:</p>","<pre class=\"sample\">ssh -p 37500 -R 22:localhost:22 -N device1@45.63.117.244</pre>","<p>You can replace <strong>device1</strong> with any other ID &ndash; it will be displayed in the list below.<p>","<p>Password-based or kerboard-interactive authentication must be enabled on the host where you run the command above.</p>"],"DEVICES_NAME_COLUMN":"Name","DEVICES_ADDRESS_COLUMN":"Address","DEVICES_CONN_STRING_COLUMN":"Connection string","DEVICES_CREATE_BUTTON":"Create Device","DEVICES_EDIT_BUTTON":"Edit Device","DEVICES_DELETE_BUTTON":"Delete Devices","EDIT_DEVICE_TITLE_CREATE":"Create Device","EDIT_DEVICE_TITLE_EDIT":"Edit Device","EDIT_DEVICE_NAME_LABEL":"Name","EDIT_DEVICE_PASSWORD_LABEL":"Password","EDIT_DEVICE_FAILED":"Form submission failed","EDIT_DEVICE_SUBMIT":"Submit","EDIT_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_TITLE":"Delete Devices","DELETE_DEVICE_TEXT":"Delete selected devices?","DELETE_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_SUBMIT":"Delete","USERS_LOGIN_COLUMN":"Login","USERS_ROLES_COLUMN":"Roles","USERS_CREATE_BUTTON":"Create User","USERS_EDIT_BUTTON":"Edit User","USERS_DELETE_BUTTON":"Delete Users","EDIT_USER_TITLE_CREATE":"Create User","EDIT_USER_TITLE_EDIT":"Edit User","EDIT_USER_LOGIN_LABEL":"Login","EDIT_USER_PASSWORD_LABEL":"Password","EDIT_USER_ADMIN_LABEL":"Administrator","EDIT_USER_CANCEL":"Cancel","EDIT_USER_SUBMIT":"Submit","EDIT_USER_FAILED":"An error occured","DELETE_USER_TITLE":"Delete Users","DELETE_USER_TEXT":"Delete selected users?","DELETE_USER_CANCEL":"Cancel","DELETE_USER_SUBMIT":"Delete","TERMINAL_CONNECTING_LABEL":"Connecting...","TERMINAL_NOT_CONNECTED_LABEL":"Not connected","APP_AUTH_TITLE":"Authentication","APP_AUTH_LOGIN_LABEL":"Login","APP_AUTH_PASSWORD_LABEL":"Password","APP_AUTH_SUBMIT":"Sign In","APP_AUTH_FAILED":"Invalid credentials","SETUP_AUTH_TITLE":"Authentication","SETUP_AUTH_LOGIN_LABEL":"Login","SETUP_AUTH_PASSWORD_LABEL":"Password","SETUP_AUTH_CANCEL":"Cancel","SETUP_AUTH_SUBMIT":"Submit","KEYBOARD_AUTH_TITLE":"Authentication","KEYBOARD_AUTH_REPLY_LABEL":"Response","KEYBOARD_AUTH_CANCEL":"Cancel","KEYBOARD_AUTH_SUBMIT":"Submit","ERROR_FIELD_REQUIRED":"This field is required","ERROR_INVALID_PASSWORD":"Password length must be at least 6 characters"};
 
 /***/ }),
-/* 45 */
+/* 42 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-intl/locale-data/en.js");
 
 /***/ }),
-/* 46 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1061,21 +941,21 @@ exports.start = exports.init = exports.create = exports.gqlQuery = exports.stop 
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _isomorphicUnfetch = _interopRequireDefault(__webpack_require__(47));
+var _isomorphicUnfetch = _interopRequireDefault(__webpack_require__(44));
 
-var _injectt = _interopRequireDefault(__webpack_require__(48));
+var _injectt = _interopRequireDefault(__webpack_require__(45));
 
-var actions = _interopRequireWildcard(__webpack_require__(49));
+var actions = _interopRequireWildcard(__webpack_require__(46));
 
 var _auth = __webpack_require__(11);
 
 var _constants = _interopRequireDefault(__webpack_require__(3));
 
-var _Storage = _interopRequireDefault(__webpack_require__(57));
+var _Storage = _interopRequireDefault(__webpack_require__(51));
 
-var _Socket = _interopRequireDefault(__webpack_require__(58));
+var _Socket = _interopRequireDefault(__webpack_require__(52));
 
-var _Cookie = _interopRequireDefault(__webpack_require__(77));
+var _Cookie = _interopRequireDefault(__webpack_require__(71));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -1399,19 +1279,19 @@ var start = function start() {
 exports.start = start;
 
 /***/ }),
-/* 47 */
+/* 44 */
 /***/ (function(module, exports) {
 
 module.exports = require("isomorphic-unfetch");
 
 /***/ }),
-/* 48 */
+/* 45 */
 /***/ (function(module, exports) {
 
 module.exports = require("injectt");
 
 /***/ }),
-/* 49 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1422,7 +1302,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.setLocale = exports.setConnected = exports.setStatusCode = exports.stop = exports.start = exports.init = exports.create = void 0;
 
-var _moment = _interopRequireDefault(__webpack_require__(41));
+var _moment = _interopRequireDefault(__webpack_require__(38));
 
 var types = _interopRequireWildcard(__webpack_require__(12));
 
@@ -1497,13 +1377,13 @@ exports.setLocale = setLocale;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 50 */
+/* 47 */
 /***/ (function(module, exports) {
 
 module.exports = require("moment-timezone");
 
 /***/ }),
-/* 51 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1593,7 +1473,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 52 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1606,17 +1486,15 @@ exports.updateProfile = exports.signOut = exports.signIn = exports.setStatus = e
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _router = _interopRequireDefault(__webpack_require__(29));
+var _router = _interopRequireDefault(__webpack_require__(26));
 
-var _isRouteAllowed = _interopRequireDefault(__webpack_require__(36));
+var _isRouteAllowed = _interopRequireDefault(__webpack_require__(33));
 
-var actions = _interopRequireWildcard(__webpack_require__(53));
+var actions = _interopRequireWildcard(__webpack_require__(50));
 
-var selectors = _interopRequireWildcard(__webpack_require__(24));
+var selectors = _interopRequireWildcard(__webpack_require__(23));
 
-var _app = __webpack_require__(5);
-
-var _users = __webpack_require__(28);
+var _app = __webpack_require__(7);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -1775,7 +1653,8 @@ var signIn = function signIn(_ref3) {
       var _ref4 = _asyncToGenerator(
       /*#__PURE__*/
       _regenerator.default.mark(function _callee3(dispatch) {
-        var result, response, error;
+        var result, response, errors, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, error;
+
         return _regenerator.default.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
@@ -1792,7 +1671,7 @@ var signIn = function signIn(_ref3) {
                 response = _context3.sent;
 
                 if (!(response && _.get(response, "data.signIn.success", false))) {
-                  _context3.next = 13;
+                  _context3.next = 14;
                   break;
                 }
 
@@ -1800,34 +1679,88 @@ var signIn = function signIn(_ref3) {
                 return dispatch(setStatus());
 
               case 8:
-                _context3.next = 10;
-                return dispatch(_users.usersOperations.load());
+                if (true) {
+                  _context3.next = 11;
+                  break;
+                }
 
-              case 10:
+                _context3.next = 11;
+                return window.__NEXT_PAGE_INIT({
+                  store: window.__NEXT_REDUX_STORE__
+                });
+
+              case 11:
                 return _context3.abrupt("return", true);
 
-              case 13:
-                error = response && _.get(response, "errors.0", null);
-                if (error && error.code === "E_VALIDATION") result = error.details;
+              case 14:
+                result = {};
+                errors = response && _.get(response, "errors", []);
+                _iteratorNormalCompletion = true;
+                _didIteratorError = false;
+                _iteratorError = undefined;
+                _context3.prev = 19;
 
-              case 15:
-                _context3.next = 20;
+                for (_iterator = errors[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                  error = _step.value;
+                  if (error && error.code === "E_VALIDATION") _.merge(result, error.details);else result._error = (result._error || []).concat([error.message]);
+                }
+
+                _context3.next = 27;
                 break;
 
-              case 17:
-                _context3.prev = 17;
-                _context3.t0 = _context3["catch"](1);
-                console.error(_context3.t0);
+              case 23:
+                _context3.prev = 23;
+                _context3.t0 = _context3["catch"](19);
+                _didIteratorError = true;
+                _iteratorError = _context3.t0;
 
-              case 20:
+              case 27:
+                _context3.prev = 27;
+                _context3.prev = 28;
+
+                if (!_iteratorNormalCompletion && _iterator.return != null) {
+                  _iterator.return();
+                }
+
+              case 30:
+                _context3.prev = 30;
+
+                if (!_didIteratorError) {
+                  _context3.next = 33;
+                  break;
+                }
+
+                throw _iteratorError;
+
+              case 33:
+                return _context3.finish(30);
+
+              case 34:
+                return _context3.finish(27);
+
+              case 35:
+                if (!_.keys(result).length) result = {
+                  _error: "APP_AUTH_FAILED"
+                };
+
+              case 36:
+                _context3.next = 41;
+                break;
+
+              case 38:
+                _context3.prev = 38;
+                _context3.t1 = _context3["catch"](1);
+                console.error(_context3.t1);
+
+              case 41:
                 return _context3.abrupt("return", result);
 
-              case 21:
+              case 42:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, this, [[1, 17]]);
+        }, _callee3, this, [[1, 38], [19, 23, 27, 35], [28,, 30, 34]]);
       }));
 
       return function (_x4) {
@@ -1899,7 +1832,8 @@ var updateProfile = function updateProfile(_ref6) {
       var _ref7 = _asyncToGenerator(
       /*#__PURE__*/
       _regenerator.default.mark(function _callee5(dispatch) {
-        var result, response, error;
+        var result, response, errors, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, error;
+
         return _regenerator.default.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
@@ -1914,30 +1848,84 @@ var updateProfile = function updateProfile(_ref6) {
               case 4:
                 response = _context5.sent;
 
-                if (response && _.get(response, "data.updateProfile.success", false)) {
-                  result = true;
-                } else {
-                  error = response && _.get(response, "errors.0", null);
-                  if (error && error.code === "E_VALIDATION") result = error.details;
+                if (!(response && _.get(response, "data.updateProfile.success", false))) {
+                  _context5.next = 9;
+                  break;
                 }
 
-                _context5.next = 11;
+                result = true;
+                _context5.next = 31;
                 break;
 
-              case 8:
-                _context5.prev = 8;
-                _context5.t0 = _context5["catch"](1);
-                console.error(_context5.t0);
+              case 9:
+                result = {};
+                errors = response && _.get(response, "errors", []);
+                _iteratorNormalCompletion2 = true;
+                _didIteratorError2 = false;
+                _iteratorError2 = undefined;
+                _context5.prev = 14;
 
-              case 11:
+                for (_iterator2 = errors[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                  error = _step2.value;
+                  if (error && error.code === "E_VALIDATION") _.merge(result, error.details);else result._error = (result._error || []).concat([error.message]);
+                }
+
+                _context5.next = 22;
+                break;
+
+              case 18:
+                _context5.prev = 18;
+                _context5.t0 = _context5["catch"](14);
+                _didIteratorError2 = true;
+                _iteratorError2 = _context5.t0;
+
+              case 22:
+                _context5.prev = 22;
+                _context5.prev = 23;
+
+                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+                  _iterator2.return();
+                }
+
+              case 25:
+                _context5.prev = 25;
+
+                if (!_didIteratorError2) {
+                  _context5.next = 28;
+                  break;
+                }
+
+                throw _iteratorError2;
+
+              case 28:
+                return _context5.finish(25);
+
+              case 29:
+                return _context5.finish(22);
+
+              case 30:
+                if (!_.keys(result).length) result = {
+                  _error: "PROFILE_UPDATE_FAILED"
+                };
+
+              case 31:
+                _context5.next = 36;
+                break;
+
+              case 33:
+                _context5.prev = 33;
+                _context5.t1 = _context5["catch"](1);
+                console.error(_context5.t1);
+
+              case 36:
                 return _context5.abrupt("return", result);
 
-              case 12:
+              case 37:
               case "end":
                 return _context5.stop();
             }
           }
-        }, _callee5, this, [[1, 8]]);
+        }, _callee5, this, [[1, 33], [14, 18, 22, 30], [23,, 25, 29]]);
       }));
 
       return function (_x6) {
@@ -1951,7 +1939,7 @@ exports.updateProfile = updateProfile;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 53 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1989,596 +1977,7 @@ var setStatus = function setStatus(status) {
 exports.setStatus = setStatus;
 
 /***/ }),
-/* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _immutable = __webpack_require__(2);
-
-var _reduxImmutable = __webpack_require__(4);
-
-var types = _interopRequireWildcard(__webpack_require__(14));
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-/* State Shape
-Map({
-  list: List([
-    Map({
-      id: String,
-      isSelected: Boolean,
-      login: String,
-      roles: [String],
-    })
-  ]),
-  editModalUserId: String, // null when creating a new user
-  isEditModalOpen: false,
-})
-*/
-var listReducer = function listReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : (0, _immutable.List)([]);
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case types.SET_LIST:
-      if (!_.isUndefined(action.list)) return (0, _immutable.fromJS)(action.list).map(function (item, index) {
-        return item.set("isSelected", !!state.getIn([index, "isSelected"]));
-      });
-      break;
-
-    case types.SET_SELECTED:
-      if (!_.isUndefined(action.userId)) return state.withMutations(function (list) {
-        // eslint-disable-next-line lodash/prefer-lodash-method
-        var index = list.findIndex(function (item) {
-          return item.get("id") === action.userId;
-        });
-        if (index !== -1) list.setIn([index, "isSelected"], !!action.isSelected);
-      });
-      break;
-
-    case types.SELECT_ALL:
-      return state.map(function (item) {
-        return item.set("isSelected", true);
-      });
-
-    case types.DESELECT_ALL:
-      return state.map(function (item) {
-        return item.set("isSelected", false);
-      });
-  }
-
-  return state;
-};
-
-var editModalUserIdReducer = function editModalUserIdReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case types.SHOW_EDIT_MODAL:
-      return action.userId || null;
-  }
-
-  return state;
-};
-
-var isEditModalOpenReducer = function isEditModalOpenReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case types.SHOW_EDIT_MODAL:
-      return true;
-
-    case types.HIDE_EDIT_MODAL:
-      return false;
-  }
-
-  return state;
-};
-
-var reducer = (0, _reduxImmutable.combineReducers)({
-  list: listReducer,
-  editModalUserId: editModalUserIdReducer,
-  isEditModalOpen: isEditModalOpenReducer
-});
-var _default = reducer;
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
-
-/***/ }),
-/* 55 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.remove = exports.edit = exports.create = exports.load = exports.editFirstSelected = exports.deselectAll = exports.selectAll = exports.setSelected = exports.hideEditModal = exports.showEditModal = void 0;
-
-var _regenerator = _interopRequireDefault(__webpack_require__(1));
-
-var actions = _interopRequireWildcard(__webpack_require__(56));
-
-var selectors = _interopRequireWildcard(__webpack_require__(26));
-
-var _app = __webpack_require__(5);
-
-var _constants = _interopRequireDefault(__webpack_require__(3));
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-var showEditModal = actions.showEditModal;
-exports.showEditModal = showEditModal;
-var hideEditModal = actions.hideEditModal;
-exports.hideEditModal = hideEditModal;
-var setSelected = actions.setSelected;
-exports.setSelected = setSelected;
-var selectAll = actions.selectAll;
-exports.selectAll = selectAll;
-var deselectAll = actions.deselectAll;
-exports.deselectAll = deselectAll;
-
-var editFirstSelected = function editFirstSelected() {
-  return (
-    /*#__PURE__*/
-    function () {
-      var _ref = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee(dispatch, getState) {
-        var selected;
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                selected = selectors.getSelected(getState());
-
-                if (!selected.size) {
-                  _context.next = 3;
-                  break;
-                }
-
-                return _context.abrupt("return", dispatch(actions.showEditModal({
-                  userId: selected.first().get("id")
-                })));
-
-              case 3:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      return function (_x, _x2) {
-        return _ref.apply(this, arguments);
-      };
-    }()
-  );
-};
-
-exports.editFirstSelected = editFirstSelected;
-
-var load = function load() {
-  var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      req = _ref2.req;
-
-  return (
-    /*#__PURE__*/
-    function () {
-      var _ref3 = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee2(dispatch) {
-        var users, response;
-        return _regenerator.default.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                if (!req) {
-                  _context2.next = 6;
-                  break;
-                }
-
-                _context2.next = 3;
-                return req.di.get("repository.users").getUsers(req);
-
-              case 3:
-                users = _context2.sent;
-                _context2.next = 10;
-                break;
-
-              case 6:
-                _context2.next = 8;
-                return dispatch(_app.appOperations.gqlQuery("\n          query {\n            users {\n              id\n              login\n              roles\n            }\n          }\n        "));
-
-              case 8:
-                response = _context2.sent;
-                users = response && _.get(response, "data.users");
-
-              case 10:
-                _context2.next = 12;
-                return dispatch(actions.setList({
-                  list: users
-                }));
-
-              case 12:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
-      }));
-
-      return function (_x3) {
-        return _ref3.apply(this, arguments);
-      };
-    }()
-  );
-};
-
-exports.load = load;
-
-var create = function create(_ref4) {
-  var login = _ref4.login,
-      password = _ref4.password,
-      isAdmin = _ref4.isAdmin;
-  return (
-    /*#__PURE__*/
-    function () {
-      var _ref5 = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee3(dispatch) {
-        var result, response, errors, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, error;
-
-        return _regenerator.default.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                result = false;
-                _context3.prev = 1;
-                _context3.next = 4;
-                return dispatch(_app.appOperations.gqlQuery("\n          mutation ($login: String, $password: String, $roles: [UserRole]) {\n            createUser(login: $login, password: $password, roles: $roles) {\n              success\n            }\n          }\n        ", {
-                  login: login,
-                  password: password,
-                  roles: _.compact([isAdmin && _constants.default.roles.ADMIN])
-                }));
-
-              case 4:
-                response = _context3.sent;
-
-                if (!(response && _.get(response, "data.createUser.success", false))) {
-                  _context3.next = 11;
-                  break;
-                }
-
-                _context3.next = 8;
-                return dispatch(actions.hideEditModal());
-
-              case 8:
-                return _context3.abrupt("return", true);
-
-              case 11:
-                result = {};
-                errors = response && _.get(response, "errors", []);
-                _iteratorNormalCompletion = true;
-                _didIteratorError = false;
-                _iteratorError = undefined;
-                _context3.prev = 16;
-
-                for (_iterator = errors[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                  error = _step.value;
-                  if (error && error.code === "E_VALIDATION") _.merge(result, error.details);else result._error = (result._error || []).concat([error.message]);
-                }
-
-                _context3.next = 24;
-                break;
-
-              case 20:
-                _context3.prev = 20;
-                _context3.t0 = _context3["catch"](16);
-                _didIteratorError = true;
-                _iteratorError = _context3.t0;
-
-              case 24:
-                _context3.prev = 24;
-                _context3.prev = 25;
-
-                if (!_iteratorNormalCompletion && _iterator.return != null) {
-                  _iterator.return();
-                }
-
-              case 27:
-                _context3.prev = 27;
-
-                if (!_didIteratorError) {
-                  _context3.next = 30;
-                  break;
-                }
-
-                throw _iteratorError;
-
-              case 30:
-                return _context3.finish(27);
-
-              case 31:
-                return _context3.finish(24);
-
-              case 32:
-                _context3.next = 37;
-                break;
-
-              case 34:
-                _context3.prev = 34;
-                _context3.t1 = _context3["catch"](1);
-                console.error(_context3.t1);
-
-              case 37:
-                return _context3.abrupt("return", result);
-
-              case 38:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, this, [[1, 34], [16, 20, 24, 32], [25,, 27, 31]]);
-      }));
-
-      return function (_x4) {
-        return _ref5.apply(this, arguments);
-      };
-    }()
-  );
-};
-
-exports.create = create;
-
-var edit = function edit(_ref6) {
-  var id = _ref6.id,
-      login = _ref6.login,
-      password = _ref6.password,
-      isAdmin = _ref6.isAdmin;
-  return (
-    /*#__PURE__*/
-    function () {
-      var _ref7 = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee4(dispatch) {
-        var result, response, errors, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, error;
-
-        return _regenerator.default.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                result = false;
-                _context4.prev = 1;
-                _context4.next = 4;
-                return dispatch(_app.appOperations.gqlQuery("\n          mutation ($id: String, $login: String, $password: String, $roles: [UserRole]) {\n            editUser(id: $id, login: $login, password: $password, roles: $roles) {\n              success\n            }\n          }\n        ", {
-                  id: id,
-                  login: login,
-                  password: password,
-                  roles: _.compact([isAdmin && _constants.default.roles.ADMIN])
-                }));
-
-              case 4:
-                response = _context4.sent;
-
-                if (!(response && _.get(response, "data.editUser.success", false))) {
-                  _context4.next = 11;
-                  break;
-                }
-
-                _context4.next = 8;
-                return dispatch(actions.hideEditModal());
-
-              case 8:
-                return _context4.abrupt("return", true);
-
-              case 11:
-                result = {};
-                errors = response && _.get(response, "errors", []);
-                _iteratorNormalCompletion2 = true;
-                _didIteratorError2 = false;
-                _iteratorError2 = undefined;
-                _context4.prev = 16;
-
-                for (_iterator2 = errors[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                  error = _step2.value;
-                  if (error && error.code === "E_VALIDATION") _.merge(result, error.details);else result._error = (result._error || []).concat([error.message]);
-                }
-
-                _context4.next = 24;
-                break;
-
-              case 20:
-                _context4.prev = 20;
-                _context4.t0 = _context4["catch"](16);
-                _didIteratorError2 = true;
-                _iteratorError2 = _context4.t0;
-
-              case 24:
-                _context4.prev = 24;
-                _context4.prev = 25;
-
-                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-                  _iterator2.return();
-                }
-
-              case 27:
-                _context4.prev = 27;
-
-                if (!_didIteratorError2) {
-                  _context4.next = 30;
-                  break;
-                }
-
-                throw _iteratorError2;
-
-              case 30:
-                return _context4.finish(27);
-
-              case 31:
-                return _context4.finish(24);
-
-              case 32:
-                _context4.next = 37;
-                break;
-
-              case 34:
-                _context4.prev = 34;
-                _context4.t1 = _context4["catch"](1);
-                console.error(_context4.t1);
-
-              case 37:
-                return _context4.abrupt("return", result);
-
-              case 38:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4, this, [[1, 34], [16, 20, 24, 32], [25,, 27, 31]]);
-      }));
-
-      return function (_x5) {
-        return _ref7.apply(this, arguments);
-      };
-    }()
-  );
-};
-
-exports.edit = edit;
-
-var remove = function remove(_ref8) {
-  var id = _ref8.id;
-  return (
-    /*#__PURE__*/
-    function () {
-      var _ref9 = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee5(dispatch) {
-        var response;
-        return _regenerator.default.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                _context5.next = 2;
-                return dispatch(_app.appOperations.gqlQuery("\n        mutation ($id: String) {\n          deleteUser(id: $id) {\n            success\n          }\n        }\n      ", {
-                  id: id
-                }));
-
-              case 2:
-                response = _context5.sent;
-                return _context5.abrupt("return", response && _.get(response, "data.deleteUser.success") || false);
-
-              case 4:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5, this);
-      }));
-
-      return function (_x6) {
-        return _ref9.apply(this, arguments);
-      };
-    }()
-  );
-};
-
-exports.remove = remove;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
-
-/***/ }),
-/* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.hideEditModal = exports.showEditModal = exports.deselectAll = exports.selectAll = exports.setSelected = exports.setList = void 0;
-
-var types = _interopRequireWildcard(__webpack_require__(14));
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-var setList = function setList(_ref) {
-  var list = _ref.list;
-  return {
-    type: types.SET_LIST,
-    list: list
-  };
-};
-
-exports.setList = setList;
-
-var setSelected = function setSelected(_ref2) {
-  var userId = _ref2.userId,
-      isSelected = _ref2.isSelected;
-  return {
-    type: types.SET_SELECTED,
-    userId: userId,
-    isSelected: isSelected
-  };
-};
-
-exports.setSelected = setSelected;
-
-var selectAll = function selectAll() {
-  return {
-    type: types.SELECT_ALL
-  };
-};
-
-exports.selectAll = selectAll;
-
-var deselectAll = function deselectAll() {
-  return {
-    type: types.DESELECT_ALL
-  };
-};
-
-exports.deselectAll = deselectAll;
-
-var showEditModal = function showEditModal() {
-  var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      userId = _ref3.userId;
-
-  return {
-    type: types.SHOW_EDIT_MODAL,
-    userId: userId
-  };
-};
-
-exports.showEditModal = showEditModal;
-
-var hideEditModal = function hideEditModal() {
-  return {
-    type: types.HIDE_EDIT_MODAL
-  };
-};
-
-exports.hideEditModal = hideEditModal;
-
-/***/ }),
-/* 57 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2652,7 +2051,7 @@ var _default = Storage;
 exports.default = _default;
 
 /***/ }),
-/* 58 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2665,21 +2064,21 @@ exports.default = void 0;
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _socket = _interopRequireDefault(__webpack_require__(59));
+var _socket = _interopRequireDefault(__webpack_require__(53));
 
-var _app = __webpack_require__(5);
+var _app = __webpack_require__(7);
 
 var _auth = __webpack_require__(11);
 
-var _devices = __webpack_require__(21);
+var _devices = __webpack_require__(20);
 
-var _terminals = __webpack_require__(20);
+var _terminals = __webpack_require__(19);
 
-var _histories = __webpack_require__(22);
+var _histories = __webpack_require__(21);
 
 var _constants = _interopRequireDefault(__webpack_require__(3));
 
-var _package = _interopRequireDefault(__webpack_require__(76));
+var _package = _interopRequireDefault(__webpack_require__(70));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3115,13 +2514,13 @@ var _default = Socket;
 exports.default = _default;
 
 /***/ }),
-/* 59 */
+/* 53 */
 /***/ (function(module, exports) {
 
 module.exports = require("socket.io-client");
 
 /***/ }),
-/* 60 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3136,7 +2535,7 @@ var _reduxImmutable = __webpack_require__(4);
 
 var _immutable = __webpack_require__(2);
 
-var types = _interopRequireWildcard(__webpack_require__(15));
+var types = _interopRequireWildcard(__webpack_require__(14));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -3163,9 +2562,10 @@ var listReducer = function listReducer() {
 
   switch (action.type) {
     case types.SET_LIST:
-      if (!_.isUndefined(action.list)) return (0, _immutable.fromJS)(action.list).map(function (item, index) {
-        return item.set("isSelected", !!state.getIn([index, "isSelected"]));
-      });
+      if (!_.isUndefined(action.list)) // eslint-disable-next-line lodash/prefer-lodash-method
+        return (0, _immutable.fromJS)(action.list).map(function (item, index) {
+          return item.set("isSelected", !!state.getIn([index, "isSelected"]));
+        });
       break;
 
     case types.SET_SELECTED:
@@ -3179,11 +2579,13 @@ var listReducer = function listReducer() {
       break;
 
     case types.SELECT_ALL:
+      // eslint-disable-next-line lodash/prefer-lodash-method
       return state.map(function (item) {
         return item.set("isSelected", true);
       });
 
     case types.DESELECT_ALL:
+      // eslint-disable-next-line lodash/prefer-lodash-method
       return state.map(function (item) {
         return item.set("isSelected", false);
       });
@@ -3269,7 +2671,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 61 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3282,13 +2684,13 @@ exports.reqRemove = exports.reqEdit = exports.reqCreate = exports.load = exports
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var actions = _interopRequireWildcard(__webpack_require__(62));
+var actions = _interopRequireWildcard(__webpack_require__(56));
 
-var selectors = _interopRequireWildcard(__webpack_require__(27));
+var selectors = _interopRequireWildcard(__webpack_require__(25));
 
-var _app = __webpack_require__(5);
+var _app = __webpack_require__(7);
 
-var _terminals = __webpack_require__(20);
+var _terminals = __webpack_require__(19);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -3550,23 +2952,28 @@ var reqCreate = function reqCreate(_ref6) {
                 return _context4.finish(24);
 
               case 32:
-                _context4.next = 37;
+                if (!_.keys(result).length) result = {
+                  _error: "EDIT_DEVICE_FAILED"
+                };
+
+              case 33:
+                _context4.next = 38;
                 break;
 
-              case 34:
-                _context4.prev = 34;
+              case 35:
+                _context4.prev = 35;
                 _context4.t1 = _context4["catch"](1);
                 console.error(_context4.t1);
 
-              case 37:
+              case 38:
                 return _context4.abrupt("return", result);
 
-              case 38:
+              case 39:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, this, [[1, 34], [16, 20, 24, 32], [25,, 27, 31]]);
+        }, _callee4, this, [[1, 35], [16, 20, 24, 32], [25,, 27, 31]]);
       }));
 
       return function (_x6) {
@@ -3664,23 +3071,28 @@ var reqEdit = function reqEdit(_ref8) {
                 return _context5.finish(24);
 
               case 32:
-                _context5.next = 37;
+                if (!_.keys(result).length) result = {
+                  _error: "EDIT_DEVICE_FAILED"
+                };
+
+              case 33:
+                _context5.next = 38;
                 break;
 
-              case 34:
-                _context5.prev = 34;
+              case 35:
+                _context5.prev = 35;
                 _context5.t1 = _context5["catch"](1);
                 console.error(_context5.t1);
 
-              case 37:
+              case 38:
                 return _context5.abrupt("return", result);
 
-              case 38:
+              case 39:
               case "end":
                 return _context5.stop();
             }
           }
-        }, _callee5, this, [[1, 34], [16, 20, 24, 32], [25,, 27, 31]]);
+        }, _callee5, this, [[1, 35], [16, 20, 24, 32], [25,, 27, 31]]);
       }));
 
       return function (_x7) {
@@ -3733,7 +3145,7 @@ exports.reqRemove = reqRemove;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 62 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3744,7 +3156,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.hideEditModal = exports.showEditModal = exports.remove = exports.set = exports.clear = exports.deselectAll = exports.selectAll = exports.setSelected = exports.setList = void 0;
 
-var types = _interopRequireWildcard(__webpack_require__(15));
+var types = _interopRequireWildcard(__webpack_require__(14));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -3834,7 +3246,7 @@ exports.hideEditModal = hideEditModal;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 63 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3849,7 +3261,7 @@ var _reduxImmutable = __webpack_require__(4);
 
 var _immutable = __webpack_require__(2);
 
-var types = _interopRequireWildcard(__webpack_require__(16));
+var types = _interopRequireWildcard(__webpack_require__(15));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -4047,7 +3459,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 64 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4060,13 +3472,13 @@ exports.remove = exports.kill = exports.sendResize = exports.sendInput = exports
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var actions = _interopRequireWildcard(__webpack_require__(65));
+var actions = _interopRequireWildcard(__webpack_require__(59));
 
-var _app = __webpack_require__(5);
+var _app = __webpack_require__(7);
 
-var _histories = __webpack_require__(22);
+var _histories = __webpack_require__(21);
 
-var _activeTerminal = __webpack_require__(30);
+var _activeTerminal = __webpack_require__(27);
 
 var _constants = _interopRequireDefault(__webpack_require__(3));
 
@@ -4517,7 +3929,7 @@ var remove = function remove(_ref18) {
 exports.remove = remove;
 
 /***/ }),
-/* 65 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4528,7 +3940,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.remove = exports.set = exports.clear = void 0;
 
-var types = _interopRequireWildcard(__webpack_require__(16));
+var types = _interopRequireWildcard(__webpack_require__(15));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -4560,7 +3972,7 @@ exports.remove = remove;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 66 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4575,9 +3987,9 @@ var _reduxImmutable = __webpack_require__(4);
 
 var _immutable = __webpack_require__(2);
 
-var _uuid = _interopRequireDefault(__webpack_require__(67));
+var _uuid = _interopRequireDefault(__webpack_require__(61));
 
-var types = _interopRequireWildcard(__webpack_require__(17));
+var types = _interopRequireWildcard(__webpack_require__(16));
 
 var _constants = _interopRequireDefault(__webpack_require__(3));
 
@@ -4744,13 +4156,13 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 67 */
+/* 61 */
 /***/ (function(module, exports) {
 
 module.exports = require("uuid");
 
 /***/ }),
-/* 68 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4761,7 +4173,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.clear = exports.removeStarting = exports.remove = exports.add = void 0;
 
-var actions = _interopRequireWildcard(__webpack_require__(69));
+var actions = _interopRequireWildcard(__webpack_require__(63));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -4775,7 +4187,7 @@ var clear = actions.clear;
 exports.clear = clear;
 
 /***/ }),
-/* 69 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4786,7 +4198,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.removeStarting = exports.remove = exports.add = exports.clear = void 0;
 
-var types = _interopRequireWildcard(__webpack_require__(17));
+var types = _interopRequireWildcard(__webpack_require__(16));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -4837,7 +4249,7 @@ var removeStarting = function removeStarting(_ref3) {
 exports.removeStarting = removeStarting;
 
 /***/ }),
-/* 70 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4857,7 +4269,7 @@ var getList = function getList(state, props) {
 exports.getList = getList;
 
 /***/ }),
-/* 71 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4870,7 +4282,7 @@ exports.default = void 0;
 
 var _reduxImmutable = __webpack_require__(4);
 
-var types = _interopRequireWildcard(__webpack_require__(18));
+var types = _interopRequireWildcard(__webpack_require__(17));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -4926,7 +4338,7 @@ var _default = reducer;
 exports.default = _default;
 
 /***/ }),
-/* 72 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4937,7 +4349,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.set = void 0;
 
-var actions = _interopRequireWildcard(__webpack_require__(73));
+var actions = _interopRequireWildcard(__webpack_require__(67));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -4945,7 +4357,7 @@ var set = actions.set;
 exports.set = set;
 
 /***/ }),
-/* 73 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4956,7 +4368,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.set = void 0;
 
-var types = _interopRequireWildcard(__webpack_require__(18));
+var types = _interopRequireWildcard(__webpack_require__(17));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -4975,7 +4387,7 @@ var set = function set(_ref) {
 exports.set = set;
 
 /***/ }),
-/* 74 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5023,7 +4435,7 @@ var getAuthInfo = function getAuthInfo(state) {
 exports.getAuthInfo = getAuthInfo;
 
 /***/ }),
-/* 75 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5047,13 +4459,13 @@ var getTerminalMap = function getTerminalMap(state, props) {
 exports.getTerminalMap = getTerminalMap;
 
 /***/ }),
-/* 76 */
+/* 70 */
 /***/ (function(module) {
 
 module.exports = {"name":"remote-configurator","version":"0.1.0","private":true,"dependencies":{"@date-io/moment":"~0.0.2","@material-ui/core":"~3.6.1","@material-ui/icons":"~3.0.1","@zeit/next-bundle-analyzer":"~0.1.2","@zeit/next-css":"~1.0.1","base64util":"~2.0.0-f","bcrypt":"~3.0.2","body-parser":"~1.18.3","classnames":"~2.2.6","compression":"~1.7.3","connect-loki":"~1.1.0","cookie-parser":"~1.4.3","cors":"~2.8.5","csurf":"~1.9.0","debug":"~4.1.0","dotenv":"~6.1.0","express":"~4.16.4","express-graphql":"~0.7.1","express-session":"~1.15.6","fs-extra":"~7.0.1","generate-rsa-keypair":"~0.1.2","graphql":"14.0.2","graphql-tools":"~4.0.3","immutable":"~4.0.0-rc.12","injectt":"~0.1.1","intl":"~1.2.5","intl-locales-supported":"~1.0.0","intl-messageformat":"~2.2.0","isomorphic-unfetch":"~3.0.0","json-immutable":"~0.4.0","jss":"~9.8.7","jss-extend":"~6.2.0","lodash":"~4.17.11","lokijs":"~1.5.5","lru-cache":"~5.1.1","material-ui-pickers":"~2.0.4","moment":"~2.22.2","moment-timezone":"~0.5.23","morgan":"~1.9.1","next":"~7.0.2","next-compose-plugins":"~2.1.1","next-progressbar":"~1.0.0","raf":"~3.4.1","react":"~16.6.3","react-dom":"~16.6.3","react-intl":"~2.7.2","react-jss":"~8.6.1","react-redux":"~5.1.1","react-swipeable-views":"~0.13.0","react-virtualized":"~9.21.0","redux":"~4.0.1","redux-devtools-extension":"~2.13.7","redux-form":"~7.4.2","redux-immutable":"~4.0.0","redux-thunk":"~2.3.0","reselect":"~4.0.0","serve-favicon":"~2.5.0","serviceworker-webpack-plugin":"~1.0.1","socket.io":"~2.2.0","ssh2":"~0.6.1","svg-inline-loader":"~0.8.0","utf8":"~3.0.0","uuid":"~3.3.2","validator":"~10.9.0","webpack":"4.20.2","xterm":"~3.8.0"},"devDependencies":{"@babel/core":"7.0.0","babel-core":"7.0.0-bridge.0","babel-eslint":"~10.0.1","babel-jest":"~23.6.0","babel-plugin-lodash":"~3.3.4","css-mqpacker":"~7.0.0","enzyme":"~3.7.0","enzyme-adapter-react-16":"~1.7.0","eslint":"~5.9.0","eslint-plugin-lodash":"~5.0.0","eslint-plugin-react":"~7.11.1","jest":"~23.6.0","jsdom":"~13.0.0","jsdom-global":"~3.0.2","postcss-clean":"~1.1.0","postcss-loader":"~3.0.0","postcss-preset-env":"~6.4.0","postcss-url":"~8.0.0","prop-types":"~15.6.2","supertest":"~3.3.0","webfontloader":"~1.6.28"},"scripts":{"lint":"eslint . --max-warnings=0","test":"jest . --no-cache --forceExit","build":"node ./bin/prepare-build && env NODE_ENV=production TMPDIR=$PWD/.tmp next build","export":"env NODE_ENV=production TMPDIR=$PWD/.tmp next export","dev":"node ./bin/prepare-build && env NODE_ENV=development node ./bin/www","start":"env NODE_ENV=production node ./bin/www"}};
 
 /***/ }),
-/* 77 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5126,7 +4538,7 @@ var _default = Cookie;
 exports.default = _default;
 
 /***/ }),
-/* 78 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5183,6 +4595,12 @@ var isConnected = function isConnected(state) {
 exports.isConnected = isConnected;
 
 /***/ }),
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
 /* 79 */,
 /* 80 */,
 /* 81 */,
@@ -5291,13 +4709,13 @@ exports.default = void 0;
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _react = _interopRequireDefault(__webpack_require__(6));
+var _react = _interopRequireDefault(__webpack_require__(5));
 
-var _propTypes = _interopRequireDefault(__webpack_require__(7));
+var _propTypes = _interopRequireDefault(__webpack_require__(6));
 
 var _error = _interopRequireDefault(__webpack_require__(169));
 
-var _app = __webpack_require__(5);
+var _app = __webpack_require__(7);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

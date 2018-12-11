@@ -73,6 +73,7 @@ export const create = ({ login, password, isAdmin }) => async dispatch => {
           _.merge(result, error.details);
         else result._error = (result._error || []).concat([error.message]);
       }
+      if (!_.keys(result).length) result = { _error: "EDIT_USER_FAILED" };
     }
   } catch (error) {
     console.error(error);
@@ -114,6 +115,7 @@ export const edit = ({ id, login, password, isAdmin }) => async dispatch => {
           _.merge(result, error.details);
         else result._error = (result._error || []).concat([error.message]);
       }
+      if (!_.keys(result).length) result = { _error: "EDIT_USER_FAILED" };
     }
   } catch (error) {
     console.error(error);

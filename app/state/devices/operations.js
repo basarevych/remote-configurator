@@ -99,6 +99,7 @@ export const reqCreate = ({ name, password }) => async dispatch => {
           _.merge(result, error.details);
         else result._error = (result._error || []).concat([error.message]);
       }
+      if (!_.keys(result).length) result = { _error: "EDIT_DEVICE_FAILED" };
     }
   } catch (error) {
     console.error(error);
@@ -139,6 +140,7 @@ export const reqEdit = ({ id, name, password }) => async dispatch => {
           _.merge(result, error.details);
         else result._error = (result._error || []).concat([error.message]);
       }
+      if (!_.keys(result).length) result = { _error: "EDIT_DEVICE_FAILED" };
     }
   } catch (error) {
     console.error(error);

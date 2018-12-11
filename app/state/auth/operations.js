@@ -3,7 +3,6 @@ import isRouteAllowed from "../../../common/isRouteAllowed";
 import * as actions from "./actions";
 import * as selectors from "./selectors";
 import { appOperations, appSelectors } from "../app";
-import { usersOperations } from "../users";
 
 export const setCsrf = actions.setCsrf;
 
@@ -83,11 +82,18 @@ export const signIn = ({ login, password }) => async dispatch => {
 
     if (response && _.get(response, "data.signIn.success", false)) {
       await dispatch(setStatus());
-      await dispatch(usersOperations.load());
+      if (process.browser && _.isFunction(window.__NEXT_PAGE_INIT))
+        await window.__NEXT_PAGE_INIT({ store: window.__NEXT_REDUX_STORE__ });
       return true;
     } else {
-      let error = response && _.get(response, "errors.0", null);
-      if (error && error.code === "E_VALIDATION") result = error.details;
+      result = {};
+      let errors = response && _.get(response, "errors", []);
+      for (let error of errors) {
+        if (error && error.code === "E_VALIDATION")
+          _.merge(result, error.details);
+        else result._error = (result._error || []).concat([error.message]);
+      }
+      if (!_.keys(result).length) result = { _error: "APP_AUTH_FAILED" };
     }
   } catch (error) {
     console.error(error);
@@ -139,8 +145,14 @@ export const updateProfile = ({ values }) => async dispatch => {
     if (response && _.get(response, "data.updateProfile.success", false)) {
       result = true;
     } else {
-      let error = response && _.get(response, "errors.0", null);
-      if (error && error.code === "E_VALIDATION") result = error.details;
+      result = {};
+      let errors = response && _.get(response, "errors", []);
+      for (let error of errors) {
+        if (error && error.code === "E_VALIDATION")
+          _.merge(result, error.details);
+        else result._error = (result._error || []).concat([error.message]);
+      }
+      if (!_.keys(result).length) result = { _error: "PROFILE_UPDATE_FAILED" };
     }
   } catch (error) {
     console.error(error);

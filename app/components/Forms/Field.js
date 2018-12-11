@@ -212,7 +212,7 @@ class FieldComponent extends React.PureComponent {
     return (
       <FormControl
         className={this.props.className}
-        variant={this.props.variant || "filled"}
+        variant={this.props.variant || "standard"}
         fullWidth
         error={!!this.props.meta.error}
       >

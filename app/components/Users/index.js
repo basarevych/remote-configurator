@@ -70,6 +70,7 @@ class Users extends React.Component {
   }
 
   handleToggle(userId) {
+    // eslint-disable-next-line lodash/prefer-lodash-method
     let user = this.props.users.find(user => user.get("id") === userId);
     let isSelected = user && user.get("isSelected");
     this.props.onSetSelected(userId, !isSelected);
