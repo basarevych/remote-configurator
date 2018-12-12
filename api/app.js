@@ -5,6 +5,7 @@ if (!global._) global._ = require("lodash");
 const nextApp = require("next");
 const Injectt = require("injectt");
 const path = require("path");
+const url = require("url");
 const express = require("express");
 const compression = require("compression");
 const favicon = require("serve-favicon");
@@ -216,7 +217,9 @@ class App {
       page: constants.pages[path] && constants.pages[path].page,
       query: _.assign({}, query || {}, {
         locale: locale || l10n.defaultLocale || null,
-        theme: theme || styles.defaultTheme || null
+        theme: theme || styles.defaultTheme || null,
+        sshHost: new url.URL(this.config.appOrigins[0]).hostname,
+        sshPort: this.config.sshPort
       })
     };
   }

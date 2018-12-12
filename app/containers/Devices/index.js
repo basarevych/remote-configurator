@@ -1,11 +1,15 @@
 import { connect } from "react-redux";
 import { injectIntl } from "react-intl";
+import { appSelectors } from "../../state/app";
 import { devicesSelectors, devicesOperations } from "../../state/devices";
 import DevicesComponent from "../../components/Devices";
 
 const mapStateToProps = state => {
   return {
+    sshHost: appSelectors.getSshHost(state),
+    sshPort: appSelectors.getSshPort(state),
     devices: devicesSelectors.getList(state),
+    online: devicesSelectors.getOnline(state),
     isAllSelected: devicesSelectors.isAllSelected(state),
     isAllDeselected: devicesSelectors.isAllDeselected(state)
   };

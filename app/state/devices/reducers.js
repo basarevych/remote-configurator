@@ -12,7 +12,7 @@ Map({
   ]),
   online: Map({
     deviceId: Map({
-      name: String,
+      address: String,
     }),
   })
   editModalDeviceId: String, // null when creating a new device
@@ -50,17 +50,17 @@ const listReducer = (state = List([]), action) => {
   return state;
 };
 
-const nameReducer = (state = null, action) => {
+const addressReducer = (state = null, action) => {
   switch (action.type) {
     case types.SET:
-      if (!_.isUndefined(action.name)) return action.name;
+      if (!_.isUndefined(action.address)) return action.address;
       break;
   }
   return state;
 };
 
 const deviceReducer = combineReducers({
-  name: nameReducer
+  address: addressReducer
 });
 
 const onlineReducer = (state = Map({}), action) => {

@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 170);
+/******/ 	return __webpack_require__(__webpack_require__.s = 173);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -184,12 +184,6 @@ module.exports = require("react");
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports) {
-
-module.exports = require("prop-types");
-
-/***/ }),
-/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -220,6 +214,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var _default = _reducers.default;
 exports.default = _default;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+module.exports = require("prop-types");
 
 /***/ }),
 /* 8 */
@@ -594,9 +594,7 @@ var getOnline = (0, _reselect.createSelector)(function (state) {
   return devices // eslint-disable-line lodash/prefer-lodash-method
   .map(function (deviceInfo, deviceId) {
     return (0, _immutable.Map)({
-      id: deviceId,
-      name: deviceInfo.get("name"),
-      cameraId: deviceInfo.get("cameraId"),
+      address: deviceInfo.get("address"),
       terminals: terminals // eslint-disable-line lodash/prefer-lodash-method
       .map(function (terminalInfo, terminalId) {
         return {
@@ -609,8 +607,6 @@ var getOnline = (0, _reselect.createSelector)(function (state) {
         return item.id;
       })
     });
-  }).toList().sort(function (a, b) {
-    return a.get("name").toString().localeCompare(b.get("name").toString());
   });
 });
 exports.getOnline = getOnline;
@@ -1147,6 +1143,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 /* State Shape
 Map({
   created: Number, // timestamp
+  sshHost: String,
+  sshPort: Number,
   di: DiContainer,
   locale: String,
   statusCode: Number, // current HTTP status code
@@ -1161,6 +1159,32 @@ var createdReducer = function createdReducer() {
   switch (action.type) {
     case types.CREATE:
       if (!_.isUndefined(action.created)) return action.created;
+      break;
+  }
+
+  return state;
+};
+
+var sshHostReducer = function sshHostReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "localhost";
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case types.CREATE:
+      if (!_.isUndefined(action.sshHost)) return action.sshHost;
+      break;
+  }
+
+  return state;
+};
+
+var sshPortReducer = function sshPortReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 22;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case types.CREATE:
+      if (!_.isUndefined(action.sshPort)) return action.sshPort;
       break;
   }
 
@@ -1236,6 +1260,8 @@ var isConnectedReducer = function isConnectedReducer() {
 
 var reducer = (0, _reduxImmutable.combineReducers)({
   created: createdReducer,
+  sshHost: sshHostReducer,
+  sshPort: sshPortReducer,
   di: diReducer,
   locale: localeReducer,
   statusCode: statusCodeReducer,
@@ -1250,7 +1276,7 @@ exports.default = _default;
 /* 41 */
 /***/ (function(module) {
 
-module.exports = {"MENU_DEVICES":"Device List","TITLE_DEVICES":"Remote Configurator","MENU_DEVICE":"Device","TITLE_DEVICE":"Device","MENU_USERS":"Users","TITLE_USERS":"Users","SIDEBAR_SIGN_OUT_LINK":"Sign Out","DEVICES_INFO_HTML":["<p>Run the following command on the target:</p>","<pre class=\"sample\">ssh -p 37500 -R 22:localhost:22 -N device1@45.63.117.244</pre>","<p>You can replace <strong>device1</strong> with any other ID &ndash; it will be displayed in the list below.<p>","<p>Password-based or kerboard-interactive authentication must be enabled on the host where you run the command above.</p>"],"DEVICES_NAME_COLUMN":"Name","DEVICES_ADDRESS_COLUMN":"Address","DEVICES_CONN_STRING_COLUMN":"Connection string","DEVICES_CREATE_BUTTON":"Create Device","DEVICES_EDIT_BUTTON":"Edit Device","DEVICES_DELETE_BUTTON":"Delete Devices","EDIT_DEVICE_TITLE_CREATE":"Create Device","EDIT_DEVICE_TITLE_EDIT":"Edit Device","EDIT_DEVICE_NAME_LABEL":"Name","EDIT_DEVICE_PASSWORD_LABEL":"Password","EDIT_DEVICE_FAILED":"Form submission failed","EDIT_DEVICE_SUBMIT":"Submit","EDIT_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_TITLE":"Delete Devices","DELETE_DEVICE_TEXT":"Delete selected devices?","DELETE_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_SUBMIT":"Delete","USERS_LOGIN_COLUMN":"Login","USERS_ROLES_COLUMN":"Roles","USERS_CREATE_BUTTON":"Create User","USERS_EDIT_BUTTON":"Edit User","USERS_DELETE_BUTTON":"Delete Users","EDIT_USER_TITLE_CREATE":"Create User","EDIT_USER_TITLE_EDIT":"Edit User","EDIT_USER_LOGIN_LABEL":"Login","EDIT_USER_PASSWORD_LABEL":"Password","EDIT_USER_ADMIN_LABEL":"Administrator","EDIT_USER_CANCEL":"Cancel","EDIT_USER_SUBMIT":"Submit","EDIT_USER_FAILED":"An error occured","DELETE_USER_TITLE":"Delete Users","DELETE_USER_TEXT":"Delete selected users?","DELETE_USER_CANCEL":"Cancel","DELETE_USER_SUBMIT":"Delete","TERMINAL_CONNECTING_LABEL":"Connecting...","TERMINAL_NOT_CONNECTED_LABEL":"Not connected","APP_AUTH_TITLE":"Authentication","APP_AUTH_LOGIN_LABEL":"Login","APP_AUTH_PASSWORD_LABEL":"Password","APP_AUTH_SUBMIT":"Sign In","APP_AUTH_FAILED":"Invalid credentials","SETUP_AUTH_TITLE":"Authentication","SETUP_AUTH_LOGIN_LABEL":"Login","SETUP_AUTH_PASSWORD_LABEL":"Password","SETUP_AUTH_CANCEL":"Cancel","SETUP_AUTH_SUBMIT":"Submit","KEYBOARD_AUTH_TITLE":"Authentication","KEYBOARD_AUTH_REPLY_LABEL":"Response","KEYBOARD_AUTH_CANCEL":"Cancel","KEYBOARD_AUTH_SUBMIT":"Submit","ERROR_FIELD_REQUIRED":"This field is required","ERROR_INVALID_PASSWORD":"Password length must be at least 6 characters"};
+module.exports = {"MENU_DEVICES":"Device List","TITLE_DEVICES":"Remote Configurator","MENU_DEVICE":"Device","TITLE_DEVICE":"Device","MENU_USERS":"Users","TITLE_USERS":"Users","SIDEBAR_SIGN_OUT_LINK":"Sign Out","DEVICES_NAME_COLUMN":"Name","DEVICES_ADDRESS_COLUMN":"Address","DEVICES_CONN_STRING_COLUMN":"Connection string","DEVICES_CREATE_BUTTON":"Create Device","DEVICES_EDIT_BUTTON":"Edit Device","DEVICES_DELETE_BUTTON":"Delete Devices","DEVICES_OFFLINE_LABEL":"Device is offline","EDIT_DEVICE_TITLE_CREATE":"Create Device","EDIT_DEVICE_TITLE_EDIT":"Edit Device","EDIT_DEVICE_NAME_LABEL":"Name","EDIT_DEVICE_PASSWORD_LABEL":"Password","EDIT_DEVICE_FAILED":"Form submission failed","EDIT_DEVICE_SUBMIT":"Submit","EDIT_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_TITLE":"Delete Devices","DELETE_DEVICE_TEXT":"Delete selected devices?","DELETE_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_SUBMIT":"Delete","USERS_LOGIN_COLUMN":"Login","USERS_ROLES_COLUMN":"Roles","USERS_CREATE_BUTTON":"Create User","USERS_EDIT_BUTTON":"Edit User","USERS_DELETE_BUTTON":"Delete Users","EDIT_USER_TITLE_CREATE":"Create User","EDIT_USER_TITLE_EDIT":"Edit User","EDIT_USER_LOGIN_LABEL":"Login","EDIT_USER_PASSWORD_LABEL":"Password","EDIT_USER_ADMIN_LABEL":"Administrator","EDIT_USER_CANCEL":"Cancel","EDIT_USER_SUBMIT":"Submit","EDIT_USER_FAILED":"An error occured","DELETE_USER_TITLE":"Delete Users","DELETE_USER_TEXT":"Delete selected users?","DELETE_USER_CANCEL":"Cancel","DELETE_USER_SUBMIT":"Delete","TERMINAL_CONNECTING_LABEL":"Connecting...","TERMINAL_NOT_CONNECTED_LABEL":"Not connected","APP_AUTH_TITLE":"Authentication","APP_AUTH_LOGIN_LABEL":"Login","APP_AUTH_PASSWORD_LABEL":"Password","APP_AUTH_SUBMIT":"Sign In","APP_AUTH_FAILED":"Invalid credentials","SETUP_AUTH_TITLE":"Authentication","SETUP_AUTH_LOGIN_LABEL":"Login","SETUP_AUTH_PASSWORD_LABEL":"Password","SETUP_AUTH_CANCEL":"Cancel","SETUP_AUTH_SUBMIT":"Submit","KEYBOARD_AUTH_TITLE":"Authentication","KEYBOARD_AUTH_REPLY_LABEL":"Response","KEYBOARD_AUTH_CANCEL":"Cancel","KEYBOARD_AUTH_SUBMIT":"Submit","ERROR_FIELD_REQUIRED":"This field is required","ERROR_INVALID_PASSWORD":"Password length must be at least 6 characters"};
 
 /***/ }),
 /* 42 */
@@ -1485,7 +1511,9 @@ var gqlQuery = function gqlQuery(query, variables) {
 exports.gqlQuery = gqlQuery;
 
 var create = function create(_ref3) {
-  var status = _ref3.status;
+  var status = _ref3.status,
+      sshHost = _ref3.sshHost,
+      sshPort = _ref3.sshPort;
   return (
     /*#__PURE__*/
     function () {
@@ -1497,7 +1525,10 @@ var create = function create(_ref3) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return dispatch(actions.create());
+                return dispatch(actions.create({
+                  sshHost: sshHost,
+                  sshPort: sshPort
+                }));
 
               case 2:
                 if (!status) {
@@ -1825,7 +1856,7 @@ var actions = _interopRequireWildcard(__webpack_require__(50));
 
 var selectors = _interopRequireWildcard(__webpack_require__(23));
 
-var _app = __webpack_require__(7);
+var _app = __webpack_require__(6);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -2397,7 +2428,7 @@ var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
 var _socket = _interopRequireDefault(__webpack_require__(53));
 
-var _app = __webpack_require__(7);
+var _app = __webpack_require__(6);
 
 var _auth = __webpack_require__(11);
 
@@ -2880,7 +2911,7 @@ Map({
   ]),
   online: Map({
     deviceId: Map({
-      name: String,
+      address: String,
     }),
   })
   editModalDeviceId: String, // null when creating a new device
@@ -2925,13 +2956,13 @@ var listReducer = function listReducer() {
   return state;
 };
 
-var nameReducer = function nameReducer() {
+var addressReducer = function addressReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
     case types.SET:
-      if (!_.isUndefined(action.name)) return action.name;
+      if (!_.isUndefined(action.address)) return action.address;
       break;
   }
 
@@ -2939,7 +2970,7 @@ var nameReducer = function nameReducer() {
 };
 
 var deviceReducer = (0, _reduxImmutable.combineReducers)({
-  name: nameReducer
+  address: addressReducer
 });
 
 var onlineReducer = function onlineReducer() {
@@ -3019,7 +3050,7 @@ var actions = _interopRequireWildcard(__webpack_require__(56));
 
 var selectors = _interopRequireWildcard(__webpack_require__(25));
 
-var _app = __webpack_require__(7);
+var _app = __webpack_require__(6);
 
 var _terminals = __webpack_require__(19);
 
@@ -3805,7 +3836,7 @@ var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
 var actions = _interopRequireWildcard(__webpack_require__(59));
 
-var _app = __webpack_require__(7);
+var _app = __webpack_require__(6);
 
 var _histories = __webpack_require__(21);
 
@@ -4878,7 +4909,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isConnected = exports.isStarted = exports.getLocale = exports.getStatusCode = exports.getService = exports.getCreated = void 0;
+exports.isConnected = exports.isStarted = exports.getLocale = exports.getStatusCode = exports.getService = exports.getSshPort = exports.getSshHost = exports.getCreated = void 0;
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -4893,6 +4924,18 @@ var getCreated = function getCreated(state) {
 };
 
 exports.getCreated = getCreated;
+
+var getSshHost = function getSshHost(state) {
+  return state.getIn(["app", "sshHost"]);
+};
+
+exports.getSshHost = getSshHost;
+
+var getSshPort = function getSshPort(state) {
+  return state.getIn(["app", "sshPort"]);
+};
+
+exports.getSshPort = getSshPort;
 
 var getService = function getService(state, props) {
   var di = state.getIn(["app", "di"]);
@@ -4993,7 +5036,7 @@ var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
 var _react = _interopRequireDefault(__webpack_require__(5));
 
-var _propTypes = _interopRequireDefault(__webpack_require__(6));
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
 var _immutable = __webpack_require__(10);
 
@@ -5482,7 +5525,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(__webpack_require__(5));
 
-var _propTypes = _interopRequireDefault(__webpack_require__(6));
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
 var _shallowEqual = _interopRequireDefault(__webpack_require__(82));
 
@@ -6202,7 +6245,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(__webpack_require__(5));
 
-var _propTypes = _interopRequireDefault(__webpack_require__(6));
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
 var _reactIntl = __webpack_require__(8);
 
@@ -6352,7 +6395,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(__webpack_require__(5));
 
-var _propTypes = _interopRequireDefault(__webpack_require__(6));
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
 var _styles = __webpack_require__(9);
 
@@ -6448,6 +6491,8 @@ var _reactRedux = __webpack_require__(18);
 
 var _reactIntl = __webpack_require__(8);
 
+var _app = __webpack_require__(6);
+
 var _devices = __webpack_require__(20);
 
 var _Devices = _interopRequireDefault(__webpack_require__(109));
@@ -6456,7 +6501,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
+    sshHost: _app.appSelectors.getSshHost(state),
+    sshPort: _app.appSelectors.getSshPort(state),
     devices: _devices.devicesSelectors.getList(state),
+    online: _devices.devicesSelectors.getOnline(state),
     isAllSelected: _devices.devicesSelectors.isAllSelected(state),
     isAllDeselected: _devices.devicesSelectors.isAllDeselected(state)
   };
@@ -6513,7 +6561,7 @@ var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
 var _react = _interopRequireDefault(__webpack_require__(5));
 
-var _propTypes = _interopRequireDefault(__webpack_require__(6));
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
 var _classnames = _interopRequireDefault(__webpack_require__(96));
 
@@ -6535,11 +6583,17 @@ var _TableRow = _interopRequireDefault(__webpack_require__(101));
 
 var _Button = _interopRequireDefault(__webpack_require__(22));
 
+var _IconButton = _interopRequireDefault(__webpack_require__(110));
+
 var _Checkbox = _interopRequireDefault(__webpack_require__(39));
 
-var _EditDeviceModal = _interopRequireDefault(__webpack_require__(110));
+var _EditDeviceModal = _interopRequireDefault(__webpack_require__(111));
 
 var _ConfirmModal = _interopRequireDefault(__webpack_require__(102));
+
+var _OpenInBrowser = _interopRequireDefault(__webpack_require__(113));
+
+var _Language = _interopRequireDefault(__webpack_require__(114));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6577,8 +6631,9 @@ var styles = function styles() {
     button: {
       margin: "0.5rem"
     },
-    checkboxField: {
-      width: 1
+    collapsing: {
+      width: 1,
+      whiteSpace: ["nowrap", "!important"]
     },
     checkbox: {
       padding: "0.5rem 1rem"
@@ -6709,7 +6764,7 @@ function (_React$Component) {
       }, _react.default.createElement(_TableHead.default, null, _react.default.createElement(_TableRow.default, null, _react.default.createElement(_TableCell.default, {
         padding: "none",
         classes: {
-          root: this.props.classes.checkboxField
+          root: this.props.classes.collapsing
         }
       }, _react.default.createElement(_Checkbox.default, {
         checked: !!this.props.devices.size && this.props.isAllSelected,
@@ -6728,13 +6783,15 @@ function (_React$Component) {
       })), _react.default.createElement(_TableCell.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
         id: "DEVICES_CONN_STRING_COLUMN"
       })))), _react.default.createElement(_TableBody.default, null, this.props.devices.map(function (row, index) {
+        var info = _this3.props.online.get(row.get("id"));
+
         return _react.default.createElement(_TableRow.default, {
           key: "row-".concat(index)
         }, _react.default.createElement(_TableCell.default, {
           padding: "none",
           className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected"),
           classes: {
-            root: _this3.props.classes.checkboxField
+            root: _this3.props.classes.collapsing
           }
         }, _react.default.createElement(_Checkbox.default, {
           checked: !!row.get("isSelected"),
@@ -6745,15 +6802,23 @@ function (_React$Component) {
             return _this3.handleToggle(row.get("id"));
           },
           value: "on"
-        })), _react.default.createElement(_TableCell.default, {
+        }), _react.default.createElement(_IconButton.default, {
+          color: "inherit",
+          disabled: !info
+        }, _react.default.createElement(_OpenInBrowser.default, null)), _react.default.createElement(_IconButton.default, {
+          color: "inherit",
+          disabled: !info
+        }, _react.default.createElement(_Language.default, null))), _react.default.createElement(_TableCell.default, {
           className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected"),
           component: "th",
           scope: "row"
         }, row.get("name")), _react.default.createElement(_TableCell.default, {
           className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected")
-        }), _react.default.createElement(_TableCell.default, {
+        }, info ? info.get("address") : _this3.props.intl.formatMessage({
+          id: "DEVICES_OFFLINE_LABEL"
+        })), _react.default.createElement(_TableCell.default, {
           className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected")
-        }));
+        }, "ssh -p ", _this3.props.sshPort, " -R 22:localhost:22 -N", " ", row.get("name"), "@", _this3.props.sshHost));
       }))), _react.default.createElement("div", {
         className: this.props.classes.buttons
       }, _react.default.createElement(_Button.default, {
@@ -6799,6 +6864,12 @@ exports.default = _default;
 
 /***/ }),
 /* 110 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/IconButton");
+
+/***/ }),
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6823,7 +6894,7 @@ var _devices = __webpack_require__(20);
 
 var _createForm = _interopRequireDefault(__webpack_require__(74));
 
-var _EditDeviceModal = _interopRequireDefault(__webpack_require__(111));
+var _EditDeviceModal = _interopRequireDefault(__webpack_require__(112));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6903,7 +6974,7 @@ var _default = EditDeviceModal;
 exports.default = _default;
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6918,7 +6989,7 @@ var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
 var _react = _interopRequireDefault(__webpack_require__(5));
 
-var _propTypes = _interopRequireDefault(__webpack_require__(6));
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
 var _immutable = __webpack_require__(2);
 
@@ -7200,9 +7271,18 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 112 */,
-/* 113 */,
-/* 114 */,
+/* 113 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/icons/OpenInBrowser");
+
+/***/ }),
+/* 114 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/icons/Language");
+
+/***/ }),
 /* 115 */,
 /* 116 */,
 /* 117 */,
@@ -7258,14 +7338,17 @@ exports.default = _default;
 /* 167 */,
 /* 168 */,
 /* 169 */,
-/* 170 */
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(171);
+module.exports = __webpack_require__(174);
 
 
 /***/ }),
-/* 171 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

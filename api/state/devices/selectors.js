@@ -6,11 +6,17 @@ const hasDevice = (state, props) => state.hasIn(["devices", props.deviceId]);
 
 const getDeviceMap = (state, props) => state.getIn(["devices", props.deviceId]);
 
+const getUserId = (state, props) =>
+  state.getIn(["devices", props.deviceId, "userId"]);
+
 const getClient = (state, props) =>
   state.getIn(["devices", props.deviceId, "client"]);
 
 const getUsername = (state, props) =>
   state.getIn(["devices", props.deviceId, "username"]);
+
+const getAddress = (state, props) =>
+  state.getIn(["devices", props.deviceId, "address"]);
 
 const getWhenConnected = (state, props) =>
   state.getIn(["devices", props.deviceId, "whenConnected"]);
@@ -35,8 +41,10 @@ module.exports = {
   getDevicesMap,
   hasDevice,
   getDeviceMap,
+  getUserId,
   getClient,
   getUsername,
+  getAddress,
   getWhenConnected,
   getForwardedHost,
   getForwardedPort,

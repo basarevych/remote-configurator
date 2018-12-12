@@ -68,10 +68,9 @@ class SSH extends EventEmitter {
   }
 
   async onConnection(client, info) {
-    const deviceId = uuid.v4();
-    debug(`SSH device ${deviceId} connected`);
+    debug(`SSH device connected`);
     this.di
-      .get("ssh.client", deviceId, client, info)
+      .get("ssh.client", client, info)
       .start()
       .catch(console.error);
   }

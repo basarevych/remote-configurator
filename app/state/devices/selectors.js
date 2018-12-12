@@ -10,9 +10,7 @@ export const getOnline = createSelector(
     return devices // eslint-disable-line lodash/prefer-lodash-method
       .map((deviceInfo, deviceId) =>
         Map({
-          id: deviceId,
-          name: deviceInfo.get("name"),
-          cameraId: deviceInfo.get("cameraId"),
+          address: deviceInfo.get("address"),
           terminals: terminals // eslint-disable-line lodash/prefer-lodash-method
             .map((terminalInfo, terminalId) => ({
               id: terminalId,
@@ -24,13 +22,6 @@ export const getOnline = createSelector(
             .filter(item => !!item.valid)
             .map(item => item.id)
         })
-      )
-      .toList()
-      .sort((a, b) =>
-        a
-          .get("name")
-          .toString()
-          .localeCompare(b.get("name").toString())
       );
   }
 );

@@ -25,6 +25,21 @@ class DevicesRepository extends EventEmitter {
     return ["auth", "db", "getState", "dispatch"];
   }
 
+  async authenticate(context) {
+    const devices = await this.db.DeviceModel.find(
+      this.db.DeviceModel.conditions({ name: context.username.toString() })
+    );
+    for (let device of devices) {
+      if (
+        this.auth.checkPassword(context.password.toString(), device.password)
+      ) {
+        const user = await this.db.UserModel.findById(device.owner);
+        if (user) return { device, user };
+      }
+    }
+    return null;
+  }
+
   async getDevices(context) {
     debug("devices");
 

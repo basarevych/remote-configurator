@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 174);
+/******/ 	return __webpack_require__(__webpack_require__.s = 175);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -184,12 +184,6 @@ module.exports = require("react");
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports) {
-
-module.exports = require("prop-types");
-
-/***/ }),
-/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -220,6 +214,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var _default = _reducers.default;
 exports.default = _default;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+module.exports = require("prop-types");
 
 /***/ }),
 /* 8 */
@@ -594,9 +594,7 @@ var getOnline = (0, _reselect.createSelector)(function (state) {
   return devices // eslint-disable-line lodash/prefer-lodash-method
   .map(function (deviceInfo, deviceId) {
     return (0, _immutable.Map)({
-      id: deviceId,
-      name: deviceInfo.get("name"),
-      cameraId: deviceInfo.get("cameraId"),
+      address: deviceInfo.get("address"),
       terminals: terminals // eslint-disable-line lodash/prefer-lodash-method
       .map(function (terminalInfo, terminalId) {
         return {
@@ -609,8 +607,6 @@ var getOnline = (0, _reselect.createSelector)(function (state) {
         return item.id;
       })
     });
-  }).toList().sort(function (a, b) {
-    return a.get("name").toString().localeCompare(b.get("name").toString());
   });
 });
 exports.getOnline = getOnline;
@@ -1147,6 +1143,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 /* State Shape
 Map({
   created: Number, // timestamp
+  sshHost: String,
+  sshPort: Number,
   di: DiContainer,
   locale: String,
   statusCode: Number, // current HTTP status code
@@ -1161,6 +1159,32 @@ var createdReducer = function createdReducer() {
   switch (action.type) {
     case types.CREATE:
       if (!_.isUndefined(action.created)) return action.created;
+      break;
+  }
+
+  return state;
+};
+
+var sshHostReducer = function sshHostReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "localhost";
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case types.CREATE:
+      if (!_.isUndefined(action.sshHost)) return action.sshHost;
+      break;
+  }
+
+  return state;
+};
+
+var sshPortReducer = function sshPortReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 22;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case types.CREATE:
+      if (!_.isUndefined(action.sshPort)) return action.sshPort;
       break;
   }
 
@@ -1236,6 +1260,8 @@ var isConnectedReducer = function isConnectedReducer() {
 
 var reducer = (0, _reduxImmutable.combineReducers)({
   created: createdReducer,
+  sshHost: sshHostReducer,
+  sshPort: sshPortReducer,
   di: diReducer,
   locale: localeReducer,
   statusCode: statusCodeReducer,
@@ -1250,7 +1276,7 @@ exports.default = _default;
 /* 41 */
 /***/ (function(module) {
 
-module.exports = {"MENU_DEVICES":"Device List","TITLE_DEVICES":"Remote Configurator","MENU_DEVICE":"Device","TITLE_DEVICE":"Device","MENU_USERS":"Users","TITLE_USERS":"Users","SIDEBAR_SIGN_OUT_LINK":"Sign Out","DEVICES_INFO_HTML":["<p>Run the following command on the target:</p>","<pre class=\"sample\">ssh -p 37500 -R 22:localhost:22 -N device1@45.63.117.244</pre>","<p>You can replace <strong>device1</strong> with any other ID &ndash; it will be displayed in the list below.<p>","<p>Password-based or kerboard-interactive authentication must be enabled on the host where you run the command above.</p>"],"DEVICES_NAME_COLUMN":"Name","DEVICES_ADDRESS_COLUMN":"Address","DEVICES_CONN_STRING_COLUMN":"Connection string","DEVICES_CREATE_BUTTON":"Create Device","DEVICES_EDIT_BUTTON":"Edit Device","DEVICES_DELETE_BUTTON":"Delete Devices","EDIT_DEVICE_TITLE_CREATE":"Create Device","EDIT_DEVICE_TITLE_EDIT":"Edit Device","EDIT_DEVICE_NAME_LABEL":"Name","EDIT_DEVICE_PASSWORD_LABEL":"Password","EDIT_DEVICE_FAILED":"Form submission failed","EDIT_DEVICE_SUBMIT":"Submit","EDIT_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_TITLE":"Delete Devices","DELETE_DEVICE_TEXT":"Delete selected devices?","DELETE_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_SUBMIT":"Delete","USERS_LOGIN_COLUMN":"Login","USERS_ROLES_COLUMN":"Roles","USERS_CREATE_BUTTON":"Create User","USERS_EDIT_BUTTON":"Edit User","USERS_DELETE_BUTTON":"Delete Users","EDIT_USER_TITLE_CREATE":"Create User","EDIT_USER_TITLE_EDIT":"Edit User","EDIT_USER_LOGIN_LABEL":"Login","EDIT_USER_PASSWORD_LABEL":"Password","EDIT_USER_ADMIN_LABEL":"Administrator","EDIT_USER_CANCEL":"Cancel","EDIT_USER_SUBMIT":"Submit","EDIT_USER_FAILED":"An error occured","DELETE_USER_TITLE":"Delete Users","DELETE_USER_TEXT":"Delete selected users?","DELETE_USER_CANCEL":"Cancel","DELETE_USER_SUBMIT":"Delete","TERMINAL_CONNECTING_LABEL":"Connecting...","TERMINAL_NOT_CONNECTED_LABEL":"Not connected","APP_AUTH_TITLE":"Authentication","APP_AUTH_LOGIN_LABEL":"Login","APP_AUTH_PASSWORD_LABEL":"Password","APP_AUTH_SUBMIT":"Sign In","APP_AUTH_FAILED":"Invalid credentials","SETUP_AUTH_TITLE":"Authentication","SETUP_AUTH_LOGIN_LABEL":"Login","SETUP_AUTH_PASSWORD_LABEL":"Password","SETUP_AUTH_CANCEL":"Cancel","SETUP_AUTH_SUBMIT":"Submit","KEYBOARD_AUTH_TITLE":"Authentication","KEYBOARD_AUTH_REPLY_LABEL":"Response","KEYBOARD_AUTH_CANCEL":"Cancel","KEYBOARD_AUTH_SUBMIT":"Submit","ERROR_FIELD_REQUIRED":"This field is required","ERROR_INVALID_PASSWORD":"Password length must be at least 6 characters"};
+module.exports = {"MENU_DEVICES":"Device List","TITLE_DEVICES":"Remote Configurator","MENU_DEVICE":"Device","TITLE_DEVICE":"Device","MENU_USERS":"Users","TITLE_USERS":"Users","SIDEBAR_SIGN_OUT_LINK":"Sign Out","DEVICES_NAME_COLUMN":"Name","DEVICES_ADDRESS_COLUMN":"Address","DEVICES_CONN_STRING_COLUMN":"Connection string","DEVICES_CREATE_BUTTON":"Create Device","DEVICES_EDIT_BUTTON":"Edit Device","DEVICES_DELETE_BUTTON":"Delete Devices","DEVICES_OFFLINE_LABEL":"Device is offline","EDIT_DEVICE_TITLE_CREATE":"Create Device","EDIT_DEVICE_TITLE_EDIT":"Edit Device","EDIT_DEVICE_NAME_LABEL":"Name","EDIT_DEVICE_PASSWORD_LABEL":"Password","EDIT_DEVICE_FAILED":"Form submission failed","EDIT_DEVICE_SUBMIT":"Submit","EDIT_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_TITLE":"Delete Devices","DELETE_DEVICE_TEXT":"Delete selected devices?","DELETE_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_SUBMIT":"Delete","USERS_LOGIN_COLUMN":"Login","USERS_ROLES_COLUMN":"Roles","USERS_CREATE_BUTTON":"Create User","USERS_EDIT_BUTTON":"Edit User","USERS_DELETE_BUTTON":"Delete Users","EDIT_USER_TITLE_CREATE":"Create User","EDIT_USER_TITLE_EDIT":"Edit User","EDIT_USER_LOGIN_LABEL":"Login","EDIT_USER_PASSWORD_LABEL":"Password","EDIT_USER_ADMIN_LABEL":"Administrator","EDIT_USER_CANCEL":"Cancel","EDIT_USER_SUBMIT":"Submit","EDIT_USER_FAILED":"An error occured","DELETE_USER_TITLE":"Delete Users","DELETE_USER_TEXT":"Delete selected users?","DELETE_USER_CANCEL":"Cancel","DELETE_USER_SUBMIT":"Delete","TERMINAL_CONNECTING_LABEL":"Connecting...","TERMINAL_NOT_CONNECTED_LABEL":"Not connected","APP_AUTH_TITLE":"Authentication","APP_AUTH_LOGIN_LABEL":"Login","APP_AUTH_PASSWORD_LABEL":"Password","APP_AUTH_SUBMIT":"Sign In","APP_AUTH_FAILED":"Invalid credentials","SETUP_AUTH_TITLE":"Authentication","SETUP_AUTH_LOGIN_LABEL":"Login","SETUP_AUTH_PASSWORD_LABEL":"Password","SETUP_AUTH_CANCEL":"Cancel","SETUP_AUTH_SUBMIT":"Submit","KEYBOARD_AUTH_TITLE":"Authentication","KEYBOARD_AUTH_REPLY_LABEL":"Response","KEYBOARD_AUTH_CANCEL":"Cancel","KEYBOARD_AUTH_SUBMIT":"Submit","ERROR_FIELD_REQUIRED":"This field is required","ERROR_INVALID_PASSWORD":"Password length must be at least 6 characters"};
 
 /***/ }),
 /* 42 */
@@ -1485,7 +1511,9 @@ var gqlQuery = function gqlQuery(query, variables) {
 exports.gqlQuery = gqlQuery;
 
 var create = function create(_ref3) {
-  var status = _ref3.status;
+  var status = _ref3.status,
+      sshHost = _ref3.sshHost,
+      sshPort = _ref3.sshPort;
   return (
     /*#__PURE__*/
     function () {
@@ -1497,7 +1525,10 @@ var create = function create(_ref3) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return dispatch(actions.create());
+                return dispatch(actions.create({
+                  sshHost: sshHost,
+                  sshPort: sshPort
+                }));
 
               case 2:
                 if (!status) {
@@ -1825,7 +1856,7 @@ var actions = _interopRequireWildcard(__webpack_require__(50));
 
 var selectors = _interopRequireWildcard(__webpack_require__(23));
 
-var _app = __webpack_require__(7);
+var _app = __webpack_require__(6);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -2397,7 +2428,7 @@ var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
 var _socket = _interopRequireDefault(__webpack_require__(53));
 
-var _app = __webpack_require__(7);
+var _app = __webpack_require__(6);
 
 var _auth = __webpack_require__(11);
 
@@ -2880,7 +2911,7 @@ Map({
   ]),
   online: Map({
     deviceId: Map({
-      name: String,
+      address: String,
     }),
   })
   editModalDeviceId: String, // null when creating a new device
@@ -2925,13 +2956,13 @@ var listReducer = function listReducer() {
   return state;
 };
 
-var nameReducer = function nameReducer() {
+var addressReducer = function addressReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
     case types.SET:
-      if (!_.isUndefined(action.name)) return action.name;
+      if (!_.isUndefined(action.address)) return action.address;
       break;
   }
 
@@ -2939,7 +2970,7 @@ var nameReducer = function nameReducer() {
 };
 
 var deviceReducer = (0, _reduxImmutable.combineReducers)({
-  name: nameReducer
+  address: addressReducer
 });
 
 var onlineReducer = function onlineReducer() {
@@ -3019,7 +3050,7 @@ var actions = _interopRequireWildcard(__webpack_require__(56));
 
 var selectors = _interopRequireWildcard(__webpack_require__(25));
 
-var _app = __webpack_require__(7);
+var _app = __webpack_require__(6);
 
 var _terminals = __webpack_require__(19);
 
@@ -3805,7 +3836,7 @@ var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
 var actions = _interopRequireWildcard(__webpack_require__(59));
 
-var _app = __webpack_require__(7);
+var _app = __webpack_require__(6);
 
 var _histories = __webpack_require__(21);
 
@@ -4878,7 +4909,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isConnected = exports.isStarted = exports.getLocale = exports.getStatusCode = exports.getService = exports.getCreated = void 0;
+exports.isConnected = exports.isStarted = exports.getLocale = exports.getStatusCode = exports.getService = exports.getSshPort = exports.getSshHost = exports.getCreated = void 0;
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -4893,6 +4924,18 @@ var getCreated = function getCreated(state) {
 };
 
 exports.getCreated = getCreated;
+
+var getSshHost = function getSshHost(state) {
+  return state.getIn(["app", "sshHost"]);
+};
+
+exports.getSshHost = getSshHost;
+
+var getSshPort = function getSshPort(state) {
+  return state.getIn(["app", "sshPort"]);
+};
+
+exports.getSshPort = getSshPort;
 
 var getService = function getService(state, props) {
   var di = state.getIn(["app", "di"]);
@@ -4993,7 +5036,7 @@ var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
 var _react = _interopRequireDefault(__webpack_require__(5));
 
-var _propTypes = _interopRequireDefault(__webpack_require__(6));
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
 var _immutable = __webpack_require__(10);
 
@@ -5482,7 +5525,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(__webpack_require__(5));
 
-var _propTypes = _interopRequireDefault(__webpack_require__(6));
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
 var _shallowEqual = _interopRequireDefault(__webpack_require__(82));
 
@@ -5893,30 +5936,7 @@ module.exports = require("@material-ui/core/ListItemIcon");
 module.exports = require("@material-ui/core/ListItemText");
 
 /***/ }),
-/* 80 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.HIDE_EDIT_MODAL = exports.SHOW_EDIT_MODAL = exports.DESELECT_ALL = exports.SELECT_ALL = exports.SET_SELECTED = exports.SET_LIST = void 0;
-var SET_LIST = "app/users/SET_LIST";
-exports.SET_LIST = SET_LIST;
-var SET_SELECTED = "app/users/SET_SELECTED";
-exports.SET_SELECTED = SET_SELECTED;
-var SELECT_ALL = "app/users/SELECT_ALL";
-exports.SELECT_ALL = SELECT_ALL;
-var DESELECT_ALL = "app/users/DESELECT_ALL";
-exports.DESELECT_ALL = DESELECT_ALL;
-var SHOW_EDIT_MODAL = "app/users/SHOW_EDIT_MODAL";
-exports.SHOW_EDIT_MODAL = SHOW_EDIT_MODAL;
-var HIDE_EDIT_MODAL = "app/users/HIDE_EDIT_MODAL";
-exports.HIDE_EDIT_MODAL = HIDE_EDIT_MODAL;
-
-/***/ }),
+/* 80 */,
 /* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6174,102 +6194,8 @@ module.exports = require("@material-ui/core/Input");
 module.exports = require("@material-ui/icons/InfoOutlined");
 
 /***/ }),
-/* 94 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.usersSelectors = exports.usersOperations = exports.usersTypes = exports.default = void 0;
-
-var _reducers = _interopRequireDefault(__webpack_require__(103));
-
-var usersTypes = _interopRequireWildcard(__webpack_require__(80));
-
-exports.usersTypes = usersTypes;
-
-var usersOperations = _interopRequireWildcard(__webpack_require__(104));
-
-exports.usersOperations = usersOperations;
-
-var usersSelectors = _interopRequireWildcard(__webpack_require__(95));
-
-exports.usersSelectors = usersSelectors;
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = _reducers.default;
-exports.default = _default;
-
-/***/ }),
-/* 95 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.getEditModalData = exports.isEditModalOpen = exports.isAllDeselected = exports.isAllSelected = exports.getNumSelected = exports.getSelected = exports.getList = void 0;
-
-var getList = function getList(state) {
-  return state.getIn(["users", "list"]);
-};
-
-exports.getList = getList;
-
-var getSelected = function getSelected(state) {
-  return (// eslint-disable-next-line lodash/prefer-lodash-method
-    state.getIn(["users", "list"]).filter(function (item) {
-      return !!item.get("isSelected");
-    })
-  );
-};
-
-exports.getSelected = getSelected;
-
-var getNumSelected = function getNumSelected(state) {
-  return getSelected(state).size;
-};
-
-exports.getNumSelected = getNumSelected;
-
-var isAllSelected = function isAllSelected(state) {
-  return getList(state).size === getSelected(state).size;
-};
-
-exports.isAllSelected = isAllSelected;
-
-var isAllDeselected = function isAllDeselected(state) {
-  return getSelected(state).size === 0;
-};
-
-exports.isAllDeselected = isAllDeselected;
-
-var isEditModalOpen = function isEditModalOpen(state) {
-  return state.getIn(["users", "isEditModalOpen"]);
-};
-
-exports.isEditModalOpen = isEditModalOpen;
-
-var getEditModalData = function getEditModalData(state) {
-  var id = state.getIn(["users", "editModalUserId"]);
-  if (!id) return null; // eslint-disable-next-line
-
-  return state.getIn(["users", "list"]).find(function (item) {
-    return item.get("id") === id;
-  });
-};
-
-exports.getEditModalData = getEditModalData;
-
-/***/ }),
+/* 94 */,
+/* 95 */,
 /* 96 */
 /***/ (function(module, exports) {
 
@@ -6319,7 +6245,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(__webpack_require__(5));
 
-var _propTypes = _interopRequireDefault(__webpack_require__(6));
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
 var _reactIntl = __webpack_require__(8);
 
@@ -6421,7 +6347,634 @@ var _default = (0, _styles.withStyles)(styles, {
 exports.default = _default;
 
 /***/ }),
-/* 103 */
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _reactRedux = __webpack_require__(18);
+
+var _auth = __webpack_require__(11);
+
+var _DevicesPage = _interopRequireDefault(__webpack_require__(107));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    isAuthenticated: _auth.authSelectors.isAuthenticated(state)
+  };
+};
+
+var DevicesPage = (0, _reactRedux.connect)(mapStateToProps, null, null, {
+  pure: false
+})(_DevicesPage.default);
+var _default = DevicesPage;
+exports.default = _default;
+
+/***/ }),
+/* 107 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(5));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
+
+var _styles = __webpack_require__(9);
+
+var _Grid = _interopRequireDefault(__webpack_require__(32));
+
+var _Devices = _interopRequireDefault(__webpack_require__(108));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var styles = function styles(theme) {
+  return {
+    layout: _defineProperty({
+      width: "100%",
+      maxWidth: 1300 + 2 * theme.main.spacing,
+      flex: 1,
+      padding: theme.main.spacing
+    }, theme.breakpoints.down("md"), {
+      padding: theme.main.spacing / 2,
+      maxWidth: 1300 + theme.main.spacing
+    })
+  };
+};
+
+var DevicesPage =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(DevicesPage, _React$Component);
+
+  function DevicesPage() {
+    _classCallCheck(this, DevicesPage);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(DevicesPage).apply(this, arguments));
+  }
+
+  _createClass(DevicesPage, [{
+    key: "render",
+    value: function render() {
+      if (!this.props.isAuthenticated) return null;
+      return _react.default.createElement("div", {
+        className: this.props.classes.layout
+      }, _react.default.createElement(_Grid.default, {
+        container: true,
+        spacing: this.props.theme.main.spacing
+      }, _react.default.createElement(_Grid.default, {
+        item: true,
+        xs: 12
+      }, _react.default.createElement(_Devices.default, null))));
+    }
+  }]);
+
+  return DevicesPage;
+}(_react.default.Component);
+
+var _default = (0, _styles.withStyles)(styles, {
+  withTheme: true
+})(DevicesPage);
+
+exports.default = _default;
+
+/***/ }),
+/* 108 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _reactRedux = __webpack_require__(18);
+
+var _reactIntl = __webpack_require__(8);
+
+var _app = __webpack_require__(6);
+
+var _devices = __webpack_require__(20);
+
+var _Devices = _interopRequireDefault(__webpack_require__(109));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    sshHost: _app.appSelectors.getSshHost(state),
+    sshPort: _app.appSelectors.getSshPort(state),
+    devices: _devices.devicesSelectors.getList(state),
+    online: _devices.devicesSelectors.getOnline(state),
+    isAllSelected: _devices.devicesSelectors.isAllSelected(state),
+    isAllDeselected: _devices.devicesSelectors.isAllDeselected(state)
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    onLoad: function onLoad() {
+      return dispatch(_devices.devicesOperations.load());
+    },
+    onCreate: function onCreate() {
+      return dispatch(_devices.devicesOperations.showEditModal());
+    },
+    onEdit: function onEdit() {
+      return dispatch(_devices.devicesOperations.editFirstSelected());
+    },
+    onDelete: function onDelete(deviceId) {
+      return dispatch(_devices.devicesOperations.reqRemove({
+        id: deviceId
+      }));
+    },
+    onSetSelected: function onSetSelected(deviceId, isSelected) {
+      return dispatch(_devices.devicesOperations.setSelected({
+        deviceId: deviceId,
+        isSelected: isSelected
+      }));
+    },
+    onSelectAll: function onSelectAll() {
+      return dispatch(_devices.devicesOperations.selectAll());
+    },
+    onDeselectAll: function onDeselectAll() {
+      return dispatch(_devices.devicesOperations.deselectAll());
+    }
+  };
+};
+
+var Devices = (0, _reactIntl.injectIntl)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Devices.default));
+var _default = Devices;
+exports.default = _default;
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _regenerator = _interopRequireDefault(__webpack_require__(1));
+
+var _react = _interopRequireDefault(__webpack_require__(5));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
+
+var _classnames = _interopRequireDefault(__webpack_require__(96));
+
+var _immutable = __webpack_require__(2);
+
+var _reactIntl = __webpack_require__(8);
+
+var _styles = __webpack_require__(9);
+
+var _Table = _interopRequireDefault(__webpack_require__(97));
+
+var _TableBody = _interopRequireDefault(__webpack_require__(98));
+
+var _TableCell = _interopRequireDefault(__webpack_require__(99));
+
+var _TableHead = _interopRequireDefault(__webpack_require__(100));
+
+var _TableRow = _interopRequireDefault(__webpack_require__(101));
+
+var _Button = _interopRequireDefault(__webpack_require__(22));
+
+var _IconButton = _interopRequireDefault(__webpack_require__(110));
+
+var _Checkbox = _interopRequireDefault(__webpack_require__(39));
+
+var _EditDeviceModal = _interopRequireDefault(__webpack_require__(111));
+
+var _ConfirmModal = _interopRequireDefault(__webpack_require__(102));
+
+var _OpenInBrowser = _interopRequireDefault(__webpack_require__(113));
+
+var _Language = _interopRequireDefault(__webpack_require__(114));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+var styles = function styles() {
+  return {
+    buttons: {
+      width: "100%",
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      alignContent: "stretch"
+    },
+    button: {
+      margin: "0.5rem"
+    },
+    collapsing: {
+      width: 1,
+      whiteSpace: ["nowrap", "!important"]
+    },
+    checkbox: {
+      padding: "0.5rem 1rem"
+    }
+  };
+};
+
+var Devices =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Devices, _React$Component);
+
+  function Devices(props) {
+    var _this;
+
+    _classCallCheck(this, Devices);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Devices).call(this, props));
+    _this.state = {
+      isConfirmOpen: false
+    };
+    _this.handleCreateAction = _this.handleCreateAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleEditAction = _this.handleEditAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleDeleteAction = _this.handleDeleteAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleCancelDelete = _this.handleCancelDelete.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleConfirmDelete = _this.handleConfirmDelete.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  }
+
+  _createClass(Devices, [{
+    key: "handleToggleAll",
+    value: function handleToggleAll() {
+      var forceOff = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      if (forceOff || this.props.isAllSelected) this.props.onDeselectAll();else this.props.onSelectAll();
+    }
+  }, {
+    key: "handleToggle",
+    value: function handleToggle(deviceId) {
+      // eslint-disable-next-line lodash/prefer-lodash-method
+      var device = this.props.devices.find(function (device) {
+        return device.get("id") === deviceId;
+      });
+      var isSelected = device && device.get("isSelected");
+      this.props.onSetSelected(deviceId, !isSelected);
+    }
+  }, {
+    key: "handleCreateAction",
+    value: function handleCreateAction() {
+      this.props.onCreate();
+    }
+  }, {
+    key: "handleEditAction",
+    value: function handleEditAction() {
+      this.props.onEdit();
+    }
+  }, {
+    key: "handleDeleteAction",
+    value: function handleDeleteAction() {
+      this.setState({
+        isConfirmOpen: true
+      });
+    }
+  }, {
+    key: "handleCancelDelete",
+    value: function handleCancelDelete() {
+      this.setState({
+        isConfirmOpen: false
+      });
+    }
+  }, {
+    key: "handleConfirmDelete",
+    value: function () {
+      var _handleConfirmDelete = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee() {
+        var _this2 = this;
+
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.setState({
+                  isConfirmOpen: false
+                });
+                _context.next = 3;
+                return Promise.all( // eslint-disable-next-line lodash/prefer-lodash-method
+                this.props.devices.filter(function (device) {
+                  return device.get("isSelected");
+                }).map(function (device) {
+                  return _this2.props.onDelete(device.get("id"));
+                }));
+
+              case 3:
+                this.props.onLoad();
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function handleConfirmDelete() {
+        return _handleConfirmDelete.apply(this, arguments);
+      }
+
+      return handleConfirmDelete;
+    }()
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
+        className: this.props.classes.buttons
+      }, _react.default.createElement(_Button.default, {
+        variant: "contained",
+        color: "secondary",
+        classes: {
+          root: this.props.classes.button
+        },
+        onClick: this.handleCreateAction
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "DEVICES_CREATE_BUTTON"
+      }))), _react.default.createElement(_Table.default, {
+        padding: "dense"
+      }, _react.default.createElement(_TableHead.default, null, _react.default.createElement(_TableRow.default, null, _react.default.createElement(_TableCell.default, {
+        padding: "none",
+        classes: {
+          root: this.props.classes.collapsing
+        }
+      }, _react.default.createElement(_Checkbox.default, {
+        checked: !!this.props.devices.size && this.props.isAllSelected,
+        classes: {
+          root: this.props.classes.checkbox
+        },
+        indeterminate: !this.props.isAllSelected && !this.props.isAllDeselected,
+        onChange: function onChange() {
+          return _this3.handleToggleAll();
+        },
+        value: "on"
+      })), _react.default.createElement(_TableCell.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "DEVICES_NAME_COLUMN"
+      })), _react.default.createElement(_TableCell.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "DEVICES_ADDRESS_COLUMN"
+      })), _react.default.createElement(_TableCell.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "DEVICES_CONN_STRING_COLUMN"
+      })))), _react.default.createElement(_TableBody.default, null, this.props.devices.map(function (row, index) {
+        var info = _this3.props.online.get(row.get("id"));
+
+        return _react.default.createElement(_TableRow.default, {
+          key: "row-".concat(index)
+        }, _react.default.createElement(_TableCell.default, {
+          padding: "none",
+          className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected"),
+          classes: {
+            root: _this3.props.classes.collapsing
+          }
+        }, _react.default.createElement(_Checkbox.default, {
+          checked: !!row.get("isSelected"),
+          classes: {
+            root: _this3.props.classes.checkbox
+          },
+          onChange: function onChange() {
+            return _this3.handleToggle(row.get("id"));
+          },
+          value: "on"
+        }), _react.default.createElement(_IconButton.default, {
+          color: "inherit",
+          disabled: !info
+        }, _react.default.createElement(_OpenInBrowser.default, null)), _react.default.createElement(_IconButton.default, {
+          color: "inherit",
+          disabled: !info
+        }, _react.default.createElement(_Language.default, null))), _react.default.createElement(_TableCell.default, {
+          className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected"),
+          component: "th",
+          scope: "row"
+        }, row.get("name")), _react.default.createElement(_TableCell.default, {
+          className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected")
+        }, info ? info.get("address") : _this3.props.intl.formatMessage({
+          id: "DEVICES_OFFLINE_LABEL"
+        })), _react.default.createElement(_TableCell.default, {
+          className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected")
+        }, "ssh -p ", _this3.props.sshPort, " -R 22:localhost:22 -N", " ", row.get("name"), "@", _this3.props.sshHost));
+      }))), _react.default.createElement("div", {
+        className: this.props.classes.buttons
+      }, _react.default.createElement(_Button.default, {
+        variant: "contained",
+        color: "primary",
+        disabled: this.props.isAllDeselected,
+        classes: {
+          root: this.props.classes.button
+        },
+        onClick: this.handleEditAction
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "DEVICES_EDIT_BUTTON"
+      })), _react.default.createElement(_Button.default, {
+        variant: "contained",
+        color: "primary",
+        disabled: this.props.isAllDeselected,
+        classes: {
+          root: this.props.classes.button
+        },
+        onClick: this.handleDeleteAction
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "DEVICES_DELETE_BUTTON"
+      }))), _react.default.createElement(_EditDeviceModal.default, null), _react.default.createElement(_ConfirmModal.default, {
+        isOpen: this.state.isConfirmOpen,
+        title: "DELETE_DEVICE_TITLE",
+        text: "DELETE_DEVICE_TEXT",
+        cancel: "DELETE_DEVICE_CANCEL",
+        submit: "DELETE_DEVICE_SUBMIT",
+        onCancel: this.handleCancelDelete,
+        onSubmit: this.handleConfirmDelete
+      }));
+    }
+  }]);
+
+  return Devices;
+}(_react.default.Component);
+
+var _default = (0, _styles.withStyles)(styles, {
+  withTheme: true
+})(Devices);
+
+exports.default = _default;
+
+/***/ }),
+/* 110 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/IconButton");
+
+/***/ }),
+/* 111 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _regenerator = _interopRequireDefault(__webpack_require__(1));
+
+var _immutable = __webpack_require__(2);
+
+var _reactIntl = __webpack_require__(8);
+
+var _immutable2 = __webpack_require__(10);
+
+var _reduxForm = __webpack_require__(73);
+
+var _devices = __webpack_require__(20);
+
+var _createForm = _interopRequireDefault(__webpack_require__(74));
+
+var _EditDeviceModal = _interopRequireDefault(__webpack_require__(112));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var formName = _EditDeviceModal.default.formName;
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    fieldValues: _defineProperty({}, formName, (0, _immutable2.getFormValues)(formName)(state) || (0, _immutable.Map)()),
+    fieldErrors: _defineProperty({}, formName, (0, _immutable2.getFormAsyncErrors)(formName)(state) || (0, _immutable.Map)()),
+    data: _devices.devicesSelectors.getEditModalData(state),
+    isOpen: _devices.devicesSelectors.isEditModalOpen(state)
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    dispatch: dispatch,
+    updateValidation: function () {
+      var _updateValidation = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee(errors) {
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return dispatch((0, _reduxForm.startAsyncValidation)(formName));
+
+              case 2:
+                _context.next = 4;
+                return dispatch((0, _reduxForm.stopAsyncValidation)(formName, errors));
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function updateValidation(_x) {
+        return _updateValidation.apply(this, arguments);
+      }
+
+      return updateValidation;
+    }(),
+    onCancel: function onCancel() {
+      return dispatch(_devices.devicesOperations.hideEditModal());
+    },
+    onLoad: function onLoad() {
+      return dispatch(_devices.devicesOperations.load());
+    },
+    onCreate: function onCreate(name, password) {
+      return dispatch(_devices.devicesOperations.reqCreate({
+        name: name,
+        password: password
+      }));
+    },
+    onEdit: function onEdit(id, name, password) {
+      return dispatch(_devices.devicesOperations.reqEdit({
+        id: id,
+        name: name,
+        password: password
+      }));
+    }
+  };
+};
+
+var EditDeviceModal = (0, _reactIntl.injectIntl)((0, _createForm.default)(_EditDeviceModal.default, mapStateToProps, mapDispatchToProps));
+var _default = EditDeviceModal;
+exports.default = _default;
+
+/***/ }),
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6432,167 +6985,138 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _immutable = __webpack_require__(2);
-
-var _reduxImmutable = __webpack_require__(4);
-
-var types = _interopRequireWildcard(__webpack_require__(80));
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-/* State Shape
-Map({
-  list: List([
-    Map({
-      id: String,
-      isSelected: Boolean,
-      login: String,
-      roles: [String],
-    })
-  ]),
-  editModalUserId: String, // null when creating a new user
-  isEditModalOpen: false,
-})
-*/
-var listReducer = function listReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : (0, _immutable.List)([]);
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case types.SET_LIST:
-      if (!_.isUndefined(action.list)) // eslint-disable-next-line lodash/prefer-lodash-method
-        return (0, _immutable.fromJS)(action.list).map(function (item, index) {
-          return item.set("isSelected", !!state.getIn([index, "isSelected"]));
-        });
-      break;
-
-    case types.SET_SELECTED:
-      if (!_.isUndefined(action.userId)) return state.withMutations(function (list) {
-        // eslint-disable-next-line lodash/prefer-lodash-method
-        var index = list.findIndex(function (item) {
-          return item.get("id") === action.userId;
-        });
-        if (index !== -1) list.setIn([index, "isSelected"], !!action.isSelected);
-      });
-      break;
-
-    case types.SELECT_ALL:
-      // eslint-disable-next-line lodash/prefer-lodash-method
-      return state.map(function (item) {
-        return item.set("isSelected", true);
-      });
-
-    case types.DESELECT_ALL:
-      // eslint-disable-next-line lodash/prefer-lodash-method
-      return state.map(function (item) {
-        return item.set("isSelected", false);
-      });
-  }
-
-  return state;
-};
-
-var editModalUserIdReducer = function editModalUserIdReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case types.SHOW_EDIT_MODAL:
-      return action.userId || null;
-  }
-
-  return state;
-};
-
-var isEditModalOpenReducer = function isEditModalOpenReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case types.SHOW_EDIT_MODAL:
-      return true;
-
-    case types.HIDE_EDIT_MODAL:
-      return false;
-  }
-
-  return state;
-};
-
-var reducer = (0, _reduxImmutable.combineReducers)({
-  list: listReducer,
-  editModalUserId: editModalUserIdReducer,
-  isEditModalOpen: isEditModalOpenReducer
-});
-var _default = reducer;
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
-
-/***/ }),
-/* 104 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.remove = exports.edit = exports.create = exports.load = exports.editFirstSelected = exports.deselectAll = exports.selectAll = exports.setSelected = exports.hideEditModal = exports.showEditModal = void 0;
-
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var actions = _interopRequireWildcard(__webpack_require__(105));
+var _react = _interopRequireDefault(__webpack_require__(5));
 
-var selectors = _interopRequireWildcard(__webpack_require__(95));
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
-var _app = __webpack_require__(7);
+var _immutable = __webpack_require__(2);
 
-var _constants = _interopRequireDefault(__webpack_require__(3));
+var _reactIntl = __webpack_require__(8);
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+var _immutable2 = __webpack_require__(10);
+
+var _styles = __webpack_require__(9);
+
+var _Dialog = _interopRequireDefault(__webpack_require__(28));
+
+var _DialogActions = _interopRequireDefault(__webpack_require__(29));
+
+var _DialogContent = _interopRequireDefault(__webpack_require__(30));
+
+var _DialogContentText = _interopRequireDefault(__webpack_require__(34));
+
+var _DialogTitle = _interopRequireDefault(__webpack_require__(31));
+
+var _Grid = _interopRequireDefault(__webpack_require__(32));
+
+var _Button = _interopRequireDefault(__webpack_require__(22));
+
+var _Form2 = _interopRequireDefault(__webpack_require__(75));
+
+var _Field = _interopRequireDefault(__webpack_require__(76));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var showEditModal = actions.showEditModal;
-exports.showEditModal = showEditModal;
-var hideEditModal = actions.hideEditModal;
-exports.hideEditModal = hideEditModal;
-var setSelected = actions.setSelected;
-exports.setSelected = setSelected;
-var selectAll = actions.selectAll;
-exports.selectAll = selectAll;
-var deselectAll = actions.deselectAll;
-exports.deselectAll = deselectAll;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var editFirstSelected = function editFirstSelected() {
-  return (
-    /*#__PURE__*/
-    function () {
-      var _ref = _asyncToGenerator(
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var styles = function styles(theme) {
+  return {
+    error: theme.main.error,
+    actions: {
+      paddingLeft: "1rem",
+      paddingRight: "1rem",
+      paddingBottom: "1rem"
+    }
+  };
+};
+
+var EditDeviceModal =
+/*#__PURE__*/
+function (_Form) {
+  _inherits(EditDeviceModal, _Form);
+
+  _createClass(EditDeviceModal, null, [{
+    key: "onSubmit",
+    value: function () {
+      var _onSubmit = _asyncToGenerator(
       /*#__PURE__*/
-      _regenerator.default.mark(function _callee(dispatch, getState) {
-        var selected;
+      _regenerator.default.mark(function _callee(values, dispatch, props) {
+        var result;
         return _regenerator.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                selected = selectors.getSelected(getState());
-
-                if (!selected.size) {
-                  _context.next = 3;
+                if (!props.data) {
+                  _context.next = 6;
                   break;
                 }
 
-                return _context.abrupt("return", dispatch(actions.showEditModal({
-                  userId: selected.first().get("id")
-                })));
+                _context.next = 3;
+                return props.onEdit(props.data.get("id"), this.getValue(props, "name"), this.getValue(props, "password"));
 
               case 3:
+                result = _context.sent;
+                _context.next = 9;
+                break;
+
+              case 6:
+                _context.next = 8;
+                return props.onCreate(this.getValue(props, "name"), this.getValue(props, "password"));
+
+              case 8:
+                result = _context.sent;
+
+              case 9:
+                if (!(result === true)) {
+                  _context.next = 14;
+                  break;
+                }
+
+                _context.next = 12;
+                return props.onLoad();
+
+              case 12:
+                _context.next = 16;
+                break;
+
+              case 14:
+                if (!(result && _.isObject(result))) {
+                  _context.next = 16;
+                  break;
+                }
+
+                throw new _immutable2.SubmissionError(result);
+
+              case 16:
+                return _context.abrupt("return", result);
+
+              case 17:
               case "end":
                 return _context.stop();
             }
@@ -6600,438 +7124,165 @@ var editFirstSelected = function editFirstSelected() {
         }, _callee, this);
       }));
 
-      return function (_x, _x2) {
-        return _ref.apply(this, arguments);
-      };
+      function onSubmit(_x, _x2, _x3) {
+        return _onSubmit.apply(this, arguments);
+      }
+
+      return onSubmit;
     }()
-  );
-};
+  }, {
+    key: "getDerivedStateFromProps",
+    value: function getDerivedStateFromProps(nextProps, prevState) {
+      var state = {};
+      /* eslint-disable lodash/prefer-lodash-method */
 
-exports.editFirstSelected = editFirstSelected;
+      if (prevState.isOpen !== nextProps.isOpen) {
+        var name = nextProps.data && nextProps.data.get("name");
+        nextProps.dispatch(nextProps.change("name", name || ""));
+        nextProps.dispatch(nextProps.change("password", ""));
+        nextProps.dispatch(nextProps.clearAsyncError());
+        nextProps.dispatch(nextProps.clearSubmitErrors());
+        state.isOpen = nextProps.isOpen;
+      }
+      /* eslint-enable */
 
-var load = function load() {
-  var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      req = _ref2.req;
 
-  return (
-    /*#__PURE__*/
-    function () {
-      var _ref3 = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee2(dispatch) {
-        var users, response;
-        return _regenerator.default.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                if (!req) {
-                  _context2.next = 6;
-                  break;
-                }
+      return _.keys(state).length ? state : null;
+    }
+  }]);
 
-                _context2.next = 3;
-                return req.di.get("repository.users").getUsers(req);
+  function EditDeviceModal(props) {
+    var _this;
 
-              case 3:
-                users = _context2.sent;
-                _context2.next = 10;
-                break;
+    _classCallCheck(this, EditDeviceModal);
 
-              case 6:
-                _context2.next = 8;
-                return dispatch(_app.appOperations.gqlQuery("\n          query {\n            users {\n              id\n              login\n              roles\n            }\n          }\n        "));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(EditDeviceModal).call(this, props));
+    _this.state = {
+      isOpen: props.isOpen
+    };
+    _this.submit = _this.submit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  }
 
-              case 8:
-                response = _context2.sent;
-                users = response && _.get(response, "data.users");
+  _createClass(EditDeviceModal, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
 
-              case 10:
-                _context2.next = 12;
-                return dispatch(actions.setList({
-                  list: users
-                }));
-
-              case 12:
-              case "end":
-                return _context2.stop();
-            }
+      return _react.default.createElement(_Dialog.default, {
+        maxWidth: "xs",
+        fullWidth: true,
+        open: this.props.isOpen,
+        onClose: this.props.onCancel
+      }, _react.default.createElement(_DialogTitle.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: this.props.data ? "EDIT_DEVICE_TITLE_EDIT" : "EDIT_DEVICE_TITLE_CREATE"
+      })), this.props.error && _react.default.createElement(_DialogContent.default, null, _.map(_.isArray(this.props.error) ? this.props.error : [this.props.error], function (error, index) {
+        return _react.default.createElement(_DialogContentText.default, {
+          key: "error-".concat(index),
+          classes: {
+            root: _this2.props.classes.error
           }
-        }, _callee2, this);
-      }));
+        }, _.isArray(error) ? _react.default.createElement(_reactIntl.FormattedMessage, {
+          id: error[0],
+          values: error[1]
+        }) : _react.default.createElement(_reactIntl.FormattedMessage, {
+          id: error
+        }));
+      })), _react.default.createElement(_DialogContent.default, null, _react.default.createElement(_Grid.default, {
+        container: true,
+        spacing: 16,
+        component: "form",
+        noValidate: true,
+        autoComplete: "off",
+        onSubmit: this.submit
+      }, _react.default.createElement(_Grid.default, {
+        item: true,
+        xs: 12
+      }, _react.default.createElement(_Field.default, {
+        formFields: this.constructor.fields,
+        formProps: this.props,
+        name: "name",
+        type: "text",
+        onSubmit: this.submit
+      })), _react.default.createElement(_Grid.default, {
+        item: true,
+        xs: 12
+      }, _react.default.createElement(_Field.default, {
+        formFields: this.constructor.fields,
+        formProps: this.props,
+        name: "password",
+        type: "password",
+        onSubmit: this.submit
+      })))), _react.default.createElement(_DialogActions.default, {
+        classes: {
+          root: this.props.classes.actions
+        }
+      }, _react.default.createElement(_Button.default, {
+        variant: "contained",
+        color: "primary",
+        disabled: this.props.submitting,
+        onClick: this.props.onCancel
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "EDIT_DEVICE_CANCEL"
+      })), _react.default.createElement(_Button.default, {
+        variant: "contained",
+        color: "secondary",
+        disabled: this.props.submitting,
+        onClick: this.submit
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "EDIT_DEVICE_SUBMIT"
+      }))));
+    }
+  }]);
 
-      return function (_x3) {
-        return _ref3.apply(this, arguments);
-      };
-    }()
-  );
-};
+  return EditDeviceModal;
+}(_Form2.default);
 
-exports.load = load;
+_defineProperty(EditDeviceModal, "propTypes", _objectSpread({}, _Form2.default.propTypes, {
+  intl: _reactIntl.intlShape,
+  theme: _propTypes.default.object.isRequired,
+  classes: _propTypes.default.object.isRequired,
+  isOpen: _propTypes.default.bool.isRequired,
+  data: _propTypes.default.instanceOf(_immutable.Map),
+  onCreate: _propTypes.default.func.isRequired,
+  onEdit: _propTypes.default.func.isRequired
+}));
 
-var create = function create(_ref4) {
-  var login = _ref4.login,
-      password = _ref4.password,
-      isAdmin = _ref4.isAdmin;
-  return (
-    /*#__PURE__*/
-    function () {
-      var _ref5 = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee3(dispatch) {
-        var result, response, errors, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, error;
+_defineProperty(EditDeviceModal, "formName", "editCameraForm");
 
-        return _regenerator.default.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                result = false;
-                _context3.prev = 1;
-                _context3.next = 4;
-                return dispatch(_app.appOperations.gqlQuery("\n          mutation ($login: String, $password: String, $roles: [UserRole]) {\n            createUser(login: $login, password: $password, roles: $roles) {\n              success\n            }\n          }\n        ", {
-                  login: login,
-                  password: password,
-                  roles: _.compact([isAdmin && _constants.default.roles.ADMIN])
-                }));
+_defineProperty(EditDeviceModal, "fields", {
+  name: {
+    normalize: "rows:1|remove:spaces",
+    transform: "trim",
+    label: "EDIT_DEVICE_NAME_LABEL"
+  },
+  password: {
+    normalize: "rows:1",
+    transform: "trim",
+    label: "EDIT_DEVICE_PASSWORD_LABEL"
+  }
+});
 
-              case 4:
-                response = _context3.sent;
+var _default = (0, _styles.withStyles)(styles, {
+  withTheme: true
+})(EditDeviceModal);
 
-                if (!(response && _.get(response, "data.createUser.success", false))) {
-                  _context3.next = 11;
-                  break;
-                }
-
-                _context3.next = 8;
-                return dispatch(actions.hideEditModal());
-
-              case 8:
-                return _context3.abrupt("return", true);
-
-              case 11:
-                result = {};
-                errors = response && _.get(response, "errors", []);
-                _iteratorNormalCompletion = true;
-                _didIteratorError = false;
-                _iteratorError = undefined;
-                _context3.prev = 16;
-
-                for (_iterator = errors[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                  error = _step.value;
-                  if (error && error.code === "E_VALIDATION") _.merge(result, error.details);else result._error = (result._error || []).concat([error.message]);
-                }
-
-                _context3.next = 24;
-                break;
-
-              case 20:
-                _context3.prev = 20;
-                _context3.t0 = _context3["catch"](16);
-                _didIteratorError = true;
-                _iteratorError = _context3.t0;
-
-              case 24:
-                _context3.prev = 24;
-                _context3.prev = 25;
-
-                if (!_iteratorNormalCompletion && _iterator.return != null) {
-                  _iterator.return();
-                }
-
-              case 27:
-                _context3.prev = 27;
-
-                if (!_didIteratorError) {
-                  _context3.next = 30;
-                  break;
-                }
-
-                throw _iteratorError;
-
-              case 30:
-                return _context3.finish(27);
-
-              case 31:
-                return _context3.finish(24);
-
-              case 32:
-                if (!_.keys(result).length) result = {
-                  _error: "EDIT_USER_FAILED"
-                };
-
-              case 33:
-                _context3.next = 38;
-                break;
-
-              case 35:
-                _context3.prev = 35;
-                _context3.t1 = _context3["catch"](1);
-                console.error(_context3.t1);
-
-              case 38:
-                return _context3.abrupt("return", result);
-
-              case 39:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, this, [[1, 35], [16, 20, 24, 32], [25,, 27, 31]]);
-      }));
-
-      return function (_x4) {
-        return _ref5.apply(this, arguments);
-      };
-    }()
-  );
-};
-
-exports.create = create;
-
-var edit = function edit(_ref6) {
-  var id = _ref6.id,
-      login = _ref6.login,
-      password = _ref6.password,
-      isAdmin = _ref6.isAdmin;
-  return (
-    /*#__PURE__*/
-    function () {
-      var _ref7 = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee4(dispatch) {
-        var result, response, errors, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, error;
-
-        return _regenerator.default.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                result = false;
-                _context4.prev = 1;
-                _context4.next = 4;
-                return dispatch(_app.appOperations.gqlQuery("\n          mutation ($id: String, $login: String, $password: String, $roles: [UserRole]) {\n            editUser(id: $id, login: $login, password: $password, roles: $roles) {\n              success\n            }\n          }\n        ", {
-                  id: id,
-                  login: login,
-                  password: password,
-                  roles: _.compact([isAdmin && _constants.default.roles.ADMIN])
-                }));
-
-              case 4:
-                response = _context4.sent;
-
-                if (!(response && _.get(response, "data.editUser.success", false))) {
-                  _context4.next = 11;
-                  break;
-                }
-
-                _context4.next = 8;
-                return dispatch(actions.hideEditModal());
-
-              case 8:
-                return _context4.abrupt("return", true);
-
-              case 11:
-                result = {};
-                errors = response && _.get(response, "errors", []);
-                _iteratorNormalCompletion2 = true;
-                _didIteratorError2 = false;
-                _iteratorError2 = undefined;
-                _context4.prev = 16;
-
-                for (_iterator2 = errors[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                  error = _step2.value;
-                  if (error && error.code === "E_VALIDATION") _.merge(result, error.details);else result._error = (result._error || []).concat([error.message]);
-                }
-
-                _context4.next = 24;
-                break;
-
-              case 20:
-                _context4.prev = 20;
-                _context4.t0 = _context4["catch"](16);
-                _didIteratorError2 = true;
-                _iteratorError2 = _context4.t0;
-
-              case 24:
-                _context4.prev = 24;
-                _context4.prev = 25;
-
-                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-                  _iterator2.return();
-                }
-
-              case 27:
-                _context4.prev = 27;
-
-                if (!_didIteratorError2) {
-                  _context4.next = 30;
-                  break;
-                }
-
-                throw _iteratorError2;
-
-              case 30:
-                return _context4.finish(27);
-
-              case 31:
-                return _context4.finish(24);
-
-              case 32:
-                if (!_.keys(result).length) result = {
-                  _error: "EDIT_USER_FAILED"
-                };
-
-              case 33:
-                _context4.next = 38;
-                break;
-
-              case 35:
-                _context4.prev = 35;
-                _context4.t1 = _context4["catch"](1);
-                console.error(_context4.t1);
-
-              case 38:
-                return _context4.abrupt("return", result);
-
-              case 39:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4, this, [[1, 35], [16, 20, 24, 32], [25,, 27, 31]]);
-      }));
-
-      return function (_x5) {
-        return _ref7.apply(this, arguments);
-      };
-    }()
-  );
-};
-
-exports.edit = edit;
-
-var remove = function remove(_ref8) {
-  var id = _ref8.id;
-  return (
-    /*#__PURE__*/
-    function () {
-      var _ref9 = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee5(dispatch) {
-        var response;
-        return _regenerator.default.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                _context5.next = 2;
-                return dispatch(_app.appOperations.gqlQuery("\n        mutation ($id: String) {\n          deleteUser(id: $id) {\n            success\n          }\n        }\n      ", {
-                  id: id
-                }));
-
-              case 2:
-                response = _context5.sent;
-                return _context5.abrupt("return", response && _.get(response, "data.deleteUser.success") || false);
-
-              case 4:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5, this);
-      }));
-
-      return function (_x6) {
-        return _ref9.apply(this, arguments);
-      };
-    }()
-  );
-};
-
-exports.remove = remove;
+exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 105 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 113 */
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.hideEditModal = exports.showEditModal = exports.deselectAll = exports.selectAll = exports.setSelected = exports.setList = void 0;
-
-var types = _interopRequireWildcard(__webpack_require__(80));
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-var setList = function setList(_ref) {
-  var list = _ref.list;
-  return {
-    type: types.SET_LIST,
-    list: list
-  };
-};
-
-exports.setList = setList;
-
-var setSelected = function setSelected(_ref2) {
-  var userId = _ref2.userId,
-      isSelected = _ref2.isSelected;
-  return {
-    type: types.SET_SELECTED,
-    userId: userId,
-    isSelected: isSelected
-  };
-};
-
-exports.setSelected = setSelected;
-
-var selectAll = function selectAll() {
-  return {
-    type: types.SELECT_ALL
-  };
-};
-
-exports.selectAll = selectAll;
-
-var deselectAll = function deselectAll() {
-  return {
-    type: types.DESELECT_ALL
-  };
-};
-
-exports.deselectAll = deselectAll;
-
-var showEditModal = function showEditModal() {
-  var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      userId = _ref3.userId;
-
-  return {
-    type: types.SHOW_EDIT_MODAL,
-    userId: userId
-  };
-};
-
-exports.showEditModal = showEditModal;
-
-var hideEditModal = function hideEditModal() {
-  return {
-    type: types.HIDE_EDIT_MODAL
-  };
-};
-
-exports.hideEditModal = hideEditModal;
+module.exports = require("@material-ui/icons/OpenInBrowser");
 
 /***/ }),
-/* 106 */,
-/* 107 */,
-/* 108 */,
-/* 109 */,
-/* 110 */,
-/* 111 */,
-/* 112 */,
-/* 113 */,
-/* 114 */,
+/* 114 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/icons/Language");
+
+/***/ }),
 /* 115 */,
 /* 116 */,
 /* 117 */,
@@ -7091,14 +7342,15 @@ exports.hideEditModal = hideEditModal;
 /* 171 */,
 /* 172 */,
 /* 173 */,
-/* 174 */
+/* 174 */,
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(175);
+module.exports = __webpack_require__(176);
 
 
 /***/ }),
-/* 175 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7111,9 +7363,9 @@ exports.default = void 0;
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _UsersPage = _interopRequireDefault(__webpack_require__(176));
+var _DevicesPage = _interopRequireDefault(__webpack_require__(106));
 
-var _users = __webpack_require__(94);
+var _devices = __webpack_require__(20);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7121,7 +7373,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-_UsersPage.default.getInitialProps =
+_DevicesPage.default.getInitialProps =
 /*#__PURE__*/
 function () {
   var _ref2 = _asyncToGenerator(
@@ -7134,7 +7386,7 @@ function () {
           case 0:
             store = _ref.store, req = _ref.req;
             _context.next = 3;
-            return store.dispatch(_users.usersOperations.load({
+            return store.dispatch(_devices.devicesOperations.load({
               req: req
             }));
 
@@ -7151,929 +7403,8 @@ function () {
   };
 }();
 
-var _default = _UsersPage.default;
+var _default = _DevicesPage.default;
 exports.default = _default;
-
-/***/ }),
-/* 176 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _reactRedux = __webpack_require__(18);
-
-var _auth = __webpack_require__(11);
-
-var _UsersPage = _interopRequireDefault(__webpack_require__(177));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    isAuthenticated: _auth.authSelectors.isAuthenticated(state)
-  };
-};
-
-var UsersPage = (0, _reactRedux.connect)(mapStateToProps, null, null, {
-  pure: false
-})(_UsersPage.default);
-var _default = UsersPage;
-exports.default = _default;
-
-/***/ }),
-/* 177 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(__webpack_require__(5));
-
-var _propTypes = _interopRequireDefault(__webpack_require__(6));
-
-var _styles = __webpack_require__(9);
-
-var _Grid = _interopRequireDefault(__webpack_require__(32));
-
-var _Users = _interopRequireDefault(__webpack_require__(178));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var styles = function styles(theme) {
-  return {
-    layout: _defineProperty({
-      width: "100%",
-      maxWidth: 1300 + 2 * theme.main.spacing,
-      flex: 1,
-      padding: theme.main.spacing
-    }, theme.breakpoints.down("md"), {
-      padding: theme.main.spacing / 2,
-      maxWidth: 1300 + theme.main.spacing
-    })
-  };
-};
-
-var UsersPage =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(UsersPage, _React$Component);
-
-  function UsersPage() {
-    _classCallCheck(this, UsersPage);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(UsersPage).apply(this, arguments));
-  }
-
-  _createClass(UsersPage, [{
-    key: "render",
-    value: function render() {
-      if (!this.props.isAuthenticated) return null;
-      return _react.default.createElement("div", {
-        className: this.props.classes.layout
-      }, _react.default.createElement(_Grid.default, {
-        container: true,
-        spacing: this.props.theme.main.spacing
-      }, _react.default.createElement(_Grid.default, {
-        item: true,
-        xs: 12
-      }, _react.default.createElement(_Users.default, null))));
-    }
-  }]);
-
-  return UsersPage;
-}(_react.default.Component);
-
-var _default = (0, _styles.withStyles)(styles, {
-  withTheme: true
-})(UsersPage);
-
-exports.default = _default;
-
-/***/ }),
-/* 178 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _reactRedux = __webpack_require__(18);
-
-var _reactIntl = __webpack_require__(8);
-
-var _users = __webpack_require__(94);
-
-var _Users = _interopRequireDefault(__webpack_require__(179));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    users: _users.usersSelectors.getList(state),
-    isAllSelected: _users.usersSelectors.isAllSelected(state),
-    isAllDeselected: _users.usersSelectors.isAllDeselected(state)
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    onLoad: function onLoad() {
-      return dispatch(_users.usersOperations.load());
-    },
-    onCreate: function onCreate() {
-      return dispatch(_users.usersOperations.showEditModal());
-    },
-    onEdit: function onEdit() {
-      return dispatch(_users.usersOperations.editFirstSelected());
-    },
-    onDelete: function onDelete(userId) {
-      return dispatch(_users.usersOperations.remove({
-        id: userId
-      }));
-    },
-    onSetSelected: function onSetSelected(userId, isSelected) {
-      return dispatch(_users.usersOperations.setSelected({
-        userId: userId,
-        isSelected: isSelected
-      }));
-    },
-    onSelectAll: function onSelectAll() {
-      return dispatch(_users.usersOperations.selectAll());
-    },
-    onDeselectAll: function onDeselectAll() {
-      return dispatch(_users.usersOperations.deselectAll());
-    }
-  };
-};
-
-var Users = (0, _reactIntl.injectIntl)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Users.default));
-var _default = Users;
-exports.default = _default;
-
-/***/ }),
-/* 179 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _regenerator = _interopRequireDefault(__webpack_require__(1));
-
-var _react = _interopRequireDefault(__webpack_require__(5));
-
-var _propTypes = _interopRequireDefault(__webpack_require__(6));
-
-var _classnames = _interopRequireDefault(__webpack_require__(96));
-
-var _immutable = __webpack_require__(2);
-
-var _reactIntl = __webpack_require__(8);
-
-var _styles = __webpack_require__(9);
-
-var _Table = _interopRequireDefault(__webpack_require__(97));
-
-var _TableBody = _interopRequireDefault(__webpack_require__(98));
-
-var _TableCell = _interopRequireDefault(__webpack_require__(99));
-
-var _TableHead = _interopRequireDefault(__webpack_require__(100));
-
-var _TableRow = _interopRequireDefault(__webpack_require__(101));
-
-var _Button = _interopRequireDefault(__webpack_require__(22));
-
-var _Checkbox = _interopRequireDefault(__webpack_require__(39));
-
-var _EditUserModal = _interopRequireDefault(__webpack_require__(180));
-
-var _ConfirmModal = _interopRequireDefault(__webpack_require__(102));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-var styles = function styles() {
-  return {
-    buttons: {
-      width: "100%",
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "flex-start",
-      alignContent: "stretch"
-    },
-    button: {
-      margin: "0.5rem"
-    },
-    checkboxField: {
-      width: 1
-    },
-    checkbox: {
-      padding: "0.5rem 1rem"
-    }
-  };
-};
-
-var Users =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(Users, _React$Component);
-
-  function Users(props) {
-    var _this;
-
-    _classCallCheck(this, Users);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Users).call(this, props));
-    _this.state = {
-      isConfirmOpen: false
-    };
-    _this.handleCreateAction = _this.handleCreateAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleEditAction = _this.handleEditAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleDeleteAction = _this.handleDeleteAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleCancelDelete = _this.handleCancelDelete.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleConfirmDelete = _this.handleConfirmDelete.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    return _this;
-  }
-
-  _createClass(Users, [{
-    key: "handleToggleAll",
-    value: function handleToggleAll() {
-      var forceOff = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-      if (forceOff || this.props.isAllSelected) this.props.onDeselectAll();else this.props.onSelectAll();
-    }
-  }, {
-    key: "handleToggle",
-    value: function handleToggle(userId) {
-      // eslint-disable-next-line lodash/prefer-lodash-method
-      var user = this.props.users.find(function (user) {
-        return user.get("id") === userId;
-      });
-      var isSelected = user && user.get("isSelected");
-      this.props.onSetSelected(userId, !isSelected);
-    }
-  }, {
-    key: "handleCreateAction",
-    value: function handleCreateAction() {
-      this.props.onCreate();
-    }
-  }, {
-    key: "handleEditAction",
-    value: function handleEditAction() {
-      this.props.onEdit();
-    }
-  }, {
-    key: "handleDeleteAction",
-    value: function handleDeleteAction() {
-      this.setState({
-        isConfirmOpen: true
-      });
-    }
-  }, {
-    key: "handleCancelDelete",
-    value: function handleCancelDelete() {
-      this.setState({
-        isConfirmOpen: false
-      });
-    }
-  }, {
-    key: "handleConfirmDelete",
-    value: function () {
-      var _handleConfirmDelete = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee() {
-        var _this2 = this;
-
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                this.setState({
-                  isConfirmOpen: false
-                });
-                _context.next = 3;
-                return Promise.all( // eslint-disable-next-line lodash/prefer-lodash-method
-                this.props.users.filter(function (user) {
-                  return user.get("isSelected");
-                }).map(function (user) {
-                  return _this2.props.onDelete(user.get("id"));
-                }));
-
-              case 3:
-                this.props.onLoad();
-
-              case 4:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function handleConfirmDelete() {
-        return _handleConfirmDelete.apply(this, arguments);
-      }
-
-      return handleConfirmDelete;
-    }()
-  }, {
-    key: "render",
-    value: function render() {
-      var _this3 = this;
-
-      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
-        className: this.props.classes.buttons
-      }, _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "secondary",
-        classes: {
-          root: this.props.classes.button
-        },
-        onClick: this.handleCreateAction
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "USERS_CREATE_BUTTON"
-      }))), _react.default.createElement(_Table.default, {
-        padding: "dense"
-      }, _react.default.createElement(_TableHead.default, null, _react.default.createElement(_TableRow.default, null, _react.default.createElement(_TableCell.default, {
-        padding: "none",
-        classes: {
-          root: this.props.classes.checkboxField
-        }
-      }, _react.default.createElement(_Checkbox.default, {
-        checked: !!this.props.users.size && this.props.isAllSelected,
-        classes: {
-          root: this.props.classes.checkbox
-        },
-        indeterminate: !this.props.isAllSelected && !this.props.isAllDeselected,
-        onChange: function onChange() {
-          return _this3.handleToggleAll();
-        },
-        value: "on"
-      })), _react.default.createElement(_TableCell.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "USERS_LOGIN_COLUMN"
-      })), _react.default.createElement(_TableCell.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "USERS_ROLES_COLUMN"
-      })))), _react.default.createElement(_TableBody.default, null, this.props.users.map(function (row, index) {
-        return _react.default.createElement(_TableRow.default, {
-          key: "row-".concat(index)
-        }, _react.default.createElement(_TableCell.default, {
-          padding: "none",
-          className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected"),
-          classes: {
-            root: _this3.props.classes.checkboxField
-          }
-        }, _react.default.createElement(_Checkbox.default, {
-          checked: !!row.get("isSelected"),
-          classes: {
-            root: _this3.props.classes.checkbox
-          },
-          onChange: function onChange() {
-            return _this3.handleToggle(row.get("id"));
-          },
-          value: "on"
-        })), _react.default.createElement(_TableCell.default, {
-          className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected"),
-          component: "th",
-          scope: "row"
-        }, row.get("login")), _react.default.createElement(_TableCell.default, {
-          className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected")
-        }, row.get("roles").toJS().map(function (item) {
-          return _this3.props.intl.formatMessage({
-            id: "EDIT_USER_".concat(item, "_LABEL")
-          });
-        }).join(", ")));
-      }))), _react.default.createElement("div", {
-        className: this.props.classes.buttons
-      }, _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "primary",
-        disabled: this.props.isAllDeselected,
-        classes: {
-          root: this.props.classes.button
-        },
-        onClick: this.handleEditAction
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "USERS_EDIT_BUTTON"
-      })), _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "primary",
-        disabled: this.props.isAllDeselected,
-        classes: {
-          root: this.props.classes.button
-        },
-        onClick: this.handleDeleteAction
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "USERS_DELETE_BUTTON"
-      }))), _react.default.createElement(_EditUserModal.default, null), _react.default.createElement(_ConfirmModal.default, {
-        isOpen: this.state.isConfirmOpen,
-        title: "DELETE_USER_TITLE",
-        text: "DELETE_USER_TEXT",
-        cancel: "DELETE_USER_CANCEL",
-        submit: "DELETE_USER_SUBMIT",
-        onCancel: this.handleCancelDelete,
-        onSubmit: this.handleConfirmDelete
-      }));
-    }
-  }]);
-
-  return Users;
-}(_react.default.Component);
-
-var _default = (0, _styles.withStyles)(styles, {
-  withTheme: true
-})(Users);
-
-exports.default = _default;
-
-/***/ }),
-/* 180 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _regenerator = _interopRequireDefault(__webpack_require__(1));
-
-var _immutable = __webpack_require__(2);
-
-var _reactIntl = __webpack_require__(8);
-
-var _immutable2 = __webpack_require__(10);
-
-var _reduxForm = __webpack_require__(73);
-
-var _users = __webpack_require__(94);
-
-var _createForm = _interopRequireDefault(__webpack_require__(74));
-
-var _EditUserModal = _interopRequireDefault(__webpack_require__(181));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var formName = _EditUserModal.default.formName;
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    fieldValues: _defineProperty({}, formName, (0, _immutable2.getFormValues)(formName)(state) || (0, _immutable.Map)()),
-    fieldErrors: _defineProperty({}, formName, (0, _immutable2.getFormAsyncErrors)(formName)(state) || (0, _immutable.Map)()),
-    data: _users.usersSelectors.getEditModalData(state),
-    isOpen: _users.usersSelectors.isEditModalOpen(state)
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    dispatch: dispatch,
-    updateValidation: function () {
-      var _updateValidation = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee(errors) {
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return dispatch((0, _reduxForm.startAsyncValidation)(formName));
-
-              case 2:
-                _context.next = 4;
-                return dispatch((0, _reduxForm.stopAsyncValidation)(formName, errors));
-
-              case 4:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function updateValidation(_x) {
-        return _updateValidation.apply(this, arguments);
-      }
-
-      return updateValidation;
-    }(),
-    onCancel: function onCancel() {
-      return dispatch(_users.usersOperations.hideEditModal());
-    },
-    onLoad: function onLoad() {
-      return dispatch(_users.usersOperations.load());
-    },
-    onCreate: function onCreate(login, password, isAdmin) {
-      return dispatch(_users.usersOperations.create({
-        login: login,
-        password: password,
-        isAdmin: isAdmin
-      }));
-    },
-    onEdit: function onEdit(id, login, password, isAdmin) {
-      return dispatch(_users.usersOperations.edit({
-        id: id,
-        login: login,
-        password: password,
-        isAdmin: isAdmin
-      }));
-    }
-  };
-};
-
-var EditUserModal = (0, _reactIntl.injectIntl)((0, _createForm.default)(_EditUserModal.default, mapStateToProps, mapDispatchToProps));
-var _default = EditUserModal;
-exports.default = _default;
-
-/***/ }),
-/* 181 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _regenerator = _interopRequireDefault(__webpack_require__(1));
-
-var _react = _interopRequireDefault(__webpack_require__(5));
-
-var _propTypes = _interopRequireDefault(__webpack_require__(6));
-
-var _immutable = __webpack_require__(2);
-
-var _reactIntl = __webpack_require__(8);
-
-var _immutable2 = __webpack_require__(10);
-
-var _styles = __webpack_require__(9);
-
-var _Dialog = _interopRequireDefault(__webpack_require__(28));
-
-var _DialogActions = _interopRequireDefault(__webpack_require__(29));
-
-var _DialogContent = _interopRequireDefault(__webpack_require__(30));
-
-var _DialogContentText = _interopRequireDefault(__webpack_require__(34));
-
-var _DialogTitle = _interopRequireDefault(__webpack_require__(31));
-
-var _Grid = _interopRequireDefault(__webpack_require__(32));
-
-var _Button = _interopRequireDefault(__webpack_require__(22));
-
-var _red = _interopRequireDefault(__webpack_require__(182));
-
-var _Form2 = _interopRequireDefault(__webpack_require__(75));
-
-var _Field = _interopRequireDefault(__webpack_require__(76));
-
-var _constants = _interopRequireDefault(__webpack_require__(3));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var styles = function styles() {
-  return {
-    error: {
-      color: _red.default[500]
-    },
-    actions: {
-      paddingLeft: "1rem",
-      paddingRight: "1rem",
-      paddingBottom: "1rem"
-    }
-  };
-};
-
-var EditUserModal =
-/*#__PURE__*/
-function (_Form) {
-  _inherits(EditUserModal, _Form);
-
-  _createClass(EditUserModal, null, [{
-    key: "onSubmit",
-    value: function () {
-      var _onSubmit = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee(values, dispatch, props) {
-        var result;
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                if (!props.data) {
-                  _context.next = 6;
-                  break;
-                }
-
-                _context.next = 3;
-                return props.onEdit(props.data.get("id"), this.getValue(props, "login"), this.getValue(props, "password"), this.getValue(props, "isAdmin") === "on");
-
-              case 3:
-                result = _context.sent;
-                _context.next = 9;
-                break;
-
-              case 6:
-                _context.next = 8;
-                return props.onCreate(this.getValue(props, "login"), this.getValue(props, "password"), this.getValue(props, "isAdmin") === "on");
-
-              case 8:
-                result = _context.sent;
-
-              case 9:
-                if (!(result === true)) {
-                  _context.next = 14;
-                  break;
-                }
-
-                _context.next = 12;
-                return props.onLoad();
-
-              case 12:
-                _context.next = 16;
-                break;
-
-              case 14:
-                if (!(result && _.isObject(result))) {
-                  _context.next = 16;
-                  break;
-                }
-
-                throw new _immutable2.SubmissionError(result);
-
-              case 16:
-                return _context.abrupt("return", result);
-
-              case 17:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function onSubmit(_x, _x2, _x3) {
-        return _onSubmit.apply(this, arguments);
-      }
-
-      return onSubmit;
-    }()
-  }, {
-    key: "getDerivedStateFromProps",
-    value: function getDerivedStateFromProps(nextProps, prevState) {
-      var state = {};
-      /* eslint-disable lodash/prefer-lodash-method */
-
-      if (prevState.isOpen !== nextProps.isOpen) {
-        var login = nextProps.data && nextProps.data.get("login");
-        var isAdmin = nextProps.data && nextProps.data.get("roles").includes(_constants.default.roles.ADMIN);
-        nextProps.dispatch(nextProps.change("login", login || ""));
-        nextProps.dispatch(nextProps.change("password", ""));
-        nextProps.dispatch(nextProps.change("isAdmin", isAdmin ? "on" : "off"));
-        nextProps.dispatch(nextProps.clearAsyncError());
-        nextProps.dispatch(nextProps.clearSubmitErrors());
-        state.isOpen = nextProps.isOpen;
-      }
-      /* eslint-enable */
-
-
-      return _.keys(state).length ? state : null;
-    }
-  }]);
-
-  function EditUserModal(props) {
-    var _this;
-
-    _classCallCheck(this, EditUserModal);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(EditUserModal).call(this, props));
-    _this.state = {
-      isOpen: props.isOpen
-    };
-    _this.submit = _this.submit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    return _this;
-  }
-
-  _createClass(EditUserModal, [{
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      return _react.default.createElement(_Dialog.default, {
-        maxWidth: "xs",
-        fullWidth: true,
-        open: this.props.isOpen,
-        onClose: this.props.onCancel
-      }, _react.default.createElement(_DialogTitle.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: this.props.data ? "EDIT_USER_TITLE_EDIT" : "EDIT_USER_TITLE_CREATE"
-      })), this.props.error && _react.default.createElement(_DialogContent.default, null, _.map(_.isArray(this.props.error) ? this.props.error : [this.props.error], function (error, index) {
-        return _react.default.createElement(_DialogContentText.default, {
-          key: "error-".concat(index),
-          classes: {
-            root: _this2.props.classes.error
-          }
-        }, _.isArray(error) ? _react.default.createElement(_reactIntl.FormattedMessage, {
-          id: error[0],
-          values: error[1]
-        }) : _react.default.createElement(_reactIntl.FormattedMessage, {
-          id: error
-        }));
-      })), _react.default.createElement(_DialogContent.default, null, _react.default.createElement(_Grid.default, {
-        container: true,
-        spacing: 16,
-        component: "form",
-        noValidate: true,
-        autoComplete: "off",
-        onSubmit: this.submit
-      }, _react.default.createElement(_Grid.default, {
-        item: true,
-        xs: 12
-      }, _react.default.createElement(_Field.default, {
-        formFields: this.constructor.fields,
-        formProps: this.props,
-        name: "login",
-        type: "text",
-        onSubmit: this.submit
-      })), _react.default.createElement(_Grid.default, {
-        item: true,
-        xs: 12
-      }, _react.default.createElement(_Field.default, {
-        formFields: this.constructor.fields,
-        formProps: this.props,
-        name: "password",
-        type: "password",
-        onSubmit: this.submit
-      })), _react.default.createElement(_Grid.default, {
-        item: true,
-        xs: 12
-      }, _react.default.createElement(_Field.default, {
-        formFields: this.constructor.fields,
-        formProps: this.props,
-        name: "isAdmin",
-        type: "checkbox",
-        onSubmit: this.submit
-      })))), _react.default.createElement(_DialogActions.default, {
-        classes: {
-          root: this.props.classes.actions
-        }
-      }, _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "primary",
-        disabled: this.props.submitting,
-        onClick: this.props.onCancel
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "EDIT_USER_CANCEL"
-      })), _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "secondary",
-        disabled: this.props.submitting,
-        onClick: this.submit
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "EDIT_USER_SUBMIT"
-      }))));
-    }
-  }]);
-
-  return EditUserModal;
-}(_Form2.default);
-
-_defineProperty(EditUserModal, "propTypes", _objectSpread({}, _Form2.default.propTypes, {
-  intl: _reactIntl.intlShape,
-  theme: _propTypes.default.object.isRequired,
-  classes: _propTypes.default.object.isRequired,
-  isOpen: _propTypes.default.bool.isRequired,
-  data: _propTypes.default.instanceOf(_immutable.Map),
-  onCancel: _propTypes.default.func.isRequired,
-  onLoad: _propTypes.default.func.isRequired,
-  onCreate: _propTypes.default.func.isRequired,
-  onEdit: _propTypes.default.func.isRequired
-}));
-
-_defineProperty(EditUserModal, "formName", "editUserForm");
-
-_defineProperty(EditUserModal, "fields", {
-  login: {
-    normalize: "rows:1|remove:spaces",
-    transform: "trim",
-    label: "EDIT_USER_LOGIN_LABEL"
-  },
-  password: {
-    label: "EDIT_USER_PASSWORD_LABEL"
-  },
-  isAdmin: {
-    label: "EDIT_USER_ADMIN_LABEL"
-  }
-});
-
-var _default = (0, _styles.withStyles)(styles, {
-  withTheme: true
-})(EditUserModal);
-
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
-
-/***/ }),
-/* 182 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/colors/red");
 
 /***/ })
 /******/ ]);

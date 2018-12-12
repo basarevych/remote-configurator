@@ -147,14 +147,18 @@ class UserModel {
   }
 
   static conditions(conditions) {
-    let transformed = _.assign({}, conditions);
-    if (transformed.id) {
-      transformed.$loki = _.isString(transformed.id)
-        ? parseInt(transformed.id)
-        : transformed.id;
-      delete transformed.id;
-    }
-    return transformed;
+    const deepMap = obj => {
+      const x = {};
+      _.forOwn(obj, function(value, key) {
+        if (key === "id" || _.endsWith(key, ".id")) {
+          key = key.slice(0, key.length - 2) + "$loki";
+          if (_.isString(value)) value = parseInt(value);
+        }
+        x[key] = _.isPlainObject(value) ? deepMap(value) : value;
+      });
+      return x;
+    };
+    return deepMap(conditions);
   }
 }
 

@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 172);
+/******/ 	return __webpack_require__(__webpack_require__.s = 120);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -184,12 +184,6 @@ module.exports = require("react");
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports) {
-
-module.exports = require("prop-types");
-
-/***/ }),
-/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -220,6 +214,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var _default = _reducers.default;
 exports.default = _default;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+module.exports = require("prop-types");
 
 /***/ }),
 /* 8 */
@@ -594,9 +594,7 @@ var getOnline = (0, _reselect.createSelector)(function (state) {
   return devices // eslint-disable-line lodash/prefer-lodash-method
   .map(function (deviceInfo, deviceId) {
     return (0, _immutable.Map)({
-      id: deviceId,
-      name: deviceInfo.get("name"),
-      cameraId: deviceInfo.get("cameraId"),
+      address: deviceInfo.get("address"),
       terminals: terminals // eslint-disable-line lodash/prefer-lodash-method
       .map(function (terminalInfo, terminalId) {
         return {
@@ -609,8 +607,6 @@ var getOnline = (0, _reselect.createSelector)(function (state) {
         return item.id;
       })
     });
-  }).toList().sort(function (a, b) {
-    return a.get("name").toString().localeCompare(b.get("name").toString());
   });
 });
 exports.getOnline = getOnline;
@@ -1147,6 +1143,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 /* State Shape
 Map({
   created: Number, // timestamp
+  sshHost: String,
+  sshPort: Number,
   di: DiContainer,
   locale: String,
   statusCode: Number, // current HTTP status code
@@ -1161,6 +1159,32 @@ var createdReducer = function createdReducer() {
   switch (action.type) {
     case types.CREATE:
       if (!_.isUndefined(action.created)) return action.created;
+      break;
+  }
+
+  return state;
+};
+
+var sshHostReducer = function sshHostReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "localhost";
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case types.CREATE:
+      if (!_.isUndefined(action.sshHost)) return action.sshHost;
+      break;
+  }
+
+  return state;
+};
+
+var sshPortReducer = function sshPortReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 22;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case types.CREATE:
+      if (!_.isUndefined(action.sshPort)) return action.sshPort;
       break;
   }
 
@@ -1236,6 +1260,8 @@ var isConnectedReducer = function isConnectedReducer() {
 
 var reducer = (0, _reduxImmutable.combineReducers)({
   created: createdReducer,
+  sshHost: sshHostReducer,
+  sshPort: sshPortReducer,
   di: diReducer,
   locale: localeReducer,
   statusCode: statusCodeReducer,
@@ -1250,7 +1276,7 @@ exports.default = _default;
 /* 41 */
 /***/ (function(module) {
 
-module.exports = {"MENU_DEVICES":"Device List","TITLE_DEVICES":"Remote Configurator","MENU_DEVICE":"Device","TITLE_DEVICE":"Device","MENU_USERS":"Users","TITLE_USERS":"Users","SIDEBAR_SIGN_OUT_LINK":"Sign Out","DEVICES_INFO_HTML":["<p>Run the following command on the target:</p>","<pre class=\"sample\">ssh -p 37500 -R 22:localhost:22 -N device1@45.63.117.244</pre>","<p>You can replace <strong>device1</strong> with any other ID &ndash; it will be displayed in the list below.<p>","<p>Password-based or kerboard-interactive authentication must be enabled on the host where you run the command above.</p>"],"DEVICES_NAME_COLUMN":"Name","DEVICES_ADDRESS_COLUMN":"Address","DEVICES_CONN_STRING_COLUMN":"Connection string","DEVICES_CREATE_BUTTON":"Create Device","DEVICES_EDIT_BUTTON":"Edit Device","DEVICES_DELETE_BUTTON":"Delete Devices","EDIT_DEVICE_TITLE_CREATE":"Create Device","EDIT_DEVICE_TITLE_EDIT":"Edit Device","EDIT_DEVICE_NAME_LABEL":"Name","EDIT_DEVICE_PASSWORD_LABEL":"Password","EDIT_DEVICE_FAILED":"Form submission failed","EDIT_DEVICE_SUBMIT":"Submit","EDIT_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_TITLE":"Delete Devices","DELETE_DEVICE_TEXT":"Delete selected devices?","DELETE_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_SUBMIT":"Delete","USERS_LOGIN_COLUMN":"Login","USERS_ROLES_COLUMN":"Roles","USERS_CREATE_BUTTON":"Create User","USERS_EDIT_BUTTON":"Edit User","USERS_DELETE_BUTTON":"Delete Users","EDIT_USER_TITLE_CREATE":"Create User","EDIT_USER_TITLE_EDIT":"Edit User","EDIT_USER_LOGIN_LABEL":"Login","EDIT_USER_PASSWORD_LABEL":"Password","EDIT_USER_ADMIN_LABEL":"Administrator","EDIT_USER_CANCEL":"Cancel","EDIT_USER_SUBMIT":"Submit","EDIT_USER_FAILED":"An error occured","DELETE_USER_TITLE":"Delete Users","DELETE_USER_TEXT":"Delete selected users?","DELETE_USER_CANCEL":"Cancel","DELETE_USER_SUBMIT":"Delete","TERMINAL_CONNECTING_LABEL":"Connecting...","TERMINAL_NOT_CONNECTED_LABEL":"Not connected","APP_AUTH_TITLE":"Authentication","APP_AUTH_LOGIN_LABEL":"Login","APP_AUTH_PASSWORD_LABEL":"Password","APP_AUTH_SUBMIT":"Sign In","APP_AUTH_FAILED":"Invalid credentials","SETUP_AUTH_TITLE":"Authentication","SETUP_AUTH_LOGIN_LABEL":"Login","SETUP_AUTH_PASSWORD_LABEL":"Password","SETUP_AUTH_CANCEL":"Cancel","SETUP_AUTH_SUBMIT":"Submit","KEYBOARD_AUTH_TITLE":"Authentication","KEYBOARD_AUTH_REPLY_LABEL":"Response","KEYBOARD_AUTH_CANCEL":"Cancel","KEYBOARD_AUTH_SUBMIT":"Submit","ERROR_FIELD_REQUIRED":"This field is required","ERROR_INVALID_PASSWORD":"Password length must be at least 6 characters"};
+module.exports = {"MENU_DEVICES":"Device List","TITLE_DEVICES":"Remote Configurator","MENU_DEVICE":"Device","TITLE_DEVICE":"Device","MENU_USERS":"Users","TITLE_USERS":"Users","SIDEBAR_SIGN_OUT_LINK":"Sign Out","DEVICES_NAME_COLUMN":"Name","DEVICES_ADDRESS_COLUMN":"Address","DEVICES_CONN_STRING_COLUMN":"Connection string","DEVICES_CREATE_BUTTON":"Create Device","DEVICES_EDIT_BUTTON":"Edit Device","DEVICES_DELETE_BUTTON":"Delete Devices","DEVICES_OFFLINE_LABEL":"Device is offline","EDIT_DEVICE_TITLE_CREATE":"Create Device","EDIT_DEVICE_TITLE_EDIT":"Edit Device","EDIT_DEVICE_NAME_LABEL":"Name","EDIT_DEVICE_PASSWORD_LABEL":"Password","EDIT_DEVICE_FAILED":"Form submission failed","EDIT_DEVICE_SUBMIT":"Submit","EDIT_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_TITLE":"Delete Devices","DELETE_DEVICE_TEXT":"Delete selected devices?","DELETE_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_SUBMIT":"Delete","USERS_LOGIN_COLUMN":"Login","USERS_ROLES_COLUMN":"Roles","USERS_CREATE_BUTTON":"Create User","USERS_EDIT_BUTTON":"Edit User","USERS_DELETE_BUTTON":"Delete Users","EDIT_USER_TITLE_CREATE":"Create User","EDIT_USER_TITLE_EDIT":"Edit User","EDIT_USER_LOGIN_LABEL":"Login","EDIT_USER_PASSWORD_LABEL":"Password","EDIT_USER_ADMIN_LABEL":"Administrator","EDIT_USER_CANCEL":"Cancel","EDIT_USER_SUBMIT":"Submit","EDIT_USER_FAILED":"An error occured","DELETE_USER_TITLE":"Delete Users","DELETE_USER_TEXT":"Delete selected users?","DELETE_USER_CANCEL":"Cancel","DELETE_USER_SUBMIT":"Delete","TERMINAL_CONNECTING_LABEL":"Connecting...","TERMINAL_NOT_CONNECTED_LABEL":"Not connected","APP_AUTH_TITLE":"Authentication","APP_AUTH_LOGIN_LABEL":"Login","APP_AUTH_PASSWORD_LABEL":"Password","APP_AUTH_SUBMIT":"Sign In","APP_AUTH_FAILED":"Invalid credentials","SETUP_AUTH_TITLE":"Authentication","SETUP_AUTH_LOGIN_LABEL":"Login","SETUP_AUTH_PASSWORD_LABEL":"Password","SETUP_AUTH_CANCEL":"Cancel","SETUP_AUTH_SUBMIT":"Submit","KEYBOARD_AUTH_TITLE":"Authentication","KEYBOARD_AUTH_REPLY_LABEL":"Response","KEYBOARD_AUTH_CANCEL":"Cancel","KEYBOARD_AUTH_SUBMIT":"Submit","ERROR_FIELD_REQUIRED":"This field is required","ERROR_INVALID_PASSWORD":"Password length must be at least 6 characters"};
 
 /***/ }),
 /* 42 */
@@ -1485,7 +1511,9 @@ var gqlQuery = function gqlQuery(query, variables) {
 exports.gqlQuery = gqlQuery;
 
 var create = function create(_ref3) {
-  var status = _ref3.status;
+  var status = _ref3.status,
+      sshHost = _ref3.sshHost,
+      sshPort = _ref3.sshPort;
   return (
     /*#__PURE__*/
     function () {
@@ -1497,7 +1525,10 @@ var create = function create(_ref3) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return dispatch(actions.create());
+                return dispatch(actions.create({
+                  sshHost: sshHost,
+                  sshPort: sshPort
+                }));
 
               case 2:
                 if (!status) {
@@ -1825,7 +1856,7 @@ var actions = _interopRequireWildcard(__webpack_require__(50));
 
 var selectors = _interopRequireWildcard(__webpack_require__(23));
 
-var _app = __webpack_require__(7);
+var _app = __webpack_require__(6);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -2397,7 +2428,7 @@ var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
 var _socket = _interopRequireDefault(__webpack_require__(53));
 
-var _app = __webpack_require__(7);
+var _app = __webpack_require__(6);
 
 var _auth = __webpack_require__(11);
 
@@ -2880,7 +2911,7 @@ Map({
   ]),
   online: Map({
     deviceId: Map({
-      name: String,
+      address: String,
     }),
   })
   editModalDeviceId: String, // null when creating a new device
@@ -2925,13 +2956,13 @@ var listReducer = function listReducer() {
   return state;
 };
 
-var nameReducer = function nameReducer() {
+var addressReducer = function addressReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
     case types.SET:
-      if (!_.isUndefined(action.name)) return action.name;
+      if (!_.isUndefined(action.address)) return action.address;
       break;
   }
 
@@ -2939,7 +2970,7 @@ var nameReducer = function nameReducer() {
 };
 
 var deviceReducer = (0, _reduxImmutable.combineReducers)({
-  name: nameReducer
+  address: addressReducer
 });
 
 var onlineReducer = function onlineReducer() {
@@ -3019,7 +3050,7 @@ var actions = _interopRequireWildcard(__webpack_require__(56));
 
 var selectors = _interopRequireWildcard(__webpack_require__(25));
 
-var _app = __webpack_require__(7);
+var _app = __webpack_require__(6);
 
 var _terminals = __webpack_require__(19);
 
@@ -3805,7 +3836,7 @@ var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
 var actions = _interopRequireWildcard(__webpack_require__(59));
 
-var _app = __webpack_require__(7);
+var _app = __webpack_require__(6);
 
 var _histories = __webpack_require__(21);
 
@@ -4878,7 +4909,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isConnected = exports.isStarted = exports.getLocale = exports.getStatusCode = exports.getService = exports.getCreated = void 0;
+exports.isConnected = exports.isStarted = exports.getLocale = exports.getStatusCode = exports.getService = exports.getSshPort = exports.getSshHost = exports.getCreated = void 0;
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -4893,6 +4924,18 @@ var getCreated = function getCreated(state) {
 };
 
 exports.getCreated = getCreated;
+
+var getSshHost = function getSshHost(state) {
+  return state.getIn(["app", "sshHost"]);
+};
+
+exports.getSshHost = getSshHost;
+
+var getSshPort = function getSshPort(state) {
+  return state.getIn(["app", "sshPort"]);
+};
+
+exports.getSshPort = getSshPort;
 
 var getService = function getService(state, props) {
   var di = state.getIn(["app", "di"]);
@@ -4993,7 +5036,7 @@ var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
 var _react = _interopRequireDefault(__webpack_require__(5));
 
-var _propTypes = _interopRequireDefault(__webpack_require__(6));
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
 var _immutable = __webpack_require__(10);
 
@@ -5482,7 +5525,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(__webpack_require__(5));
 
-var _propTypes = _interopRequireDefault(__webpack_require__(6));
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
 var _shallowEqual = _interopRequireDefault(__webpack_require__(82));
 
@@ -5893,7 +5936,30 @@ module.exports = require("@material-ui/core/ListItemIcon");
 module.exports = require("@material-ui/core/ListItemText");
 
 /***/ }),
-/* 80 */,
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.HIDE_EDIT_MODAL = exports.SHOW_EDIT_MODAL = exports.DESELECT_ALL = exports.SELECT_ALL = exports.SET_SELECTED = exports.SET_LIST = void 0;
+var SET_LIST = "app/users/SET_LIST";
+exports.SET_LIST = SET_LIST;
+var SET_SELECTED = "app/users/SET_SELECTED";
+exports.SET_SELECTED = SET_SELECTED;
+var SELECT_ALL = "app/users/SELECT_ALL";
+exports.SELECT_ALL = SELECT_ALL;
+var DESELECT_ALL = "app/users/DESELECT_ALL";
+exports.DESELECT_ALL = DESELECT_ALL;
+var SHOW_EDIT_MODAL = "app/users/SHOW_EDIT_MODAL";
+exports.SHOW_EDIT_MODAL = SHOW_EDIT_MODAL;
+var HIDE_EDIT_MODAL = "app/users/HIDE_EDIT_MODAL";
+exports.HIDE_EDIT_MODAL = HIDE_EDIT_MODAL;
+
+/***/ }),
 /* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6151,45 +6217,7 @@ module.exports = require("@material-ui/core/Input");
 module.exports = require("@material-ui/icons/InfoOutlined");
 
 /***/ }),
-/* 94 */,
-/* 95 */,
-/* 96 */
-/***/ (function(module, exports) {
-
-module.exports = require("classnames");
-
-/***/ }),
-/* 97 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/Table");
-
-/***/ }),
-/* 98 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/TableBody");
-
-/***/ }),
-/* 99 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/TableCell");
-
-/***/ }),
-/* 100 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/TableHead");
-
-/***/ }),
-/* 101 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/TableRow");
-
-/***/ }),
-/* 102 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6198,116 +6226,31 @@ module.exports = require("@material-ui/core/TableRow");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.usersSelectors = exports.usersOperations = exports.usersTypes = exports.default = void 0;
 
-var _react = _interopRequireDefault(__webpack_require__(5));
+var _reducers = _interopRequireDefault(__webpack_require__(103));
 
-var _propTypes = _interopRequireDefault(__webpack_require__(6));
+var usersTypes = _interopRequireWildcard(__webpack_require__(80));
 
-var _reactIntl = __webpack_require__(8);
+exports.usersTypes = usersTypes;
 
-var _styles = __webpack_require__(9);
+var usersOperations = _interopRequireWildcard(__webpack_require__(104));
 
-var _Dialog = _interopRequireDefault(__webpack_require__(28));
+exports.usersOperations = usersOperations;
 
-var _DialogActions = _interopRequireDefault(__webpack_require__(29));
+var usersSelectors = _interopRequireWildcard(__webpack_require__(95));
 
-var _DialogContent = _interopRequireDefault(__webpack_require__(30));
+exports.usersSelectors = usersSelectors;
 
-var _DialogContentText = _interopRequireDefault(__webpack_require__(34));
-
-var _DialogTitle = _interopRequireDefault(__webpack_require__(31));
-
-var _Button = _interopRequireDefault(__webpack_require__(22));
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var styles = function styles() {
-  return {
-    actions: {
-      paddingLeft: "1rem",
-      paddingRight: "1rem",
-      paddingBottom: "1rem"
-    }
-  };
-};
-
-var ConfirmModal =
-/*#__PURE__*/
-function (_React$PureComponent) {
-  _inherits(ConfirmModal, _React$PureComponent);
-
-  function ConfirmModal() {
-    _classCallCheck(this, ConfirmModal);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(ConfirmModal).apply(this, arguments));
-  }
-
-  _createClass(ConfirmModal, [{
-    key: "render",
-    value: function render() {
-      return _react.default.createElement(_Dialog.default, {
-        maxWidth: "xs",
-        fullWidth: true,
-        open: this.props.isOpen,
-        onClose: this.props.onCancel
-      }, _react.default.createElement(_DialogTitle.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: this.props.title
-      })), _react.default.createElement(_DialogContent.default, null, _react.default.createElement(_DialogContentText.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: this.props.text,
-        values: this.props.values
-      }))), _react.default.createElement(_DialogActions.default, {
-        classes: {
-          root: this.props.classes.actions
-        }
-      }, _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "primary",
-        onClick: this.props.onCancel
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: this.props.cancel
-      })), _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "secondary",
-        onClick: this.props.onSubmit
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: this.props.submit
-      }))));
-    }
-  }]);
-
-  return ConfirmModal;
-}(_react.default.PureComponent);
-
-var _default = (0, _styles.withStyles)(styles, {
-  withTheme: true
-})(ConfirmModal);
-
+var _default = _reducers.default;
 exports.default = _default;
 
 /***/ }),
-/* 103 */,
-/* 104 */,
-/* 105 */,
-/* 106 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6316,124 +6259,596 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.getEditModalData = exports.isEditModalOpen = exports.isAllDeselected = exports.isAllSelected = exports.getNumSelected = exports.getSelected = exports.getList = void 0;
 
-var _reactRedux = __webpack_require__(18);
-
-var _auth = __webpack_require__(11);
-
-var _DevicesPage = _interopRequireDefault(__webpack_require__(107));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    isAuthenticated: _auth.authSelectors.isAuthenticated(state)
-  };
+var getList = function getList(state) {
+  return state.getIn(["users", "list"]);
 };
 
-var DevicesPage = (0, _reactRedux.connect)(mapStateToProps, null, null, {
-  pure: false
-})(_DevicesPage.default);
-var _default = DevicesPage;
-exports.default = _default;
+exports.getList = getList;
 
-/***/ }),
-/* 107 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(__webpack_require__(5));
-
-var _propTypes = _interopRequireDefault(__webpack_require__(6));
-
-var _styles = __webpack_require__(9);
-
-var _Grid = _interopRequireDefault(__webpack_require__(32));
-
-var _Devices = _interopRequireDefault(__webpack_require__(108));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var styles = function styles(theme) {
-  return {
-    layout: _defineProperty({
-      width: "100%",
-      maxWidth: 1300 + 2 * theme.main.spacing,
-      flex: 1,
-      padding: theme.main.spacing
-    }, theme.breakpoints.down("md"), {
-      padding: theme.main.spacing / 2,
-      maxWidth: 1300 + theme.main.spacing
+var getSelected = function getSelected(state) {
+  return (// eslint-disable-next-line lodash/prefer-lodash-method
+    state.getIn(["users", "list"]).filter(function (item) {
+      return !!item.get("isSelected");
     })
-  };
+  );
 };
 
-var DevicesPage =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(DevicesPage, _React$Component);
+exports.getSelected = getSelected;
 
-  function DevicesPage() {
-    _classCallCheck(this, DevicesPage);
+var getNumSelected = function getNumSelected(state) {
+  return getSelected(state).size;
+};
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(DevicesPage).apply(this, arguments));
-  }
+exports.getNumSelected = getNumSelected;
 
-  _createClass(DevicesPage, [{
-    key: "render",
-    value: function render() {
-      if (!this.props.isAuthenticated) return null;
-      return _react.default.createElement("div", {
-        className: this.props.classes.layout
-      }, _react.default.createElement(_Grid.default, {
-        container: true,
-        spacing: this.props.theme.main.spacing
-      }, _react.default.createElement(_Grid.default, {
-        item: true,
-        xs: 12
-      }, _react.default.createElement(_Devices.default, null))));
-    }
-  }]);
+var isAllSelected = function isAllSelected(state) {
+  return getList(state).size === getSelected(state).size;
+};
 
-  return DevicesPage;
-}(_react.default.Component);
+exports.isAllSelected = isAllSelected;
 
-var _default = (0, _styles.withStyles)(styles, {
-  withTheme: true
-})(DevicesPage);
+var isAllDeselected = function isAllDeselected(state) {
+  return getSelected(state).size === 0;
+};
 
-exports.default = _default;
+exports.isAllDeselected = isAllDeselected;
+
+var isEditModalOpen = function isEditModalOpen(state) {
+  return state.getIn(["users", "isEditModalOpen"]);
+};
+
+exports.isEditModalOpen = isEditModalOpen;
+
+var getEditModalData = function getEditModalData(state) {
+  var id = state.getIn(["users", "editModalUserId"]);
+  if (!id) return null; // eslint-disable-next-line
+
+  return state.getIn(["users", "list"]).find(function (item) {
+    return item.get("id") === id;
+  });
+};
+
+exports.getEditModalData = getEditModalData;
 
 /***/ }),
-/* 108 */
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _immutable = __webpack_require__(2);
+
+var _reduxImmutable = __webpack_require__(4);
+
+var types = _interopRequireWildcard(__webpack_require__(80));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+/* State Shape
+Map({
+  list: List([
+    Map({
+      id: String,
+      isSelected: Boolean,
+      login: String,
+      roles: [String],
+    })
+  ]),
+  editModalUserId: String, // null when creating a new user
+  isEditModalOpen: false,
+})
+*/
+var listReducer = function listReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : (0, _immutable.List)([]);
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case types.SET_LIST:
+      if (!_.isUndefined(action.list)) // eslint-disable-next-line lodash/prefer-lodash-method
+        return (0, _immutable.fromJS)(action.list).map(function (item, index) {
+          return item.set("isSelected", !!state.getIn([index, "isSelected"]));
+        });
+      break;
+
+    case types.SET_SELECTED:
+      if (!_.isUndefined(action.userId)) return state.withMutations(function (list) {
+        // eslint-disable-next-line lodash/prefer-lodash-method
+        var index = list.findIndex(function (item) {
+          return item.get("id") === action.userId;
+        });
+        if (index !== -1) list.setIn([index, "isSelected"], !!action.isSelected);
+      });
+      break;
+
+    case types.SELECT_ALL:
+      // eslint-disable-next-line lodash/prefer-lodash-method
+      return state.map(function (item) {
+        return item.set("isSelected", true);
+      });
+
+    case types.DESELECT_ALL:
+      // eslint-disable-next-line lodash/prefer-lodash-method
+      return state.map(function (item) {
+        return item.set("isSelected", false);
+      });
+  }
+
+  return state;
+};
+
+var editModalUserIdReducer = function editModalUserIdReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case types.SHOW_EDIT_MODAL:
+      return action.userId || null;
+  }
+
+  return state;
+};
+
+var isEditModalOpenReducer = function isEditModalOpenReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case types.SHOW_EDIT_MODAL:
+      return true;
+
+    case types.HIDE_EDIT_MODAL:
+      return false;
+  }
+
+  return state;
+};
+
+var reducer = (0, _reduxImmutable.combineReducers)({
+  list: listReducer,
+  editModalUserId: editModalUserIdReducer,
+  isEditModalOpen: isEditModalOpenReducer
+});
+var _default = reducer;
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.remove = exports.edit = exports.create = exports.load = exports.editFirstSelected = exports.deselectAll = exports.selectAll = exports.setSelected = exports.hideEditModal = exports.showEditModal = void 0;
+
+var _regenerator = _interopRequireDefault(__webpack_require__(1));
+
+var actions = _interopRequireWildcard(__webpack_require__(105));
+
+var selectors = _interopRequireWildcard(__webpack_require__(95));
+
+var _app = __webpack_require__(6);
+
+var _constants = _interopRequireDefault(__webpack_require__(3));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var showEditModal = actions.showEditModal;
+exports.showEditModal = showEditModal;
+var hideEditModal = actions.hideEditModal;
+exports.hideEditModal = hideEditModal;
+var setSelected = actions.setSelected;
+exports.setSelected = setSelected;
+var selectAll = actions.selectAll;
+exports.selectAll = selectAll;
+var deselectAll = actions.deselectAll;
+exports.deselectAll = deselectAll;
+
+var editFirstSelected = function editFirstSelected() {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee(dispatch, getState) {
+        var selected;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                selected = selectors.getSelected(getState());
+
+                if (!selected.size) {
+                  _context.next = 3;
+                  break;
+                }
+
+                return _context.abrupt("return", dispatch(actions.showEditModal({
+                  userId: selected.first().get("id")
+                })));
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      return function (_x, _x2) {
+        return _ref.apply(this, arguments);
+      };
+    }()
+  );
+};
+
+exports.editFirstSelected = editFirstSelected;
+
+var load = function load() {
+  var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      req = _ref2.req;
+
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref3 = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee2(dispatch) {
+        var users, response;
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (!req) {
+                  _context2.next = 6;
+                  break;
+                }
+
+                _context2.next = 3;
+                return req.di.get("repository.users").getUsers(req);
+
+              case 3:
+                users = _context2.sent;
+                _context2.next = 10;
+                break;
+
+              case 6:
+                _context2.next = 8;
+                return dispatch(_app.appOperations.gqlQuery("\n          query {\n            users {\n              id\n              login\n              roles\n            }\n          }\n        "));
+
+              case 8:
+                response = _context2.sent;
+                users = response && _.get(response, "data.users");
+
+              case 10:
+                _context2.next = 12;
+                return dispatch(actions.setList({
+                  list: users
+                }));
+
+              case 12:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      return function (_x3) {
+        return _ref3.apply(this, arguments);
+      };
+    }()
+  );
+};
+
+exports.load = load;
+
+var create = function create(_ref4) {
+  var login = _ref4.login,
+      password = _ref4.password,
+      isAdmin = _ref4.isAdmin;
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref5 = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee3(dispatch) {
+        var result, response, errors, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, error;
+
+        return _regenerator.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                result = false;
+                _context3.prev = 1;
+                _context3.next = 4;
+                return dispatch(_app.appOperations.gqlQuery("\n          mutation ($login: String, $password: String, $roles: [UserRole]) {\n            createUser(login: $login, password: $password, roles: $roles) {\n              success\n            }\n          }\n        ", {
+                  login: login,
+                  password: password,
+                  roles: _.compact([isAdmin && _constants.default.roles.ADMIN])
+                }));
+
+              case 4:
+                response = _context3.sent;
+
+                if (!(response && _.get(response, "data.createUser.success", false))) {
+                  _context3.next = 11;
+                  break;
+                }
+
+                _context3.next = 8;
+                return dispatch(actions.hideEditModal());
+
+              case 8:
+                return _context3.abrupt("return", true);
+
+              case 11:
+                result = {};
+                errors = response && _.get(response, "errors", []);
+                _iteratorNormalCompletion = true;
+                _didIteratorError = false;
+                _iteratorError = undefined;
+                _context3.prev = 16;
+
+                for (_iterator = errors[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                  error = _step.value;
+                  if (error && error.code === "E_VALIDATION") _.merge(result, error.details);else result._error = (result._error || []).concat([error.message]);
+                }
+
+                _context3.next = 24;
+                break;
+
+              case 20:
+                _context3.prev = 20;
+                _context3.t0 = _context3["catch"](16);
+                _didIteratorError = true;
+                _iteratorError = _context3.t0;
+
+              case 24:
+                _context3.prev = 24;
+                _context3.prev = 25;
+
+                if (!_iteratorNormalCompletion && _iterator.return != null) {
+                  _iterator.return();
+                }
+
+              case 27:
+                _context3.prev = 27;
+
+                if (!_didIteratorError) {
+                  _context3.next = 30;
+                  break;
+                }
+
+                throw _iteratorError;
+
+              case 30:
+                return _context3.finish(27);
+
+              case 31:
+                return _context3.finish(24);
+
+              case 32:
+                if (!_.keys(result).length) result = {
+                  _error: "EDIT_USER_FAILED"
+                };
+
+              case 33:
+                _context3.next = 38;
+                break;
+
+              case 35:
+                _context3.prev = 35;
+                _context3.t1 = _context3["catch"](1);
+                console.error(_context3.t1);
+
+              case 38:
+                return _context3.abrupt("return", result);
+
+              case 39:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this, [[1, 35], [16, 20, 24, 32], [25,, 27, 31]]);
+      }));
+
+      return function (_x4) {
+        return _ref5.apply(this, arguments);
+      };
+    }()
+  );
+};
+
+exports.create = create;
+
+var edit = function edit(_ref6) {
+  var id = _ref6.id,
+      login = _ref6.login,
+      password = _ref6.password,
+      isAdmin = _ref6.isAdmin;
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref7 = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee4(dispatch) {
+        var result, response, errors, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, error;
+
+        return _regenerator.default.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                result = false;
+                _context4.prev = 1;
+                _context4.next = 4;
+                return dispatch(_app.appOperations.gqlQuery("\n          mutation ($id: String, $login: String, $password: String, $roles: [UserRole]) {\n            editUser(id: $id, login: $login, password: $password, roles: $roles) {\n              success\n            }\n          }\n        ", {
+                  id: id,
+                  login: login,
+                  password: password,
+                  roles: _.compact([isAdmin && _constants.default.roles.ADMIN])
+                }));
+
+              case 4:
+                response = _context4.sent;
+
+                if (!(response && _.get(response, "data.editUser.success", false))) {
+                  _context4.next = 11;
+                  break;
+                }
+
+                _context4.next = 8;
+                return dispatch(actions.hideEditModal());
+
+              case 8:
+                return _context4.abrupt("return", true);
+
+              case 11:
+                result = {};
+                errors = response && _.get(response, "errors", []);
+                _iteratorNormalCompletion2 = true;
+                _didIteratorError2 = false;
+                _iteratorError2 = undefined;
+                _context4.prev = 16;
+
+                for (_iterator2 = errors[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                  error = _step2.value;
+                  if (error && error.code === "E_VALIDATION") _.merge(result, error.details);else result._error = (result._error || []).concat([error.message]);
+                }
+
+                _context4.next = 24;
+                break;
+
+              case 20:
+                _context4.prev = 20;
+                _context4.t0 = _context4["catch"](16);
+                _didIteratorError2 = true;
+                _iteratorError2 = _context4.t0;
+
+              case 24:
+                _context4.prev = 24;
+                _context4.prev = 25;
+
+                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+                  _iterator2.return();
+                }
+
+              case 27:
+                _context4.prev = 27;
+
+                if (!_didIteratorError2) {
+                  _context4.next = 30;
+                  break;
+                }
+
+                throw _iteratorError2;
+
+              case 30:
+                return _context4.finish(27);
+
+              case 31:
+                return _context4.finish(24);
+
+              case 32:
+                if (!_.keys(result).length) result = {
+                  _error: "EDIT_USER_FAILED"
+                };
+
+              case 33:
+                _context4.next = 38;
+                break;
+
+              case 35:
+                _context4.prev = 35;
+                _context4.t1 = _context4["catch"](1);
+                console.error(_context4.t1);
+
+              case 38:
+                return _context4.abrupt("return", result);
+
+              case 39:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this, [[1, 35], [16, 20, 24, 32], [25,, 27, 31]]);
+      }));
+
+      return function (_x5) {
+        return _ref7.apply(this, arguments);
+      };
+    }()
+  );
+};
+
+exports.edit = edit;
+
+var remove = function remove(_ref8) {
+  var id = _ref8.id;
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref9 = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee5(dispatch) {
+        var response;
+        return _regenerator.default.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return dispatch(_app.appOperations.gqlQuery("\n        mutation ($id: String) {\n          deleteUser(id: $id) {\n            success\n          }\n        }\n      ", {
+                  id: id
+                }));
+
+              case 2:
+                response = _context5.sent;
+                return _context5.abrupt("return", response && _.get(response, "data.deleteUser.success") || false);
+
+              case 4:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this);
+      }));
+
+      return function (_x6) {
+        return _ref9.apply(this, arguments);
+      };
+    }()
+  );
+};
+
+exports.remove = remove;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+
+/***/ }),
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6442,67 +6857,122 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.hideEditModal = exports.showEditModal = exports.deselectAll = exports.selectAll = exports.setSelected = exports.setList = void 0;
 
-var _reactRedux = __webpack_require__(18);
+var types = _interopRequireWildcard(__webpack_require__(80));
 
-var _reactIntl = __webpack_require__(8);
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
-var _devices = __webpack_require__(20);
-
-var _Devices = _interopRequireDefault(__webpack_require__(109));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mapStateToProps = function mapStateToProps(state) {
+var setList = function setList(_ref) {
+  var list = _ref.list;
   return {
-    devices: _devices.devicesSelectors.getList(state),
-    isAllSelected: _devices.devicesSelectors.isAllSelected(state),
-    isAllDeselected: _devices.devicesSelectors.isAllDeselected(state)
+    type: types.SET_LIST,
+    list: list
   };
 };
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+exports.setList = setList;
+
+var setSelected = function setSelected(_ref2) {
+  var userId = _ref2.userId,
+      isSelected = _ref2.isSelected;
   return {
-    onLoad: function onLoad() {
-      return dispatch(_devices.devicesOperations.load());
-    },
-    onCreate: function onCreate() {
-      return dispatch(_devices.devicesOperations.showEditModal());
-    },
-    onEdit: function onEdit() {
-      return dispatch(_devices.devicesOperations.editFirstSelected());
-    },
-    onDelete: function onDelete(deviceId) {
-      return dispatch(_devices.devicesOperations.reqRemove({
-        id: deviceId
-      }));
-    },
-    onSetSelected: function onSetSelected(deviceId, isSelected) {
-      return dispatch(_devices.devicesOperations.setSelected({
-        deviceId: deviceId,
-        isSelected: isSelected
-      }));
-    },
-    onSelectAll: function onSelectAll() {
-      return dispatch(_devices.devicesOperations.selectAll());
-    },
-    onDeselectAll: function onDeselectAll() {
-      return dispatch(_devices.devicesOperations.deselectAll());
-    }
+    type: types.SET_SELECTED,
+    userId: userId,
+    isSelected: isSelected
   };
 };
 
-var Devices = (0, _reactIntl.injectIntl)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Devices.default));
-var _default = Devices;
-exports.default = _default;
+exports.setSelected = setSelected;
+
+var selectAll = function selectAll() {
+  return {
+    type: types.SELECT_ALL
+  };
+};
+
+exports.selectAll = selectAll;
+
+var deselectAll = function deselectAll() {
+  return {
+    type: types.DESELECT_ALL
+  };
+};
+
+exports.deselectAll = deselectAll;
+
+var showEditModal = function showEditModal() {
+  var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      userId = _ref3.userId;
+
+  return {
+    type: types.SHOW_EDIT_MODAL,
+    userId: userId
+  };
+};
+
+exports.showEditModal = showEditModal;
+
+var hideEditModal = function hideEditModal() {
+  return {
+    type: types.HIDE_EDIT_MODAL
+  };
+};
+
+exports.hideEditModal = hideEditModal;
 
 /***/ }),
-/* 109 */
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */
+/***/ (function(module, exports) {
+
+module.exports = require("jss");
+
+/***/ }),
+/* 116 */
+/***/ (function(module, exports) {
+
+module.exports = require("pako");
+
+/***/ }),
+/* 117 */
+/***/ (function(module, exports) {
+
+module.exports = require("utf8");
+
+/***/ }),
+/* 118 */
+/***/ (function(module, exports) {
+
+module.exports = require("base64util");
+
+/***/ }),
+/* 119 */
+/***/ (function(module, exports) {
+
+module.exports = require("json-immutable");
+
+/***/ }),
+/* 120 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(121);
+
+
+/***/ }),
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(_) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -6513,41 +6983,1036 @@ var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
 var _react = _interopRequireDefault(__webpack_require__(5));
 
-var _propTypes = _interopRequireDefault(__webpack_require__(6));
+var _app = _interopRequireWildcard(__webpack_require__(122));
 
-var _classnames = _interopRequireDefault(__webpack_require__(96));
+var _router = _interopRequireDefault(__webpack_require__(26));
 
-var _immutable = __webpack_require__(2);
-
-var _reactIntl = __webpack_require__(8);
+var _reactRedux = __webpack_require__(18);
 
 var _styles = __webpack_require__(9);
 
-var _Table = _interopRequireDefault(__webpack_require__(97));
+var _jss = __webpack_require__(115);
 
-var _TableBody = _interopRequireDefault(__webpack_require__(98));
+var _CssBaseline = _interopRequireDefault(__webpack_require__(123));
 
-var _TableCell = _interopRequireDefault(__webpack_require__(99));
+var _jssExtend = _interopRequireDefault(__webpack_require__(124));
 
-var _TableHead = _interopRequireDefault(__webpack_require__(100));
+var _JssProvider = _interopRequireDefault(__webpack_require__(125));
 
-var _TableRow = _interopRequireDefault(__webpack_require__(101));
+var _pageContext = _interopRequireDefault(__webpack_require__(126));
 
-var _Button = _interopRequireDefault(__webpack_require__(22));
+var _serialize = _interopRequireDefault(__webpack_require__(131));
 
-var _Checkbox = _interopRequireDefault(__webpack_require__(39));
+var _deserialize = _interopRequireDefault(__webpack_require__(132));
 
-var _EditDeviceModal = _interopRequireDefault(__webpack_require__(110));
+var _store = _interopRequireDefault(__webpack_require__(133));
 
-var _ConfirmModal = _interopRequireDefault(__webpack_require__(102));
+var _app2 = __webpack_require__(6);
+
+var _auth = __webpack_require__(11);
+
+var _constants = _interopRequireDefault(__webpack_require__(3));
+
+var _isRouteAllowed = _interopRequireDefault(__webpack_require__(33));
+
+var _IntlProvider = _interopRequireDefault(__webpack_require__(137));
+
+var _DateProvider = _interopRequireDefault(__webpack_require__(139));
+
+var _Layout = _interopRequireDefault(__webpack_require__(143));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+// Configure JSS
+var jss = (0, _jss.create)({
+  plugins: _toConsumableArray((0, _styles.jssPreset)().plugins).concat([(0, _jssExtend.default)()])
+});
+
+var MyApp =
+/*#__PURE__*/
+function (_App) {
+  _inherits(MyApp, _App);
+
+  _createClass(MyApp, null, [{
+    key: "getInitialProps",
+    value: function () {
+      var _getInitialProps = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee(_ref) {
+        var Component, ctx, _getStore, isCreated, store, req, res, err, query, statusCode, pageProps;
+
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                Component = _ref.Component, ctx = _ref.ctx;
+                _getStore = (0, _store.default)(), isCreated = _getStore.isCreated, store = _getStore.store;
+                ctx.store = store;
+                req = ctx.req, res = ctx.res, err = ctx.err, query = ctx.query;
+
+                if (!isCreated) {
+                  _context.next = 19;
+                  break;
+                }
+
+                _context.t0 = store;
+                _context.t1 = _app2.appOperations;
+                _context.t2 = req && req.getAuthStatus;
+
+                if (!_context.t2) {
+                  _context.next = 12;
+                  break;
+                }
+
+                _context.next = 11;
+                return req.getAuthStatus();
+
+              case 11:
+                _context.t2 = _context.sent;
+
+              case 12:
+                _context.t3 = _context.t2;
+                _context.t4 = query && query.sshHost;
+                _context.t5 = query && query.sshPort;
+                _context.t6 = {
+                  status: _context.t3,
+                  sshHost: _context.t4,
+                  sshPort: _context.t5
+                };
+                _context.t7 = _context.t1.create.call(_context.t1, _context.t6);
+                _context.next = 19;
+                return _context.t0.dispatch.call(_context.t0, _context.t7);
+
+              case 19:
+                statusCode = res ? res.statusCode : err ? err.statusCode : null;
+                if (!_.isFinite(statusCode) || statusCode < 200) statusCode = 200;
+
+                if (!(_app2.appSelectors.getStatusCode(store.getState()) !== statusCode)) {
+                  _context.next = 24;
+                  break;
+                }
+
+                _context.next = 24;
+                return store.dispatch(_app2.appOperations.setStatusCode({
+                  code: statusCode
+                }));
+
+              case 24:
+                pageProps = {};
+
+                if (!Component.getInitialProps) {
+                  _context.next = 29;
+                  break;
+                }
+
+                _context.next = 28;
+                return Component.getInitialProps(ctx);
+
+              case 28:
+                pageProps = _context.sent;
+
+              case 29:
+                return _context.abrupt("return", {
+                  pageProps: pageProps,
+                  locale: query.locale,
+                  theme: query.theme,
+                  state: (0, _serialize.default)(store.getState())
+                });
+
+              case 30:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getInitialProps(_x) {
+        return _getInitialProps.apply(this, arguments);
+      }
+
+      return getInitialProps;
+    }()
+  }]);
+
+  function MyApp(props) {
+    var _this;
+
+    _classCallCheck(this, MyApp);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(MyApp).call(this, props));
+
+    var _getStore2 = (0, _store.default)((0, _deserialize.default)(props.state)),
+        store = _getStore2.store;
+
+    _this.store = store;
+    store.dispatch(_app2.appOperations.init());
+    var locale = props.locale;
+    if (!locale) locale = _app2.appSelectors.getLocale(store.getState());
+    store.dispatch(_app2.appOperations.setLocale({
+      locale: locale
+    }));
+    _this.pageContext = (0, _pageContext.default)(props.theme);
+    return _this;
+  }
+
+  _createClass(MyApp, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      if (false) { var jssStyles; }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          router = _this$props.router,
+          Component = _this$props.Component,
+          pageProps = _this$props.pageProps;
+      var url = (0, _app.createUrl)(router);
+      var path = router.pathname;
+      var title = _constants.default.pages[path] && _constants.default.pages[path].title;
+      if (false) {}
+      return _react.default.createElement(_app.Container, null, _react.default.createElement(_reactRedux.Provider, {
+        store: this.store
+      }, _react.default.createElement(_IntlProvider.default, null, _react.default.createElement(_DateProvider.default, null, _react.default.createElement(_JssProvider.default, {
+        jss: jss,
+        registry: this.pageContext.sheetsRegistry,
+        generateClassName: this.pageContext.generateClassName
+      }, _react.default.createElement(_styles.MuiThemeProvider, {
+        theme: this.pageContext.theme,
+        sheetsManager: this.pageContext.sheetsManager
+      }, _react.default.createElement(_CssBaseline.default, null), _react.default.createElement(_Layout.default, {
+        title: title
+      }, _react.default.createElement(Component, _extends({}, pageProps, {
+        url: url,
+        store: this.store,
+        pageContext: this.pageContext
+      })))))))));
+    }
+  }]);
+
+  return MyApp;
+}(_app.default);
+
+var _default = MyApp;
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+
+/***/ }),
+/* 122 */
+/***/ (function(module, exports) {
+
+module.exports = require("next/app");
+
+/***/ }),
+/* 123 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/CssBaseline");
+
+/***/ }),
+/* 124 */
+/***/ (function(module, exports) {
+
+module.exports = require("jss-extend");
+
+/***/ }),
+/* 125 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-jss/lib/JssProvider");
+
+/***/ }),
+/* 126 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = getPageContext;
+
+var _jss = __webpack_require__(115);
+
+var _styles = __webpack_require__(9);
+
+var _themes = _interopRequireDefault(__webpack_require__(127));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* eslint-disable no-underscore-dangle */
+function createPageContext(themeName) {
+  var theme = _themes.default.themes[themeName];
+  if (!theme && _themes.default.themes[_themes.default.defaultTheme]) theme = _themes.default.themes[_themes.default.defaultTheme];
+  if (!theme) theme = {};
+  return {
+    theme: (0, _styles.createMuiTheme)(theme),
+    // This is needed in order to deduplicate the injection of CSS in the page.
+    sheetsManager: new Map(),
+    // This is needed in order to inject the critical CSS.
+    sheetsRegistry: new _jss.SheetsRegistry(),
+    // The standard class name generator.
+    generateClassName: (0, _styles.createGenerateClassName)()
+  };
+}
+
+function getPageContext(themeName) {
+  // Make sure to create a new context for every server-side request so that data
+  // isn't shared between connections (which would be bad).
+  if (true) {
+    return createPageContext(themeName);
+  } // Reuse context on the client-side.
+
+
+  if (!global.__INIT_MATERIAL_UI__) {
+    global.__INIT_MATERIAL_UI__ = createPageContext(themeName);
+  }
+
+  return global.__INIT_MATERIAL_UI__;
+}
+
+/***/ }),
+/* 127 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var daemon = __webpack_require__(128);
+
+module.exports = {
+  defaultTheme: "daemon",
+  names: {
+    daemon: "Daemon"
+  },
+  themes: {
+    daemon: daemon
+  }
+};
+
+/***/ }),
+/* 128 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _require = __webpack_require__(129),
+    darken = _require.darken,
+    lighten = _require.lighten;
+
+var _require2 = __webpack_require__(130),
+    red = _require2.red;
+
+var primary = "#4c5066";
+var secondary = "#b33711";
+var paperGradient = "linear-gradient(to right bottom, #3d3f4d, #222326)";
+var bgPage = "#000000";
+var bgNormal = "#3a3c48";
+var textNormal = "rgba(255, 255, 255, 0.87)";
+var textDark = "rgba(255, 255, 255, 0.54)";
+var textDisabled = "rgba(255, 255, 255, 0.38)";
+var textContrast = "#ffffff";
+var textError = red[500];
+var fontSize = 14;
+module.exports = {
+  name: "daemon",
+  wallpaper: "/static/img/bg.jpg?v=3",
+  palette: {
+    primary: {
+      main: primary,
+      contrastText: textContrast
+    },
+    secondary: {
+      main: secondary,
+      contrastText: textContrast
+    },
+    background: {
+      default: bgPage,
+      paper: lighten(bgNormal, 0.1)
+    },
+    text: {
+      primary: textNormal,
+      secondary: textDark,
+      disabled: textDisabled,
+      hint: textDisabled
+    },
+    divider: "rgba(255, 255, 255, 0.12)"
+  },
+  typography: {
+    useNextVariants: true,
+    fontSize: fontSize,
+    fontFamily: ["Roboto", "sans-serif"].join(", ")
+  },
+  shape: {
+    borderRadius: 3
+  },
+  sidebar: {
+    computerWidth: 30,
+    tabletWidth: 20,
+    phoneWidth: 20,
+    background: "rgba(0, 0, 0, 0.5)",
+    color: textNormal,
+    backgroundHover: "rgba(255, 255, 255, 0.05)",
+    colorHover: textContrast,
+    backgroundSelected: "rgba(255, 255, 255, 0.1)",
+    colorSelected: textContrast,
+    backgroundSelectedHover: "rgba(255, 255, 255, 0.15)",
+    colorSelectedHover: textContrast
+  },
+  main: {
+    wallpaper: "/static/img/bg.jpg",
+    background: paperGradient,
+    spacing: 24,
+    error: {
+      background: "rgba(179, 55, 17, 0.65)",
+      color: "#ffffff",
+      borderRadius: 3,
+      padding: "1rem 2rem"
+    }
+  },
+  overrides: {
+    MuiDialog: {
+      paper: {
+        background: paperGradient
+      }
+    },
+    MuiTableRow: {
+      root: {
+        height: ["100%", "!important"]
+      }
+    },
+    MuiTableBody: {
+      root: {
+        "& tr:last-child th, & tr:last-child td": {
+          borderBottom: "none"
+        }
+      }
+    },
+    MuiTableCell: {
+      root: {
+        borderBottom: "1px solid ".concat(textDisabled)
+      },
+      head: {
+        fontSize: fontSize,
+        color: textContrast
+      },
+      body: {
+        fontSize: fontSize
+      }
+    },
+    MuiButton: {
+      label: {
+        height: "1em"
+      },
+      contained: {
+        "&:not($containedPrimary):not($containedSecondary)": {
+          background: [bgNormal, "!important"],
+          color: [textNormal, "!important"]
+        }
+      },
+      disabled: {
+        boxShadow: ["0px 1px 5px 0px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14),0px 3px 1px -2px rgba(0, 0, 0, 0.12)", "!important"],
+        "&:not($containedPrimary):not($containedSecondary)": {
+          background: [darken(bgNormal, 0.1), "!important"],
+          color: [textDark, "!important"]
+        },
+        "&$containedPrimary": {
+          background: [darken(primary, 0.5), "!important"],
+          color: [darken(textContrast, 0.2), "!important"]
+        },
+        "&$containedSecondary": {
+          background: [darken(secondary, 0.5), "!important"],
+          color: [darken(textContrast, 0.2), "!important"]
+        }
+      }
+    },
+    MuiInput: {
+      underline: {
+        "&:before": {
+          borderBottom: "2px solid ".concat(textDark)
+        },
+        "&:after": {
+          borderBottom: "2px solid ".concat(textContrast)
+        }
+      }
+    },
+    MuiFilledInput: {
+      root: {
+        background: [lighten(bgNormal, 0.1), "!important"],
+        borderRadius: 4,
+        "&:hover": {
+          background: [lighten(bgNormal, 0.2), "!important"]
+        }
+      },
+      focused: {
+        background: [lighten(bgNormal, 0.2), "!important"],
+        "&$error": {
+          color: [textError, "!important"]
+        }
+      },
+      underline: {
+        "&:before": {
+          borderBottom: ["none", "!important"]
+        },
+        "&:after": {
+          borderBottom: ["none", "!important"]
+        }
+      }
+    },
+    MuiInputLabel: {
+      root: {
+        pointerEvents: "none",
+        zIndex: 100
+      },
+      focused: {
+        color: [textContrast, "!important"],
+        "&$error": {
+          color: [textError, "!important"]
+        }
+      },
+      filled: {
+        color: [textDark, "!important"],
+        "&$error": {
+          color: [textError, "!important"]
+        }
+      }
+    },
+    MuiSwitch: {
+      icon: {
+        color: textNormal
+      }
+    },
+    MuiListItemIcon: {
+      root: {
+        margin: [0, "!important"]
+      }
+    },
+    MuiCheckbox: {
+      checked: {
+        color: [secondary, "!important"]
+      }
+    }
+  }
+};
+
+/***/ }),
+/* 129 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/styles/colorManipulator");
+
+/***/ }),
+/* 130 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/colors");
+
+/***/ }),
+/* 131 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {
+
+var pako = __webpack_require__(116);
+
+var utf8 = __webpack_require__(117);
+
+var _require = __webpack_require__(118),
+    byteEncode = _require.byteEncode;
+
+var _require2 = __webpack_require__(119),
+    serialize = _require2.serialize;
+/**
+ * Sserialize Immutable state into BASE64 string
+ */
+
+
+module.exports = function (state) {
+  if (!state) return "";
+  state = state.setIn(["app", "di"], null);
+  var json = serialize(state);
+  var str = JSON.stringify(json, function (key, value) {
+    return _.isString(value) ? utf8.encode(value) : value;
+  });
+  var output = byteEncode(pako.deflate(str, {
+    to: "string"
+  }));
+  return output;
+};
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+
+/***/ }),
+/* 132 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {
+
+var pako = __webpack_require__(116);
+
+var utf8 = __webpack_require__(117);
+
+var _require = __webpack_require__(118),
+    byteDecode = _require.byteDecode;
+
+var _require2 = __webpack_require__(119),
+    deserialize = _require2.deserialize;
+/**
+ * Deserialize BASE64 string into Immutable state
+ */
+
+
+module.exports = function (input) {
+  if (!input) return undefined;
+  var str = pako.inflate(byteDecode(input), {
+    to: "string"
+  });
+  var json = JSON.parse(str, function (key, value) {
+    return _.isString(value) ? utf8.decode(value) : value;
+  });
+  var state = deserialize(json);
+  return state;
+};
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+
+/***/ }),
+/* 133 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = getStore;
+
+var _redux = __webpack_require__(134);
+
+var _reduxImmutable = __webpack_require__(4);
+
+var _reduxDevtoolsExtension = __webpack_require__(135);
+
+var _reduxThunk = _interopRequireDefault(__webpack_require__(136));
+
+var _immutable = __webpack_require__(10);
+
+var _app = _interopRequireDefault(__webpack_require__(6));
+
+var _auth = _interopRequireDefault(__webpack_require__(11));
+
+var _users = _interopRequireDefault(__webpack_require__(94));
+
+var _devices = _interopRequireDefault(__webpack_require__(20));
+
+var _terminals = _interopRequireDefault(__webpack_require__(19));
+
+var _histories = _interopRequireDefault(__webpack_require__(21));
+
+var _activeTerminal = _interopRequireDefault(__webpack_require__(27));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var rootReducer = (0, _reduxImmutable.combineReducers)({
+  form: _immutable.reducer,
+  app: _app.default,
+  auth: _auth.default,
+  users: _users.default,
+  devices: _devices.default,
+  terminals: _terminals.default,
+  histories: _histories.default,
+  activeTerminal: _activeTerminal.default
+});
+var middleware = (0, _redux.applyMiddleware)(_reduxThunk.default);
+if (false) {}
+
+var storeFactory = function storeFactory(initialState) {
+  return (0, _redux.createStore)(rootReducer, initialState, middleware);
+};
+
+var __NEXT_REDUX_STORE__ = "__NEXT_REDUX_STORE__";
+
+function getStore(initialState) {
+  var store;
+  var isCreated = false;
+
+  if (true) {
+    // Always make a new store if server,
+    // otherwise state is shared between requests
+    store = storeFactory(initialState);
+    isCreated = true;
+  } else {}
+
+  return {
+    store: store,
+    isCreated: isCreated
+  };
+}
+
+/***/ }),
+/* 134 */
+/***/ (function(module, exports) {
+
+module.exports = require("redux");
+
+/***/ }),
+/* 135 */
+/***/ (function(module, exports) {
+
+module.exports = require("redux-devtools-extension");
+
+/***/ }),
+/* 136 */
+/***/ (function(module, exports) {
+
+module.exports = require("redux-thunk");
+
+/***/ }),
+/* 137 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _reactRedux = __webpack_require__(18);
+
+var _app = __webpack_require__(6);
+
+var _IntlProvider = _interopRequireDefault(__webpack_require__(138));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    locale: _app.appSelectors.getLocale(state),
+    created: _app.appSelectors.getCreated(state)
+  };
+};
+
+var IntlProvider = (0, _reactRedux.connect)(mapStateToProps, null, null, {
+  pure: false
+})(_IntlProvider.default);
+var _default = IntlProvider;
+exports.default = _default;
+
+/***/ }),
+/* 138 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(5));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
+
+var _reactIntl = __webpack_require__(8);
+
+var _locales = _interopRequireDefault(__webpack_require__(37));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+_.forEach(_locales.default.getLocaleData(), function (data) {
+  return (0, _reactIntl.addLocaleData)(data);
+});
+
+var Provider =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Provider, _React$Component);
+
+  function Provider() {
+    _classCallCheck(this, Provider);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Provider).apply(this, arguments));
+  }
+
+  _createClass(Provider, [{
+    key: "render",
+    value: function render() {
+      return _react.default.createElement(_reactIntl.IntlProvider, {
+        key: this.props.locale,
+        locale: this.props.locale,
+        messages: _locales.default.messages[this.props.locale],
+        initialNow: this.props.created
+      }, this.props.children);
+    }
+  }]);
+
+  return Provider;
+}(_react.default.Component);
+
+var _default = Provider;
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+
+/***/ }),
+/* 139 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _reactRedux = __webpack_require__(18);
+
+var _app = __webpack_require__(6);
+
+var _DateProvider = _interopRequireDefault(__webpack_require__(140));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    locale: _app.appSelectors.getLocale(state)
+  };
+};
+
+var DateProvider = (0, _reactRedux.connect)(mapStateToProps, null, null, {
+  pure: false
+})(_DateProvider.default);
+var _default = DateProvider;
+exports.default = _default;
+
+/***/ }),
+/* 140 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(5));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
+
+var _materialUiPickers = __webpack_require__(141);
+
+var _moment = _interopRequireDefault(__webpack_require__(142));
+
+var _moment2 = _interopRequireDefault(__webpack_require__(38));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Provider =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Provider, _React$Component);
+
+  function Provider() {
+    _classCallCheck(this, Provider);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Provider).apply(this, arguments));
+  }
+
+  _createClass(Provider, [{
+    key: "render",
+    value: function render() {
+      return _react.default.createElement(_materialUiPickers.MuiPickersUtilsProvider, {
+        utils: _moment.default,
+        locale: this.props.locale,
+        moment: _moment2.default
+      }, this.props.children);
+    }
+  }]);
+
+  return Provider;
+}(_react.default.Component);
+
+var _default = Provider;
+exports.default = _default;
+
+/***/ }),
+/* 141 */
+/***/ (function(module, exports) {
+
+module.exports = require("material-ui-pickers");
+
+/***/ }),
+/* 142 */
+/***/ (function(module, exports) {
+
+module.exports = require("@date-io/moment");
+
+/***/ }),
+/* 143 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _reactRedux = __webpack_require__(18);
+
+var _reactIntl = __webpack_require__(8);
+
+var _router = __webpack_require__(26);
+
+var _app = __webpack_require__(6);
+
+var _auth = __webpack_require__(11);
+
+var _Layout = _interopRequireDefault(__webpack_require__(144));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    isAuthenticated: _auth.authSelectors.isAuthenticated(state),
+    isStarted: _app.appSelectors.isStarted(state) && (!_auth.authSelectors.isAuthenticated(state) || _app.appSelectors.isConnected(state)),
+    isError: _app.appSelectors.getStatusCode(state) !== 200
+  };
+};
+
+var Layout = (0, _router.withRouter)((0, _reactIntl.injectIntl)((0, _reactRedux.connect)(mapStateToProps, null, null, {
+  pure: false
+})(_Layout.default)));
+var _default = Layout;
+exports.default = _default;
+
+/***/ }),
+/* 144 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(5));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
+
+var _head = _interopRequireDefault(__webpack_require__(145));
+
+var _reactIntl = __webpack_require__(8);
+
+var _styles = __webpack_require__(9);
+
+var _CircularProgress = _interopRequireDefault(__webpack_require__(146));
+
+var _Hidden = _interopRequireDefault(__webpack_require__(147));
+
+var _Drawer = _interopRequireDefault(__webpack_require__(148));
+
+var _SwipeableDrawer = _interopRequireDefault(__webpack_require__(149));
+
+var _Sidebar = _interopRequireDefault(__webpack_require__(150));
+
+var _AppAuthModal = _interopRequireDefault(__webpack_require__(155));
+
+var _SetupAuthModal = _interopRequireDefault(__webpack_require__(157));
+
+var _KeyboardAuthModal = _interopRequireDefault(__webpack_require__(159));
+
+__webpack_require__(161);
+
+var _styledScroll = _interopRequireDefault(__webpack_require__(165));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6565,240 +8030,452 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-var styles = function styles() {
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var styles = function styles(theme) {
+  var _$merge, _main;
+
   return {
-    buttons: {
-      width: "100%",
+    "@global": {
+      html: {
+        fontSize: "".concat(theme.typography.fontSize, "px")
+      },
+      body: _.merge({
+        fontFamily: theme.typography.fontFamily,
+        background: theme.palette.background.default + (theme.main.wallpaper ? " url(\"".concat(theme.main.wallpaper, "\") top left / 100vw 100vh no-repeat fixed") : ""),
+        color: theme.palette.text.primary
+      }, (0, _styledScroll.default)(theme)),
+      pre: {
+        fontFamily: '"Roboto Mono", monospace'
+      }
+    },
+    app: {
+      position: "relative"
+    },
+    backdrop: {
+      background: theme.palette.background.default,
+      opacity: 0.8,
+      zIndex: 10000,
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0
+    },
+    spinner: {
+      position: "fixed",
+      width: 60,
+      top: "50vh",
+      left: "50vw",
+      transform: "translate3d(-50%, -50%, 0)",
+      color: theme.palette.primary.contrastText
+    },
+    sidebar: _.merge((_$merge = {
+      background: theme.sidebar.background,
+      overflowX: "hidden",
+      width: theme.sidebar.computerWidth * theme.spacing.unit
+    }, _defineProperty(_$merge, theme.breakpoints.between("sm", "md"), {
+      width: theme.sidebar.tabletWidth * theme.spacing.unit
+    }), _defineProperty(_$merge, theme.breakpoints.down("xs"), {
+      width: theme.sidebar.phoneWidth * theme.spacing.unit
+    }), _$merge), (0, _styledScroll.default)(theme)),
+    main: (_main = {
+      minHeight: "100vh",
       display: "flex",
-      flexDirection: "row",
-      justifyContent: "flex-start",
-      alignContent: "stretch"
-    },
-    button: {
-      margin: "0.5rem"
-    },
-    checkboxField: {
-      width: 1
-    },
-    checkbox: {
-      padding: "0.5rem 1rem"
-    }
+      flexDirection: "column",
+      alignItems: "center",
+      marginLeft: theme.sidebar.computerWidth * theme.spacing.unit
+    }, _defineProperty(_main, theme.breakpoints.between("sm", "md"), {
+      marginLeft: theme.sidebar.tabletWidth * theme.spacing.unit
+    }), _defineProperty(_main, theme.breakpoints.down("xs"), {
+      marginLeft: 0
+    }), _main)
   };
 };
 
-var Devices =
+var Layout =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(Devices, _React$Component);
+  _inherits(Layout, _React$Component);
 
-  function Devices(props) {
+  function Layout(props) {
     var _this;
 
-    _classCallCheck(this, Devices);
+    _classCallCheck(this, Layout);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Devices).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Layout).call(this, props));
     _this.state = {
-      isConfirmOpen: false
+      isSidebarOpen: false
     };
-    _this.handleCreateAction = _this.handleCreateAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleEditAction = _this.handleEditAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleDeleteAction = _this.handleDeleteAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleCancelDelete = _this.handleCancelDelete.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleConfirmDelete = _this.handleConfirmDelete.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleSidebarToggle = _this.handleSidebarToggle.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleSidebarClose = _this.handleSidebarClose.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
-  _createClass(Devices, [{
-    key: "handleToggleAll",
-    value: function handleToggleAll() {
-      var forceOff = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-      if (forceOff || this.props.isAllSelected) this.props.onDeselectAll();else this.props.onSelectAll();
-    }
-  }, {
-    key: "handleToggle",
-    value: function handleToggle(deviceId) {
-      // eslint-disable-next-line lodash/prefer-lodash-method
-      var device = this.props.devices.find(function (device) {
-        return device.get("id") === deviceId;
-      });
-      var isSelected = device && device.get("isSelected");
-      this.props.onSetSelected(deviceId, !isSelected);
-    }
-  }, {
-    key: "handleCreateAction",
-    value: function handleCreateAction() {
-      this.props.onCreate();
-    }
-  }, {
-    key: "handleEditAction",
-    value: function handleEditAction() {
-      this.props.onEdit();
-    }
-  }, {
-    key: "handleDeleteAction",
-    value: function handleDeleteAction() {
+  _createClass(Layout, [{
+    key: "handleSidebarToggle",
+    value: function handleSidebarToggle() {
       this.setState({
-        isConfirmOpen: true
+        isSidebarOpen: !this.state.isSidebarOpen
       });
     }
   }, {
-    key: "handleCancelDelete",
-    value: function handleCancelDelete() {
-      this.setState({
-        isConfirmOpen: false
+    key: "handleSidebarClose",
+    value: function handleSidebarClose() {
+      if (this.state.isSidebarOpen) this.setState({
+        isSidebarOpen: false
       });
     }
-  }, {
-    key: "handleConfirmDelete",
-    value: function () {
-      var _handleConfirmDelete = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee() {
-        var _this2 = this;
-
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                this.setState({
-                  isConfirmOpen: false
-                });
-                _context.next = 3;
-                return Promise.all( // eslint-disable-next-line lodash/prefer-lodash-method
-                this.props.devices.filter(function (device) {
-                  return device.get("isSelected");
-                }).map(function (device) {
-                  return _this2.props.onDelete(device.get("id"));
-                }));
-
-              case 3:
-                this.props.onLoad();
-
-              case 4:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function handleConfirmDelete() {
-        return _handleConfirmDelete.apply(this, arguments);
-      }
-
-      return handleConfirmDelete;
-    }()
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
-
-      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
-        className: this.props.classes.buttons
-      }, _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "secondary",
+      return _react.default.createElement("div", {
+        className: "app"
+      }, this.props.title && _react.default.createElement(_head.default, null, _react.default.createElement("title", null, this.props.intl.formatMessage({
+        id: this.props.title
+      }))), this.props.isAuthenticated && _react.default.createElement(_Hidden.default, {
+        implementation: "css",
+        smUp: true
+      }, _react.default.createElement(_SwipeableDrawer.default, {
+        open: this.state.isSidebarOpen,
+        onOpen: this.handleSidebarToggle,
+        onClose: this.handleSidebarClose
+      }, _react.default.createElement(_Sidebar.default, {
+        onMenuClick: this.handleSidebarClose
+      }))), this.props.isAuthenticated && _react.default.createElement(_Hidden.default, {
+        implementation: "css",
+        xsDown: true
+      }, _react.default.createElement(_Drawer.default, {
+        variant: "permanent",
+        open: true,
         classes: {
-          root: this.props.classes.button
-        },
-        onClick: this.handleCreateAction
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "DEVICES_CREATE_BUTTON"
-      }))), _react.default.createElement(_Table.default, {
-        padding: "dense"
-      }, _react.default.createElement(_TableHead.default, null, _react.default.createElement(_TableRow.default, null, _react.default.createElement(_TableCell.default, {
-        padding: "none",
-        classes: {
-          root: this.props.classes.checkboxField
+          paper: this.props.classes.sidebar
         }
-      }, _react.default.createElement(_Checkbox.default, {
-        checked: !!this.props.devices.size && this.props.isAllSelected,
-        classes: {
-          root: this.props.classes.checkbox
-        },
-        indeterminate: !this.props.isAllSelected && !this.props.isAllDeselected,
-        onChange: function onChange() {
-          return _this3.handleToggleAll();
-        },
-        value: "on"
-      })), _react.default.createElement(_TableCell.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "DEVICES_NAME_COLUMN"
-      })), _react.default.createElement(_TableCell.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "DEVICES_ADDRESS_COLUMN"
-      })), _react.default.createElement(_TableCell.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "DEVICES_CONN_STRING_COLUMN"
-      })))), _react.default.createElement(_TableBody.default, null, this.props.devices.map(function (row, index) {
-        return _react.default.createElement(_TableRow.default, {
-          key: "row-".concat(index)
-        }, _react.default.createElement(_TableCell.default, {
-          padding: "none",
-          className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected"),
-          classes: {
-            root: _this3.props.classes.checkboxField
-          }
-        }, _react.default.createElement(_Checkbox.default, {
-          checked: !!row.get("isSelected"),
-          classes: {
-            root: _this3.props.classes.checkbox
-          },
-          onChange: function onChange() {
-            return _this3.handleToggle(row.get("id"));
-          },
-          value: "on"
-        })), _react.default.createElement(_TableCell.default, {
-          className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected"),
-          component: "th",
-          scope: "row"
-        }, row.get("name")), _react.default.createElement(_TableCell.default, {
-          className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected")
-        }), _react.default.createElement(_TableCell.default, {
-          className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected")
-        }));
-      }))), _react.default.createElement("div", {
-        className: this.props.classes.buttons
-      }, _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "primary",
-        disabled: this.props.isAllDeselected,
-        classes: {
-          root: this.props.classes.button
-        },
-        onClick: this.handleEditAction
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "DEVICES_EDIT_BUTTON"
-      })), _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "primary",
-        disabled: this.props.isAllDeselected,
-        classes: {
-          root: this.props.classes.button
-        },
-        onClick: this.handleDeleteAction
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "DEVICES_DELETE_BUTTON"
-      }))), _react.default.createElement(_EditDeviceModal.default, null), _react.default.createElement(_ConfirmModal.default, {
-        isOpen: this.state.isConfirmOpen,
-        title: "DELETE_DEVICE_TITLE",
-        text: "DELETE_DEVICE_TEXT",
-        cancel: "DELETE_DEVICE_CANCEL",
-        submit: "DELETE_DEVICE_SUBMIT",
-        onCancel: this.handleCancelDelete,
-        onSubmit: this.handleConfirmDelete
-      }));
+      }, _react.default.createElement(_Sidebar.default, {
+        onMenuClick: this.handleSidebarClose
+      }))), this.props.isAuthenticated && _react.default.createElement("main", {
+        className: this.props.classes.main
+      }, this.props.children), !this.props.isAuthenticated && this.props.children, !this.props.isStarted && !this.props.isError && _react.default.createElement("div", {
+        className: this.props.classes.backdrop
+      }, _react.default.createElement("div", {
+        className: this.props.classes.spinner
+      }, _react.default.createElement(_CircularProgress.default, {
+        color: "inherit",
+        size: 60
+      }))), _react.default.createElement(_AppAuthModal.default, null), _react.default.createElement(_SetupAuthModal.default, null), _react.default.createElement(_KeyboardAuthModal.default, null));
     }
   }]);
 
-  return Devices;
+  return Layout;
 }(_react.default.Component);
 
 var _default = (0, _styles.withStyles)(styles, {
   withTheme: true
-})(Devices);
+})(Layout);
+
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+
+/***/ }),
+/* 145 */
+/***/ (function(module, exports) {
+
+module.exports = require("next/head");
+
+/***/ }),
+/* 146 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/CircularProgress");
+
+/***/ }),
+/* 147 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/Hidden");
+
+/***/ }),
+/* 148 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/Drawer");
+
+/***/ }),
+/* 149 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/SwipeableDrawer");
+
+/***/ }),
+/* 150 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _reactRedux = __webpack_require__(18);
+
+var _reactIntl = __webpack_require__(8);
+
+var _router = __webpack_require__(26);
+
+var _Sidebar = _interopRequireDefault(__webpack_require__(151));
+
+var _auth = __webpack_require__(11);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    roles: _auth.authSelectors.getRoles(state)
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    onSignOut: function onSignOut() {
+      return dispatch(_auth.authOperations.signOut());
+    }
+  };
+};
+
+var Sidebar = (0, _router.withRouter)((0, _reactIntl.injectIntl)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Sidebar.default)));
+var _default = Sidebar;
+exports.default = _default;
+
+/***/ }),
+/* 151 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(5));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
+
+var _isRouteAllowed = _interopRequireDefault(__webpack_require__(33));
+
+var _reactIntl = __webpack_require__(8);
+
+var _styles = __webpack_require__(9);
+
+var _MenuList = _interopRequireDefault(__webpack_require__(152));
+
+var _MenuItem = _interopRequireDefault(__webpack_require__(77));
+
+var _ListItemIcon = _interopRequireDefault(__webpack_require__(78));
+
+var _ListItemText = _interopRequireDefault(__webpack_require__(79));
+
+var _DeviceHub = _interopRequireDefault(__webpack_require__(153));
+
+var _People = _interopRequireDefault(__webpack_require__(154));
+
+var _constants = _interopRequireDefault(__webpack_require__(3));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var styles = function styles(theme) {
+  return {
+    root: {
+      height: "100%",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "stretch"
+    },
+    grow: {
+      flex: 1
+    },
+    link: {
+      display: "block",
+      margin: "1rem",
+      textAlign: "center",
+      color: theme.sidebar.color,
+      textDecoration: "none",
+      "&:hover": {
+        color: theme.palette.secondary.main
+      }
+    },
+    list: {
+      padding: 0
+    },
+    logoWrapper: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center"
+    },
+    logo: {
+      width: "60%",
+      margin: "2rem 0"
+    },
+    item: {
+      background: [theme.sidebar.background, "!important"],
+      color: [theme.sidebar.color, "!important"],
+      justifyContent: "center",
+      "& svg, & span": {
+        color: [theme.sidebar.color, "!important"]
+      },
+      "&:hover": {
+        background: [theme.sidebar.backgroundHover, "!important"],
+        color: [theme.sidebar.colorHover, "!important"],
+        "& svg, & span": {
+          color: [theme.sidebar.colorHover, "!important"]
+        }
+      }
+    },
+    itemSelected: {
+      background: [theme.sidebar.backgroundSelected, "!important"],
+      color: [theme.sidebar.colorSelected, "!important"],
+      "& svg, & span": {
+        color: [theme.sidebar.colorSelected, "!important"]
+      },
+      "&:hover": {
+        background: [theme.sidebar.backgroundSelectedHover, "!important"],
+        color: [theme.sidebar.colorSelectedHover, "!important"],
+        "& svg, & span": {
+          color: [theme.sidebar.colorSelectedHover, "!important"]
+        }
+      }
+    }
+  };
+};
+
+var Sidebar =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Sidebar, _React$Component);
+
+  function Sidebar() {
+    _classCallCheck(this, Sidebar);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Sidebar).apply(this, arguments));
+  }
+
+  _createClass(Sidebar, [{
+    key: "handleMenuClick",
+    value: function handleMenuClick(path) {
+      this.props.router.push(path);
+      this.props.onMenuClick();
+    }
+  }, {
+    key: "renderHeader",
+    value: function renderHeader() {
+      return _react.default.createElement("div", {
+        className: this.props.classes.logoWrapper
+      }, _react.default.createElement("img", {
+        className: this.props.classes.logo,
+        src: "".concat("", "/static/img/logo.png")
+      }));
+    }
+  }, {
+    key: "renderItem",
+    value: function renderItem(path) {
+      var _this = this;
+
+      if (!path || !_constants.default.pages[path] || !(0, _isRouteAllowed.default)(path, this.props.roles)) {
+        return null;
+      }
+
+      var _constants$pages$path = _constants.default.pages[path],
+          icon = _constants$pages$path.icon,
+          menu = _constants$pages$path.menu;
+      if (!icon && !menu) return null;
+      return _react.default.createElement(_MenuItem.default, {
+        key: "page-".concat(path),
+        classes: {
+          root: this.props.classes.item,
+          selected: this.props.classes.itemSelected
+        },
+        selected: this.props.router.pathname === path,
+        onClick: function onClick() {
+          return _this.handleMenuClick(path);
+        }
+      }, icon === "devices" && _react.default.createElement(_ListItemIcon.default, null, _react.default.createElement(_DeviceHub.default, null)), icon === "users" && _react.default.createElement(_ListItemIcon.default, null, _react.default.createElement(_People.default, null)), !!menu && _react.default.createElement(_ListItemText.default, {
+        primary: this.props.intl.formatMessage({
+          id: menu
+        })
+      }));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react.default.createElement("div", {
+        className: this.props.classes.root
+      }, _react.default.createElement(_MenuList.default, {
+        classes: {
+          root: this.props.classes.list
+        },
+        subheader: this.renderHeader()
+      }, this.renderItem("/"), this.renderItem("/users")), _react.default.createElement("div", {
+        className: this.props.classes.grow
+      }), _react.default.createElement("div", null, _react.default.createElement("a", {
+        href: "javascript:void(0)",
+        className: this.props.classes.link,
+        onClick: this.props.onSignOut
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "SIDEBAR_SIGN_OUT_LINK"
+      }))));
+    }
+  }]);
+
+  return Sidebar;
+}(_react.default.Component);
+
+var _default = (0, _styles.withStyles)(styles, {
+  withTheme: true
+})(Sidebar);
 
 exports.default = _default;
 
 /***/ }),
-/* 110 */
+/* 152 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/MenuList");
+
+/***/ }),
+/* 153 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/icons/DeviceHub");
+
+/***/ }),
+/* 154 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/icons/People");
+
+/***/ }),
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6819,11 +8496,13 @@ var _immutable2 = __webpack_require__(10);
 
 var _reduxForm = __webpack_require__(73);
 
-var _devices = __webpack_require__(20);
+var _app = __webpack_require__(6);
+
+var _auth = __webpack_require__(11);
 
 var _createForm = _interopRequireDefault(__webpack_require__(74));
 
-var _EditDeviceModal = _interopRequireDefault(__webpack_require__(111));
+var _AppAuthModal = _interopRequireDefault(__webpack_require__(156));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6833,14 +8512,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var formName = _EditDeviceModal.default.formName;
+var formName = _AppAuthModal.default.formName;
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
     fieldValues: _defineProperty({}, formName, (0, _immutable2.getFormValues)(formName)(state) || (0, _immutable.Map)()),
     fieldErrors: _defineProperty({}, formName, (0, _immutable2.getFormAsyncErrors)(formName)(state) || (0, _immutable.Map)()),
-    data: _devices.devicesSelectors.getEditModalData(state),
-    isOpen: _devices.devicesSelectors.isEditModalOpen(state)
+    isOpen: _app.appSelectors.isStarted(state) && _app.appSelectors.getStatusCode(state) === 200 && !_auth.authSelectors.isAuthenticated(state)
   };
 };
 
@@ -6876,34 +8554,21 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
       return updateValidation;
     }(),
-    onCancel: function onCancel() {
-      return dispatch(_devices.devicesOperations.hideEditModal());
-    },
-    onLoad: function onLoad() {
-      return dispatch(_devices.devicesOperations.load());
-    },
-    onCreate: function onCreate(name, password) {
-      return dispatch(_devices.devicesOperations.reqCreate({
-        name: name,
-        password: password
-      }));
-    },
-    onEdit: function onEdit(id, name, password) {
-      return dispatch(_devices.devicesOperations.reqEdit({
-        id: id,
-        name: name,
+    onSignIn: function onSignIn(login, password) {
+      return dispatch(_auth.authOperations.signIn({
+        login: login,
         password: password
       }));
     }
   };
 };
 
-var EditDeviceModal = (0, _reactIntl.injectIntl)((0, _createForm.default)(_EditDeviceModal.default, mapStateToProps, mapDispatchToProps));
-var _default = EditDeviceModal;
+var AppAuthModal = (0, _reactIntl.injectIntl)((0, _createForm.default)(_AppAuthModal.default, mapStateToProps, mapDispatchToProps));
+var _default = AppAuthModal;
 exports.default = _default;
 
 /***/ }),
-/* 111 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6918,13 +8583,11 @@ var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
 var _react = _interopRequireDefault(__webpack_require__(5));
 
-var _propTypes = _interopRequireDefault(__webpack_require__(6));
-
-var _immutable = __webpack_require__(2);
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
 var _reactIntl = __webpack_require__(8);
 
-var _immutable2 = __webpack_require__(10);
+var _immutable = __webpack_require__(10);
 
 var _styles = __webpack_require__(9);
 
@@ -6985,12 +8648,12 @@ var styles = function styles(theme) {
   };
 };
 
-var EditDeviceModal =
+var AppAuthModal =
 /*#__PURE__*/
 function (_Form) {
-  _inherits(EditDeviceModal, _Form);
+  _inherits(AppAuthModal, _Form);
 
-  _createClass(EditDeviceModal, null, [{
+  _createClass(AppAuthModal, null, [{
     key: "onSubmit",
     value: function () {
       var _onSubmit = _asyncToGenerator(
@@ -7001,51 +8664,36 @@ function (_Form) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (!props.data) {
-                  _context.next = 6;
-                  break;
-                }
+                _context.next = 2;
+                return props.onSignIn(this.getValue(props, "login"), this.getValue(props, "password"));
 
-                _context.next = 3;
-                return props.onEdit(props.data.get("id"), this.getValue(props, "name"), this.getValue(props, "password"));
-
-              case 3:
-                result = _context.sent;
-                _context.next = 9;
-                break;
-
-              case 6:
-                _context.next = 8;
-                return props.onCreate(this.getValue(props, "name"), this.getValue(props, "password"));
-
-              case 8:
+              case 2:
                 result = _context.sent;
 
-              case 9:
                 if (!(result === true)) {
-                  _context.next = 14;
+                  _context.next = 8;
                   break;
                 }
 
-                _context.next = 12;
+                _context.next = 6;
                 return props.onLoad();
 
-              case 12:
-                _context.next = 16;
+              case 6:
+                _context.next = 10;
                 break;
 
-              case 14:
+              case 8:
                 if (!(result && _.isObject(result))) {
-                  _context.next = 16;
+                  _context.next = 10;
                   break;
                 }
 
-                throw new _immutable2.SubmissionError(result);
+                throw new _immutable.SubmissionError(result);
 
-              case 16:
+              case 10:
                 return _context.abrupt("return", result);
 
-              case 17:
+              case 11:
               case "end":
                 return _context.stop();
             }
@@ -7063,29 +8711,24 @@ function (_Form) {
     key: "getDerivedStateFromProps",
     value: function getDerivedStateFromProps(nextProps, prevState) {
       var state = {};
-      /* eslint-disable lodash/prefer-lodash-method */
 
       if (prevState.isOpen !== nextProps.isOpen) {
-        var name = nextProps.data && nextProps.data.get("name");
-        nextProps.dispatch(nextProps.change("name", name || ""));
         nextProps.dispatch(nextProps.change("password", ""));
         nextProps.dispatch(nextProps.clearAsyncError());
         nextProps.dispatch(nextProps.clearSubmitErrors());
         state.isOpen = nextProps.isOpen;
       }
-      /* eslint-enable */
-
 
       return _.keys(state).length ? state : null;
     }
   }]);
 
-  function EditDeviceModal(props) {
+  function AppAuthModal(props) {
     var _this;
 
-    _classCallCheck(this, EditDeviceModal);
+    _classCallCheck(this, AppAuthModal);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(EditDeviceModal).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(AppAuthModal).call(this, props));
     _this.state = {
       isOpen: props.isOpen
     };
@@ -7093,7 +8736,7 @@ function (_Form) {
     return _this;
   }
 
-  _createClass(EditDeviceModal, [{
+  _createClass(AppAuthModal, [{
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -7102,9 +8745,9 @@ function (_Form) {
         maxWidth: "xs",
         fullWidth: true,
         open: this.props.isOpen,
-        onClose: this.props.onCancel
+        onClose: _.noop
       }, _react.default.createElement(_DialogTitle.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: this.props.data ? "EDIT_DEVICE_TITLE_EDIT" : "EDIT_DEVICE_TITLE_CREATE"
+        id: "APP_AUTH_TITLE"
       })), this.props.error && _react.default.createElement(_DialogContent.default, null, _.map(_.isArray(this.props.error) ? this.props.error : [this.props.error], function (error, index) {
         return _react.default.createElement(_DialogContentText.default, {
           key: "error-".concat(index),
@@ -7130,7 +8773,7 @@ function (_Form) {
       }, _react.default.createElement(_Field.default, {
         formFields: this.constructor.fields,
         formProps: this.props,
-        name: "name",
+        name: "login",
         type: "text",
         onSubmit: this.submit
       })), _react.default.createElement(_Grid.default, {
@@ -7148,126 +8791,50 @@ function (_Form) {
         }
       }, _react.default.createElement(_Button.default, {
         variant: "contained",
-        color: "primary",
-        disabled: this.props.submitting,
-        onClick: this.props.onCancel
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "EDIT_DEVICE_CANCEL"
-      })), _react.default.createElement(_Button.default, {
-        variant: "contained",
         color: "secondary",
         disabled: this.props.submitting,
         onClick: this.submit
       }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "EDIT_DEVICE_SUBMIT"
+        id: "APP_AUTH_SUBMIT"
       }))));
     }
   }]);
 
-  return EditDeviceModal;
+  return AppAuthModal;
 }(_Form2.default);
 
-_defineProperty(EditDeviceModal, "propTypes", _objectSpread({}, _Form2.default.propTypes, {
+_defineProperty(AppAuthModal, "propTypes", _objectSpread({}, _Form2.default.propTypes, {
   intl: _reactIntl.intlShape,
   theme: _propTypes.default.object.isRequired,
   classes: _propTypes.default.object.isRequired,
   isOpen: _propTypes.default.bool.isRequired,
-  data: _propTypes.default.instanceOf(_immutable.Map),
-  onCreate: _propTypes.default.func.isRequired,
-  onEdit: _propTypes.default.func.isRequired
+  onSignIn: _propTypes.default.func.isRequired
 }));
 
-_defineProperty(EditDeviceModal, "formName", "editCameraForm");
+_defineProperty(AppAuthModal, "formName", "signInForm");
 
-_defineProperty(EditDeviceModal, "fields", {
-  name: {
+_defineProperty(AppAuthModal, "fields", {
+  login: {
     normalize: "rows:1|remove:spaces",
     transform: "trim",
-    label: "EDIT_DEVICE_NAME_LABEL"
+    validate: "required",
+    label: "APP_AUTH_LOGIN_LABEL"
   },
   password: {
-    normalize: "rows:1",
-    transform: "trim",
-    label: "EDIT_DEVICE_PASSWORD_LABEL"
+    validate: "required",
+    label: "APP_AUTH_PASSWORD_LABEL"
   }
 });
 
 var _default = (0, _styles.withStyles)(styles, {
   withTheme: true
-})(EditDeviceModal);
+})(AppAuthModal);
 
 exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 112 */,
-/* 113 */,
-/* 114 */,
-/* 115 */,
-/* 116 */,
-/* 117 */,
-/* 118 */,
-/* 119 */,
-/* 120 */,
-/* 121 */,
-/* 122 */,
-/* 123 */,
-/* 124 */,
-/* 125 */,
-/* 126 */,
-/* 127 */,
-/* 128 */,
-/* 129 */,
-/* 130 */,
-/* 131 */,
-/* 132 */,
-/* 133 */,
-/* 134 */,
-/* 135 */,
-/* 136 */,
-/* 137 */,
-/* 138 */,
-/* 139 */,
-/* 140 */,
-/* 141 */,
-/* 142 */,
-/* 143 */,
-/* 144 */,
-/* 145 */,
-/* 146 */,
-/* 147 */,
-/* 148 */,
-/* 149 */,
-/* 150 */,
-/* 151 */,
-/* 152 */,
-/* 153 */,
-/* 154 */,
-/* 155 */,
-/* 156 */,
-/* 157 */,
-/* 158 */,
-/* 159 */,
-/* 160 */,
-/* 161 */,
-/* 162 */,
-/* 163 */,
-/* 164 */,
-/* 165 */,
-/* 166 */,
-/* 167 */,
-/* 168 */,
-/* 169 */,
-/* 170 */,
-/* 171 */,
-/* 172 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(173);
-
-
-/***/ }),
-/* 173 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7280,9 +8847,21 @@ exports.default = void 0;
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _DevicesPage = _interopRequireDefault(__webpack_require__(106));
+var _immutable = __webpack_require__(2);
 
-var _devices = __webpack_require__(20);
+var _reactIntl = __webpack_require__(8);
+
+var _immutable2 = __webpack_require__(10);
+
+var _reduxForm = __webpack_require__(73);
+
+var _activeTerminal = __webpack_require__(27);
+
+var _terminals = __webpack_require__(19);
+
+var _createForm = _interopRequireDefault(__webpack_require__(74));
+
+var _SetupAuthModal = _interopRequireDefault(__webpack_require__(158));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7290,37 +8869,805 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-_DevicesPage.default.getInitialProps =
-/*#__PURE__*/
-function () {
-  var _ref2 = _asyncToGenerator(
-  /*#__PURE__*/
-  _regenerator.default.mark(function _callee(_ref) {
-    var store, req;
-    return _regenerator.default.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            store = _ref.store, req = _ref.req;
-            _context.next = 3;
-            return store.dispatch(_devices.devicesOperations.load({
-              req: req
-            }));
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-          case 3:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee, this);
-  }));
+var formName = _SetupAuthModal.default.formName;
 
-  return function (_x) {
-    return _ref2.apply(this, arguments);
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    fieldValues: _defineProperty({}, formName, (0, _immutable2.getFormValues)(formName)(state) || (0, _immutable.Map)()),
+    fieldErrors: _defineProperty({}, formName, (0, _immutable2.getFormAsyncErrors)(formName)(state) || (0, _immutable.Map)()),
+    deviceId: _activeTerminal.activeTerminalSelectors.getDeviceId(state),
+    isOpen: _activeTerminal.activeTerminalSelectors.isCollectingCredentials(state)
   };
-}();
+};
 
-var _default = _DevicesPage.default;
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    dispatch: dispatch,
+    updateValidation: function () {
+      var _updateValidation = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee(errors) {
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return dispatch((0, _reduxForm.startAsyncValidation)(formName));
+
+              case 2:
+                _context.next = 4;
+                return dispatch((0, _reduxForm.stopAsyncValidation)(formName, errors));
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function updateValidation(_x) {
+        return _updateValidation.apply(this, arguments);
+      }
+
+      return updateValidation;
+    }(),
+    onCancel: function onCancel(deviceId) {
+      return dispatch(_terminals.terminalsOperations.cancelSetupAuth({
+        deviceId: deviceId
+      }));
+    },
+    onFinish: function onFinish(deviceId, username, password) {
+      return dispatch(_terminals.terminalsOperations.finishSetupAuth({
+        deviceId: deviceId,
+        username: username,
+        password: password
+      }));
+    }
+  };
+};
+
+var SetupAuthModal = (0, _reactIntl.injectIntl)((0, _createForm.default)(_SetupAuthModal.default, mapStateToProps, mapDispatchToProps));
+var _default = SetupAuthModal;
+exports.default = _default;
+
+/***/ }),
+/* 158 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _regenerator = _interopRequireDefault(__webpack_require__(1));
+
+var _react = _interopRequireDefault(__webpack_require__(5));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
+
+var _reactIntl = __webpack_require__(8);
+
+var _styles = __webpack_require__(9);
+
+var _Dialog = _interopRequireDefault(__webpack_require__(28));
+
+var _DialogActions = _interopRequireDefault(__webpack_require__(29));
+
+var _DialogContent = _interopRequireDefault(__webpack_require__(30));
+
+var _DialogTitle = _interopRequireDefault(__webpack_require__(31));
+
+var _Grid = _interopRequireDefault(__webpack_require__(32));
+
+var _Button = _interopRequireDefault(__webpack_require__(22));
+
+var _Form2 = _interopRequireDefault(__webpack_require__(75));
+
+var _Field = _interopRequireDefault(__webpack_require__(76));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var styles = function styles() {
+  return {
+    actions: {
+      paddingLeft: "1rem",
+      paddingRight: "1rem",
+      paddingBottom: "1rem"
+    }
+  };
+};
+
+var SetupAuthModal =
+/*#__PURE__*/
+function (_Form) {
+  _inherits(SetupAuthModal, _Form);
+
+  _createClass(SetupAuthModal, null, [{
+    key: "onSubmit",
+    value: function () {
+      var _onSubmit = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee(values, dispatch, props) {
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                props.onFinish(props.deviceId, this.getValue(props, "login"), this.getValue(props, "password"));
+                return _context.abrupt("return", true);
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function onSubmit(_x, _x2, _x3) {
+        return _onSubmit.apply(this, arguments);
+      }
+
+      return onSubmit;
+    }()
+  }, {
+    key: "getDerivedStateFromProps",
+    value: function getDerivedStateFromProps(nextProps, prevState) {
+      var state = {};
+
+      if (prevState.isOpen !== nextProps.isOpen) {
+        nextProps.dispatch(nextProps.change("login", "root"));
+        nextProps.dispatch(nextProps.change("password", ""));
+        nextProps.dispatch(nextProps.clearAsyncError("_"));
+        state.isOpen = nextProps.isOpen;
+      }
+
+      return _.keys(state).length ? state : null;
+    }
+  }]);
+
+  function SetupAuthModal(props) {
+    var _this;
+
+    _classCallCheck(this, SetupAuthModal);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(SetupAuthModal).call(this, props));
+    _this.state = {
+      isOpen: props.isOpen
+    };
+    _this.handleCancel = _this.handleCancel.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  }
+
+  _createClass(SetupAuthModal, [{
+    key: "handleCancel",
+    value: function () {
+      var _handleCancel = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee2() {
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                this.props.onCancel(this.props.deviceId);
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function handleCancel() {
+        return _handleCancel.apply(this, arguments);
+      }
+
+      return handleCancel;
+    }()
+  }, {
+    key: "handleSubmit",
+    value: function () {
+      var _handleSubmit = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee3() {
+        return _regenerator.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                return _context3.abrupt("return", _get(_getPrototypeOf(SetupAuthModal.prototype), "submit", this).call(this));
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function handleSubmit() {
+        return _handleSubmit.apply(this, arguments);
+      }
+
+      return handleSubmit;
+    }()
+  }, {
+    key: "render",
+    value: function render() {
+      return _react.default.createElement(_Dialog.default, {
+        maxWidth: "xs",
+        fullWidth: true,
+        open: this.props.isOpen,
+        onClose: _.noop
+      }, _react.default.createElement(_DialogTitle.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "SETUP_AUTH_TITLE"
+      })), _react.default.createElement(_DialogContent.default, null, _react.default.createElement(_Grid.default, {
+        container: true,
+        spacing: 16,
+        component: "form",
+        noValidate: true,
+        autoComplete: "off",
+        onSubmit: this.handleSubmit
+      }, _react.default.createElement(_Grid.default, {
+        item: true,
+        xs: 12
+      }, _react.default.createElement(_Field.default, {
+        formFields: this.constructor.fields,
+        formProps: this.props,
+        name: "login",
+        type: "text",
+        onSubmit: this.handleSubmit
+      })), _react.default.createElement(_Grid.default, {
+        item: true,
+        xs: 12
+      }, _react.default.createElement(_Field.default, {
+        formFields: this.constructor.fields,
+        formProps: this.props,
+        name: "password",
+        type: "password",
+        onSubmit: this.handleSubmit
+      })))), _react.default.createElement(_DialogActions.default, {
+        classes: {
+          root: this.props.classes.actions
+        }
+      }, _react.default.createElement(_Button.default, {
+        variant: "contained",
+        color: "primary",
+        disabled: this.props.submitting,
+        onClick: this.handleCancel
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "SETUP_AUTH_CANCEL"
+      })), _react.default.createElement(_Button.default, {
+        variant: "contained",
+        color: "secondary",
+        disabled: this.props.submitting,
+        onClick: this.handleSubmit
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "SETUP_AUTH_SUBMIT"
+      }))));
+    }
+  }]);
+
+  return SetupAuthModal;
+}(_Form2.default);
+
+_defineProperty(SetupAuthModal, "propTypes", _objectSpread({}, _Form2.default.propTypes, {
+  intl: _reactIntl.intlShape,
+  theme: _propTypes.default.object.isRequired,
+  classes: _propTypes.default.object.isRequired,
+  deviceId: _propTypes.default.string,
+  isOpen: _propTypes.default.bool.isRequired,
+  onCancel: _propTypes.default.func.isRequired,
+  onFinish: _propTypes.default.func.isRequired
+}));
+
+_defineProperty(SetupAuthModal, "formName", "setupAuthForm");
+
+_defineProperty(SetupAuthModal, "fields", {
+  login: {
+    normalize: "rows:1|remove:spaces",
+    transform: "trim",
+    label: "SETUP_AUTH_LOGIN_LABEL"
+  },
+  password: {
+    normalize: "rows:1|remove:spaces",
+    transform: "trim",
+    label: "SETUP_AUTH_PASSWORD_LABEL"
+  }
+});
+
+var _default = (0, _styles.withStyles)(styles, {
+  withTheme: true
+})(SetupAuthModal);
+
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+
+/***/ }),
+/* 159 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _regenerator = _interopRequireDefault(__webpack_require__(1));
+
+var _immutable = __webpack_require__(2);
+
+var _reactIntl = __webpack_require__(8);
+
+var _immutable2 = __webpack_require__(10);
+
+var _reduxForm = __webpack_require__(73);
+
+var _activeTerminal = __webpack_require__(27);
+
+var _terminals = __webpack_require__(19);
+
+var _createForm = _interopRequireDefault(__webpack_require__(74));
+
+var _KeyboardAuthModal = _interopRequireDefault(__webpack_require__(160));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var formName = _KeyboardAuthModal.default.formName;
+
+var mapStateToProps = function mapStateToProps(state) {
+  var info = _activeTerminal.activeTerminalSelectors.getAuthInfo(state);
+
+  return _objectSpread({
+    fieldValues: _defineProperty({}, formName, (0, _immutable2.getFormValues)(formName)(state) || (0, _immutable.Map)()),
+    fieldErrors: _defineProperty({}, formName, (0, _immutable2.getFormAsyncErrors)(formName)(state) || (0, _immutable.Map)()),
+    isOpen: !!info.terminalId
+  }, info);
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    dispatch: dispatch,
+    updateValidation: function () {
+      var _updateValidation = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee(errors) {
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return dispatch((0, _reduxForm.startAsyncValidation)(formName));
+
+              case 2:
+                _context.next = 4;
+                return dispatch((0, _reduxForm.stopAsyncValidation)(formName, errors));
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function updateValidation(_x) {
+        return _updateValidation.apply(this, arguments);
+      }
+
+      return updateValidation;
+    }(),
+    onCancel: function onCancel(terminalId) {
+      return dispatch(_terminals.terminalsOperations.cancelKeyboardAuth({
+        terminalId: terminalId
+      }));
+    },
+    onFinish: function onFinish(terminalId, reply) {
+      return dispatch(_terminals.terminalsOperations.finishKeyboardAuth({
+        terminalId: terminalId,
+        reply: reply
+      }));
+    }
+  };
+};
+
+var KeyboardAuthModal = (0, _reactIntl.injectIntl)((0, _createForm.default)(_KeyboardAuthModal.default, mapStateToProps, mapDispatchToProps));
+var _default = KeyboardAuthModal;
+exports.default = _default;
+
+/***/ }),
+/* 160 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _regenerator = _interopRequireDefault(__webpack_require__(1));
+
+var _react = _interopRequireDefault(__webpack_require__(5));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
+
+var _reactIntl = __webpack_require__(8);
+
+var _styles = __webpack_require__(9);
+
+var _Dialog = _interopRequireDefault(__webpack_require__(28));
+
+var _DialogActions = _interopRequireDefault(__webpack_require__(29));
+
+var _DialogContent = _interopRequireDefault(__webpack_require__(30));
+
+var _DialogContentText = _interopRequireDefault(__webpack_require__(34));
+
+var _DialogTitle = _interopRequireDefault(__webpack_require__(31));
+
+var _Grid = _interopRequireDefault(__webpack_require__(32));
+
+var _Button = _interopRequireDefault(__webpack_require__(22));
+
+var _Form2 = _interopRequireDefault(__webpack_require__(75));
+
+var _Field = _interopRequireDefault(__webpack_require__(76));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var styles = function styles() {
+  return {
+    actions: {
+      paddingLeft: "1rem",
+      paddingRight: "1rem",
+      paddingBottom: "1rem"
+    }
+  };
+};
+
+var KeyboardAuthModal =
+/*#__PURE__*/
+function (_Form) {
+  _inherits(KeyboardAuthModal, _Form);
+
+  _createClass(KeyboardAuthModal, null, [{
+    key: "onSubmit",
+    value: function () {
+      var _onSubmit = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee(values, dispatch, props) {
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                props.onFinish(props.terminalId, this.getValue(props, "reply"));
+                return _context.abrupt("return", true);
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function onSubmit(_x, _x2, _x3) {
+        return _onSubmit.apply(this, arguments);
+      }
+
+      return onSubmit;
+    }()
+  }, {
+    key: "getDerivedStateFromProps",
+    value: function getDerivedStateFromProps(nextProps, prevState) {
+      var state = {};
+
+      if (prevState.isOpen !== nextProps.isOpen) {
+        nextProps.dispatch(nextProps.change("reply", ""));
+        nextProps.dispatch(nextProps.clearAsyncError("_"));
+        state.isOpen = nextProps.isOpen;
+      }
+
+      return _.keys(state).length ? state : null;
+    }
+  }]);
+
+  function KeyboardAuthModal(props) {
+    var _this;
+
+    _classCallCheck(this, KeyboardAuthModal);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(KeyboardAuthModal).call(this, props));
+    _this.state = {
+      isOpen: props.isOpen
+    };
+    _this.handleCancel = _this.handleCancel.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  }
+
+  _createClass(KeyboardAuthModal, [{
+    key: "handleCancel",
+    value: function () {
+      var _handleCancel = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee2() {
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                this.props.onCancel(this.props.terminalId);
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function handleCancel() {
+        return _handleCancel.apply(this, arguments);
+      }
+
+      return handleCancel;
+    }()
+  }, {
+    key: "handleSubmit",
+    value: function () {
+      var _handleSubmit = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee3() {
+        return _regenerator.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                return _context3.abrupt("return", _get(_getPrototypeOf(KeyboardAuthModal.prototype), "submit", this).call(this));
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function handleSubmit() {
+        return _handleSubmit.apply(this, arguments);
+      }
+
+      return handleSubmit;
+    }()
+  }, {
+    key: "render",
+    value: function render() {
+      return _react.default.createElement(_Dialog.default, {
+        maxWidth: "xs",
+        fullWidth: true,
+        open: !!this.props.terminalId,
+        onClose: _.noop
+      }, _react.default.createElement(_DialogTitle.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "KEYBOARD_AUTH_TITLE"
+      })), this.props.banner && _react.default.createElement(_DialogContent.default, null, _react.default.createElement(_DialogContentText.default, null, this.props.banner)), _react.default.createElement(_DialogContent.default, null, _.map(this.props.prompts, function (item, index) {
+        return _react.default.createElement(_DialogContentText.default, {
+          key: "error-".concat(index)
+        }, item.prompt);
+      })), _react.default.createElement(_DialogContent.default, null, _react.default.createElement(_Grid.default, {
+        container: true,
+        spacing: 16,
+        component: "form",
+        noValidate: true,
+        autoComplete: "off",
+        onSubmit: this.handleSubmit
+      }, _react.default.createElement(_Grid.default, {
+        item: true,
+        xs: 12
+      }, _react.default.createElement(_Field.default, {
+        formFields: this.constructor.fields,
+        formProps: this.props,
+        name: "reply",
+        type: "password",
+        onSubmit: this.handleSubmit
+      })))), _react.default.createElement(_DialogActions.default, {
+        classes: {
+          root: this.props.classes.actions
+        }
+      }, _react.default.createElement(_Button.default, {
+        variant: "contained",
+        color: "primary",
+        disabled: this.props.submitting,
+        onClick: this.handleCancel
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "KEYBOARD_AUTH_CANCEL"
+      })), _react.default.createElement(_Button.default, {
+        variant: "contained",
+        color: "secondary",
+        disabled: this.props.submitting,
+        onClick: this.handleSubmit
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "KEYBOARD_AUTH_SUBMIT"
+      }))));
+    }
+  }]);
+
+  return KeyboardAuthModal;
+}(_Form2.default);
+
+_defineProperty(KeyboardAuthModal, "propTypes", _objectSpread({}, _Form2.default.propTypes, {
+  intl: _reactIntl.intlShape,
+  theme: _propTypes.default.object.isRequired,
+  classes: _propTypes.default.object.isRequired,
+  terminalId: _propTypes.default.string,
+  isOpen: _propTypes.default.bool.isRequired,
+  banner: _propTypes.default.string,
+  prompts: _propTypes.default.array,
+  onCancel: _propTypes.default.func.isRequired,
+  onFinish: _propTypes.default.func.isRequired
+}));
+
+_defineProperty(KeyboardAuthModal, "formName", "keyboardAuthForm");
+
+_defineProperty(KeyboardAuthModal, "fields", {
+  reply: {
+    normalize: "rows:1|remove:spaces",
+    transform: "trim",
+    label: "KEYBOARD_AUTH_REPLY_LABEL"
+  }
+});
+
+var _default = (0, _styles.withStyles)(styles, {
+  withTheme: true
+})(KeyboardAuthModal);
+
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+
+/***/ }),
+/* 161 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(162);
+
+__webpack_require__(163);
+
+__webpack_require__(164);
+
+/***/ }),
+/* 162 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 163 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 164 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 165 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default(theme) {
+  return {
+    "&::-webkit-scrollbar": {
+      "-webkitAppearance": "none",
+      width: "".concat(theme.spacing.unit, "px"),
+      height: "".concat(theme.spacing.unit, "px")
+    },
+    "&::-webkit-scrollbar-track": {
+      background: "transparent"
+    },
+    "&::-webkit-scrollbar-thumb": {
+      cursor: "pointer",
+      borderRadius: theme.shape.borderRadius / 2,
+      background: theme.palette.primary.main,
+      transition: "color 0.2s ease"
+    },
+    "&::-webkit-scrollbar-thumb:window-inactive": {
+      background: theme.palette.primary.main
+    },
+    "&::-webkit-scrollbar-thumb:hover": {
+      background: theme.palette.primary.light
+    }
+  };
+};
+
 exports.default = _default;
 
 /***/ })

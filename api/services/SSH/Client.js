@@ -3,16 +3,16 @@ const EventEmitter = require("events");
 const { devicesOperations, devicesSelectors } = require("../../state/devices");
 
 class Client extends EventEmitter {
-  constructor(di, db, ws, getState, dispatch, deviceId, client, info) {
+  constructor(di, ws, getState, dispatch, devicesRepo, client, info) {
     super();
 
     this.di = di;
-    this.db = db;
     this.ws = ws;
     this.getState = getState;
     this.dispatch = dispatch;
+    this.devicesRepo = devicesRepo;
 
-    this.deviceId = deviceId;
+    this.deviceId = null;
     this.client = client;
     this.info = info;
 
@@ -31,11 +31,11 @@ class Client extends EventEmitter {
 
   // eslint-disable-next-line lodash/prefer-constant
   static get $requires() {
-    return ["di", "db", "ws", "getState", "dispatch"];
+    return ["di", "ws", "getState", "dispatch", "repository.devices"];
   }
 
   async start() {
-    debug(`Starting SSH client for ${this.deviceId}`);
+    debug(`Starting SSH client for new device`);
   }
 
   async stop() {
@@ -55,6 +55,7 @@ class Client extends EventEmitter {
         await this.dispatch(
           devicesOperations.remove({ deviceId: this.deviceId })
         );
+        this.deviceId = null;
       }
     }
   }
@@ -68,18 +69,21 @@ class Client extends EventEmitter {
     if (ctx.method === "password") {
       if (ctx.username) {
         try {
-          await this.dispatch(
-            devicesOperations.create({
-              deviceId: this.deviceId,
-              client: this,
-              username: ctx.username.toString(),
-              address: this.info.ip,
-              remoteUsername: "",
-              remotePassword: ""
-            })
-          );
-          debug(`SSH device ${this.deviceId} accepted`);
-          return ctx.accept();
+          const info = await this.devicesRepo.authenticate(ctx);
+          if (info) {
+            this.deviceId = info.device.id;
+            await this.dispatch(
+              devicesOperations.create({
+                deviceId: this.deviceId,
+                userId: info.user.id,
+                client: this,
+                username: ctx.username.toString(),
+                address: this.info.ip
+              })
+            );
+            debug(`SSH device ${this.deviceId} accepted`);
+            return ctx.accept();
+          }
         } catch (error) {
           console.error(error);
         }

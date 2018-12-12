@@ -130,7 +130,7 @@ class WebSocket extends EventEmitter {
     if (!device) return null;
 
     return {
-      name: device.get("username")
+      address: device.get("address")
     };
   }
 
@@ -287,6 +287,7 @@ class WebSocket extends EventEmitter {
       devicesSelectors
         .getDevicesMap(this.getState())
         .forEach((device, deviceId) => {
+          if (device.get("userId") !== userId) return;
           if (device.get("forwardedPort") !== constants.commandPort) return;
 
           let data = this.getDevice(deviceId);
@@ -338,7 +339,10 @@ class WebSocket extends EventEmitter {
       if (
         !devicesSelectors.hasDevice(this.getState(), {
           deviceId: msg.deviceId
-        })
+        }) ||
+        !devicesSelectors.getUserId(this.getState(), {
+          deviceId: msg.deviceId
+        }) !== userId
       ) {
         return;
       }
@@ -346,7 +350,6 @@ class WebSocket extends EventEmitter {
       const result = await this.dispatch(
         terminalsOperations.create({
           deviceId: msg.deviceId,
-          userId,
           username: msg.username,
           password: msg.password
         })
@@ -496,7 +499,10 @@ class WebSocket extends EventEmitter {
           if (
             devicesSelectors.getForwardedPort(this.getState(), {
               deviceId
-            }) === constants.commandPort
+            }) === constants.commandPort &&
+            devicesSelectors.getUserId(this.getState(), {
+              deviceId
+            }) === userId
           ) {
             this.emitDevice(userId, deviceId); // update device on user
           }

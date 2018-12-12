@@ -33,7 +33,8 @@ class MyApp extends App {
       await store.dispatch(
         appOperations.create({
           status: req && req.getAuthStatus && (await req.getAuthStatus()),
-          googleMapsKey: req && req.googleMapsKey
+          sshHost: query && query.sshHost,
+          sshPort: query && query.sshPort
         })
       );
     }

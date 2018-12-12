@@ -5,6 +5,8 @@ import l10n from "../../../common/locales";
 /* State Shape
 Map({
   created: Number, // timestamp
+  sshHost: String,
+  sshPort: Number,
   di: DiContainer,
   locale: String,
   statusCode: Number, // current HTTP status code
@@ -17,6 +19,24 @@ const createdReducer = (state = Date.now(), action) => {
   switch (action.type) {
     case types.CREATE:
       if (!_.isUndefined(action.created)) return action.created;
+      break;
+  }
+  return state;
+};
+
+const sshHostReducer = (state = "localhost", action) => {
+  switch (action.type) {
+    case types.CREATE:
+      if (!_.isUndefined(action.sshHost)) return action.sshHost;
+      break;
+  }
+  return state;
+};
+
+const sshPortReducer = (state = 22, action) => {
+  switch (action.type) {
+    case types.CREATE:
+      if (!_.isUndefined(action.sshPort)) return action.sshPort;
       break;
   }
   return state;
@@ -70,6 +90,8 @@ const isConnectedReducer = (state = false, action) => {
 
 const reducer = combineReducers({
   created: createdReducer,
+  sshHost: sshHostReducer,
+  sshPort: sshPortReducer,
   di: diReducer,
   locale: localeReducer,
   statusCode: statusCodeReducer,

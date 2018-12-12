@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { List } from "immutable";
+import { List, Map } from "immutable";
 import { FormattedMessage, intlShape } from "react-intl";
 import { withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -10,9 +10,12 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
 import Checkbox from "@material-ui/core/Checkbox";
 import EditDeviceModal from "../../containers/Devices/EditDeviceModal";
 import ConfirmModal from "../Modals/ConfirmModal";
+import OpenTerminalIcon from "@material-ui/icons/OpenInBrowser";
+import OpenBrowserIcon from "@material-ui/icons/Language";
 
 const styles = () => ({
   buttons: {
@@ -25,8 +28,9 @@ const styles = () => ({
   button: {
     margin: "0.5rem"
   },
-  checkboxField: {
-    width: 1
+  collapsing: {
+    width: 1,
+    whiteSpace: ["nowrap", "!important"]
   },
   checkbox: {
     padding: "0.5rem 1rem"
@@ -38,7 +42,10 @@ class Devices extends React.Component {
     intl: intlShape.isRequired,
     theme: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
+    sshHost: PropTypes.string.isRequired,
+    sshPort: PropTypes.number.isRequired,
     devices: PropTypes.instanceOf(List).isRequired,
+    online: PropTypes.instanceOf(Map).isRequired,
     isAllSelected: PropTypes.bool.isRequired,
     isAllDeselected: PropTypes.bool.isRequired,
     onLoad: PropTypes.func.isRequired,
@@ -124,7 +131,7 @@ class Devices extends React.Component {
             <TableRow>
               <TableCell
                 padding="none"
-                classes={{ root: this.props.classes.checkboxField }}
+                classes={{ root: this.props.classes.collapsing }}
               >
                 <Checkbox
                   checked={
@@ -151,47 +158,65 @@ class Devices extends React.Component {
           </TableHead>
           <TableBody>
             {/* eslint-disable-next-line lodash/prefer-lodash-method */}
-            {this.props.devices.map((row, index) => (
-              <TableRow key={`row-${index}`}>
-                <TableCell
-                  padding="none"
-                  className={classNames(
-                    index % 2 ? "even" : "odd",
-                    row.get("isSelected") && "selected"
-                  )}
-                  classes={{ root: this.props.classes.checkboxField }}
-                >
-                  <Checkbox
-                    checked={!!row.get("isSelected")}
-                    classes={{ root: this.props.classes.checkbox }}
-                    onChange={() => this.handleToggle(row.get("id"))}
-                    value="on"
-                  />
-                </TableCell>
-                <TableCell
-                  className={classNames(
-                    index % 2 ? "even" : "odd",
-                    row.get("isSelected") && "selected"
-                  )}
-                  component="th"
-                  scope="row"
-                >
-                  {row.get("name")}
-                </TableCell>
-                <TableCell
-                  className={classNames(
-                    index % 2 ? "even" : "odd",
-                    row.get("isSelected") && "selected"
-                  )}
-                />
-                <TableCell
-                  className={classNames(
-                    index % 2 ? "even" : "odd",
-                    row.get("isSelected") && "selected"
-                  )}
-                />
-              </TableRow>
-            ))}
+            {this.props.devices.map((row, index) => {
+              const info = this.props.online.get(row.get("id"));
+              return (
+                <TableRow key={`row-${index}`}>
+                  <TableCell
+                    padding="none"
+                    className={classNames(
+                      index % 2 ? "even" : "odd",
+                      row.get("isSelected") && "selected"
+                    )}
+                    classes={{ root: this.props.classes.collapsing }}
+                  >
+                    <Checkbox
+                      checked={!!row.get("isSelected")}
+                      classes={{ root: this.props.classes.checkbox }}
+                      onChange={() => this.handleToggle(row.get("id"))}
+                      value="on"
+                    />
+                    <IconButton color="inherit" disabled={!info}>
+                      <OpenTerminalIcon />
+                    </IconButton>
+                    <IconButton color="inherit" disabled={!info}>
+                      <OpenBrowserIcon />
+                    </IconButton>
+                  </TableCell>
+                  <TableCell
+                    className={classNames(
+                      index % 2 ? "even" : "odd",
+                      row.get("isSelected") && "selected"
+                    )}
+                    component="th"
+                    scope="row"
+                  >
+                    {row.get("name")}
+                  </TableCell>
+                  <TableCell
+                    className={classNames(
+                      index % 2 ? "even" : "odd",
+                      row.get("isSelected") && "selected"
+                    )}
+                  >
+                    {info
+                      ? info.get("address")
+                      : this.props.intl.formatMessage({
+                          id: "DEVICES_OFFLINE_LABEL"
+                        })}
+                  </TableCell>
+                  <TableCell
+                    className={classNames(
+                      index % 2 ? "even" : "odd",
+                      row.get("isSelected") && "selected"
+                    )}
+                  >
+                    ssh -p {this.props.sshPort} -R 22:localhost:22 -N{" "}
+                    {row.get("name")}@{this.props.sshHost}
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
 

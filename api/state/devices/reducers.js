@@ -7,6 +7,7 @@ const types = require("./types");
 /* State Shape
 Map({
   deviceId: Map({
+    userId: String,
     client: Client, // ssh incoming client
     username: String,
     address: String,
@@ -16,6 +17,16 @@ Map({
   })
 })
 */
+
+const userIdReducer = (state = null, action) => {
+  switch (action.type) {
+    case types.CREATE:
+    case types.SET:
+      if (!_.isUndefined(action.userId)) return action.userId;
+      break;
+  }
+  return state;
+};
 
 const clientReducer = (state = null, action) => {
   switch (action.type) {
@@ -78,6 +89,7 @@ const forwardedPortReducer = (state = null, action) => {
 };
 
 const deviceReducer = combineReducers({
+  userId: userIdReducer,
   client: clientReducer,
   username: usernameReducer,
   address: addressReducer,
