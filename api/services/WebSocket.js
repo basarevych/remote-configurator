@@ -162,6 +162,7 @@ class WebSocket extends EventEmitter {
     let auth = terminal.get("auth");
     return {
       deviceId: terminal.get("deviceId"),
+      whenCreated: terminal.get("whenCreated"),
       name: terminal.get("name"),
       isConnecting: terminal.get("isConnecting"),
       isWaiting: terminal.get("isWaiting"),
@@ -340,7 +341,7 @@ class WebSocket extends EventEmitter {
         !devicesSelectors.hasDevice(this.getState(), {
           deviceId: msg.deviceId
         }) ||
-        !devicesSelectors.getUserId(this.getState(), {
+        devicesSelectors.getUserId(this.getState(), {
           deviceId: msg.deviceId
         }) !== userId
       ) {
@@ -350,6 +351,7 @@ class WebSocket extends EventEmitter {
       const result = await this.dispatch(
         terminalsOperations.create({
           deviceId: msg.deviceId,
+          userId,
           username: msg.username,
           password: msg.password
         })

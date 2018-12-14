@@ -78,9 +78,10 @@ module.exports = {
     }
   },
   overrides: {
-    MuiDialog: {
-      paper: {
-        background: paperGradient
+    MuiPaper: {
+      root: {
+        background: paperGradient,
+        border: `1px solid ${bgNormal}`
       }
     },
     MuiTableRow: {
@@ -133,6 +134,13 @@ module.exports = {
         "&$containedSecondary": {
           background: [darken(secondary, 0.5), "!important"],
           color: [darken(textContrast, 0.2), "!important"]
+        }
+      }
+    },
+    MuiIconButton: {
+      disabled: {
+        "&:not($colorPrimary):not($colorSecondary)": {
+          color: [textDisabled, "!important"]
         }
       }
     },

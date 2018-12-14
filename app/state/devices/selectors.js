@@ -26,6 +26,17 @@ export const getOnline = createSelector(
   }
 );
 
+export const getName = (state, props) => {
+  // eslint-disable-next-line lodash/prefer-lodash-method
+  let device = state
+    .getIn(["devices", "list"])
+    .find(item => item.get("id") === props.deviceId);
+  return device ? device.get("name") : "";
+};
+
+export const getAddress = (state, props) =>
+  state.getIn(["devices", "online", props.deviceId, "address"]) || "";
+
 export const getSelected = state =>
   // eslint-disable-next-line lodash/prefer-lodash-method
   state.getIn(["devices", "list"]).filter(item => !!item.get("isSelected"));

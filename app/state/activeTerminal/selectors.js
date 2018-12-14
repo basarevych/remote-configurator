@@ -6,7 +6,7 @@ export const isCollectingCredentials = state =>
 export const getAuthInfo = state => {
   // eslint-disable-next-line lodash/prefer-lodash-method
   let terminals = state
-    .get("terminals")
+    .getIn(["terminals", "online"])
     .filter(item => !!item.getIn(["auth", "prompts"]));
 
   if (!terminals.size) {

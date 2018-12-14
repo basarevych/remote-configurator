@@ -11,6 +11,8 @@ const mapStateToProps = (state, props) => {
     id: terminal ? props.terminalId : null,
     isConnecting: terminal ? terminal.get("isConnecting") : false,
     isConnected: terminal ? terminal.get("isConnected") : false,
+    name: terminalsSelectors.getTerminalName(state, props),
+    address: terminalsSelectors.getTerminalAddress(state, props),
     status: terminal ? terminal.get("status") : null,
     history: terminal
       ? historiesSelectors.getList(state, props) || List([])
@@ -18,20 +20,24 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, props) => {
   return {
-    onInput: (terminalId, data) =>
-      dispatch(terminalsOperations.sendInput({ terminalId, data })),
-    onResize: (terminalId, cols, rows, width, height) =>
+    onInput: data =>
+      dispatch(
+        terminalsOperations.sendInput({ terminalId: props.terminalId, data })
+      ),
+    onResize: (cols, rows, width, height) =>
       dispatch(
         terminalsOperations.sendResize({
-          terminalId,
+          terminalId: props.terminalId,
           cols,
           rows,
           width,
           height
         })
-      )
+      ),
+    onClose: () =>
+      dispatch(terminalsOperations.kill({ terminalId: props.terminalId }))
   };
 };
 

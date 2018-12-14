@@ -26,6 +26,7 @@ class DevicesRepository extends EventEmitter {
   }
 
   async authenticate(context) {
+    // eslint-disable-next-line lodash/prefer-lodash-method
     const devices = await this.db.DeviceModel.find(
       this.db.DeviceModel.conditions({ name: context.username.toString() })
     );

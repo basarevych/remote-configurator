@@ -12,6 +12,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import Checkbox from "@material-ui/core/Checkbox";
+import Tooltip from "@material-ui/core/Tooltip";
 import EditDeviceModal from "../../containers/Devices/EditDeviceModal";
 import ConfirmModal from "../Modals/ConfirmModal";
 import OpenTerminalIcon from "@material-ui/icons/OpenInBrowser";
@@ -27,6 +28,9 @@ const styles = () => ({
   },
   button: {
     margin: "0.5rem"
+  },
+  tooltip: {
+    fontSize: "1rem"
   },
   collapsing: {
     width: 1,
@@ -54,7 +58,9 @@ class Devices extends React.Component {
     onDelete: PropTypes.func.isRequired,
     onSetSelected: PropTypes.func.isRequired,
     onSelectAll: PropTypes.func.isRequired,
-    onDeselectAll: PropTypes.func.isRequired
+    onDeselectAll: PropTypes.func.isRequired,
+    onOpenTerminal: PropTypes.func.isRequired,
+    onOpenBrowser: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -176,12 +182,44 @@ class Devices extends React.Component {
                       onChange={() => this.handleToggle(row.get("id"))}
                       value="on"
                     />
-                    <IconButton color="inherit" disabled={!info}>
-                      <OpenTerminalIcon />
-                    </IconButton>
-                    <IconButton color="inherit" disabled={!info}>
-                      <OpenBrowserIcon />
-                    </IconButton>
+                    <Tooltip
+                      disableFocusListener
+                      classes={{ tooltip: this.props.classes.tooltip }}
+                      title={this.props.intl.formatMessage({
+                        id: "DEVICES_OPEN_TERMINAL_TIP"
+                      })}
+                    >
+                      <span>
+                        <IconButton
+                          color="inherit"
+                          disabled={!info}
+                          onClick={() =>
+                            this.props.onOpenTerminal(row.get("id"))
+                          }
+                        >
+                          <OpenTerminalIcon />
+                        </IconButton>
+                      </span>
+                    </Tooltip>
+                    <Tooltip
+                      disableFocusListener
+                      classes={{ tooltip: this.props.classes.tooltip }}
+                      title={this.props.intl.formatMessage({
+                        id: "DEVICES_OPEN_BROWSER_TIP"
+                      })}
+                    >
+                      <span>
+                        <IconButton
+                          color="inherit"
+                          disabled={!info}
+                          onClick={() =>
+                            this.props.onOpenBrowser(row.get("id"))
+                          }
+                        >
+                          <OpenBrowserIcon />
+                        </IconButton>
+                      </span>
+                    </Tooltip>
                   </TableCell>
                   <TableCell
                     className={classNames(

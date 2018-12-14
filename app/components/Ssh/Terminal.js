@@ -1,12 +1,14 @@
 import React from "react";
+import Router from "next/router";
 import PropTypes from "prop-types";
 import { List } from "immutable";
 import { AutoSizer } from "react-virtualized";
 import { FormattedMessage } from "react-intl";
 import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import XTerm from "../../containers/Ssh/XTerm";
 import grey from "@material-ui/core/colors/grey";
@@ -19,28 +21,31 @@ import yellow from "@material-ui/core/colors/yellow";
 import styledScroll from "../../styles/styledScroll";
 
 const styles = theme => ({
+  container: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    position: "relative"
+  },
+  header: {
+    marginLeft: "1rem",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center"
+  },
+  headerText: {
+    flex: 1
+  },
   placeholder: {
-    height: 500,
+    flex: 1,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center"
   },
-  close: {
-    zIndex: 100,
-    position: "absolute",
-    right: 0,
-    top: 0,
-    minWidth: "unset",
-    borderTopLeftRadius: 0,
-    borderBottomRightRadius: 0
-  },
   terminal: {
-    position: "relative",
-    background: theme.sidebar.background,
-    height: 500,
+    flex: 1,
     padding: "1rem",
-    marginBottom: "0.5rem",
     borderRadius: theme.shape.borderRadius,
     "& .xterm .xterm-viewport": styledScroll(theme)
   }
@@ -53,6 +58,8 @@ class Terminal extends React.Component {
     terminalId: PropTypes.string,
     isConnecting: PropTypes.bool,
     isConnected: PropTypes.bool,
+    name: PropTypes.string,
+    address: PropTypes.string,
     status: PropTypes.string,
     history: PropTypes.instanceOf(List).isRequired,
     onInput: PropTypes.func.isRequired,
@@ -73,6 +80,7 @@ class Terminal extends React.Component {
     this.handleKey = this.handleKey.bind(this);
     this.handlePaste = this.handlePaste.bind(this);
     this.handleResize = this.handleResize.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -93,16 +101,21 @@ class Terminal extends React.Component {
   }
 
   handleKey(data) {
-    if (this.props.isConnected) this.props.onInput(this.props.terminalId, data);
+    if (this.props.isConnected) this.props.onInput(data);
   }
 
   handlePaste(data) {
-    if (this.props.isConnected) this.props.onInput(this.props.terminalId, data);
+    if (this.props.isConnected) this.props.onInput(data);
   }
 
   handleResize(cols, rows, width, height) {
     if (this.props.isConnected && cols && rows)
-      this.props.onResize(this.props.terminalId, cols, rows, width, height);
+      this.props.onResize(cols, rows, width, height);
+  }
+
+  handleClose() {
+    this.props.onClose();
+    Router.push("/");
   }
 
   updateHistory() {
@@ -151,15 +164,6 @@ class Terminal extends React.Component {
   renderTerminal() {
     return (
       <div className={this.props.classes.terminal}>
-        <Button
-          variant="contained"
-          color="primary"
-          size="small"
-          className={this.props.classes.close}
-          onClick={this.props.onClose}
-        >
-          <CloseIcon />
-        </Button>
         <AutoSizer>
           {({ width, height }) => (
             <XTerm
@@ -206,11 +210,20 @@ class Terminal extends React.Component {
 
   render() {
     return (
-      <div ref={this.container}>
+      <Paper className={this.props.classes.container}>
+        <div className={this.props.classes.header}>
+          <Typography variant="h5" className={this.props.classes.headerText}>
+            {this.props.name}&nbsp;
+            {!!this.props.address && "(" + this.props.address + ")"}
+          </Typography>
+          <IconButton color="inherit" onClick={this.handleClose}>
+            <CloseIcon />
+          </IconButton>
+        </div>
         {this.props.isConnected
           ? this.renderTerminal()
           : this.renderPlaceholder()}
-      </div>
+      </Paper>
     );
   }
 }

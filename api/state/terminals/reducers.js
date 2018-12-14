@@ -9,6 +9,7 @@ Map({
   terminalId: Map({
     deviceId: String,
     userId: String,
+    whenCreated: Number,
     client: Terminal,
     name: String,
     counter: Number,
@@ -102,6 +103,10 @@ const userIdReducer = (state = null, action) => {
   return state;
 };
 
+const whenCreatedReducer = (state = Date.now()) => {
+  return state;
+};
+
 const clientReducer = (state = null, action) => {
   switch (action.type) {
     case types.CREATE:
@@ -175,6 +180,7 @@ const statusReducer = (state = "", action) => {
 const terminalReducer = combineReducers({
   deviceId: deviceIdReducer,
   userId: userIdReducer,
+  whenCreated: whenCreatedReducer,
   client: clientReducer,
   name: nameReducer,
   counter: counterReducer,

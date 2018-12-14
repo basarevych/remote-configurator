@@ -1,8 +1,10 @@
+import Router from "next/router";
 import io from "socket.io-client";
 import { appOperations, appSelectors } from "../state/app";
 import { authOperations } from "../state/auth";
 import { devicesOperations } from "../state/devices";
 import { terminalsOperations } from "../state/terminals";
+import { activeTerminalSelectors } from "../state/activeTerminal";
 import { historiesOperations } from "../state/histories";
 import constants from "../../common/constants";
 import pkg from "../../package.json";
@@ -158,6 +160,16 @@ class Socket {
       }
 
       await this.dispatch(terminalsOperations.set(msg));
+      if (
+        Router.pathname === "/" &&
+        _.get(msg, ["data", "deviceId"]) ===
+          activeTerminalSelectors.getDeviceId(this.getState())
+      ) {
+        Router.push({
+          pathname: "/terminal",
+          query: { terminalId: msg.terminalId }
+        });
+      }
     } catch (error) {
       console.error(error);
     }
@@ -173,6 +185,12 @@ class Socket {
         );
       }
 
+      if (
+        Router.pathname === "/terminal" &&
+        _.get(Router, ["query", "terminalId"]) === msg.terminalId
+      ) {
+        Router.push("/");
+      }
       await this.dispatch(terminalsOperations.remove(msg));
     } catch (error) {
       console.error(error);

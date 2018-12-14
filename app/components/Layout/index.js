@@ -61,6 +61,7 @@ const styles = theme => ({
   },
   sidebar: _.merge(
     {
+      border: "none",
       background: theme.sidebar.background,
       overflowX: "hidden",
       width: theme.sidebar.computerWidth * theme.spacing.unit,

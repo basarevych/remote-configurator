@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Map } from "immutable";
 import isRouteAllowed from "../../../common/isRouteAllowed";
 import { intlShape, FormattedMessage } from "react-intl";
 import { withStyles } from "@material-ui/core/styles";
@@ -9,6 +10,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import DevicesIcon from "@material-ui/icons/DeviceHub";
 import UsersIcon from "@material-ui/icons/People";
+import TerminalIcon from "@material-ui/icons/OpenInBrowser";
 import constants from "../../../common/constants";
 
 const styles = theme => ({
@@ -81,6 +83,7 @@ class Sidebar extends React.Component {
     theme: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
     roles: PropTypes.array.isRequired,
+    terminals: PropTypes.instanceOf(Map).isRequired,
     onMenuClick: PropTypes.func.isRequired,
     onSignOut: PropTypes.func.isRequired
   };
@@ -101,7 +104,7 @@ class Sidebar extends React.Component {
     );
   }
 
-  renderItem(path) {
+  renderItem({ path, text, query }) {
     if (
       !path ||
       !constants.pages[path] ||
@@ -115,17 +118,22 @@ class Sidebar extends React.Component {
 
     return (
       <MenuItem
-        key={`page-${path}`}
+        key={`page-${path}-${query ? query.terminalId : "none"}`}
         classes={{
           root: this.props.classes.item,
           selected: this.props.classes.itemSelected
         }}
         selected={this.props.router.pathname === path}
-        onClick={() => this.handleMenuClick(path)}
+        onClick={() => this.handleMenuClick({ pathname: path, query })}
       >
         {icon === "devices" && (
           <ListItemIcon>
             <DevicesIcon />
+          </ListItemIcon>
+        )}
+        {icon === "terminal" && (
+          <ListItemIcon>
+            <TerminalIcon />
           </ListItemIcon>
         )}
         {icon === "users" && (
@@ -137,19 +145,34 @@ class Sidebar extends React.Component {
         {!!menu && (
           <ListItemText primary={this.props.intl.formatMessage({ id: menu })} />
         )}
+        {!!text && <ListItemText primary={text} />}
       </MenuItem>
     );
   }
 
   render() {
+    // eslint-disable-next-line lodash/prefer-lodash-method
+    const terminals = this.props.terminals
+      .map((terminal, terminalId) => _.assign(terminal.toJS(), { terminalId }))
+      .toList()
+      .sort((a, b) => a.whenCreated - b.whenCreated)
+      .toJS();
+
     return (
       <div className={this.props.classes.root}>
         <MenuList
           classes={{ root: this.props.classes.list }}
           subheader={this.renderHeader()}
         >
-          {this.renderItem("/")}
-          {this.renderItem("/users")}
+          {this.renderItem({ path: "/" })}
+          {_.map(terminals, terminal =>
+            this.renderItem({
+              path: "/terminal",
+              text: terminal.name,
+              query: { terminalId: terminal.terminalId }
+            })
+          )}
+          {this.renderItem({ path: "/users" })}
         </MenuList>
         <div className={this.props.classes.grow} />
         <div>

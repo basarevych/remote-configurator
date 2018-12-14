@@ -72,6 +72,10 @@ const deviceIdReducer = (state = null, action) => {
   return state;
 };
 
+const whenCreatedReducer = (state = Date.now()) => {
+  return state;
+};
+
 const nameReducer = (state = "", action) => {
   switch (action.type) {
     case types.CREATE:
@@ -124,6 +128,7 @@ const statusReducer = (state = "", action) => {
 
 const terminalReducer = combineReducers({
   deviceId: deviceIdReducer,
+  whenCreated: whenCreatedReducer,
   name: nameReducer,
   isConnecting: isConnectingReducer,
   isWaiting: isWaitingReducer,

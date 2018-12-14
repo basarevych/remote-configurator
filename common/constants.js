@@ -17,11 +17,9 @@ module.exports = {
       menu: "MENU_DEVICES",
       title: "TITLE_DEVICES"
     },
-    "/device": {
-      page: "/device",
-      icon: "device",
-      menu: "MENU_DEVICE",
-      title: "TITLE_DEVICE"
+    "/terminal": {
+      page: "/terminal",
+      icon: "terminal"
     },
     "/users": {
       page: "/users",

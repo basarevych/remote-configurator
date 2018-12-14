@@ -2,7 +2,6 @@ const debug = require("debug")("app:ssh");
 const fs = require("fs-extra");
 const ssh2 = require("ssh2");
 const path = require("path");
-const uuid = require("uuid");
 const generateRSAKeypair = require("generate-rsa-keypair");
 const EventEmitter = require("events");
 

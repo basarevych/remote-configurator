@@ -3,10 +3,12 @@ import { injectIntl } from "react-intl";
 import { withRouter } from "next/router";
 import SidebarComponent from "../../components/Layout/Sidebar";
 import { authSelectors, authOperations } from "../../state/auth";
+import { terminalsSelectors } from "../../state/terminals";
 
 const mapStateToProps = state => {
   return {
-    roles: authSelectors.getRoles(state)
+    roles: authSelectors.getRoles(state),
+    terminals: terminalsSelectors.getTerminalsMap(state)
   };
 };
 

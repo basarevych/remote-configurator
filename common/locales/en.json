@@ -13,6 +13,8 @@
   "DEVICES_EDIT_BUTTON": "Edit Device",
   "DEVICES_DELETE_BUTTON": "Delete Devices",
   "DEVICES_OFFLINE_LABEL": "Device is offline",
+  "DEVICES_OPEN_TERMINAL_TIP": "Open terminal",
+  "DEVICES_OPEN_BROWSER_TIP": "Open browser",
   "EDIT_DEVICE_TITLE_CREATE": "Create Device",
   "EDIT_DEVICE_TITLE_EDIT": "Edit Device",
   "EDIT_DEVICE_NAME_LABEL": "Name",
