@@ -419,12 +419,12 @@
   },
   "chunks": {
     "byName": {
-      "static/YzJ1tJG8Y_VrxoU6Qjy~c/pages/_app.js": 0,
-      "static/YzJ1tJG8Y_VrxoU6Qjy~c/pages/_document.js": 1,
-      "static/YzJ1tJG8Y_VrxoU6Qjy~c/pages/_error.js": 2,
-      "static/YzJ1tJG8Y_VrxoU6Qjy~c/pages/index.js": 3,
-      "static/YzJ1tJG8Y_VrxoU6Qjy~c/pages/terminal.js": 4,
-      "static/YzJ1tJG8Y_VrxoU6Qjy~c/pages/users.js": 5
+      "static/IzJIrPK1slsNvInH4w7ER/pages/_app.js": 0,
+      "static/IzJIrPK1slsNvInH4w7ER/pages/_document.js": 1,
+      "static/IzJIrPK1slsNvInH4w7ER/pages/_error.js": 2,
+      "static/IzJIrPK1slsNvInH4w7ER/pages/index.js": 3,
+      "static/IzJIrPK1slsNvInH4w7ER/pages/terminal.js": 4,
+      "static/IzJIrPK1slsNvInH4w7ER/pages/users.js": 5
     },
     "bySource": {},
     "usedIds": [

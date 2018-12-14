@@ -94,7 +94,6 @@ class MyApp extends App {
 
   render() {
     const { router, Component, pageProps } = this.props;
-    const url = createUrl(router);
     const path = router.pathname;
     const title = constants.pages[path] && constants.pages[path].title;
 
@@ -116,12 +115,7 @@ class MyApp extends App {
                 >
                   <CssBaseline />
                   <Layout title={title}>
-                    <Component
-                      {...pageProps}
-                      url={url}
-                      store={this.store}
-                      pageContext={this.pageContext}
-                    />
+                    <Component {...pageProps} pageContext={this.pageContext} />
                   </Layout>
                 </MuiThemeProvider>
               </JssProvider>

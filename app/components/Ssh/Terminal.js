@@ -25,7 +25,8 @@ const styles = theme => ({
     flex: 1,
     display: "flex",
     flexDirection: "column",
-    position: "relative"
+    position: "relative",
+    background: "#000000"
   },
   header: {
     marginLeft: "1rem",
@@ -178,12 +179,12 @@ class Terminal extends React.Component {
                 fontSize: 14,
                 allowTransparency: true,
                 theme: {
-                  background: this.props.theme.sidebar.background,
+                  background: "#000000",
                   foreground: grey[100],
                   cursor: grey[50],
-                  cursorAccent: this.props.theme.sidebar.background,
+                  cursorAccent: grey[200],
                   //selection: theme._lightBlue50,
-                  black: this.props.theme.sidebar.background,
+                  black: "#000000",
                   blue: blue[400],
                   cyan: cyan[400],
                   green: green[400],

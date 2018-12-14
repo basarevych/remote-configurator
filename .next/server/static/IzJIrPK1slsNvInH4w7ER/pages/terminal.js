@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 167);
+/******/ 	return __webpack_require__(__webpack_require__.s = 177);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -265,12 +265,7 @@ var _default = _reducers.default;
 exports.default = _default;
 
 /***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
-module.exports = require("redux-form/immutable");
-
-/***/ }),
+/* 11 */,
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -745,12 +740,7 @@ module.exports = function isRouteAllowed(path) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 28 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/Button");
-
-/***/ }),
+/* 28 */,
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4565,7 +4555,7 @@ exports.getTerminalAddress = getTerminalAddress;
 /* 61 */
 /***/ (function(module) {
 
-module.exports = {"name":"remote-configurator","version":"0.1.0","private":true,"dependencies":{"@date-io/moment":"~0.0.2","@material-ui/core":"~3.6.1","@material-ui/icons":"~3.0.1","@zeit/next-bundle-analyzer":"~0.1.2","@zeit/next-css":"~1.0.1","base64util":"~2.0.0-f","bcrypt":"~3.0.2","body-parser":"~1.18.3","classnames":"~2.2.6","compression":"~1.7.3","connect-loki":"~1.1.0","cookie-parser":"~1.4.3","cors":"~2.8.5","csurf":"~1.9.0","debug":"~4.1.0","dotenv":"~6.1.0","express":"~4.16.4","express-graphql":"~0.7.1","express-session":"~1.15.6","fs-extra":"~7.0.1","generate-rsa-keypair":"~0.1.2","graphql":"14.0.2","graphql-tools":"~4.0.3","immutable":"~4.0.0-rc.12","injectt":"~0.1.1","intl":"~1.2.5","intl-locales-supported":"~1.0.0","intl-messageformat":"~2.2.0","isomorphic-unfetch":"~3.0.0","json-immutable":"~0.4.0","jss":"~9.8.7","jss-extend":"~6.2.0","lodash":"~4.17.11","lokijs":"~1.5.5","lru-cache":"~5.1.1","material-ui-pickers":"~2.0.4","moment":"~2.22.2","moment-timezone":"~0.5.23","morgan":"~1.9.1","next":"~7.0.2","next-compose-plugins":"~2.1.1","next-progressbar":"~1.0.0","raf":"~3.4.1","react":"~16.6.3","react-dom":"~16.6.3","react-intl":"~2.7.2","react-jss":"~8.6.1","react-redux":"~5.1.1","react-swipeable-views":"~0.13.0","react-virtualized":"~9.21.0","redux":"~4.0.1","redux-devtools-extension":"~2.13.7","redux-form":"~7.4.2","redux-immutable":"~4.0.0","redux-thunk":"~2.3.0","reselect":"~4.0.0","serve-favicon":"~2.5.0","serviceworker-webpack-plugin":"~1.0.1","socket.io":"~2.2.0","ssh2":"~0.6.1","svg-inline-loader":"~0.8.0","utf8":"~3.0.0","uuid":"~3.3.2","validator":"~10.9.0","webpack":"4.20.2","xterm":"~3.8.0"},"devDependencies":{"@babel/core":"7.0.0","babel-core":"7.0.0-bridge.0","babel-eslint":"~10.0.1","babel-jest":"~23.6.0","babel-plugin-lodash":"~3.3.4","css-mqpacker":"~7.0.0","enzyme":"~3.7.0","enzyme-adapter-react-16":"~1.7.0","eslint":"~5.9.0","eslint-plugin-lodash":"~5.0.0","eslint-plugin-react":"~7.11.1","jest":"~23.6.0","jsdom":"~13.0.0","jsdom-global":"~3.0.2","postcss-clean":"~1.1.0","postcss-loader":"~3.0.0","postcss-preset-env":"~6.4.0","postcss-url":"~8.0.0","prop-types":"~15.6.2","supertest":"~3.3.0","webfontloader":"~1.6.28"},"scripts":{"lint":"eslint . --max-warnings=0","test":"jest . --no-cache --forceExit","build":"node ./bin/prepare-build && env NODE_ENV=production TMPDIR=$PWD/.tmp next build","export":"env NODE_ENV=production TMPDIR=$PWD/.tmp next export","dev":"node ./bin/prepare-build && env NODE_ENV=development node ./bin/www","start":"env NODE_ENV=production node ./bin/www"}};
+module.exports = {"name":"remote-configurator","version":"0.1.0","private":true,"dependencies":{"@date-io/moment":"~0.0.2","@material-ui/core":"~3.6.2","@material-ui/icons":"~3.0.1","@zeit/next-bundle-analyzer":"~0.1.2","@zeit/next-css":"~1.0.1","base64util":"~2.0.0-f","bcrypt":"~3.0.2","body-parser":"~1.18.3","classnames":"~2.2.6","compression":"~1.7.3","connect-loki":"~1.1.0","cookie-parser":"~1.4.3","cors":"~2.8.5","csurf":"~1.9.0","debug":"~4.1.0","dotenv":"~6.2.0","express":"~4.16.4","express-graphql":"~0.7.1","express-session":"~1.15.6","fs-extra":"~7.0.1","generate-rsa-keypair":"~0.1.2","graphql":"14.0.2","graphql-tools":"~4.0.3","immutable":"~4.0.0-rc.12","injectt":"~0.1.3","intl":"~1.2.5","intl-locales-supported":"~1.0.0","intl-messageformat":"~2.2.0","isomorphic-unfetch":"~3.0.0","json-immutable":"~0.4.0","jss":"~9.8.7","jss-extend":"~6.2.0","lodash":"~4.17.11","lokijs":"~1.5.5","lru-cache":"~5.1.1","material-ui-pickers":"~2.0.4","moment":"~2.23.0","moment-timezone":"~0.5.23","morgan":"~1.9.1","next":"~7.0.2","next-compose-plugins":"~2.1.1","next-progressbar":"~1.0.0","raf":"~3.4.1","react":"~16.6.3","react-dom":"~16.6.3","react-intl":"~2.7.2","react-jss":"~8.6.1","react-redux":"~6.0.0","react-swipeable-views":"~0.13.0","react-virtualized":"~9.21.0","redux":"~4.0.1","redux-devtools-extension":"~2.13.7","redux-form":"~8.0.4","redux-immutable":"~4.0.0","redux-thunk":"~2.3.0","reselect":"~4.0.0","serve-favicon":"~2.5.0","serviceworker-webpack-plugin":"~1.0.1","socket.io":"~2.2.0","ssh2":"~0.6.1","svg-inline-loader":"~0.8.0","utf8":"~3.0.0","uuid":"~3.3.2","validator":"~10.9.0","webpack":"4.20.2","xterm":"~3.9.1"},"devDependencies":{"@babel/core":"7.0.0","babel-core":"7.0.0-bridge.0","babel-eslint":"~10.0.1","babel-jest":"~23.6.0","babel-plugin-lodash":"~3.3.4","css-mqpacker":"~7.0.0","enzyme":"~3.8.0","enzyme-adapter-react-16":"~1.7.1","eslint":"~5.10.0","eslint-plugin-lodash":"~5.1.0","eslint-plugin-react":"~7.11.1","jest":"~23.6.0","jsdom":"~13.0.0","jsdom-global":"~3.0.2","postcss-clean":"~1.1.0","postcss-loader":"~3.0.0","postcss-preset-env":"~6.5.0","postcss-url":"~8.0.0","prop-types":"~15.6.2","supertest":"~3.3.0","webfontloader":"~1.6.28"},"scripts":{"lint":"eslint . --max-warnings=0","test":"jest . --no-cache --forceExit","build":"node ./bin/prepare-build && env NODE_ENV=production TMPDIR=$PWD/.tmp next build","export":"env NODE_ENV=production TMPDIR=$PWD/.tmp next export","dev":"node ./bin/prepare-build && env NODE_ENV=development node ./bin/www","start":"env NODE_ENV=production node ./bin/www"}};
 
 /***/ }),
 /* 62 */
@@ -4710,1717 +4700,106 @@ var isConnected = function isConnected(state) {
 exports.isConnected = isConnected;
 
 /***/ }),
-/* 64 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/Dialog");
-
-/***/ }),
-/* 65 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/DialogActions");
-
-/***/ }),
-/* 66 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/DialogContent");
-
-/***/ }),
-/* 67 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/DialogTitle");
-
-/***/ }),
-/* 68 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/Grid");
-
-/***/ }),
-/* 69 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/DialogContentText");
-
-/***/ }),
-/* 70 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {
-
-var validator = __webpack_require__(71);
-/**
- * Normalizer function for Redux Form
- * takes input like "command1:param1:param2|command2:param1:param2"
- */
-
-
-module.exports = function normalize(props, options, value, prevValue, allValues
-/* prevAllValues */
-) {
-  var rules = {};
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
-
-  try {
-    for (var _iterator = _.split(options, "|")[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var rule = _step.value;
-
-      var params = _.split(_.trim(rule), ":");
-
-      var command = params.shift();
-      rules[command] = params;
-    }
-  } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion && _iterator.return != null) {
-        _iterator.return();
-      }
-    } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
-      }
-    }
-  }
-
-  var result = _.isUndefined(value) ? "" : _.toString(value);
-  var _iteratorNormalCompletion2 = true;
-  var _didIteratorError2 = false;
-  var _iteratorError2 = undefined;
-
-  try {
-    for (var _iterator2 = _.keys(rules)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-      var _command = _step2.value;
-      var i = void 0;
-      var tmp = void 0;
-
-      switch (_command) {
-        case "trim":
-          // trims the input, no params
-          tmp = [];
-          var _iteratorNormalCompletion3 = true;
-          var _didIteratorError3 = false;
-          var _iteratorError3 = undefined;
-
-          try {
-            for (var _iterator3 = _.split(_.replace(_.trim(result), /\r+/g, ""), "\n")[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-              var line = _step3.value;
-              tmp.push(_.trim(line));
-            }
-          } catch (err) {
-            _didIteratorError3 = true;
-            _iteratorError3 = err;
-          } finally {
-            try {
-              if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-                _iterator3.return();
-              }
-            } finally {
-              if (_didIteratorError3) {
-                throw _iteratorError3;
-              }
-            }
-          }
-
-          result = tmp.join("\r\n");
-          break;
-
-        case "compact":
-          // with "spaces" param compacts spaces into single space preserving new lines
-          if (_.includes(rules[_command], "spaces")) {
-            tmp = [];
-            var _iteratorNormalCompletion4 = true;
-            var _didIteratorError4 = false;
-            var _iteratorError4 = undefined;
-
-            try {
-              for (var _iterator4 = _.split(_.replace(result, /\r+/g, ""), "\n")[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                var _line = _step4.value;
-                tmp.push(_.replace(_line, /\s+/g, " "));
-              }
-            } catch (err) {
-              _didIteratorError4 = true;
-              _iteratorError4 = err;
-            } finally {
-              try {
-                if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
-                  _iterator4.return();
-                }
-              } finally {
-                if (_didIteratorError4) {
-                  throw _iteratorError4;
-                }
-              }
-            }
-
-            result = tmp.join("\r\n");
-          }
-
-          break;
-
-        case "remove":
-          // with "spaces" param removes spaces inside the line preveserving new lines
-          if (_.includes(rules[_command], "spaces")) {
-            tmp = [];
-            var _iteratorNormalCompletion5 = true;
-            var _didIteratorError5 = false;
-            var _iteratorError5 = undefined;
-
-            try {
-              for (var _iterator5 = _.split(_.replace(result, /\r+/g, ""), "\n")[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                var _line2 = _step5.value;
-                tmp.push(_.replace(_line2, /\s+/g, ""));
-              }
-            } catch (err) {
-              _didIteratorError5 = true;
-              _iteratorError5 = err;
-            } finally {
-              try {
-                if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
-                  _iterator5.return();
-                }
-              } finally {
-                if (_didIteratorError5) {
-                  throw _iteratorError5;
-                }
-              }
-            }
-
-            result = tmp.join("\r\n");
-          }
-
-          break;
-
-        case "rows":
-          // first param is the number of rows in the result (defaults to 1)
-          tmp = _.split(_.replace(result, /\r+/g, ""), "\n");
-          result = "";
-
-          for (i = 0; i < tmp.length; i++) {
-            if (i > 0 && i < (rules[_command].length ? parseInt(rules[_command][0]) : 1)) result += "\r\n";
-            result += tmp[i];
-          }
-
-          break;
-
-        case "phone":
-          // converts input to internations phone number format
-          // props of the form should have getCallingCodes() selector function
-          tmp = _.replace(result, /[^0-9]+/g, "");
-          result = "";
-          i = 0;
-          var _iteratorNormalCompletion6 = true;
-          var _didIteratorError6 = false;
-          var _iteratorError6 = undefined;
-
-          try {
-            for (var _iterator6 = props.getCallingCodes(allValues.get("country"))[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-              var code = _step6.value;
-
-              if (_.startsWith(tmp, code)) {
-                result += code + (code.length < tmp.length ? " " : "");
-                i = code.length;
-                break;
-              }
-            }
-          } catch (err) {
-            _didIteratorError6 = true;
-            _iteratorError6 = err;
-          } finally {
-            try {
-              if (!_iteratorNormalCompletion6 && _iterator6.return != null) {
-                _iterator6.return();
-              }
-            } finally {
-              if (_didIteratorError6) {
-                throw _iteratorError6;
-              }
-            }
-          }
-
-          for (; i < tmp.length; i++) {
-            if (i === 5 || i === 8 || i === 10) result += " ";
-            result += tmp[i];
-          }
-
-          if (result.length) result = "+" + result;
-          break;
-
-        case "email":
-          // normalizes email
-          result = validator.normalizeEmail(result);
-          if (result === "@") result = "";
-          break;
-
-        case "credit_card":
-          // normalizes credit card attribute set by first param ("number", "date" or "secret")
-          switch (rules[_command].length && rules[_command][0]) {
-            case "number":
-              tmp = _.replace(result, /[^0-9]+/g, "");
-              result = "";
-
-              for (i = 0; i < tmp.length; i++) {
-                if (i > 0 && !(i % 4)) result += " ";
-                result += tmp[i];
-              }
-
-              break;
-
-            case "date":
-              tmp = _.replace(result, /[^0-9]+/g, "");
-              result = tmp.slice(0, 2);
-
-              if (tmp.length > 2) {
-                result += " / ";
-                result += tmp.slice(2);
-              }
-
-              break;
-
-            case "secret":
-              result = _.replace(result, /[^0-9]+/g, "");
-              break;
-          }
-
-          break;
-      }
-    }
-  } catch (err) {
-    _didIteratorError2 = true;
-    _iteratorError2 = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-        _iterator2.return();
-      }
-    } finally {
-      if (_didIteratorError2) {
-        throw _iteratorError2;
-      }
-    }
-  }
-
-  return result;
-};
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
-
-/***/ }),
-/* 71 */
-/***/ (function(module, exports) {
-
-module.exports = require("validator");
-
-/***/ }),
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
 /* 72 */,
-/* 73 */
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */
 /***/ (function(module, exports) {
 
-module.exports = require("redux-form");
+module.exports = require("@material-ui/core/CircularProgress");
 
 /***/ }),
-/* 74 */
+/* 100 */,
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {
+
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
 
-var _reactRedux = __webpack_require__(21);
-
-var _immutable = __webpack_require__(11);
-
-var getImmutableFields = function getImmutableFields(Form) {
-  return _.difference(_.keys(Form.propTypes), _.keys(_immutable.propTypes));
-};
-
-var getBlurFields = function getBlurFields(Form) {
-  return _.transform(Form.fields, function (acc, value, key) {
-    if (value.transform || value.validate) acc.push(key);
-  }, []);
-};
-
-var _default = function _default(FormComponent, mapStateToProps, mapDispatchToProps) {
-  var Form = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)((0, _immutable.reduxForm)({
-    form: FormComponent.formName,
-    destroyOnUnmount: false,
-    immutableProps: getImmutableFields(FormComponent),
-    asyncBlurFields: getBlurFields(FormComponent),
-    asyncChangeFields: [],
-    onSubmit: FormComponent.onSubmit.bind(FormComponent),
-    onSubmitFail: FormComponent.onSubmitFail.bind(FormComponent),
-    onSubmitSuccess: FormComponent.onSubmitSuccess.bind(FormComponent),
-    onChange: FormComponent.onChange.bind(FormComponent),
-    asyncValidate: FormComponent.onValidate.bind(FormComponent)
-  })(FormComponent));
-  Form.formName = FormComponent.formName;
-  return Form;
-};
-
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
-
-/***/ }),
-/* 75 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _regenerator = _interopRequireDefault(__webpack_require__(1));
-
-var _react = _interopRequireDefault(__webpack_require__(6));
-
-var _propTypes = _interopRequireDefault(__webpack_require__(7));
-
-var _immutable = __webpack_require__(11);
-
-var _normalize = _interopRequireDefault(__webpack_require__(70));
-
-var _validate2 = _interopRequireDefault(__webpack_require__(83));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var FormComponent =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(FormComponent, _React$Component);
-
-  _createClass(FormComponent, null, [{
-    key: "getValue",
-    value: function getValue(props, name) {
-      return props.fieldValues[this.formName].get(name);
-    }
-  }, {
-    key: "onSubmit",
-    value: function onSubmit()
-    /*values, dispatch, props*/
-    {}
-  }, {
-    key: "onSubmitFail",
-    value: function onSubmitFail(error, dispatch, submitError
-    /*, props */
-    ) {
-      if (false) {}
-    }
-  }, {
-    key: "onSubmitSuccess",
-    value: function onSubmitSuccess(result
-    /*, dispatch, props */
-    ) {
-      if (false) {}
-    }
-  }, {
-    key: "onChange",
-    value: function onChange(values, dispatch, props, prevValues) {
-      if (!this.cachedErrors[props.form]) return; // remove error status of the field changed
-
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = values.keys()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var field = _step.value;
-
-          if (this.cachedErrors[props.form][field] && values.get(field) !== prevValues.get(field)) {
-            delete this.cachedErrors[props.form][field];
-            dispatch(props.clearAsyncError(field));
-          }
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-    }
-  }, {
-    key: "doValidate",
-    value: function () {
-      var _doValidate = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee(values, dispatch, props, blurredField) {
-        var transform,
-            fields,
-            _iteratorNormalCompletion2,
-            _didIteratorError2,
-            _iteratorError2,
-            _iterator2,
-            _step2,
-            field,
-            value,
-            transformed,
-            errors,
-            _args = arguments;
-
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                transform = _args.length > 4 && _args[4] !== undefined ? _args[4] : true;
-                _context.prev = 1;
-                // if blurred field is not set, validate all of them
-                fields = blurredField ? _.isArray(blurredField) ? blurredField : [blurredField] : _.keys(this.fields);
-                _iteratorNormalCompletion2 = true;
-                _didIteratorError2 = false;
-                _iteratorError2 = undefined;
-                _context.prev = 6;
-                _iterator2 = fields[Symbol.iterator]();
-
-              case 8:
-                if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
-                  _context.next = 23;
-                  break;
-                }
-
-                field = _step2.value;
-                value = values.get(field); // transform value first if requested
-
-                if (!(transform && this.fields[field].transform)) {
-                  _context.next = 17;
-                  break;
-                }
-
-                transformed = (0, _normalize.default)(props, this.fields[field].transform, value, value, values, values);
-
-                if (!(transformed !== value)) {
-                  _context.next = 17;
-                  break;
-                }
-
-                _context.next = 16;
-                return dispatch(props.change(field, transformed));
-
-              case 16:
-                value = transformed;
-
-              case 17:
-                errors = []; // validate
-
-                if (this.fields[field].validate) errors = (0, _validate2.default)(props, this.fields[field].validate, value, values); // cache result
-
-                if (errors.length) {
-                  if (!this.cachedErrors[props.form]) this.cachedErrors[props.form] = {};
-                  this.cachedErrors[props.form][field] = errors;
-                } else {
-                  if (this.cachedErrors[props.form]) delete this.cachedErrors[props.form][field];
-                }
-
-              case 20:
-                _iteratorNormalCompletion2 = true;
-                _context.next = 8;
-                break;
-
-              case 23:
-                _context.next = 29;
-                break;
-
-              case 25:
-                _context.prev = 25;
-                _context.t0 = _context["catch"](6);
-                _didIteratorError2 = true;
-                _iteratorError2 = _context.t0;
-
-              case 29:
-                _context.prev = 29;
-                _context.prev = 30;
-
-                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-                  _iterator2.return();
-                }
-
-              case 32:
-                _context.prev = 32;
-
-                if (!_didIteratorError2) {
-                  _context.next = 35;
-                  break;
-                }
-
-                throw _iteratorError2;
-
-              case 35:
-                return _context.finish(32);
-
-              case 36:
-                return _context.finish(29);
-
-              case 37:
-                _context.next = 42;
-                break;
-
-              case 39:
-                _context.prev = 39;
-                _context.t1 = _context["catch"](1);
-                console.error(_context.t1);
-
-              case 42:
-                if (!(this.cachedErrors[props.form] && _.keys(this.cachedErrors[props.form]).length)) {
-                  _context.next = 44;
-                  break;
-                }
-
-                throw _.cloneDeep(this.cachedErrors[props.form]);
-
-              case 44:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this, [[1, 39], [6, 25, 29, 37], [30,, 32, 36]]);
-      }));
-
-      function doValidate(_x, _x2, _x3, _x4) {
-        return _doValidate.apply(this, arguments);
-      }
-
-      return doValidate;
-    }()
-  }, {
-    key: "onValidate",
-    value: function () {
-      var _onValidate = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee3() {
-        var _this2 = this;
-
-        var _len,
-            args,
-            _key,
-            _args3 = arguments;
-
-        return _regenerator.default.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                for (_len = _args3.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-                  args[_key] = _args3[_key];
-                }
-
-                setTimeout(
-                /*#__PURE__*/
-                _asyncToGenerator(
-                /*#__PURE__*/
-                _regenerator.default.mark(function _callee2() {
-                  return _regenerator.default.wrap(function _callee2$(_context2) {
-                    while (1) {
-                      switch (_context2.prev = _context2.next) {
-                        case 0:
-                          _context2.prev = 0;
-                          _context2.next = 3;
-                          return _this2.doValidate.apply(_this2, args);
-
-                        case 3:
-                          _context2.next = 7;
-                          break;
-
-                        case 5:
-                          _context2.prev = 5;
-                          _context2.t0 = _context2["catch"](0);
-
-                        case 7:
-                        case "end":
-                          return _context2.stop();
-                      }
-                    }
-                  }, _callee2, this, [[0, 5]]);
-                })));
-
-              case 2:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, this);
-      }));
-
-      function onValidate() {
-        return _onValidate.apply(this, arguments);
-      }
-
-      return onValidate;
-    }()
-  }]);
-
-  function FormComponent(props) {
-    var _this;
-
-    _classCallCheck(this, FormComponent);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(FormComponent).call(this, props));
-    _this.normalizers = {};
-    var _iteratorNormalCompletion3 = true;
-    var _didIteratorError3 = false;
-    var _iteratorError3 = undefined;
-
-    try {
-      var _loop = function _loop() {
-        var field = _step3.value;
-        var options = _this.constructor.fields[field].normalize;
-        if (options) _this.normalizers[field] = function () {
-          for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-            args[_key2] = arguments[_key2];
-          }
-
-          return _normalize.default.apply(void 0, [_this.props, options].concat(args));
-        };
-      };
-
-      for (var _iterator3 = _.keys(_this.constructor.fields)[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-        _loop();
-      }
-    } catch (err) {
-      _didIteratorError3 = true;
-      _iteratorError3 = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-          _iterator3.return();
-        }
-      } finally {
-        if (_didIteratorError3) {
-          throw _iteratorError3;
-        }
-      }
-    }
-
-    return _this;
-  }
-
-  _createClass(FormComponent, [{
-    key: "validate",
-    value: function () {
-      var _validate = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee4() {
-        var errors;
-        return _regenerator.default.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                _context4.prev = 0;
-                _context4.next = 3;
-                return this.constructor.doValidate(this.props.fieldValues[this.props.form], this.props.dispatch, this.props, undefined, false);
-
-              case 3:
-                _context4.next = 8;
-                break;
-
-              case 5:
-                _context4.prev = 5;
-                _context4.t0 = _context4["catch"](0);
-                errors = _context4.t0;
-
-              case 8:
-                _context4.next = 10;
-                return this.props.updateValidation(errors);
-
-              case 10:
-                return _context4.abrupt("return", errors ? errors : true);
-
-              case 11:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4, this, [[0, 5]]);
-      }));
-
-      function validate() {
-        return _validate.apply(this, arguments);
-      }
-
-      return validate;
-    }()
-  }, {
-    key: "submit",
-    value: function () {
-      var _submit = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee5() {
-        var valid;
-        return _regenerator.default.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                _context5.prev = 0;
-                _context5.next = 3;
-                return this.validate();
-
-              case 3:
-                valid = _context5.sent;
-
-                if (!(valid !== true)) {
-                  _context5.next = 6;
-                  break;
-                }
-
-                return _context5.abrupt("return", valid);
-
-              case 6:
-                _context5.next = 8;
-                return this.props.handleSubmit();
-
-              case 8:
-                return _context5.abrupt("return", _context5.sent);
-
-              case 11:
-                _context5.prev = 11;
-                _context5.t0 = _context5["catch"](0);
-                console.error(_context5.t0);
-
-              case 14:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5, this, [[0, 11]]);
-      }));
-
-      function submit() {
-        return _submit.apply(this, arguments);
-      }
-
-      return submit;
-    }() // eslint-disable-next-line
-
-  }, {
-    key: "render",
-    value: function render() {
-      return null;
-    }
-  }]);
-
-  return FormComponent;
-}(_react.default.Component);
-
-_defineProperty(FormComponent, "formName", "baseForm");
-
-_defineProperty(FormComponent, "fields", {
-  /*
-  fieldName: {
-    normalize: 'rules', // happens on change
-    transform: 'rules', // happens on blur
-    validate: 'rules',  // happens on blur
-    label: 'ID',        // translation ID
-  },
-   */
-});
-
-_defineProperty(FormComponent, "cachedErrors", {});
-
-var _default = FormComponent;
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
-
-/***/ }),
-/* 76 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(__webpack_require__(6));
-
-var _propTypes = _interopRequireDefault(__webpack_require__(7));
-
-var _shallowEqual = _interopRequireDefault(__webpack_require__(84));
-
-var _reactIntl = __webpack_require__(8);
-
-var _immutable = __webpack_require__(11);
-
-var _styles = __webpack_require__(9);
-
-var _List = _interopRequireDefault(__webpack_require__(85));
-
-var _ListItem = _interopRequireDefault(__webpack_require__(86));
-
-var _ListItemIcon = _interopRequireDefault(__webpack_require__(79));
-
-var _ListItemText = _interopRequireDefault(__webpack_require__(80));
-
-var _TextField = _interopRequireDefault(__webpack_require__(87));
-
-var _Select = _interopRequireDefault(__webpack_require__(88));
-
-var _FormControl = _interopRequireDefault(__webpack_require__(89));
-
-var _FormControlLabel = _interopRequireDefault(__webpack_require__(90));
-
-var _FormHelperText = _interopRequireDefault(__webpack_require__(91));
-
-var _MenuItem = _interopRequireDefault(__webpack_require__(78));
-
-var _Checkbox = _interopRequireDefault(__webpack_require__(77));
-
-var _InputLabel = _interopRequireDefault(__webpack_require__(92));
-
-var _FilledInput = _interopRequireDefault(__webpack_require__(93));
-
-var _Input = _interopRequireDefault(__webpack_require__(94));
-
-var _InfoOutlined = _interopRequireDefault(__webpack_require__(95));
-
-var _normalize2 = _interopRequireDefault(__webpack_require__(70));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-var styles = function styles(theme) {
+var _default = function _default(theme) {
   return {
-    formHelper: {
-      margin: 0
+    "&::-webkit-scrollbar": {
+      "-webkitAppearance": "none",
+      width: "".concat(theme.spacing.unit, "px"),
+      height: "".concat(theme.spacing.unit, "px")
     },
-    errorList: {
-      padding: 0
+    "&::-webkit-scrollbar-track": {
+      background: "transparent"
     },
-    errorListItem: {
-      paddingTop: "0.5rem",
-      paddingLeft: "0.5rem",
-      paddingRight: 0
+    "&::-webkit-scrollbar-thumb": {
+      cursor: "pointer",
+      borderRadius: theme.shape.borderRadius / 2,
+      background: theme.palette.primary.main,
+      transition: "color 0.2s ease"
     },
-    label: {
-      marginLeft: 0
+    "&::-webkit-scrollbar-thumb:window-inactive": {
+      background: theme.palette.primary.main
     },
-    error: {
-      color: theme.palette.text.secondary
+    "&::-webkit-scrollbar-thumb:hover": {
+      background: theme.palette.primary.light
     }
   };
 };
 
-var FieldComponent =
-/*#__PURE__*/
-function (_React$PureComponent) {
-  _inherits(FieldComponent, _React$PureComponent);
-
-  function FieldComponent(props) {
-    var _this;
-
-    _classCallCheck(this, FieldComponent);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(FieldComponent).call(this, props));
-    _this.input = _react.default.createRef();
-    _this.cachedValue = props.input.value;
-    _this.cachedPosition = 0;
-
-    switch (props.type) {
-      case "checkbox":
-        _this.handleChange = _this.handleCheckboxChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-        break;
-
-      default:
-        _this.handleChange = _this.handleDefaultChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    }
-
-    _this.handleFocus = _this.handleDefaultFocus.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleBlur = _this.handleDefaultBlur.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    return _this;
-  }
-
-  _createClass(FieldComponent, [{
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      if (this.props.input.value === prevProps.input.value) return;
-
-      if (this.input.current) {
-        // fix cursor position on changing the value to the normalized variant
-        var str;
-        var index;
-
-        switch (this.props.type) {
-          case "text":
-          case "password":
-            str = (this.cachedValue || "").substr(0, this.cachedPosition);
-            index = (this.props.input.value || "").indexOf(str) + this.cachedPosition;
-
-            if (index !== -1 && this.cachedPosition < (this.cachedValue || "").length) {
-              this.input.current.selectionStart = this.input.current.selectionEnd = index;
-            }
-
-            break;
-        }
-      }
-
-      this.cachedValue = this.props.input.value;
-    }
-  }, {
-    key: "handleDefaultChange",
-    value: function handleDefaultChange(evt) {
-      this.cachedValue = evt.target.value;
-      this.cachedPosition = evt.target.selectionEnd;
-      return this.props.input.onChange(this.cachedValue);
-    }
-  }, {
-    key: "handleCheckboxChange",
-    value: function handleCheckboxChange(evt) {
-      return this.props.input.onChange(evt.target.checked ? "on" : "off");
-    }
-  }, {
-    key: "handleDefaultFocus",
-    value: function handleDefaultFocus() {
-      var _this$props$input;
-
-      return (_this$props$input = this.props.input).onFocus.apply(_this$props$input, arguments);
-    }
-  }, {
-    key: "handleDefaultBlur",
-    value: function handleDefaultBlur() {
-      return this.props.input.onBlur(this.cachedValue);
-    }
-  }, {
-    key: "renderErrors",
-    value: function renderErrors() {
-      var _this2 = this;
-
-      if (!this.props.meta.error) return null;
-      return _react.default.createElement(_List.default, {
-        classes: {
-          root: this.props.classes.errorList
-        }
-      },
-      /* eslint-disable-line */
-      this.props.meta.error.map(function (error, index) {
-        return _react.default.createElement(_ListItem.default, {
-          key: "error-".concat(index),
-          classes: {
-            root: _this2.props.classes.errorListItem
-          }
-        }, _react.default.createElement(_ListItemIcon.default, null, _react.default.createElement(_InfoOutlined.default, {
-          className: _this2.props.classes.error
-        })), _react.default.createElement(_ListItemText.default, {
-          classes: {
-            primary: _this2.props.classes.error
-          },
-          primary: _this2.props.intl.formatMessage({
-            id: error
-          })
-        }));
-      }));
-    }
-  }, {
-    key: "renderInput",
-    value: function renderInput() {
-      var _this3 = this;
-
-      var errors = this.renderErrors();
-      return _react.default.createElement(_TextField.default, {
-        className: this.props.className,
-        autoComplete: "off",
-        fullWidth: true,
-        variant: this.props.variant || "standard",
-        type: this.props.type,
-        value: this.props.input.value.toString(),
-        label: this.props.label && this.props.intl.formatMessage({
-          id: this.props.label
-        }),
-        disabled: this.props.meta.submitting || this.props.disabled,
-        error: !!this.props.meta.error,
-        FormHelperTextProps: {
-          component: errors ? "div" : undefined,
-          classes: {
-            root: this.props.classes.formHelper
-          }
-        },
-        helperText: errors || undefined,
-        onChange: this.handleChange,
-        onFocus: this.handleFocus,
-        onBlur: this.handleBlur,
-        inputRef: this.input,
-        inputProps: {
-          id: this.props.fieldId,
-          onKeyDown: function onKeyDown(evt) {
-            if (evt.keyCode === 13) {
-              evt.preventDefault();
-              evt.stopPropagation();
-              if (_this3.props.onSubmit) _this3.props.onSubmit();
-            }
-          }
-        }
-      });
-    }
-  }, {
-    key: "renderCheckbox",
-    value: function renderCheckbox() {
-      return _react.default.createElement(_FormControlLabel.default, {
-        classes: {
-          root: this.props.classes.label
-        },
-        control: _react.default.createElement(_Checkbox.default, {
-          checked: this.props.input.value === "on",
-          onChange: this.handleChange,
-          onFocus: this.handleFocus,
-          onBlur: this.handleBlur,
-          value: "on",
-          color: this.props.color || "primary"
-        }),
-        label: this.props.intl.formatMessage({
-          id: this.props.label
-        })
-      });
-    }
-  }, {
-    key: "renderDropdown",
-    value: function renderDropdown() {
-      var _this4 = this;
-
-      var errors = this.renderErrors();
-      var SelectInput = this.props.variant === "filled" ? _FilledInput.default : _Input.default;
-      return _react.default.createElement(_FormControl.default, {
-        className: this.props.className,
-        variant: this.props.variant || "standard",
-        fullWidth: true,
-        error: !!this.props.meta.error
-      }, _react.default.createElement(_InputLabel.default, {
-        htmlFor: this.props.fieldId
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: this.props.label
-      })), _react.default.createElement(_Select.default, {
-        value: this.props.input.value,
-        disabled: this.props.meta.submitting || this.props.disabled,
-        onChange: this.handleChange,
-        input: _react.default.createElement(SelectInput, {
-          id: this.props.fieldId,
-          inputProps: {
-            onKeyDown: function onKeyDown(evt) {
-              if (evt.keyCode === 13) {
-                evt.preventDefault();
-                evt.stopPropagation();
-                if (_this4.props.onSubmit) _this4.props.onSubmit();
-              }
-            }
-          }
-        })
-      }, _.map(this.props.options, function (item, index) {
-        return _react.default.createElement(_MenuItem.default, {
-          key: "item-".concat(index),
-          value: item.value
-        }, item.label);
-      })), errors && _react.default.createElement(_FormHelperText.default, {
-        component: "div",
-        classes: {
-          root: this.props.classes.formHelper
-        }
-      }, errors));
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      switch (this.props.type) {
-        case "text":
-        case "password":
-          return this.renderInput();
-
-        case "checkbox":
-          return this.renderCheckbox();
-
-        case "dropdown":
-          return this.renderDropdown();
-      }
-
-      return null;
-    }
-  }]);
-
-  return FieldComponent;
-}(_react.default.PureComponent);
-
-var LocalizedField = (0, _reactIntl.injectIntl)((0, _styles.withStyles)(styles, {
-  withTheme: true
-})(FieldComponent));
-
-var FormField =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(FormField, _React$Component);
-
-  function FormField(props) {
-    var _this5;
-
-    _classCallCheck(this, FormField);
-
-    _this5 = _possibleConstructorReturn(this, _getPrototypeOf(FormField).call(this, props));
-    _this5.normalize = _this5.normalize.bind(_assertThisInitialized(_assertThisInitialized(_this5)));
-    return _this5;
-  }
-
-  _createClass(FormField, [{
-    key: "shouldComponentUpdate",
-    value: function shouldComponentUpdate(nextProps) {
-      return !(0, _shallowEqual.default)(this.props.formFields, nextProps.formFields) || this.props.name !== nextProps.name || this.props.type !== nextProps.type || this.props.options !== nextProps.options || this.props.autoFocus !== nextProps.autoFocus || this.props.disabled !== nextProps.disabled;
-    }
-  }, {
-    key: "normalize",
-    value: function normalize(value) {
-      if (!this.props.formFields[this.props.name]) return value;
-      var options = this.props.formFields[this.props.name].normalize;
-      if (!options) return value;
-
-      for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        args[_key - 1] = arguments[_key];
-      }
-
-      return _normalize2.default.apply(void 0, [this.props.formProps, options, value].concat(args));
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          formFields = _this$props.formFields,
-          formProps = _this$props.formProps,
-          name = _this$props.name,
-          type = _this$props.type,
-          fieldProps = _objectWithoutProperties(_this$props, ["formFields", "formProps", "name", "type"]); // eslint-disable-line
-
-
-      return _react.default.createElement(_immutable.Field, _extends({
-        component: LocalizedField,
-        fieldId: "input-".concat(name),
-        name: name,
-        type: type,
-        normalize: this.normalize,
-        label: formFields[name] && formFields[name].label
-      }, fieldProps));
-    }
-  }]);
-
-  return FormField;
-}(_react.default.Component);
-
-var _default = FormField;
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 77 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/Checkbox");
-
-/***/ }),
-/* 78 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/MenuItem");
-
-/***/ }),
-/* 79 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/ListItemIcon");
-
-/***/ }),
-/* 80 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/ListItemText");
-
-/***/ }),
-/* 81 */,
-/* 82 */,
-/* 83 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {
-
-var validator = __webpack_require__(71);
-/**
- * Validation function for Redux Form
- * takes input like "command1:param1:param2|command2:param1:param2"
- */
-
-
-module.exports = function validate(props, options, value, allValues) {
-  var rules = {};
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
-
-  try {
-    for (var _iterator = _.split(options, "|")[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var rule = _step.value;
-
-      var params = _.split(_.trim(rule), ":");
-
-      var _command = params.shift();
-
-      rules[_command] = params;
-    }
-  } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion && _iterator.return != null) {
-        _iterator.return();
-      }
-    } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
-      }
-    }
-  }
-
-  value = _.isUndefined(value) ? "" : _.toString(value);
-
-  var commands = _.keys(rules);
-
-  var errors = [];
-
-  if (validator.isEmpty(value)) {
-    // when string is empty only "required" command is triggered
-    if (_.includes(commands, "required")) {
-      // optional first param is the name of other field that should
-      // be non-empty for this to be triggered, always triggered otherwise
-      var failed = true;
-
-      if (allValues && rules.required.length && rules.required[0]) {
-        var other = allValues.get(rules.required[0]);
-        if (!other || !other.length) failed = false;
-      }
-
-      if (failed) errors.push("ERROR_FIELD_REQUIRED");
-    }
-  } else {
-    var _iteratorNormalCompletion2 = true;
-    var _didIteratorError2 = false;
-    var _iteratorError2 = undefined;
-
-    try {
-      for (var _iterator2 = commands[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-        var command = _step2.value;
-        var success = void 0;
-        var tmp = void 0;
-        var normalized = void 0;
-
-        switch (command) {
-          case "phone":
-            // validate phone number in international format
-            if (!validator.isEmpty(value)) {
-              normalized = _.replace(value, /[^0-9]+/g, "");
-
-              if (normalized.length !== 12) {
-                errors.push("ERROR_INVALID_PHONE");
-              } else {
-                tmp = props.getCallingCodes(allValues.get("country"));
-                success = !tmp.size;
-                var _iteratorNormalCompletion3 = true;
-                var _didIteratorError3 = false;
-                var _iteratorError3 = undefined;
-
-                try {
-                  for (var _iterator3 = tmp[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                    var code = _step3.value;
-
-                    if (_.startsWith(normalized, code)) {
-                      success = true;
-                      break;
-                    }
-                  }
-                } catch (err) {
-                  _didIteratorError3 = true;
-                  _iteratorError3 = err;
-                } finally {
-                  try {
-                    if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-                      _iterator3.return();
-                    }
-                  } finally {
-                    if (_didIteratorError3) {
-                      throw _iteratorError3;
-                    }
-                  }
-                }
-
-                if (!success) errors.push("ERROR_INVALID_PHONE_COUNTRY");
-              }
-            }
-
-            break;
-
-          case "email":
-            // validate email
-            if (!validator.isEmpty(value) && !validator.isEmail(value)) errors.push("ERROR_INVALID_EMAIL");
-            break;
-
-          case "password":
-            // validate password, first param is password length (6 by default)
-            if (value.length < (rules[command].length && rules[command][0]) || 6) errors.push("ERROR_INVALID_PASSWORD");
-            break;
-
-          case "credit_card":
-            // validate credit card attribute set by first param ("number", "date" or "secret")
-            normalized = _.replace(value, /[^0-9]+/g, "");
-
-            switch (rules[command].length && rules[command][0]) {
-              case "number":
-                if (normalized.length !== 16 || !validator.isCreditCard(normalized)) errors.push("ERROR_INVALID_CREDIT_CARD_NUMBER");
-                break;
-
-              case "date":
-                if (normalized.length !== 4) {
-                  errors.push("ERROR_INVALID_CREDIT_CARD_DATE");
-                } else {
-                  tmp = [parseInt(normalized.slice(0, 2)), parseInt(normalized.slice(2))];
-                  if (tmp[0] < 1 || tmp[0] > 12 || tmp[1] < new Date().getFullYear() - 2000) errors.push("ERROR_INVALID_CREDIT_CARD_DATE");
-                }
-
-                break;
-
-              case "secret":
-                if (normalized.length !== 3) errors.push("ERROR_INVALID_CREDIT_CARD_SECRET");
-                break;
-            }
-
-            break;
-
-          case "match":
-            // this rule is triggered when field set by first param has other value than this one
-            tmp = rules[command].length && rules[command][0];
-            if (tmp && allValues && allValues.get(tmp) !== value) errors.push("ERROR_MISMATCHED_VALUES");
-            break;
-        }
-      }
-    } catch (err) {
-      _didIteratorError2 = true;
-      _iteratorError2 = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-          _iterator2.return();
-        }
-      } finally {
-        if (_didIteratorError2) {
-          throw _iteratorError2;
-        }
-      }
-    }
-  }
-
-  return errors;
-};
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
-
-/***/ }),
-/* 84 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-redux/lib/utils/shallowEqual");
-
-/***/ }),
-/* 85 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/List");
-
-/***/ }),
-/* 86 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/ListItem");
-
-/***/ }),
-/* 87 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/TextField");
-
-/***/ }),
-/* 88 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/Select");
-
-/***/ }),
-/* 89 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/FormControl");
-
-/***/ }),
-/* 90 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/FormControlLabel");
-
-/***/ }),
-/* 91 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/FormHelperText");
-
-/***/ }),
-/* 92 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/InputLabel");
-
-/***/ }),
-/* 93 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/FilledInput");
-
-/***/ }),
-/* 94 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/Input");
-
-/***/ }),
-/* 95 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/icons/InfoOutlined");
-
-/***/ }),
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/icons/OpenInBrowser");
-
-/***/ }),
-/* 101 */,
-/* 102 */
-/***/ (function(module, exports) {
-
-module.exports = require("classnames");
-
-/***/ }),
-/* 103 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/Table");
-
-/***/ }),
-/* 104 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/TableBody");
-
-/***/ }),
-/* 105 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/TableCell");
-
-/***/ }),
-/* 106 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/TableHead");
-
-/***/ }),
-/* 107 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/TableRow");
-
-/***/ }),
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
 /* 108 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/IconButton");
 
 /***/ }),
-/* 109 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 109 */,
+/* 110 */
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(__webpack_require__(6));
-
-var _propTypes = _interopRequireDefault(__webpack_require__(7));
-
-var _reactIntl = __webpack_require__(8);
-
-var _styles = __webpack_require__(9);
-
-var _Dialog = _interopRequireDefault(__webpack_require__(64));
-
-var _DialogActions = _interopRequireDefault(__webpack_require__(65));
-
-var _DialogContent = _interopRequireDefault(__webpack_require__(66));
-
-var _DialogContentText = _interopRequireDefault(__webpack_require__(69));
-
-var _DialogTitle = _interopRequireDefault(__webpack_require__(67));
-
-var _Button = _interopRequireDefault(__webpack_require__(28));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var styles = function styles() {
-  return {
-    actions: {
-      paddingLeft: "1rem",
-      paddingRight: "1rem",
-      paddingBottom: "1rem"
-    }
-  };
-};
-
-var ConfirmModal =
-/*#__PURE__*/
-function (_React$PureComponent) {
-  _inherits(ConfirmModal, _React$PureComponent);
-
-  function ConfirmModal() {
-    _classCallCheck(this, ConfirmModal);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(ConfirmModal).apply(this, arguments));
-  }
-
-  _createClass(ConfirmModal, [{
-    key: "render",
-    value: function render() {
-      return _react.default.createElement(_Dialog.default, {
-        maxWidth: "xs",
-        fullWidth: true,
-        open: this.props.isOpen,
-        onClose: this.props.onCancel
-      }, _react.default.createElement(_DialogTitle.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: this.props.title
-      })), _react.default.createElement(_DialogContent.default, null, _react.default.createElement(_DialogContentText.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: this.props.text,
-        values: this.props.values
-      }))), _react.default.createElement(_DialogActions.default, {
-        classes: {
-          root: this.props.classes.actions
-        }
-      }, _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "primary",
-        onClick: this.props.onCancel
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: this.props.cancel
-      })), _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "secondary",
-        onClick: this.props.onSubmit
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: this.props.submit
-      }))));
-    }
-  }]);
-
-  return ConfirmModal;
-}(_react.default.PureComponent);
-
-var _default = (0, _styles.withStyles)(styles, {
-  withTheme: true
-})(ConfirmModal);
-
-exports.default = _default;
+module.exports = require("@material-ui/core/colors/red");
 
 /***/ }),
-/* 110 */,
 /* 111 */,
 /* 112 */,
 /* 113 */,
@@ -6477,14 +4856,24 @@ exports.default = _default;
 /* 164 */,
 /* 165 */,
 /* 166 */,
-/* 167 */
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(168);
+module.exports = __webpack_require__(178);
 
 
 /***/ }),
-/* 168 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6497,7 +4886,7 @@ exports.default = void 0;
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _DevicesPage = _interopRequireDefault(__webpack_require__(169));
+var _TerminalPage = _interopRequireDefault(__webpack_require__(179));
 
 var _devices = __webpack_require__(16);
 
@@ -6507,24 +4896,29 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-_DevicesPage.default.getInitialProps =
+_TerminalPage.default.getInitialProps =
 /*#__PURE__*/
 function () {
   var _ref2 = _asyncToGenerator(
   /*#__PURE__*/
   _regenerator.default.mark(function _callee(_ref) {
-    var store, req;
+    var store, req, query;
     return _regenerator.default.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            store = _ref.store, req = _ref.req;
+            store = _ref.store, req = _ref.req, query = _ref.query;
             _context.next = 3;
             return store.dispatch(_devices.devicesOperations.load({
               req: req
             }));
 
           case 3:
+            return _context.abrupt("return", {
+              terminalId: query.terminalId
+            });
+
+          case 4:
           case "end":
             return _context.stop();
         }
@@ -6537,11 +4931,11 @@ function () {
   };
 }();
 
-var _default = _DevicesPage.default;
+var _default = _TerminalPage.default;
 exports.default = _default;
 
 /***/ }),
-/* 169 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6556,7 +4950,7 @@ var _reactRedux = __webpack_require__(21);
 
 var _auth = __webpack_require__(10);
 
-var _DevicesPage = _interopRequireDefault(__webpack_require__(170));
+var _TerminalPage = _interopRequireDefault(__webpack_require__(180));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6566,14 +4960,14 @@ var mapStateToProps = function mapStateToProps(state) {
   };
 };
 
-var DevicesPage = (0, _reactRedux.connect)(mapStateToProps, null, null, {
+var TerminalPage = (0, _reactRedux.connect)(mapStateToProps, null, null, {
   pure: false
-})(_DevicesPage.default);
-var _default = DevicesPage;
+})(_TerminalPage.default);
+var _default = TerminalPage;
 exports.default = _default;
 
 /***/ }),
-/* 170 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6590,9 +4984,7 @@ var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
 var _styles = __webpack_require__(9);
 
-var _Grid = _interopRequireDefault(__webpack_require__(68));
-
-var _Devices = _interopRequireDefault(__webpack_require__(171));
+var _Terminal = _interopRequireDefault(__webpack_require__(181));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6622,6 +5014,7 @@ var styles = function styles(theme) {
       width: "100%",
       maxWidth: 1300 + 2 * theme.main.spacing,
       flex: 1,
+      display: "flex",
       padding: theme.main.spacing
     }, theme.breakpoints.down("md"), {
       padding: theme.main.spacing / 2,
@@ -6630,44 +5023,40 @@ var styles = function styles(theme) {
   };
 };
 
-var DevicesPage =
+var TerminalPage =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(DevicesPage, _React$Component);
+  _inherits(TerminalPage, _React$Component);
 
-  function DevicesPage() {
-    _classCallCheck(this, DevicesPage);
+  function TerminalPage() {
+    _classCallCheck(this, TerminalPage);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(DevicesPage).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(TerminalPage).apply(this, arguments));
   }
 
-  _createClass(DevicesPage, [{
+  _createClass(TerminalPage, [{
     key: "render",
     value: function render() {
       if (!this.props.isAuthenticated) return null;
       return _react.default.createElement("div", {
         className: this.props.classes.layout
-      }, _react.default.createElement(_Grid.default, {
-        container: true,
-        spacing: this.props.theme.main.spacing
-      }, _react.default.createElement(_Grid.default, {
-        item: true,
-        xs: 12
-      }, _react.default.createElement(_Devices.default, null))));
+      }, _react.default.createElement(_Terminal.default, {
+        terminalId: this.props.terminalId
+      }));
     }
   }]);
 
-  return DevicesPage;
+  return TerminalPage;
 }(_react.default.Component);
 
 var _default = (0, _styles.withStyles)(styles, {
   withTheme: true
-})(DevicesPage);
+})(TerminalPage);
 
 exports.default = _default;
 
 /***/ }),
-/* 171 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6680,531 +5069,63 @@ exports.default = void 0;
 
 var _reactRedux = __webpack_require__(21);
 
-var _reactIntl = __webpack_require__(8);
+var _immutable = __webpack_require__(2);
 
-var _app = __webpack_require__(5);
+var _router = __webpack_require__(13);
 
-var _devices = __webpack_require__(16);
+var _Terminal = _interopRequireDefault(__webpack_require__(182));
 
 var _terminals = __webpack_require__(12);
 
-var _Devices = _interopRequireDefault(__webpack_require__(172));
+var _histories = __webpack_require__(23);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(state, props) {
+  var terminal = _terminals.terminalsSelectors.getTerminalMap(state, props);
+
   return {
-    sshHost: _app.appSelectors.getSshHost(state),
-    sshPort: _app.appSelectors.getSshPort(state),
-    devices: _devices.devicesSelectors.getList(state),
-    online: _devices.devicesSelectors.getOnline(state),
-    isAllSelected: _devices.devicesSelectors.isAllSelected(state),
-    isAllDeselected: _devices.devicesSelectors.isAllDeselected(state)
+    id: terminal ? props.terminalId : null,
+    isConnecting: terminal ? terminal.get("isConnecting") : false,
+    isConnected: terminal ? terminal.get("isConnected") : false,
+    name: _terminals.terminalsSelectors.getTerminalName(state, props),
+    address: _terminals.terminalsSelectors.getTerminalAddress(state, props),
+    status: terminal ? terminal.get("status") : null,
+    history: terminal ? _histories.historiesSelectors.getList(state, props) || (0, _immutable.List)([]) : (0, _immutable.List)([])
   };
 };
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+var mapDispatchToProps = function mapDispatchToProps(dispatch, props) {
   return {
-    onLoad: function onLoad() {
-      return dispatch(_devices.devicesOperations.load());
-    },
-    onCreate: function onCreate() {
-      return dispatch(_devices.devicesOperations.showEditModal());
-    },
-    onEdit: function onEdit() {
-      return dispatch(_devices.devicesOperations.editFirstSelected());
-    },
-    onDelete: function onDelete(deviceId) {
-      return dispatch(_devices.devicesOperations.reqRemove({
-        id: deviceId
+    onInput: function onInput(data) {
+      return dispatch(_terminals.terminalsOperations.sendInput({
+        terminalId: props.terminalId,
+        data: data
       }));
     },
-    onSetSelected: function onSetSelected(deviceId, isSelected) {
-      return dispatch(_devices.devicesOperations.setSelected({
-        deviceId: deviceId,
-        isSelected: isSelected
+    onResize: function onResize(cols, rows, width, height) {
+      return dispatch(_terminals.terminalsOperations.sendResize({
+        terminalId: props.terminalId,
+        cols: cols,
+        rows: rows,
+        width: width,
+        height: height
       }));
     },
-    onSelectAll: function onSelectAll() {
-      return dispatch(_devices.devicesOperations.selectAll());
-    },
-    onDeselectAll: function onDeselectAll() {
-      return dispatch(_devices.devicesOperations.deselectAll());
-    },
-    onOpenTerminal: function onOpenTerminal(deviceId) {
-      return dispatch(_terminals.terminalsOperations.startSetupAuth({
-        deviceId: deviceId
-      }));
-    },
-    onOpenBrowser: function onOpenBrowser(deviceId) {
-      return dispatch(_terminals.terminalsOperations.startSetupAuth({
-        deviceId: deviceId
+    onClose: function onClose() {
+      return dispatch(_terminals.terminalsOperations.kill({
+        terminalId: props.terminalId
       }));
     }
   };
 };
 
-var Devices = (0, _reactIntl.injectIntl)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Devices.default));
-var _default = Devices;
+var Terminal = (0, _router.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Terminal.default));
+var _default = Terminal;
 exports.default = _default;
 
 /***/ }),
-/* 172 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _regenerator = _interopRequireDefault(__webpack_require__(1));
-
-var _react = _interopRequireDefault(__webpack_require__(6));
-
-var _propTypes = _interopRequireDefault(__webpack_require__(7));
-
-var _classnames = _interopRequireDefault(__webpack_require__(102));
-
-var _immutable = __webpack_require__(2);
-
-var _reactIntl = __webpack_require__(8);
-
-var _styles = __webpack_require__(9);
-
-var _Table = _interopRequireDefault(__webpack_require__(103));
-
-var _TableBody = _interopRequireDefault(__webpack_require__(104));
-
-var _TableCell = _interopRequireDefault(__webpack_require__(105));
-
-var _TableHead = _interopRequireDefault(__webpack_require__(106));
-
-var _TableRow = _interopRequireDefault(__webpack_require__(107));
-
-var _Button = _interopRequireDefault(__webpack_require__(28));
-
-var _IconButton = _interopRequireDefault(__webpack_require__(108));
-
-var _Checkbox = _interopRequireDefault(__webpack_require__(77));
-
-var _Tooltip = _interopRequireDefault(__webpack_require__(173));
-
-var _EditDeviceModal = _interopRequireDefault(__webpack_require__(174));
-
-var _ConfirmModal = _interopRequireDefault(__webpack_require__(109));
-
-var _OpenInBrowser = _interopRequireDefault(__webpack_require__(100));
-
-var _Language = _interopRequireDefault(__webpack_require__(176));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-var styles = function styles() {
-  return {
-    buttons: {
-      width: "100%",
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "flex-start",
-      alignContent: "stretch"
-    },
-    button: {
-      margin: "0.5rem"
-    },
-    tooltip: {
-      fontSize: "1rem"
-    },
-    collapsing: {
-      width: 1,
-      whiteSpace: ["nowrap", "!important"]
-    },
-    checkbox: {
-      padding: "0.5rem 1rem"
-    }
-  };
-};
-
-var Devices =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(Devices, _React$Component);
-
-  function Devices(props) {
-    var _this;
-
-    _classCallCheck(this, Devices);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Devices).call(this, props));
-    _this.state = {
-      isConfirmOpen: false
-    };
-    _this.handleCreateAction = _this.handleCreateAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleEditAction = _this.handleEditAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleDeleteAction = _this.handleDeleteAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleCancelDelete = _this.handleCancelDelete.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleConfirmDelete = _this.handleConfirmDelete.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    return _this;
-  }
-
-  _createClass(Devices, [{
-    key: "handleToggleAll",
-    value: function handleToggleAll() {
-      var forceOff = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-      if (forceOff || this.props.isAllSelected) this.props.onDeselectAll();else this.props.onSelectAll();
-    }
-  }, {
-    key: "handleToggle",
-    value: function handleToggle(deviceId) {
-      // eslint-disable-next-line lodash/prefer-lodash-method
-      var device = this.props.devices.find(function (device) {
-        return device.get("id") === deviceId;
-      });
-      var isSelected = device && device.get("isSelected");
-      this.props.onSetSelected(deviceId, !isSelected);
-    }
-  }, {
-    key: "handleCreateAction",
-    value: function handleCreateAction() {
-      this.props.onCreate();
-    }
-  }, {
-    key: "handleEditAction",
-    value: function handleEditAction() {
-      this.props.onEdit();
-    }
-  }, {
-    key: "handleDeleteAction",
-    value: function handleDeleteAction() {
-      this.setState({
-        isConfirmOpen: true
-      });
-    }
-  }, {
-    key: "handleCancelDelete",
-    value: function handleCancelDelete() {
-      this.setState({
-        isConfirmOpen: false
-      });
-    }
-  }, {
-    key: "handleConfirmDelete",
-    value: function () {
-      var _handleConfirmDelete = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee() {
-        var _this2 = this;
-
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                this.setState({
-                  isConfirmOpen: false
-                });
-                _context.next = 3;
-                return Promise.all( // eslint-disable-next-line lodash/prefer-lodash-method
-                this.props.devices.filter(function (device) {
-                  return device.get("isSelected");
-                }).map(function (device) {
-                  return _this2.props.onDelete(device.get("id"));
-                }));
-
-              case 3:
-                this.props.onLoad();
-
-              case 4:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function handleConfirmDelete() {
-        return _handleConfirmDelete.apply(this, arguments);
-      }
-
-      return handleConfirmDelete;
-    }()
-  }, {
-    key: "render",
-    value: function render() {
-      var _this3 = this;
-
-      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
-        className: this.props.classes.buttons
-      }, _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "secondary",
-        classes: {
-          root: this.props.classes.button
-        },
-        onClick: this.handleCreateAction
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "DEVICES_CREATE_BUTTON"
-      }))), _react.default.createElement(_Table.default, {
-        padding: "dense"
-      }, _react.default.createElement(_TableHead.default, null, _react.default.createElement(_TableRow.default, null, _react.default.createElement(_TableCell.default, {
-        padding: "none",
-        classes: {
-          root: this.props.classes.collapsing
-        }
-      }, _react.default.createElement(_Checkbox.default, {
-        checked: !!this.props.devices.size && this.props.isAllSelected,
-        classes: {
-          root: this.props.classes.checkbox
-        },
-        indeterminate: !this.props.isAllSelected && !this.props.isAllDeselected,
-        onChange: function onChange() {
-          return _this3.handleToggleAll();
-        },
-        value: "on"
-      })), _react.default.createElement(_TableCell.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "DEVICES_NAME_COLUMN"
-      })), _react.default.createElement(_TableCell.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "DEVICES_ADDRESS_COLUMN"
-      })), _react.default.createElement(_TableCell.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "DEVICES_CONN_STRING_COLUMN"
-      })))), _react.default.createElement(_TableBody.default, null, this.props.devices.map(function (row, index) {
-        var info = _this3.props.online.get(row.get("id"));
-
-        return _react.default.createElement(_TableRow.default, {
-          key: "row-".concat(index)
-        }, _react.default.createElement(_TableCell.default, {
-          padding: "none",
-          className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected"),
-          classes: {
-            root: _this3.props.classes.collapsing
-          }
-        }, _react.default.createElement(_Checkbox.default, {
-          checked: !!row.get("isSelected"),
-          classes: {
-            root: _this3.props.classes.checkbox
-          },
-          onChange: function onChange() {
-            return _this3.handleToggle(row.get("id"));
-          },
-          value: "on"
-        }), _react.default.createElement(_Tooltip.default, {
-          disableFocusListener: true,
-          classes: {
-            tooltip: _this3.props.classes.tooltip
-          },
-          title: _this3.props.intl.formatMessage({
-            id: "DEVICES_OPEN_TERMINAL_TIP"
-          })
-        }, _react.default.createElement("span", null, _react.default.createElement(_IconButton.default, {
-          color: "inherit",
-          disabled: !info,
-          onClick: function onClick() {
-            return _this3.props.onOpenTerminal(row.get("id"));
-          }
-        }, _react.default.createElement(_OpenInBrowser.default, null)))), _react.default.createElement(_Tooltip.default, {
-          disableFocusListener: true,
-          classes: {
-            tooltip: _this3.props.classes.tooltip
-          },
-          title: _this3.props.intl.formatMessage({
-            id: "DEVICES_OPEN_BROWSER_TIP"
-          })
-        }, _react.default.createElement("span", null, _react.default.createElement(_IconButton.default, {
-          color: "inherit",
-          disabled: !info,
-          onClick: function onClick() {
-            return _this3.props.onOpenBrowser(row.get("id"));
-          }
-        }, _react.default.createElement(_Language.default, null))))), _react.default.createElement(_TableCell.default, {
-          className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected"),
-          component: "th",
-          scope: "row"
-        }, row.get("name")), _react.default.createElement(_TableCell.default, {
-          className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected")
-        }, info ? info.get("address") : _this3.props.intl.formatMessage({
-          id: "DEVICES_OFFLINE_LABEL"
-        })), _react.default.createElement(_TableCell.default, {
-          className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected")
-        }, "ssh -p ", _this3.props.sshPort, " -R 22:localhost:22 -N", " ", row.get("name"), "@", _this3.props.sshHost));
-      }))), _react.default.createElement("div", {
-        className: this.props.classes.buttons
-      }, _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "primary",
-        disabled: this.props.isAllDeselected,
-        classes: {
-          root: this.props.classes.button
-        },
-        onClick: this.handleEditAction
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "DEVICES_EDIT_BUTTON"
-      })), _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "primary",
-        disabled: this.props.isAllDeselected,
-        classes: {
-          root: this.props.classes.button
-        },
-        onClick: this.handleDeleteAction
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "DEVICES_DELETE_BUTTON"
-      }))), _react.default.createElement(_EditDeviceModal.default, null), _react.default.createElement(_ConfirmModal.default, {
-        isOpen: this.state.isConfirmOpen,
-        title: "DELETE_DEVICE_TITLE",
-        text: "DELETE_DEVICE_TEXT",
-        cancel: "DELETE_DEVICE_CANCEL",
-        submit: "DELETE_DEVICE_SUBMIT",
-        onCancel: this.handleCancelDelete,
-        onSubmit: this.handleConfirmDelete
-      }));
-    }
-  }]);
-
-  return Devices;
-}(_react.default.Component);
-
-var _default = (0, _styles.withStyles)(styles, {
-  withTheme: true
-})(Devices);
-
-exports.default = _default;
-
-/***/ }),
-/* 173 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/Tooltip");
-
-/***/ }),
-/* 174 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _regenerator = _interopRequireDefault(__webpack_require__(1));
-
-var _immutable = __webpack_require__(2);
-
-var _reactIntl = __webpack_require__(8);
-
-var _immutable2 = __webpack_require__(11);
-
-var _reduxForm = __webpack_require__(73);
-
-var _devices = __webpack_require__(16);
-
-var _createForm = _interopRequireDefault(__webpack_require__(74));
-
-var _EditDeviceModal = _interopRequireDefault(__webpack_require__(175));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var formName = _EditDeviceModal.default.formName;
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    fieldValues: _defineProperty({}, formName, (0, _immutable2.getFormValues)(formName)(state) || (0, _immutable.Map)()),
-    fieldErrors: _defineProperty({}, formName, (0, _immutable2.getFormAsyncErrors)(formName)(state) || (0, _immutable.Map)()),
-    data: _devices.devicesSelectors.getEditModalData(state),
-    isOpen: _devices.devicesSelectors.isEditModalOpen(state)
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    dispatch: dispatch,
-    updateValidation: function () {
-      var _updateValidation = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee(errors) {
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return dispatch((0, _reduxForm.startAsyncValidation)(formName));
-
-              case 2:
-                _context.next = 4;
-                return dispatch((0, _reduxForm.stopAsyncValidation)(formName, errors));
-
-              case 4:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function updateValidation(_x) {
-        return _updateValidation.apply(this, arguments);
-      }
-
-      return updateValidation;
-    }(),
-    onCancel: function onCancel() {
-      return dispatch(_devices.devicesOperations.hideEditModal());
-    },
-    onLoad: function onLoad() {
-      return dispatch(_devices.devicesOperations.load());
-    },
-    onCreate: function onCreate(name, password) {
-      return dispatch(_devices.devicesOperations.reqCreate({
-        name: name,
-        password: password
-      }));
-    },
-    onEdit: function onEdit(id, name, password) {
-      return dispatch(_devices.devicesOperations.reqEdit({
-        id: id,
-        name: name,
-        password: password
-      }));
-    }
-  };
-};
-
-var EditDeviceModal = (0, _reactIntl.injectIntl)((0, _createForm.default)(_EditDeviceModal.default, mapStateToProps, mapDispatchToProps));
-var _default = EditDeviceModal;
-exports.default = _default;
-
-/***/ }),
-/* 175 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7215,57 +5136,350 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _regenerator = _interopRequireDefault(__webpack_require__(1));
-
 var _react = _interopRequireDefault(__webpack_require__(6));
+
+var _router = _interopRequireDefault(__webpack_require__(13));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
 var _immutable = __webpack_require__(2);
 
-var _reactIntl = __webpack_require__(8);
+var _reactVirtualized = __webpack_require__(183);
 
-var _immutable2 = __webpack_require__(11);
+var _reactIntl = __webpack_require__(8);
 
 var _styles = __webpack_require__(9);
 
-var _Dialog = _interopRequireDefault(__webpack_require__(64));
+var _IconButton = _interopRequireDefault(__webpack_require__(108));
 
-var _DialogActions = _interopRequireDefault(__webpack_require__(65));
+var _Close = _interopRequireDefault(__webpack_require__(184));
 
-var _DialogContent = _interopRequireDefault(__webpack_require__(66));
+var _CircularProgress = _interopRequireDefault(__webpack_require__(99));
 
-var _DialogContentText = _interopRequireDefault(__webpack_require__(69));
+var _Paper = _interopRequireDefault(__webpack_require__(185));
 
-var _DialogTitle = _interopRequireDefault(__webpack_require__(67));
+var _Typography = _interopRequireDefault(__webpack_require__(186));
 
-var _Grid = _interopRequireDefault(__webpack_require__(68));
+var _XTerm = _interopRequireDefault(__webpack_require__(187));
 
-var _Button = _interopRequireDefault(__webpack_require__(28));
+var _grey = _interopRequireDefault(__webpack_require__(192));
 
-var _Form2 = _interopRequireDefault(__webpack_require__(75));
+var _blue = _interopRequireDefault(__webpack_require__(193));
 
-var _Field = _interopRequireDefault(__webpack_require__(76));
+var _cyan = _interopRequireDefault(__webpack_require__(194));
+
+var _green = _interopRequireDefault(__webpack_require__(195));
+
+var _pink = _interopRequireDefault(__webpack_require__(196));
+
+var _red = _interopRequireDefault(__webpack_require__(110));
+
+var _yellow = _interopRequireDefault(__webpack_require__(197));
+
+var _styledScroll = _interopRequireDefault(__webpack_require__(101));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+var styles = function styles(theme) {
+  return {
+    container: {
+      flex: 1,
+      display: "flex",
+      flexDirection: "column",
+      position: "relative",
+      background: "#000000"
+    },
+    header: {
+      marginLeft: "1rem",
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center"
+    },
+    headerText: {
+      flex: 1
+    },
+    placeholder: {
+      flex: 1,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center"
+    },
+    terminal: {
+      flex: 1,
+      padding: "1rem",
+      borderRadius: theme.shape.borderRadius,
+      "& .xterm .xterm-viewport": (0, _styledScroll.default)(theme)
+    }
+  };
+};
+
+var Terminal =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Terminal, _React$Component);
+
+  function Terminal(props) {
+    var _this;
+
+    _classCallCheck(this, Terminal);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Terminal).call(this, props));
+    _this.state = {
+      status: props.status
+    };
+    _this.lastRecordId = null;
+    _this.xterm = _react.default.createRef();
+    _this.container = _react.default.createRef();
+    _this.handleKey = _this.handleKey.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handlePaste = _this.handlePaste.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleResize = _this.handleResize.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleClose = _this.handleClose.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  }
+
+  _createClass(Terminal, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.updateHistory();
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      this.updateHistory();
+    }
+  }, {
+    key: "handleKey",
+    value: function handleKey(data) {
+      if (this.props.isConnected) this.props.onInput(data);
+    }
+  }, {
+    key: "handlePaste",
+    value: function handlePaste(data) {
+      if (this.props.isConnected) this.props.onInput(data);
+    }
+  }, {
+    key: "handleResize",
+    value: function handleResize(cols, rows, width, height) {
+      if (this.props.isConnected && cols && rows) this.props.onResize(cols, rows, width, height);
+    }
+  }, {
+    key: "handleClose",
+    value: function handleClose() {
+      this.props.onClose();
+
+      _router.default.push("/");
+    }
+  }, {
+    key: "updateHistory",
+    value: function updateHistory() {
+      var _this2 = this;
+
+      if (this.xterm.current && this.props.history.size) {
+        var term = this.xterm.current.getTerminal();
+        var newData = [];
+        var found = false; // eslint-disable-next-line lodash/prefer-lodash-method
+
+        this.props.history.forEach(function (item) {
+          if (found) newData.push(item.get("data"));else if (item.get("recordId") === _this2.lastRecordId) found = true;
+        });
+
+        if (!found) {
+          // eslint-disable-next-line lodash/prefer-lodash-method
+          newData = this.props.history.map(function (item) {
+            return item.get("data");
+          }).toJS();
+        }
+
+        if (newData.length) {
+          term.write(newData.join(""));
+          this.lastRecordId = this.props.history.last().get("recordId");
+        }
+      }
+    }
+  }, {
+    key: "renderPlaceholder",
+    value: function renderPlaceholder() {
+      return _react.default.createElement("div", {
+        className: this.props.classes.placeholder
+      }, this.state.status && _react.default.createElement("h3", null, this.state.status), !this.state.status && (this.props.isConnecting ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_CircularProgress.default, {
+        color: "primary",
+        size: 60
+      }), _react.default.createElement(_Typography.default, {
+        variant: "h5",
+        color: "inherit"
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "TERMINAL_CONNECTING_LABEL"
+      }))) : _react.default.createElement(_Typography.default, {
+        variant: "h5",
+        color: "inherit"
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "TERMINAL_NOT_CONNECTED_LABEL"
+      }))));
+    }
+  }, {
+    key: "renderTerminal",
+    value: function renderTerminal() {
+      var _this3 = this;
+
+      return _react.default.createElement("div", {
+        className: this.props.classes.terminal
+      }, _react.default.createElement(_reactVirtualized.AutoSizer, null, function (_ref) {
+        var width = _ref.width,
+            height = _ref.height;
+        return _react.default.createElement(_XTerm.default, {
+          ref: _this3.xterm,
+          width: width,
+          height: height,
+          onKey: _this3.handleKey,
+          onPaste: _this3.handlePaste,
+          onResize: _this3.handleResize,
+          options: {
+            fontFamily: '"Roboto Mono", monospace',
+            fontSize: 14,
+            allowTransparency: true,
+            theme: {
+              background: "#000000",
+              foreground: _grey.default[100],
+              cursor: _grey.default[50],
+              cursorAccent: _grey.default[200],
+              //selection: theme._lightBlue50,
+              black: "#000000",
+              blue: _blue.default[400],
+              cyan: _cyan.default[400],
+              green: _green.default[400],
+              magenta: _pink.default[400],
+              red: _red.default[400],
+              yellow: _yellow.default[400],
+              white: _grey.default[100],
+              brightBlack: _grey.default[700],
+              brightBlue: _blue.default[100],
+              brightCyan: _cyan.default[100],
+              brightGreen: _green.default[100],
+              brightMagenta: _pink.default[100],
+              brightRed: _red.default[100],
+              brightYellow: _yellow.default[100],
+              brightWhite: _grey.default[50]
+            }
+          }
+        });
+      }));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react.default.createElement(_Paper.default, {
+        className: this.props.classes.container
+      }, _react.default.createElement("div", {
+        className: this.props.classes.header
+      }, _react.default.createElement(_Typography.default, {
+        variant: "h5",
+        className: this.props.classes.headerText
+      }, this.props.name, "\xA0", !!this.props.address && "(" + this.props.address + ")"), _react.default.createElement(_IconButton.default, {
+        color: "inherit",
+        onClick: this.handleClose
+      }, _react.default.createElement(_Close.default, null))), this.props.isConnected ? this.renderTerminal() : this.renderPlaceholder());
+    }
+  }], [{
+    key: "getDerivedStateFromProps",
+    value: function getDerivedStateFromProps(nextProps, prevState) {
+      var state = {};
+      if (nextProps.status && prevState.status !== nextProps.status) state.status = nextProps.status;
+      return _.keys(state).length ? state : null;
+    }
+  }]);
+
+  return Terminal;
+}(_react.default.Component);
+
+var _default = (0, _styles.withStyles)(styles, {
+  withTheme: true
+})(Terminal);
+
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+
+/***/ }),
+/* 183 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-virtualized");
+
+/***/ }),
+/* 184 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/icons/Close");
+
+/***/ }),
+/* 185 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/Paper");
+
+/***/ }),
+/* 186 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/Typography");
+
+/***/ }),
+/* 187 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var React = _interopRequireWildcard(__webpack_require__(6));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
+
+var _xterm = __webpack_require__(188);
+
+var fit = _interopRequireWildcard(__webpack_require__(189));
+
+var fullscreen = _interopRequireWildcard(__webpack_require__(190));
+
+var search = _interopRequireWildcard(__webpack_require__(191));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -7275,236 +5489,247 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var styles = function styles(theme) {
-  return {
-    error: theme.main.error,
-    actions: {
-      paddingLeft: "1rem",
-      paddingRight: "1rem",
-      paddingBottom: "1rem"
-    }
-  };
-};
-
-var EditDeviceModal =
+var XTerm =
 /*#__PURE__*/
-function (_Form) {
-  _inherits(EditDeviceModal, _Form);
+function (_React$PureComponent) {
+  _inherits(XTerm, _React$PureComponent);
 
-  _createClass(EditDeviceModal, null, [{
-    key: "onSubmit",
-    value: function () {
-      var _onSubmit = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee(values, dispatch, props) {
-        var result;
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                if (!props.data) {
-                  _context.next = 6;
-                  break;
-                }
-
-                _context.next = 3;
-                return props.onEdit(props.data.get("id"), this.getValue(props, "name"), this.getValue(props, "password"));
-
-              case 3:
-                result = _context.sent;
-                _context.next = 9;
-                break;
-
-              case 6:
-                _context.next = 8;
-                return props.onCreate(this.getValue(props, "name"), this.getValue(props, "password"));
-
-              case 8:
-                result = _context.sent;
-
-              case 9:
-                if (!(result === true)) {
-                  _context.next = 14;
-                  break;
-                }
-
-                _context.next = 12;
-                return props.onLoad();
-
-              case 12:
-                _context.next = 16;
-                break;
-
-              case 14:
-                if (!(result && _.isObject(result))) {
-                  _context.next = 16;
-                  break;
-                }
-
-                throw new _immutable2.SubmissionError(result);
-
-              case 16:
-                return _context.abrupt("return", result);
-
-              case 17:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function onSubmit(_x, _x2, _x3) {
-        return _onSubmit.apply(this, arguments);
-      }
-
-      return onSubmit;
-    }()
-  }, {
-    key: "getDerivedStateFromProps",
-    value: function getDerivedStateFromProps(nextProps, prevState) {
-      var state = {};
-      /* eslint-disable lodash/prefer-lodash-method */
-
-      if (prevState.isOpen !== nextProps.isOpen) {
-        var name = nextProps.data && nextProps.data.get("name");
-        nextProps.dispatch(nextProps.change("name", name || ""));
-        nextProps.dispatch(nextProps.change("password", ""));
-        nextProps.dispatch(nextProps.clearAsyncError());
-        nextProps.dispatch(nextProps.clearSubmitErrors());
-        state.isOpen = nextProps.isOpen;
-      }
-      /* eslint-enable */
-
-
-      return _.keys(state).length ? state : null;
-    }
-  }]);
-
-  function EditDeviceModal(props) {
+  function XTerm(props) {
     var _this;
 
-    _classCallCheck(this, EditDeviceModal);
+    _classCallCheck(this, XTerm);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(EditDeviceModal).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(XTerm).call(this, props));
     _this.state = {
-      isOpen: props.isOpen
+      isFocused: false
     };
-    _this.submit = _this.submit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.refTerm = React.createRef();
+    _this.onResize = _this.onResize.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onContextMenu = _this.onContextMenu.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
-  _createClass(EditDeviceModal, [{
-    key: "render",
-    value: function render() {
+  _createClass(XTerm, [{
+    key: "applyAddon",
+    value: function applyAddon(addon) {
+      _xterm.Terminal.applyAddon(addon);
+    }
+  }, {
+    key: "getTerminal",
+    value: function getTerminal() {
+      return this.xterm;
+    }
+  }, {
+    key: "write",
+    value: function write(data) {
+      this.xterm && this.xterm.write(data);
+    }
+  }, {
+    key: "writeln",
+    value: function writeln(data) {
+      this.xterm && this.xterm.writeln(data);
+    }
+  }, {
+    key: "focus",
+    value: function focus() {
+      this.xterm && this.xterm.focus();
+    }
+  }, {
+    key: "fit",
+    value: function fit() {
+      this.xterm && this.xterm.fit();
+    }
+  }, {
+    key: "resize",
+    value: function resize(cols, rows) {
+      this.xterm && this.xterm.resize(Math.round(cols), Math.round(rows));
+    }
+  }, {
+    key: "setOption",
+    value: function setOption(key, value) {
+      this.xterm && this.xterm.setOption(key, value);
+    }
+  }, {
+    key: "refresh",
+    value: function refresh() {
+      this.xterm && this.xterm.refresh(0, this.xterm.rows - 1);
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       var _this2 = this;
 
-      return _react.default.createElement(_Dialog.default, {
-        maxWidth: "xs",
-        fullWidth: true,
-        open: this.props.isOpen,
-        onClose: this.props.onCancel
-      }, _react.default.createElement(_DialogTitle.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: this.props.data ? "EDIT_DEVICE_TITLE_EDIT" : "EDIT_DEVICE_TITLE_CREATE"
-      })), this.props.error && _react.default.createElement(_DialogContent.default, null, _.map(_.isArray(this.props.error) ? this.props.error : [this.props.error], function (error, index) {
-        return _react.default.createElement(_DialogContentText.default, {
-          key: "error-".concat(index),
-          classes: {
-            root: _this2.props.classes.error
-          }
-        }, _.isArray(error) ? _react.default.createElement(_reactIntl.FormattedMessage, {
-          id: error[0],
-          values: error[1]
-        }) : _react.default.createElement(_reactIntl.FormattedMessage, {
-          id: error
-        }));
-      })), _react.default.createElement(_DialogContent.default, null, _react.default.createElement(_Grid.default, {
-        container: true,
-        spacing: 16,
-        component: "form",
-        noValidate: true,
-        autoComplete: "off",
-        onSubmit: this.submit
-      }, _react.default.createElement(_Grid.default, {
-        item: true,
-        xs: 12
-      }, _react.default.createElement(_Field.default, {
-        formFields: this.constructor.fields,
-        formProps: this.props,
-        name: "name",
-        type: "text",
-        onSubmit: this.submit
-      })), _react.default.createElement(_Grid.default, {
-        item: true,
-        xs: 12
-      }, _react.default.createElement(_Field.default, {
-        formFields: this.constructor.fields,
-        formProps: this.props,
-        name: "password",
-        type: "password",
-        onSubmit: this.submit
-      })))), _react.default.createElement(_DialogActions.default, {
-        classes: {
-          root: this.props.classes.actions
+      _xterm.Terminal.applyAddon(fit);
+
+      _xterm.Terminal.applyAddon(fullscreen);
+
+      _xterm.Terminal.applyAddon(search);
+
+      this.xterm = new _xterm.Terminal(this.props.options);
+      this.xterm.open(this.refTerm.current);
+      var origResize = this.xterm.resize;
+
+      this.xterm.resize = function (cols, rows) {
+        if (_this2.props.onResize) {
+          _this2.props.onResize(cols, rows, _this2.refTerm.current ? _this2.refTerm.current.offsetWidth : 640, _this2.refTerm.current ? _this2.refTerm.current.offsetHeight : 480);
         }
-      }, _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "primary",
-        disabled: this.props.submitting,
-        onClick: this.props.onCancel
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "EDIT_DEVICE_CANCEL"
-      })), _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "secondary",
-        disabled: this.props.submitting,
-        onClick: this.submit
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "EDIT_DEVICE_SUBMIT"
-      }))));
+
+        origResize.call(_this2.xterm, cols, rows);
+      };
+
+      this.xterm.on('focus', this.focusChanged.bind(this, true));
+      this.xterm.on('blur', this.focusChanged.bind(this, false));
+      this.xterm.on('data', this.onData.bind(this));
+      this.xterm.on('key', this.onKey.bind(this));
+      this.xterm.on('paste', this.onPaste.bind(this));
+      if (this.props.onContextMenu) this.xterm.element.addEventListener('contextmenu', this.onContextMenu);
+
+      if (typeof window !== 'undefined') {
+        window.addEventListener('resize', this.onResize);
+        window.addEventListener('orientationchange', this.onResize);
+        setTimeout(function () {
+          return _this2.fit();
+        });
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      if (this.props.onContextMenu) this.xterm.element.removeEventListener('contextmenu', this.onContextMenu);
+
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', this.onResize);
+        window.removeEventListener('orientationchange', this.onResize);
+      }
+
+      this.xterm.destroy();
+      this.xterm = null;
+    }
+  }, {
+    key: "focusChanged",
+    value: function focusChanged(focused) {
+      this.setState({
+        isFocused: focused
+      });
+    }
+  }, {
+    key: "onData",
+    value: function onData(data) {
+      this.props.onData && this.props.onData(data);
+    }
+  }, {
+    key: "onKey",
+    value: function onKey(key, ev) {
+      this.props.onKey && this.props.onKey({
+        altKey: ev.altKey,
+        ctrlKey: ev.ctrlKey,
+        metaKey: ev.metaKey,
+        keyCode: ev.keyCode,
+        key: key
+      });
+    }
+  }, {
+    key: "onPaste",
+    value: function onPaste(data) {
+      this.props.onPaste && this.props.onPaste(data);
+    }
+  }, {
+    key: "onContextMenu",
+    value: function onContextMenu(e) {
+      this.props.onContextMenu && this.props.onContextMenu(e);
+    }
+  }, {
+    key: "onResize",
+    value: function onResize() {
+      var _this3 = this;
+
+      setTimeout(function () {
+        return _this3.xterm && _this3.xterm.fit();
+      }, 250);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return React.createElement("div", {
+        ref: this.refTerm,
+        className: this.props.className,
+        style: {
+          width: this.props.width || '100%',
+          height: this.props.height || '100%'
+        }
+      });
     }
   }]);
 
-  return EditDeviceModal;
-}(_Form2.default);
+  return XTerm;
+}(React.PureComponent);
 
-_defineProperty(EditDeviceModal, "propTypes", _objectSpread({}, _Form2.default.propTypes, {
-  intl: _reactIntl.intlShape,
-  theme: _propTypes.default.object.isRequired,
-  classes: _propTypes.default.object.isRequired,
-  isOpen: _propTypes.default.bool.isRequired,
-  data: _propTypes.default.instanceOf(_immutable.Map),
-  onCreate: _propTypes.default.func.isRequired,
-  onEdit: _propTypes.default.func.isRequired
-}));
-
-_defineProperty(EditDeviceModal, "formName", "editCameraForm");
-
-_defineProperty(EditDeviceModal, "fields", {
-  name: {
-    normalize: "rows:1|remove:spaces",
-    transform: "trim",
-    label: "EDIT_DEVICE_NAME_LABEL"
-  },
-  password: {
-    normalize: "rows:1",
-    transform: "trim",
-    label: "EDIT_DEVICE_PASSWORD_LABEL"
-  }
+_defineProperty(XTerm, "defaultProps", {
+  options: {}
 });
 
-var _default = (0, _styles.withStyles)(styles, {
-  withTheme: true
-})(EditDeviceModal);
-
+var _default = XTerm;
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 176 */
+/* 188 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/Language");
+module.exports = require("xterm");
+
+/***/ }),
+/* 189 */
+/***/ (function(module, exports) {
+
+module.exports = require("xterm/dist/addons/fit/fit");
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports) {
+
+module.exports = require("xterm/dist/addons/fullscreen/fullscreen");
+
+/***/ }),
+/* 191 */
+/***/ (function(module, exports) {
+
+module.exports = require("xterm/dist/addons/search/search");
+
+/***/ }),
+/* 192 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/colors/grey");
+
+/***/ }),
+/* 193 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/colors/blue");
+
+/***/ }),
+/* 194 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/colors/cyan");
+
+/***/ }),
+/* 195 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/colors/green");
+
+/***/ }),
+/* 196 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/colors/pink");
+
+/***/ }),
+/* 197 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/colors/yellow");
 
 /***/ })
 /******/ ]);
