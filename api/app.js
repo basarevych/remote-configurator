@@ -33,7 +33,7 @@ if (!process.env.NODE_ENV) process.env.NODE_ENV = "production";
 
 let appHost = process.env.APP_HOST || "0.0.0.0";
 let appPort = parseInt(process.env.APP_PORT, 10) || 3000;
-let appOrigins = process.env.APP_ORIGINS || `["http://localhost:${appPort}"]`;
+let appOrigins = process.env.APP_ORIGINS;
 let appStatic = process.env.APP_STATIC || "";
 let appTrustProxy = process.env.APP_TRUST_PROXY === "true" ? 1 : 0;
 let appOnlineUsers = parseInt(process.env.APP_ONLINE_USERS, 10) || 50;
@@ -45,6 +45,7 @@ let rootPassword = process.env.ROOT_PASSWORD;
 let dbPath = process.env.DB_PATH;
 let sshHost = process.env.SSH_HOST || "0.0.0.0";
 let sshPort = parseInt(process.env.SSH_PORT, 10) || 35000;
+let sshOrigins = process.env.SSH_ORIGINS;
 
 /**
  * The application
@@ -72,22 +73,40 @@ class App {
       dbPath = path.resolve(__dirname, "..", dbPath);
     }
 
-    let originsApp; // parse allowed origins of our app
-    try {
-      originsApp = JSON.parse(appOrigins);
-      if (!_.isArray(originsApp))
-        throw new Error(
-          "APP_ORIGINS env variable should be a JSON string of array of strings"
-        );
-    } catch (error) {
-      console.error("Could not parse APP_ORIGINS: ", error.message);
-      process.exit(1);
+    if (appOrigins) {
+      try {
+        if (_.isString(appOrigins)) appOrigins = JSON.parse(appOrigins);
+        if (!_.isArray(appOrigins))
+          throw new Error(
+            "APP_ORIGINS env variable should be a JSON string of array of strings"
+          );
+      } catch (error) {
+        console.error("Could not parse APP_ORIGINS: ", error.message);
+        process.exit(1);
+      }
+    } else {
+      appOrigins = [`http://localhost:${appPort}`];
+    }
+
+    if (sshOrigins) {
+      try {
+        if (_.isString(sshOrigins)) sshOrigins = JSON.parse(sshOrigins);
+        if (!_.isArray(sshOrigins))
+          throw new Error(
+            "SSH_ORIGINS env variable should be a JSON string of array of strings"
+          );
+      } catch (error) {
+        console.error("Could not parse SSH_ORIGINS: ", error.message);
+        process.exit(1);
+      }
+    } else {
+      sshOrigins = [new url.URL(appOrigins[0]).hostname];
     }
 
     this.config = {
       appHost,
       appPort,
-      appOrigins: originsApp,
+      appOrigins,
       appStatic,
       appTrustProxy,
       appOnlineUsers,
@@ -98,7 +117,8 @@ class App {
       rootPassword,
       dbPath,
       sshHost,
-      sshPort
+      sshPort,
+      sshOrigins
     };
 
     this.di = new Injectt();
@@ -218,7 +238,7 @@ class App {
       query: _.assign({}, query || {}, {
         locale: locale || l10n.defaultLocale || null,
         theme: theme || styles.defaultTheme || null,
-        sshHost: new url.URL(this.config.appOrigins[0]).hostname,
+        sshHost: this.config.sshOrigins[0],
         sshPort: this.config.sshPort
       })
     };

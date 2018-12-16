@@ -40,7 +40,7 @@ class Exec extends EventEmitter {
     return ["di", "getState", "dispatch"];
   }
 
-  async start(username, password) {
+  async start() {
     if (!_.isUndefined(this.stream)) throw new Error("Already running");
 
     let device = devicesSelectors.getDeviceMap(this.getState(), {
@@ -54,7 +54,7 @@ class Exec extends EventEmitter {
     this.command.once("disconnected", this.onDisconnected.bind(this));
 
     debug(`Command on ${this.deviceId}: ${this.execString}`);
-    return this.command.start(username, password);
+    return this.command.start();
   }
 
   async wait() {

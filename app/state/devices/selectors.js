@@ -9,19 +9,17 @@ export const getOnline = createSelector(
   (devices, terminals) => {
     return devices // eslint-disable-line lodash/prefer-lodash-method
       .map((deviceInfo, deviceId) =>
-        Map({
-          address: deviceInfo.get("address"),
-          terminals: terminals // eslint-disable-line lodash/prefer-lodash-method
+        deviceInfo.set(
+          "terminals",
+          terminals // eslint-disable-line lodash/prefer-lodash-method
             .map((terminalInfo, terminalId) => ({
               id: terminalId,
-              valid:
-                terminalInfo.get("deviceId") === deviceId &&
-                terminalInfo.get("isConnecting")
+              valid: terminalInfo.get("deviceId") === deviceId
             }))
             .toList()
             .filter(item => !!item.valid)
             .map(item => item.id)
-        })
+        )
       );
   }
 );
@@ -57,4 +55,35 @@ export const getEditModalData = state => {
 
   // eslint-disable-next-line
   return state.getIn(["devices", "list"]).find(item => item.get("id") === id);
+};
+
+export const isCredentialsModalOpen = state =>
+  state.getIn(["devices", "isCredentialsModalOpen"]);
+
+export const getCredentialsModalDeviceId = state =>
+  state.getIn(["devices", "credentialsModalDeviceId"]);
+
+export const getCredentialsModalData = state => {
+  let id = state.getIn(["devices", "credentialsModalDeviceId"]);
+  if (!id) return Map();
+
+  return (
+    // eslint-disable-next-line
+    state
+      .getIn(["devices", "online"])
+      .find(item => item.get("deviceId") === id) || Map()
+  );
+};
+
+export const getInteractiveModalDeviceId = state =>
+  state
+    .getIn(["devices", "online"])
+    .findKey(device => !!device.getIn(["auth", "prompts"])) || null;
+
+export const isInteractiveModalOpen = state =>
+  !!getInteractiveModalDeviceId(state);
+
+export const getInteractiveModalData = state => {
+  const id = getInteractiveModalDeviceId(state);
+  return (id && state.getIn(["devices", "online", id, "auth"])) || Map();
 };

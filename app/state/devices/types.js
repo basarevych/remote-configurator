@@ -7,3 +7,5 @@ export const SET = "app/devices/SET";
 export const REMOVE = "app/devices/REMOVE";
 export const SHOW_EDIT_MODAL = "app/devices/SHOW_EDIT_MODAL";
 export const HIDE_EDIT_MODAL = "app/devices/HIDE_EDIT_MODAL";
+export const SHOW_CREDENTIALS_MODAL = "app/devices/SHOW_CREDENTIALS_MODAL";
+export const HIDE_CREDENTIALS_MODAL = "app/devices/HIDE_CREDENTIALS_MODAL";

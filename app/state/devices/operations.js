@@ -1,12 +1,18 @@
+import Router from "next/router";
 import * as actions from "./actions";
 import * as selectors from "./selectors";
-import { appOperations } from "../app";
+import { appOperations, appSelectors } from "../app";
 import { terminalsSelectors, terminalsOperations } from "../terminals";
+import constants from "../../../common/constants";
 
 export const clear = actions.clear;
 export const set = actions.set;
 export const showEditModal = actions.showEditModal;
 export const hideEditModal = actions.hideEditModal;
+export const showCredentialsModal = actions.showCredentialsModal;
+export const hideCredentialsModal = actions.hideCredentialsModal;
+export const showInteractiveModal = actions.showInteractiveModal;
+export const hideInteractiveModal = actions.hideInteractiveModal;
 export const setSelected = actions.setSelected;
 export const selectAll = actions.selectAll;
 export const deselectAll = actions.deselectAll;
@@ -165,4 +171,67 @@ export const reqRemove = ({ id }) => async dispatch => {
     )
   );
   return (response && _.get(response, "data.deleteDevice.success")) || false;
+};
+
+export const startAuth = ({ deviceId }) => async dispatch => {
+  return dispatch(showCredentialsModal({ deviceId }));
+};
+
+export const cancelAuth = () => async dispatch => {
+  return dispatch(hideCredentialsModal());
+};
+
+export const finishAuth = ({ username, password }) => async (
+  dispatch,
+  getState
+) => {
+  const deviceId = selectors.getCredentialsModalDeviceId(getState());
+  await dispatch(hideCredentialsModal());
+
+  let socket = appSelectors.getService(getState(), { service: "socket" });
+  if (socket && deviceId) {
+    socket.emit(constants.messages.CONNECT_DEVICE, {
+      deviceId,
+      username,
+      password
+    });
+  }
+};
+
+export const doInteractiveAuth = ({ reply }) => async (dispatch, getState) => {
+  const deviceId = selectors.getInteractiveModalDeviceId(getState());
+  let socket = appSelectors.getService(getState(), { service: "socket" });
+  if (socket && deviceId) {
+    socket.emit(constants.messages.FINISH_AUTH, {
+      deviceId,
+      reply
+    });
+  }
+};
+
+export const openTerminal = ({ deviceId }) => async (dispatch, getState) => {
+  let socket = appSelectors.getService(getState(), { service: "socket" });
+  if (socket) {
+    socket.emit(
+      constants.messages.CONNECT_TERMINAL,
+      { deviceId },
+      async response => {
+        if (response.id && response.id) {
+          Router.push({
+            pathname: "/terminal",
+            query: { terminalId: response.id }
+          });
+        }
+      }
+    );
+  }
+};
+
+export const disconnect = ({ deviceId }) => async (dispatch, getState) => {
+  let socket = appSelectors.getService(getState(), { service: "socket" });
+  if (socket) {
+    socket.emit(constants.messages.DISCONNECT_DEVICE, {
+      deviceId
+    });
+  }
 };

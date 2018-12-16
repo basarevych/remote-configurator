@@ -12,13 +12,18 @@ import TableRow from "@material-ui/core/TableRow";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import Checkbox from "@material-ui/core/Checkbox";
+import LinearProgress from "@material-ui/core/LinearProgress";
 import Tooltip from "@material-ui/core/Tooltip";
 import EditDeviceModal from "../../containers/Devices/EditDeviceModal";
 import ConfirmModal from "../Modals/ConfirmModal";
 import OpenTerminalIcon from "@material-ui/icons/OpenInBrowser";
 import OpenBrowserIcon from "@material-ui/icons/Language";
+import DisconnectIcon from "@material-ui/icons/ExitToApp";
 
-const styles = () => ({
+const styles = theme => ({
+  statusColumn: {
+    width: "40%"
+  },
   buttons: {
     width: "100%",
     display: "flex",
@@ -31,6 +36,10 @@ const styles = () => ({
   },
   tooltip: {
     fontSize: "1rem"
+  },
+  progress: {
+    display: "inline-block",
+    width: theme.main.spacing * 4
   },
   collapsing: {
     width: 1,
@@ -59,6 +68,8 @@ class Devices extends React.Component {
     onSetSelected: PropTypes.func.isRequired,
     onSelectAll: PropTypes.func.isRequired,
     onDeselectAll: PropTypes.func.isRequired,
+    onConnect: PropTypes.func.isRequired,
+    onDisconnect: PropTypes.func.isRequired,
     onOpenTerminal: PropTypes.func.isRequired,
     onOpenBrowser: PropTypes.func.isRequired
   };
@@ -130,6 +141,24 @@ class Devices extends React.Component {
           >
             <FormattedMessage id="DEVICES_CREATE_BUTTON" />
           </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            disabled={this.props.isAllDeselected}
+            classes={{ root: this.props.classes.button }}
+            onClick={this.handleEditAction}
+          >
+            <FormattedMessage id="DEVICES_EDIT_BUTTON" />
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            disabled={this.props.isAllDeselected}
+            classes={{ root: this.props.classes.button }}
+            onClick={this.handleDeleteAction}
+          >
+            <FormattedMessage id="DEVICES_DELETE_BUTTON" />
+          </Button>
         </div>
 
         <Table padding="dense">
@@ -157,9 +186,7 @@ class Devices extends React.Component {
               <TableCell>
                 <FormattedMessage id="DEVICES_ADDRESS_COLUMN" />
               </TableCell>
-              <TableCell>
-                <FormattedMessage id="DEVICES_CONN_STRING_COLUMN" />
-              </TableCell>
+              <TableCell className={this.props.classes.statusColumn} />
             </TableRow>
           </TableHead>
           <TableBody>
@@ -182,44 +209,76 @@ class Devices extends React.Component {
                       onChange={() => this.handleToggle(row.get("id"))}
                       value="on"
                     />
-                    <Tooltip
-                      disableFocusListener
-                      classes={{ tooltip: this.props.classes.tooltip }}
-                      title={this.props.intl.formatMessage({
-                        id: "DEVICES_OPEN_TERMINAL_TIP"
-                      })}
-                    >
-                      <span>
-                        <IconButton
-                          color="inherit"
-                          disabled={!info}
-                          onClick={() =>
-                            this.props.onOpenTerminal(row.get("id"))
-                          }
+                    {info && info.get("isLoggedIn") ? (
+                      <React.Fragment>
+                        <Tooltip
+                          disableFocusListener
+                          classes={{ tooltip: this.props.classes.tooltip }}
+                          title={this.props.intl.formatMessage({
+                            id: "DEVICES_OPEN_TERMINAL_TIP"
+                          })}
                         >
-                          <OpenTerminalIcon />
-                        </IconButton>
-                      </span>
-                    </Tooltip>
-                    <Tooltip
-                      disableFocusListener
-                      classes={{ tooltip: this.props.classes.tooltip }}
-                      title={this.props.intl.formatMessage({
-                        id: "DEVICES_OPEN_BROWSER_TIP"
-                      })}
-                    >
-                      <span>
-                        <IconButton
-                          color="inherit"
-                          disabled={!info}
-                          onClick={() =>
-                            this.props.onOpenBrowser(row.get("id"))
-                          }
+                          <span>
+                            <IconButton
+                              color="inherit"
+                              onClick={() =>
+                                this.props.onOpenTerminal(row.get("id"))
+                              }
+                            >
+                              <OpenTerminalIcon />
+                            </IconButton>
+                          </span>
+                        </Tooltip>
+                        <Tooltip
+                          disableFocusListener
+                          classes={{ tooltip: this.props.classes.tooltip }}
+                          title={this.props.intl.formatMessage({
+                            id: "DEVICES_OPEN_BROWSER_TIP"
+                          })}
                         >
-                          <OpenBrowserIcon />
-                        </IconButton>
-                      </span>
-                    </Tooltip>
+                          <span>
+                            <IconButton
+                              color="inherit"
+                              onClick={() =>
+                                this.props.onOpenBrowser(row.get("id"))
+                              }
+                            >
+                              <OpenBrowserIcon />
+                            </IconButton>
+                          </span>
+                        </Tooltip>
+                        <Tooltip
+                          disableFocusListener
+                          classes={{ tooltip: this.props.classes.tooltip }}
+                          title={this.props.intl.formatMessage({
+                            id: "DEVICES_DISCONNECT_TIP"
+                          })}
+                        >
+                          <span>
+                            <IconButton
+                              color="inherit"
+                              onClick={() =>
+                                this.props.onDisconnect(row.get("id"))
+                              }
+                            >
+                              <DisconnectIcon />
+                            </IconButton>
+                          </span>
+                        </Tooltip>
+                      </React.Fragment>
+                    ) : info && info.get("isLoggingIn") ? (
+                      <LinearProgress className={this.props.classes.progress} />
+                    ) : (
+                      <Button
+                        size="small"
+                        variant="contained"
+                        color="primary"
+                        disabled={!info}
+                        onClick={() => this.props.onConnect(row.get("id"))}
+                      >
+                        <FormattedMessage id="DEVICES_CONNECT_BUTTON" />
+                      </Button>
+                    )}
                   </TableCell>
                   <TableCell
                     className={classNames(
@@ -245,39 +304,24 @@ class Devices extends React.Component {
                   </TableCell>
                   <TableCell
                     className={classNames(
+                      this.props.classes.statusColumn,
                       index % 2 ? "even" : "odd",
                       row.get("isSelected") && "selected"
                     )}
                   >
-                    ssh -p {this.props.sshPort} -R 22:localhost:22 -N{" "}
-                    {row.get("name")}@{this.props.sshHost}
+                    {info
+                      ? info.get("status")
+                      : `ssh -p ${
+                          this.props.sshPort
+                        } -R 22:localhost:22 -N ${row.get("name")}@${
+                          this.props.sshHost
+                        }`}
                   </TableCell>
                 </TableRow>
               );
             })}
           </TableBody>
         </Table>
-
-        <div className={this.props.classes.buttons}>
-          <Button
-            variant="contained"
-            color="primary"
-            disabled={this.props.isAllDeselected}
-            classes={{ root: this.props.classes.button }}
-            onClick={this.handleEditAction}
-          >
-            <FormattedMessage id="DEVICES_EDIT_BUTTON" />
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            disabled={this.props.isAllDeselected}
-            classes={{ root: this.props.classes.button }}
-            onClick={this.handleDeleteAction}
-          >
-            <FormattedMessage id="DEVICES_DELETE_BUTTON" />
-          </Button>
-        </div>
 
         <EditDeviceModal />
         <ConfirmModal

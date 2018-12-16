@@ -116,6 +116,13 @@ class Sidebar extends React.Component {
     const { icon, menu } = constants.pages[path];
     if (!icon && !menu) return null;
 
+    let isSelected = this.props.router.pathname === path;
+    if (path === "/terminal" && isSelected)
+      isSelected =
+        query &&
+        this.props.router.query &&
+        this.props.router.query.terminalId === query.terminalId;
+
     return (
       <MenuItem
         key={`page-${path}-${query ? query.terminalId : "none"}`}
@@ -123,7 +130,7 @@ class Sidebar extends React.Component {
           root: this.props.classes.item,
           selected: this.props.classes.itemSelected
         }}
-        selected={this.props.router.pathname === path}
+        selected={isSelected}
         onClick={() => this.handleMenuClick({ pathname: path, query })}
       >
         {icon === "devices" && (

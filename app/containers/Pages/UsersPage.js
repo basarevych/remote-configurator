@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { authSelectors } from "../../state/auth";
-import { usersOperations } from "../app/state/users";
+import { usersOperations } from "../../state/users";
 import UsersPageComponent from "../../components/Pages/UsersPage";
 
 const mapStateToProps = state => {

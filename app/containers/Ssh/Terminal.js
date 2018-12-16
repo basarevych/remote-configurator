@@ -6,17 +6,11 @@ import { terminalsSelectors, terminalsOperations } from "../../state/terminals";
 import { historiesSelectors } from "../../state/histories";
 
 const mapStateToProps = (state, props) => {
-  let terminal = terminalsSelectors.getTerminalMap(state, props);
   return {
-    id: terminal ? props.terminalId : null,
-    isConnecting: terminal ? terminal.get("isConnecting") : false,
-    isConnected: terminal ? terminal.get("isConnected") : false,
+    isConnected: terminalsSelectors.hasTerminal(state, props),
     name: terminalsSelectors.getTerminalName(state, props),
     address: terminalsSelectors.getTerminalAddress(state, props),
-    status: terminal ? terminal.get("status") : null,
-    history: terminal
-      ? historiesSelectors.getList(state, props) || List([])
-      : List([])
+    history: historiesSelectors.getList(state, props) || List([])
   };
 };
 

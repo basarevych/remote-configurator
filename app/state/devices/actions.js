@@ -29,3 +29,12 @@ export const showEditModal = ({ deviceId } = {}) => ({
 });
 
 export const hideEditModal = () => ({ type: types.HIDE_EDIT_MODAL });
+
+export const showCredentialsModal = ({ deviceId } = {}) => ({
+  type: types.SHOW_CREDENTIALS_MODAL,
+  deviceId
+});
+
+export const hideCredentialsModal = () => ({
+  type: types.HIDE_CREDENTIALS_MODAL
+});

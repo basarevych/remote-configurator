@@ -2,8 +2,8 @@
 
 const actions = require("./actions");
 const selectors = require("./selectors");
-const terminalsOperations = require("../terminals/operations");
-const terminalsSelectors = require("../terminals/selectors");
+const devicesOperations = require("../devices/operations");
+const devicesSelectors = require("../devices/selectors");
 
 const addSocket = actions.addSocket;
 
@@ -26,10 +26,10 @@ const remove = ({ userId }) => {
   return async (dispatch, getState) => {
     await Promise.all(
       // eslint-disable-next-line lodash/prefer-lodash-method
-      terminalsSelectors
-        .getTerminalsMapByUser(getState(), { userId })
-        .map((terminal, terminalId) =>
-          dispatch(terminalsOperations.remove({ terminalId }))
+      devicesSelectors
+        .getDevicesMapByUser(getState(), { userId })
+        .map((device, deviceId) =>
+          dispatch(devicesOperations.remove({ deviceId }))
         )
         .toList()
         .toJS()

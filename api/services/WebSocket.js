@@ -4,7 +4,7 @@ const pkg = require("../../package.json");
 const IO = require("socket.io");
 const { Map } = require("immutable");
 const EventEmitter = require("events");
-const { devicesSelectors } = require("../state/devices");
+const { devicesSelectors, devicesOperations } = require("../state/devices");
 const {
   terminalsSelectors,
   terminalsOperations
@@ -129,8 +129,19 @@ class WebSocket extends EventEmitter {
     });
     if (!device) return null;
 
+    let auth = device.get("auth");
     return {
-      address: device.get("address")
+      status: device.get("status"),
+      address: device.get("address"),
+      isLoggingIn: device.get("isLoggingIn"),
+      isLoggedIn: device.get("isLoggedIn"),
+      auth:
+        auth && auth.get("finish")
+          ? {
+              banner: auth.get("banner"),
+              prompts: auth.get("prompts").toJS()
+            }
+          : null
     };
   }
 
@@ -159,23 +170,10 @@ class WebSocket extends EventEmitter {
     });
     if (!terminal) return null;
 
-    let auth = terminal.get("auth");
     return {
       deviceId: terminal.get("deviceId"),
       whenCreated: terminal.get("whenCreated"),
-      name: terminal.get("name"),
-      isConnecting: terminal.get("isConnecting"),
-      isWaiting: terminal.get("isWaiting"),
-      isConnected: terminal.get("isConnected"),
-      status: terminal.get("status"),
-      auth:
-        auth && auth.get("finish")
-          ? {
-              username: auth.get("username"),
-              banner: auth.get("banner"),
-              prompts: auth.get("prompts").toJS()
-            }
-          : null
+      name: terminal.get("name")
     };
   }
 
@@ -253,12 +251,16 @@ class WebSocket extends EventEmitter {
         this.onDisconnect.bind(this, userId, sessionId, socketId)
       );
       socket.on(
-        constants.messages.CONNECT_TERMINAL,
-        this.onConnectTerminal.bind(this, userId, sessionId, socketId)
+        constants.messages.CONNECT_DEVICE,
+        this.onConnectDevice.bind(this, userId, sessionId, socketId)
       );
       socket.on(
-        constants.messages.KEYBOARD_AUTH,
-        this.onKeyboardAuth.bind(this, userId, sessionId, socketId)
+        constants.messages.FINISH_AUTH,
+        this.onFinishAuth.bind(this, userId, sessionId, socketId)
+      );
+      socket.on(
+        constants.messages.CONNECT_TERMINAL,
+        this.onConnectTerminal.bind(this, userId, sessionId, socketId)
       );
       socket.on(
         constants.messages.TERMINAL_INPUT,
@@ -271,6 +273,10 @@ class WebSocket extends EventEmitter {
       socket.on(
         constants.messages.DISCONNECT_TERMINAL,
         this.onDisconnectTerminal.bind(this, userId, sessionId, socketId)
+      );
+      socket.on(
+        constants.messages.DISCONNECT_DEVICE,
+        this.onDisconnectDevice.bind(this, userId, sessionId, socketId)
       );
 
       await this.dispatch(
@@ -334,6 +340,63 @@ class WebSocket extends EventEmitter {
     }
   }
 
+  async onConnectDevice(userId, sessionId, socketId, msg) {
+    try {
+      debug(`Socket ${socketId} is opening device: ${msg.deviceId}`);
+      if (
+        !devicesSelectors.hasDevice(this.getState(), {
+          deviceId: msg.deviceId
+        }) ||
+        devicesSelectors.getUserId(this.getState(), {
+          deviceId: msg.deviceId
+        }) !== userId ||
+        devicesSelectors.getIsLoggingIn(this.getState(), {
+          deviceId: msg.deviceId
+        })
+      ) {
+        return;
+      }
+
+      await this.dispatch(
+        devicesOperations.open({
+          deviceId: msg.deviceId,
+          username: msg.username,
+          password: msg.password
+        })
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async onFinishAuth(userId, sessionId, socketId, msg) {
+    try {
+      if (
+        !devicesSelectors.hasDevice(this.getState(), {
+          deviceId: msg.deviceId
+        }) ||
+        devicesSelectors.getUserId(this.getState(), {
+          deviceId: msg.deviceId
+        }) !== userId ||
+        !devicesSelectors.getIsLoggingIn(this.getState(), {
+          deviceId: msg.deviceId
+        })
+      ) {
+        return;
+      }
+
+      debug(`Socket ${socketId} is doing keyboard auth`);
+      await this.dispatch(
+        devicesOperations.finishAuth({
+          deviceId: msg.deviceId,
+          reply: msg.reply
+        })
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   async onConnectTerminal(userId, sessionId, socketId, msg, cb) {
     try {
       debug(`Socket ${socketId} is opening terminal to ${msg.deviceId}`);
@@ -343,42 +406,21 @@ class WebSocket extends EventEmitter {
         }) ||
         devicesSelectors.getUserId(this.getState(), {
           deviceId: msg.deviceId
-        }) !== userId
+        }) !== userId ||
+        !devicesSelectors.getIsLoggedIn(this.getState(), {
+          deviceId: msg.deviceId
+        })
       ) {
-        return;
+        return cb({});
       }
 
       const result = await this.dispatch(
         terminalsOperations.create({
           deviceId: msg.deviceId,
-          userId,
-          username: msg.username,
-          password: msg.password
+          userId
         })
       );
       return cb(result);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  async onKeyboardAuth(userId, sessionId, socketId, msg) {
-    try {
-      if (
-        terminalsSelectors.getUserId(this.getState(), {
-          terminalId: msg.terminalId
-        }) !== userId
-      ) {
-        return;
-      }
-
-      debug(`Socket ${socketId} is doing keyboard auth`);
-      await this.dispatch(
-        terminalsOperations.finishAuth({
-          terminalId: msg.terminalId,
-          reply: msg.reply
-        })
-      );
     } catch (error) {
       console.error(error);
     }
@@ -445,6 +487,27 @@ class WebSocket extends EventEmitter {
       await this.dispatch(
         terminalsOperations.remove({
           terminalId: msg.terminalId
+        })
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async onDisconnectDevice(userId, sessionId, socketId, msg) {
+    try {
+      if (
+        devicesSelectors.getUserId(this.getState(), {
+          deviceId: msg.deviceId
+        }) !== userId
+      ) {
+        return;
+      }
+
+      debug(`Socket ${socketId} closes device`);
+      await this.dispatch(
+        devicesOperations.remove({
+          deviceId: msg.deviceId
         })
       );
     } catch (error) {

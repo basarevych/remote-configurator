@@ -30,7 +30,10 @@ class TerminalPage extends React.Component {
 
     return (
       <div className={this.props.classes.layout}>
-        <Terminal terminalId={this.props.terminalId} />
+        <Terminal
+          key={`terminal-${this.props.terminalId}`}
+          terminalId={this.props.terminalId}
+        />
       </div>
     );
   }

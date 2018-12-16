@@ -30,19 +30,31 @@ const remove = ({ deviceId }) => {
   };
 };
 
-const reboot = ({ deviceId, username, password }) => {
+const open = ({ deviceId, username, password }) => {
   return async (dispatch, getState) => {
     try {
-      let exec = appSelectors.getService(getState(), {
-        service: "ssh.exec",
-        params: [deviceId, "reboot", false, false]
+      await dispatch(set({ deviceId, isLoggingIn: true, isLoggedIn: false }));
+      let init = appSelectors.getService(getState(), {
+        service: "ssh.initiator",
+        params: [deviceId]
       });
-      if (exec) {
-        await exec.start(username, password);
-        setTimeout(() => dispatch(remove({ deviceId })), 5000);
-      }
+      if (init) return init.start(username, password);
     } catch (error) {
-      console.error(`Reboot: ${error.message}`);
+      console.error(`Open: ${error.message}`);
+    }
+  };
+};
+
+const finishAuth = ({ deviceId, reply }) => {
+  return async (dispatch, getState) => {
+    let finish = selectors.getFinish(getState(), { deviceId });
+    if (finish) {
+      try {
+        await dispatch(set({ deviceId, auth: null }));
+        finish([reply || ""]);
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 };
@@ -51,5 +63,6 @@ module.exports = {
   create,
   set,
   remove,
-  reboot
+  open,
+  finishAuth
 };

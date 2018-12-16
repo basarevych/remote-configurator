@@ -7,7 +7,6 @@ import { FormattedMessage } from "react-intl";
 import { withStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import XTerm from "../../containers/Ssh/XTerm";
@@ -26,7 +25,7 @@ const styles = theme => ({
     display: "flex",
     flexDirection: "column",
     position: "relative",
-    background: "#000000"
+    background: "#2a2c38"
   },
   header: {
     marginLeft: "1rem",
@@ -57,11 +56,9 @@ class Terminal extends React.Component {
     theme: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
     terminalId: PropTypes.string,
-    isConnecting: PropTypes.bool,
     isConnected: PropTypes.bool,
     name: PropTypes.string,
     address: PropTypes.string,
-    status: PropTypes.string,
     history: PropTypes.instanceOf(List).isRequired,
     onInput: PropTypes.func.isRequired,
     onResize: PropTypes.func.isRequired,
@@ -71,10 +68,6 @@ class Terminal extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      status: props.status
-    };
-
     this.lastRecordId = null;
     this.xterm = React.createRef();
     this.container = React.createRef();
@@ -82,15 +75,6 @@ class Terminal extends React.Component {
     this.handlePaste = this.handlePaste.bind(this);
     this.handleResize = this.handleResize.bind(this);
     this.handleClose = this.handleClose.bind(this);
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    let state = {};
-
-    if (nextProps.status && prevState.status !== nextProps.status)
-      state.status = nextProps.status;
-
-    return _.keys(state).length ? state : null;
   }
 
   componentDidMount() {
@@ -144,20 +128,9 @@ class Terminal extends React.Component {
   renderPlaceholder() {
     return (
       <div className={this.props.classes.placeholder}>
-        {this.state.status && <h3>{this.state.status}</h3>}
-        {!this.state.status &&
-          (this.props.isConnecting ? (
-            <React.Fragment>
-              <CircularProgress color="primary" size={60} />
-              <Typography variant="h5" color="inherit">
-                <FormattedMessage id="TERMINAL_CONNECTING_LABEL" />
-              </Typography>
-            </React.Fragment>
-          ) : (
-            <Typography variant="h5" color="inherit">
-              <FormattedMessage id="TERMINAL_NOT_CONNECTED_LABEL" />
-            </Typography>
-          ))}
+        <Typography variant="h5" color="inherit">
+          <FormattedMessage id="TERMINAL_NOT_CONNECTED_LABEL" />
+        </Typography>
       </div>
     );
   }
@@ -179,26 +152,26 @@ class Terminal extends React.Component {
                 fontSize: 14,
                 allowTransparency: true,
                 theme: {
-                  background: "#000000",
+                  background: "#2a2c38",
                   foreground: grey[100],
                   cursor: grey[50],
                   cursorAccent: grey[200],
                   //selection: theme._lightBlue50,
-                  black: "#000000",
-                  blue: blue[400],
-                  cyan: cyan[400],
-                  green: green[400],
-                  magenta: pink[400],
-                  red: red[400],
-                  yellow: yellow[400],
+                  black: "#2a2c38",
+                  blue: blue[500],
+                  cyan: cyan[500],
+                  green: green[500],
+                  magenta: pink[500],
+                  red: red[500],
+                  yellow: yellow[500],
                   white: grey[100],
                   brightBlack: grey[700],
-                  brightBlue: blue[100],
-                  brightCyan: cyan[100],
-                  brightGreen: green[100],
-                  brightMagenta: pink[100],
-                  brightRed: red[100],
-                  brightYellow: yellow[100],
+                  brightBlue: blue[200],
+                  brightCyan: cyan[200],
+                  brightGreen: green[200],
+                  brightMagenta: pink[200],
+                  brightRed: red[200],
+                  brightYellow: yellow[200],
                   brightWhite: grey[50]
                 }
               }}

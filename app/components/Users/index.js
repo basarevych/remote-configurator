@@ -115,6 +115,24 @@ class Users extends React.Component {
           >
             <FormattedMessage id="USERS_CREATE_BUTTON" />
           </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            disabled={this.props.isAllDeselected}
+            classes={{ root: this.props.classes.button }}
+            onClick={this.handleEditAction}
+          >
+            <FormattedMessage id="USERS_EDIT_BUTTON" />
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            disabled={this.props.isAllDeselected}
+            classes={{ root: this.props.classes.button }}
+            onClick={this.handleDeleteAction}
+          >
+            <FormattedMessage id="USERS_DELETE_BUTTON" />
+          </Button>
         </div>
 
         <Table padding="dense">
@@ -192,27 +210,6 @@ class Users extends React.Component {
             ))}
           </TableBody>
         </Table>
-
-        <div className={this.props.classes.buttons}>
-          <Button
-            variant="contained"
-            color="primary"
-            disabled={this.props.isAllDeselected}
-            classes={{ root: this.props.classes.button }}
-            onClick={this.handleEditAction}
-          >
-            <FormattedMessage id="USERS_EDIT_BUTTON" />
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            disabled={this.props.isAllDeselected}
-            classes={{ root: this.props.classes.button }}
-            onClick={this.handleDeleteAction}
-          >
-            <FormattedMessage id="USERS_DELETE_BUTTON" />
-          </Button>
-        </div>
 
         <EditUserModal />
         <ConfirmModal

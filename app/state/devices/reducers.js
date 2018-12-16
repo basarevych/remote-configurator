@@ -7,16 +7,26 @@ Map({
   list: List([
     Map({
       id: String,
+      isSelected: Boolean,
       name: String,
     })
   ]),
   online: Map({
     deviceId: Map({
+      status: String, // or null
       address: String,
+      isLoggingIn: Boolean,
+      isLoggedIn: Boolean,
+      auth: Map({
+        banner: String, // or null
+        prompts: List([String]), // or null if not requested
+      }),
     }),
   })
   editModalDeviceId: String, // null when creating a new device
   isEditModalOpen: false,
+  credentialsModalDeviceId: String,
+  isCredentialsModalOpen: false,
 })
 */
 
@@ -50,6 +60,15 @@ const listReducer = (state = List([]), action) => {
   return state;
 };
 
+const statusReducer = (state = "", action) => {
+  switch (action.type) {
+    case types.SET:
+      if (!_.isUndefined(action.status)) return action.status;
+      break;
+  }
+  return state;
+};
+
 const addressReducer = (state = null, action) => {
   switch (action.type) {
     case types.SET:
@@ -59,8 +78,58 @@ const addressReducer = (state = null, action) => {
   return state;
 };
 
+const isLoggingInReducer = (state = false, action) => {
+  switch (action.type) {
+    case types.SET:
+      if (!_.isUndefined(action.isLoggingIn)) return action.isLoggingIn;
+      break;
+  }
+  return state;
+};
+
+const isLoggedInReducer = (state = false, action) => {
+  switch (action.type) {
+    case types.SET:
+      if (!_.isUndefined(action.isLoggedIn)) return action.isLoggedIn;
+      break;
+  }
+  return state;
+};
+
+const authBannerReducer = (state = null, action) => {
+  let tmp;
+  switch (action.type) {
+    case types.SET:
+      tmp = action.auth;
+      if (!_.isUndefined(tmp)) return tmp && tmp.banner ? tmp.banner : null;
+      break;
+  }
+  return state;
+};
+
+const authPromptsReducer = (state = null, action) => {
+  let tmp;
+  switch (action.type) {
+    case types.SET:
+      tmp = action.auth;
+      if (!_.isUndefined(tmp))
+        return tmp && tmp.prompts ? fromJS(tmp.prompts) : null;
+      break;
+  }
+  return state;
+};
+
+const authReducer = combineReducers({
+  banner: authBannerReducer,
+  prompts: authPromptsReducer
+});
+
 const deviceReducer = combineReducers({
-  address: addressReducer
+  status: statusReducer,
+  address: addressReducer,
+  isLoggingIn: isLoggingInReducer,
+  isLoggedIn: isLoggedInReducer,
+  auth: authReducer
 });
 
 const onlineReducer = (state = Map({}), action) => {
@@ -101,11 +170,31 @@ const isEditModalOpenReducer = (state = false, action) => {
   return state;
 };
 
+const credentialsModalDeviceIdReducer = (state = null, action) => {
+  switch (action.type) {
+    case types.SHOW_CREDENTIALS_MODAL:
+      return action.deviceId || null;
+  }
+  return state;
+};
+
+const isCredentialsModalOpenReducer = (state = false, action) => {
+  switch (action.type) {
+    case types.SHOW_CREDENTIALS_MODAL:
+      return true;
+    case types.HIDE_CREDENTIALS_MODAL:
+      return false;
+  }
+  return state;
+};
+
 const reducer = combineReducers({
   list: listReducer,
   online: onlineReducer,
   editModalDeviceId: editModalDeviceIdReducer,
-  isEditModalOpen: isEditModalOpenReducer
+  isEditModalOpen: isEditModalOpenReducer,
+  credentialsModalDeviceId: credentialsModalDeviceIdReducer,
+  isCredentialsModalOpen: isCredentialsModalOpenReducer
 });
 
 export default reducer;

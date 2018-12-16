@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { authSelectors } from "../../state/auth";
-import { devicesOperations } from "../app/state/devices";
+import { devicesOperations } from "../../state/devices";
 import TerminalPageComponent from "../../components/Pages/TerminalPage";
 
 const mapStateToProps = state => {

@@ -1,5 +1,5 @@
 import React from "react";
-import App, { Container, createUrl } from "next/app";
+import App, { Container } from "next/app";
 import Router from "next/router";
 import { Provider } from "react-redux";
 import { MuiThemeProvider, jssPreset } from "@material-ui/core/styles";

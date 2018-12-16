@@ -21,6 +21,10 @@ module.exports = {
       page: "/terminal",
       icon: "terminal"
     },
+    "/browser": {
+      page: "/browser",
+      icon: "browser"
+    },
     "/users": {
       page: "/users",
       icon: "users",
@@ -31,8 +35,11 @@ module.exports = {
   },
   messages: {
     // client requests
+    CONNECT_DEVICE: "CONNECT_DEVICE",
+    FINISH_AUTH: "FINISH_AUTH",
+    DISCONNECT_DEVICE: "DISCONNECT_DEVICE",
+
     CONNECT_TERMINAL: "CONNECT_TERMINAL",
-    KEYBOARD_AUTH: "KEYBOARD_AUTH",
     TERMINAL_INPUT: "TERMINAL_INPUT",
     TERMINAL_RESIZED: "TERMINAL_RESIZED",
     DISCONNECT_TERMINAL: "DISCONNECT_TERMINAL",

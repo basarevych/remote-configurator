@@ -9,8 +9,8 @@ import Drawer from "@material-ui/core/Drawer";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import Sidebar from "../../containers/Layout/Sidebar";
 import AppAuthModal from "../../containers/Modals/AppAuthModal";
-import SetupAuthModal from "../../containers/Ssh/SetupAuthModal";
-import KeyboardAuthModal from "../../containers/Ssh/KeyboardAuthModal";
+import CredentialsModal from "../../containers/Ssh/CredentialsModal";
+import InteractiveModal from "../../containers/Ssh/InteractiveModal";
 
 import "../../styles";
 import styledScroll from "../../styles/styledScroll";
@@ -173,8 +173,8 @@ class Layout extends React.Component {
         )}
 
         <AppAuthModal />
-        <SetupAuthModal />
-        <KeyboardAuthModal />
+        <CredentialsModal />
+        <InteractiveModal />
       </div>
     );
   }

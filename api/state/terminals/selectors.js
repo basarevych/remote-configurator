@@ -35,9 +35,6 @@ const getUserId = (state, props) =>
 const getClient = (state, props) =>
   state.getIn(["terminals", props.terminalId, "client"]);
 
-const getFinish = (state, props) =>
-  state.getIn(["terminals", props.terminalId, "auth", "finish"]);
-
 module.exports = {
   getTerminalsMap,
   getTerminalsMapByDevice,
@@ -46,6 +43,5 @@ module.exports = {
   getTerminalMap,
   getDeviceId,
   getUserId,
-  getClient,
-  getFinish
+  getClient
 };

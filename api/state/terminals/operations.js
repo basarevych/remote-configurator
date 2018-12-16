@@ -9,7 +9,7 @@ const historiesOperations = require("../histories/operations");
 
 const set = actions.set;
 
-const create = ({ deviceId, userId, username, password }) => {
+const create = ({ deviceId, userId }) => {
   return async (dispatch, getState) => {
     let terminalId = uuid.v4();
 
@@ -36,23 +36,9 @@ const create = ({ deviceId, userId, username, password }) => {
       })
     );
 
-    client.start(username, password).catch(console.error);
+    client.start().catch(console.error);
 
     return { id: terminalId, name };
-  };
-};
-
-const finishAuth = ({ terminalId, reply }) => {
-  return async (dispatch, getState) => {
-    let finish = selectors.getFinish(getState(), { terminalId });
-    if (finish) {
-      try {
-        finish([reply || ""]);
-      } catch (error) {
-        console.error(error);
-      }
-      return dispatch(set({ terminalId, auth: null }));
-    }
   };
 };
 
@@ -91,7 +77,6 @@ const remove = ({ terminalId }) => {
 module.exports = {
   create,
   set,
-  finishAuth,
   sendInput,
   resize,
   remove

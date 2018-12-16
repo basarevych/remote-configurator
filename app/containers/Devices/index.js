@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import { injectIntl } from "react-intl";
 import { appSelectors } from "../../state/app";
 import { devicesSelectors, devicesOperations } from "../../state/devices";
-import { terminalsOperations } from "../../state/terminals";
 import DevicesComponent from "../../components/Devices";
 
 const mapStateToProps = state => {
@@ -27,10 +26,13 @@ const mapDispatchToProps = dispatch => {
       dispatch(devicesOperations.setSelected({ deviceId, isSelected })),
     onSelectAll: () => dispatch(devicesOperations.selectAll()),
     onDeselectAll: () => dispatch(devicesOperations.deselectAll()),
+    onConnect: deviceId => dispatch(devicesOperations.startAuth({ deviceId })),
+    onDisconnect: deviceId =>
+      dispatch(devicesOperations.disconnect({ deviceId })),
     onOpenTerminal: deviceId =>
-      dispatch(terminalsOperations.startSetupAuth({ deviceId })),
+      dispatch(devicesOperations.openTerminal({ deviceId })),
     onOpenBrowser: deviceId =>
-      dispatch(terminalsOperations.startSetupAuth({ deviceId }))
+      dispatch(devicesOperations.openBrowser({ deviceId }))
   };
 };
 

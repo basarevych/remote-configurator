@@ -125,6 +125,7 @@ class Client extends EventEmitter {
         await this.dispatch(
           devicesOperations.set({
             deviceId: this.deviceId,
+            status: "Connected",
             forwardedHost: info.bindAddr,
             forwardedPort: info.bindPort
           })

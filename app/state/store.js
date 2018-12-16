@@ -9,7 +9,6 @@ import users from "./users";
 import devices from "./devices";
 import terminals from "./terminals";
 import histories from "./histories";
-import activeTerminal from "./activeTerminal";
 
 let rootReducer = combineReducers({
   form,
@@ -18,8 +17,7 @@ let rootReducer = combineReducers({
   users,
   devices,
   terminals,
-  histories,
-  activeTerminal
+  histories
 });
 
 let middleware = applyMiddleware(thunk);

@@ -14,8 +14,6 @@ class Terminal extends EventEmitter {
     this.getState = getState;
     this.dispatch = dispatch;
 
-    this.keyboardTimeout = 60 * 1000;
-    this.terminalDestroyTimeout = 3 * 1000;
     this.terminalId = terminalId;
     this.deviceId = null;
     this.command = null;
@@ -32,7 +30,7 @@ class Terminal extends EventEmitter {
     return ["di", "getState", "dispatch"];
   }
 
-  async start(username, password) {
+  async start() {
     if (!this.terminalId || this.command || this.stream) return;
 
     try {
@@ -50,27 +48,11 @@ class Terminal extends EventEmitter {
       if (!deviceId) return this.stop();
       this.deviceId = deviceId;
 
-      await this.dispatch(
-        terminalsOperations.set({
-          terminalId: this.terminalId,
-          isConnecting: true,
-          isWaiting: false,
-          isConnected: false,
-          auth: null
-        })
-      );
-
       this.command = this.di.get("ssh.command", deviceId);
-      this.command.onError = (...args) => {
-        this.onError(...args);
-      };
-      this.command.onPassword = (...args) => {
-        this.onPassword(...args);
-      };
       this.command.on("connected", this.onConnected.bind(this));
       this.command.on("disconnected", this.onDisconnected.bind(this));
 
-      await this.command.start(username, password);
+      await this.command.start();
     } catch (error) {
       this.onError(error);
     }
@@ -96,17 +78,12 @@ class Terminal extends EventEmitter {
         await this.dispatch(
           terminalsOperations.set({
             terminalId: this.terminalId,
-            isConnecting: false,
-            isWaiting: false,
-            isConnected: false,
             client: null
           })
         );
-        setTimeout(() => {
-          this.dispatch(
-            terminalsOperations.remove({ terminalId: this.terminalId })
-          ).catch(error => console.error(error));
-        }, this.terminalDestroyTimeout);
+        this.dispatch(
+          terminalsOperations.remove({ terminalId: this.terminalId })
+        ).catch(error => console.error(error));
       }
     }
   }
@@ -157,54 +134,6 @@ class Terminal extends EventEmitter {
       .stderr.on("data", this.onData.bind(this));
 
     debug(`SSH terminal ${this.terminalId} ready`);
-    try {
-      if (
-        !terminalsSelectors.hasTerminal(this.getState(), {
-          terminalId: this.terminalId
-        })
-      ) {
-        throw new Error("Terminal disconnected");
-      }
-
-      await this.dispatch(
-        terminalsOperations.set({
-          terminalId: this.terminalId,
-          isWaiting: false,
-          isConnected: true,
-          auth: null
-        })
-      );
-    } catch (error) {
-      this.onError(error);
-    }
-  }
-
-  async onPassword(name, instructions, instructionsLang, prompts, finish) {
-    debug(`Keybaord-interactive from ${this.deviceId}`);
-    try {
-      if (
-        !terminalsSelectors.hasTerminal(this.getState(), {
-          terminalId: this.terminalId
-        })
-      ) {
-        throw new Error("Terminal disconnected");
-      }
-
-      await this.dispatch(
-        terminalsOperations.set({
-          terminalId: this.terminalId,
-          isWaiting: true,
-          auth: {
-            username: name,
-            finish,
-            banner: instructions,
-            prompts
-          }
-        })
-      );
-    } catch (error) {
-      this.onError(error);
-    }
   }
 
   async onClose() {
@@ -214,26 +143,6 @@ class Terminal extends EventEmitter {
 
   async onError(error) {
     console.error(`${this.terminalId}: ${error.message}`);
-    try {
-      if (
-        terminalsSelectors.hasTerminal(this.getState(), {
-          terminalId: this.terminalId
-        })
-      ) {
-        await this.dispatch(
-          terminalsOperations.set({
-            terminalId: this.terminalId,
-            isConnecting: false,
-            isWaiting: false,
-            isConnected: false,
-            status: error.toString(),
-            auth: null
-          })
-        );
-      }
-    } catch (error) {
-      console.error(error);
-    }
     await this.stop();
   }
 

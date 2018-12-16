@@ -1,6 +1,21 @@
 "use strict";
 
+const { createSelector } = require("reselect");
+const constants = require("../../../common/constants");
+
 const getDevicesMap = state => state.get("devices");
+
+const getDevicesMapByUser = createSelector(
+  state => state.get("devices"),
+  (state, props) => props.userId,
+  (devices, userId) =>
+    // eslint-disable-next-line lodash/prefer-lodash-method
+    devices.filter(
+      device =>
+        device.get("userId") === userId &&
+        device.get("forwardedPort") === constants.commandPort
+    )
+);
 
 const hasDevice = (state, props) => state.hasIn(["devices", props.deviceId]);
 
@@ -37,8 +52,24 @@ const getTerminalCounter = (state, props) =>
     )
     .reduce((acc, cur) => Math.max(acc, cur), 0);
 
+const getRemoteUsername = (state, props) =>
+  state.getIn(["devices", props.deviceId, "remoteUsername"]);
+
+const getRemotePassword = (state, props) =>
+  state.getIn(["devices", props.deviceId, "remotePassword"]);
+
+const getIsLoggingIn = (state, props) =>
+  state.getIn(["devices", props.deviceId, "isLoggingIn"]);
+
+const getIsLoggedIn = (state, props) =>
+  state.getIn(["devices", props.deviceId, "isLoggedIn"]);
+
+const getFinish = (state, props) =>
+  state.getIn(["devices", props.deviceId, "auth", "finish"]);
+
 module.exports = {
   getDevicesMap,
+  getDevicesMapByUser,
   hasDevice,
   getDeviceMap,
   getUserId,
@@ -48,5 +79,10 @@ module.exports = {
   getWhenConnected,
   getForwardedHost,
   getForwardedPort,
-  getTerminalCounter
+  getTerminalCounter,
+  getRemoteUsername,
+  getRemotePassword,
+  getIsLoggingIn,
+  getIsLoggedIn,
+  getFinish
 };

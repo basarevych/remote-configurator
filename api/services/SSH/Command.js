@@ -20,6 +20,7 @@ class Command extends EventEmitter {
     this.client = null;
     this.terminalQueue = [];
 
+    this.keyboardTimeout = 60 * 1000;
     this.username = null;
     this.password = null;
   }
@@ -34,7 +35,7 @@ class Command extends EventEmitter {
     return ["di", "config", "getState", "dispatch"];
   }
 
-  async start(username, password) {
+  async start() {
     if (!this.deviceId || this.isConnecting) return;
 
     this.isConnecting = true;
@@ -53,8 +54,12 @@ class Command extends EventEmitter {
     if (forwardedPort !== constants.commandPort)
       throw new Error("Device is not using command port");
 
-    this.username = username;
-    this.password = password;
+    this.username = devicesSelectors.getRemoteUsername(this.getState(), {
+      deviceId: this.deviceId
+    });
+    this.password = devicesSelectors.getRemotePassword(this.getState(), {
+      deviceId: this.deviceId
+    });
 
     let isOk = client.forwardOut(
       forwardedHost,
@@ -137,13 +142,6 @@ class Command extends EventEmitter {
         .on("ready", this.onReady.bind(this))
         .on("continue", () => this.emit("continue"));
 
-      await this.dispatch(
-        devicesOperations.set({
-          deviceId: this.deviceId,
-          command: this
-        })
-      );
-
       this.client.connect({
         sock: stream,
         username: this.username,
@@ -167,9 +165,25 @@ class Command extends EventEmitter {
     this.emit("connected");
   }
 
-  onError(error) {
+  async onError(error) {
     console.error(`${this.deviceId}: ${error.message}`);
-    this.stop();
+    try {
+      if (
+        devicesSelectors.hasDevice(this.getState(), {
+          deviceId: this.deviceId
+        })
+      ) {
+        await this.dispatch(
+          devicesOperations.set({
+            deviceId: this.deviceId,
+            status: error.toString()
+          })
+        );
+      }
+    } catch (error) {
+      console.error(error);
+    }
+    await this.stop();
   }
 
   onTimeout() {
