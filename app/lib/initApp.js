@@ -66,8 +66,8 @@ if (process.browser) {
     console.error(
       "Error: " + msg + "\nurl: " + url + "\nline: " + line + extra
     );
-    if (process.env.NODE_ENV !== "development")
-      setTimeout(() => window.location.reload(), 3000);
+    //if (process.env.NODE_ENV !== "development")
+    //  setTimeout(() => window.location.reload(), 3000);
     return false;
   };
 

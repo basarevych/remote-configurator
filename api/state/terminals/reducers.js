@@ -10,7 +10,7 @@ Map({
     deviceId: String,
     userId: String,
     whenCreated: Number,
-    client: Terminal,
+    client: SSH.Terminal,
     name: String,
     counter: Number,
   }

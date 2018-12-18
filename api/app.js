@@ -201,9 +201,6 @@ class App {
     this.express.use(sessionMiddleware.express);
     this.di.get("ws").io.use(sessionMiddleware.socket);
 
-    // CSRF
-    if (process.env.NODE_ENV === "production") this.express.use(csrf());
-
     // Set default headers
     this.express.use(await headers());
 
@@ -212,12 +209,15 @@ class App {
     this.express.use(helpersMiddleware.express);
     this.di.get("ws").io.use(helpersMiddleware.socket);
 
-    // GraphQL API at /graphql
-    this.express.use(constants.graphqlBase, await graphql(this));
-
     // REST API is /api/*
     for (let route of _.keys(this.routes))
       this.express.use(constants.apiBase, this.routes[route].router);
+
+    // CSRF
+    if (process.env.NODE_ENV === "production") this.express.use(csrf());
+
+    // GraphQL API at /graphql
+    this.express.use(constants.graphqlBase, await graphql(this));
 
     // Serve the rest of pages using Next
     this.express.get("*", this.renderPage);
@@ -238,6 +238,7 @@ class App {
       query: _.assign({}, query || {}, {
         locale: locale || l10n.defaultLocale || null,
         theme: theme || styles.defaultTheme || null,
+        appOrigin: this.config.appOrigins[0],
         sshHost: this.config.sshOrigins[0],
         sshPort: this.config.sshPort
       })

@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { injectIntl } from "react-intl";
 import { appSelectors } from "../../state/app";
+import { authSelectors } from "../../state/auth";
 import { devicesSelectors, devicesOperations } from "../../state/devices";
 import DevicesComponent from "../../components/Devices";
 
@@ -8,6 +9,7 @@ const mapStateToProps = state => {
   return {
     sshHost: appSelectors.getSshHost(state),
     sshPort: appSelectors.getSshPort(state),
+    login: authSelectors.getLogin(state) || "",
     devices: devicesSelectors.getList(state),
     online: devicesSelectors.getOnline(state),
     isAllSelected: devicesSelectors.isAllSelected(state),
@@ -30,9 +32,7 @@ const mapDispatchToProps = dispatch => {
     onDisconnect: deviceId =>
       dispatch(devicesOperations.disconnect({ deviceId })),
     onOpenTerminal: deviceId =>
-      dispatch(devicesOperations.openTerminal({ deviceId })),
-    onOpenBrowser: deviceId =>
-      dispatch(devicesOperations.openBrowser({ deviceId }))
+      dispatch(devicesOperations.openTerminal({ deviceId }))
   };
 };
 

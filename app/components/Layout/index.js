@@ -9,8 +9,8 @@ import Drawer from "@material-ui/core/Drawer";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import Sidebar from "../../containers/Layout/Sidebar";
 import AppAuthModal from "../../containers/Modals/AppAuthModal";
-import CredentialsModal from "../../containers/Ssh/CredentialsModal";
-import InteractiveModal from "../../containers/Ssh/InteractiveModal";
+import CredentialsModal from "../../containers/Modals/CredentialsModal";
+import InteractiveModal from "../../containers/Modals/InteractiveModal";
 
 import "../../styles";
 import styledScroll from "../../styles/styledScroll";

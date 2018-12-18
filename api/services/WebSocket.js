@@ -4,11 +4,13 @@ const pkg = require("../../package.json");
 const IO = require("socket.io");
 const { Map } = require("immutable");
 const EventEmitter = require("events");
+const { appSelectors } = require("../state/app");
 const { devicesSelectors, devicesOperations } = require("../state/devices");
 const {
   terminalsSelectors,
   terminalsOperations
 } = require("../state/terminals");
+const { proxiesSelectors, proxiesOperations } = require("../state/proxies");
 const { usersOperations, usersSelectors } = require("../state/users");
 const { historiesSelectors } = require("../state/histories");
 const constants = require("../../common/constants");
@@ -275,6 +277,10 @@ class WebSocket extends EventEmitter {
         this.onDisconnectTerminal.bind(this, userId, sessionId, socketId)
       );
       socket.on(
+        constants.messages.CONNECT_BROWSER,
+        this.onConnectBrowser.bind(this, userId, sessionId, socketId)
+      );
+      socket.on(
         constants.messages.DISCONNECT_DEVICE,
         this.onDisconnectDevice.bind(this, userId, sessionId, socketId)
       );
@@ -489,6 +495,107 @@ class WebSocket extends EventEmitter {
           terminalId: msg.terminalId
         })
       );
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async onConnectBrowser(userId, sessionId, socketId, msg, cb) {
+    try {
+      const deviceId = msg.deviceId;
+      const host = msg.host;
+      const port = msg.port;
+      const isAuthNeeded = msg.isAuthNeeded || false;
+      const authUsername = isAuthNeeded ? msg.username || "" : "";
+      const authPassword = isAuthNeeded ? msg.password || "" : "";
+      debug(
+        `Socket ${socketId} is opening browser to ${deviceId} (${host}:${port})`
+      );
+      if (
+        !devicesSelectors.hasDevice(this.getState(), { deviceId }) ||
+        devicesSelectors.getUserId(this.getState(), { deviceId }) !== userId ||
+        !devicesSelectors.getIsLoggedIn(this.getState(), { deviceId }) ||
+        port === constants.commandPort
+      ) {
+        return cb(false);
+      }
+
+      let proxyId = proxiesSelectors.findProxyId(this.getState(), {
+        deviceId,
+        userId,
+        host,
+        port
+      });
+
+      if (
+        proxyId &&
+        (isAuthNeeded !==
+          proxiesSelectors.getIsAuthNeeded(this.getState(), { proxyId }) ||
+          authUsername !==
+            proxiesSelectors.getAuthUsername(this.getState(), { proxyId }) ||
+          authPassword !==
+            proxiesSelectors.getAuthPassword(this.getState(), { proxyId }))
+      ) {
+        await this.dispatch(
+          proxiesOperations.set({
+            proxyId,
+            isAuthNeeded,
+            authUsername,
+            authPassword
+          })
+        );
+      }
+
+      if (
+        proxyId &&
+        proxiesSelectors.getIsReady(this.getState(), { proxyId })
+      ) {
+        return cb(true);
+      }
+
+      const ssh = appSelectors.getService(this.getState(), { service: "ssh" });
+      let onProxy, timer;
+      onProxy = (proxyDeviceId, proxyUserId, proxyHost, proxyPort) => {
+        if (
+          proxyDeviceId === deviceId &&
+          proxyUserId === userId &&
+          proxyHost === host &&
+          proxyPort === port
+        ) {
+          ssh.removeListener("proxy", onProxy);
+          if (timer) {
+            clearTimeout(timer);
+            timer = null;
+          }
+          return cb(true);
+        }
+      };
+      ssh.on("proxy", onProxy);
+      timer = setTimeout(() => {
+        timer = null;
+        ssh.removeListener("proxy", onProxy);
+        return cb(false);
+      }, 15 * 1000);
+
+      if (!proxyId) {
+        await this.dispatch(
+          devicesOperations.set({
+            deviceId,
+            status: `Requesting access to ${host}:${port}...`
+          })
+        );
+        await this.dispatch(
+          proxiesOperations.create({
+            deviceId,
+            userId,
+            host,
+            port,
+            isAuthNeeded,
+            authUsername,
+            authPassword
+          })
+        );
+      }
     } catch (error) {
       console.error(error);
     }

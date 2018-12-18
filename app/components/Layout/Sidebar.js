@@ -11,6 +11,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import DevicesIcon from "@material-ui/icons/DeviceHub";
 import UsersIcon from "@material-ui/icons/People";
 import TerminalIcon from "@material-ui/icons/OpenInBrowser";
+import BrowserIcon from "@material-ui/icons/Language";
 import constants from "../../../common/constants";
 
 const styles = theme => ({
@@ -84,6 +85,7 @@ class Sidebar extends React.Component {
     classes: PropTypes.object.isRequired,
     roles: PropTypes.array.isRequired,
     terminals: PropTypes.instanceOf(Map).isRequired,
+    getDeviceName: PropTypes.func.isRequired,
     onMenuClick: PropTypes.func.isRequired,
     onSignOut: PropTypes.func.isRequired
   };
@@ -108,7 +110,8 @@ class Sidebar extends React.Component {
     if (
       !path ||
       !constants.pages[path] ||
-      !isRouteAllowed(path, this.props.roles)
+      !isRouteAllowed(path, this.props.roles) ||
+      (path === "/browser" && this.props.router.pathname !== "/browser")
     ) {
       return null;
     }
@@ -117,11 +120,18 @@ class Sidebar extends React.Component {
     if (!icon && !menu) return null;
 
     let isSelected = this.props.router.pathname === path;
-    if (path === "/terminal" && isSelected)
+    if (path === "/terminal" && isSelected) {
       isSelected =
         query &&
         this.props.router.query &&
         this.props.router.query.terminalId === query.terminalId;
+    }
+    if (path === "/browser") {
+      text =
+        (this.props.router.query && this.props.router.query.host) +
+        ":" +
+        (this.props.router.query && this.props.router.query.port);
+    }
 
     return (
       <MenuItem
@@ -136,6 +146,11 @@ class Sidebar extends React.Component {
         {icon === "devices" && (
           <ListItemIcon>
             <DevicesIcon />
+          </ListItemIcon>
+        )}
+        {icon === "browser" && (
+          <ListItemIcon>
+            <BrowserIcon />
           </ListItemIcon>
         )}
         {icon === "terminal" && (
@@ -172,6 +187,7 @@ class Sidebar extends React.Component {
           subheader={this.renderHeader()}
         >
           {this.renderItem({ path: "/" })}
+          {this.renderItem({ path: "/browser" })}
           {_.map(terminals, terminal =>
             this.renderItem({
               path: "/terminal",

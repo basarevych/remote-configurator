@@ -8,13 +8,15 @@ const { usersReducer } = require("./users");
 const { devicesReducer } = require("./devices");
 const { terminalsReducer } = require("./terminals");
 const { historiesReducer } = require("./histories");
+const { proxiesReducer } = require("./proxies");
 
 let rootReducer = combineReducers({
   app: appReducer,
   users: usersReducer,
   devices: devicesReducer,
   terminals: terminalsReducer,
-  histories: historiesReducer
+  histories: historiesReducer,
+  proxies: proxiesReducer
 });
 
 let middleware = applyMiddleware(thunk);

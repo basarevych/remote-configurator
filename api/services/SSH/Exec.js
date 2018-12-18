@@ -9,8 +9,8 @@ class Exec extends EventEmitter {
     dispatch,
     deviceId,
     execString,
-    onStdout,
-    onStderr
+    onStdout = false,
+    onStderr = false
   ) {
     super();
 

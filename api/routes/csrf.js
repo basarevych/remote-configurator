@@ -1,4 +1,5 @@
 const debug = require("debug")("app:csrf");
+const csrf = require("csurf");
 const BaseRoute = require("./base");
 
 /**
@@ -12,7 +13,7 @@ class CsrfRoute extends BaseRoute {
   constructor(app) {
     super(app);
 
-    this.router.get("/csrf", this.getCsrf.bind(this));
+    this.router.get("/csrf", csrf(), this.getCsrf.bind(this));
   }
 
   /**

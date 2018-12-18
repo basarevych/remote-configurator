@@ -198,7 +198,10 @@ export const finishAuth = ({ username, password }) => async (
   }
 };
 
-export const doInteractiveAuth = ({ reply }) => async (dispatch, getState) => {
+export const doInteractiveAuth = ({ reply = "" } = {}) => async (
+  dispatch,
+  getState
+) => {
   const deviceId = selectors.getInteractiveModalDeviceId(getState());
   let socket = appSelectors.getService(getState(), { service: "socket" });
   if (socket && deviceId) {
@@ -216,10 +219,37 @@ export const openTerminal = ({ deviceId }) => async (dispatch, getState) => {
       constants.messages.CONNECT_TERMINAL,
       { deviceId },
       async response => {
-        if (response.id && response.id) {
+        if (response && response.id) {
           Router.push({
             pathname: "/terminal",
             query: { terminalId: response.id }
+          });
+        }
+      }
+    );
+  }
+};
+
+export const openBrowser = ({
+  deviceId,
+  host,
+  port,
+  isAuthNeeded,
+  username,
+  password
+}) => async (dispatch, getState) => {
+  port = parseInt(port);
+  if (!port) return;
+  let socket = appSelectors.getService(getState(), { service: "socket" });
+  if (socket) {
+    socket.emit(
+      constants.messages.CONNECT_BROWSER,
+      { deviceId, host, port, isAuthNeeded, username, password },
+      async response => {
+        if (response) {
+          Router.push({
+            pathname: "/browser",
+            query: { deviceId, host, port }
           });
         }
       }

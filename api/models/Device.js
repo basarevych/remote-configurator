@@ -57,6 +57,15 @@ class DeviceModel {
     return (this._data.name = name);
   }
 
+  get username() {
+    return this._data.username;
+  }
+
+  set username(username) {
+    this.whenUpdated = new Date();
+    return (this._data.username = username);
+  }
+
   get password() {
     return this._data.password;
   }
@@ -87,6 +96,7 @@ class DeviceModel {
     obj.whenUpdated = obj.whenUpdated && obj.whenUpdated.valueOf();
     obj.owner = obj.owner && obj.owner.toString();
     delete obj.$loki;
+    delete obj.username;
     return obj;
   }
 
@@ -117,6 +127,8 @@ class DeviceModel {
     if (!this.whenUpdated)
       err.errors.whenUpdated = { message: "ERROR_FIELD_REQUIRED" };
     if (!this.name) err.errors.name = { message: "ERROR_FIELD_REQUIRED" };
+    if (!this.username)
+      err.errors.username = { message: "ERROR_FIELD_REQUIRED" };
     if (!this.password)
       err.errors.password = { message: "ERROR_FIELD_REQUIRED" };
     if (!this.owner) err.errors.owner = { message: "ERROR_FIELD_REQUIRED" };

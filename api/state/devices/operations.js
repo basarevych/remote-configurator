@@ -5,6 +5,8 @@ const selectors = require("./selectors");
 const appSelectors = require("../app/selectors");
 const terminalsOperations = require("../terminals/operations");
 const terminalsSelectors = require("../terminals/selectors");
+const proxiesOperations = require("../proxies/operations");
+const proxiesSelectors = require("../proxies/selectors");
 
 const create = actions.create;
 
@@ -21,6 +23,16 @@ const remove = ({ deviceId }) => {
         )
         .toList()
         .toJS()
+        .concat(
+          // eslint-disable-next-line lodash/prefer-lodash-method
+          proxiesSelectors
+            .getProxiesMapByDevice(getState(), { deviceId })
+            .map((proxy, proxyId) =>
+              dispatch(proxiesOperations.remove({ proxyId }))
+            )
+            .toList()
+            .toJS()
+        )
     );
 
     let client = selectors.getClient(getState(), { deviceId });
@@ -50,8 +62,9 @@ const finishAuth = ({ deviceId, reply }) => {
     let finish = selectors.getFinish(getState(), { deviceId });
     if (finish) {
       try {
-        await dispatch(set({ deviceId, auth: null }));
-        finish([reply || ""]);
+        if (!reply) reply = "";
+        await dispatch(set({ deviceId, auth: null, remotePassword: reply }));
+        finish([reply]);
       } catch (error) {
         console.error(error);
       }

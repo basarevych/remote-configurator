@@ -44,6 +44,8 @@ module.exports = {
     TERMINAL_RESIZED: "TERMINAL_RESIZED",
     DISCONNECT_TERMINAL: "DISCONNECT_TERMINAL",
 
+    CONNECT_BROWSER: "CONNECT_BROWSER",
+
     // responses and commands
     HELLO: "HELLO",
     SET_STATUS: "SET_STATUS",

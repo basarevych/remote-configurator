@@ -8,7 +8,7 @@ const types = require("./types");
 Map({
   deviceId: Map({
     userId: String,
-    client: Client, // ssh incoming client
+    client: SSH.Client, // ssh incoming client
     status: String, // or null
     username: String,
     address: String,

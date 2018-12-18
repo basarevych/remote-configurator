@@ -18,7 +18,11 @@ const BrowserPage = connect(
 
 BrowserPage.getInitialProps = async ({ store, req, query }) => {
   await store.dispatch(devicesOperations.load({ req }));
-  return { port: query.port, q: query.q };
+  return {
+    deviceId: query.deviceId,
+    host: query.host,
+    port: parseInt(query.port) || 0
+  };
 };
 
 export default BrowserPage;

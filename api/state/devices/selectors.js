@@ -8,12 +8,13 @@ const getDevicesMap = state => state.get("devices");
 const getDevicesMapByUser = createSelector(
   state => state.get("devices"),
   (state, props) => props.userId,
-  (devices, userId) =>
+  (state, props) => props.port,
+  (devices, userId, port) =>
     // eslint-disable-next-line lodash/prefer-lodash-method
     devices.filter(
       device =>
         device.get("userId") === userId &&
-        device.get("forwardedPort") === constants.commandPort
+        device.get("forwardedPort") === (port || constants.commandPort)
     )
 );
 

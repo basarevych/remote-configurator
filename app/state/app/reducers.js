@@ -5,6 +5,7 @@ import l10n from "../../../common/locales";
 /* State Shape
 Map({
   created: Number, // timestamp
+  appOrigin: String,
   sshHost: String,
   sshPort: Number,
   di: DiContainer,
@@ -19,6 +20,15 @@ const createdReducer = (state = Date.now(), action) => {
   switch (action.type) {
     case types.CREATE:
       if (!_.isUndefined(action.created)) return action.created;
+      break;
+  }
+  return state;
+};
+
+const appOriginReducer = (state = "localhost", action) => {
+  switch (action.type) {
+    case types.CREATE:
+      if (!_.isUndefined(action.appOrigin)) return action.appOrigin;
       break;
   }
   return state;
@@ -90,6 +100,7 @@ const isConnectedReducer = (state = false, action) => {
 
 const reducer = combineReducers({
   created: createdReducer,
+  appOrigin: appOriginReducer,
   sshHost: sshHostReducer,
   sshPort: sshPortReducer,
   di: diReducer,

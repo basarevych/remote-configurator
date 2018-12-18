@@ -80,8 +80,13 @@ export const gqlQuery = (query, variables) => async (dispatch, getState) => {
   }
 };
 
-export const create = ({ status, sshHost, sshPort }) => async dispatch => {
-  await dispatch(actions.create({ sshHost, sshPort }));
+export const create = ({
+  status,
+  appOrigin,
+  sshHost,
+  sshPort
+}) => async dispatch => {
+  await dispatch(actions.create({ appOrigin, sshHost, sshPort }));
   if (status) await dispatch(authOperations.setStatus(status));
 };
 

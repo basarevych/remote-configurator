@@ -19,6 +19,7 @@ import ConfirmModal from "../Modals/ConfirmModal";
 import OpenTerminalIcon from "@material-ui/icons/OpenInBrowser";
 import OpenBrowserIcon from "@material-ui/icons/Language";
 import DisconnectIcon from "@material-ui/icons/ExitToApp";
+import ProxyModal from "../../containers/Modals/ProxyModal";
 
 const styles = theme => ({
   statusColumn: {
@@ -57,6 +58,7 @@ class Devices extends React.Component {
     classes: PropTypes.object.isRequired,
     sshHost: PropTypes.string.isRequired,
     sshPort: PropTypes.number.isRequired,
+    login: PropTypes.string.isRequired,
     devices: PropTypes.instanceOf(List).isRequired,
     online: PropTypes.instanceOf(Map).isRequired,
     isAllSelected: PropTypes.bool.isRequired,
@@ -70,15 +72,16 @@ class Devices extends React.Component {
     onDeselectAll: PropTypes.func.isRequired,
     onConnect: PropTypes.func.isRequired,
     onDisconnect: PropTypes.func.isRequired,
-    onOpenTerminal: PropTypes.func.isRequired,
-    onOpenBrowser: PropTypes.func.isRequired
+    onOpenTerminal: PropTypes.func.isRequired
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      isConfirmOpen: false
+      isConfirmOpen: false,
+      isProxyModalOpen: false,
+      proxyModalDeviceId: null
     };
 
     this.handleCreateAction = this.handleCreateAction.bind(this);
@@ -86,6 +89,8 @@ class Devices extends React.Component {
     this.handleDeleteAction = this.handleDeleteAction.bind(this);
     this.handleCancelDelete = this.handleCancelDelete.bind(this);
     this.handleConfirmDelete = this.handleConfirmDelete.bind(this);
+    this.handleProxyModalOpen = this.handleProxyModalOpen.bind(this);
+    this.handleProxyModalClose = this.handleProxyModalClose.bind(this);
   }
 
   handleToggleAll(forceOff = false) {
@@ -127,6 +132,19 @@ class Devices extends React.Component {
         .map(device => this.props.onDelete(device.get("id")))
     );
     this.props.onLoad();
+  }
+
+  handleProxyModalOpen(deviceId) {
+    this.setState({
+      isProxyModalOpen: true,
+      proxyModalDeviceId: deviceId
+    });
+  }
+
+  handleProxyModalClose() {
+    this.setState({
+      isProxyModalOpen: false
+    });
   }
 
   render() {
@@ -240,7 +258,7 @@ class Devices extends React.Component {
                             <IconButton
                               color="inherit"
                               onClick={() =>
-                                this.props.onOpenBrowser(row.get("id"))
+                                this.handleProxyModalOpen(row.get("id"))
                               }
                             >
                               <OpenBrowserIcon />
@@ -313,9 +331,9 @@ class Devices extends React.Component {
                       ? info.get("status")
                       : `ssh -p ${
                           this.props.sshPort
-                        } -R 22:localhost:22 -N ${row.get("name")}@${
-                          this.props.sshHost
-                        }`}
+                        } -R 22:localhost:22 -N ${this.props.login +
+                          "_" +
+                          row.get("name")}@${this.props.sshHost}`}
                   </TableCell>
                 </TableRow>
               );
@@ -332,6 +350,11 @@ class Devices extends React.Component {
           submit="DELETE_DEVICE_SUBMIT"
           onCancel={this.handleCancelDelete}
           onSubmit={this.handleConfirmDelete}
+        />
+        <ProxyModal
+          isOpen={this.state.isProxyModalOpen}
+          deviceId={this.state.proxyModalDeviceId}
+          onClose={this.handleProxyModalClose}
         />
       </React.Fragment>
     );

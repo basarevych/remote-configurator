@@ -28,14 +28,17 @@ class DevicesRepository extends EventEmitter {
   async authenticate(context) {
     // eslint-disable-next-line lodash/prefer-lodash-method
     const devices = await this.db.DeviceModel.find(
-      this.db.DeviceModel.conditions({ name: context.username.toString() })
+      this.db.DeviceModel.conditions({ username: context.username.toString() })
     );
     for (let device of devices) {
       if (
-        this.auth.checkPassword(context.password.toString(), device.password)
+        await this.auth.checkPassword(
+          (context.password || "").toString(),
+          device.password
+        )
       ) {
         const user = await this.db.UserModel.findById(device.owner);
-        if (user) return { device, user };
+        if (user) return { deviceId: device.id, userId: user.id };
       }
     }
     return null;
@@ -75,6 +78,7 @@ class DevicesRepository extends EventEmitter {
 
     target = new this.db.DeviceModel({
       name: args.name,
+      username: user.login + "_" + args.name,
       password: await this.auth.encryptPassword(args.password),
       owner: user.id
     });
@@ -102,6 +106,7 @@ class DevicesRepository extends EventEmitter {
     }
 
     target.name = args.name;
+    target.username = user.login + "_" + args.name;
     if (args.password)
       target.password = await this.auth.encryptPassword(args.password);
 

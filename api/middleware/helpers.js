@@ -103,6 +103,9 @@ module.exports = async app => {
         req.getSession = async () => req.session;
         req.getUser = async () => loadUser(req);
 
+        res.locals.translate = (key, values, locale = req.locale) =>
+          app.di.get("i18n").translate(key, values, locale);
+
         return next();
       } catch (error) {
         console.error(error);
