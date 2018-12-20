@@ -1,12 +1,13 @@
 "use strict";
 
-const uuid = require("uuid");
 const Chance = require("chance");
+const jsotp = require("jsotp");
 const actions = require("./actions");
 const selectors = require("./selectors");
 const appSelectors = require("../app/selectors");
 const devicesSelectors = require("../devices/selectors");
-const devicesOperations = require("../devices/operations");
+
+const chance = new Chance();
 
 const set = actions.set;
 
@@ -21,30 +22,62 @@ const authenticate = context => {
     return {
       proxyId,
       deviceId: proxy.get("deviceId"),
-      userId: proxy.get("userId")
+      userId: proxy.get("userId"),
+      forwardedHost: proxy.get("forwardedHost"),
+      forwardedPort: proxy.get("forwardedPort")
     };
   };
 };
 
 const remove = ({ proxyId }) => {
   return async (dispatch, getState) => {
-    let exec = selectors.getExec(getState(), { proxyId });
-    if (exec) exec.stop().catch(console.error);
-    let client = selectors.getClient(getState(), { proxyId });
-    if (client) client.stop().catch(console.error);
-    if (selectors.hasProxy(getState(), { proxyId }))
-      return dispatch(actions.remove({ proxyId }));
+    let proxy = selectors.getProxyMap(getState(), { proxyId });
+    if (!proxy) return;
+
+    if (proxy.get("exec")) {
+      proxy
+        .get("exec")
+        .stop()
+        .catch(console.error);
+    }
+    if (proxy.get("client")) {
+      proxy
+        .get("client")
+        .stop()
+        .catch(console.error);
+    }
+    if (proxy.get("proxy")) {
+      proxy
+        .get("proxy")
+        .stop()
+        .catch(console.error);
+    }
+
+    return dispatch(actions.remove({ proxyId }));
   };
 };
 
-const create = ({ deviceId, userId, host, port }) => {
+const create = ({
+  deviceId,
+  userId,
+  proxyId,
+  host,
+  port,
+  isAuthNeeded,
+  authUsername,
+  authPassword
+}) => {
   return async (dispatch, getState) => {
-    let proxyId = uuid.v4();
+    let ssh = appSelectors.getService(getState(), { service: "ssh" });
     let config = appSelectors.getService(getState(), { service: "config" });
-    let username = new Chance().string({
+    let username = chance.string({
       length: 32,
       pool: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     });
+    let secret = chance.string({
+      length: 100
+    });
+    let random = jsotp.Base32.random_gen();
 
     let exec = appSelectors.getService(getState(), {
       service: "ssh.exec",
@@ -55,55 +88,46 @@ const create = ({ deviceId, userId, host, port }) => {
         }`
       ]
     });
-    if (!exec) return null;
+    if (!exec) return;
 
     let name = devicesSelectors.getUsername(getState(), { deviceId });
 
     await dispatch(
       actions.create({
         deviceId,
-        proxyId,
         userId,
+        proxyId,
         forwardedHost: host,
         forwardedPort: port,
+        secret,
+        random,
         username,
         exec,
-        name: `${name}:${port}`
+        name: `${name}:${port}`,
+        isAuthNeeded,
+        authUsername,
+        authPassword
       })
     );
 
-    exec.once("exec", async () => {
-      dispatch(remove({ proxyId })).catch(console.error);
-      if (devicesSelectors.hasDevice(getState(), { deviceId })) {
-        await dispatch(
-          devicesOperations.set({
-            deviceId,
-            status: `Proxy ${host}:${port} terminated`
-          })
-        );
-      }
-    });
-    exec.start().catch(console.error);
-
-    setTimeout(async () => {
-      if (
-        selectors.hasProxy(getState(), { proxyId }) &&
-        !selectors.getIsReady(getState(), { proxyId })
-      ) {
-        remove({ proxyId });
-        if (devicesSelectors.hasDevice(getState(), { deviceId })) {
-          await dispatch(
-            devicesOperations.set({
-              deviceId,
-              status: `Timeout on ${host}:${port}`
-            })
-          );
+    let timer = null;
+    const onProxy = async ({ proxy, proxyId: eventProxyId }) => {
+      if (eventProxyId === proxyId) {
+        ssh.removeListener("proxy", onProxy);
+        if (timer) {
+          clearTimeout(timer);
+          timer = null;
         }
-        setTimeout(() => exec.stop().catch(console.error), 3000);
+        if (!proxy) dispatch(remove({ proxyId })).catch(console.error);
       }
+    };
+    timer = setTimeout(async () => {
+      timer = null;
+      onProxy({ proxyId });
     }, 20 * 1000);
+    ssh.on("proxy", onProxy);
 
-    return proxyId;
+    exec.start().catch(console.error);
   };
 };
 

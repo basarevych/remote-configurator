@@ -112,45 +112,49 @@ module.exports = {
       label: {
         height: "1em"
       },
-      contained: {
+      root: {
         "&:not($containedPrimary):not($containedSecondary)": {
           background: [bgNormal, "!important"],
           color: [textNormal, "!important"]
-        }
-      },
-      disabled: {
-        boxShadow: [
-          "0px 1px 5px 0px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14),0px 3px 1px -2px rgba(0, 0, 0, 0.12)",
-          "!important"
-        ],
-        "&:not($containedPrimary):not($containedSecondary)": {
-          background: [darken(bgNormal, 0.1), "!important"],
-          color: [textDark, "!important"]
         },
-        "&$containedPrimary": {
-          background: [darken(primary, 0.5), "!important"],
-          color: [darken(textContrast, 0.2), "!important"]
-        },
-        "&$containedSecondary": {
-          background: [darken(secondary, 0.5), "!important"],
-          color: [darken(textContrast, 0.2), "!important"]
+        "&$disabled": {
+          boxShadow: [
+            "0px 1px 5px 0px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14),0px 3px 1px -2px rgba(0, 0, 0, 0.12)",
+            "!important"
+          ],
+          "&:not($containedPrimary):not($containedSecondary)": {
+            background: [darken(bgNormal, 0.1), "!important"],
+            color: [textDark, "!important"]
+          },
+          "&$containedPrimary": {
+            background: [darken(primary, 0.5), "!important"],
+            color: [darken(textContrast, 0.2), "!important"]
+          },
+          "&$containedSecondary": {
+            background: [darken(secondary, 0.5), "!important"],
+            color: [darken(textContrast, 0.2), "!important"]
+          }
         }
       }
     },
     MuiIconButton: {
-      disabled: {
-        "&:not($colorPrimary):not($colorSecondary)": {
-          color: [textDisabled, "!important"]
+      root: {
+        "&$disabled": {
+          "&:not($colorPrimary):not($colorSecondary)": {
+            color: [textDisabled, "!important"]
+          }
         }
       }
     },
     MuiInput: {
-      underline: {
-        "&:before": {
-          borderBottom: `2px solid ${textDark}`
-        },
-        "&:after": {
-          borderBottom: `2px solid ${textContrast}`
+      root: {
+        "&$underline": {
+          "&:before": {
+            borderBottom: `2px solid ${textDark}`
+          },
+          "&:after": {
+            borderBottom: `2px solid ${textContrast}`
+          }
         }
       }
     },
@@ -160,38 +164,38 @@ module.exports = {
         borderRadius: 4,
         "&:hover": {
           background: [lighten(bgNormal, 0.2), "!important"]
-        }
-      },
-      focused: {
-        background: [lighten(bgNormal, 0.2), "!important"],
-        "&$error": {
-          color: [textError, "!important"]
-        }
-      },
-      underline: {
-        "&:before": {
-          borderBottom: ["none", "!important"]
         },
-        "&:after": {
-          borderBottom: ["none", "!important"]
+        "&$focused": {
+          background: [lighten(bgNormal, 0.2), "!important"],
+          "&$error": {
+            color: [textError, "!important"]
+          }
+        },
+        "&$underline": {
+          "&:before": {
+            borderBottom: ["none", "!important"]
+          },
+          "&:after": {
+            borderBottom: ["none", "!important"]
+          }
         }
       }
     },
     MuiInputLabel: {
       root: {
         pointerEvents: "none",
-        zIndex: 100
-      },
-      focused: {
-        color: [textContrast, "!important"],
-        "&$error": {
-          color: [textError, "!important"]
-        }
-      },
-      filled: {
-        color: [textDark, "!important"],
-        "&$error": {
-          color: [textError, "!important"]
+        zIndex: 100,
+        "&$focused": {
+          color: [textContrast, "!important"],
+          "&$error": {
+            color: [textError, "!important"]
+          }
+        },
+        "&$filled": {
+          color: [textDark, "!important"],
+          "&$error": {
+            color: [textError, "!important"]
+          }
         }
       }
     },
@@ -206,8 +210,10 @@ module.exports = {
       }
     },
     MuiCheckbox: {
-      checked: {
-        color: [secondary, "!important"]
+      root: {
+        "&$checked": {
+          color: [secondary, "!important"]
+        }
       }
     }
   }

@@ -69,7 +69,7 @@ class SSH extends EventEmitter {
   async onConnection(client, info) {
     debug(`SSH device connected`);
     this.di
-      .get("ssh.client", this, client, info)
+      .get("ssh.client", client, info)
       .start()
       .catch(console.error);
   }

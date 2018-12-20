@@ -45,6 +45,10 @@ class Browser extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      key: Date.now()
+    };
+
     this.handleClose = this.handleClose.bind(this);
     this.handleRefresh = this.handleRefresh.bind(this);
   }
@@ -54,8 +58,7 @@ class Browser extends React.Component {
   }
 
   handleRefresh() {
-    const frame = document.getElementById(this.getIframeId());
-    if (frame && frame.contentWindow) frame.contentWindow.location.reload();
+    this.setState({ key: Date.now() });
   }
 
   handleClose() {
@@ -82,10 +85,11 @@ class Browser extends React.Component {
           <AutoSizer>
             {({ width, height }) => (
               <iframe
+                key={`frame-${this.state.key}`}
                 id={this.getIframeId()}
                 width={width}
                 height={height}
-                //sandbox="allow-forms allow-modals allow-popups allow-scripts"
+                sandbox="allow-forms allow-modals allow-popups allow-scripts allow-same-origin"
                 style={{ background: "#ffffff", border: "none" }}
                 src={`${this.props.appOrigin}/api/browser/${
                   this.props.deviceId

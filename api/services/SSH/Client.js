@@ -5,7 +5,7 @@ const { proxiesOperations, proxiesSelectors } = require("../../state/proxies");
 const constants = require("../../../common/constants");
 
 class Client extends EventEmitter {
-  constructor(di, ws, getState, dispatch, devicesRepo, ssh, client, info) {
+  constructor(di, ws, getState, dispatch, devicesRepo, client, info) {
     super();
 
     this.di = di;
@@ -14,7 +14,6 @@ class Client extends EventEmitter {
     this.dispatch = dispatch;
     this.devicesRepo = devicesRepo;
 
-    this.ssh = ssh;
     this.deviceId = null;
     this.proxyId = null;
     this.proxyParams = {};
@@ -61,6 +60,7 @@ class Client extends EventEmitter {
         await this.dispatch(
           devicesOperations.remove({ deviceId: this.deviceId })
         );
+        this.di.get("ssh").emit("kill", { deviceId: this.deviceId });
         this.deviceId = null;
       }
       if (
@@ -73,6 +73,23 @@ class Client extends EventEmitter {
         await this.dispatch(
           proxiesOperations.remove({ proxyId: this.proxyId })
         );
+        if (
+          devicesSelectors.hasDevice(this.getState(), {
+            deviceId: this.proxyParams.deviceId
+          })
+        ) {
+          await this.dispatch(
+            devicesOperations.set({
+              deviceId: this.proxyParams.deviceId,
+              status: `Proxy ${this.proxyParams.forwardedHost}:${
+                this.proxyParams.forwardedPort
+              } terminated`
+            })
+          );
+        }
+        this.di
+          .get("ssh")
+          .emit("kill", { deviceId: this.proxyParams.deviceId });
         this.proxyId = null;
         this.proxyParams = {};
       }
@@ -80,7 +97,10 @@ class Client extends EventEmitter {
   }
 
   forwardOut(...args) {
-    if (!this.client) throw new Error("No client");
+    if (!this.client) {
+      this.onError(new Error("No client")).catch(console.error);
+      return;
+    }
     return this.client.forwardOut(...args);
   }
 
@@ -163,7 +183,7 @@ class Client extends EventEmitter {
       }
       if (
         this.proxyId &&
-        (proxiesSelectors.getIsReady(this.getState(), {
+        (proxiesSelectors.isReady(this.getState(), {
           proxyId: this.proxyId
         }) ||
           info.bindAddr !==
@@ -196,10 +216,11 @@ class Client extends EventEmitter {
           );
           accept(info.bindPort);
         } else if (this.proxyId) {
+          const service = this.di.get("proxy", this.deviceId, this.proxyId);
           await this.dispatch(
             proxiesOperations.set({
               proxyId: this.proxyId,
-              isReady: true
+              proxy: service
             })
           );
           await this.dispatch(
@@ -214,15 +235,7 @@ class Client extends EventEmitter {
             }:${info.bindPort}`
           );
           accept(info.bindPort);
-          setTimeout(() => {
-            this.ssh.emit(
-              "proxy",
-              this.proxyParams.deviceId,
-              this.proxyParams.userId,
-              info.bindAddr,
-              info.bindPort
-            );
-          });
+          await service.start();
         }
         return;
       } catch (error) {
@@ -242,7 +255,7 @@ class Client extends EventEmitter {
 
       if (
         this.proxyId &&
-        !proxiesSelectors.getForwardedPort(this.getState(), {
+        !proxiesSelectors.isReady(this.getState(), {
           proxyId: this.proxyId
         })
       ) {
@@ -270,12 +283,16 @@ class Client extends EventEmitter {
               info.bindAddr
             }:${info.bindPort}`
           );
+          const proxy = await proxiesSelectors.getProxy(this.getState(), {
+            proxyId: this.proxyId
+          });
           await this.dispatch(
             proxiesOperations.set({
               proxyId: this.proxyId,
-              isReady: false
+              proxy: null
             })
           );
+          if (proxy) await proxy.stop();
         }
         accept(info.bindPort);
         return this.stop();

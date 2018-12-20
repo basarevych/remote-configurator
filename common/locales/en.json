@@ -29,6 +29,7 @@
   "DELETE_DEVICE_SUBMIT": "Delete",
   "PROXY_TPL_TITLE": "<h1>Proxy Reporting</h1>",
   "PROXY_TPL_MESSAGE": "<h3>Could not fetch the page</h3>",
+  "PROXY_TPL_403": "<p>Access denied</p>",
   "PROXY_TPL_404": "<p>Try to reopen this page from the Device List</p>",
   "PROXY_TPL_502": "<p>Looks like nobody is listening on this port</p>",
   "PROXY_MODAL_TITLE": "HTTP Proxy",

@@ -4,7 +4,6 @@ const pkg = require("../../package.json");
 const IO = require("socket.io");
 const { Map } = require("immutable");
 const EventEmitter = require("events");
-const { appSelectors } = require("../state/app");
 const { devicesSelectors, devicesOperations } = require("../state/devices");
 const {
   terminalsSelectors,
@@ -546,38 +545,21 @@ class WebSocket extends EventEmitter {
         );
       }
 
-      if (
-        proxyId &&
-        proxiesSelectors.getIsReady(this.getState(), { proxyId })
-      ) {
-        return cb(true);
+      let doCreate = false;
+      if (!proxyId) {
+        proxyId = uuid.v4();
+        doCreate = true;
       }
 
-      const ssh = appSelectors.getService(this.getState(), { service: "ssh" });
-      let onProxy, timer;
-      onProxy = (proxyDeviceId, proxyUserId, proxyHost, proxyPort) => {
-        if (
-          proxyDeviceId === deviceId &&
-          proxyUserId === userId &&
-          proxyHost === host &&
-          proxyPort === port
-        ) {
-          ssh.removeListener("proxy", onProxy);
-          if (timer) {
-            clearTimeout(timer);
-            timer = null;
-          }
-          return cb(true);
-        }
-      };
-      ssh.on("proxy", onProxy);
-      timer = setTimeout(() => {
-        timer = null;
-        ssh.removeListener("proxy", onProxy);
-        return cb(false);
-      }, 15 * 1000);
+      proxiesSelectors
+        .getProxy(this.getState(), { proxyId })
+        .then(proxy => cb(!!proxy))
+        .catch(error => {
+          cb(false);
+          console.error(error);
+        });
 
-      if (!proxyId) {
+      if (doCreate) {
         await this.dispatch(
           devicesOperations.set({
             deviceId,
@@ -588,6 +570,7 @@ class WebSocket extends EventEmitter {
           proxiesOperations.create({
             deviceId,
             userId,
+            proxyId,
             host,
             port,
             isAuthNeeded,

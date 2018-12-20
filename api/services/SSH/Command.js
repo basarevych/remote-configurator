@@ -76,6 +76,11 @@ class Command extends EventEmitter {
 
   async stop() {
     if (this.stream) {
+      try {
+        this.stream.signal("KILL");
+      } catch (unused) {
+        // do nothing
+      }
       this.stream.end();
       let stream = this.stream;
       setTimeout(() => {
@@ -99,12 +104,18 @@ class Command extends EventEmitter {
   }
 
   shell(...args) {
-    if (!this.client) throw new Error("No client");
+    if (!this.client) {
+      this.onError(new Error("No client")).catch(console.error);
+      return;
+    }
     return this.client.shell(...args);
   }
 
   exec(...args) {
-    if (!this.client) throw new Error("No client");
+    if (!this.client) {
+      this.onError(new Error("No client")).catch(console.error);
+      return;
+    }
     return this.client.exec(...args);
   }
 

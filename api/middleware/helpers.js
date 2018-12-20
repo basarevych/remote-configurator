@@ -11,7 +11,7 @@ module.exports = async app => {
       app.di.get("auth").getStatus(await req.getUser());
   };
 
-  const setLocale = req => {
+  const setLocale = (req, res) => {
     let locale = null;
 
     const i18n = app.di.get("i18n");
@@ -25,6 +25,9 @@ module.exports = async app => {
     if (!locale) locale = i18n.defaultLocale;
 
     req.locale = locale;
+
+    res.locals.translate = (key, values, locale = req.locale) =>
+      app.di.get("i18n").translate(key, values, locale);
   };
 
   const setTheme = req => {
@@ -90,11 +93,13 @@ module.exports = async app => {
 
   return {
     setHelpers,
+    setLocale,
+    setTheme,
     express: (req, res, next) => {
       try {
-        setHelpers(req);
-        setLocale(req);
-        setTheme(req);
+        setHelpers(req, res);
+        setLocale(req, res);
+        setTheme(req, res);
 
         req.recreateSession = async () => recreateSession(req);
         req.saveSession = async () => saveSession(req);
@@ -102,9 +107,6 @@ module.exports = async app => {
 
         req.getSession = async () => req.session;
         req.getUser = async () => loadUser(req);
-
-        res.locals.translate = (key, values, locale = req.locale) =>
-          app.di.get("i18n").translate(key, values, locale);
 
         return next();
       } catch (error) {
@@ -114,7 +116,7 @@ module.exports = async app => {
     },
     socket: (socket, next) => {
       try {
-        setHelpers(socket.request);
+        setHelpers(socket.request, socket.request.res);
 
         socket.request.recreateSession = async () =>
           recreateSession(socket.request);

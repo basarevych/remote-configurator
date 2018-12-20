@@ -85,7 +85,7 @@ async function preCachePages(app, { user, path }) {
             getUser: () =>
               new Promise(resolve => setTimeout(() => resolve(user)))
           };
-          setHelpers(req);
+          setHelpers(req, {});
           let { page, query } = await app.analyzeRequest(req);
           let render = getRender({
             app,

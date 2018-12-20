@@ -10,15 +10,17 @@ Map({
     deviceId: String,
     userId: String,
     whenCreated: Number,
-    isReady: Boolean, // ready to pass through an HTTP request
     forwardedHost: String,
     forwardedPort: Number,
+    secret: String,
+    random: String,
     username: String,
     isAuthNeeded: Boolean,
     authUsername: String,
     authPassword: String,
     exec: SSH.Exec, // shell command to reverse ssh the port on the device
     client: SSH.Client, // connected ssh for that port
+    proxy: Proxy,
   }
 })
 */
@@ -47,16 +49,6 @@ const whenCreatedReducer = (state = Date.now()) => {
   return state;
 };
 
-const isReadyReducer = (state = false, action) => {
-  switch (action.type) {
-    case types.CREATE:
-    case types.SET:
-      if (!_.isUndefined(action.isReady)) return action.isReady;
-      break;
-  }
-  return state;
-};
-
 const forwardedHostReducer = (state = "localhost", action) => {
   switch (action.type) {
     case types.CREATE:
@@ -72,6 +64,26 @@ const forwardedPortReducer = (state = 0, action) => {
     case types.CREATE:
     case types.SET:
       if (!_.isUndefined(action.forwardedPort)) return action.forwardedPort;
+      break;
+  }
+  return state;
+};
+
+const secretReducer = (state = "", action) => {
+  switch (action.type) {
+    case types.CREATE:
+    case types.SET:
+      if (!_.isUndefined(action.secret)) return action.secret;
+      break;
+  }
+  return state;
+};
+
+const randomReducer = (state = "", action) => {
+  switch (action.type) {
+    case types.CREATE:
+    case types.SET:
+      if (!_.isUndefined(action.random)) return action.random;
       break;
   }
   return state;
@@ -137,19 +149,31 @@ const clientReducer = (state = null, action) => {
   return state;
 };
 
+const proxyFieldReducer = (state = null, action) => {
+  switch (action.type) {
+    case types.CREATE:
+    case types.SET:
+      if (!_.isUndefined(action.proxy)) return action.proxy;
+      break;
+  }
+  return state;
+};
+
 const proxyReducer = combineReducers({
   deviceId: deviceIdReducer,
   userId: userIdReducer,
   whenCreated: whenCreatedReducer,
-  isReady: isReadyReducer,
   forwardedHost: forwardedHostReducer,
   forwardedPort: forwardedPortReducer,
+  secret: secretReducer,
+  random: randomReducer,
   username: usernameReducer,
   isAuthNeeded: isAuthNeededReducer,
   authUsername: authUsernameReducer,
   authPassword: authPasswordReducer,
   exec: execReducer,
-  client: clientReducer
+  client: clientReducer,
+  proxy: proxyFieldReducer
 });
 
 const proxiesReducer = (state = Map({}), action) => {

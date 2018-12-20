@@ -46,6 +46,8 @@ let dbPath = process.env.DB_PATH;
 let sshHost = process.env.SSH_HOST || "0.0.0.0";
 let sshPort = parseInt(process.env.SSH_PORT, 10) || 35000;
 let sshOrigins = process.env.SSH_ORIGINS;
+let proxyPortLow = parseInt(process.env.PROXY_PORT_LOW, 10) || 40000;
+let proxyPortHigh = parseInt(process.env.PROXY_PORT_HIGH, 10) || 65000;
 
 /**
  * The application
@@ -118,7 +120,9 @@ class App {
       dbPath,
       sshHost,
       sshPort,
-      sshOrigins
+      sshOrigins,
+      proxyPortLow,
+      proxyPortHigh
     };
 
     this.di = new Injectt();
@@ -201,6 +205,9 @@ class App {
     this.express.use(sessionMiddleware.express);
     this.di.get("ws").io.use(sessionMiddleware.socket);
 
+    // CSRF
+    if (process.env.NODE_ENV === "production") this.express.use(csrf());
+
     // Set default headers
     this.express.use(await headers());
 
@@ -212,9 +219,6 @@ class App {
     // REST API is /api/*
     for (let route of _.keys(this.routes))
       this.express.use(constants.apiBase, this.routes[route].router);
-
-    // CSRF
-    if (process.env.NODE_ENV === "production") this.express.use(csrf());
 
     // GraphQL API at /graphql
     this.express.use(constants.graphqlBase, await graphql(this));
