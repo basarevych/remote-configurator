@@ -67,6 +67,14 @@ module.exports = withPlugins([...plugins], {
         }
       });
     }
+    if (config.optimization.minimizer && config.optimization.minimizer.length) {
+      let options = config.optimization.minimizer[0].options;
+      let terserOptions = options.terserOptions;
+      terserOptions.ecma = 5;
+      if (!terserOptions.mangle) terserOptions.mangle = {};
+      terserOptions.mangle.reserved = ["SubmissionError"]; // fix redux-form
+      config.optimization.minimizer[0] = new TerserPlugin(options);
+    }
 
     // Inline SVG
     config.module.rules.push({
