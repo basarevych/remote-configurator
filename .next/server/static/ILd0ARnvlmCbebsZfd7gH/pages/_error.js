@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 166);
+/******/ 	return __webpack_require__(__webpack_require__.s = 163);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -235,6 +235,12 @@ module.exports = require("next/router");
 /***/ }),
 /* 9 */,
 /* 10 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/styles");
+
+/***/ }),
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -265,12 +271,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var _default = _reducers.default;
 exports.default = _default;
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/styles");
 
 /***/ }),
 /* 12 */
@@ -421,12 +421,7 @@ exports.REMOVE_STARTING = REMOVE_STARTING;
 
 /***/ }),
 /* 18 */,
-/* 19 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-redux");
-
-/***/ }),
+/* 19 */,
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2141,7 +2136,7 @@ var _app = __webpack_require__(4);
 
 var _auth = __webpack_require__(12);
 
-var _devices = __webpack_require__(10);
+var _devices = __webpack_require__(11);
 
 var _terminals = __webpack_require__(20);
 
@@ -4481,7 +4476,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getTerminalAddress = exports.getTerminalName = exports.getTerminalMap = exports.hasTerminal = exports.getTerminalsMap = void 0;
 
-var _devices = __webpack_require__(10);
+var _devices = __webpack_require__(11);
 
 var getTerminalsMap = function getTerminalsMap(state) {
   return state.getIn(["terminals", "online"]);
@@ -4521,7 +4516,7 @@ exports.getTerminalAddress = getTerminalAddress;
 /* 55 */
 /***/ (function(module) {
 
-module.exports = {"name":"remote-configurator","version":"0.1.0","private":true,"dependencies":{"@date-io/moment":"~0.0.2","@material-ui/core":"~3.7.0","@material-ui/icons":"~3.0.1","@zeit/next-bundle-analyzer":"~0.1.2","@zeit/next-css":"~1.0.1","base64util":"~2.0.0-f","bcrypt":"~3.0.2","body-parser":"~1.18.3","chance":"~1.0.18","classnames":"~2.2.6","compression":"~1.7.3","connect-loki":"~1.1.0","cookie-parser":"~1.4.3","cors":"~2.8.5","csurf":"~1.9.0","debug":"~4.1.0","decompress-response":"~3.3.0","dotenv":"~6.2.0","express":"~4.16.4","express-graphql":"~0.7.1","express-session":"~1.15.6","fs-extra":"~7.0.1","generate-rsa-keypair":"~0.1.2","graphql":"14.0.2","graphql-tools":"~4.0.3","http-proxy":"~1.17.0","immutable":"~4.0.0-rc.12","injectt":"~0.1.6","intl":"~1.2.5","intl-locales-supported":"~1.0.0","intl-messageformat":"~2.2.0","isomorphic-unfetch":"~3.0.0","json-immutable":"~0.4.0","jsotp":"~1.0.4","jss":"~9.8.7","jss-extend":"~6.2.0","lodash":"~4.17.11","lokijs":"~1.5.5","lru-cache":"~5.1.1","material-ui-pickers":"~2.0.4","moment":"~2.23.0","moment-timezone":"~0.5.23","morgan":"~1.9.1","next":"~7.0.2","next-compose-plugins":"~2.1.1","next-progressbar":"~1.0.0","query-string":"~6.2.0","raf":"~3.4.1","react":"~16.7.0","react-dom":"~16.7.0","react-intl":"~2.7.2","react-jss":"~8.6.1","react-redux":"~6.0.0","react-swipeable-views":"~0.13.0","react-virtualized":"~9.21.0","redux":"~4.0.1","redux-devtools-extension":"~2.13.7","redux-form":"~8.0.4","redux-immutable":"~4.0.0","redux-thunk":"~2.3.0","reselect":"~4.0.0","serve-favicon":"~2.5.0","serviceworker-webpack-plugin":"~1.0.1","socket.io":"~2.2.0","ssh2":"~0.6.1","svg-inline-loader":"~0.8.0","utf8":"~3.0.0","uuid":"~3.3.2","validator":"~10.9.0","webpack":"4.20.2","xterm":"~3.9.1"},"devDependencies":{"@babel/core":"7.0.0","babel-core":"7.0.0-bridge.0","babel-eslint":"~10.0.1","babel-jest":"~23.6.0","babel-plugin-lodash":"~3.3.4","css-mqpacker":"~7.0.0","enzyme":"~3.8.0","enzyme-adapter-react-16":"~1.7.1","eslint":"~5.10.0","eslint-plugin-lodash":"~5.1.0","eslint-plugin-react":"~7.11.1","jest":"~23.6.0","jsdom":"~13.1.0","jsdom-global":"~3.0.2","postcss-clean":"~1.1.0","postcss-loader":"~3.0.0","postcss-preset-env":"~6.5.0","postcss-url":"~8.0.0","prop-types":"~15.6.2","supertest":"~3.3.0","webfontloader":"~1.6.28"},"scripts":{"lint":"eslint . --max-warnings=0","test":"jest . --no-cache --forceExit","build":"node ./bin/prepare-build && env NODE_ENV=production TMPDIR=$PWD/.tmp next build","export":"env NODE_ENV=production TMPDIR=$PWD/.tmp next export","dev":"node ./bin/prepare-build && env NODE_ENV=development node ./bin/www","start":"env NODE_ENV=production node ./bin/www"}};
+module.exports = {"name":"remote-configurator","version":"0.1.0","private":true,"dependencies":{"@date-io/moment":"~0.0.2","@material-ui/core":"~3.7.0","@material-ui/icons":"~3.0.1","@zeit/next-bundle-analyzer":"~0.1.2","@zeit/next-css":"~1.0.1","base64util":"~2.0.0-f","bcrypt":"~3.0.2","body-parser":"~1.18.3","chance":"~1.0.18","classnames":"~2.2.6","compression":"~1.7.3","connect-loki":"~1.1.0","cookie-parser":"~1.4.3","cors":"~2.8.5","csurf":"~1.9.0","debug":"~4.1.0","decompress-response":"~3.3.0","dotenv":"~6.2.0","express":"~4.16.4","express-graphql":"~0.7.1","express-session":"~1.15.6","fs-extra":"~7.0.1","generate-rsa-keypair":"~0.1.2","graphql":"14.0.2","graphql-tools":"~4.0.3","http-proxy":"~1.17.0","http-status-codes":"~1.3.0","immutable":"~4.0.0-rc.12","injectt":"~0.1.6","intl":"~1.2.5","intl-locales-supported":"~1.0.0","intl-messageformat":"~2.2.0","isomorphic-unfetch":"~3.0.0","json-immutable":"~0.4.0","jsotp":"~1.0.4","jss":"~9.8.7","jss-extend":"~6.2.0","lodash":"~4.17.11","lokijs":"~1.5.5","lru-cache":"~5.1.1","material-ui-pickers":"~2.0.4","moment":"~2.23.0","moment-timezone":"~0.5.23","morgan":"~1.9.1","next":"~7.0.2","next-compose-plugins":"~2.1.1","next-progressbar":"~1.0.0","query-string":"~6.2.0","raf":"~3.4.1","react":"~16.7.0","react-dom":"~16.7.0","react-intl":"~2.7.2","react-jss":"~8.6.1","react-redux":"~6.0.0","react-swipeable-views":"~0.13.0","react-virtualized":"~9.21.0","redux":"~4.0.1","redux-devtools-extension":"~2.13.7","redux-form":"~8.0.4","redux-immutable":"~4.0.0","redux-thunk":"~2.3.0","reselect":"~4.0.0","serve-favicon":"~2.5.0","serviceworker-webpack-plugin":"~1.0.1","socket.io":"~2.2.0","ssh2":"~0.6.1","svg-inline-loader":"~0.8.0","utf8":"~3.0.0","uuid":"~3.3.2","validator":"~10.9.0","webpack":"4.20.2","xterm":"~3.9.1"},"devDependencies":{"@babel/core":"7.0.0","babel-core":"7.0.0-bridge.0","babel-eslint":"~10.0.1","babel-jest":"~23.6.0","babel-plugin-lodash":"~3.3.4","css-mqpacker":"~7.0.0","enzyme":"~3.8.0","enzyme-adapter-react-16":"~1.7.1","eslint":"~5.10.0","eslint-plugin-lodash":"~5.1.0","eslint-plugin-react":"~7.11.1","jest":"~23.6.0","jsdom":"~13.1.0","jsdom-global":"~3.0.2","postcss-clean":"~1.1.0","postcss-loader":"~3.0.0","postcss-preset-env":"~6.5.0","postcss-url":"~8.0.0","prop-types":"~15.6.2","supertest":"~3.3.0","webfontloader":"~1.6.28"},"scripts":{"lint":"eslint . --max-warnings=0","test":"jest . --no-cache --forceExit","build":"node ./bin/prepare-build && env NODE_ENV=production TMPDIR=$PWD/.tmp next build","export":"env NODE_ENV=production TMPDIR=$PWD/.tmp next export","dev":"node ./bin/prepare-build && env NODE_ENV=development node ./bin/www","start":"env NODE_ENV=production node ./bin/www"}};
 
 /***/ }),
 /* 56 */
@@ -4704,42 +4699,17 @@ exports.isConnected = isConnected;
 /* 87 */,
 /* 88 */,
 /* 89 */,
-/* 90 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/IconButton");
-
-/***/ }),
+/* 90 */,
 /* 91 */,
 /* 92 */,
 /* 93 */,
 /* 94 */,
 /* 95 */,
 /* 96 */,
-/* 97 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-virtualized");
-
-/***/ }),
-/* 98 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/icons/Close");
-
-/***/ }),
-/* 99 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/Paper");
-
-/***/ }),
-/* 100 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/Typography");
-
-/***/ }),
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
 /* 101 */,
 /* 102 */,
 /* 103 */,
@@ -4802,38 +4772,14 @@ module.exports = require("@material-ui/core/Typography");
 /* 160 */,
 /* 161 */,
 /* 162 */,
-/* 163 */,
-/* 164 */,
-/* 165 */,
-/* 166 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(167);
+module.exports = __webpack_require__(164);
 
 
 /***/ }),
-/* 167 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "default", {
-  enumerable: true,
-  get: function get() {
-    return _BrowserPage.default;
-  }
-});
-
-var _BrowserPage = _interopRequireDefault(__webpack_require__(168));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/***/ }),
-/* 168 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4846,72 +4792,97 @@ exports.default = void 0;
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _reactRedux = __webpack_require__(19);
+var _react = _interopRequireDefault(__webpack_require__(6));
 
-var _auth = __webpack_require__(12);
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
-var _devices = __webpack_require__(10);
+var _ErrorPage = _interopRequireDefault(__webpack_require__(165));
 
-var _BrowserPage = _interopRequireDefault(__webpack_require__(169));
+var _app = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    isAuthenticated: _auth.authSelectors.isAuthenticated(state)
-  };
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var BrowserPage = (0, _reactRedux.connect)(mapStateToProps, null, null, {
-  pure: false
-})(_BrowserPage.default);
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-BrowserPage.getInitialProps =
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Page =
 /*#__PURE__*/
-function () {
-  var _ref2 = _asyncToGenerator(
-  /*#__PURE__*/
-  _regenerator.default.mark(function _callee(_ref) {
-    var store, req, query;
-    return _regenerator.default.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            store = _ref.store, req = _ref.req, query = _ref.query;
-            _context.next = 3;
-            return store.dispatch(_devices.devicesOperations.load({
-              req: req
-            }));
+function (_React$Component) {
+  _inherits(Page, _React$Component);
 
-          case 3:
-            return _context.abrupt("return", {
-              deviceId: query.deviceId,
-              host: query.host,
-              port: parseInt(query.port) || 0
-            });
+  function Page() {
+    _classCallCheck(this, Page);
 
-          case 4:
-          case "end":
-            return _context.stop();
-        }
+    return _possibleConstructorReturn(this, _getPrototypeOf(Page).apply(this, arguments));
+  }
+
+  _createClass(Page, [{
+    key: "render",
+    value: function render() {
+      return _react.default.createElement(_ErrorPage.default, {
+        statusCode: this.props.statusCode || 500
+      });
+    }
+  }], [{
+    key: "getInitialProps",
+    value: function () {
+      var _getInitialProps = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee(_ref) {
+        var store, statusCode;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                store = _ref.store;
+                statusCode = store && _app.appSelectors.getStatusCode(store.getState());
+                return _context.abrupt("return", {
+                  statusCode: statusCode
+                });
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getInitialProps(_x) {
+        return _getInitialProps.apply(this, arguments);
       }
-    }, _callee, this);
-  }));
 
-  return function (_x) {
-    return _ref2.apply(this, arguments);
-  };
-}();
+      return getInitialProps;
+    }()
+  }]);
 
-var _default = BrowserPage;
+  return Page;
+}(_react.default.Component);
+
+var _default = Page;
 exports.default = _default;
 
 /***/ }),
-/* 169 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4926,9 +4897,9 @@ var _react = _interopRequireDefault(__webpack_require__(6));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
-var _styles = __webpack_require__(11);
+var _styles = __webpack_require__(10);
 
-var _Browser = _interopRequireDefault(__webpack_require__(170));
+var _httpStatusCodes = _interopRequireDefault(__webpack_require__(166));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4959,249 +4930,78 @@ var styles = function styles(theme) {
       maxWidth: 1300 + 2 * theme.main.spacing,
       flex: 1,
       display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
       padding: theme.main.spacing
     }, theme.breakpoints.down("md"), {
       padding: theme.main.spacing / 2,
       maxWidth: 1300 + theme.main.spacing
-    })
+    }),
+    code: {
+      fontSize: "300%",
+      textShadow: "2px 2px 4px #000000",
+      padding: "0.5rem 2rem",
+      color: "1px solid ".concat(theme.palette.text.primary),
+      borderRight: "1px solid ".concat(theme.palette.text.disabled)
+    },
+    text: {
+      fontSize: "200%",
+      textShadow: "2px 2px 4px #000000",
+      padding: "0.5rem 2rem",
+      color: "1px solid ".concat(theme.palette.text.secondary)
+    }
   };
 };
 
-var BrowserPage =
+var ErrorPage =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(BrowserPage, _React$Component);
+  _inherits(ErrorPage, _React$Component);
 
-  function BrowserPage() {
-    _classCallCheck(this, BrowserPage);
+  function ErrorPage() {
+    _classCallCheck(this, ErrorPage);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(BrowserPage).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(ErrorPage).apply(this, arguments));
   }
 
-  _createClass(BrowserPage, [{
+  _createClass(ErrorPage, [{
+    key: "getCode",
+    value: function getCode() {
+      if (this.props.statusCode === 200) return 500;
+      return this.props.statusCode;
+    }
+  }, {
+    key: "getText",
+    value: function getText() {
+      return _httpStatusCodes.default.getStatusText(this.getCode());
+    }
+  }, {
     key: "render",
     value: function render() {
-      if (!this.props.isAuthenticated) return null;
       return _react.default.createElement("div", {
         className: this.props.classes.layout
-      }, _react.default.createElement(_Browser.default, {
-        key: "browser-".concat(this.props.deviceId, "-").concat(this.props.host, "-").concat(this.props.port),
-        deviceId: this.props.deviceId,
-        host: this.props.host,
-        port: this.props.port
-      }));
-    }
-  }]);
-
-  return BrowserPage;
-}(_react.default.Component);
-
-var _default = (0, _styles.withStyles)(styles, {
-  withTheme: true
-})(BrowserPage);
-
-exports.default = _default;
-
-/***/ }),
-/* 170 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _reactRedux = __webpack_require__(19);
-
-var _router = __webpack_require__(8);
-
-var _Browser = _interopRequireDefault(__webpack_require__(171));
-
-var _app = __webpack_require__(4);
-
-var _devices = __webpack_require__(10);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mapStateToProps = function mapStateToProps(state, props) {
-  return {
-    appOrigin: _app.appSelectors.getAppOrigin(state),
-    name: _devices.devicesSelectors.getName(state, props),
-    address: _devices.devicesSelectors.getAddress(state, props)
-  };
-};
-
-var Browser = (0, _router.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(_Browser.default));
-var _default = Browser;
-exports.default = _default;
-
-/***/ }),
-/* 171 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(__webpack_require__(6));
-
-var _router = _interopRequireDefault(__webpack_require__(8));
-
-var _propTypes = _interopRequireDefault(__webpack_require__(7));
-
-var _reactVirtualized = __webpack_require__(97);
-
-var _styles = __webpack_require__(11);
-
-var _IconButton = _interopRequireDefault(__webpack_require__(90));
-
-var _Refresh = _interopRequireDefault(__webpack_require__(172));
-
-var _Close = _interopRequireDefault(__webpack_require__(98));
-
-var _Paper = _interopRequireDefault(__webpack_require__(99));
-
-var _Typography = _interopRequireDefault(__webpack_require__(100));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-var styles = function styles() {
-  return {
-    container: {
-      flex: 1,
-      display: "flex",
-      flexDirection: "column",
-      position: "relative",
-      background: "#2a2c38"
-    },
-    header: {
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "center"
-    },
-    headerText: {
-      flex: 1
-    },
-    browser: {
-      flex: 1
-    }
-  };
-};
-
-var Browser =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(Browser, _React$Component);
-
-  function Browser(props) {
-    var _this;
-
-    _classCallCheck(this, Browser);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Browser).call(this, props));
-    _this.state = {
-      key: Date.now()
-    };
-    _this.handleClose = _this.handleClose.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleRefresh = _this.handleRefresh.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    return _this;
-  }
-
-  _createClass(Browser, [{
-    key: "getIframeId",
-    value: function getIframeId() {
-      return "frame-".concat(this.props.deviceId, "-").concat(this.props.host, "-").concat(this.props.port);
-    }
-  }, {
-    key: "handleRefresh",
-    value: function handleRefresh() {
-      this.setState({
-        key: Date.now()
-      });
-    }
-  }, {
-    key: "handleClose",
-    value: function handleClose() {
-      _router.default.push("/");
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      return _react.default.createElement(_Paper.default, {
-        className: this.props.classes.container
       }, _react.default.createElement("div", {
-        className: this.props.classes.header
-      }, _react.default.createElement(_IconButton.default, {
-        color: "inherit",
-        onClick: this.handleRefresh
-      }, _react.default.createElement(_Refresh.default, null)), _react.default.createElement(_Typography.default, {
-        variant: "h5",
-        className: this.props.classes.headerText
-      }, this.props.host, ":", this.props.port, "\xA0-\xA0", this.props.name, "\xA0", !!this.props.address && "(" + this.props.address + ")"), _react.default.createElement(_IconButton.default, {
-        color: "inherit",
-        onClick: this.handleClose
-      }, _react.default.createElement(_Close.default, null))), _react.default.createElement("div", {
-        className: this.props.classes.browser
-      }, _react.default.createElement(_reactVirtualized.AutoSizer, null, function (_ref) {
-        var width = _ref.width,
-            height = _ref.height;
-        return _react.default.createElement("iframe", {
-          key: "frame-".concat(_this2.state.key),
-          id: _this2.getIframeId(),
-          width: width,
-          height: height,
-          sandbox: "allow-forms allow-modals allow-popups allow-scripts allow-same-origin",
-          style: {
-            background: "#ffffff",
-            border: "none"
-          },
-          src: "".concat(_this2.props.appOrigin, "/api/browser/").concat(_this2.props.deviceId, "/").concat(_this2.props.host, "/").concat(_this2.props.port)
-        });
-      })));
+        className: this.props.classes.code
+      }, this.getCode()), _react.default.createElement("div", {
+        className: this.props.classes.text
+      }, this.getText()));
     }
   }]);
 
-  return Browser;
+  return ErrorPage;
 }(_react.default.Component);
 
 var _default = (0, _styles.withStyles)(styles, {
   withTheme: true
-})(Browser);
+})(ErrorPage);
 
 exports.default = _default;
 
 /***/ }),
-/* 172 */
+/* 166 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/Refresh");
+module.exports = require("http-status-codes");
 
 /***/ })
 /******/ ]);
