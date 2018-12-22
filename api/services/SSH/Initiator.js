@@ -93,7 +93,7 @@ class Initiator extends Command {
         })
       );
     } catch (error) {
-      this.onError(error);
+      await this.onError(error);
     }
   }
 }

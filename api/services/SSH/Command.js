@@ -70,7 +70,7 @@ class Command extends EventEmitter {
     );
     if (isOk === false) {
       console.log(`SSH client not responding: ${this.deviceId}`);
-      client.stop();
+      client.stop().catch(console.error);
     }
   }
 
@@ -197,8 +197,8 @@ class Command extends EventEmitter {
     await this.stop();
   }
 
-  onTimeout() {
-    this.onError(new Error("Timeout"));
+  async onTimeout() {
+    await this.onError(new Error("Timeout"));
   }
 
   async onClose(type) {
@@ -206,7 +206,7 @@ class Command extends EventEmitter {
 
     this[type] = null;
     this.isReady = false;
-    this.stop();
+    await this.stop();
   }
 }
 

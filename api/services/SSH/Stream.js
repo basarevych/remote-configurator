@@ -107,7 +107,7 @@ class Stream extends EventEmitter {
 
   async onClose() {
     this.stream = null;
-    this.stop();
+    await this.stop();
   }
 
   async onError(error) {
@@ -115,8 +115,8 @@ class Stream extends EventEmitter {
     await this.stop();
   }
 
-  onTimeout() {
-    this.onError(new Error("Timeout"));
+  async onTimeout() {
+    await this.onError(new Error("Timeout"));
   }
 }
 

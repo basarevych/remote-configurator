@@ -126,10 +126,10 @@ class Exec extends EventEmitter {
     });
   }
 
-  onDisconnected() {
+  async onDisconnected() {
     this.command = null;
     if (this.code === null) this.code = -1;
-    this.stop();
+    await this.stop();
   }
 
   async onClose(code, signal) {
@@ -139,17 +139,17 @@ class Exec extends EventEmitter {
     this.code = code;
     this.signal = signal;
 
-    this.stop();
+    await this.stop();
   }
 
   async onError(error) {
     console.error(`Command error from ${this.deviceId}: ${error.message}`);
-    this.stop();
+    await this.stop();
   }
 
   async onTimeout() {
     debug(`Command timeout from ${this.deviceId}`);
-    this.onError(new Error("Timeout"));
+    await this.onError(new Error("Timeout"));
   }
 }
 

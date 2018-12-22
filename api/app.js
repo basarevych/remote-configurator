@@ -157,9 +157,7 @@ class App {
     );
 
     // Initialize the singletons
-    await this.di.get("db").init();
-    await this.di.get("ssh").init();
-    await this.di.get("ws").init();
+    await Promise.all(_.invokeMap(this.di.singletons(), "init"));
 
     // Routes
     this.routes = routes(this);

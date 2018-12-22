@@ -8185,7 +8185,13 @@ var styles = function styles(theme) {
       marginLeft: theme.sidebar.tabletWidth * theme.spacing.unit
     }), _defineProperty(_main, theme.breakpoints.down("xs"), {
       marginLeft: 0
-    }), _main)
+    }), _main),
+    anonymous: {
+      minHeight: "100vh",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center"
+    }
   };
 };
 
@@ -8229,7 +8235,7 @@ function (_React$Component) {
         className: "app"
       }, this.props.title && _react.default.createElement(_head.default, null, _react.default.createElement("title", null, this.props.intl.formatMessage({
         id: this.props.title
-      }))), this.props.isAuthenticated && _react.default.createElement(_Hidden.default, {
+      }))), this.props.isAuthenticated && _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_Hidden.default, {
         implementation: "css",
         smUp: true
       }, _react.default.createElement(_SwipeableDrawer.default, {
@@ -8238,7 +8244,7 @@ function (_React$Component) {
         onClose: this.handleSidebarClose
       }, _react.default.createElement(_Sidebar.default, {
         onMenuClick: this.handleSidebarClose
-      }))), this.props.isAuthenticated && _react.default.createElement(_Hidden.default, {
+      }))), _react.default.createElement(_Hidden.default, {
         implementation: "css",
         xsDown: true
       }, _react.default.createElement(_Drawer.default, {
@@ -8249,9 +8255,11 @@ function (_React$Component) {
         }
       }, _react.default.createElement(_Sidebar.default, {
         onMenuClick: this.handleSidebarClose
-      }))), this.props.isAuthenticated && _react.default.createElement("main", {
+      }))), _react.default.createElement("main", {
         className: this.props.classes.main
-      }, this.props.children), !this.props.isAuthenticated && this.props.children, !this.props.isStarted && !this.props.isError && _react.default.createElement("div", {
+      }, this.props.children)), !this.props.isAuthenticated && _react.default.createElement("main", {
+        className: this.props.classes.anonymous
+      }, this.props.children), !this.props.isStarted && !this.props.isError && _react.default.createElement("div", {
         className: this.props.classes.backdrop
       }, _react.default.createElement("div", {
         className: this.props.classes.spinner

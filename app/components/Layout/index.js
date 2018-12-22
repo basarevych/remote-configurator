@@ -86,6 +86,12 @@ const styles = theme => ({
     [theme.breakpoints.down("xs")]: {
       marginLeft: 0
     }
+  },
+  anonymous: {
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
   }
 });
 
@@ -135,34 +141,36 @@ class Layout extends React.Component {
         )}
 
         {this.props.isAuthenticated && (
-          <Hidden implementation="css" smUp>
-            <SwipeableDrawer
-              open={this.state.isSidebarOpen}
-              onOpen={this.handleSidebarToggle}
-              onClose={this.handleSidebarClose}
-            >
-              <Sidebar onMenuClick={this.handleSidebarClose} />
-            </SwipeableDrawer>
-          </Hidden>
+          <React.Fragment>
+            <Hidden implementation="css" smUp>
+              <SwipeableDrawer
+                open={this.state.isSidebarOpen}
+                onOpen={this.handleSidebarToggle}
+                onClose={this.handleSidebarClose}
+              >
+                <Sidebar onMenuClick={this.handleSidebarClose} />
+              </SwipeableDrawer>
+            </Hidden>
+            <Hidden implementation="css" xsDown>
+              <Drawer
+                variant="permanent"
+                open
+                classes={{ paper: this.props.classes.sidebar }}
+              >
+                <Sidebar onMenuClick={this.handleSidebarClose} />
+              </Drawer>
+            </Hidden>
+            <main className={this.props.classes.main}>
+              {this.props.children}
+            </main>
+          </React.Fragment>
         )}
 
-        {this.props.isAuthenticated && (
-          <Hidden implementation="css" xsDown>
-            <Drawer
-              variant="permanent"
-              open
-              classes={{ paper: this.props.classes.sidebar }}
-            >
-              <Sidebar onMenuClick={this.handleSidebarClose} />
-            </Drawer>
-          </Hidden>
+        {!this.props.isAuthenticated && (
+          <main className={this.props.classes.anonymous}>
+            {this.props.children}
+          </main>
         )}
-
-        {this.props.isAuthenticated && (
-          <main className={this.props.classes.main}>{this.props.children}</main>
-        )}
-
-        {!this.props.isAuthenticated && this.props.children}
 
         {!this.props.isStarted && !this.props.isError && (
           <div className={this.props.classes.backdrop}>

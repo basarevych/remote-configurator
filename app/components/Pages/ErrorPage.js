@@ -9,10 +9,12 @@ const styles = theme => ({
     maxWidth: 1300 + 2 * theme.main.spacing,
     flex: 1,
     display: "flex",
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     padding: theme.main.spacing,
     [theme.breakpoints.down("md")]: {
+      flexDirection: "column",
       padding: theme.main.spacing / 2,
       maxWidth: 1300 + theme.main.spacing
     }
@@ -22,7 +24,10 @@ const styles = theme => ({
     textShadow: "2px 2px 4px #000000",
     padding: "0.5rem 2rem",
     color: `1px solid ${theme.palette.text.primary}`,
-    borderRight: `1px solid ${theme.palette.text.disabled}`
+    borderRight: `1px solid ${theme.palette.text.disabled}`,
+    [theme.breakpoints.down("md")]: {
+      borderRight: "none"
+    }
   },
   text: {
     fontSize: "200%",

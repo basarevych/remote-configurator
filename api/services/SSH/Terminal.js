@@ -112,19 +112,19 @@ class Terminal extends EventEmitter {
     return this.stream.signal(...args);
   }
 
-  onConnected() {
+  async onConnected() {
     debug(`SSH terminal ${this.terminalId} connected`);
     if (
       this.command.shell({ term: "xterm" }, this.onShell.bind(this)) === false
     ) {
-      this.onError(new Error("Terminal is not ready"));
+      await this.onError(new Error("Terminal is not ready"));
     }
   }
 
-  onDisconnected() {
+  async onDisconnected() {
     debug(`SSH terminal ${this.terminalId} lost connection`);
     this.command = null;
-    this.stop();
+    await this.stop();
   }
 
   async onShell(error, stream) {
@@ -147,7 +147,7 @@ class Terminal extends EventEmitter {
 
   async onClose() {
     this.stream = null;
-    this.stop();
+    await this.stop();
   }
 
   async onError(error) {
@@ -155,8 +155,8 @@ class Terminal extends EventEmitter {
     await this.stop();
   }
 
-  onTimeout() {
-    this.onError(new Error("Timeout"));
+  async onTimeout() {
+    await this.onError(new Error("Timeout"));
   }
 
   async onData(data) {
@@ -176,7 +176,7 @@ class Terminal extends EventEmitter {
         );
       }
     } catch (error) {
-      this.onError(error);
+      await this.onError(error);
     }
   }
 }

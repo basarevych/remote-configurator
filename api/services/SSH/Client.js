@@ -306,16 +306,16 @@ class Client extends EventEmitter {
 
   async onClose() {
     this.client = null;
-    this.stop();
+    await this.stop();
   }
 
   async onError(error) {
     console.error(`SSH: ${error.message}`);
-    this.stop();
+    await this.stop();
   }
 
   async onTimeout() {
-    this.onError(new Error("Timeout"));
+    await this.onError(new Error("Timeout"));
   }
 }
 
