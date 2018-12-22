@@ -48,7 +48,7 @@ class Proxy extends EventEmitter {
   }
 
   getTarget(value = "") {
-    let target = this.config.appOrigins[0];
+    let target = this.config.appProxyOrigins[0];
     let index = target.indexOf(":", "https:".length);
     if (index !== -1) target = target.slice(0, index);
     target += ":" + this.outerPort;
@@ -180,7 +180,7 @@ class Proxy extends EventEmitter {
       new Promise(resolve => {
         this.outerServer = app.listen(
           this.outerPort,
-          this.config.appHost,
+          this.config.appProxyHost,
           error => {
             if (error) return resolve(false);
             app.on("error", this.onError.bind(this));

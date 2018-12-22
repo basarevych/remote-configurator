@@ -33,12 +33,14 @@ if (!process.env.NODE_ENV) process.env.NODE_ENV = "production";
 
 let appHost = process.env.APP_HOST || "0.0.0.0";
 let appPort = parseInt(process.env.APP_PORT, 10) || 3000;
-let appProxyPortLow = parseInt(process.env.APP_PROXY_PORT_LOW, 10) || 40000;
-let appProxyPortHigh = parseInt(process.env.APP_PROXY_PORT_HIGH, 10) || 60000;
 let appOrigins = process.env.APP_ORIGINS;
 let appStatic = process.env.APP_STATIC || "";
 let appTrustProxy = process.env.APP_TRUST_PROXY === "true" ? 1 : 0;
 let appOnlineUsers = parseInt(process.env.APP_ONLINE_USERS, 10) || 50;
+let appProxyHost = process.env.APP_PROXY_HOST || "0.0.0.0";
+let appProxyPortLow = parseInt(process.env.APP_PROXY_PORT_LOW, 10) || 40000;
+let appProxyPortHigh = parseInt(process.env.APP_PROXY_PORT_HIGH, 10) || 60000;
+let appProxyOrigins = process.env.APP_PROXY_ORIGINS;
 let sessionDbPath = process.env.SESSION_DB_PATH;
 let sessionSecret = process.env.SESSION_SECRET;
 let sessionMaxAge = 1000 * 60 * 60 * 24 * 7;
@@ -95,6 +97,22 @@ class App {
       appOrigins = [`http://localhost:${appPort}`];
     }
 
+    if (appProxyOrigins) {
+      try {
+        if (_.isString(appProxyOrigins))
+          appProxyOrigins = JSON.parse(appProxyOrigins);
+        if (!_.isArray(appProxyOrigins))
+          throw new Error(
+            "APP_PROXY_ORIGINS env variable should be a JSON string of array of strings"
+          );
+      } catch (error) {
+        console.error("Could not parse APP_PROXY_ORIGINS: ", error.message);
+        process.exit(1);
+      }
+    } else {
+      appProxyOrigins = appOrigins.slice();
+    }
+
     if (sshOrigins) {
       try {
         if (_.isString(sshOrigins)) sshOrigins = JSON.parse(sshOrigins);
@@ -113,12 +131,14 @@ class App {
     this.config = {
       appHost,
       appPort,
-      appProxyPortLow,
-      appProxyPortHigh,
       appOrigins,
       appStatic,
       appTrustProxy,
       appOnlineUsers,
+      appProxyHost,
+      appProxyPortLow,
+      appProxyPortHigh,
+      appProxyOrigins,
       sessionDbPath,
       sessionSecret,
       sessionMaxAge,
