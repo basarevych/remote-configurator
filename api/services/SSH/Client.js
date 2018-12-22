@@ -98,7 +98,7 @@ class Client extends EventEmitter {
 
   forwardOut(...args) {
     try {
-      if (!this.client) throw new Error("No client");
+      if (!this.client) throw new Error("ForwardOut: No client");
       return this.client.forwardOut(...args);
     } catch (error) {
       this.onError(error).catch(console.error);

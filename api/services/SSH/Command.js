@@ -105,7 +105,7 @@ class Command extends EventEmitter {
 
   shell(...args) {
     try {
-      if (!this.client) throw new Error("No client");
+      if (!this.client) throw new Error("Shell: No client");
       return this.client.shell(...args);
     } catch (error) {
       this.onError(error).catch(console.error);
@@ -114,7 +114,7 @@ class Command extends EventEmitter {
 
   exec(...args) {
     try {
-      if (!this.client) throw new Error("No client");
+      if (!this.client) throw new Error("Exec: No client");
       return this.client.exec(...args);
     } catch (error) {
       this.onError(error).catch(console.error);
