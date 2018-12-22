@@ -9,6 +9,7 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -22,6 +23,9 @@ import DisconnectIcon from "@material-ui/icons/ExitToApp";
 import ProxyModal from "../../containers/Modals/ProxyModal";
 
 const styles = theme => ({
+  paper: {
+    padding: "1rem"
+  },
   statusColumn: {
     width: "40%"
   },
@@ -179,167 +183,171 @@ class Devices extends React.Component {
           </Button>
         </div>
 
-        <Table padding="dense">
-          <TableHead>
-            <TableRow>
-              <TableCell
-                padding="none"
-                classes={{ root: this.props.classes.collapsing }}
-              >
-                <Checkbox
-                  checked={
-                    !!this.props.devices.size && this.props.isAllSelected
-                  }
-                  classes={{ root: this.props.classes.checkbox }}
-                  indeterminate={
-                    !this.props.isAllSelected && !this.props.isAllDeselected
-                  }
-                  onChange={() => this.handleToggleAll()}
-                  value="on"
-                />
-              </TableCell>
-              <TableCell>
-                <FormattedMessage id="DEVICES_NAME_COLUMN" />
-              </TableCell>
-              <TableCell>
-                <FormattedMessage id="DEVICES_ADDRESS_COLUMN" />
-              </TableCell>
-              <TableCell className={this.props.classes.statusColumn} />
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {/* eslint-disable-next-line lodash/prefer-lodash-method */}
-            {this.props.devices.map((row, index) => {
-              const info = this.props.online.get(row.get("id"));
-              return (
-                <TableRow key={`row-${index}`}>
-                  <TableCell
-                    padding="none"
-                    className={classNames(
-                      index % 2 ? "even" : "odd",
-                      row.get("isSelected") && "selected"
-                    )}
-                    classes={{ root: this.props.classes.collapsing }}
-                  >
-                    <Checkbox
-                      checked={!!row.get("isSelected")}
-                      classes={{ root: this.props.classes.checkbox }}
-                      onChange={() => this.handleToggle(row.get("id"))}
-                      value="on"
-                    />
-                    {info && info.get("isLoggedIn") ? (
-                      <React.Fragment>
-                        <Tooltip
-                          disableFocusListener
-                          classes={{ tooltip: this.props.classes.tooltip }}
-                          title={this.props.intl.formatMessage({
-                            id: "DEVICES_OPEN_TERMINAL_TIP"
-                          })}
+        <Paper className={this.props.classes.paper}>
+          <Table padding="dense">
+            <TableHead>
+              <TableRow>
+                <TableCell
+                  padding="none"
+                  classes={{ root: this.props.classes.collapsing }}
+                >
+                  <Checkbox
+                    checked={
+                      !!this.props.devices.size && this.props.isAllSelected
+                    }
+                    classes={{ root: this.props.classes.checkbox }}
+                    indeterminate={
+                      !this.props.isAllSelected && !this.props.isAllDeselected
+                    }
+                    onChange={() => this.handleToggleAll()}
+                    value="on"
+                  />
+                </TableCell>
+                <TableCell>
+                  <FormattedMessage id="DEVICES_NAME_COLUMN" />
+                </TableCell>
+                <TableCell>
+                  <FormattedMessage id="DEVICES_ADDRESS_COLUMN" />
+                </TableCell>
+                <TableCell className={this.props.classes.statusColumn} />
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {/* eslint-disable-next-line lodash/prefer-lodash-method */}
+              {this.props.devices.map((row, index) => {
+                const info = this.props.online.get(row.get("id"));
+                return (
+                  <TableRow key={`row-${index}`}>
+                    <TableCell
+                      padding="none"
+                      className={classNames(
+                        index % 2 ? "even" : "odd",
+                        row.get("isSelected") && "selected"
+                      )}
+                      classes={{ root: this.props.classes.collapsing }}
+                    >
+                      <Checkbox
+                        checked={!!row.get("isSelected")}
+                        classes={{ root: this.props.classes.checkbox }}
+                        onChange={() => this.handleToggle(row.get("id"))}
+                        value="on"
+                      />
+                      {info && info.get("isLoggedIn") ? (
+                        <React.Fragment>
+                          <Tooltip
+                            disableFocusListener
+                            classes={{ tooltip: this.props.classes.tooltip }}
+                            title={this.props.intl.formatMessage({
+                              id: "DEVICES_OPEN_TERMINAL_TIP"
+                            })}
+                          >
+                            <span>
+                              <IconButton
+                                color="inherit"
+                                onClick={() =>
+                                  this.props.onOpenTerminal(row.get("id"))
+                                }
+                              >
+                                <OpenTerminalIcon />
+                              </IconButton>
+                            </span>
+                          </Tooltip>
+                          <Tooltip
+                            disableFocusListener
+                            classes={{ tooltip: this.props.classes.tooltip }}
+                            title={this.props.intl.formatMessage({
+                              id: "DEVICES_OPEN_BROWSER_TIP"
+                            })}
+                          >
+                            <span>
+                              <IconButton
+                                color="inherit"
+                                onClick={() =>
+                                  this.handleProxyModalOpen(row.get("id"))
+                                }
+                              >
+                                <OpenBrowserIcon />
+                              </IconButton>
+                            </span>
+                          </Tooltip>
+                          <Tooltip
+                            disableFocusListener
+                            classes={{ tooltip: this.props.classes.tooltip }}
+                            title={this.props.intl.formatMessage({
+                              id: "DEVICES_DISCONNECT_TIP"
+                            })}
+                          >
+                            <span>
+                              <IconButton
+                                color="inherit"
+                                onClick={() =>
+                                  this.props.onDisconnect(row.get("id"))
+                                }
+                              >
+                                <DisconnectIcon />
+                              </IconButton>
+                            </span>
+                          </Tooltip>
+                        </React.Fragment>
+                      ) : info && info.get("isLoggingIn") ? (
+                        <LinearProgress
+                          className={this.props.classes.progress}
+                        />
+                      ) : (
+                        <Button
+                          size="small"
+                          variant="contained"
+                          color="primary"
+                          disabled={!info}
+                          onClick={() => this.props.onConnect(row.get("id"))}
                         >
-                          <span>
-                            <IconButton
-                              color="inherit"
-                              onClick={() =>
-                                this.props.onOpenTerminal(row.get("id"))
-                              }
-                            >
-                              <OpenTerminalIcon />
-                            </IconButton>
-                          </span>
-                        </Tooltip>
-                        <Tooltip
-                          disableFocusListener
-                          classes={{ tooltip: this.props.classes.tooltip }}
-                          title={this.props.intl.formatMessage({
-                            id: "DEVICES_OPEN_BROWSER_TIP"
+                          <FormattedMessage id="DEVICES_CONNECT_BUTTON" />
+                        </Button>
+                      )}
+                    </TableCell>
+                    <TableCell
+                      className={classNames(
+                        index % 2 ? "even" : "odd",
+                        row.get("isSelected") && "selected"
+                      )}
+                      component="th"
+                      scope="row"
+                    >
+                      {row.get("name")}
+                    </TableCell>
+                    <TableCell
+                      className={classNames(
+                        index % 2 ? "even" : "odd",
+                        row.get("isSelected") && "selected"
+                      )}
+                    >
+                      {info
+                        ? info.get("address")
+                        : this.props.intl.formatMessage({
+                            id: "DEVICES_OFFLINE_LABEL"
                           })}
-                        >
-                          <span>
-                            <IconButton
-                              color="inherit"
-                              onClick={() =>
-                                this.handleProxyModalOpen(row.get("id"))
-                              }
-                            >
-                              <OpenBrowserIcon />
-                            </IconButton>
-                          </span>
-                        </Tooltip>
-                        <Tooltip
-                          disableFocusListener
-                          classes={{ tooltip: this.props.classes.tooltip }}
-                          title={this.props.intl.formatMessage({
-                            id: "DEVICES_DISCONNECT_TIP"
-                          })}
-                        >
-                          <span>
-                            <IconButton
-                              color="inherit"
-                              onClick={() =>
-                                this.props.onDisconnect(row.get("id"))
-                              }
-                            >
-                              <DisconnectIcon />
-                            </IconButton>
-                          </span>
-                        </Tooltip>
-                      </React.Fragment>
-                    ) : info && info.get("isLoggingIn") ? (
-                      <LinearProgress className={this.props.classes.progress} />
-                    ) : (
-                      <Button
-                        size="small"
-                        variant="contained"
-                        color="primary"
-                        disabled={!info}
-                        onClick={() => this.props.onConnect(row.get("id"))}
-                      >
-                        <FormattedMessage id="DEVICES_CONNECT_BUTTON" />
-                      </Button>
-                    )}
-                  </TableCell>
-                  <TableCell
-                    className={classNames(
-                      index % 2 ? "even" : "odd",
-                      row.get("isSelected") && "selected"
-                    )}
-                    component="th"
-                    scope="row"
-                  >
-                    {row.get("name")}
-                  </TableCell>
-                  <TableCell
-                    className={classNames(
-                      index % 2 ? "even" : "odd",
-                      row.get("isSelected") && "selected"
-                    )}
-                  >
-                    {info
-                      ? info.get("address")
-                      : this.props.intl.formatMessage({
-                          id: "DEVICES_OFFLINE_LABEL"
-                        })}
-                  </TableCell>
-                  <TableCell
-                    className={classNames(
-                      this.props.classes.statusColumn,
-                      index % 2 ? "even" : "odd",
-                      row.get("isSelected") && "selected"
-                    )}
-                  >
-                    {info
-                      ? info.get("status")
-                      : `ssh -p ${
-                          this.props.sshPort
-                        } -R 22:localhost:22 -N ${this.props.login +
-                          "_" +
-                          row.get("name")}@${this.props.sshHost}`}
-                  </TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
+                    </TableCell>
+                    <TableCell
+                      className={classNames(
+                        this.props.classes.statusColumn,
+                        index % 2 ? "even" : "odd",
+                        row.get("isSelected") && "selected"
+                      )}
+                    >
+                      {info
+                        ? info.get("status")
+                        : `ssh -p ${
+                            this.props.sshPort
+                          } -R 22:localhost:22 -N ${this.props.login +
+                            "_" +
+                            row.get("name")}@${this.props.sshHost}`}
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </Paper>
 
         <EditDeviceModal />
         <ConfirmModal

@@ -109,9 +109,6 @@ module.exports = {
       }
     },
     MuiButton: {
-      label: {
-        height: "1em"
-      },
       root: {
         "&:not($containedPrimary):not($containedSecondary)": {
           background: [bgNormal, "!important"],
@@ -212,7 +209,7 @@ module.exports = {
     MuiCheckbox: {
       root: {
         "&$checked": {
-          color: [secondary, "!important"]
+          color: [lighten(secondary, 0.1), "!important"]
         }
       }
     }

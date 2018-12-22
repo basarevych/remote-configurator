@@ -10,6 +10,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 import Form from "../Forms/Form";
 import Field from "../Forms/Field";
 
@@ -29,6 +30,7 @@ class AppAuthModal extends Form {
     theme: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
     isOpen: PropTypes.bool.isRequired,
+    isSelfRegistrationEnabled: PropTypes.bool.isRequired,
     onSignIn: PropTypes.func.isRequired
   };
 
@@ -88,6 +90,16 @@ class AppAuthModal extends Form {
         <DialogTitle>
           <FormattedMessage id="APP_AUTH_TITLE" />
         </DialogTitle>
+        {this.props.isSelfRegistrationEnabled && (
+          <DialogContent>
+            <DialogContentText>
+              <Typography variant="subtitle1">
+                <FormattedMessage id="APP_AUTH_SELF_REGISTRATION_TITLE" />
+              </Typography>
+              <FormattedMessage id="APP_AUTH_SELF_REGISTRATION_MESSAGE" />
+            </DialogContentText>
+          </DialogContent>
+        )}
         {this.props.error && (
           <DialogContent>
             {_.map(

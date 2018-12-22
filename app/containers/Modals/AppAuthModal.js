@@ -20,7 +20,8 @@ const mapStateToProps = state => {
     isOpen:
       appSelectors.isStarted(state) &&
       appSelectors.getStatusCode(state) === 200 &&
-      !authSelectors.isAuthenticated(state)
+      !authSelectors.isAuthenticated(state),
+    isSelfRegistrationEnabled: appSelectors.getSelfRegistration(state)
   };
 };
 

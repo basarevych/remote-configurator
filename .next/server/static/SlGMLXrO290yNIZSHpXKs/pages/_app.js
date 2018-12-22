@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 114);
+/******/ 	return __webpack_require__(__webpack_require__.s = 115);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -230,13 +230,13 @@ module.exports = require("prop-types");
 /* 8 */
 /***/ (function(module, exports) {
 
-module.exports = require("next/router");
+module.exports = require("react-intl");
 
 /***/ }),
 /* 9 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-intl");
+module.exports = require("next/router");
 
 /***/ }),
 /* 10 */
@@ -851,6 +851,7 @@ Map({
   appOrigin: String,
   sshHost: String,
   sshPort: Number,
+  selfRegistration: Boolean,
   di: DiContainer,
   locale: String,
   statusCode: Number, // current HTTP status code
@@ -904,6 +905,19 @@ var sshPortReducer = function sshPortReducer() {
   switch (action.type) {
     case types.CREATE:
       if (!_.isUndefined(action.sshPort)) return action.sshPort;
+      break;
+  }
+
+  return state;
+};
+
+var selfRegistrationReducer = function selfRegistrationReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case types.CREATE:
+      if (!_.isUndefined(action.selfRegistration)) return action.selfRegistration;
       break;
   }
 
@@ -982,6 +996,7 @@ var reducer = (0, _reduxImmutable.combineReducers)({
   appOrigin: appOriginReducer,
   sshHost: sshHostReducer,
   sshPort: sshPortReducer,
+  selfRegistration: selfRegistrationReducer,
   di: diReducer,
   locale: localeReducer,
   statusCode: statusCodeReducer,
@@ -996,7 +1011,7 @@ exports.default = _default;
 /* 30 */
 /***/ (function(module) {
 
-module.exports = {"MENU_DEVICES":"Device List","TITLE_DEVICES":"Remote Configurator","MENU_DEVICE":"Device","TITLE_DEVICE":"Device","MENU_USERS":"Users","TITLE_USERS":"Users","SIDEBAR_SIGN_OUT_LINK":"Sign Out","DEVICES_NAME_COLUMN":"Name","DEVICES_ADDRESS_COLUMN":"Address","DEVICES_CREATE_BUTTON":"Create Device","DEVICES_EDIT_BUTTON":"Edit Device","DEVICES_DELETE_BUTTON":"Delete Devices","DEVICES_CONNECT_BUTTON":"Sign In","DEVICES_OFFLINE_LABEL":"Offline","DEVICES_OPEN_TERMINAL_TIP":"Open terminal","DEVICES_OPEN_BROWSER_TIP":"Open browser","DEVICES_DISCONNECT_TIP":"Disconnect","EDIT_DEVICE_TITLE_CREATE":"Create Device","EDIT_DEVICE_TITLE_EDIT":"Edit Device","EDIT_DEVICE_NAME_LABEL":"Name","EDIT_DEVICE_PASSWORD_LABEL":"Password","EDIT_DEVICE_FAILED":"Form submission failed","EDIT_DEVICE_SUBMIT":"Submit","EDIT_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_TITLE":"Delete Devices","DELETE_DEVICE_TEXT":"Delete selected devices?","DELETE_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_SUBMIT":"Delete","PROXY_TPL_TITLE":"<h1>Proxy Reporting</h1>","PROXY_TPL_MESSAGE":"<h3>Could not fetch the page</h3>","PROXY_TPL_403":"<p>Access denied</p>","PROXY_TPL_404":"<p>Try to reopen this page from the Device List</p>","PROXY_TPL_502":"<p>Looks like nobody is listening on this port</p>","PROXY_MODAL_TITLE":"HTTP Proxy","PROXY_HOST_LABEL":"Which host to connect to?","PROXY_PORT_LABEL":"Which port to proxy?","PROXY_AUTH_LABEL":"Remote service needs HTTP BASIC AUTH","PROXY_LOGIN_LABEL":"Login","PROXY_PASSWORD_LABEL":"Password","PROXY_MODAL_CANCEL":"Cancel","PROXY_MODAL_SUBMIT":"Submit","USERS_LOGIN_COLUMN":"Login","USERS_ROLES_COLUMN":"Roles","USERS_CREATE_BUTTON":"Create User","USERS_EDIT_BUTTON":"Edit User","USERS_DELETE_BUTTON":"Delete Users","EDIT_USER_TITLE_CREATE":"Create User","EDIT_USER_TITLE_EDIT":"Edit User","EDIT_USER_LOGIN_LABEL":"Login","EDIT_USER_PASSWORD_LABEL":"Password","EDIT_USER_ADMIN_LABEL":"Administrator","EDIT_USER_CANCEL":"Cancel","EDIT_USER_SUBMIT":"Submit","EDIT_USER_FAILED":"An error occured","DELETE_USER_TITLE":"Delete Users","DELETE_USER_TEXT":"Delete selected users?","DELETE_USER_CANCEL":"Cancel","DELETE_USER_SUBMIT":"Delete","TERMINAL_CONNECTING_LABEL":"Connecting...","TERMINAL_NOT_CONNECTED_LABEL":"Not connected","APP_AUTH_TITLE":"Authentication","APP_AUTH_LOGIN_LABEL":"Login","APP_AUTH_PASSWORD_LABEL":"Password","APP_AUTH_SUBMIT":"Sign In","APP_AUTH_FAILED":"Invalid credentials","SETUP_AUTH_TITLE":"Authentication","SETUP_AUTH_LOGIN_LABEL":"Login","SETUP_AUTH_PASSWORD_LABEL":"Password","SETUP_AUTH_CANCEL":"Cancel","SETUP_AUTH_SUBMIT":"Submit","KEYBOARD_AUTH_TITLE":"Authentication","KEYBOARD_AUTH_REPLY_LABEL":"Response","KEYBOARD_AUTH_CANCEL":"Cancel","KEYBOARD_AUTH_SUBMIT":"Submit","ERROR_FIELD_REQUIRED":"This field is required","ERROR_INVALID_PASSWORD":"Password length must be at least 6 characters"};
+module.exports = {"MENU_DEVICES":"Device List","TITLE_DEVICES":"Remote Configurator","MENU_DEVICE":"Device","TITLE_DEVICE":"Device","MENU_USERS":"Users","TITLE_USERS":"Users","SIDEBAR_SIGN_OUT_LINK":"Sign Out","DEVICES_PAGE_WORKFLOW_TITLE":"Workflow","DEVICES_PAGE_WORKFLOW_HTML":["<ul>","<li>Create a device with a name and a password. You will be provided then with a shell command you need"," to copy-paste to the terminal of your device. Enter the same password you used to create the device and"," it will appear in the list below after connecting to this server</li>","<li>Press \"SIGN IN\" button to sign in into your device. You don't need to use root's credentials if you are"," not going to perform superuser-only operations","<li>When signed in you can then open an in-browser terminal session to this device under the credentials you used"," or create a private HTTP proxy for any port on your device</li>","</ul>"],"DEVICES_PAGE_SECURITY_TITLE":"Security Considerations","DEVICES_PAGE_SECURITY_HTML":["<p>Credentials you use to sign in into your device are readable to this server. Although these credentials are never"," stored to the disk and only live in the server's memory while the session exists, a compromised server might have a"," different idea what to do with your information.</p>","<p>A good idea would be to set up your own server (preferably after inspecting the source code) so you provide the"," credentials only to the server you trust</p>"],"DEVICES_NAME_COLUMN":"Name","DEVICES_ADDRESS_COLUMN":"Address","DEVICES_CREATE_BUTTON":"Create Device","DEVICES_EDIT_BUTTON":"Edit Device","DEVICES_DELETE_BUTTON":"Delete Devices","DEVICES_CONNECT_BUTTON":"Sign In","DEVICES_OFFLINE_LABEL":"Offline","DEVICES_OPEN_TERMINAL_TIP":"Open terminal","DEVICES_OPEN_BROWSER_TIP":"Open browser","DEVICES_DISCONNECT_TIP":"Disconnect","EDIT_DEVICE_TITLE_CREATE":"Create Device","EDIT_DEVICE_TITLE_EDIT":"Edit Device","EDIT_DEVICE_NAME_LABEL":"Name","EDIT_DEVICE_PASSWORD_LABEL":"Password","EDIT_DEVICE_FAILED":"Form submission failed","EDIT_DEVICE_SUBMIT":"Submit","EDIT_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_TITLE":"Delete Devices","DELETE_DEVICE_TEXT":"Delete selected devices?","DELETE_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_SUBMIT":"Delete","PROXY_TPL_TITLE":"<h1>Proxy Reporting</h1>","PROXY_TPL_MESSAGE":"<h3>Could not fetch the page</h3>","PROXY_TPL_403":"<p>Access denied</p>","PROXY_TPL_404":"<p>Try to reopen this page from the Device List</p>","PROXY_TPL_502":"<p>Looks like nobody is listening on this port</p>","PROXY_MODAL_TITLE":"HTTP Proxy","PROXY_HOST_LABEL":"Which host to connect to?","PROXY_PORT_LABEL":"Which port to proxy?","PROXY_AUTH_LABEL":"Remote service needs HTTP BASIC AUTH","PROXY_LOGIN_LABEL":"Login","PROXY_PASSWORD_LABEL":"Password","PROXY_MODAL_CANCEL":"Cancel","PROXY_MODAL_SUBMIT":"Submit","USERS_LOGIN_COLUMN":"Login","USERS_ROLES_COLUMN":"Roles","USERS_CREATE_BUTTON":"Create User","USERS_EDIT_BUTTON":"Edit User","USERS_DELETE_BUTTON":"Delete Users","EDIT_USER_TITLE_CREATE":"Create User","EDIT_USER_TITLE_EDIT":"Edit User","EDIT_USER_LOGIN_LABEL":"Login","EDIT_USER_PASSWORD_LABEL":"Password","EDIT_USER_ADMIN_LABEL":"Administrator","EDIT_USER_CANCEL":"Cancel","EDIT_USER_SUBMIT":"Submit","EDIT_USER_FAILED":"An error occured","DELETE_USER_TITLE":"Delete Users","DELETE_USER_TEXT":"Delete selected users?","DELETE_USER_CANCEL":"Cancel","DELETE_USER_SUBMIT":"Delete","TERMINAL_CONNECTING_LABEL":"Connecting...","TERMINAL_NOT_CONNECTED_LABEL":"Not connected","APP_AUTH_TITLE":"Authentication","APP_AUTH_SELF_REGISTRATION_TITLE":"Self-registration enabled","APP_AUTH_SELF_REGISTRATION_MESSAGE":"If you are a new user, you can invent any unused login and the password to sign in","APP_AUTH_LOGIN_LABEL":"Login","APP_AUTH_PASSWORD_LABEL":"Password","APP_AUTH_SUBMIT":"Sign In","APP_AUTH_FAILED":"Invalid credentials","SETUP_AUTH_TITLE":"Authentication","SETUP_AUTH_LOGIN_LABEL":"Login","SETUP_AUTH_PASSWORD_LABEL":"Password","SETUP_AUTH_CANCEL":"Cancel","SETUP_AUTH_SUBMIT":"Submit","KEYBOARD_AUTH_TITLE":"Authentication","KEYBOARD_AUTH_REPLY_LABEL":"Response","KEYBOARD_AUTH_CANCEL":"Cancel","KEYBOARD_AUTH_SUBMIT":"Submit","ERROR_FIELD_REQUIRED":"This field is required","ERROR_INVALID_PASSWORD":"Password length must be at least 6 characters"};
 
 /***/ }),
 /* 31 */
@@ -1234,7 +1249,8 @@ var create = function create(_ref3) {
   var status = _ref3.status,
       appOrigin = _ref3.appOrigin,
       sshHost = _ref3.sshHost,
-      sshPort = _ref3.sshPort;
+      sshPort = _ref3.sshPort,
+      selfRegistration = _ref3.selfRegistration;
   return (
     /*#__PURE__*/
     function () {
@@ -1249,7 +1265,8 @@ var create = function create(_ref3) {
                 return dispatch(actions.create({
                   appOrigin: appOrigin,
                   sshHost: sshHost,
-                  sshPort: sshPort
+                  sshPort: sshPort,
+                  selfRegistration: selfRegistration
                 }));
 
               case 2:
@@ -1570,7 +1587,7 @@ exports.updateProfile = exports.signOut = exports.signIn = exports.setStatus = e
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _router = _interopRequireDefault(__webpack_require__(8));
+var _router = _interopRequireDefault(__webpack_require__(9));
 
 var _isRouteAllowed = _interopRequireDefault(__webpack_require__(25));
 
@@ -2148,7 +2165,7 @@ exports.default = void 0;
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _router = _interopRequireDefault(__webpack_require__(8));
+var _router = _interopRequireDefault(__webpack_require__(9));
 
 var _socket = _interopRequireDefault(__webpack_require__(42));
 
@@ -2891,7 +2908,7 @@ exports.disconnect = exports.openBrowser = exports.openTerminal = exports.doInte
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _router = _interopRequireDefault(__webpack_require__(8));
+var _router = _interopRequireDefault(__webpack_require__(9));
 
 var actions = _interopRequireWildcard(__webpack_require__(45));
 
@@ -4621,7 +4638,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isConnected = exports.isStarted = exports.getLocale = exports.getStatusCode = exports.getService = exports.getSshPort = exports.getSshHost = exports.getAppOrigin = exports.getCreated = void 0;
+exports.isConnected = exports.isStarted = exports.getLocale = exports.getStatusCode = exports.getService = exports.getSelfRegistration = exports.getSshPort = exports.getSshHost = exports.getAppOrigin = exports.getCreated = void 0;
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -4654,6 +4671,12 @@ var getSshPort = function getSshPort(state) {
 };
 
 exports.getSshPort = getSshPort;
+
+var getSelfRegistration = function getSelfRegistration(state) {
+  return state.getIn(["app", "selfRegistration"]);
+};
+
+exports.getSelfRegistration = getSelfRegistration;
 
 var getService = function getService(state, props) {
   var di = state.getIn(["app", "di"]);
@@ -4796,7 +4819,7 @@ var _immutable = __webpack_require__(18);
 
 var _normalize = _interopRequireDefault(__webpack_require__(67));
 
-var _validate2 = _interopRequireDefault(__webpack_require__(77));
+var _validate2 = _interopRequireDefault(__webpack_require__(78));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5558,43 +5581,43 @@ var _react = _interopRequireDefault(__webpack_require__(6));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
-var _shallowEqual = _interopRequireDefault(__webpack_require__(78));
+var _shallowEqual = _interopRequireDefault(__webpack_require__(79));
 
-var _reactIntl = __webpack_require__(9);
+var _reactIntl = __webpack_require__(8);
 
 var _immutable = __webpack_require__(18);
 
 var _styles = __webpack_require__(10);
 
-var _List = _interopRequireDefault(__webpack_require__(79));
+var _List = _interopRequireDefault(__webpack_require__(80));
 
-var _ListItem = _interopRequireDefault(__webpack_require__(80));
+var _ListItem = _interopRequireDefault(__webpack_require__(81));
 
-var _ListItemIcon = _interopRequireDefault(__webpack_require__(73));
+var _ListItemIcon = _interopRequireDefault(__webpack_require__(74));
 
-var _ListItemText = _interopRequireDefault(__webpack_require__(74));
+var _ListItemText = _interopRequireDefault(__webpack_require__(75));
 
-var _TextField = _interopRequireDefault(__webpack_require__(81));
+var _TextField = _interopRequireDefault(__webpack_require__(82));
 
-var _Select = _interopRequireDefault(__webpack_require__(82));
+var _Select = _interopRequireDefault(__webpack_require__(83));
 
-var _FormControl = _interopRequireDefault(__webpack_require__(83));
+var _FormControl = _interopRequireDefault(__webpack_require__(84));
 
-var _FormControlLabel = _interopRequireDefault(__webpack_require__(84));
+var _FormControlLabel = _interopRequireDefault(__webpack_require__(85));
 
-var _FormHelperText = _interopRequireDefault(__webpack_require__(85));
+var _FormHelperText = _interopRequireDefault(__webpack_require__(86));
 
-var _MenuItem = _interopRequireDefault(__webpack_require__(72));
+var _MenuItem = _interopRequireDefault(__webpack_require__(73));
 
-var _Checkbox = _interopRequireDefault(__webpack_require__(71));
+var _Checkbox = _interopRequireDefault(__webpack_require__(72));
 
-var _InputLabel = _interopRequireDefault(__webpack_require__(86));
+var _InputLabel = _interopRequireDefault(__webpack_require__(87));
 
-var _FilledInput = _interopRequireDefault(__webpack_require__(87));
+var _FilledInput = _interopRequireDefault(__webpack_require__(88));
 
-var _Input = _interopRequireDefault(__webpack_require__(88));
+var _Input = _interopRequireDefault(__webpack_require__(89));
 
-var _InfoOutlined = _interopRequireDefault(__webpack_require__(89));
+var _InfoOutlined = _interopRequireDefault(__webpack_require__(90));
 
 var _normalize2 = _interopRequireDefault(__webpack_require__(67));
 
@@ -5976,28 +5999,34 @@ exports.HIDE_EDIT_MODAL = HIDE_EDIT_MODAL;
 /* 71 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/core/Checkbox");
+module.exports = require("@material-ui/core/Typography");
 
 /***/ }),
 /* 72 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/core/MenuItem");
+module.exports = require("@material-ui/core/Checkbox");
 
 /***/ }),
 /* 73 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/core/ListItemIcon");
+module.exports = require("@material-ui/core/MenuItem");
 
 /***/ }),
 /* 74 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/core/ListItemText");
+module.exports = require("@material-ui/core/ListItemIcon");
 
 /***/ }),
 /* 75 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/ListItemText");
+
+/***/ }),
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6008,17 +6037,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.usersSelectors = exports.usersOperations = exports.usersTypes = exports.default = void 0;
 
-var _reducers = _interopRequireDefault(__webpack_require__(91));
+var _reducers = _interopRequireDefault(__webpack_require__(94));
 
 var usersTypes = _interopRequireWildcard(__webpack_require__(70));
 
 exports.usersTypes = usersTypes;
 
-var usersOperations = _interopRequireWildcard(__webpack_require__(92));
+var usersOperations = _interopRequireWildcard(__webpack_require__(95));
 
 exports.usersOperations = usersOperations;
 
-var usersSelectors = _interopRequireWildcard(__webpack_require__(76));
+var usersSelectors = _interopRequireWildcard(__webpack_require__(77));
 
 exports.usersSelectors = usersSelectors;
 
@@ -6030,7 +6059,7 @@ var _default = _reducers.default;
 exports.default = _default;
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6093,7 +6122,7 @@ var getEditModalData = function getEditModalData(state) {
 exports.getEditModalData = getEditModalData;
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6278,80 +6307,87 @@ module.exports = function validate(props, options, value, allValues) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-redux/lib/utils/shallowEqual");
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/List");
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/ListItem");
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/TextField");
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/Select");
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/FormControl");
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/FormControlLabel");
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/FormHelperText");
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/InputLabel");
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/FilledInput");
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/Input");
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/InfoOutlined");
 
 /***/ }),
-/* 90 */,
-/* 91 */
+/* 91 */,
+/* 92 */,
+/* 93 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/styles/colorManipulator");
+
+/***/ }),
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6459,7 +6495,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 92 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6472,9 +6508,9 @@ exports.remove = exports.edit = exports.create = exports.load = exports.editFirs
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var actions = _interopRequireWildcard(__webpack_require__(93));
+var actions = _interopRequireWildcard(__webpack_require__(96));
 
-var selectors = _interopRequireWildcard(__webpack_require__(76));
+var selectors = _interopRequireWildcard(__webpack_require__(77));
 
 var _app = __webpack_require__(4);
 
@@ -6879,7 +6915,7 @@ exports.remove = remove;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 93 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6953,19 +6989,19 @@ var hideEditModal = function hideEditModal() {
 exports.hideEditModal = hideEditModal;
 
 /***/ }),
-/* 94 */
+/* 97 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/OpenInBrowser");
 
 /***/ }),
-/* 95 */
+/* 98 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Language");
 
 /***/ }),
-/* 96 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7004,9 +7040,6 @@ var _default = function _default(theme) {
 exports.default = _default;
 
 /***/ }),
-/* 97 */,
-/* 98 */,
-/* 99 */,
 /* 100 */,
 /* 101 */,
 /* 102 */,
@@ -7016,44 +7049,45 @@ exports.default = _default;
 /* 106 */,
 /* 107 */,
 /* 108 */,
-/* 109 */
+/* 109 */,
+/* 110 */
 /***/ (function(module, exports) {
 
 module.exports = require("jss");
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports) {
 
 module.exports = require("pako");
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports) {
 
 module.exports = require("utf8");
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports) {
 
 module.exports = require("base64util");
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports) {
 
 module.exports = require("json-immutable");
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(115);
+module.exports = __webpack_require__(116);
 
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7068,23 +7102,23 @@ var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
 var _react = _interopRequireDefault(__webpack_require__(6));
 
-var _app = _interopRequireWildcard(__webpack_require__(116));
+var _app = _interopRequireWildcard(__webpack_require__(117));
 
-var _router = _interopRequireDefault(__webpack_require__(8));
+var _router = _interopRequireDefault(__webpack_require__(9));
 
 var _reactRedux = __webpack_require__(19);
 
 var _styles = __webpack_require__(10);
 
-var _jss = __webpack_require__(109);
+var _jss = __webpack_require__(110);
 
-var _CssBaseline = _interopRequireDefault(__webpack_require__(117));
+var _CssBaseline = _interopRequireDefault(__webpack_require__(118));
 
-var _jssExtend = _interopRequireDefault(__webpack_require__(118));
+var _jssExtend = _interopRequireDefault(__webpack_require__(119));
 
-var _JssProvider = _interopRequireDefault(__webpack_require__(119));
+var _JssProvider = _interopRequireDefault(__webpack_require__(120));
 
-var _pageContext = _interopRequireDefault(__webpack_require__(120));
+var _pageContext = _interopRequireDefault(__webpack_require__(121));
 
 var _serialize = _interopRequireDefault(__webpack_require__(125));
 
@@ -7170,7 +7204,7 @@ function (_App) {
                 req = ctx.req, res = ctx.res, err = ctx.err, query = ctx.query;
 
                 if (!isCreated) {
-                  _context.next = 20;
+                  _context.next = 21;
                   break;
                 }
 
@@ -7194,45 +7228,47 @@ function (_App) {
                 _context.t4 = query && query.appOrigin;
                 _context.t5 = query && query.sshHost;
                 _context.t6 = query && query.sshPort;
-                _context.t7 = {
+                _context.t7 = query && query.selfRegistration;
+                _context.t8 = {
                   status: _context.t3,
                   appOrigin: _context.t4,
                   sshHost: _context.t5,
-                  sshPort: _context.t6
+                  sshPort: _context.t6,
+                  selfRegistration: _context.t7
                 };
-                _context.t8 = _context.t1.create.call(_context.t1, _context.t7);
-                _context.next = 20;
-                return _context.t0.dispatch.call(_context.t0, _context.t8);
+                _context.t9 = _context.t1.create.call(_context.t1, _context.t8);
+                _context.next = 21;
+                return _context.t0.dispatch.call(_context.t0, _context.t9);
 
-              case 20:
+              case 21:
                 statusCode = res ? res.statusCode : err ? err.statusCode : null;
                 if (!_.isFinite(statusCode) || statusCode < 200) statusCode = 200;
 
                 if (!(_app2.appSelectors.getStatusCode(store.getState()) !== statusCode)) {
-                  _context.next = 25;
+                  _context.next = 26;
                   break;
                 }
 
-                _context.next = 25;
+                _context.next = 26;
                 return store.dispatch(_app2.appOperations.setStatusCode({
                   code: statusCode
                 }));
 
-              case 25:
+              case 26:
                 pageProps = {};
 
                 if (!Component.getInitialProps) {
-                  _context.next = 30;
+                  _context.next = 31;
                   break;
                 }
 
-                _context.next = 29;
+                _context.next = 30;
                 return Component.getInitialProps(ctx);
 
-              case 29:
+              case 30:
                 pageProps = _context.sent;
 
-              case 30:
+              case 31:
                 return _context.abrupt("return", {
                   pageProps: pageProps,
                   locale: query.locale,
@@ -7240,7 +7276,7 @@ function (_App) {
                   state: (0, _serialize.default)(store.getState())
                 });
 
-              case 31:
+              case 32:
               case "end":
                 return _context.stop();
             }
@@ -7319,31 +7355,31 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports) {
 
 module.exports = require("next/app");
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/CssBaseline");
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports) {
 
 module.exports = require("jss-extend");
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-jss/lib/JssProvider");
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7354,11 +7390,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = getPageContext;
 
-var _jss = __webpack_require__(109);
+var _jss = __webpack_require__(110);
 
 var _styles = __webpack_require__(10);
 
-var _themes = _interopRequireDefault(__webpack_require__(121));
+var _themes = _interopRequireDefault(__webpack_require__(122));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7394,13 +7430,13 @@ function getPageContext(themeName) {
 }
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var daemon = __webpack_require__(122);
+var daemon = __webpack_require__(123);
 
 module.exports = {
   defaultTheme: "daemon",
@@ -7413,13 +7449,13 @@ module.exports = {
 };
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _require = __webpack_require__(123),
+var _require = __webpack_require__(93),
     darken = _require.darken,
     lighten = _require.lighten;
 
@@ -7525,9 +7561,6 @@ module.exports = {
       }
     },
     MuiButton: {
-      label: {
-        height: "1em"
-      },
       root: {
         "&:not($containedPrimary):not($containedSecondary)": {
           background: [bgNormal, "!important"],
@@ -7625,18 +7658,12 @@ module.exports = {
     MuiCheckbox: {
       root: {
         "&$checked": {
-          color: [secondary, "!important"]
+          color: [lighten(secondary, 0.1), "!important"]
         }
       }
     }
   }
 };
-
-/***/ }),
-/* 123 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/styles/colorManipulator");
 
 /***/ }),
 /* 124 */
@@ -7651,14 +7678,14 @@ module.exports = require("@material-ui/core/colors");
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {
 
-var pako = __webpack_require__(110);
+var pako = __webpack_require__(111);
 
-var utf8 = __webpack_require__(111);
+var utf8 = __webpack_require__(112);
 
-var _require = __webpack_require__(112),
+var _require = __webpack_require__(113),
     byteEncode = _require.byteEncode;
 
-var _require2 = __webpack_require__(113),
+var _require2 = __webpack_require__(114),
     serialize = _require2.serialize;
 /**
  * Sserialize Immutable state into BASE64 string
@@ -7686,14 +7713,14 @@ module.exports = function (state) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {
 
-var pako = __webpack_require__(110);
+var pako = __webpack_require__(111);
 
-var utf8 = __webpack_require__(111);
+var utf8 = __webpack_require__(112);
 
-var _require = __webpack_require__(112),
+var _require = __webpack_require__(113),
     byteDecode = _require.byteDecode;
 
-var _require2 = __webpack_require__(113),
+var _require2 = __webpack_require__(114),
     deserialize = _require2.deserialize;
 /**
  * Deserialize BASE64 string into Immutable state
@@ -7739,7 +7766,7 @@ var _app = _interopRequireDefault(__webpack_require__(4));
 
 var _auth = _interopRequireDefault(__webpack_require__(12));
 
-var _users = _interopRequireDefault(__webpack_require__(75));
+var _users = _interopRequireDefault(__webpack_require__(76));
 
 var _devices = _interopRequireDefault(__webpack_require__(11));
 
@@ -7851,7 +7878,7 @@ var _react = _interopRequireDefault(__webpack_require__(6));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
-var _reactIntl = __webpack_require__(9);
+var _reactIntl = __webpack_require__(8);
 
 var _locales = _interopRequireDefault(__webpack_require__(26));
 
@@ -8037,9 +8064,9 @@ exports.default = void 0;
 
 var _reactRedux = __webpack_require__(19);
 
-var _reactIntl = __webpack_require__(9);
+var _reactIntl = __webpack_require__(8);
 
-var _router = __webpack_require__(8);
+var _router = __webpack_require__(9);
 
 var _app = __webpack_require__(4);
 
@@ -8081,7 +8108,7 @@ var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
 var _head = _interopRequireDefault(__webpack_require__(139));
 
-var _reactIntl = __webpack_require__(9);
+var _reactIntl = __webpack_require__(8);
 
 var _styles = __webpack_require__(10);
 
@@ -8103,7 +8130,7 @@ var _InteractiveModal = _interopRequireDefault(__webpack_require__(153));
 
 __webpack_require__(155);
 
-var _styledScroll = _interopRequireDefault(__webpack_require__(96));
+var _styledScroll = _interopRequireDefault(__webpack_require__(99));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8324,9 +8351,9 @@ exports.default = void 0;
 
 var _reactRedux = __webpack_require__(19);
 
-var _reactIntl = __webpack_require__(9);
+var _reactIntl = __webpack_require__(8);
 
-var _router = __webpack_require__(8);
+var _router = __webpack_require__(9);
 
 var _Sidebar = _interopRequireDefault(__webpack_require__(145));
 
@@ -8378,25 +8405,25 @@ var _immutable = __webpack_require__(2);
 
 var _isRouteAllowed = _interopRequireDefault(__webpack_require__(25));
 
-var _reactIntl = __webpack_require__(9);
+var _reactIntl = __webpack_require__(8);
 
 var _styles = __webpack_require__(10);
 
 var _MenuList = _interopRequireDefault(__webpack_require__(146));
 
-var _MenuItem = _interopRequireDefault(__webpack_require__(72));
+var _MenuItem = _interopRequireDefault(__webpack_require__(73));
 
-var _ListItemIcon = _interopRequireDefault(__webpack_require__(73));
+var _ListItemIcon = _interopRequireDefault(__webpack_require__(74));
 
-var _ListItemText = _interopRequireDefault(__webpack_require__(74));
+var _ListItemText = _interopRequireDefault(__webpack_require__(75));
 
 var _DeviceHub = _interopRequireDefault(__webpack_require__(147));
 
 var _People = _interopRequireDefault(__webpack_require__(148));
 
-var _OpenInBrowser = _interopRequireDefault(__webpack_require__(94));
+var _OpenInBrowser = _interopRequireDefault(__webpack_require__(97));
 
-var _Language = _interopRequireDefault(__webpack_require__(95));
+var _Language = _interopRequireDefault(__webpack_require__(98));
 
 var _constants = _interopRequireDefault(__webpack_require__(3));
 
@@ -8650,7 +8677,7 @@ var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
 var _immutable = __webpack_require__(2);
 
-var _reactIntl = __webpack_require__(9);
+var _reactIntl = __webpack_require__(8);
 
 var _immutable2 = __webpack_require__(18);
 
@@ -8678,7 +8705,8 @@ var mapStateToProps = function mapStateToProps(state) {
   return {
     fieldValues: _defineProperty({}, formName, (0, _immutable2.getFormValues)(formName)(state) || (0, _immutable.Map)()),
     fieldErrors: _defineProperty({}, formName, (0, _immutable2.getFormAsyncErrors)(formName)(state) || (0, _immutable.Map)()),
-    isOpen: _app.appSelectors.isStarted(state) && _app.appSelectors.getStatusCode(state) === 200 && !_auth.authSelectors.isAuthenticated(state)
+    isOpen: _app.appSelectors.isStarted(state) && _app.appSelectors.getStatusCode(state) === 200 && !_auth.authSelectors.isAuthenticated(state),
+    isSelfRegistrationEnabled: _app.appSelectors.getSelfRegistration(state)
   };
 };
 
@@ -8745,7 +8773,7 @@ var _react = _interopRequireDefault(__webpack_require__(6));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
-var _reactIntl = __webpack_require__(9);
+var _reactIntl = __webpack_require__(8);
 
 var _immutable = __webpack_require__(18);
 
@@ -8764,6 +8792,8 @@ var _DialogTitle = _interopRequireDefault(__webpack_require__(61));
 var _Grid = _interopRequireDefault(__webpack_require__(62));
 
 var _Button = _interopRequireDefault(__webpack_require__(28));
+
+var _Typography = _interopRequireDefault(__webpack_require__(71));
 
 var _Form2 = _interopRequireDefault(__webpack_require__(66));
 
@@ -8908,7 +8938,13 @@ function (_Form) {
         onClose: _.noop
       }, _react.default.createElement(_DialogTitle.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
         id: "APP_AUTH_TITLE"
-      })), this.props.error && _react.default.createElement(_DialogContent.default, null, _.map(_.isArray(this.props.error) ? this.props.error : [this.props.error], function (error, index) {
+      })), this.props.isSelfRegistrationEnabled && _react.default.createElement(_DialogContent.default, null, _react.default.createElement(_DialogContentText.default, null, _react.default.createElement(_Typography.default, {
+        variant: "subtitle1"
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "APP_AUTH_SELF_REGISTRATION_TITLE"
+      })), _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "APP_AUTH_SELF_REGISTRATION_MESSAGE"
+      }))), this.props.error && _react.default.createElement(_DialogContent.default, null, _.map(_.isArray(this.props.error) ? this.props.error : [this.props.error], function (error, index) {
         return _react.default.createElement(_DialogContentText.default, {
           key: "error-".concat(index),
           classes: {
@@ -8968,6 +9004,7 @@ _defineProperty(AppAuthModal, "propTypes", _objectSpread({}, _Form2.default.prop
   theme: _propTypes.default.object.isRequired,
   classes: _propTypes.default.object.isRequired,
   isOpen: _propTypes.default.bool.isRequired,
+  isSelfRegistrationEnabled: _propTypes.default.bool.isRequired,
   onSignIn: _propTypes.default.func.isRequired
 }));
 
@@ -9009,7 +9046,7 @@ var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
 var _immutable = __webpack_require__(2);
 
-var _reactIntl = __webpack_require__(9);
+var _reactIntl = __webpack_require__(8);
 
 var _immutable2 = __webpack_require__(18);
 
@@ -9111,7 +9148,7 @@ var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
 var _immutable = __webpack_require__(2);
 
-var _reactIntl = __webpack_require__(9);
+var _reactIntl = __webpack_require__(8);
 
 var _styles = __webpack_require__(10);
 
@@ -9397,7 +9434,7 @@ var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
 var _immutable = __webpack_require__(2);
 
-var _reactIntl = __webpack_require__(9);
+var _reactIntl = __webpack_require__(8);
 
 var _immutable2 = __webpack_require__(18);
 
@@ -9498,7 +9535,7 @@ var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
 var _immutable = __webpack_require__(2);
 
-var _reactIntl = __webpack_require__(9);
+var _reactIntl = __webpack_require__(8);
 
 var _styles = __webpack_require__(10);
 

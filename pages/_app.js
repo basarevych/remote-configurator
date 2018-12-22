@@ -35,7 +35,8 @@ class MyApp extends App {
           status: req && req.getAuthStatus && (await req.getAuthStatus()),
           appOrigin: query && query.appOrigin,
           sshHost: query && query.sshHost,
-          sshPort: query && query.sshPort
+          sshPort: query && query.sshPort,
+          selfRegistration: query && query.selfRegistration
         })
       );
     }

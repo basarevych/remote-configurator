@@ -42,6 +42,7 @@ let sessionSecret = process.env.SESSION_SECRET;
 let sessionMaxAge = 1000 * 60 * 60 * 24 * 7;
 let rootLogin = process.env.ROOT_LOGIN;
 let rootPassword = process.env.ROOT_PASSWORD;
+let selfRegistration = process.env.SELF_REGISTRATION === "true";
 let dbPath = process.env.DB_PATH;
 let sshHost = process.env.SSH_HOST || "0.0.0.0";
 let sshPort = parseInt(process.env.SSH_PORT, 10) || 35000;
@@ -117,6 +118,7 @@ class App {
       sessionMaxAge,
       rootLogin,
       rootPassword,
+      selfRegistration,
       dbPath,
       sshHost,
       sshPort,
@@ -242,7 +244,8 @@ class App {
         theme: theme || styles.defaultTheme || null,
         appOrigin: this.config.appOrigins[0],
         sshHost: this.config.sshOrigins[0],
-        sshPort: this.config.sshPort
+        sshPort: this.config.sshPort,
+        selfRegistration: this.config.selfRegistration
       })
     };
   }

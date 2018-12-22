@@ -8,6 +8,7 @@ Map({
   appOrigin: String,
   sshHost: String,
   sshPort: Number,
+  selfRegistration: Boolean,
   di: DiContainer,
   locale: String,
   statusCode: Number, // current HTTP status code
@@ -47,6 +48,16 @@ const sshPortReducer = (state = 22, action) => {
   switch (action.type) {
     case types.CREATE:
       if (!_.isUndefined(action.sshPort)) return action.sshPort;
+      break;
+  }
+  return state;
+};
+
+const selfRegistrationReducer = (state = false, action) => {
+  switch (action.type) {
+    case types.CREATE:
+      if (!_.isUndefined(action.selfRegistration))
+        return action.selfRegistration;
       break;
   }
   return state;
@@ -103,6 +114,7 @@ const reducer = combineReducers({
   appOrigin: appOriginReducer,
   sshHost: sshHostReducer,
   sshPort: sshPortReducer,
+  selfRegistration: selfRegistrationReducer,
   di: diReducer,
   locale: localeReducer,
   statusCode: statusCodeReducer,

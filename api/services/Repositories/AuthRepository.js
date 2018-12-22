@@ -2,9 +2,10 @@ const debug = require("debug")("app:auth");
 const EventEmitter = require("events");
 
 class AuthRepository extends EventEmitter {
-  constructor(auth, db) {
+  constructor(config, auth, db) {
     super();
 
+    this.config = config;
     this.auth = auth;
     this.db = db;
   }
@@ -16,7 +17,7 @@ class AuthRepository extends EventEmitter {
 
   // eslint-disable-next-line lodash/prefer-constant
   static get $requires() {
-    return ["auth", "db"];
+    return ["config", "auth", "db"];
   }
 
   async getStatus(context) {
@@ -49,11 +50,21 @@ class AuthRepository extends EventEmitter {
           !(await this.auth.checkPassword(args.password, user.password))
         ) {
           user = null;
+        } else if (!user && this.config.selfRegistration) {
+          user = new this.db.UserModel({
+            login: args.login,
+            password: await this.auth.encryptPassword(args.password),
+            roles: args.roles || []
+          });
+
+          await user.validate();
+          await user.save();
+          context.preCachePages({ path: "/users" }).catch(console.error);
         }
       }
 
       if (user) {
-        context.preCachePages({ user }).catch(_.noop);
+        context.preCachePages({ user }).catch(console.error);
         await this.auth.signIn(user, context);
         success = true;
       }

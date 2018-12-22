@@ -227,13 +227,13 @@ module.exports = require("react");
 module.exports = require("prop-types");
 
 /***/ }),
-/* 8 */
+/* 8 */,
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = require("next/router");
 
 /***/ }),
-/* 9 */,
 /* 10 */
 /***/ (function(module, exports) {
 
@@ -831,6 +831,7 @@ Map({
   appOrigin: String,
   sshHost: String,
   sshPort: Number,
+  selfRegistration: Boolean,
   di: DiContainer,
   locale: String,
   statusCode: Number, // current HTTP status code
@@ -884,6 +885,19 @@ var sshPortReducer = function sshPortReducer() {
   switch (action.type) {
     case types.CREATE:
       if (!_.isUndefined(action.sshPort)) return action.sshPort;
+      break;
+  }
+
+  return state;
+};
+
+var selfRegistrationReducer = function selfRegistrationReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case types.CREATE:
+      if (!_.isUndefined(action.selfRegistration)) return action.selfRegistration;
       break;
   }
 
@@ -962,6 +976,7 @@ var reducer = (0, _reduxImmutable.combineReducers)({
   appOrigin: appOriginReducer,
   sshHost: sshHostReducer,
   sshPort: sshPortReducer,
+  selfRegistration: selfRegistrationReducer,
   di: diReducer,
   locale: localeReducer,
   statusCode: statusCodeReducer,
@@ -976,7 +991,7 @@ exports.default = _default;
 /* 30 */
 /***/ (function(module) {
 
-module.exports = {"MENU_DEVICES":"Device List","TITLE_DEVICES":"Remote Configurator","MENU_DEVICE":"Device","TITLE_DEVICE":"Device","MENU_USERS":"Users","TITLE_USERS":"Users","SIDEBAR_SIGN_OUT_LINK":"Sign Out","DEVICES_NAME_COLUMN":"Name","DEVICES_ADDRESS_COLUMN":"Address","DEVICES_CREATE_BUTTON":"Create Device","DEVICES_EDIT_BUTTON":"Edit Device","DEVICES_DELETE_BUTTON":"Delete Devices","DEVICES_CONNECT_BUTTON":"Sign In","DEVICES_OFFLINE_LABEL":"Offline","DEVICES_OPEN_TERMINAL_TIP":"Open terminal","DEVICES_OPEN_BROWSER_TIP":"Open browser","DEVICES_DISCONNECT_TIP":"Disconnect","EDIT_DEVICE_TITLE_CREATE":"Create Device","EDIT_DEVICE_TITLE_EDIT":"Edit Device","EDIT_DEVICE_NAME_LABEL":"Name","EDIT_DEVICE_PASSWORD_LABEL":"Password","EDIT_DEVICE_FAILED":"Form submission failed","EDIT_DEVICE_SUBMIT":"Submit","EDIT_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_TITLE":"Delete Devices","DELETE_DEVICE_TEXT":"Delete selected devices?","DELETE_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_SUBMIT":"Delete","PROXY_TPL_TITLE":"<h1>Proxy Reporting</h1>","PROXY_TPL_MESSAGE":"<h3>Could not fetch the page</h3>","PROXY_TPL_403":"<p>Access denied</p>","PROXY_TPL_404":"<p>Try to reopen this page from the Device List</p>","PROXY_TPL_502":"<p>Looks like nobody is listening on this port</p>","PROXY_MODAL_TITLE":"HTTP Proxy","PROXY_HOST_LABEL":"Which host to connect to?","PROXY_PORT_LABEL":"Which port to proxy?","PROXY_AUTH_LABEL":"Remote service needs HTTP BASIC AUTH","PROXY_LOGIN_LABEL":"Login","PROXY_PASSWORD_LABEL":"Password","PROXY_MODAL_CANCEL":"Cancel","PROXY_MODAL_SUBMIT":"Submit","USERS_LOGIN_COLUMN":"Login","USERS_ROLES_COLUMN":"Roles","USERS_CREATE_BUTTON":"Create User","USERS_EDIT_BUTTON":"Edit User","USERS_DELETE_BUTTON":"Delete Users","EDIT_USER_TITLE_CREATE":"Create User","EDIT_USER_TITLE_EDIT":"Edit User","EDIT_USER_LOGIN_LABEL":"Login","EDIT_USER_PASSWORD_LABEL":"Password","EDIT_USER_ADMIN_LABEL":"Administrator","EDIT_USER_CANCEL":"Cancel","EDIT_USER_SUBMIT":"Submit","EDIT_USER_FAILED":"An error occured","DELETE_USER_TITLE":"Delete Users","DELETE_USER_TEXT":"Delete selected users?","DELETE_USER_CANCEL":"Cancel","DELETE_USER_SUBMIT":"Delete","TERMINAL_CONNECTING_LABEL":"Connecting...","TERMINAL_NOT_CONNECTED_LABEL":"Not connected","APP_AUTH_TITLE":"Authentication","APP_AUTH_LOGIN_LABEL":"Login","APP_AUTH_PASSWORD_LABEL":"Password","APP_AUTH_SUBMIT":"Sign In","APP_AUTH_FAILED":"Invalid credentials","SETUP_AUTH_TITLE":"Authentication","SETUP_AUTH_LOGIN_LABEL":"Login","SETUP_AUTH_PASSWORD_LABEL":"Password","SETUP_AUTH_CANCEL":"Cancel","SETUP_AUTH_SUBMIT":"Submit","KEYBOARD_AUTH_TITLE":"Authentication","KEYBOARD_AUTH_REPLY_LABEL":"Response","KEYBOARD_AUTH_CANCEL":"Cancel","KEYBOARD_AUTH_SUBMIT":"Submit","ERROR_FIELD_REQUIRED":"This field is required","ERROR_INVALID_PASSWORD":"Password length must be at least 6 characters"};
+module.exports = {"MENU_DEVICES":"Device List","TITLE_DEVICES":"Remote Configurator","MENU_DEVICE":"Device","TITLE_DEVICE":"Device","MENU_USERS":"Users","TITLE_USERS":"Users","SIDEBAR_SIGN_OUT_LINK":"Sign Out","DEVICES_PAGE_WORKFLOW_TITLE":"Workflow","DEVICES_PAGE_WORKFLOW_HTML":["<ul>","<li>Create a device with a name and a password. You will be provided then with a shell command you need"," to copy-paste to the terminal of your device. Enter the same password you used to create the device and"," it will appear in the list below after connecting to this server</li>","<li>Press \"SIGN IN\" button to sign in into your device. You don't need to use root's credentials if you are"," not going to perform superuser-only operations","<li>When signed in you can then open an in-browser terminal session to this device under the credentials you used"," or create a private HTTP proxy for any port on your device</li>","</ul>"],"DEVICES_PAGE_SECURITY_TITLE":"Security Considerations","DEVICES_PAGE_SECURITY_HTML":["<p>Credentials you use to sign in into your device are readable to this server. Although these credentials are never"," stored to the disk and only live in the server's memory while the session exists, a compromised server might have a"," different idea what to do with your information.</p>","<p>A good idea would be to set up your own server (preferably after inspecting the source code) so you provide the"," credentials only to the server you trust</p>"],"DEVICES_NAME_COLUMN":"Name","DEVICES_ADDRESS_COLUMN":"Address","DEVICES_CREATE_BUTTON":"Create Device","DEVICES_EDIT_BUTTON":"Edit Device","DEVICES_DELETE_BUTTON":"Delete Devices","DEVICES_CONNECT_BUTTON":"Sign In","DEVICES_OFFLINE_LABEL":"Offline","DEVICES_OPEN_TERMINAL_TIP":"Open terminal","DEVICES_OPEN_BROWSER_TIP":"Open browser","DEVICES_DISCONNECT_TIP":"Disconnect","EDIT_DEVICE_TITLE_CREATE":"Create Device","EDIT_DEVICE_TITLE_EDIT":"Edit Device","EDIT_DEVICE_NAME_LABEL":"Name","EDIT_DEVICE_PASSWORD_LABEL":"Password","EDIT_DEVICE_FAILED":"Form submission failed","EDIT_DEVICE_SUBMIT":"Submit","EDIT_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_TITLE":"Delete Devices","DELETE_DEVICE_TEXT":"Delete selected devices?","DELETE_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_SUBMIT":"Delete","PROXY_TPL_TITLE":"<h1>Proxy Reporting</h1>","PROXY_TPL_MESSAGE":"<h3>Could not fetch the page</h3>","PROXY_TPL_403":"<p>Access denied</p>","PROXY_TPL_404":"<p>Try to reopen this page from the Device List</p>","PROXY_TPL_502":"<p>Looks like nobody is listening on this port</p>","PROXY_MODAL_TITLE":"HTTP Proxy","PROXY_HOST_LABEL":"Which host to connect to?","PROXY_PORT_LABEL":"Which port to proxy?","PROXY_AUTH_LABEL":"Remote service needs HTTP BASIC AUTH","PROXY_LOGIN_LABEL":"Login","PROXY_PASSWORD_LABEL":"Password","PROXY_MODAL_CANCEL":"Cancel","PROXY_MODAL_SUBMIT":"Submit","USERS_LOGIN_COLUMN":"Login","USERS_ROLES_COLUMN":"Roles","USERS_CREATE_BUTTON":"Create User","USERS_EDIT_BUTTON":"Edit User","USERS_DELETE_BUTTON":"Delete Users","EDIT_USER_TITLE_CREATE":"Create User","EDIT_USER_TITLE_EDIT":"Edit User","EDIT_USER_LOGIN_LABEL":"Login","EDIT_USER_PASSWORD_LABEL":"Password","EDIT_USER_ADMIN_LABEL":"Administrator","EDIT_USER_CANCEL":"Cancel","EDIT_USER_SUBMIT":"Submit","EDIT_USER_FAILED":"An error occured","DELETE_USER_TITLE":"Delete Users","DELETE_USER_TEXT":"Delete selected users?","DELETE_USER_CANCEL":"Cancel","DELETE_USER_SUBMIT":"Delete","TERMINAL_CONNECTING_LABEL":"Connecting...","TERMINAL_NOT_CONNECTED_LABEL":"Not connected","APP_AUTH_TITLE":"Authentication","APP_AUTH_SELF_REGISTRATION_TITLE":"Self-registration enabled","APP_AUTH_SELF_REGISTRATION_MESSAGE":"If you are a new user, you can invent any unused login and the password to sign in","APP_AUTH_LOGIN_LABEL":"Login","APP_AUTH_PASSWORD_LABEL":"Password","APP_AUTH_SUBMIT":"Sign In","APP_AUTH_FAILED":"Invalid credentials","SETUP_AUTH_TITLE":"Authentication","SETUP_AUTH_LOGIN_LABEL":"Login","SETUP_AUTH_PASSWORD_LABEL":"Password","SETUP_AUTH_CANCEL":"Cancel","SETUP_AUTH_SUBMIT":"Submit","KEYBOARD_AUTH_TITLE":"Authentication","KEYBOARD_AUTH_REPLY_LABEL":"Response","KEYBOARD_AUTH_CANCEL":"Cancel","KEYBOARD_AUTH_SUBMIT":"Submit","ERROR_FIELD_REQUIRED":"This field is required","ERROR_INVALID_PASSWORD":"Password length must be at least 6 characters"};
 
 /***/ }),
 /* 31 */
@@ -1214,7 +1229,8 @@ var create = function create(_ref3) {
   var status = _ref3.status,
       appOrigin = _ref3.appOrigin,
       sshHost = _ref3.sshHost,
-      sshPort = _ref3.sshPort;
+      sshPort = _ref3.sshPort,
+      selfRegistration = _ref3.selfRegistration;
   return (
     /*#__PURE__*/
     function () {
@@ -1229,7 +1245,8 @@ var create = function create(_ref3) {
                 return dispatch(actions.create({
                   appOrigin: appOrigin,
                   sshHost: sshHost,
-                  sshPort: sshPort
+                  sshPort: sshPort,
+                  selfRegistration: selfRegistration
                 }));
 
               case 2:
@@ -1550,7 +1567,7 @@ exports.updateProfile = exports.signOut = exports.signIn = exports.setStatus = e
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _router = _interopRequireDefault(__webpack_require__(8));
+var _router = _interopRequireDefault(__webpack_require__(9));
 
 var _isRouteAllowed = _interopRequireDefault(__webpack_require__(25));
 
@@ -2128,7 +2145,7 @@ exports.default = void 0;
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _router = _interopRequireDefault(__webpack_require__(8));
+var _router = _interopRequireDefault(__webpack_require__(9));
 
 var _socket = _interopRequireDefault(__webpack_require__(42));
 
@@ -2871,7 +2888,7 @@ exports.disconnect = exports.openBrowser = exports.openTerminal = exports.doInte
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _router = _interopRequireDefault(__webpack_require__(8));
+var _router = _interopRequireDefault(__webpack_require__(9));
 
 var actions = _interopRequireWildcard(__webpack_require__(45));
 
@@ -4601,7 +4618,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isConnected = exports.isStarted = exports.getLocale = exports.getStatusCode = exports.getService = exports.getSshPort = exports.getSshHost = exports.getAppOrigin = exports.getCreated = void 0;
+exports.isConnected = exports.isStarted = exports.getLocale = exports.getStatusCode = exports.getService = exports.getSelfRegistration = exports.getSshPort = exports.getSshHost = exports.getAppOrigin = exports.getCreated = void 0;
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -4634,6 +4651,12 @@ var getSshPort = function getSshPort(state) {
 };
 
 exports.getSshPort = getSshPort;
+
+var getSelfRegistration = function getSelfRegistration(state) {
+  return state.getIn(["app", "selfRegistration"]);
+};
+
+exports.getSelfRegistration = getSelfRegistration;
 
 var getService = function getService(state, props) {
   var di = state.getIn(["app", "di"]);

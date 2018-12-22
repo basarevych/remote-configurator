@@ -6,6 +6,9 @@ export const getSshHost = state => state.getIn(["app", "sshHost"]);
 
 export const getSshPort = state => state.getIn(["app", "sshPort"]);
 
+export const getSelfRegistration = state =>
+  state.getIn(["app", "selfRegistration"]);
+
 export const getService = (state, props) => {
   const di = state.getIn(["app", "di"]);
   return di ? di.get(props.service, ...(props.params || [])) : null;

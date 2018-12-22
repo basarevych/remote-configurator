@@ -84,9 +84,12 @@ export const create = ({
   status,
   appOrigin,
   sshHost,
-  sshPort
+  sshPort,
+  selfRegistration
 }) => async dispatch => {
-  await dispatch(actions.create({ appOrigin, sshHost, sshPort }));
+  await dispatch(
+    actions.create({ appOrigin, sshHost, sshPort, selfRegistration })
+  );
   if (status) await dispatch(authOperations.setStatus(status));
 };
 
