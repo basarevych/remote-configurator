@@ -198,15 +198,21 @@ class Proxy extends EventEmitter {
 
     const listen = () =>
       new Promise(resolve => {
-        this.outerServer.listen(
-          this.outerPort,
-          this.config.appProxyHost,
-          error => {
-            if (error) return resolve(false);
-            app.on("error", this.onError.bind(this));
-            resolve(true);
-          }
-        );
+        let onSuccess, onFailure;
+        onSuccess = () => {
+          this.outerServer.removeListener("error", onFailure);
+          this.outerServer.removeListener("listening", onSuccess);
+          this.outerServer.on("error", this.onError.bind(this));
+          resolve(true);
+        };
+        onFailure = () => {
+          this.outerServer.removeListener("error", onFailure);
+          this.outerServer.removeListener("listening", onSuccess);
+          resolve(false);
+        };
+        this.outerServer.on("error", onFailure);
+        this.outerServer.on("listening", onSuccess);
+        this.outerServer.listen(this.outerPort, this.config.appProxyHost);
       });
 
     let numTries = 0;
