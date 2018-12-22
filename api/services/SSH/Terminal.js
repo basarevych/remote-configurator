@@ -52,7 +52,26 @@ class Terminal extends EventEmitter {
       this.command.on("connected", this.onConnected.bind(this));
       this.command.on("disconnected", this.onDisconnected.bind(this));
 
-      await this.command.start();
+      return await new Promise(async (resolve, reject) => {
+        try {
+          let onSuccess, onFailure;
+          onSuccess = () => {
+            this.removeListener("ready", onSuccess);
+            this.removeListener("disconnected", onFailure);
+            resolve(true);
+          };
+          onFailure = () => {
+            this.removeListener("ready", onSuccess);
+            this.removeListener("disconnected", onFailure);
+            resolve(false);
+          };
+          this.on("ready", onSuccess);
+          this.on("disconnected", onFailure);
+          await this.command.start();
+        } catch (error) {
+          reject(error);
+        }
+      });
     } catch (error) {
       this.onError(error);
     }
@@ -117,6 +136,7 @@ class Terminal extends EventEmitter {
 
   async onConnected() {
     debug(`SSH terminal ${this.terminalId} connected`);
+    this.emit("connected");
     if (
       this.command.shell({ term: "xterm" }, this.onShell.bind(this)) === false
     ) {
@@ -126,6 +146,7 @@ class Terminal extends EventEmitter {
 
   async onDisconnected() {
     debug(`SSH terminal ${this.terminalId} lost connection`);
+    this.emit("disconnected");
     this.command = null;
     await this.stop();
   }
@@ -146,6 +167,7 @@ class Terminal extends EventEmitter {
       .stderr.on("data", this.onData.bind(this));
 
     debug(`SSH terminal ${this.terminalId} ready`);
+    this.emit("ready");
   }
 
   async onClose() {

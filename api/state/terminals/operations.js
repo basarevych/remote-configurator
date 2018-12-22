@@ -9,6 +9,24 @@ const historiesOperations = require("../histories/operations");
 
 const set = actions.set;
 
+const remove = ({ terminalId }) => {
+  return async (dispatch, getState) => {
+    let client = selectors.getClient(getState(), { terminalId });
+    if (client) {
+      try {
+        client.signal("KILL");
+        client.signal("HUP");
+        client.write(`\x03\x03\nexit\n`);
+      } catch (unusedError) {
+        // do nothing
+      }
+      client.stop().catch(console.error);
+    }
+    await dispatch(historiesOperations.destroy({ terminalId }));
+    return dispatch(actions.remove({ terminalId }));
+  };
+};
+
 const create = ({ deviceId, userId }) => {
   return async (dispatch, getState) => {
     let terminalId = uuid.v4();
@@ -36,7 +54,13 @@ const create = ({ deviceId, userId }) => {
       })
     );
 
-    client.start().catch(console.error);
+    try {
+      await client.start();
+    } catch (error) {
+      console.error(error);
+      remove({ terminalId });
+      return {};
+    }
 
     return { id: terminalId, name };
   };
@@ -53,24 +77,6 @@ const resize = ({ terminalId, rows, cols, height, width }) => {
   return async (dispatch, getState) => {
     let client = selectors.getClient(getState(), { terminalId });
     if (client) client.setWindow(rows, cols, height, width);
-  };
-};
-
-const remove = ({ terminalId }) => {
-  return async (dispatch, getState) => {
-    let client = selectors.getClient(getState(), { terminalId });
-    if (client) {
-      try {
-        client.signal("KILL");
-        client.signal("HUP");
-        client.write(`\x03\x03\nexit\n`);
-      } catch (unusedError) {
-        // do nothing
-      }
-      client.stop().catch(console.error);
-    }
-    await dispatch(historiesOperations.destroy({ terminalId }));
-    return dispatch(actions.remove({ terminalId }));
   };
 };
 
