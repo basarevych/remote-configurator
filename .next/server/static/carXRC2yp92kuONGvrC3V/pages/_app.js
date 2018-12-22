@@ -7514,11 +7514,11 @@ module.exports = {
     phoneWidth: 20,
     background: "rgba(0, 0, 0, 0.5)",
     color: textNormal,
-    backgroundHover: fade(primary, 0.05),
+    backgroundHover: fade(primary, 0.2),
     colorHover: textContrast,
-    backgroundSelected: fade(primary, 0.1),
+    backgroundSelected: fade(primary, 0.3),
     colorSelected: textContrast,
-    backgroundSelectedHover: fade(primary, 0.15),
+    backgroundSelectedHover: fade(primary, 0.35),
     colorSelectedHover: textContrast
   },
   main: {
