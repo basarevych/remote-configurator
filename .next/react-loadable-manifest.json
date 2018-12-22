@@ -349,7 +349,7 @@
       "publicPath": "/_next/static/chunks/commons.e01921c831f7ad7d68ea.js"
     }
   ],
-  "./../../../webpack/buildin/module.js": [
+  "./../webpack/buildin/module.js": [
     {
       "id": 47,
       "name": "./node_modules/webpack/buildin/module.js",
@@ -405,7 +405,7 @@
       "publicPath": "/_next/static/chunks/commons.e01921c831f7ad7d68ea.js"
     }
   ],
-  "../../state/devices": [
+  "./devices": [
     {
       "id": 55,
       "name": "./app/state/devices/index.js",
@@ -777,7 +777,7 @@
       "publicPath": "/_next/static/chunks/commons.e01921c831f7ad7d68ea.js"
     }
   ],
-  "@material-ui/core/SvgIcon": [
+  "../../SvgIcon": [
     {
       "id": 140,
       "name": "./node_modules/@material-ui/core/SvgIcon/index.js",
@@ -873,7 +873,7 @@
       "publicPath": "/_next/static/chunks/commons.e01921c831f7ad7d68ea.js"
     }
   ],
-  "../styles/transitions": [
+  "./transitions": [
     {
       "id": 165,
       "name": "./node_modules/@material-ui/core/styles/transitions.js",
@@ -881,7 +881,7 @@
       "publicPath": "/_next/static/chunks/commons.e01921c831f7ad7d68ea.js"
     }
   ],
-  "./rules/StyleRule": [
+  "../rules/StyleRule": [
     {
       "id": 166,
       "name": "./node_modules/jss/lib/rules/StyleRule.js",
@@ -945,7 +945,7 @@
       "publicPath": "/_next/static/chunks/commons.e01921c831f7ad7d68ea.js"
     }
   ],
-  "react-transition-group/Transition": [
+  "./Transition": [
     {
       "id": 175,
       "name": "./node_modules/react-transition-group/Transition.js",
@@ -1885,7 +1885,7 @@
       "publicPath": "/_next/static/chunks/commons.e01921c831f7ad7d68ea.js"
     }
   ],
-  "@material-ui/core/colors/grey": [
+  "./grey": [
     {
       "id": 359,
       "name": "./node_modules/@material-ui/core/colors/grey.js",
@@ -2041,16 +2041,10 @@
       "publicPath": "/_next/static/chunks/commons.e01921c831f7ad7d68ea.js"
     }
   ],
-  "./selectors/isValid": [
+  "../selectors/isValid": [
     {
       "id": 383,
       "name": "./node_modules/redux-form/lib/selectors/isValid.js",
-      "file": "static/chunks/commons.e01921c831f7ad7d68ea.js",
-      "publicPath": "/_next/static/chunks/commons.e01921c831f7ad7d68ea.js"
-    },
-    {
-      "id": 408,
-      "name": "./node_modules/redux-form/es/selectors/isValid.js",
       "file": "static/chunks/commons.e01921c831f7ad7d68ea.js",
       "publicPath": "/_next/static/chunks/commons.e01921c831f7ad7d68ea.js"
     }
@@ -2119,7 +2113,7 @@
       "publicPath": "/_next/static/chunks/commons.e01921c831f7ad7d68ea.js"
     }
   ],
-  "react-transition-group/TransitionGroup": [
+  "./TransitionGroup": [
     {
       "id": 396,
       "name": "./node_modules/react-transition-group/TransitionGroup.js",
@@ -2159,7 +2153,7 @@
       "publicPath": "/_next/static/chunks/commons.e01921c831f7ad7d68ea.js"
     }
   ],
-  "../List/ListContext": [
+  "./ListContext": [
     {
       "id": 401,
       "name": "./node_modules/@material-ui/core/List/ListContext.js",
@@ -2171,6 +2165,14 @@
     {
       "id": 402,
       "name": "./node_modules/core-js/library/fn/is-iterable.js",
+      "file": "static/chunks/commons.e01921c831f7ad7d68ea.js",
+      "publicPath": "/_next/static/chunks/commons.e01921c831f7ad7d68ea.js"
+    }
+  ],
+  "./selectors/isValid": [
+    {
+      "id": 408,
+      "name": "./node_modules/redux-form/es/selectors/isValid.js",
       "file": "static/chunks/commons.e01921c831f7ad7d68ea.js",
       "publicPath": "/_next/static/chunks/commons.e01921c831f7ad7d68ea.js"
     }
@@ -2271,7 +2273,7 @@
       "publicPath": "/_next/static/chunks/commons.e01921c831f7ad7d68ea.js"
     }
   ],
-  "../core-js/object/keys": [
+  "@babel/runtime-corejs2/core-js/object/keys": [
     {
       "id": 519,
       "name": "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js",
@@ -3421,7 +3423,7 @@
       "publicPath": "/_next/static/chunks/commons.e01921c831f7ad7d68ea.js"
     }
   ],
-  "@material-ui/core/MenuList": [
+  "../MenuList": [
     {
       "id": 668,
       "name": "./node_modules/@material-ui/core/MenuList/index.js",
@@ -3429,7 +3431,7 @@
       "publicPath": "/_next/static/chunks/commons.e01921c831f7ad7d68ea.js"
     }
   ],
-  "../List": [
+  "@material-ui/core/List": [
     {
       "id": 669,
       "name": "./node_modules/@material-ui/core/List/index.js",
@@ -3497,7 +3499,7 @@
       "publicPath": "/_next/static/chunks/commons.e01921c831f7ad7d68ea.js"
     }
   ],
-  "../ListItem": [
+  "@material-ui/core/ListItem": [
     {
       "id": 676,
       "name": "./node_modules/@material-ui/core/ListItem/index.js",
