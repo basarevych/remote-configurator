@@ -139,18 +139,34 @@ class Proxy extends EventEmitter {
 
   async createInnerServer() {
     this.innerServer = net.createServer(this.onInnerConnection.bind(this));
-    this.innerServer.on("error", this.onError.bind(this));
 
-    return await new Promise((resolve, reject) => {
-      try {
-        this.innerServer.listen(0, this.config.proxyInnerHost, () => {
-          this.innerPort = this.innerServer.address().port;
-          resolve();
-        });
-      } catch (error) {
-        reject(error);
-      }
-    });
+    const listen = () =>
+      new Promise(resolve => {
+        let onSuccess, onFailure;
+        onSuccess = () => {
+          this.innerServer.removeListener("error", onFailure);
+          this.innerServer.removeListener("listening", onSuccess);
+          this.innerServer.on("error", this.onError.bind(this));
+          resolve(true);
+        };
+        onFailure = () => {
+          this.innerServer.removeListener("error", onFailure);
+          this.innerServer.removeListener("listening", onSuccess);
+          resolve(false);
+        };
+        this.innerServer.on("error", onFailure);
+        this.innerServer.on("listening", onSuccess);
+        this.innerServer.listen(this.innerPort, this.config.proxyInnerHost);
+      });
+
+    let numTries = 0;
+    do {
+      if (++numTries > 1000) throw new Error("Could not find a free port");
+      this.innerPort = this.chance.integer({
+        min: this.config.proxyInnerPortLow,
+        max: this.config.proxyInnerPortHigh
+      });
+    } while (!(await listen()));
   }
 
   async createOuterServer() {
@@ -175,10 +191,10 @@ class Proxy extends EventEmitter {
 
     let numTries = 0;
     do {
-      if (++numTries > 10000) throw new Error("Could not find a free port");
+      if (++numTries > 1000) throw new Error("Could not find a free port");
       this.outerPort = this.chance.integer({
-        min: this.config.proxyPortLow,
-        max: this.config.proxyPortHigh
+        min: this.config.appProxyPortLow,
+        max: this.config.appProxyPortHigh
       });
     } while (!(await listen()));
   }

@@ -33,6 +33,8 @@ if (!process.env.NODE_ENV) process.env.NODE_ENV = "production";
 
 let appHost = process.env.APP_HOST || "0.0.0.0";
 let appPort = parseInt(process.env.APP_PORT, 10) || 3000;
+let appProxyPortLow = parseInt(process.env.APP_PROXY_PORT_LOW, 10) || 40000;
+let appProxyPortHigh = parseInt(process.env.APP_PROXY_PORT_HIGH, 10) || 60000;
 let appOrigins = process.env.APP_ORIGINS;
 let appStatic = process.env.APP_STATIC || "";
 let appTrustProxy = process.env.APP_TRUST_PROXY === "true" ? 1 : 0;
@@ -48,8 +50,9 @@ let sshHost = process.env.SSH_HOST || "0.0.0.0";
 let sshPort = parseInt(process.env.SSH_PORT, 10) || 35000;
 let sshOrigins = process.env.SSH_ORIGINS;
 let proxyInnerHost = process.env.PROXY_INNER_HOST || "127.0.0.1";
-let proxyPortLow = parseInt(process.env.PROXY_PORT_LOW, 10) || 40000;
-let proxyPortHigh = parseInt(process.env.PROXY_PORT_HIGH, 10) || 65000;
+let proxyInnerPortLow = parseInt(process.env.PROXY_INNER_PORT_LOW, 10) || 40000;
+let proxyInnerPortHigh =
+  parseInt(process.env.PROXY_INNER_PORT_HIGH, 10) || 60000;
 
 /**
  * The application
@@ -110,6 +113,8 @@ class App {
     this.config = {
       appHost,
       appPort,
+      appProxyPortLow,
+      appProxyPortHigh,
       appOrigins,
       appStatic,
       appTrustProxy,
@@ -125,8 +130,8 @@ class App {
       sshPort,
       sshOrigins,
       proxyInnerHost,
-      proxyPortLow,
-      proxyPortHigh
+      proxyInnerPortLow,
+      proxyInnerPortHigh
     };
 
     this.di = new Injectt();
