@@ -89,27 +89,30 @@ class Terminal extends EventEmitter {
   }
 
   write(...args) {
-    if (!this.stream) {
-      this.onError(new Error("No channel")).catch(console.error);
-      return;
+    try {
+      if (!this.stream) throw new Error("No channel");
+      return this.stream.write(...args);
+    } catch (error) {
+      this.onError(error).catch(console.error);
     }
-    return this.stream.write(...args);
   }
 
   setWindow(...args) {
-    if (!this.stream) {
-      this.onError(new Error("No channel")).catch(console.error);
-      return;
+    try {
+      if (!this.stream) throw new Error("No channel");
+      return this.stream.setWindow(...args);
+    } catch (error) {
+      this.onError(error).catch(console.error);
     }
-    return this.stream.setWindow(...args);
   }
 
   signal(...args) {
-    if (!this.stream) {
-      this.onError(new Error("No channel")).catch(console.error);
-      return;
+    try {
+      if (!this.stream) throw new Error("No channel");
+      return this.stream.signal(...args);
+    } catch (error) {
+      this.onError(error).catch(console.error);
     }
-    return this.stream.signal(...args);
   }
 
   async onConnected() {

@@ -104,19 +104,21 @@ class Command extends EventEmitter {
   }
 
   shell(...args) {
-    if (!this.client) {
-      this.onError(new Error("No client")).catch(console.error);
-      return;
+    try {
+      if (!this.client) throw new Error("No client");
+      return this.client.shell(...args);
+    } catch (error) {
+      this.onError(error).catch(console.error);
     }
-    return this.client.shell(...args);
   }
 
   exec(...args) {
-    if (!this.client) {
-      this.onError(new Error("No client")).catch(console.error);
-      return;
+    try {
+      if (!this.client) throw new Error("No client");
+      return this.client.exec(...args);
+    } catch (error) {
+      this.onError(error).catch(console.error);
     }
-    return this.client.exec(...args);
   }
 
   async onForward(error, stream) {

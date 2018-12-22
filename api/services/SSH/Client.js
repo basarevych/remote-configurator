@@ -97,11 +97,12 @@ class Client extends EventEmitter {
   }
 
   forwardOut(...args) {
-    if (!this.client) {
-      this.onError(new Error("No client")).catch(console.error);
-      return;
+    try {
+      if (!this.client) throw new Error("No client");
+      return this.client.forwardOut(...args);
+    } catch (error) {
+      this.onError(error).catch(console.error);
     }
-    return this.client.forwardOut(...args);
   }
 
   async onAuthentication(ctx) {

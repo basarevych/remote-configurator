@@ -47,6 +47,7 @@ let dbPath = process.env.DB_PATH;
 let sshHost = process.env.SSH_HOST || "0.0.0.0";
 let sshPort = parseInt(process.env.SSH_PORT, 10) || 35000;
 let sshOrigins = process.env.SSH_ORIGINS;
+let proxyInnerHost = process.env.PROXY_INNER_HOST || "127.0.0.1";
 let proxyPortLow = parseInt(process.env.PROXY_PORT_LOW, 10) || 40000;
 let proxyPortHigh = parseInt(process.env.PROXY_PORT_HIGH, 10) || 65000;
 
@@ -123,6 +124,7 @@ class App {
       sshHost,
       sshPort,
       sshOrigins,
+      proxyInnerHost,
       proxyPortLow,
       proxyPortHigh
     };

@@ -143,7 +143,7 @@ class Proxy extends EventEmitter {
 
     return await new Promise((resolve, reject) => {
       try {
-        this.innerServer.listen(0, "127.0.0.1", () => {
+        this.innerServer.listen(0, this.config.proxyInnerHost, () => {
           this.innerPort = this.innerServer.address().port;
           resolve();
         });
@@ -332,12 +332,14 @@ class Proxy extends EventEmitter {
 
       const proxy = this.createProxy(forwardedHost, forwardedPort);
       return proxy.web(req, res, {
-        target: `http://127.0.0.1:${this.innerPort}${req.originalUrl}`,
+        target: `http://${this.config.proxyInnerHost}:${this.innerPort}${
+          req.originalUrl
+        }`,
         headers: {
           Host: `${forwardedHost}:${forwardedPort}`
         },
         auth,
-        localAddress: "127.0.0.1",
+        localAddress: this.config.proxyInnerHost,
         changeOrigin: true,
         ignorePath: true,
         cookieDomainRewrite: "",
