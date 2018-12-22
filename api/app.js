@@ -37,10 +37,14 @@ let appOrigins = process.env.APP_ORIGINS;
 let appStatic = process.env.APP_STATIC || "";
 let appTrustProxy = process.env.APP_TRUST_PROXY === "true" ? 1 : 0;
 let appOnlineUsers = parseInt(process.env.APP_ONLINE_USERS, 10) || 50;
+let appSslKey = process.env.APP_SSL_KEY;
+let appSslCert = process.env.APP_SSL_CERT;
 let appProxyHost = process.env.APP_PROXY_HOST || "0.0.0.0";
 let appProxyPortLow = parseInt(process.env.APP_PROXY_PORT_LOW, 10) || 40000;
 let appProxyPortHigh = parseInt(process.env.APP_PROXY_PORT_HIGH, 10) || 60000;
 let appProxyOrigins = process.env.APP_PROXY_ORIGINS;
+let appProxySslKey = process.env.APP_PROXY_SSL_KEY;
+let appProxySslCert = process.env.APP_PROXY_SSL_CERT;
 let sessionDbPath = process.env.SESSION_DB_PATH;
 let sessionSecret = process.env.SESSION_SECRET;
 let sessionMaxAge = 1000 * 60 * 60 * 24 * 7;
@@ -135,10 +139,14 @@ class App {
       appStatic,
       appTrustProxy,
       appOnlineUsers,
+      appSslKey,
+      appSslCert,
       appProxyHost,
       appProxyPortLow,
       appProxyPortHigh,
       appProxyOrigins,
+      appProxySslKey,
+      appProxySslCert,
       sessionDbPath,
       sessionSecret,
       sessionMaxAge,

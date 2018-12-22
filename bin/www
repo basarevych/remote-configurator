@@ -4,13 +4,30 @@
 
 const http = require("http");
 const path = require("path");
+const fs = require("fs-extra");
 const App = require("../api/app");
 
 const root = path.join.bind(path, path.resolve(__dirname), "..");
 process.chdir(root());
 
 let app = new App();
-let server = http.createServer(app.express);
+
+let params = [app.express];
+if (app.config.appSslKey && app.config.appSslCert) {
+  let key =
+    app.config.appSslKey[0] === "/"
+      ? app.config.appSslKey
+      : path.join(__dirname, "..", app.config.appSslKey);
+  let cert =
+    app.config.appSslCert[0] === "/"
+      ? app.config.appSslCert
+      : path.join(__dirname, "..", app.config.appSslCert);
+  params.unshift({
+    key: fs.readFileSync(key),
+    cert: fs.readFileSync(cert)
+  });
+}
+let server = http.createServer(...params);
 
 app
   .init({ server })

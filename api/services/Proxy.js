@@ -2,6 +2,9 @@ const EventEmitter = require("events");
 const uuid = require("uuid");
 const url = require("url");
 const net = require("net");
+const http = require("http");
+const path = require("path");
+const fs = require("fs-extra");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
@@ -176,9 +179,26 @@ class Proxy extends EventEmitter {
     app.get(this.secretPath, this.onNock.bind(this));
     app.all("*", this.onOuterConnection.bind(this));
 
+    let params = [app];
+    if (this.config.appProxySslKey && this.config.appProxySslCert) {
+      let key =
+        this.config.appProxySslKey[0] === "/"
+          ? this.config.appProxySslKey
+          : path.join(__dirname, "..", "..", this.config.appProxySslKey);
+      let cert =
+        this.config.appProxySslCert[0] === "/"
+          ? this.config.appProxySslCert
+          : path.join(__dirname, "..", "..", this.config.appProxySslCert);
+      params.unshift({
+        key: fs.readFileSync(key),
+        cert: fs.readFileSync(cert)
+      });
+    }
+    this.outerServer = http.createServer(...params);
+
     const listen = () =>
       new Promise(resolve => {
-        this.outerServer = app.listen(
+        this.outerServer.listen(
           this.outerPort,
           this.config.appProxyHost,
           error => {
