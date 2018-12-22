@@ -13,7 +13,7 @@ process.chdir(root());
 
 let app = new App();
 
-let server = http.createServer(...params);
+let server;
 if (app.config.appSslKey && app.config.appSslCert) {
   let key =
     app.config.appSslKey[0] === "/"
