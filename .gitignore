@@ -3,4 +3,5 @@ node_modules/
 .env
 id_rsa
 id_rsa.pub
+*.pem
 *.db
