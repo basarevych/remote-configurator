@@ -4819,7 +4819,7 @@ var _immutable = __webpack_require__(18);
 
 var _normalize = _interopRequireDefault(__webpack_require__(67));
 
-var _validate2 = _interopRequireDefault(__webpack_require__(78));
+var _validate2 = _interopRequireDefault(__webpack_require__(79));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5581,7 +5581,7 @@ var _react = _interopRequireDefault(__webpack_require__(6));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
-var _shallowEqual = _interopRequireDefault(__webpack_require__(79));
+var _shallowEqual = _interopRequireDefault(__webpack_require__(80));
 
 var _reactIntl = __webpack_require__(8);
 
@@ -5589,35 +5589,35 @@ var _immutable = __webpack_require__(18);
 
 var _styles = __webpack_require__(10);
 
-var _List = _interopRequireDefault(__webpack_require__(80));
+var _List = _interopRequireDefault(__webpack_require__(81));
 
-var _ListItem = _interopRequireDefault(__webpack_require__(81));
+var _ListItem = _interopRequireDefault(__webpack_require__(82));
 
-var _ListItemIcon = _interopRequireDefault(__webpack_require__(74));
+var _ListItemIcon = _interopRequireDefault(__webpack_require__(75));
 
-var _ListItemText = _interopRequireDefault(__webpack_require__(75));
+var _ListItemText = _interopRequireDefault(__webpack_require__(76));
 
-var _TextField = _interopRequireDefault(__webpack_require__(82));
+var _TextField = _interopRequireDefault(__webpack_require__(83));
 
-var _Select = _interopRequireDefault(__webpack_require__(83));
+var _Select = _interopRequireDefault(__webpack_require__(84));
 
-var _FormControl = _interopRequireDefault(__webpack_require__(84));
+var _FormControl = _interopRequireDefault(__webpack_require__(85));
 
-var _FormControlLabel = _interopRequireDefault(__webpack_require__(85));
+var _FormControlLabel = _interopRequireDefault(__webpack_require__(86));
 
-var _FormHelperText = _interopRequireDefault(__webpack_require__(86));
+var _FormHelperText = _interopRequireDefault(__webpack_require__(87));
 
-var _MenuItem = _interopRequireDefault(__webpack_require__(73));
+var _MenuItem = _interopRequireDefault(__webpack_require__(74));
 
 var _Checkbox = _interopRequireDefault(__webpack_require__(72));
 
-var _InputLabel = _interopRequireDefault(__webpack_require__(87));
+var _InputLabel = _interopRequireDefault(__webpack_require__(88));
 
-var _FilledInput = _interopRequireDefault(__webpack_require__(88));
+var _FilledInput = _interopRequireDefault(__webpack_require__(89));
 
-var _Input = _interopRequireDefault(__webpack_require__(89));
+var _Input = _interopRequireDefault(__webpack_require__(90));
 
-var _InfoOutlined = _interopRequireDefault(__webpack_require__(90));
+var _InfoOutlined = _interopRequireDefault(__webpack_require__(91));
 
 var _normalize2 = _interopRequireDefault(__webpack_require__(67));
 
@@ -6006,22 +6006,28 @@ module.exports = require("@material-ui/core/Checkbox");
 /* 73 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/core/MenuItem");
+module.exports = require("@material-ui/core/Paper");
 
 /***/ }),
 /* 74 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/core/ListItemIcon");
+module.exports = require("@material-ui/core/MenuItem");
 
 /***/ }),
 /* 75 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/core/ListItemText");
+module.exports = require("@material-ui/core/ListItemIcon");
 
 /***/ }),
 /* 76 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/ListItemText");
+
+/***/ }),
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6042,7 +6048,7 @@ var usersOperations = _interopRequireWildcard(__webpack_require__(95));
 
 exports.usersOperations = usersOperations;
 
-var usersSelectors = _interopRequireWildcard(__webpack_require__(77));
+var usersSelectors = _interopRequireWildcard(__webpack_require__(78));
 
 exports.usersSelectors = usersSelectors;
 
@@ -6054,7 +6060,7 @@ var _default = _reducers.default;
 exports.default = _default;
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6117,7 +6123,7 @@ var getEditModalData = function getEditModalData(state) {
 exports.getEditModalData = getEditModalData;
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6302,79 +6308,78 @@ module.exports = function validate(props, options, value, allValues) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-redux/lib/utils/shallowEqual");
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/List");
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/ListItem");
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/TextField");
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/Select");
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/FormControl");
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/FormControlLabel");
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/FormHelperText");
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/InputLabel");
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/FilledInput");
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/Input");
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/InfoOutlined");
 
 /***/ }),
-/* 91 */,
 /* 92 */,
 /* 93 */,
 /* 94 */
@@ -6500,7 +6505,7 @@ var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
 var actions = _interopRequireWildcard(__webpack_require__(96));
 
-var selectors = _interopRequireWildcard(__webpack_require__(77));
+var selectors = _interopRequireWildcard(__webpack_require__(78));
 
 var _app = __webpack_require__(4);
 
@@ -7280,7 +7285,7 @@ var _reactRedux = __webpack_require__(19);
 
 var _auth = __webpack_require__(12);
 
-var _users = __webpack_require__(76);
+var _users = __webpack_require__(77);
 
 var _UsersPage = _interopRequireDefault(__webpack_require__(207));
 
@@ -7443,7 +7448,7 @@ var _reactRedux = __webpack_require__(19);
 
 var _reactIntl = __webpack_require__(8);
 
-var _users = __webpack_require__(76);
+var _users = __webpack_require__(77);
 
 var _Users = _interopRequireDefault(__webpack_require__(209));
 
@@ -7528,6 +7533,8 @@ var _TableHead = _interopRequireDefault(__webpack_require__(106));
 
 var _TableRow = _interopRequireDefault(__webpack_require__(107));
 
+var _Paper = _interopRequireDefault(__webpack_require__(73));
+
 var _Button = _interopRequireDefault(__webpack_require__(28));
 
 var _Checkbox = _interopRequireDefault(__webpack_require__(72));
@@ -7562,6 +7569,9 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 var styles = function styles() {
   return {
+    paper: {
+      padding: "1rem"
+    },
     buttons: {
       width: "100%",
       display: "flex",
@@ -7719,7 +7729,9 @@ function (_React$Component) {
         onClick: this.handleDeleteAction
       }, _react.default.createElement(_reactIntl.FormattedMessage, {
         id: "USERS_DELETE_BUTTON"
-      }))), _react.default.createElement(_Table.default, {
+      }))), _react.default.createElement(_Paper.default, {
+        className: this.props.classes.paper
+      }, _react.default.createElement(_Table.default, {
         padding: "dense"
       }, _react.default.createElement(_TableHead.default, null, _react.default.createElement(_TableRow.default, null, _react.default.createElement(_TableCell.default, {
         padding: "none",
@@ -7769,7 +7781,7 @@ function (_React$Component) {
             id: "EDIT_USER_".concat(item, "_LABEL")
           });
         }).join(", ")));
-      }))), _react.default.createElement(_EditUserModal.default, null), _react.default.createElement(_ConfirmModal.default, {
+      })))), _react.default.createElement(_EditUserModal.default, null), _react.default.createElement(_ConfirmModal.default, {
         isOpen: this.state.isConfirmOpen,
         title: "DELETE_USER_TITLE",
         text: "DELETE_USER_TEXT",
@@ -7812,7 +7824,7 @@ var _immutable2 = __webpack_require__(18);
 
 var _reduxForm = __webpack_require__(63);
 
-var _users = __webpack_require__(76);
+var _users = __webpack_require__(77);
 
 var _createForm = _interopRequireDefault(__webpack_require__(64));
 

@@ -9,12 +9,16 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
 import EditUserModal from "../../containers/Users/EditUserModal";
 import ConfirmModal from "../Modals/ConfirmModal";
 
 const styles = () => ({
+  paper: {
+    padding: "1rem"
+  },
   buttons: {
     width: "100%",
     display: "flex",
@@ -135,81 +139,85 @@ class Users extends React.Component {
           </Button>
         </div>
 
-        <Table padding="dense">
-          <TableHead>
-            <TableRow>
-              <TableCell
-                padding="none"
-                classes={{ root: this.props.classes.checkboxField }}
-              >
-                <Checkbox
-                  checked={!!this.props.users.size && this.props.isAllSelected}
-                  classes={{ root: this.props.classes.checkbox }}
-                  indeterminate={
-                    !this.props.isAllSelected && !this.props.isAllDeselected
-                  }
-                  onChange={() => this.handleToggleAll()}
-                  value="on"
-                />
-              </TableCell>
-              <TableCell>
-                <FormattedMessage id="USERS_LOGIN_COLUMN" />
-              </TableCell>
-              <TableCell>
-                <FormattedMessage id="USERS_ROLES_COLUMN" />
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {/* eslint-disable-next-line lodash/prefer-lodash-method */}
-            {this.props.users.map((row, index) => (
-              <TableRow key={`row-${index}`}>
+        <Paper className={this.props.classes.paper}>
+          <Table padding="dense">
+            <TableHead>
+              <TableRow>
                 <TableCell
                   padding="none"
-                  className={classNames(
-                    index % 2 ? "even" : "odd",
-                    row.get("isSelected") && "selected"
-                  )}
                   classes={{ root: this.props.classes.checkboxField }}
                 >
                   <Checkbox
-                    checked={!!row.get("isSelected")}
+                    checked={
+                      !!this.props.users.size && this.props.isAllSelected
+                    }
                     classes={{ root: this.props.classes.checkbox }}
-                    onChange={() => this.handleToggle(row.get("id"))}
+                    indeterminate={
+                      !this.props.isAllSelected && !this.props.isAllDeselected
+                    }
+                    onChange={() => this.handleToggleAll()}
                     value="on"
                   />
                 </TableCell>
-                <TableCell
-                  className={classNames(
-                    index % 2 ? "even" : "odd",
-                    row.get("isSelected") && "selected"
-                  )}
-                  component="th"
-                  scope="row"
-                >
-                  {row.get("login")}
+                <TableCell>
+                  <FormattedMessage id="USERS_LOGIN_COLUMN" />
                 </TableCell>
-                <TableCell
-                  className={classNames(
-                    index % 2 ? "even" : "odd",
-                    row.get("isSelected") && "selected"
-                  )}
-                >
-                  {/* eslint-disable-next-line lodash/prefer-lodash-method */}
-                  {row
-                    .get("roles")
-                    .toJS()
-                    .map(item =>
-                      this.props.intl.formatMessage({
-                        id: `EDIT_USER_${item}_LABEL`
-                      })
-                    )
-                    .join(", ")}
+                <TableCell>
+                  <FormattedMessage id="USERS_ROLES_COLUMN" />
                 </TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHead>
+            <TableBody>
+              {/* eslint-disable-next-line lodash/prefer-lodash-method */}
+              {this.props.users.map((row, index) => (
+                <TableRow key={`row-${index}`}>
+                  <TableCell
+                    padding="none"
+                    className={classNames(
+                      index % 2 ? "even" : "odd",
+                      row.get("isSelected") && "selected"
+                    )}
+                    classes={{ root: this.props.classes.checkboxField }}
+                  >
+                    <Checkbox
+                      checked={!!row.get("isSelected")}
+                      classes={{ root: this.props.classes.checkbox }}
+                      onChange={() => this.handleToggle(row.get("id"))}
+                      value="on"
+                    />
+                  </TableCell>
+                  <TableCell
+                    className={classNames(
+                      index % 2 ? "even" : "odd",
+                      row.get("isSelected") && "selected"
+                    )}
+                    component="th"
+                    scope="row"
+                  >
+                    {row.get("login")}
+                  </TableCell>
+                  <TableCell
+                    className={classNames(
+                      index % 2 ? "even" : "odd",
+                      row.get("isSelected") && "selected"
+                    )}
+                  >
+                    {/* eslint-disable-next-line lodash/prefer-lodash-method */}
+                    {row
+                      .get("roles")
+                      .toJS()
+                      .map(item =>
+                        this.props.intl.formatMessage({
+                          id: `EDIT_USER_${item}_LABEL`
+                        })
+                      )
+                      .join(", ")}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Paper>
 
         <EditUserModal />
         <ConfirmModal

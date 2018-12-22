@@ -2,9 +2,10 @@
 
 const {
   darken,
-  lighten
+  lighten,
+  fade
 } = require("@material-ui/core/styles/colorManipulator");
-const { red } = require("@material-ui/core/colors");
+const { red, blueGrey } = require("@material-ui/core/colors");
 
 const primary = "#4c5066";
 const secondary = "#b33711";
@@ -18,6 +19,7 @@ const textDark = "rgba(255, 255, 255, 0.54)";
 const textDisabled = "rgba(255, 255, 255, 0.38)";
 const textContrast = "#ffffff";
 const textError = red[500];
+const textInfo = blueGrey[500];
 
 const fontSize = 14;
 
@@ -59,11 +61,11 @@ module.exports = {
     phoneWidth: 20,
     background: "rgba(0, 0, 0, 0.5)",
     color: textNormal,
-    backgroundHover: "rgba(255, 255, 255, 0.05)",
+    backgroundHover: fade(primary, 0.05),
     colorHover: textContrast,
-    backgroundSelected: "rgba(255, 255, 255, 0.1)",
+    backgroundSelected: fade(primary, 0.1),
     colorSelected: textContrast,
-    backgroundSelectedHover: "rgba(255, 255, 255, 0.15)",
+    backgroundSelectedHover: fade(primary, 0.15),
     colorSelectedHover: textContrast
   },
   main: {
@@ -71,7 +73,13 @@ module.exports = {
     background: paperGradient,
     spacing: 24,
     error: {
-      background: "rgba(179, 55, 17, 0.65)",
+      background: fade(textError, 0.65),
+      color: "#ffffff",
+      borderRadius: 3,
+      padding: "1rem 2rem"
+    },
+    info: {
+      background: fade(textInfo, 0.65),
       color: "#ffffff",
       borderRadius: 3,
       padding: "1rem 2rem"
