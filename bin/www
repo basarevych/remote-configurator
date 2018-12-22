@@ -22,10 +22,18 @@ if (app.config.appSslKey && app.config.appSslCert) {
     app.config.appSslCert[0] === "/"
       ? app.config.appSslCert
       : path.join(__dirname, "..", app.config.appSslCert);
-  params.unshift({
+  let options = {
     key: fs.readFileSync(key),
     cert: fs.readFileSync(cert)
-  });
+  };
+  if (app.config.appSslCa) {
+    let ca =
+      app.config.appSslCa[0] === "/"
+        ? app.config.appSslCa
+        : path.join(__dirname, "..", app.config.appSslCa);
+    options.ca = fs.readFileSync(ca);
+  }
+  params.unshift(options);
 }
 let server = http.createServer(...params);
 

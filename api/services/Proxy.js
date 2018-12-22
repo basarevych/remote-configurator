@@ -189,10 +189,18 @@ class Proxy extends EventEmitter {
         this.config.appProxySslCert[0] === "/"
           ? this.config.appProxySslCert
           : path.join(__dirname, "..", "..", this.config.appProxySslCert);
-      params.unshift({
+      let options = {
         key: fs.readFileSync(key),
         cert: fs.readFileSync(cert)
-      });
+      };
+      if (this.config.appProxySslCa) {
+        let ca =
+          this.config.appProxySslCa[0] === "/"
+            ? this.config.appProxySslCa
+            : path.join(__dirname, "..", "..", this.config.appProxySslCa);
+        options.ca = fs.readFileSync(ca);
+      }
+      params.unshift(options);
     }
     this.outerServer = http.createServer(...params);
 
