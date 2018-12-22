@@ -3,6 +3,7 @@
 "use strict";
 
 const http = require("http");
+const https = require("https");
 const path = require("path");
 const fs = require("fs-extra");
 const App = require("../api/app");
@@ -12,7 +13,7 @@ process.chdir(root());
 
 let app = new App();
 
-let params = [app.express];
+let server = http.createServer(...params);
 if (app.config.appSslKey && app.config.appSslCert) {
   let key =
     app.config.appSslKey[0] === "/"
@@ -33,9 +34,10 @@ if (app.config.appSslKey && app.config.appSslCert) {
         : path.join(__dirname, "..", app.config.appSslCa);
     options.ca = fs.readFileSync(ca);
   }
-  params.unshift(options);
+  server = https.createServer(options, app.express);
+} else {
+  server = http.createServer(app.express);
 }
-let server = http.createServer(...params);
 
 app
   .init({ server })
