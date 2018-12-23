@@ -281,18 +281,23 @@ class Proxy extends EventEmitter {
             body = body.toString();
             body = _.replace(
               body,
-              /\s+href\s*=\s*(["'])(https?:\/\/[^"']+)(["'])/gi,
+              /\s+href=(['"])(https?:\/\/.+?)\1/gi,
               (match, p1, p2, p3) => ` href=${p1}${this.getTarget(p2)}${p3}`
             );
             body = _.replace(
               body,
-              /\s+src\s*=\s*(["'])(https?:\/\/[^"']+)(["'])/gi,
+              /\s+src=(["'])(https?:\/\/.+?)\1/gi,
               (match, p1, p2, p3) => ` src=${p1}${this.getTarget(p2)}${p3}`
             );
             body = _.replace(
               body,
-              /\s+action\s*=\s*(["'])(https?:\/\/[^"']+)(["'])/gi,
+              /\s+action=(["'])(https?:\/\/.+?)\1/gi,
               (match, p1, p2, p3) => ` action=${p1}${this.getTarget(p2)}${p3}`
+            );
+            body = _.replace(
+              body,
+              /\s+target=(["'])(_parent|_top)\1/gi,
+              " target=$1_self$1"
             );
           }
           if (
