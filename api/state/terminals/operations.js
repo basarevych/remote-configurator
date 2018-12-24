@@ -55,14 +55,12 @@ const create = ({ deviceId, userId }) => {
     );
 
     try {
-      await client.start();
+      if (await client.start()) return { id: terminalId, name };
     } catch (error) {
       console.error(error);
       remove({ terminalId });
-      return {};
     }
-
-    return { id: terminalId, name };
+    return {};
   };
 };
 
