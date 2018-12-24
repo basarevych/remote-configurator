@@ -87,7 +87,7 @@
   "TERMINAL_NOT_CONNECTED_LABEL": "Not connected",
   "APP_AUTH_TITLE": "Authentication",
   "APP_AUTH_SELF_REGISTRATION_TITLE": "Self-registration enabled",
-  "APP_AUTH_SELF_REGISTRATION_MESSAGE": "If you are a new user, you can invent any unused login and the password to sign in",
+  "APP_AUTH_SELF_REGISTRATION_MESSAGE": "If you are a new user, you can use any free login and the password you want to sign in",
   "APP_AUTH_LOGIN_LABEL": "Login",
   "APP_AUTH_PASSWORD_LABEL": "Password",
   "APP_AUTH_SUBMIT": "Sign In",

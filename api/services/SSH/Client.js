@@ -147,7 +147,7 @@ class Client extends EventEmitter {
   }
 
   onReady() {
-    this.client.on("request", this.onRequest.bind(this));
+    if (this.client) this.client.on("request", this.onRequest.bind(this));
   }
 
   async onRequest(accept, reject, name, info) {
