@@ -8,7 +8,6 @@ const path = require("path");
 const url = require("url");
 const express = require("express");
 const compression = require("compression");
-const favicon = require("serve-favicon");
 const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
@@ -217,9 +216,6 @@ class App {
     if (process.env.NODE_ENV === "production")
       this.express.use(await cors(this));
     this.express.use(compression());
-    this.express.use(
-      favicon(path.join(__dirname, "..", "static", "favicon.ico"))
-    );
 
     // Logger
     if (process.env.NODE_ENV !== "test") this.express.use(logger("dev"));
@@ -232,6 +228,13 @@ class App {
     this.express.use(
       "/static",
       express.static(path.join(__dirname, "..", "static"), { maxAge: "10d" })
+    );
+    this.express.use(
+      "/favicon.ico",
+      express.static(
+        path.join(__dirname, "..", "static", "img", "favicon.ico"),
+        { maxAge: "10d" }
+      )
     );
 
     // Parse request
