@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 187);
+/******/ 	return __webpack_require__(__webpack_require__.s = 167);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -227,12 +227,7 @@ module.exports = require("react");
 module.exports = require("prop-types");
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-intl");
-
-/***/ }),
+/* 8 */,
 /* 9 */
 /***/ (function(module, exports) {
 
@@ -839,6 +834,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 Map({
   created: Number, // timestamp
   appOrigin: String,
+  proxyOrigin: String,
   sshHost: String,
   sshPort: Number,
   selfRegistration: Boolean,
@@ -863,12 +859,25 @@ var createdReducer = function createdReducer() {
 };
 
 var appOriginReducer = function appOriginReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "localhost";
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "http://localhost";
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
     case types.CREATE:
       if (!_.isUndefined(action.appOrigin)) return action.appOrigin;
+      break;
+  }
+
+  return state;
+};
+
+var proxyOriginReducer = function proxyOriginReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "http://localhost";
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case types.CREATE:
+      if (!_.isUndefined(action.proxyOrigin)) return action.proxyOrigin;
       break;
   }
 
@@ -984,6 +993,7 @@ var isConnectedReducer = function isConnectedReducer() {
 var reducer = (0, _reduxImmutable.combineReducers)({
   created: createdReducer,
   appOrigin: appOriginReducer,
+  proxyOrigin: proxyOriginReducer,
   sshHost: sshHostReducer,
   sshPort: sshPortReducer,
   selfRegistration: selfRegistrationReducer,
@@ -1001,7 +1011,7 @@ exports.default = _default;
 /* 30 */
 /***/ (function(module) {
 
-module.exports = {"MENU_DEVICES":"Device List","TITLE_DEVICES":"Remote Configurator","MENU_DEVICE":"Device","TITLE_DEVICE":"Device","MENU_USERS":"Users","TITLE_USERS":"Users","SIDEBAR_SIGN_OUT_LINK":"Sign Out","DEVICES_PAGE_WORKFLOW_TITLE":"Workflow","DEVICES_PAGE_WORKFLOW_HTML":["<ul>","<li>Create a device with a name and a password. You will be provided then with a shell command you need"," to copy-paste to the terminal of your device. Enter the same password you used to create the device and"," it will appear in the list below after connecting to this server</li>","<li>Press \"SIGN IN\" button to sign in into your device. You don't need to use root's credentials if you are"," not going to perform superuser-only operations","<li>When signed in you can then open an in-browser terminal session to this device under the credentials you used"," or create a private HTTP proxy for any port on your device</li>","</ul>"],"DEVICES_PAGE_SECURITY_TITLE":"Security Considerations","DEVICES_PAGE_SECURITY_HTML":["<p>Credentials you use to sign in into your device are readable to this server. Although these credentials are never"," stored to the disk and only live in the server's memory while the session exists, a compromised server might have a"," different idea what to do with your information.</p>","<p>A good idea would be to set up your own server (preferably after inspecting the source code) so you provide the"," credentials only to the server you trust</p>"],"DEVICES_NAME_COLUMN":"Name","DEVICES_ADDRESS_COLUMN":"Address","DEVICES_CREATE_BUTTON":"Create Device","DEVICES_EDIT_BUTTON":"Edit Device","DEVICES_DELETE_BUTTON":"Delete Devices","DEVICES_CONNECT_BUTTON":"Sign In","DEVICES_OFFLINE_LABEL":"Offline","DEVICES_OPEN_TERMINAL_TIP":"Open terminal","DEVICES_OPEN_BROWSER_TIP":"Open browser","DEVICES_DISCONNECT_TIP":"Disconnect","EDIT_DEVICE_TITLE_CREATE":"Create Device","EDIT_DEVICE_TITLE_EDIT":"Edit Device","EDIT_DEVICE_NAME_LABEL":"Name","EDIT_DEVICE_PASSWORD_LABEL":"Password","EDIT_DEVICE_FAILED":"Form submission failed","EDIT_DEVICE_SUBMIT":"Submit","EDIT_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_TITLE":"Delete Devices","DELETE_DEVICE_TEXT":"Delete selected devices?","DELETE_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_SUBMIT":"Delete","PROXY_TPL_TITLE":"<h1>Proxy Reporting</h1>","PROXY_TPL_MESSAGE":"<h3>Could not fetch the page</h3>","PROXY_TPL_403":"<p>Access denied</p>","PROXY_TPL_404":"<p>Try to reopen this page from the Device List</p>","PROXY_TPL_502":"<p>Looks like nobody is listening on this port</p>","PROXY_MODAL_TITLE":"HTTP Proxy","PROXY_HOST_LABEL":"Which host to connect to?","PROXY_PORT_LABEL":"Which port to proxy?","PROXY_AUTH_LABEL":"Remote service needs HTTP BASIC AUTH","PROXY_LOGIN_LABEL":"Login","PROXY_PASSWORD_LABEL":"Password","PROXY_MODAL_CANCEL":"Cancel","PROXY_MODAL_SUBMIT":"Submit","USERS_LOGIN_COLUMN":"Login","USERS_ROLES_COLUMN":"Roles","USERS_CREATE_BUTTON":"Create User","USERS_EDIT_BUTTON":"Edit User","USERS_DELETE_BUTTON":"Delete Users","EDIT_USER_TITLE_CREATE":"Create User","EDIT_USER_TITLE_EDIT":"Edit User","EDIT_USER_LOGIN_LABEL":"Login","EDIT_USER_PASSWORD_LABEL":"Password","EDIT_USER_ADMIN_LABEL":"Administrator","EDIT_USER_CANCEL":"Cancel","EDIT_USER_SUBMIT":"Submit","EDIT_USER_FAILED":"An error occured","DELETE_USER_TITLE":"Delete Users","DELETE_USER_TEXT":"Delete selected users?","DELETE_USER_CANCEL":"Cancel","DELETE_USER_SUBMIT":"Delete","TERMINAL_CONNECTING_LABEL":"Connecting...","TERMINAL_NOT_CONNECTED_LABEL":"Not connected","APP_AUTH_TITLE":"Authentication","APP_AUTH_SELF_REGISTRATION_TITLE":"Self-registration enabled","APP_AUTH_SELF_REGISTRATION_MESSAGE":"If you are a new user, you can invent any unused login and the password to sign in","APP_AUTH_LOGIN_LABEL":"Login","APP_AUTH_PASSWORD_LABEL":"Password","APP_AUTH_SUBMIT":"Sign In","APP_AUTH_FAILED":"Invalid credentials","SETUP_AUTH_TITLE":"Authentication","SETUP_AUTH_LOGIN_LABEL":"Login","SETUP_AUTH_PASSWORD_LABEL":"Password","SETUP_AUTH_CANCEL":"Cancel","SETUP_AUTH_SUBMIT":"Submit","KEYBOARD_AUTH_TITLE":"Authentication","KEYBOARD_AUTH_REPLY_LABEL":"Response","KEYBOARD_AUTH_CANCEL":"Cancel","KEYBOARD_AUTH_SUBMIT":"Submit","ERROR_FIELD_REQUIRED":"This field is required","ERROR_INVALID_PASSWORD":"Password length must be at least 6 characters"};
+module.exports = {"MENU_DEVICES":"Device List","TITLE_DEVICES":"Remote Configurator","MENU_DEVICE":"Device","TITLE_DEVICE":"Device","MENU_USERS":"Users","TITLE_USERS":"Users","SIDEBAR_SIGN_OUT_LINK":"Sign Out","DEVICES_PAGE_WORKFLOW_TITLE":"Workflow","DEVICES_PAGE_WORKFLOW_HTML":["<ul>","<li>Create a device with a name and a password. You will be provided then with a shell command you need"," to copy-paste to the terminal of your device. Enter the same password you used to create the device and"," it will appear in the list below after connecting to this server</li>","<li>Press \"SIGN IN\" button to sign in into your device. You don't need to use root's credentials if you are"," not going to perform superuser-only operations","<li>When signed in you can then open an in-browser terminal session to this device under the credentials you used"," or create a private HTTP proxy for any port on your device</li>","</ul>"],"DEVICES_PAGE_SECURITY_TITLE":"Security Considerations","DEVICES_PAGE_SECURITY_HTML":["<ul>","<li>Credentials you use to sign in into your device are readable to this server. Although these credentials are never"," stored to the disk and only live in the server's memory while the session exists, a compromised server might have a"," different idea what to do with your information.</li>","<li>A good idea would be to set up your own server (preferably after inspecting the source code) so you provide the"," credentials only to the server you trust</li>","<li>Some web services protect their users from phishing sites, for which they detect and prevent proxies and &lt;iframe&gt;"," tags from working. You will have to configure an exception for the server in such case. For Webmin, you can achieve"," this by adding to the end of <strong>/etc/webmin/config</strong>: <pre>referers={origin}</pre></li>","</ul>"],"DEVICES_NAME_COLUMN":"Name","DEVICES_ADDRESS_COLUMN":"Address","DEVICES_CREATE_BUTTON":"Create Device","DEVICES_EDIT_BUTTON":"Edit Device","DEVICES_DELETE_BUTTON":"Delete Devices","DEVICES_CONNECT_BUTTON":"Sign In","DEVICES_OFFLINE_LABEL":"Offline","DEVICES_OPEN_TERMINAL_TIP":"Open terminal","DEVICES_OPEN_BROWSER_TIP":"Open browser","DEVICES_DISCONNECT_TIP":"Disconnect","EDIT_DEVICE_TITLE_CREATE":"Create Device","EDIT_DEVICE_TITLE_EDIT":"Edit Device","EDIT_DEVICE_NAME_LABEL":"Name","EDIT_DEVICE_PASSWORD_LABEL":"Password","EDIT_DEVICE_FAILED":"Form submission failed","EDIT_DEVICE_SUBMIT":"Submit","EDIT_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_TITLE":"Delete Devices","DELETE_DEVICE_TEXT":"Delete selected devices?","DELETE_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_SUBMIT":"Delete","PROXY_TPL_TITLE":"<h1>Proxy Reporting</h1>","PROXY_TPL_MESSAGE":"<h3>Could not fetch the page</h3>","PROXY_TPL_403":"<p>Access denied</p>","PROXY_TPL_404":"<p>Try to reopen this page from the Device List</p>","PROXY_TPL_502":"<p>Looks like nobody is listening on this port</p>","PROXY_MODAL_TITLE":"HTTP Proxy","PROXY_HOST_LABEL":"Which host to connect to?","PROXY_PORT_LABEL":"Which port to proxy?","PROXY_AUTH_LABEL":"Remote service needs HTTP BASIC AUTH","PROXY_LOGIN_LABEL":"Login","PROXY_PASSWORD_LABEL":"Password","PROXY_MODAL_CANCEL":"Cancel","PROXY_MODAL_SUBMIT":"Submit","USERS_LOGIN_COLUMN":"Login","USERS_ROLES_COLUMN":"Roles","USERS_CREATE_BUTTON":"Create User","USERS_EDIT_BUTTON":"Edit User","USERS_DELETE_BUTTON":"Delete Users","EDIT_USER_TITLE_CREATE":"Create User","EDIT_USER_TITLE_EDIT":"Edit User","EDIT_USER_LOGIN_LABEL":"Login","EDIT_USER_PASSWORD_LABEL":"Password","EDIT_USER_ADMIN_LABEL":"Administrator","EDIT_USER_CANCEL":"Cancel","EDIT_USER_SUBMIT":"Submit","EDIT_USER_FAILED":"An error occured","DELETE_USER_TITLE":"Delete Users","DELETE_USER_TEXT":"Delete selected users?","DELETE_USER_CANCEL":"Cancel","DELETE_USER_SUBMIT":"Delete","TERMINAL_CONNECTING_LABEL":"Connecting...","TERMINAL_NOT_CONNECTED_LABEL":"Not connected","APP_AUTH_TITLE":"Authentication","APP_AUTH_SELF_REGISTRATION_TITLE":"Self-registration enabled","APP_AUTH_SELF_REGISTRATION_MESSAGE":"If you are a new user, you can invent any unused login and the password to sign in","APP_AUTH_LOGIN_LABEL":"Login","APP_AUTH_PASSWORD_LABEL":"Password","APP_AUTH_SUBMIT":"Sign In","APP_AUTH_FAILED":"Invalid credentials","SETUP_AUTH_TITLE":"Authentication","SETUP_AUTH_LOGIN_LABEL":"Login","SETUP_AUTH_PASSWORD_LABEL":"Password","SETUP_AUTH_CANCEL":"Cancel","SETUP_AUTH_SUBMIT":"Submit","KEYBOARD_AUTH_TITLE":"Authentication","KEYBOARD_AUTH_REPLY_LABEL":"Response","KEYBOARD_AUTH_CANCEL":"Cancel","KEYBOARD_AUTH_SUBMIT":"Submit","ERROR_FIELD_REQUIRED":"This field is required","ERROR_INVALID_PASSWORD":"Password length must be at least 6 characters"};
 
 /***/ }),
 /* 31 */
@@ -1238,6 +1248,7 @@ exports.gqlQuery = gqlQuery;
 var create = function create(_ref3) {
   var status = _ref3.status,
       appOrigin = _ref3.appOrigin,
+      proxyOrigin = _ref3.proxyOrigin,
       sshHost = _ref3.sshHost,
       sshPort = _ref3.sshPort,
       selfRegistration = _ref3.selfRegistration;
@@ -1254,6 +1265,7 @@ var create = function create(_ref3) {
                 _context3.next = 2;
                 return dispatch(actions.create({
                   appOrigin: appOrigin,
+                  proxyOrigin: proxyOrigin,
                   sshHost: sshHost,
                   sshPort: sshPort,
                   selfRegistration: selfRegistration
@@ -4543,7 +4555,7 @@ exports.getTerminalAddress = getTerminalAddress;
 /* 55 */
 /***/ (function(module) {
 
-module.exports = {"name":"remote-configurator","version":"0.1.0","private":true,"dependencies":{"@date-io/moment":"~0.0.2","@material-ui/core":"~3.7.0","@material-ui/icons":"~3.0.1","@zeit/next-bundle-analyzer":"~0.1.2","@zeit/next-css":"~1.0.1","base64util":"~2.0.0-f","bcrypt":"~3.0.2","body-parser":"~1.18.3","chance":"~1.0.18","classnames":"~2.2.6","compression":"~1.7.3","connect-loki":"~1.1.0","cookie-parser":"~1.4.3","cors":"~2.8.5","csurf":"~1.9.0","debug":"~4.1.0","decompress-response":"~3.3.0","dotenv":"~6.2.0","express":"~4.16.4","express-graphql":"~0.7.1","express-session":"~1.15.6","fs-extra":"~7.0.1","generate-rsa-keypair":"~0.1.2","graphql":"14.0.2","graphql-tools":"~4.0.3","http-proxy":"~1.17.0","http-status-codes":"~1.3.0","immutable":"~4.0.0-rc.12","injectt":"~0.1.6","intl":"~1.2.5","intl-locales-supported":"~1.0.0","intl-messageformat":"~2.2.0","isomorphic-unfetch":"~3.0.0","json-immutable":"~0.4.0","jsotp":"~1.0.4","jss":"~9.8.7","jss-extend":"~6.2.0","lodash":"~4.17.11","lokijs":"~1.5.5","lru-cache":"~5.1.1","material-ui-pickers":"~2.0.4","moment":"~2.23.0","moment-timezone":"~0.5.23","morgan":"~1.9.1","next":"~7.0.2","next-compose-plugins":"~2.1.1","next-progressbar":"~1.0.0","query-string":"~6.2.0","raf":"~3.4.1","react":"~16.7.0","react-dom":"~16.7.0","react-intl":"~2.7.2","react-jss":"~8.6.1","react-redux":"~6.0.0","react-swipeable-views":"~0.13.0","react-virtualized":"~9.21.0","redux":"~4.0.1","redux-devtools-extension":"~2.13.7","redux-form":"~8.0.4","redux-immutable":"~4.0.0","redux-thunk":"~2.3.0","reselect":"~4.0.0","serve-favicon":"~2.5.0","serviceworker-webpack-plugin":"~1.0.1","socket.io":"~2.2.0","ssh2":"~0.6.1","svg-inline-loader":"~0.8.0","utf8":"~3.0.0","uuid":"~3.3.2","validator":"~10.9.0","webpack":"4.20.2","xterm":"~3.9.1"},"devDependencies":{"@babel/core":"7.0.0","babel-core":"7.0.0-bridge.0","babel-eslint":"~10.0.1","babel-jest":"~23.6.0","babel-plugin-lodash":"~3.3.4","css-mqpacker":"~7.0.0","enzyme":"~3.8.0","enzyme-adapter-react-16":"~1.7.1","eslint":"~5.10.0","eslint-plugin-lodash":"~5.1.0","eslint-plugin-react":"~7.11.1","jest":"~23.6.0","jsdom":"~13.1.0","jsdom-global":"~3.0.2","postcss-clean":"~1.1.0","postcss-loader":"~3.0.0","postcss-preset-env":"~6.5.0","postcss-url":"~8.0.0","prop-types":"~15.6.2","supertest":"~3.3.0","webfontloader":"~1.6.28"},"scripts":{"lint":"eslint . --max-warnings=0","test":"jest . --no-cache --forceExit","build":"node ./bin/prepare-build && env NODE_ENV=production TMPDIR=$PWD/.tmp next build","export":"env NODE_ENV=production TMPDIR=$PWD/.tmp next export","dev":"node ./bin/prepare-build && env NODE_ENV=development node ./bin/www","start":"env NODE_ENV=production node ./bin/www"}};
+module.exports = {"name":"remote-configurator","version":"0.1.0","private":true,"dependencies":{"@date-io/moment":"~0.0.2","@material-ui/core":"~3.7.0","@material-ui/icons":"~3.0.1","@zeit/next-bundle-analyzer":"~0.1.2","@zeit/next-css":"~1.0.1","base64util":"~2.0.0-f","bcrypt":"~3.0.2","body-parser":"~1.18.3","chance":"~1.0.18","classnames":"~2.2.6","compression":"~1.7.3","connect-loki":"~1.1.0","cookie-parser":"~1.4.3","cors":"~2.8.5","csurf":"~1.9.0","debug":"~4.1.0","decompress-response":"~3.3.0","dotenv":"~6.2.0","express":"~4.16.4","express-graphql":"~0.7.1","express-session":"~1.15.6","fs-extra":"~7.0.1","generate-rsa-keypair":"~0.1.2","graphql":"14.0.2","graphql-tools":"~4.0.3","http-proxy":"~1.17.0","http-status-codes":"~1.3.0","immutable":"~4.0.0-rc.12","injectt":"~0.1.6","intl":"~1.2.5","intl-locales-supported":"~1.0.0","intl-messageformat":"~2.2.0","isomorphic-unfetch":"~3.0.0","json-immutable":"~0.4.0","jsotp":"~1.0.4","jss":"~9.8.7","jss-extend":"~6.2.0","lodash":"~4.17.11","lokijs":"~1.5.5","lru-cache":"~5.1.1","material-ui-pickers":"~2.0.4","moment":"~2.23.0","moment-timezone":"~0.5.23","morgan":"~1.9.1","next":"~7.0.2","next-compose-plugins":"~2.1.1","next-progressbar":"~1.0.0","query-string":"~6.2.0","raf":"~3.4.1","react":"~16.7.0","react-dom":"~16.7.0","react-intl":"~2.7.2","react-jss":"~8.6.1","react-redux":"~6.0.0","react-swipeable-views":"~0.13.0","react-virtualized":"~9.21.0","redux":"~4.0.1","redux-devtools-extension":"~2.13.7","redux-form":"~8.0.4","redux-immutable":"~4.0.0","redux-thunk":"~2.3.0","reselect":"~4.0.0","serve-favicon":"~2.5.0","serviceworker-webpack-plugin":"~1.0.1","socket.io":"~2.2.0","ssh2":"~0.6.1","svg-inline-loader":"~0.8.0","universal-url":"~2.0.0","utf8":"~3.0.0","uuid":"~3.3.2","validator":"~10.9.0","webpack":"4.20.2","xterm":"~3.9.1"},"devDependencies":{"@babel/core":"7.0.0","babel-core":"7.0.0-bridge.0","babel-eslint":"~10.0.1","babel-jest":"~23.6.0","babel-plugin-lodash":"~3.3.4","css-mqpacker":"~7.0.0","enzyme":"~3.8.0","enzyme-adapter-react-16":"~1.7.1","eslint":"~5.10.0","eslint-plugin-lodash":"~5.1.0","eslint-plugin-react":"~7.11.1","jest":"~23.6.0","jsdom":"~13.1.0","jsdom-global":"~3.0.2","postcss-clean":"~1.1.0","postcss-loader":"~3.0.0","postcss-preset-env":"~6.5.0","postcss-url":"~8.0.0","prop-types":"~15.6.2","supertest":"~3.3.0","webfontloader":"~1.6.28"},"scripts":{"lint":"eslint . --max-warnings=0","test":"jest . --no-cache --forceExit","build":"node ./bin/prepare-build && env NODE_ENV=production TMPDIR=$PWD/.tmp next build","export":"env NODE_ENV=production TMPDIR=$PWD/.tmp next export","dev":"node ./bin/prepare-build && env NODE_ENV=development node ./bin/www","start":"env NODE_ENV=production node ./bin/www"}};
 
 /***/ }),
 /* 56 */
@@ -4628,7 +4640,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isConnected = exports.isStarted = exports.getLocale = exports.getStatusCode = exports.getService = exports.getSelfRegistration = exports.getSshPort = exports.getSshHost = exports.getAppOrigin = exports.getCreated = void 0;
+exports.isConnected = exports.isStarted = exports.getLocale = exports.getStatusCode = exports.getService = exports.getSelfRegistration = exports.getSshPort = exports.getSshHost = exports.getProxyOrigin = exports.getAppOrigin = exports.getCreated = void 0;
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -4649,6 +4661,12 @@ var getAppOrigin = function getAppOrigin(state) {
 };
 
 exports.getAppOrigin = getAppOrigin;
+
+var getProxyOrigin = function getProxyOrigin(state) {
+  return state.getIn(["app", "proxyOrigin"]);
+};
+
+exports.getProxyOrigin = getProxyOrigin;
 
 var getSshHost = function getSshHost(state) {
   return state.getIn(["app", "sshHost"]);
@@ -4756,45 +4774,7 @@ module.exports = require("@material-ui/core/IconButton");
 /* 96 */,
 /* 97 */,
 /* 98 */,
-/* 99 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _default = function _default(theme) {
-  return {
-    "&::-webkit-scrollbar": {
-      "-webkitAppearance": "none",
-      width: "".concat(theme.spacing.unit, "px"),
-      height: "".concat(theme.spacing.unit, "px")
-    },
-    "&::-webkit-scrollbar-track": {
-      background: "transparent"
-    },
-    "&::-webkit-scrollbar-thumb": {
-      cursor: "pointer",
-      borderRadius: theme.shape.borderRadius / 2,
-      background: theme.palette.primary.main,
-      transition: "color 0.2s ease"
-    },
-    "&::-webkit-scrollbar-thumb:window-inactive": {
-      background: theme.palette.primary.main
-    },
-    "&::-webkit-scrollbar-thumb:hover": {
-      background: theme.palette.primary.light
-    }
-  };
-};
-
-exports.default = _default;
-
-/***/ }),
+/* 99 */,
 /* 100 */
 /***/ (function(module, exports) {
 
@@ -4814,12 +4794,7 @@ module.exports = require("@material-ui/icons/Close");
 /* 106 */,
 /* 107 */,
 /* 108 */,
-/* 109 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/colors/red");
-
-/***/ }),
+/* 109 */,
 /* 110 */,
 /* 111 */,
 /* 112 */,
@@ -4877,34 +4852,14 @@ module.exports = require("@material-ui/core/colors/red");
 /* 164 */,
 /* 165 */,
 /* 166 */,
-/* 167 */,
-/* 168 */,
-/* 169 */,
-/* 170 */,
-/* 171 */,
-/* 172 */,
-/* 173 */,
-/* 174 */,
-/* 175 */,
-/* 176 */,
-/* 177 */,
-/* 178 */,
-/* 179 */,
-/* 180 */,
-/* 181 */,
-/* 182 */,
-/* 183 */,
-/* 184 */,
-/* 185 */,
-/* 186 */,
-/* 187 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(188);
+module.exports = __webpack_require__(168);
 
 
 /***/ }),
-/* 188 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4916,16 +4871,16 @@ Object.defineProperty(exports, "__esModule", {
 Object.defineProperty(exports, "default", {
   enumerable: true,
   get: function get() {
-    return _TerminalPage.default;
+    return _BrowserPage.default;
   }
 });
 
-var _TerminalPage = _interopRequireDefault(__webpack_require__(189));
+var _BrowserPage = _interopRequireDefault(__webpack_require__(169));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 189 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4944,7 +4899,7 @@ var _auth = __webpack_require__(12);
 
 var _devices = __webpack_require__(11);
 
-var _TerminalPage = _interopRequireDefault(__webpack_require__(190));
+var _BrowserPage = _interopRequireDefault(__webpack_require__(170));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4958,11 +4913,11 @@ var mapStateToProps = function mapStateToProps(state) {
   };
 };
 
-var TerminalPage = (0, _reactRedux.connect)(mapStateToProps, null, null, {
+var BrowserPage = (0, _reactRedux.connect)(mapStateToProps, null, null, {
   pure: false
-})(_TerminalPage.default);
+})(_BrowserPage.default);
 
-TerminalPage.getInitialProps =
+BrowserPage.getInitialProps =
 /*#__PURE__*/
 function () {
   var _ref2 = _asyncToGenerator(
@@ -4981,7 +4936,9 @@ function () {
 
           case 3:
             return _context.abrupt("return", {
-              terminalId: query.terminalId
+              deviceId: query.deviceId,
+              host: query.host,
+              port: parseInt(query.port) || 0
             });
 
           case 4:
@@ -4997,11 +4954,11 @@ function () {
   };
 }();
 
-var _default = TerminalPage;
+var _default = BrowserPage;
 exports.default = _default;
 
 /***/ }),
-/* 190 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5018,7 +4975,7 @@ var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
 var _styles = __webpack_require__(10);
 
-var _Terminal = _interopRequireDefault(__webpack_require__(191));
+var _Browser = _interopRequireDefault(__webpack_require__(171));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5057,41 +5014,43 @@ var styles = function styles(theme) {
   };
 };
 
-var TerminalPage =
+var BrowserPage =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(TerminalPage, _React$Component);
+  _inherits(BrowserPage, _React$Component);
 
-  function TerminalPage() {
-    _classCallCheck(this, TerminalPage);
+  function BrowserPage() {
+    _classCallCheck(this, BrowserPage);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(TerminalPage).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(BrowserPage).apply(this, arguments));
   }
 
-  _createClass(TerminalPage, [{
+  _createClass(BrowserPage, [{
     key: "render",
     value: function render() {
       if (!this.props.isAuthenticated) return null;
       return _react.default.createElement("div", {
         className: this.props.classes.layout
-      }, _react.default.createElement(_Terminal.default, {
-        key: "terminal-".concat(this.props.terminalId),
-        terminalId: this.props.terminalId
+      }, _react.default.createElement(_Browser.default, {
+        key: "browser-".concat(this.props.deviceId, "-").concat(this.props.host, "-").concat(this.props.port),
+        deviceId: this.props.deviceId,
+        host: this.props.host,
+        port: this.props.port
       }));
     }
   }]);
 
-  return TerminalPage;
+  return BrowserPage;
 }(_react.default.Component);
 
 var _default = (0, _styles.withStyles)(styles, {
   withTheme: true
-})(TerminalPage);
+})(BrowserPage);
 
 exports.default = _default;
 
 /***/ }),
-/* 191 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5104,58 +5063,30 @@ exports.default = void 0;
 
 var _reactRedux = __webpack_require__(19);
 
-var _immutable = __webpack_require__(2);
-
 var _router = __webpack_require__(9);
 
-var _Terminal = _interopRequireDefault(__webpack_require__(192));
+var _Browser = _interopRequireDefault(__webpack_require__(172));
 
-var _terminals = __webpack_require__(20);
+var _app = __webpack_require__(4);
 
-var _histories = __webpack_require__(21);
+var _devices = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, props) {
   return {
-    isConnected: _terminals.terminalsSelectors.hasTerminal(state, props),
-    name: _terminals.terminalsSelectors.getTerminalName(state, props),
-    address: _terminals.terminalsSelectors.getTerminalAddress(state, props),
-    history: _histories.historiesSelectors.getList(state, props) || (0, _immutable.List)([])
+    appOrigin: _app.appSelectors.getAppOrigin(state),
+    name: _devices.devicesSelectors.getName(state, props),
+    address: _devices.devicesSelectors.getAddress(state, props)
   };
 };
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch, props) {
-  return {
-    onInput: function onInput(data) {
-      return dispatch(_terminals.terminalsOperations.sendInput({
-        terminalId: props.terminalId,
-        data: data
-      }));
-    },
-    onResize: function onResize(cols, rows, width, height) {
-      return dispatch(_terminals.terminalsOperations.sendResize({
-        terminalId: props.terminalId,
-        cols: cols,
-        rows: rows,
-        width: width,
-        height: height
-      }));
-    },
-    onClose: function onClose() {
-      return dispatch(_terminals.terminalsOperations.kill({
-        terminalId: props.terminalId
-      }));
-    }
-  };
-};
-
-var Terminal = (0, _router.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Terminal.default));
-var _default = Terminal;
+var Browser = (0, _router.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(_Browser.default));
+var _default = Browser;
 exports.default = _default;
 
 /***/ }),
-/* 192 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5172,39 +5103,19 @@ var _router = _interopRequireDefault(__webpack_require__(9));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
-var _immutable = __webpack_require__(2);
-
 var _reactVirtualized = __webpack_require__(100);
-
-var _reactIntl = __webpack_require__(8);
 
 var _styles = __webpack_require__(10);
 
 var _IconButton = _interopRequireDefault(__webpack_require__(92));
+
+var _Refresh = _interopRequireDefault(__webpack_require__(173));
 
 var _Close = _interopRequireDefault(__webpack_require__(101));
 
 var _Paper = _interopRequireDefault(__webpack_require__(73));
 
 var _Typography = _interopRequireDefault(__webpack_require__(71));
-
-var _XTerm = _interopRequireDefault(__webpack_require__(193));
-
-var _grey = _interopRequireDefault(__webpack_require__(198));
-
-var _blue = _interopRequireDefault(__webpack_require__(199));
-
-var _cyan = _interopRequireDefault(__webpack_require__(200));
-
-var _green = _interopRequireDefault(__webpack_require__(201));
-
-var _pink = _interopRequireDefault(__webpack_require__(202));
-
-var _red = _interopRequireDefault(__webpack_require__(109));
-
-var _yellow = _interopRequireDefault(__webpack_require__(203));
-
-var _styledScroll = _interopRequireDefault(__webpack_require__(99));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5226,7 +5137,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-var styles = function styles(theme) {
+var styles = function styles() {
   return {
     container: {
       flex: 1,
@@ -5236,7 +5147,6 @@ var styles = function styles(theme) {
       background: "#2a2c38"
     },
     header: {
-      marginLeft: "1rem",
       display: "flex",
       flexDirection: "row",
       alignItems: "center"
@@ -5244,477 +5154,101 @@ var styles = function styles(theme) {
     headerText: {
       flex: 1
     },
-    placeholder: {
-      flex: 1,
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center"
-    },
-    terminal: {
-      flex: 1,
-      padding: "1rem",
-      borderRadius: theme.shape.borderRadius,
-      "& .xterm .xterm-viewport": (0, _styledScroll.default)(theme)
+    browser: {
+      flex: 1
     }
   };
 };
 
-var Terminal =
+var Browser =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(Terminal, _React$Component);
+  _inherits(Browser, _React$Component);
 
-  function Terminal(props) {
+  function Browser(props) {
     var _this;
 
-    _classCallCheck(this, Terminal);
+    _classCallCheck(this, Browser);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Terminal).call(this, props));
-    _this.lastRecordId = null;
-    _this.xterm = _react.default.createRef();
-    _this.container = _react.default.createRef();
-    _this.handleKey = _this.handleKey.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handlePaste = _this.handlePaste.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleResize = _this.handleResize.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Browser).call(this, props));
+    _this.state = {
+      key: Date.now()
+    };
     _this.handleClose = _this.handleClose.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleRefresh = _this.handleRefresh.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
-  _createClass(Terminal, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.updateHistory();
+  _createClass(Browser, [{
+    key: "getIframeId",
+    value: function getIframeId() {
+      return "frame-".concat(this.props.deviceId, "-").concat(this.props.host, "-").concat(this.props.port);
     }
   }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      this.updateHistory();
-    }
-  }, {
-    key: "handleKey",
-    value: function handleKey(data) {
-      if (this.props.isConnected) this.props.onInput(data);
-    }
-  }, {
-    key: "handlePaste",
-    value: function handlePaste(data) {
-      if (this.props.isConnected) this.props.onInput(data);
-    }
-  }, {
-    key: "handleResize",
-    value: function handleResize(cols, rows, width, height) {
-      if (this.props.isConnected && cols && rows) this.props.onResize(cols, rows, width, height);
+    key: "handleRefresh",
+    value: function handleRefresh() {
+      this.setState({
+        key: Date.now()
+      });
     }
   }, {
     key: "handleClose",
     value: function handleClose() {
-      this.props.onClose();
-
       _router.default.push("/");
-    }
-  }, {
-    key: "updateHistory",
-    value: function updateHistory() {
-      var _this2 = this;
-
-      if (this.xterm.current && this.props.history.size) {
-        var term = this.xterm.current.getTerminal();
-        var newData = [];
-        var found = false; // eslint-disable-next-line lodash/prefer-lodash-method
-
-        this.props.history.forEach(function (item) {
-          if (found) newData.push(item.get("data"));else if (item.get("recordId") === _this2.lastRecordId) found = true;
-        });
-
-        if (!found) {
-          // eslint-disable-next-line lodash/prefer-lodash-method
-          newData = this.props.history.map(function (item) {
-            return item.get("data");
-          }).toJS();
-        }
-
-        if (newData.length) {
-          term.write(newData.join(""));
-          this.lastRecordId = this.props.history.last().get("recordId");
-        }
-      }
-    }
-  }, {
-    key: "renderPlaceholder",
-    value: function renderPlaceholder() {
-      return _react.default.createElement("div", {
-        className: this.props.classes.placeholder
-      }, _react.default.createElement(_Typography.default, {
-        variant: "h5",
-        color: "inherit"
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "TERMINAL_NOT_CONNECTED_LABEL"
-      })));
-    }
-  }, {
-    key: "renderTerminal",
-    value: function renderTerminal() {
-      var _this3 = this;
-
-      return _react.default.createElement("div", {
-        className: this.props.classes.terminal
-      }, _react.default.createElement(_reactVirtualized.AutoSizer, null, function (_ref) {
-        var width = _ref.width,
-            height = _ref.height;
-        return _react.default.createElement(_XTerm.default, {
-          ref: _this3.xterm,
-          width: width,
-          height: height,
-          onKey: _this3.handleKey,
-          onPaste: _this3.handlePaste,
-          onResize: _this3.handleResize,
-          options: {
-            fontFamily: '"Roboto Mono", monospace',
-            fontSize: 14,
-            allowTransparency: true,
-            theme: {
-              background: "#2a2c38",
-              foreground: _grey.default[100],
-              cursor: _grey.default[50],
-              cursorAccent: _grey.default[200],
-              //selection: theme._lightBlue50,
-              black: "#2a2c38",
-              blue: _blue.default[500],
-              cyan: _cyan.default[500],
-              green: _green.default[500],
-              magenta: _pink.default[500],
-              red: _red.default[500],
-              yellow: _yellow.default[500],
-              white: _grey.default[100],
-              brightBlack: _grey.default[700],
-              brightBlue: _blue.default[200],
-              brightCyan: _cyan.default[200],
-              brightGreen: _green.default[200],
-              brightMagenta: _pink.default[200],
-              brightRed: _red.default[200],
-              brightYellow: _yellow.default[200],
-              brightWhite: _grey.default[50]
-            }
-          }
-        });
-      }));
     }
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return _react.default.createElement(_Paper.default, {
         className: this.props.classes.container
       }, _react.default.createElement("div", {
         className: this.props.classes.header
-      }, _react.default.createElement(_Typography.default, {
+      }, _react.default.createElement(_IconButton.default, {
+        color: "inherit",
+        onClick: this.handleRefresh
+      }, _react.default.createElement(_Refresh.default, null)), _react.default.createElement(_Typography.default, {
         variant: "h5",
         className: this.props.classes.headerText
-      }, this.props.name, "\xA0", !!this.props.address && "(" + this.props.address + ")"), _react.default.createElement(_IconButton.default, {
+      }, this.props.host, ":", this.props.port, "\xA0-\xA0", this.props.name, "\xA0", !!this.props.address && "(" + this.props.address + ")"), _react.default.createElement(_IconButton.default, {
         color: "inherit",
         onClick: this.handleClose
-      }, _react.default.createElement(_Close.default, null))), this.props.isConnected ? this.renderTerminal() : this.renderPlaceholder());
+      }, _react.default.createElement(_Close.default, null))), _react.default.createElement("div", {
+        className: this.props.classes.browser
+      }, _react.default.createElement(_reactVirtualized.AutoSizer, null, function (_ref) {
+        var width = _ref.width,
+            height = _ref.height;
+        return _react.default.createElement("iframe", {
+          key: "frame-".concat(_this2.state.key),
+          id: _this2.getIframeId(),
+          width: width,
+          height: height,
+          sandbox: "allow-forms allow-modals allow-popups allow-scripts allow-same-origin",
+          style: {
+            background: "#ffffff",
+            border: "none"
+          },
+          src: "".concat(_this2.props.appOrigin, "/api/browser/").concat(_this2.props.deviceId, "/").concat(_this2.props.host, "/").concat(_this2.props.port)
+        });
+      })));
     }
   }]);
 
-  return Terminal;
+  return Browser;
 }(_react.default.Component);
 
 var _default = (0, _styles.withStyles)(styles, {
   withTheme: true
-})(Terminal);
+})(Browser);
 
 exports.default = _default;
 
 /***/ }),
-/* 193 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var React = _interopRequireWildcard(__webpack_require__(6));
-
-var _propTypes = _interopRequireDefault(__webpack_require__(7));
-
-var _xterm = __webpack_require__(194);
-
-var fit = _interopRequireWildcard(__webpack_require__(195));
-
-var fullscreen = _interopRequireWildcard(__webpack_require__(196));
-
-var search = _interopRequireWildcard(__webpack_require__(197));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var XTerm =
-/*#__PURE__*/
-function (_React$PureComponent) {
-  _inherits(XTerm, _React$PureComponent);
-
-  function XTerm(props) {
-    var _this;
-
-    _classCallCheck(this, XTerm);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(XTerm).call(this, props));
-    _this.state = {
-      isFocused: false
-    };
-    _this.refTerm = React.createRef();
-    _this.onResize = _this.onResize.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.onContextMenu = _this.onContextMenu.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    return _this;
-  }
-
-  _createClass(XTerm, [{
-    key: "applyAddon",
-    value: function applyAddon(addon) {
-      _xterm.Terminal.applyAddon(addon);
-    }
-  }, {
-    key: "getTerminal",
-    value: function getTerminal() {
-      return this.xterm;
-    }
-  }, {
-    key: "write",
-    value: function write(data) {
-      this.xterm && this.xterm.write(data);
-    }
-  }, {
-    key: "writeln",
-    value: function writeln(data) {
-      this.xterm && this.xterm.writeln(data);
-    }
-  }, {
-    key: "focus",
-    value: function focus() {
-      this.xterm && this.xterm.focus();
-    }
-  }, {
-    key: "fit",
-    value: function fit() {
-      this.xterm && this.xterm.fit();
-    }
-  }, {
-    key: "resize",
-    value: function resize(cols, rows) {
-      this.xterm && this.xterm.resize(Math.round(cols), Math.round(rows));
-    }
-  }, {
-    key: "setOption",
-    value: function setOption(key, value) {
-      this.xterm && this.xterm.setOption(key, value);
-    }
-  }, {
-    key: "refresh",
-    value: function refresh() {
-      this.xterm && this.xterm.refresh(0, this.xterm.rows - 1);
-    }
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      _xterm.Terminal.applyAddon(fit);
-
-      _xterm.Terminal.applyAddon(fullscreen);
-
-      _xterm.Terminal.applyAddon(search);
-
-      this.xterm = new _xterm.Terminal(this.props.options);
-      this.xterm.open(this.refTerm.current);
-      var origResize = this.xterm.resize;
-
-      this.xterm.resize = function (cols, rows) {
-        if (_this2.props.onResize) {
-          _this2.props.onResize(cols, rows, _this2.refTerm.current ? _this2.refTerm.current.offsetWidth : 640, _this2.refTerm.current ? _this2.refTerm.current.offsetHeight : 480);
-        }
-
-        origResize.call(_this2.xterm, cols, rows);
-      };
-
-      this.xterm.on('focus', this.focusChanged.bind(this, true));
-      this.xterm.on('blur', this.focusChanged.bind(this, false));
-      this.xterm.on('data', this.onData.bind(this));
-      this.xterm.on('key', this.onKey.bind(this));
-      this.xterm.on('paste', this.onPaste.bind(this));
-      if (this.props.onContextMenu) this.xterm.element.addEventListener('contextmenu', this.onContextMenu);
-
-      if (typeof window !== 'undefined') {
-        window.addEventListener('resize', this.onResize);
-        window.addEventListener('orientationchange', this.onResize);
-        setTimeout(function () {
-          return _this2.fit();
-        });
-      }
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      if (this.props.onContextMenu) this.xterm.element.removeEventListener('contextmenu', this.onContextMenu);
-
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('resize', this.onResize);
-        window.removeEventListener('orientationchange', this.onResize);
-      }
-
-      this.xterm.destroy();
-      this.xterm = null;
-    }
-  }, {
-    key: "focusChanged",
-    value: function focusChanged(focused) {
-      this.setState({
-        isFocused: focused
-      });
-    }
-  }, {
-    key: "onData",
-    value: function onData(data) {
-      this.props.onData && this.props.onData(data);
-    }
-  }, {
-    key: "onKey",
-    value: function onKey(key, ev) {
-      this.props.onKey && this.props.onKey({
-        altKey: ev.altKey,
-        ctrlKey: ev.ctrlKey,
-        metaKey: ev.metaKey,
-        keyCode: ev.keyCode,
-        key: key
-      });
-    }
-  }, {
-    key: "onPaste",
-    value: function onPaste(data) {
-      this.props.onPaste && this.props.onPaste(data);
-    }
-  }, {
-    key: "onContextMenu",
-    value: function onContextMenu(e) {
-      this.props.onContextMenu && this.props.onContextMenu(e);
-    }
-  }, {
-    key: "onResize",
-    value: function onResize() {
-      var _this3 = this;
-
-      setTimeout(function () {
-        return _this3.xterm && _this3.xterm.fit();
-      }, 250);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return React.createElement("div", {
-        ref: this.refTerm,
-        className: this.props.className,
-        style: {
-          width: this.props.width || '100%',
-          height: this.props.height || '100%'
-        }
-      });
-    }
-  }]);
-
-  return XTerm;
-}(React.PureComponent);
-
-_defineProperty(XTerm, "defaultProps", {
-  options: {}
-});
-
-var _default = XTerm;
-exports.default = _default;
-
-/***/ }),
-/* 194 */
+/* 173 */
 /***/ (function(module, exports) {
 
-module.exports = require("xterm");
-
-/***/ }),
-/* 195 */
-/***/ (function(module, exports) {
-
-module.exports = require("xterm/dist/addons/fit/fit");
-
-/***/ }),
-/* 196 */
-/***/ (function(module, exports) {
-
-module.exports = require("xterm/dist/addons/fullscreen/fullscreen");
-
-/***/ }),
-/* 197 */
-/***/ (function(module, exports) {
-
-module.exports = require("xterm/dist/addons/search/search");
-
-/***/ }),
-/* 198 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/colors/grey");
-
-/***/ }),
-/* 199 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/colors/blue");
-
-/***/ }),
-/* 200 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/colors/cyan");
-
-/***/ }),
-/* 201 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/colors/green");
-
-/***/ }),
-/* 202 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/colors/pink");
-
-/***/ }),
-/* 203 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/colors/yellow");
+module.exports = require("@material-ui/icons/Refresh");
 
 /***/ })
 /******/ ]);

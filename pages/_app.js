@@ -34,6 +34,7 @@ class MyApp extends App {
         appOperations.create({
           status: req && req.getAuthStatus && (await req.getAuthStatus()),
           appOrigin: query && query.appOrigin,
+          proxyOrigin: query && query.proxyOrigin,
           sshHost: query && query.sshHost,
           sshPort: query && query.sshPort,
           selfRegistration: query && query.selfRegistration

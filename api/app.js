@@ -282,6 +282,7 @@ class App {
         locale: locale || l10n.defaultLocale || null,
         theme: theme || styles.defaultTheme || null,
         appOrigin: this.config.appOrigins[0],
+        proxyOrigin: this.config.appProxyOrigins[0],
         sshHost: this.config.sshOrigins[0],
         sshPort: this.config.sshPort,
         selfRegistration: this.config.selfRegistration

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { intlShape, FormattedMessage } from "react-intl";
+import { URL } from "universal-url";
+import { FormattedMessage, FormattedHTMLMessage } from "react-intl";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -60,10 +61,10 @@ const styles = theme => ({
 
 class DevicesPage extends React.Component {
   static propTypes = {
-    intl: intlShape.isRequired,
     theme: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
-    isAuthenticated: PropTypes.bool.isRequired
+    isAuthenticated: PropTypes.bool.isRequired,
+    proxyOrigin: PropTypes.string.isRequired
   };
 
   render() {
@@ -77,25 +78,16 @@ class DevicesPage extends React.Component {
               <Typography variant="h5">
                 <FormattedMessage id="DEVICES_PAGE_WORKFLOW_TITLE" />
               </Typography>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: this.props.intl.formatMessage({
-                    id: "DEVICES_PAGE_WORKFLOW_HTML"
-                  })
-                }}
-              />
+              <FormattedHTMLMessage id="DEVICES_PAGE_WORKFLOW_HTML" />
             </div>
             <div className={this.props.classes.docSeparator} />
             <div className={this.props.classes.docSecond}>
               <Typography variant="h5">
                 <FormattedMessage id="DEVICES_PAGE_SECURITY_TITLE" />
               </Typography>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: this.props.intl.formatMessage({
-                    id: "DEVICES_PAGE_SECURITY_HTML"
-                  })
-                }}
+              <FormattedHTMLMessage
+                id="DEVICES_PAGE_SECURITY_HTML"
+                values={{ origin: new URL(this.props.proxyOrigin).hostname }}
               />
             </div>
           </div>

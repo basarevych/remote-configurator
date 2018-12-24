@@ -20,11 +20,16 @@
   ],
   "DEVICES_PAGE_SECURITY_TITLE": "Security Considerations",
   "DEVICES_PAGE_SECURITY_HTML": [
-    "<p>Credentials you use to sign in into your device are readable to this server. Although these credentials are never",
+    "<ul>",
+    "<li>Credentials you use to sign in into your device are readable to this server. Although these credentials are never",
     " stored to the disk and only live in the server's memory while the session exists, a compromised server might have a",
-    " different idea what to do with your information.</p>",
-    "<p>A good idea would be to set up your own server (preferably after inspecting the source code) so you provide the",
-    " credentials only to the server you trust</p>"
+    " different idea what to do with your information.</li>",
+    "<li>A good idea would be to set up your own server (preferably after inspecting the source code) so you provide the",
+    " credentials only to the server you trust</li>",
+    "<li>Some web services protect their users from phishing sites, for which they detect and prevent proxies and &lt;iframe&gt;",
+    " tags from working. You will have to configure an exception for the server in such case. For Webmin, you can achieve",
+    " this by adding to the end of <strong>/etc/webmin/config</strong>: <pre>referers={origin}</pre></li>",
+    "</ul>"
   ],
   "DEVICES_NAME_COLUMN": "Name",
   "DEVICES_ADDRESS_COLUMN": "Address",

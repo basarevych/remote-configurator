@@ -6,6 +6,7 @@ import l10n from "../../../common/locales";
 Map({
   created: Number, // timestamp
   appOrigin: String,
+  proxyOrigin: String,
   sshHost: String,
   sshPort: Number,
   selfRegistration: Boolean,
@@ -26,10 +27,19 @@ const createdReducer = (state = Date.now(), action) => {
   return state;
 };
 
-const appOriginReducer = (state = "localhost", action) => {
+const appOriginReducer = (state = "http://localhost", action) => {
   switch (action.type) {
     case types.CREATE:
       if (!_.isUndefined(action.appOrigin)) return action.appOrigin;
+      break;
+  }
+  return state;
+};
+
+const proxyOriginReducer = (state = "http://localhost", action) => {
+  switch (action.type) {
+    case types.CREATE:
+      if (!_.isUndefined(action.proxyOrigin)) return action.proxyOrigin;
       break;
   }
   return state;
@@ -112,6 +122,7 @@ const isConnectedReducer = (state = false, action) => {
 const reducer = combineReducers({
   created: createdReducer,
   appOrigin: appOriginReducer,
+  proxyOrigin: proxyOriginReducer,
   sshHost: sshHostReducer,
   sshPort: sshPortReducer,
   selfRegistration: selfRegistrationReducer,

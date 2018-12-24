@@ -2,6 +2,8 @@ export const getCreated = state => state.getIn(["app", "created"]);
 
 export const getAppOrigin = state => state.getIn(["app", "appOrigin"]);
 
+export const getProxyOrigin = state => state.getIn(["app", "proxyOrigin"]);
+
 export const getSshHost = state => state.getIn(["app", "sshHost"]);
 
 export const getSshPort = state => state.getIn(["app", "sshPort"]);
