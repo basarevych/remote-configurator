@@ -23,13 +23,7 @@ const styles = theme => ({
     body: _.merge(
       {
         fontFamily: theme.typography.fontFamily,
-        background:
-          theme.palette.background.default +
-          (theme.main.wallpaper
-            ? ` url("${
-                theme.main.wallpaper
-              }") top left / 100vw 100vh no-repeat fixed`
-            : ""),
+        background: theme.palette.background.default,
         color: theme.palette.text.primary
       },
       styledScroll(theme)
@@ -61,8 +55,8 @@ const styles = theme => ({
   },
   sidebar: _.merge(
     {
-      border: "none",
       background: theme.sidebar.background,
+      border: "none",
       overflowX: "hidden",
       width: theme.sidebar.computerWidth * theme.spacing.unit,
       [theme.breakpoints.between("sm", "md")]: {
@@ -75,10 +69,11 @@ const styles = theme => ({
     styledScroll(theme)
   ),
   main: {
+    background: theme.main.background,
     minHeight: "100vh",
     display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    alignItems: "stretch",
+    justifyContent: "stretch",
     marginLeft: theme.sidebar.computerWidth * theme.spacing.unit,
     [theme.breakpoints.between("sm", "md")]: {
       marginLeft: theme.sidebar.tabletWidth * theme.spacing.unit
@@ -86,6 +81,14 @@ const styles = theme => ({
     [theme.breakpoints.down("xs")]: {
       marginLeft: 0
     }
+  },
+  content: {
+    boxShadow: "-2px -2px 8px rgba(0, 0, 0, 0.3)",
+    zIndex: 1300,
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
   },
   anonymous: {
     minHeight: "100vh",
@@ -160,9 +163,11 @@ class Layout extends React.Component {
                 <Sidebar onMenuClick={this.handleSidebarClose} />
               </Drawer>
             </Hidden>
-            <main className={this.props.classes.main}>
-              {this.props.children}
-            </main>
+            <div className={this.props.classes.main}>
+              <main className={this.props.classes.content}>
+                {this.props.children}
+              </main>
+            </div>
           </React.Fragment>
         )}
 

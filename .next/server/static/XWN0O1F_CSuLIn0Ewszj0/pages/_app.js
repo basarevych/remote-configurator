@@ -7489,11 +7489,10 @@ var _require2 = __webpack_require__(124),
     red = _require2.red,
     blueGrey = _require2.blueGrey;
 
-var primary = "#4c5066";
-var secondary = "#b33711";
-var paperGradient = "linear-gradient(to right bottom, #3d3f4d, #222326)";
+var primary = "#707484";
+var secondary = "#af441d";
 var bgPage = "#000000";
-var bgNormal = "#3a3c48";
+var bgNormal = "#44485C";
 var textNormal = "rgba(255, 255, 255, 0.87)";
 var textDark = "rgba(255, 255, 255, 0.54)";
 var textDisabled = "rgba(255, 255, 255, 0.38)";
@@ -7515,7 +7514,7 @@ module.exports = {
     },
     background: {
       default: bgPage,
-      paper: lighten(bgNormal, 0.1)
+      paper: bgNormal
     },
     text: {
       primary: textNormal,
@@ -7537,18 +7536,22 @@ module.exports = {
     computerWidth: 30,
     tabletWidth: 20,
     phoneWidth: 20,
-    background: "rgba(0, 0, 0, 0.5)",
-    color: textNormal,
-    backgroundHover: fade(primary, 0.2),
-    colorHover: textContrast,
-    backgroundSelected: fade(primary, 0.3),
-    colorSelected: textContrast,
-    backgroundSelectedHover: fade(primary, 0.35),
-    colorSelectedHover: textContrast
+    background: "linear-gradient(to bottom, #484e5e 0, #161920 80%, #161920 100%)",
+    itemBackground: "transparent",
+    itemBorder: "4px solid transparent",
+    itemColor: textDark,
+    itemHoverBackground: bgNormal,
+    itemHoverColor: textNormal,
+    itemHoverBorder: "4px solid ".concat(darken(secondary, 0.3)),
+    itemSelectedBackground: lighten(bgNormal, 0.1),
+    itemSelectedColor: textContrast,
+    itemSelectedBorder: "4px solid ".concat(secondary),
+    itemSelectedHoverBackground: lighten(bgNormal, 0.15),
+    itemSelectedHoverColor: textContrast,
+    itemSelectedHoverBorder: "4px solid ".concat(lighten(secondary, 0.05))
   },
   main: {
-    wallpaper: "/static/img/bg.jpg",
-    background: paperGradient,
+    background: "linear-gradient(to right, #484e5e 0, #484e5e 15%, #161920 100%)",
     spacing: 24,
     error: {
       background: fade(textError, 0.65),
@@ -7566,8 +7569,7 @@ module.exports = {
   overrides: {
     MuiPaper: {
       root: {
-        background: paperGradient,
-        border: "1px solid ".concat(bgNormal)
+        background: "linear-gradient(to right bottom, ".concat(lighten(bgNormal, 0.2), ", ").concat(lighten(bgNormal, 0.05), ")")
       }
     },
     MuiTableRow: {
@@ -7597,22 +7599,21 @@ module.exports = {
     MuiButton: {
       root: {
         "&:not($containedPrimary):not($containedSecondary)": {
-          background: [bgNormal, "!important"],
+          background: [lighten(bgNormal, 0.2), "!important"],
           color: [textNormal, "!important"]
         },
         "&$disabled": {
-          boxShadow: ["0px 1px 5px 0px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14),0px 3px 1px -2px rgba(0, 0, 0, 0.12)", "!important"],
           "&:not($containedPrimary):not($containedSecondary)": {
-            background: [darken(bgNormal, 0.1), "!important"],
-            color: [textDark, "!important"]
+            background: [lighten(bgNormal, 0.05), "!important"],
+            color: [textDisabled, "!important"]
           },
           "&$containedPrimary": {
-            background: [darken(primary, 0.5), "!important"],
-            color: [darken(textContrast, 0.2), "!important"]
+            background: [darken(primary, 0.15), "!important"],
+            color: [textDisabled, "!important"]
           },
           "&$containedSecondary": {
-            background: [darken(secondary, 0.5), "!important"],
-            color: [darken(textContrast, 0.2), "!important"]
+            background: [darken(secondary, 0.15), "!important"],
+            color: [textDisabled, "!important"]
           }
         }
       }
@@ -7692,7 +7693,7 @@ module.exports = {
     MuiCheckbox: {
       root: {
         "&$checked": {
-          color: [lighten(secondary, 0.1), "!important"]
+          color: [textNormal, "!important"]
         }
       }
     }
@@ -8198,7 +8199,7 @@ var styles = function styles(theme) {
       },
       body: _.merge({
         fontFamily: theme.typography.fontFamily,
-        background: theme.palette.background.default + (theme.main.wallpaper ? " url(\"".concat(theme.main.wallpaper, "\") top left / 100vw 100vh no-repeat fixed") : ""),
+        background: theme.palette.background.default,
         color: theme.palette.text.primary
       }, (0, _styledScroll.default)(theme)),
       pre: {
@@ -8227,8 +8228,8 @@ var styles = function styles(theme) {
       color: theme.palette.primary.contrastText
     },
     sidebar: _.merge((_$merge = {
-      border: "none",
       background: theme.sidebar.background,
+      border: "none",
       overflowX: "hidden",
       width: theme.sidebar.computerWidth * theme.spacing.unit
     }, _defineProperty(_$merge, theme.breakpoints.between("sm", "md"), {
@@ -8237,16 +8238,25 @@ var styles = function styles(theme) {
       width: theme.sidebar.phoneWidth * theme.spacing.unit
     }), _$merge), (0, _styledScroll.default)(theme)),
     main: (_main = {
+      background: theme.main.background,
       minHeight: "100vh",
       display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
+      alignItems: "stretch",
+      justifyContent: "stretch",
       marginLeft: theme.sidebar.computerWidth * theme.spacing.unit
     }, _defineProperty(_main, theme.breakpoints.between("sm", "md"), {
       marginLeft: theme.sidebar.tabletWidth * theme.spacing.unit
     }), _defineProperty(_main, theme.breakpoints.down("xs"), {
       marginLeft: 0
     }), _main),
+    content: {
+      boxShadow: "-2px -2px 8px rgba(0, 0, 0, 0.3)",
+      zIndex: 1300,
+      flex: 1,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center"
+    },
     anonymous: {
       minHeight: "100vh",
       display: "flex",
@@ -8316,9 +8326,11 @@ function (_React$Component) {
         }
       }, _react.default.createElement(_Sidebar.default, {
         onMenuClick: this.handleSidebarClose
-      }))), _react.default.createElement("main", {
+      }))), _react.default.createElement("div", {
         className: this.props.classes.main
-      }, this.props.children)), !this.props.isAuthenticated && _react.default.createElement("main", {
+      }, _react.default.createElement("main", {
+        className: this.props.classes.content
+      }, this.props.children))), !this.props.isAuthenticated && _react.default.createElement("main", {
         className: this.props.classes.anonymous
       }, this.props.children), !this.props.isStarted && !this.props.isError && _react.default.createElement("div", {
         className: this.props.classes.backdrop
@@ -8443,6 +8455,8 @@ var _reactIntl = __webpack_require__(8);
 
 var _styles = __webpack_require__(10);
 
+var _colorManipulator = __webpack_require__(94);
+
 var _MenuList = _interopRequireDefault(__webpack_require__(146));
 
 var _MenuItem = _interopRequireDefault(__webpack_require__(74));
@@ -8496,7 +8510,7 @@ var styles = function styles(theme) {
       display: "block",
       margin: "1rem",
       textAlign: "center",
-      color: theme.sidebar.color,
+      color: theme.palette.text.secondary,
       textDecoration: "none",
       "&:hover": {
         color: theme.palette.secondary.main
@@ -8506,40 +8520,56 @@ var styles = function styles(theme) {
       padding: 0
     },
     logoWrapper: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center"
+      padding: "2rem"
     },
     logo: {
-      width: "60%",
-      margin: "2rem 0"
+      filter: "url(#logoShadow)"
+    },
+    logoShape: {
+      fill: "url(#logoGradient)"
     },
     item: {
-      background: [theme.sidebar.background, "!important"],
-      color: [theme.sidebar.color, "!important"],
+      background: [theme.sidebar.itemBackground, "!important"],
+      color: [theme.sidebar.itemColor, "!important"],
+      borderTop: ["none", "!important"],
+      borderLeft: [theme.sidebar.itemBorder, "!important"],
+      borderRight: ["none", "!important"],
+      borderBottom: ["none", "!important"],
       justifyContent: "center",
       "& svg, & span": {
-        color: [theme.sidebar.color, "!important"]
+        color: [theme.sidebar.itemColor, "!important"]
       },
       "&:hover": {
-        background: [theme.sidebar.backgroundHover, "!important"],
-        color: [theme.sidebar.colorHover, "!important"],
+        background: [theme.sidebar.itemHoverBackground, "!important"],
+        color: [theme.sidebar.itemHoverColor, "!important"],
+        borderTop: ["none", "!important"],
+        borderLeft: [theme.sidebar.itemHoverBorder, "!important"],
+        borderRight: ["none", "!important"],
+        borderBottom: ["none", "!important"],
         "& svg, & span": {
-          color: [theme.sidebar.colorHover, "!important"]
+          color: [theme.sidebar.itemHoverColor, "!important"]
         }
       }
     },
     itemSelected: {
-      background: [theme.sidebar.backgroundSelected, "!important"],
-      color: [theme.sidebar.colorSelected, "!important"],
+      background: [theme.sidebar.itemSelectedBackground, "!important"],
+      color: [theme.sidebar.itemSelectedColor, "!important"],
+      borderTop: ["none", "!important"],
+      borderLeft: [theme.sidebar.itemSelectedBorder, "!important"],
+      borderRight: ["none", "!important"],
+      borderBottom: ["none", "!important"],
       "& svg, & span": {
-        color: [theme.sidebar.colorSelected, "!important"]
+        color: [theme.sidebar.itemSelectedColor, "!important"]
       },
       "&:hover": {
-        background: [theme.sidebar.backgroundSelectedHover, "!important"],
-        color: [theme.sidebar.colorSelectedHover, "!important"],
+        background: [theme.sidebar.itemSelectedHoverBackground, "!important"],
+        color: [theme.sidebar.itemSelectedHoverColor, "!important"],
+        borderTop: ["none", "!important"],
+        borderLeft: [theme.sidebar.itemSelectedHoverBorder, "!important"],
+        borderRight: ["none", "!important"],
+        borderBottom: ["none", "!important"],
         "& svg, & span": {
-          color: [theme.sidebar.colorSelectedHover, "!important"]
+          color: [theme.sidebar.itemSelectedHoverColor, "!important"]
         }
       }
     }
@@ -8568,10 +8598,52 @@ function (_React$Component) {
     value: function renderHeader() {
       return _react.default.createElement("div", {
         className: this.props.classes.logoWrapper
-      }, _react.default.createElement("img", {
-        className: this.props.classes.logo,
-        src: "".concat("", "/static/img/logo.png")
-      }));
+      }, _react.default.createElement("svg", {
+        xmlns: "http://www.w3.org/2000/svg",
+        viewBox: "0 0 24 24",
+        className: this.props.classes.logo
+      }, _react.default.createElement("defs", null, _react.default.createElement("radialGradient", {
+        id: "logoGradient"
+      }, _react.default.createElement("stop", {
+        offset: "0",
+        stopColor: (0, _colorManipulator.lighten)(this.props.theme.palette.secondary.main, 0.3)
+      }), _react.default.createElement("stop", {
+        offset: "15%",
+        stopColor: (0, _colorManipulator.lighten)(this.props.theme.palette.secondary.main, 0.3)
+      }), _react.default.createElement("stop", {
+        offset: "100%",
+        stopColor: this.props.theme.palette.secondary.main
+      })), _react.default.createElement("mask", {
+        id: "logoMask"
+      }, _react.default.createElement("rect", {
+        x: "0",
+        y: "0",
+        width: "24",
+        height: "24",
+        fill: "white"
+      }), _react.default.createElement("path", {
+        d: "M15.95 10.78c.03-.25.05-.51.05-.78s-.02-.53-.06-.78l1.69-1.32c.15-.12.19-.34.1-.51l-1.6-2.77c-.1-.18-.31-.24-.49-.18l-1.99.8c-.42-.32-.86-.58-1.35-.78L12 2.34c-.03-.2-.2-.34-.4-.34H8.4c-.2 0-.36.14-.39.34l-.3 2.12c-.49.2-.94.47-1.35.78l-1.99-.8c-.18-.07-.39 0-.49.18l-1.6 2.77c-.1.18-.06.39.1.51l1.69 1.32c-.04.25-.07.52-.07.78s.02.53.06.78L2.37 12.1c-.15.12-.19.34-.1.51l1.6 2.77c.1.18.31.24.49.18l1.99-.8c.42.32.86.58 1.35.78l.3 2.12c.04.2.2.34.4.34h3.2c.2 0 .37-.14.39-.34l.3-2.12c.49-.2.94-.47 1.35-.78l1.99.8c.18.07.39 0 .49-.18l1.6-2.77c.1-.18.06-.39-.1-.51l-1.67-1.32zM10 13c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z",
+        transform: "translate(2, 1)",
+        fill: "black"
+      })), _react.default.createElement("filter", {
+        id: "logoShadow"
+      }, _react.default.createElement("feGaussianBlur", {
+        in: "SourceAlpha",
+        stdDeviation: "6"
+      }), _react.default.createElement("feOffset", {
+        dx: "4",
+        dy: "4",
+        result: "offsetblur"
+      }), _react.default.createElement("feComponentTransfer", null, _react.default.createElement("feFuncA", {
+        type: "linear",
+        slope: "0.5"
+      })), _react.default.createElement("feMerge", null, _react.default.createElement("feMergeNode", null), _react.default.createElement("feMergeNode", {
+        in: "SourceGraphic"
+      })))), _react.default.createElement("path", {
+        d: "M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7",
+        class: this.props.classes.logoShape,
+        mask: "url(#logoMask)"
+      })));
     }
   }, {
     key: "renderItem",

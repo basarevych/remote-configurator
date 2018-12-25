@@ -6713,7 +6713,7 @@ var styles = function styles(theme) {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      background: (0, _colorManipulator.fade)(theme.palette.primary.main, 0.4),
+      background: (0, _colorManipulator.fade)(theme.palette.primary.main, 0.5),
       "& ul": {
         marginBottom: 0
       },

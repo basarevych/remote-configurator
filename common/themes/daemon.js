@@ -7,12 +7,11 @@ const {
 } = require("@material-ui/core/styles/colorManipulator");
 const { red, blueGrey } = require("@material-ui/core/colors");
 
-const primary = "#4c5066";
-const secondary = "#b33711";
+const primary = "#707484";
+const secondary = "#af441d";
 
-const paperGradient = "linear-gradient(to right bottom, #3d3f4d, #222326)";
 const bgPage = "#000000";
-const bgNormal = "#3a3c48";
+const bgNormal = "#44485C";
 
 const textNormal = "rgba(255, 255, 255, 0.87)";
 const textDark = "rgba(255, 255, 255, 0.54)";
@@ -37,7 +36,7 @@ module.exports = {
     },
     background: {
       default: bgPage,
-      paper: lighten(bgNormal, 0.1)
+      paper: bgNormal
     },
     text: {
       primary: textNormal,
@@ -59,18 +58,24 @@ module.exports = {
     computerWidth: 30,
     tabletWidth: 20,
     phoneWidth: 20,
-    background: "rgba(0, 0, 0, 0.5)",
-    color: textNormal,
-    backgroundHover: fade(primary, 0.2),
-    colorHover: textContrast,
-    backgroundSelected: fade(primary, 0.3),
-    colorSelected: textContrast,
-    backgroundSelectedHover: fade(primary, 0.35),
-    colorSelectedHover: textContrast
+    background:
+      "linear-gradient(to bottom, #484e5e 0, #161920 80%, #161920 100%)",
+    itemBackground: "transparent",
+    itemBorder: `4px solid transparent`,
+    itemColor: textDark,
+    itemHoverBackground: bgNormal,
+    itemHoverColor: textNormal,
+    itemHoverBorder: `4px solid ${darken(secondary, 0.3)}`,
+    itemSelectedBackground: lighten(bgNormal, 0.1),
+    itemSelectedColor: textContrast,
+    itemSelectedBorder: `4px solid ${secondary}`,
+    itemSelectedHoverBackground: lighten(bgNormal, 0.15),
+    itemSelectedHoverColor: textContrast,
+    itemSelectedHoverBorder: `4px solid ${lighten(secondary, 0.05)}`
   },
   main: {
-    wallpaper: "/static/img/bg.jpg",
-    background: paperGradient,
+    background:
+      "linear-gradient(to right, #484e5e 0, #484e5e 15%, #161920 100%)",
     spacing: 24,
     error: {
       background: fade(textError, 0.65),
@@ -88,8 +93,10 @@ module.exports = {
   overrides: {
     MuiPaper: {
       root: {
-        background: paperGradient,
-        border: `1px solid ${bgNormal}`
+        background: `linear-gradient(to right bottom, ${lighten(
+          bgNormal,
+          0.2
+        )}, ${lighten(bgNormal, 0.05)})`
       }
     },
     MuiTableRow: {
@@ -119,25 +126,21 @@ module.exports = {
     MuiButton: {
       root: {
         "&:not($containedPrimary):not($containedSecondary)": {
-          background: [bgNormal, "!important"],
+          background: [lighten(bgNormal, 0.2), "!important"],
           color: [textNormal, "!important"]
         },
         "&$disabled": {
-          boxShadow: [
-            "0px 1px 5px 0px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14),0px 3px 1px -2px rgba(0, 0, 0, 0.12)",
-            "!important"
-          ],
           "&:not($containedPrimary):not($containedSecondary)": {
-            background: [darken(bgNormal, 0.1), "!important"],
-            color: [textDark, "!important"]
+            background: [lighten(bgNormal, 0.05), "!important"],
+            color: [textDisabled, "!important"]
           },
           "&$containedPrimary": {
-            background: [darken(primary, 0.5), "!important"],
-            color: [darken(textContrast, 0.2), "!important"]
+            background: [darken(primary, 0.15), "!important"],
+            color: [textDisabled, "!important"]
           },
           "&$containedSecondary": {
-            background: [darken(secondary, 0.5), "!important"],
-            color: [darken(textContrast, 0.2), "!important"]
+            background: [darken(secondary, 0.15), "!important"],
+            color: [textDisabled, "!important"]
           }
         }
       }
@@ -217,7 +220,7 @@ module.exports = {
     MuiCheckbox: {
       root: {
         "&$checked": {
-          color: [lighten(secondary, 0.1), "!important"]
+          color: [textNormal, "!important"]
         }
       }
     }

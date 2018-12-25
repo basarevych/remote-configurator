@@ -16,7 +16,7 @@ const styles = theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    background: fade(theme.palette.primary.main, 0.4),
+    background: fade(theme.palette.primary.main, 0.5),
     "& ul": {
       marginBottom: 0
     },
