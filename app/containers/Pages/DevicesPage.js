@@ -5,7 +5,6 @@ import { devicesOperations } from "../../state/devices";
 import DevicesPageComponent from "../../components/Pages/DevicesPage";
 
 const mapStateToProps = state => {
-  const storage = appSelectors.getService(state, { service: "storage" });
   return {
     isAuthenticated: authSelectors.isAuthenticated(state),
     storage: appSelectors.getService(state, { service: "storage" }),
