@@ -91,6 +91,7 @@ const styles = theme => ({
     alignItems: "center"
   },
   anonymous: {
+    background: theme.palette.background.paper,
     minHeight: "100vh",
     display: "flex",
     flexDirection: "column",

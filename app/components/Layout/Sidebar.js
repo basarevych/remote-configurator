@@ -150,8 +150,8 @@ class Sidebar extends React.Component {
               />
             </mask>
             <filter id="logoShadow">
-              <feGaussianBlur in="SourceAlpha" stdDeviation="6" />
-              <feOffset dx="4" dy="4" result="offsetblur" />
+              <feGaussianBlur in="SourceAlpha" stdDeviation="8" />
+              <feOffset dx="-2" dy="-2" result="offsetblur" />
               <feComponentTransfer>
                 <feFuncA type="linear" slope="0.5" />
               </feComponentTransfer>
@@ -163,7 +163,7 @@ class Sidebar extends React.Component {
           </defs>
           <path
             d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7"
-            class={this.props.classes.logoShape}
+            className={this.props.classes.logoShape}
             mask="url(#logoMask)"
           />
         </svg>

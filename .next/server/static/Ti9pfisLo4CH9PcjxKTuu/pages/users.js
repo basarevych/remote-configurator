@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 167);
+/******/ 	return __webpack_require__(__webpack_require__.s = 206);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -227,7 +227,12 @@ module.exports = require("react");
 module.exports = require("prop-types");
 
 /***/ }),
-/* 8 */,
+/* 8 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-intl");
+
+/***/ }),
 /* 9 */
 /***/ (function(module, exports) {
 
@@ -420,7 +425,12 @@ var REMOVE_STARTING = "app/histories/REMOVE_STARTING";
 exports.REMOVE_STARTING = REMOVE_STARTING;
 
 /***/ }),
-/* 18 */,
+/* 18 */
+/***/ (function(module, exports) {
+
+module.exports = require("redux-form/immutable");
+
+/***/ }),
 /* 19 */
 /***/ (function(module, exports) {
 
@@ -808,7 +818,12 @@ var moment = __webpack_require__(36); // Add locales:
 module.exports = moment;
 
 /***/ }),
-/* 28 */,
+/* 28 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/Button");
+
+/***/ }),
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4555,7 +4570,7 @@ exports.getTerminalAddress = getTerminalAddress;
 /* 55 */
 /***/ (function(module) {
 
-module.exports = {"name":"remote-configurator","version":"0.1.0","private":true,"dependencies":{"@date-io/moment":"~0.0.2","@material-ui/core":"~3.7.0","@material-ui/icons":"~3.0.1","@zeit/next-bundle-analyzer":"~0.1.2","@zeit/next-css":"~1.0.1","base64util":"~2.0.0-f","bcrypt":"~3.0.2","body-parser":"~1.18.3","chance":"~1.0.18","classnames":"~2.2.6","compression":"~1.7.3","connect-loki":"~1.1.0","cookie-parser":"~1.4.3","cors":"~2.8.5","csurf":"~1.9.0","debug":"~4.1.0","decompress-response":"~3.3.0","dotenv":"~6.2.0","express":"~4.16.4","express-graphql":"~0.7.1","express-session":"~1.15.6","fs-extra":"~7.0.1","generate-rsa-keypair":"~0.1.2","graphql":"14.0.2","graphql-tools":"~4.0.3","http-proxy":"~1.17.0","http-status-codes":"~1.3.0","immutable":"~4.0.0-rc.12","injectt":"~0.1.6","intl":"~1.2.5","intl-locales-supported":"~1.0.0","intl-messageformat":"~2.2.0","isomorphic-unfetch":"~3.0.0","json-immutable":"~0.4.0","jsotp":"~1.0.4","jss":"~9.8.7","jss-extend":"~6.2.0","lodash":"~4.17.11","lokijs":"~1.5.5","lru-cache":"~5.1.1","material-ui-pickers":"~2.0.4","moment":"~2.23.0","moment-timezone":"~0.5.23","morgan":"~1.9.1","next":"~7.0.2","next-compose-plugins":"~2.1.1","next-progressbar":"~1.0.0","query-string":"~6.2.0","raf":"~3.4.1","react":"~16.7.0","react-dom":"~16.7.0","react-intl":"~2.7.2","react-jss":"~8.6.1","react-redux":"~6.0.0","react-swipeable-views":"~0.13.0","react-virtualized":"~9.21.0","redux":"~4.0.1","redux-devtools-extension":"~2.13.7","redux-form":"~8.0.4","redux-immutable":"~4.0.0","redux-thunk":"~2.3.0","reselect":"~4.0.0","serviceworker-webpack-plugin":"~1.0.1","socket.io":"~2.2.0","ssh2":"~0.6.1","svg-inline-loader":"~0.8.0","universal-url":"~2.0.0","utf8":"~3.0.0","uuid":"~3.3.2","validator":"~10.9.0","webpack":"4.20.2","xterm":"~3.9.1"},"devDependencies":{"@babel/core":"7.0.0","babel-core":"7.0.0-bridge.0","babel-eslint":"~10.0.1","babel-jest":"~23.6.0","babel-plugin-lodash":"~3.3.4","css-mqpacker":"~7.0.0","enzyme":"~3.8.0","enzyme-adapter-react-16":"~1.7.1","eslint":"~5.10.0","eslint-plugin-lodash":"~5.1.0","eslint-plugin-react":"~7.11.1","jest":"~23.6.0","jsdom":"~13.1.0","jsdom-global":"~3.0.2","postcss-clean":"~1.1.0","postcss-loader":"~3.0.0","postcss-preset-env":"~6.5.0","postcss-url":"~8.0.0","prop-types":"~15.6.2","supertest":"~3.3.0","webfontloader":"~1.6.28"},"scripts":{"lint":"eslint . --max-warnings=0","test":"jest . --no-cache --forceExit","build":"node ./bin/prepare-build && env NODE_ENV=production TMPDIR=$PWD/.tmp next build","export":"env NODE_ENV=production TMPDIR=$PWD/.tmp next export","dev":"node ./bin/prepare-build && env NODE_ENV=development node ./bin/www","start":"env NODE_ENV=production node ./bin/www"}};
+module.exports = {"name":"remote-configurator","version":"0.1.0","private":true,"dependencies":{"@date-io/moment":"~0.0.2","@material-ui/core":"~3.7.1","@material-ui/icons":"~3.0.1","@zeit/next-bundle-analyzer":"~0.1.2","@zeit/next-css":"~1.0.1","base64util":"~2.0.0-f","bcrypt":"~3.0.3","body-parser":"~1.18.3","chance":"~1.0.18","classnames":"~2.2.6","compression":"~1.7.3","connect-loki":"~1.1.0","cookie-parser":"~1.4.3","cors":"~2.8.5","csurf":"~1.9.0","debug":"~4.1.1","decompress-response":"~3.3.0","dotenv":"~6.2.0","express":"~4.16.4","express-graphql":"~0.7.1","express-session":"~1.15.6","fs-extra":"~7.0.1","generate-rsa-keypair":"~0.1.2","graphql":"14.0.2","graphql-tools":"~4.0.3","http-proxy":"~1.17.0","http-status-codes":"~1.3.0","immutable":"~4.0.0-rc.12","injectt":"~0.1.6","intl":"~1.2.5","intl-locales-supported":"~1.0.0","intl-messageformat":"~2.2.0","isomorphic-unfetch":"~3.0.0","json-immutable":"~0.4.0","jsotp":"~1.0.4","jss":"~9.8.7","jss-extend":"~6.2.0","lodash":"~4.17.11","lokijs":"~1.5.5","lru-cache":"~5.1.1","material-ui-pickers":"~2.0.4","moment":"~2.23.0","moment-timezone":"~0.5.23","morgan":"~1.9.1","next":"~7.0.2","next-compose-plugins":"~2.1.1","next-progressbar":"~1.0.0","query-string":"~6.2.0","raf":"~3.4.1","react":"~16.7.0","react-dom":"~16.7.0","react-intl":"~2.7.2","react-jss":"~8.6.1","react-redux":"~6.0.0","react-swipeable-views":"~0.13.0","react-virtualized":"~9.21.0","redux":"~4.0.1","redux-devtools-extension":"~2.13.7","redux-form":"~8.1.0","redux-immutable":"~4.0.0","redux-thunk":"~2.3.0","reselect":"~4.0.0","serviceworker-webpack-plugin":"~1.0.1","socket.io":"~2.2.0","ssh2":"~0.6.1","svg-inline-loader":"~0.8.0","universal-url":"~2.0.0","utf8":"~3.0.0","uuid":"~3.3.2","validator":"~10.10.0","webpack":"4.20.2","xterm":"~3.9.1"},"devDependencies":{"@babel/core":"7.0.0","babel-core":"7.0.0-bridge.0","babel-eslint":"~10.0.1","babel-jest":"~23.6.0","babel-plugin-lodash":"~3.3.4","css-mqpacker":"~7.0.0","enzyme":"~3.8.0","enzyme-adapter-react-16":"~1.7.1","eslint":"~5.11.0","eslint-plugin-lodash":"~5.1.0","eslint-plugin-react":"~7.11.1","jest":"~23.6.0","jsdom":"~13.1.0","jsdom-global":"~3.0.2","postcss-clean":"~1.1.0","postcss-loader":"~3.0.0","postcss-preset-env":"~6.5.0","postcss-url":"~8.0.0","prop-types":"~15.6.2","supertest":"~3.3.0","webfontloader":"~1.6.28"},"scripts":{"lint":"eslint . --max-warnings=0","test":"jest . --no-cache --forceExit","build":"node ./bin/prepare-build && env NODE_ENV=production TMPDIR=$PWD/.tmp next build","export":"env NODE_ENV=production TMPDIR=$PWD/.tmp next export","dev":"node ./bin/prepare-build && env NODE_ENV=development node ./bin/www","start":"env NODE_ENV=production node ./bin/www"}};
 
 /***/ }),
 /* 56 */
@@ -4718,84 +4733,2495 @@ var isConnected = function isConnected(state) {
 exports.isConnected = isConnected;
 
 /***/ }),
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */,
-/* 71 */
+/* 58 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/core/Typography");
+module.exports = require("@material-ui/core/Dialog");
 
 /***/ }),
-/* 72 */,
+/* 59 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/DialogActions");
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/DialogContent");
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/DialogTitle");
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/Grid");
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports) {
+
+module.exports = require("redux-form");
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _reactRedux = __webpack_require__(19);
+
+var _immutable = __webpack_require__(18);
+
+var getImmutableFields = function getImmutableFields(Form) {
+  return _.difference(_.keys(Form.propTypes), _.keys(_immutable.propTypes));
+};
+
+var getBlurFields = function getBlurFields(Form) {
+  return _.transform(Form.fields, function (acc, value, key) {
+    if (value.transform || value.validate) acc.push(key);
+  }, []);
+};
+
+var _default = function _default(FormComponent, mapStateToProps, mapDispatchToProps) {
+  var Form = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)((0, _immutable.reduxForm)({
+    form: FormComponent.formName,
+    destroyOnUnmount: false,
+    immutableProps: getImmutableFields(FormComponent),
+    asyncBlurFields: getBlurFields(FormComponent),
+    asyncChangeFields: [],
+    onSubmit: FormComponent.onSubmit.bind(FormComponent),
+    onSubmitFail: FormComponent.onSubmitFail.bind(FormComponent),
+    onSubmitSuccess: FormComponent.onSubmitSuccess.bind(FormComponent),
+    onChange: FormComponent.onChange.bind(FormComponent),
+    asyncValidate: FormComponent.onValidate.bind(FormComponent)
+  })(FormComponent));
+  Form.formName = FormComponent.formName;
+  return Form;
+};
+
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/DialogContentText");
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _regenerator = _interopRequireDefault(__webpack_require__(1));
+
+var _react = _interopRequireDefault(__webpack_require__(6));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
+
+var _immutable = __webpack_require__(18);
+
+var _normalize = _interopRequireDefault(__webpack_require__(67));
+
+var _validate2 = _interopRequireDefault(__webpack_require__(80));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var FormComponent =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(FormComponent, _React$Component);
+
+  _createClass(FormComponent, null, [{
+    key: "getValue",
+    value: function getValue(props, name) {
+      return props.fieldValues[this.formName].get(name);
+    }
+  }, {
+    key: "onSubmit",
+    value: function onSubmit()
+    /*values, dispatch, props*/
+    {}
+  }, {
+    key: "onSubmitFail",
+    value: function onSubmitFail(error, dispatch, submitError
+    /*, props */
+    ) {
+      if (false) {}
+    }
+  }, {
+    key: "onSubmitSuccess",
+    value: function onSubmitSuccess(result
+    /*, dispatch, props */
+    ) {
+      if (false) {}
+    }
+  }, {
+    key: "onChange",
+    value: function onChange(values, dispatch, props, prevValues) {
+      if (!this.cachedErrors[props.form]) return; // remove error status of the field changed
+
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = values.keys()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var field = _step.value;
+
+          if (this.cachedErrors[props.form][field] && values.get(field) !== prevValues.get(field)) {
+            delete this.cachedErrors[props.form][field];
+            dispatch(props.clearAsyncError(field));
+          }
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+    }
+  }, {
+    key: "doValidate",
+    value: function () {
+      var _doValidate = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee(values, dispatch, props, blurredField) {
+        var transform,
+            fields,
+            _iteratorNormalCompletion2,
+            _didIteratorError2,
+            _iteratorError2,
+            _iterator2,
+            _step2,
+            field,
+            value,
+            transformed,
+            errors,
+            _args = arguments;
+
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                transform = _args.length > 4 && _args[4] !== undefined ? _args[4] : true;
+                _context.prev = 1;
+                // if blurred field is not set, validate all of them
+                fields = blurredField ? _.isArray(blurredField) ? blurredField : [blurredField] : _.keys(this.fields);
+                _iteratorNormalCompletion2 = true;
+                _didIteratorError2 = false;
+                _iteratorError2 = undefined;
+                _context.prev = 6;
+                _iterator2 = fields[Symbol.iterator]();
+
+              case 8:
+                if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
+                  _context.next = 23;
+                  break;
+                }
+
+                field = _step2.value;
+                value = values.get(field); // transform value first if requested
+
+                if (!(transform && this.fields[field].transform)) {
+                  _context.next = 17;
+                  break;
+                }
+
+                transformed = (0, _normalize.default)(props, this.fields[field].transform, value, value, values, values);
+
+                if (!(transformed !== value)) {
+                  _context.next = 17;
+                  break;
+                }
+
+                _context.next = 16;
+                return dispatch(props.change(field, transformed));
+
+              case 16:
+                value = transformed;
+
+              case 17:
+                errors = []; // validate
+
+                if (this.fields[field].validate) errors = (0, _validate2.default)(props, this.fields[field].validate, value, values); // cache result
+
+                if (errors.length) {
+                  if (!this.cachedErrors[props.form]) this.cachedErrors[props.form] = {};
+                  this.cachedErrors[props.form][field] = errors;
+                } else {
+                  if (this.cachedErrors[props.form]) delete this.cachedErrors[props.form][field];
+                }
+
+              case 20:
+                _iteratorNormalCompletion2 = true;
+                _context.next = 8;
+                break;
+
+              case 23:
+                _context.next = 29;
+                break;
+
+              case 25:
+                _context.prev = 25;
+                _context.t0 = _context["catch"](6);
+                _didIteratorError2 = true;
+                _iteratorError2 = _context.t0;
+
+              case 29:
+                _context.prev = 29;
+                _context.prev = 30;
+
+                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+                  _iterator2.return();
+                }
+
+              case 32:
+                _context.prev = 32;
+
+                if (!_didIteratorError2) {
+                  _context.next = 35;
+                  break;
+                }
+
+                throw _iteratorError2;
+
+              case 35:
+                return _context.finish(32);
+
+              case 36:
+                return _context.finish(29);
+
+              case 37:
+                _context.next = 42;
+                break;
+
+              case 39:
+                _context.prev = 39;
+                _context.t1 = _context["catch"](1);
+                console.error(_context.t1);
+
+              case 42:
+                if (!(this.cachedErrors[props.form] && _.keys(this.cachedErrors[props.form]).length)) {
+                  _context.next = 44;
+                  break;
+                }
+
+                throw _.cloneDeep(this.cachedErrors[props.form]);
+
+              case 44:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[1, 39], [6, 25, 29, 37], [30,, 32, 36]]);
+      }));
+
+      function doValidate(_x, _x2, _x3, _x4) {
+        return _doValidate.apply(this, arguments);
+      }
+
+      return doValidate;
+    }()
+  }, {
+    key: "onValidate",
+    value: function () {
+      var _onValidate = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee3() {
+        var _this2 = this;
+
+        var _len,
+            args,
+            _key,
+            _args3 = arguments;
+
+        return _regenerator.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                for (_len = _args3.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+                  args[_key] = _args3[_key];
+                }
+
+                setTimeout(
+                /*#__PURE__*/
+                _asyncToGenerator(
+                /*#__PURE__*/
+                _regenerator.default.mark(function _callee2() {
+                  return _regenerator.default.wrap(function _callee2$(_context2) {
+                    while (1) {
+                      switch (_context2.prev = _context2.next) {
+                        case 0:
+                          _context2.prev = 0;
+                          _context2.next = 3;
+                          return _this2.doValidate.apply(_this2, args);
+
+                        case 3:
+                          _context2.next = 7;
+                          break;
+
+                        case 5:
+                          _context2.prev = 5;
+                          _context2.t0 = _context2["catch"](0);
+
+                        case 7:
+                        case "end":
+                          return _context2.stop();
+                      }
+                    }
+                  }, _callee2, this, [[0, 5]]);
+                })));
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function onValidate() {
+        return _onValidate.apply(this, arguments);
+      }
+
+      return onValidate;
+    }()
+  }]);
+
+  function FormComponent(props) {
+    var _this;
+
+    _classCallCheck(this, FormComponent);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(FormComponent).call(this, props));
+    _this.normalizers = {};
+    var _iteratorNormalCompletion3 = true;
+    var _didIteratorError3 = false;
+    var _iteratorError3 = undefined;
+
+    try {
+      var _loop = function _loop() {
+        var field = _step3.value;
+        var options = _this.constructor.fields[field].normalize;
+        if (options) _this.normalizers[field] = function () {
+          for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+            args[_key2] = arguments[_key2];
+          }
+
+          return _normalize.default.apply(void 0, [_this.props, options].concat(args));
+        };
+      };
+
+      for (var _iterator3 = _.keys(_this.constructor.fields)[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+        _loop();
+      }
+    } catch (err) {
+      _didIteratorError3 = true;
+      _iteratorError3 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+          _iterator3.return();
+        }
+      } finally {
+        if (_didIteratorError3) {
+          throw _iteratorError3;
+        }
+      }
+    }
+
+    return _this;
+  }
+
+  _createClass(FormComponent, [{
+    key: "validate",
+    value: function () {
+      var _validate = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee4() {
+        var errors;
+        return _regenerator.default.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.prev = 0;
+                _context4.next = 3;
+                return this.constructor.doValidate(this.props.fieldValues[this.props.form], this.props.dispatch, this.props, undefined, false);
+
+              case 3:
+                _context4.next = 8;
+                break;
+
+              case 5:
+                _context4.prev = 5;
+                _context4.t0 = _context4["catch"](0);
+                errors = _context4.t0;
+
+              case 8:
+                _context4.next = 10;
+                return this.props.updateValidation(errors);
+
+              case 10:
+                return _context4.abrupt("return", errors ? errors : true);
+
+              case 11:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this, [[0, 5]]);
+      }));
+
+      function validate() {
+        return _validate.apply(this, arguments);
+      }
+
+      return validate;
+    }()
+  }, {
+    key: "submit",
+    value: function () {
+      var _submit = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee5() {
+        var valid;
+        return _regenerator.default.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.prev = 0;
+                _context5.next = 3;
+                return this.validate();
+
+              case 3:
+                valid = _context5.sent;
+
+                if (!(valid !== true)) {
+                  _context5.next = 6;
+                  break;
+                }
+
+                return _context5.abrupt("return", valid);
+
+              case 6:
+                _context5.next = 8;
+                return this.props.handleSubmit();
+
+              case 8:
+                return _context5.abrupt("return", _context5.sent);
+
+              case 11:
+                _context5.prev = 11;
+                _context5.t0 = _context5["catch"](0);
+                console.error(_context5.t0);
+
+              case 14:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this, [[0, 11]]);
+      }));
+
+      function submit() {
+        return _submit.apply(this, arguments);
+      }
+
+      return submit;
+    }() // eslint-disable-next-line
+
+  }, {
+    key: "render",
+    value: function render() {
+      return null;
+    }
+  }]);
+
+  return FormComponent;
+}(_react.default.Component);
+
+_defineProperty(FormComponent, "formName", "baseForm");
+
+_defineProperty(FormComponent, "fields", {
+  /*
+  fieldName: {
+    normalize: 'rules', // happens on change
+    transform: 'rules', // happens on blur
+    validate: 'rules',  // happens on blur
+    label: 'ID',        // translation ID
+  },
+   */
+});
+
+_defineProperty(FormComponent, "cachedErrors", {});
+
+var _default = FormComponent;
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {
+
+var validator = __webpack_require__(68);
+/**
+ * Normalizer function for Redux Form
+ * takes input like "command1:param1:param2|command2:param1:param2"
+ */
+
+
+module.exports = function normalize(props, options, value, prevValue, allValues
+/* prevAllValues */
+) {
+  var rules = {};
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = _.split(options, "|")[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var rule = _step.value;
+
+      var params = _.split(_.trim(rule), ":");
+
+      var command = params.shift();
+      rules[command] = params;
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return != null) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+
+  var result = _.isUndefined(value) ? "" : _.toString(value);
+  var _iteratorNormalCompletion2 = true;
+  var _didIteratorError2 = false;
+  var _iteratorError2 = undefined;
+
+  try {
+    for (var _iterator2 = _.keys(rules)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+      var _command = _step2.value;
+      var i = void 0;
+      var tmp = void 0;
+
+      switch (_command) {
+        case "trim":
+          // trims the input, no params
+          tmp = [];
+          var _iteratorNormalCompletion3 = true;
+          var _didIteratorError3 = false;
+          var _iteratorError3 = undefined;
+
+          try {
+            for (var _iterator3 = _.split(_.replace(_.trim(result), /\r+/g, ""), "\n")[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+              var line = _step3.value;
+              tmp.push(_.trim(line));
+            }
+          } catch (err) {
+            _didIteratorError3 = true;
+            _iteratorError3 = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+                _iterator3.return();
+              }
+            } finally {
+              if (_didIteratorError3) {
+                throw _iteratorError3;
+              }
+            }
+          }
+
+          result = tmp.join("\r\n");
+          break;
+
+        case "compact":
+          // with "spaces" param compacts spaces into single space preserving new lines
+          if (_.includes(rules[_command], "spaces")) {
+            tmp = [];
+            var _iteratorNormalCompletion4 = true;
+            var _didIteratorError4 = false;
+            var _iteratorError4 = undefined;
+
+            try {
+              for (var _iterator4 = _.split(_.replace(result, /\r+/g, ""), "\n")[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                var _line = _step4.value;
+                tmp.push(_.replace(_line, /\s+/g, " "));
+              }
+            } catch (err) {
+              _didIteratorError4 = true;
+              _iteratorError4 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
+                  _iterator4.return();
+                }
+              } finally {
+                if (_didIteratorError4) {
+                  throw _iteratorError4;
+                }
+              }
+            }
+
+            result = tmp.join("\r\n");
+          }
+
+          break;
+
+        case "remove":
+          // with "spaces" param removes spaces inside the line preveserving new lines
+          if (_.includes(rules[_command], "spaces")) {
+            tmp = [];
+            var _iteratorNormalCompletion5 = true;
+            var _didIteratorError5 = false;
+            var _iteratorError5 = undefined;
+
+            try {
+              for (var _iterator5 = _.split(_.replace(result, /\r+/g, ""), "\n")[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                var _line2 = _step5.value;
+                tmp.push(_.replace(_line2, /\s+/g, ""));
+              }
+            } catch (err) {
+              _didIteratorError5 = true;
+              _iteratorError5 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
+                  _iterator5.return();
+                }
+              } finally {
+                if (_didIteratorError5) {
+                  throw _iteratorError5;
+                }
+              }
+            }
+
+            result = tmp.join("\r\n");
+          }
+
+          break;
+
+        case "rows":
+          // first param is the number of rows in the result (defaults to 1)
+          tmp = _.split(_.replace(result, /\r+/g, ""), "\n");
+          result = "";
+
+          for (i = 0; i < tmp.length; i++) {
+            if (i > 0 && i < (rules[_command].length ? parseInt(rules[_command][0]) : 1)) result += "\r\n";
+            result += tmp[i];
+          }
+
+          break;
+
+        case "integer":
+          result = _.replace(result, /[^0-9]+/g, "");
+          break;
+
+        case "phone":
+          // converts input to internations phone number format
+          // props of the form should have getCallingCodes() selector function
+          tmp = _.replace(result, /[^0-9]+/g, "");
+          result = "";
+          i = 0;
+          var _iteratorNormalCompletion6 = true;
+          var _didIteratorError6 = false;
+          var _iteratorError6 = undefined;
+
+          try {
+            for (var _iterator6 = props.getCallingCodes(allValues.get("country"))[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+              var code = _step6.value;
+
+              if (_.startsWith(tmp, code)) {
+                result += code + (code.length < tmp.length ? " " : "");
+                i = code.length;
+                break;
+              }
+            }
+          } catch (err) {
+            _didIteratorError6 = true;
+            _iteratorError6 = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion6 && _iterator6.return != null) {
+                _iterator6.return();
+              }
+            } finally {
+              if (_didIteratorError6) {
+                throw _iteratorError6;
+              }
+            }
+          }
+
+          for (; i < tmp.length; i++) {
+            if (i === 5 || i === 8 || i === 10) result += " ";
+            result += tmp[i];
+          }
+
+          if (result.length) result = "+" + result;
+          break;
+
+        case "email":
+          // normalizes email
+          result = validator.normalizeEmail(result);
+          if (result === "@") result = "";
+          break;
+
+        case "credit_card":
+          // normalizes credit card attribute set by first param ("number", "date" or "secret")
+          switch (rules[_command].length && rules[_command][0]) {
+            case "number":
+              tmp = _.replace(result, /[^0-9]+/g, "");
+              result = "";
+
+              for (i = 0; i < tmp.length; i++) {
+                if (i > 0 && !(i % 4)) result += " ";
+                result += tmp[i];
+              }
+
+              break;
+
+            case "date":
+              tmp = _.replace(result, /[^0-9]+/g, "");
+              result = tmp.slice(0, 2);
+
+              if (tmp.length > 2) {
+                result += " / ";
+                result += tmp.slice(2);
+              }
+
+              break;
+
+            case "secret":
+              result = _.replace(result, /[^0-9]+/g, "");
+              break;
+          }
+
+          break;
+      }
+    }
+  } catch (err) {
+    _didIteratorError2 = true;
+    _iteratorError2 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+        _iterator2.return();
+      }
+    } finally {
+      if (_didIteratorError2) {
+        throw _iteratorError2;
+      }
+    }
+  }
+
+  return result;
+};
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports) {
+
+module.exports = require("validator");
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(6));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
+
+var _shallowEqual = _interopRequireDefault(__webpack_require__(81));
+
+var _reactIntl = __webpack_require__(8);
+
+var _immutable = __webpack_require__(18);
+
+var _styles = __webpack_require__(10);
+
+var _List = _interopRequireDefault(__webpack_require__(82));
+
+var _ListItem = _interopRequireDefault(__webpack_require__(83));
+
+var _ListItemIcon = _interopRequireDefault(__webpack_require__(75));
+
+var _ListItemText = _interopRequireDefault(__webpack_require__(76));
+
+var _TextField = _interopRequireDefault(__webpack_require__(84));
+
+var _Select = _interopRequireDefault(__webpack_require__(85));
+
+var _FormControl = _interopRequireDefault(__webpack_require__(86));
+
+var _FormControlLabel = _interopRequireDefault(__webpack_require__(87));
+
+var _FormHelperText = _interopRequireDefault(__webpack_require__(88));
+
+var _MenuItem = _interopRequireDefault(__webpack_require__(74));
+
+var _Checkbox = _interopRequireDefault(__webpack_require__(72));
+
+var _InputLabel = _interopRequireDefault(__webpack_require__(89));
+
+var _FilledInput = _interopRequireDefault(__webpack_require__(90));
+
+var _Input = _interopRequireDefault(__webpack_require__(91));
+
+var _InfoOutlined = _interopRequireDefault(__webpack_require__(92));
+
+var _normalize2 = _interopRequireDefault(__webpack_require__(67));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+var styles = function styles(theme) {
+  return {
+    formHelper: {
+      margin: 0
+    },
+    errorList: {
+      padding: 0
+    },
+    errorListItem: {
+      paddingTop: "0.5rem",
+      paddingLeft: "0.5rem",
+      paddingRight: 0
+    },
+    label: {
+      marginLeft: 0
+    },
+    error: {
+      color: theme.palette.text.secondary
+    }
+  };
+};
+
+var FieldComponent =
+/*#__PURE__*/
+function (_React$PureComponent) {
+  _inherits(FieldComponent, _React$PureComponent);
+
+  function FieldComponent(props) {
+    var _this;
+
+    _classCallCheck(this, FieldComponent);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(FieldComponent).call(this, props));
+    _this.input = _react.default.createRef();
+    _this.cachedValue = props.input.value;
+    _this.cachedPosition = 0;
+
+    switch (props.type) {
+      case "checkbox":
+        _this.handleChange = _this.handleCheckboxChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+        break;
+
+      default:
+        _this.handleChange = _this.handleDefaultChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    }
+
+    _this.handleFocus = _this.handleDefaultFocus.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleBlur = _this.handleDefaultBlur.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  }
+
+  _createClass(FieldComponent, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.input.value === prevProps.input.value) return;
+
+      if (this.input.current) {
+        // fix cursor position on changing the value to the normalized variant
+        var str;
+        var index;
+
+        switch (this.props.type) {
+          case "text":
+          case "password":
+            str = (this.cachedValue || "").substr(0, this.cachedPosition);
+            index = (this.props.input.value || "").indexOf(str) + this.cachedPosition;
+
+            if (index !== -1 && this.cachedPosition < (this.cachedValue || "").length) {
+              this.input.current.selectionStart = this.input.current.selectionEnd = index;
+            }
+
+            break;
+        }
+      }
+
+      this.cachedValue = this.props.input.value;
+    }
+  }, {
+    key: "handleDefaultChange",
+    value: function handleDefaultChange(evt) {
+      this.cachedValue = evt.target.value;
+      this.cachedPosition = evt.target.selectionEnd;
+      return this.props.input.onChange(this.cachedValue);
+    }
+  }, {
+    key: "handleCheckboxChange",
+    value: function handleCheckboxChange(evt) {
+      return this.props.input.onChange(evt.target.checked ? "on" : "off");
+    }
+  }, {
+    key: "handleDefaultFocus",
+    value: function handleDefaultFocus() {
+      var _this$props$input;
+
+      return (_this$props$input = this.props.input).onFocus.apply(_this$props$input, arguments);
+    }
+  }, {
+    key: "handleDefaultBlur",
+    value: function handleDefaultBlur() {
+      return this.props.input.onBlur(this.cachedValue);
+    }
+  }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      var _this2 = this;
+
+      if (!this.props.meta.error) return null;
+      return _react.default.createElement(_List.default, {
+        classes: {
+          root: this.props.classes.errorList
+        }
+      },
+      /* eslint-disable-line */
+      this.props.meta.error.map(function (error, index) {
+        return _react.default.createElement(_ListItem.default, {
+          key: "error-".concat(index),
+          classes: {
+            root: _this2.props.classes.errorListItem
+          }
+        }, _react.default.createElement(_ListItemIcon.default, null, _react.default.createElement(_InfoOutlined.default, {
+          className: _this2.props.classes.error
+        })), _react.default.createElement(_ListItemText.default, {
+          classes: {
+            primary: _this2.props.classes.error
+          },
+          primary: _this2.props.intl.formatMessage({
+            id: error
+          })
+        }));
+      }));
+    }
+  }, {
+    key: "renderInput",
+    value: function renderInput() {
+      var _this3 = this;
+
+      var errors = this.renderErrors();
+      return _react.default.createElement(_TextField.default, {
+        className: this.props.className,
+        autoComplete: "off",
+        fullWidth: true,
+        variant: this.props.variant || "standard",
+        type: this.props.type,
+        value: this.props.input.value.toString(),
+        label: this.props.label && this.props.intl.formatMessage({
+          id: this.props.label
+        }),
+        disabled: this.props.meta.submitting || this.props.disabled,
+        error: !!this.props.meta.error,
+        FormHelperTextProps: {
+          component: errors ? "div" : undefined,
+          classes: {
+            root: this.props.classes.formHelper
+          }
+        },
+        helperText: errors || undefined,
+        onChange: this.handleChange,
+        onFocus: this.handleFocus,
+        onBlur: this.handleBlur,
+        inputRef: this.input,
+        inputProps: {
+          id: this.props.fieldId,
+          onKeyDown: function onKeyDown(evt) {
+            if (evt.keyCode === 13) {
+              evt.preventDefault();
+              evt.stopPropagation();
+              if (_this3.props.onSubmit) _this3.props.onSubmit();
+            }
+          }
+        }
+      });
+    }
+  }, {
+    key: "renderCheckbox",
+    value: function renderCheckbox() {
+      return _react.default.createElement(_FormControlLabel.default, {
+        classes: {
+          root: this.props.classes.label
+        },
+        control: _react.default.createElement(_Checkbox.default, {
+          checked: this.props.input.value === "on",
+          onChange: this.handleChange,
+          onFocus: this.handleFocus,
+          onBlur: this.handleBlur,
+          value: "on",
+          color: this.props.color || "primary"
+        }),
+        label: this.props.intl.formatMessage({
+          id: this.props.label
+        })
+      });
+    }
+  }, {
+    key: "renderDropdown",
+    value: function renderDropdown() {
+      var _this4 = this;
+
+      var errors = this.renderErrors();
+      var SelectInput = this.props.variant === "filled" ? _FilledInput.default : _Input.default;
+      return _react.default.createElement(_FormControl.default, {
+        className: this.props.className,
+        variant: this.props.variant || "standard",
+        fullWidth: true,
+        error: !!this.props.meta.error
+      }, _react.default.createElement(_InputLabel.default, {
+        htmlFor: this.props.fieldId
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: this.props.label
+      })), _react.default.createElement(_Select.default, {
+        value: this.props.input.value,
+        disabled: this.props.meta.submitting || this.props.disabled,
+        onChange: this.handleChange,
+        input: _react.default.createElement(SelectInput, {
+          id: this.props.fieldId,
+          inputProps: {
+            onKeyDown: function onKeyDown(evt) {
+              if (evt.keyCode === 13) {
+                evt.preventDefault();
+                evt.stopPropagation();
+                if (_this4.props.onSubmit) _this4.props.onSubmit();
+              }
+            }
+          }
+        })
+      }, _.map(this.props.options, function (item, index) {
+        return _react.default.createElement(_MenuItem.default, {
+          key: "item-".concat(index),
+          value: item.value
+        }, item.label);
+      })), errors && _react.default.createElement(_FormHelperText.default, {
+        component: "div",
+        classes: {
+          root: this.props.classes.formHelper
+        }
+      }, errors));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      switch (this.props.type) {
+        case "text":
+        case "password":
+          return this.renderInput();
+
+        case "checkbox":
+          return this.renderCheckbox();
+
+        case "dropdown":
+          return this.renderDropdown();
+      }
+
+      return null;
+    }
+  }]);
+
+  return FieldComponent;
+}(_react.default.PureComponent);
+
+var LocalizedField = (0, _reactIntl.injectIntl)((0, _styles.withStyles)(styles, {
+  withTheme: true
+})(FieldComponent));
+
+var FormField =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(FormField, _React$Component);
+
+  function FormField(props) {
+    var _this5;
+
+    _classCallCheck(this, FormField);
+
+    _this5 = _possibleConstructorReturn(this, _getPrototypeOf(FormField).call(this, props));
+    _this5.normalize = _this5.normalize.bind(_assertThisInitialized(_assertThisInitialized(_this5)));
+    return _this5;
+  }
+
+  _createClass(FormField, [{
+    key: "shouldComponentUpdate",
+    value: function shouldComponentUpdate(nextProps) {
+      return !(0, _shallowEqual.default)(this.props.formFields, nextProps.formFields) || this.props.name !== nextProps.name || this.props.type !== nextProps.type || this.props.options !== nextProps.options || this.props.autoFocus !== nextProps.autoFocus || this.props.disabled !== nextProps.disabled;
+    }
+  }, {
+    key: "normalize",
+    value: function normalize(value) {
+      if (!this.props.formFields[this.props.name]) return value;
+      var options = this.props.formFields[this.props.name].normalize;
+      if (!options) return value;
+
+      for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        args[_key - 1] = arguments[_key];
+      }
+
+      return _normalize2.default.apply(void 0, [this.props.formProps, options, value].concat(args));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          formFields = _this$props.formFields,
+          formProps = _this$props.formProps,
+          name = _this$props.name,
+          type = _this$props.type,
+          fieldProps = _objectWithoutProperties(_this$props, ["formFields", "formProps", "name", "type"]); // eslint-disable-line
+
+
+      return _react.default.createElement(_immutable.Field, _extends({
+        component: LocalizedField,
+        fieldId: "input-".concat(name),
+        name: name,
+        type: type,
+        normalize: this.normalize,
+        label: formFields[name] && formFields[name].label
+      }, fieldProps));
+    }
+  }]);
+
+  return FormField;
+}(_react.default.Component);
+
+var _default = FormField;
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.HIDE_EDIT_MODAL = exports.SHOW_EDIT_MODAL = exports.DESELECT_ALL = exports.SELECT_ALL = exports.SET_SELECTED = exports.SET_LIST = void 0;
+var SET_LIST = "app/users/SET_LIST";
+exports.SET_LIST = SET_LIST;
+var SET_SELECTED = "app/users/SET_SELECTED";
+exports.SET_SELECTED = SET_SELECTED;
+var SELECT_ALL = "app/users/SELECT_ALL";
+exports.SELECT_ALL = SELECT_ALL;
+var DESELECT_ALL = "app/users/DESELECT_ALL";
+exports.DESELECT_ALL = DESELECT_ALL;
+var SHOW_EDIT_MODAL = "app/users/SHOW_EDIT_MODAL";
+exports.SHOW_EDIT_MODAL = SHOW_EDIT_MODAL;
+var HIDE_EDIT_MODAL = "app/users/HIDE_EDIT_MODAL";
+exports.HIDE_EDIT_MODAL = HIDE_EDIT_MODAL;
+
+/***/ }),
+/* 71 */,
+/* 72 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/Checkbox");
+
+/***/ }),
 /* 73 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/Paper");
 
 /***/ }),
-/* 74 */,
-/* 75 */,
-/* 76 */,
-/* 77 */
+/* 74 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/core/IconButton");
+module.exports = require("@material-ui/core/MenuItem");
 
 /***/ }),
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
-/* 84 */,
-/* 85 */,
-/* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */,
-/* 92 */,
-/* 93 */
+/* 75 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/icons/Close");
+module.exports = require("@material-ui/core/ListItemIcon");
 
 /***/ }),
+/* 76 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/ListItemText");
+
+/***/ }),
+/* 77 */,
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.usersSelectors = exports.usersOperations = exports.usersTypes = exports.default = void 0;
+
+var _reducers = _interopRequireDefault(__webpack_require__(95));
+
+var usersTypes = _interopRequireWildcard(__webpack_require__(70));
+
+exports.usersTypes = usersTypes;
+
+var usersOperations = _interopRequireWildcard(__webpack_require__(96));
+
+exports.usersOperations = usersOperations;
+
+var usersSelectors = _interopRequireWildcard(__webpack_require__(79));
+
+exports.usersSelectors = usersSelectors;
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = _reducers.default;
+exports.default = _default;
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getEditModalData = exports.isEditModalOpen = exports.isAllDeselected = exports.isAllSelected = exports.getNumSelected = exports.getSelected = exports.getList = void 0;
+
+var getList = function getList(state) {
+  return state.getIn(["users", "list"]);
+};
+
+exports.getList = getList;
+
+var getSelected = function getSelected(state) {
+  return (// eslint-disable-next-line lodash/prefer-lodash-method
+    state.getIn(["users", "list"]).filter(function (item) {
+      return !!item.get("isSelected");
+    })
+  );
+};
+
+exports.getSelected = getSelected;
+
+var getNumSelected = function getNumSelected(state) {
+  return getSelected(state).size;
+};
+
+exports.getNumSelected = getNumSelected;
+
+var isAllSelected = function isAllSelected(state) {
+  return getList(state).size === getSelected(state).size;
+};
+
+exports.isAllSelected = isAllSelected;
+
+var isAllDeselected = function isAllDeselected(state) {
+  return getSelected(state).size === 0;
+};
+
+exports.isAllDeselected = isAllDeselected;
+
+var isEditModalOpen = function isEditModalOpen(state) {
+  return state.getIn(["users", "isEditModalOpen"]);
+};
+
+exports.isEditModalOpen = isEditModalOpen;
+
+var getEditModalData = function getEditModalData(state) {
+  var id = state.getIn(["users", "editModalUserId"]);
+  if (!id) return null; // eslint-disable-next-line
+
+  return state.getIn(["users", "list"]).find(function (item) {
+    return item.get("id") === id;
+  });
+};
+
+exports.getEditModalData = getEditModalData;
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {
+
+var validator = __webpack_require__(68);
+/**
+ * Validation function for Redux Form
+ * takes input like "command1:param1:param2|command2:param1:param2"
+ */
+
+
+module.exports = function validate(props, options, value, allValues) {
+  var rules = {};
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = _.split(options, "|")[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var rule = _step.value;
+
+      var params = _.split(_.trim(rule), ":");
+
+      var _command = params.shift();
+
+      rules[_command] = params;
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return != null) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+
+  value = _.isUndefined(value) ? "" : _.toString(value);
+
+  var commands = _.keys(rules);
+
+  var errors = [];
+
+  if (validator.isEmpty(value)) {
+    // when string is empty only "required" command is triggered
+    if (_.includes(commands, "required")) {
+      // optional first param is the name of other field that should
+      // be non-empty for this to be triggered, always triggered otherwise
+      var failed = true;
+
+      if (allValues && rules.required.length && rules.required[0]) {
+        var other = allValues.get(rules.required[0]);
+        if (!other || !other.length) failed = false;
+      }
+
+      if (failed) errors.push("ERROR_FIELD_REQUIRED");
+    }
+  } else {
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
+
+    try {
+      for (var _iterator2 = commands[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        var command = _step2.value;
+        var success = void 0;
+        var tmp = void 0;
+        var normalized = void 0;
+
+        switch (command) {
+          case "phone":
+            // validate phone number in international format
+            if (!validator.isEmpty(value)) {
+              normalized = _.replace(value, /[^0-9]+/g, "");
+
+              if (normalized.length !== 12) {
+                errors.push("ERROR_INVALID_PHONE");
+              } else {
+                tmp = props.getCallingCodes(allValues.get("country"));
+                success = !tmp.size;
+                var _iteratorNormalCompletion3 = true;
+                var _didIteratorError3 = false;
+                var _iteratorError3 = undefined;
+
+                try {
+                  for (var _iterator3 = tmp[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                    var code = _step3.value;
+
+                    if (_.startsWith(normalized, code)) {
+                      success = true;
+                      break;
+                    }
+                  }
+                } catch (err) {
+                  _didIteratorError3 = true;
+                  _iteratorError3 = err;
+                } finally {
+                  try {
+                    if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+                      _iterator3.return();
+                    }
+                  } finally {
+                    if (_didIteratorError3) {
+                      throw _iteratorError3;
+                    }
+                  }
+                }
+
+                if (!success) errors.push("ERROR_INVALID_PHONE_COUNTRY");
+              }
+            }
+
+            break;
+
+          case "email":
+            // validate email
+            if (!validator.isEmpty(value) && !validator.isEmail(value)) errors.push("ERROR_INVALID_EMAIL");
+            break;
+
+          case "password":
+            // validate password, first param is password length (6 by default)
+            if (value.length < (rules[command].length && rules[command][0]) || 6) errors.push("ERROR_INVALID_PASSWORD");
+            break;
+
+          case "credit_card":
+            // validate credit card attribute set by first param ("number", "date" or "secret")
+            normalized = _.replace(value, /[^0-9]+/g, "");
+
+            switch (rules[command].length && rules[command][0]) {
+              case "number":
+                if (normalized.length !== 16 || !validator.isCreditCard(normalized)) errors.push("ERROR_INVALID_CREDIT_CARD_NUMBER");
+                break;
+
+              case "date":
+                if (normalized.length !== 4) {
+                  errors.push("ERROR_INVALID_CREDIT_CARD_DATE");
+                } else {
+                  tmp = [parseInt(normalized.slice(0, 2)), parseInt(normalized.slice(2))];
+                  if (tmp[0] < 1 || tmp[0] > 12 || tmp[1] < new Date().getFullYear() - 2000) errors.push("ERROR_INVALID_CREDIT_CARD_DATE");
+                }
+
+                break;
+
+              case "secret":
+                if (normalized.length !== 3) errors.push("ERROR_INVALID_CREDIT_CARD_SECRET");
+                break;
+            }
+
+            break;
+
+          case "match":
+            // this rule is triggered when field set by first param has other value than this one
+            tmp = rules[command].length && rules[command][0];
+            if (tmp && allValues && allValues.get(tmp) !== value) errors.push("ERROR_MISMATCHED_VALUES");
+            break;
+        }
+      }
+    } catch (err) {
+      _didIteratorError2 = true;
+      _iteratorError2 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+          _iterator2.return();
+        }
+      } finally {
+        if (_didIteratorError2) {
+          throw _iteratorError2;
+        }
+      }
+    }
+  }
+
+  return errors;
+};
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-redux/lib/utils/shallowEqual");
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/List");
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/ListItem");
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/TextField");
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/Select");
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/FormControl");
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/FormControlLabel");
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/FormHelperText");
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/InputLabel");
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/FilledInput");
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/Input");
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/icons/InfoOutlined");
+
+/***/ }),
+/* 93 */,
 /* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */,
+/* 95 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _immutable = __webpack_require__(2);
+
+var _reduxImmutable = __webpack_require__(5);
+
+var types = _interopRequireWildcard(__webpack_require__(70));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+/* State Shape
+Map({
+  list: List([
+    Map({
+      id: String,
+      isSelected: Boolean,
+      login: String,
+      roles: [String],
+    })
+  ]),
+  editModalUserId: String, // null when creating a new user
+  isEditModalOpen: false,
+})
+*/
+var listReducer = function listReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : (0, _immutable.List)([]);
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case types.SET_LIST:
+      if (!_.isUndefined(action.list)) // eslint-disable-next-line lodash/prefer-lodash-method
+        return (0, _immutable.fromJS)(action.list).map(function (item, index) {
+          return item.set("isSelected", !!state.getIn([index, "isSelected"]));
+        });
+      break;
+
+    case types.SET_SELECTED:
+      if (!_.isUndefined(action.userId)) return state.withMutations(function (list) {
+        // eslint-disable-next-line lodash/prefer-lodash-method
+        var index = list.findIndex(function (item) {
+          return item.get("id") === action.userId;
+        });
+        if (index !== -1) list.setIn([index, "isSelected"], !!action.isSelected);
+      });
+      break;
+
+    case types.SELECT_ALL:
+      // eslint-disable-next-line lodash/prefer-lodash-method
+      return state.map(function (item) {
+        return item.set("isSelected", true);
+      });
+
+    case types.DESELECT_ALL:
+      // eslint-disable-next-line lodash/prefer-lodash-method
+      return state.map(function (item) {
+        return item.set("isSelected", false);
+      });
+  }
+
+  return state;
+};
+
+var editModalUserIdReducer = function editModalUserIdReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case types.SHOW_EDIT_MODAL:
+      return action.userId || null;
+  }
+
+  return state;
+};
+
+var isEditModalOpenReducer = function isEditModalOpenReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case types.SHOW_EDIT_MODAL:
+      return true;
+
+    case types.HIDE_EDIT_MODAL:
+      return false;
+  }
+
+  return state;
+};
+
+var reducer = (0, _reduxImmutable.combineReducers)({
+  list: listReducer,
+  editModalUserId: editModalUserIdReducer,
+  isEditModalOpen: isEditModalOpenReducer
+});
+var _default = reducer;
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.remove = exports.edit = exports.create = exports.load = exports.editFirstSelected = exports.deselectAll = exports.selectAll = exports.setSelected = exports.hideEditModal = exports.showEditModal = void 0;
+
+var _regenerator = _interopRequireDefault(__webpack_require__(1));
+
+var actions = _interopRequireWildcard(__webpack_require__(97));
+
+var selectors = _interopRequireWildcard(__webpack_require__(79));
+
+var _app = __webpack_require__(4);
+
+var _constants = _interopRequireDefault(__webpack_require__(3));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var showEditModal = actions.showEditModal;
+exports.showEditModal = showEditModal;
+var hideEditModal = actions.hideEditModal;
+exports.hideEditModal = hideEditModal;
+var setSelected = actions.setSelected;
+exports.setSelected = setSelected;
+var selectAll = actions.selectAll;
+exports.selectAll = selectAll;
+var deselectAll = actions.deselectAll;
+exports.deselectAll = deselectAll;
+
+var editFirstSelected = function editFirstSelected() {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee(dispatch, getState) {
+        var selected;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                selected = selectors.getSelected(getState());
+
+                if (!selected.size) {
+                  _context.next = 3;
+                  break;
+                }
+
+                return _context.abrupt("return", dispatch(actions.showEditModal({
+                  userId: selected.first().get("id")
+                })));
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      return function (_x, _x2) {
+        return _ref.apply(this, arguments);
+      };
+    }()
+  );
+};
+
+exports.editFirstSelected = editFirstSelected;
+
+var load = function load() {
+  var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      req = _ref2.req;
+
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref3 = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee2(dispatch) {
+        var users, response;
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (!req) {
+                  _context2.next = 6;
+                  break;
+                }
+
+                _context2.next = 3;
+                return req.di.get("repository.users").getUsers(req);
+
+              case 3:
+                users = _context2.sent;
+                _context2.next = 10;
+                break;
+
+              case 6:
+                _context2.next = 8;
+                return dispatch(_app.appOperations.gqlQuery("\n          query {\n            users {\n              id\n              login\n              roles\n            }\n          }\n        "));
+
+              case 8:
+                response = _context2.sent;
+                users = response && _.get(response, "data.users");
+
+              case 10:
+                _context2.next = 12;
+                return dispatch(actions.setList({
+                  list: users
+                }));
+
+              case 12:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      return function (_x3) {
+        return _ref3.apply(this, arguments);
+      };
+    }()
+  );
+};
+
+exports.load = load;
+
+var create = function create(_ref4) {
+  var login = _ref4.login,
+      password = _ref4.password,
+      isAdmin = _ref4.isAdmin;
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref5 = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee3(dispatch) {
+        var result, response, errors, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, error;
+
+        return _regenerator.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                result = false;
+                _context3.prev = 1;
+                _context3.next = 4;
+                return dispatch(_app.appOperations.gqlQuery("\n          mutation ($login: String, $password: String, $roles: [UserRole]) {\n            createUser(login: $login, password: $password, roles: $roles) {\n              success\n            }\n          }\n        ", {
+                  login: login,
+                  password: password,
+                  roles: _.compact([isAdmin && _constants.default.roles.ADMIN])
+                }));
+
+              case 4:
+                response = _context3.sent;
+
+                if (!(response && _.get(response, "data.createUser.success", false))) {
+                  _context3.next = 11;
+                  break;
+                }
+
+                _context3.next = 8;
+                return dispatch(actions.hideEditModal());
+
+              case 8:
+                return _context3.abrupt("return", true);
+
+              case 11:
+                result = {};
+                errors = response && _.get(response, "errors", []);
+                _iteratorNormalCompletion = true;
+                _didIteratorError = false;
+                _iteratorError = undefined;
+                _context3.prev = 16;
+
+                for (_iterator = errors[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                  error = _step.value;
+                  if (error && error.code === "E_VALIDATION") _.merge(result, error.details);else result._error = (result._error || []).concat([error.message]);
+                }
+
+                _context3.next = 24;
+                break;
+
+              case 20:
+                _context3.prev = 20;
+                _context3.t0 = _context3["catch"](16);
+                _didIteratorError = true;
+                _iteratorError = _context3.t0;
+
+              case 24:
+                _context3.prev = 24;
+                _context3.prev = 25;
+
+                if (!_iteratorNormalCompletion && _iterator.return != null) {
+                  _iterator.return();
+                }
+
+              case 27:
+                _context3.prev = 27;
+
+                if (!_didIteratorError) {
+                  _context3.next = 30;
+                  break;
+                }
+
+                throw _iteratorError;
+
+              case 30:
+                return _context3.finish(27);
+
+              case 31:
+                return _context3.finish(24);
+
+              case 32:
+                if (!_.keys(result).length) result = {
+                  _error: "EDIT_USER_FAILED"
+                };
+
+              case 33:
+                _context3.next = 38;
+                break;
+
+              case 35:
+                _context3.prev = 35;
+                _context3.t1 = _context3["catch"](1);
+                console.error(_context3.t1);
+
+              case 38:
+                return _context3.abrupt("return", result);
+
+              case 39:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this, [[1, 35], [16, 20, 24, 32], [25,, 27, 31]]);
+      }));
+
+      return function (_x4) {
+        return _ref5.apply(this, arguments);
+      };
+    }()
+  );
+};
+
+exports.create = create;
+
+var edit = function edit(_ref6) {
+  var id = _ref6.id,
+      login = _ref6.login,
+      password = _ref6.password,
+      isAdmin = _ref6.isAdmin;
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref7 = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee4(dispatch) {
+        var result, response, errors, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, error;
+
+        return _regenerator.default.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                result = false;
+                _context4.prev = 1;
+                _context4.next = 4;
+                return dispatch(_app.appOperations.gqlQuery("\n          mutation ($id: String, $login: String, $password: String, $roles: [UserRole]) {\n            editUser(id: $id, login: $login, password: $password, roles: $roles) {\n              success\n            }\n          }\n        ", {
+                  id: id,
+                  login: login,
+                  password: password,
+                  roles: _.compact([isAdmin && _constants.default.roles.ADMIN])
+                }));
+
+              case 4:
+                response = _context4.sent;
+
+                if (!(response && _.get(response, "data.editUser.success", false))) {
+                  _context4.next = 11;
+                  break;
+                }
+
+                _context4.next = 8;
+                return dispatch(actions.hideEditModal());
+
+              case 8:
+                return _context4.abrupt("return", true);
+
+              case 11:
+                result = {};
+                errors = response && _.get(response, "errors", []);
+                _iteratorNormalCompletion2 = true;
+                _didIteratorError2 = false;
+                _iteratorError2 = undefined;
+                _context4.prev = 16;
+
+                for (_iterator2 = errors[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                  error = _step2.value;
+                  if (error && error.code === "E_VALIDATION") _.merge(result, error.details);else result._error = (result._error || []).concat([error.message]);
+                }
+
+                _context4.next = 24;
+                break;
+
+              case 20:
+                _context4.prev = 20;
+                _context4.t0 = _context4["catch"](16);
+                _didIteratorError2 = true;
+                _iteratorError2 = _context4.t0;
+
+              case 24:
+                _context4.prev = 24;
+                _context4.prev = 25;
+
+                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+                  _iterator2.return();
+                }
+
+              case 27:
+                _context4.prev = 27;
+
+                if (!_didIteratorError2) {
+                  _context4.next = 30;
+                  break;
+                }
+
+                throw _iteratorError2;
+
+              case 30:
+                return _context4.finish(27);
+
+              case 31:
+                return _context4.finish(24);
+
+              case 32:
+                if (!_.keys(result).length) result = {
+                  _error: "EDIT_USER_FAILED"
+                };
+
+              case 33:
+                _context4.next = 38;
+                break;
+
+              case 35:
+                _context4.prev = 35;
+                _context4.t1 = _context4["catch"](1);
+                console.error(_context4.t1);
+
+              case 38:
+                return _context4.abrupt("return", result);
+
+              case 39:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this, [[1, 35], [16, 20, 24, 32], [25,, 27, 31]]);
+      }));
+
+      return function (_x5) {
+        return _ref7.apply(this, arguments);
+      };
+    }()
+  );
+};
+
+exports.edit = edit;
+
+var remove = function remove(_ref8) {
+  var id = _ref8.id;
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref9 = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee5(dispatch) {
+        var response;
+        return _regenerator.default.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return dispatch(_app.appOperations.gqlQuery("\n        mutation ($id: String) {\n          deleteUser(id: $id) {\n            success\n          }\n        }\n      ", {
+                  id: id
+                }));
+
+              case 2:
+                response = _context5.sent;
+                return _context5.abrupt("return", response && _.get(response, "data.deleteUser.success") || false);
+
+              case 4:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this);
+      }));
+
+      return function (_x6) {
+        return _ref9.apply(this, arguments);
+      };
+    }()
+  );
+};
+
+exports.remove = remove;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+
+/***/ }),
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.hideEditModal = exports.showEditModal = exports.deselectAll = exports.selectAll = exports.setSelected = exports.setList = void 0;
+
+var types = _interopRequireWildcard(__webpack_require__(70));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+var setList = function setList(_ref) {
+  var list = _ref.list;
+  return {
+    type: types.SET_LIST,
+    list: list
+  };
+};
+
+exports.setList = setList;
+
+var setSelected = function setSelected(_ref2) {
+  var userId = _ref2.userId,
+      isSelected = _ref2.isSelected;
+  return {
+    type: types.SET_SELECTED,
+    userId: userId,
+    isSelected: isSelected
+  };
+};
+
+exports.setSelected = setSelected;
+
+var selectAll = function selectAll() {
+  return {
+    type: types.SELECT_ALL
+  };
+};
+
+exports.selectAll = selectAll;
+
+var deselectAll = function deselectAll() {
+  return {
+    type: types.DESELECT_ALL
+  };
+};
+
+exports.deselectAll = deselectAll;
+
+var showEditModal = function showEditModal() {
+  var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      userId = _ref3.userId;
+
+  return {
+    type: types.SHOW_EDIT_MODAL,
+    userId: userId
+  };
+};
+
+exports.showEditModal = showEditModal;
+
+var hideEditModal = function hideEditModal() {
+  return {
+    type: types.HIDE_EDIT_MODAL
+  };
+};
+
+exports.hideEditModal = hideEditModal;
+
+/***/ }),
 /* 98 */,
 /* 99 */,
 /* 100 */,
-/* 101 */
+/* 101 */,
+/* 102 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-virtualized");
+module.exports = require("classnames");
 
 /***/ }),
-/* 102 */,
-/* 103 */,
-/* 104 */,
-/* 105 */,
-/* 106 */,
-/* 107 */,
-/* 108 */,
-/* 109 */,
-/* 110 */,
+/* 103 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/Table");
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/TableBody");
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/TableCell");
+
+/***/ }),
+/* 106 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/TableHead");
+
+/***/ }),
+/* 107 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/TableRow");
+
+/***/ }),
+/* 108 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(6));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
+
+var _reactIntl = __webpack_require__(8);
+
+var _styles = __webpack_require__(10);
+
+var _Dialog = _interopRequireDefault(__webpack_require__(58));
+
+var _DialogActions = _interopRequireDefault(__webpack_require__(59));
+
+var _DialogContent = _interopRequireDefault(__webpack_require__(60));
+
+var _DialogContentText = _interopRequireDefault(__webpack_require__(65));
+
+var _DialogTitle = _interopRequireDefault(__webpack_require__(61));
+
+var _Button = _interopRequireDefault(__webpack_require__(28));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var styles = function styles() {
+  return {
+    actions: {
+      paddingLeft: "1rem",
+      paddingRight: "1rem",
+      paddingBottom: "1rem"
+    }
+  };
+};
+
+var ConfirmModal =
+/*#__PURE__*/
+function (_React$PureComponent) {
+  _inherits(ConfirmModal, _React$PureComponent);
+
+  function ConfirmModal() {
+    _classCallCheck(this, ConfirmModal);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ConfirmModal).apply(this, arguments));
+  }
+
+  _createClass(ConfirmModal, [{
+    key: "render",
+    value: function render() {
+      return _react.default.createElement(_Dialog.default, {
+        maxWidth: "xs",
+        fullWidth: true,
+        open: this.props.isOpen,
+        onClose: this.props.onCancel
+      }, _react.default.createElement(_DialogTitle.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: this.props.title
+      })), _react.default.createElement(_DialogContent.default, null, _react.default.createElement(_DialogContentText.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: this.props.text,
+        values: this.props.values
+      }))), _react.default.createElement(_DialogActions.default, {
+        classes: {
+          root: this.props.classes.actions
+        }
+      }, _react.default.createElement(_Button.default, {
+        variant: "contained",
+        color: "primary",
+        onClick: this.props.onCancel
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: this.props.cancel
+      })), _react.default.createElement(_Button.default, {
+        variant: "contained",
+        color: "secondary",
+        onClick: this.props.onSubmit
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: this.props.submit
+      }))));
+    }
+  }]);
+
+  return ConfirmModal;
+}(_react.default.PureComponent);
+
+var _default = (0, _styles.withStyles)(styles, {
+  withTheme: true
+})(ConfirmModal);
+
+exports.default = _default;
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default(theme) {
+  return {
+    "& table": {
+      display: ["block", "!important"]
+    },
+    "& thead": {
+      display: ["none", "!important"],
+      background: [theme.palette.background.paper, "!important"]
+    },
+    "& tbody": {
+      display: ["block", "!important"]
+    },
+    "& th": {
+      display: ["block", "!important"],
+      width: "100%",
+      paddingLeft: ["1rem", "!important"],
+      paddingRight: ["1rem", "!important"],
+      "&:not(:last-child)": {
+        borderColor: "transparent"
+      }
+    },
+    "& td": {
+      display: ["block", "!important"],
+      width: "100%",
+      paddingLeft: ["1rem", "!important"],
+      paddingRight: ["1rem", "!important"],
+      "&:not(:last-child)": {
+        borderColor: "transparent"
+      }
+    },
+    "& tr": {
+      height: ["100%", "!important"],
+      display: ["block", "!important"],
+      paddingTop: ["0.25rem", "!important"],
+      marginBottom: ["0.25rem", "!important"]
+    }
+  };
+};
+
+exports.default = _default;
+
+/***/ }),
+/* 110 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/colors/red");
+
+/***/ }),
 /* 111 */,
 /* 112 */,
 /* 113 */,
@@ -4852,14 +7278,53 @@ module.exports = require("react-virtualized");
 /* 164 */,
 /* 165 */,
 /* 166 */,
-/* 167 */
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(168);
+module.exports = __webpack_require__(207);
 
 
 /***/ }),
-/* 168 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4871,16 +7336,16 @@ Object.defineProperty(exports, "__esModule", {
 Object.defineProperty(exports, "default", {
   enumerable: true,
   get: function get() {
-    return _BrowserPage.default;
+    return _UsersPage.default;
   }
 });
 
-var _BrowserPage = _interopRequireDefault(__webpack_require__(169));
+var _UsersPage = _interopRequireDefault(__webpack_require__(208));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 169 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4897,9 +7362,9 @@ var _reactRedux = __webpack_require__(19);
 
 var _auth = __webpack_require__(12);
 
-var _devices = __webpack_require__(11);
+var _users = __webpack_require__(78);
 
-var _BrowserPage = _interopRequireDefault(__webpack_require__(170));
+var _UsersPage = _interopRequireDefault(__webpack_require__(209));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4913,35 +7378,28 @@ var mapStateToProps = function mapStateToProps(state) {
   };
 };
 
-var BrowserPage = (0, _reactRedux.connect)(mapStateToProps, null, null, {
+var UsersPage = (0, _reactRedux.connect)(mapStateToProps, null, null, {
   pure: false
-})(_BrowserPage.default);
+})(_UsersPage.default);
 
-BrowserPage.getInitialProps =
+UsersPage.getInitialProps =
 /*#__PURE__*/
 function () {
   var _ref2 = _asyncToGenerator(
   /*#__PURE__*/
   _regenerator.default.mark(function _callee(_ref) {
-    var store, req, query;
+    var store, req;
     return _regenerator.default.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            store = _ref.store, req = _ref.req, query = _ref.query;
+            store = _ref.store, req = _ref.req;
             _context.next = 3;
-            return store.dispatch(_devices.devicesOperations.load({
+            return store.dispatch(_users.usersOperations.load({
               req: req
             }));
 
           case 3:
-            return _context.abrupt("return", {
-              deviceId: query.deviceId,
-              host: query.host,
-              port: parseInt(query.port) || 0
-            });
-
-          case 4:
           case "end":
             return _context.stop();
         }
@@ -4954,11 +7412,11 @@ function () {
   };
 }();
 
-var _default = BrowserPage;
+var _default = UsersPage;
 exports.default = _default;
 
 /***/ }),
-/* 170 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4975,7 +7433,9 @@ var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
 var _styles = __webpack_require__(10);
 
-var _Browser = _interopRequireDefault(__webpack_require__(171));
+var _Grid = _interopRequireDefault(__webpack_require__(62));
+
+var _Users = _interopRequireDefault(__webpack_require__(210));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5005,7 +7465,6 @@ var styles = function styles(theme) {
       width: "100%",
       maxWidth: 1300 + 2 * theme.main.spacing,
       flex: 1,
-      display: "flex",
       padding: theme.main.spacing
     }, theme.breakpoints.down("md"), {
       padding: theme.main.spacing / 2,
@@ -5014,43 +7473,44 @@ var styles = function styles(theme) {
   };
 };
 
-var BrowserPage =
+var UsersPage =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(BrowserPage, _React$Component);
+  _inherits(UsersPage, _React$Component);
 
-  function BrowserPage() {
-    _classCallCheck(this, BrowserPage);
+  function UsersPage() {
+    _classCallCheck(this, UsersPage);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(BrowserPage).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(UsersPage).apply(this, arguments));
   }
 
-  _createClass(BrowserPage, [{
+  _createClass(UsersPage, [{
     key: "render",
     value: function render() {
       if (!this.props.isAuthenticated) return null;
       return _react.default.createElement("div", {
         className: this.props.classes.layout
-      }, _react.default.createElement(_Browser.default, {
-        key: "browser-".concat(this.props.deviceId, "-").concat(this.props.host, "-").concat(this.props.port),
-        deviceId: this.props.deviceId,
-        host: this.props.host,
-        port: this.props.port
-      }));
+      }, _react.default.createElement(_Grid.default, {
+        container: true,
+        spacing: this.props.theme.main.spacing
+      }, _react.default.createElement(_Grid.default, {
+        item: true,
+        xs: 12
+      }, _react.default.createElement(_Users.default, null))));
     }
   }]);
 
-  return BrowserPage;
+  return UsersPage;
 }(_react.default.Component);
 
 var _default = (0, _styles.withStyles)(styles, {
   withTheme: true
-})(BrowserPage);
+})(UsersPage);
 
 exports.default = _default;
 
 /***/ }),
-/* 171 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5063,30 +7523,59 @@ exports.default = void 0;
 
 var _reactRedux = __webpack_require__(19);
 
-var _router = __webpack_require__(9);
+var _reactIntl = __webpack_require__(8);
 
-var _Browser = _interopRequireDefault(__webpack_require__(172));
+var _users = __webpack_require__(78);
 
-var _app = __webpack_require__(4);
-
-var _devices = __webpack_require__(11);
+var _Users = _interopRequireDefault(__webpack_require__(211));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mapStateToProps = function mapStateToProps(state, props) {
+var mapStateToProps = function mapStateToProps(state) {
   return {
-    appOrigin: _app.appSelectors.getAppOrigin(state),
-    name: _devices.devicesSelectors.getName(state, props),
-    address: _devices.devicesSelectors.getAddress(state, props)
+    users: _users.usersSelectors.getList(state),
+    isAllSelected: _users.usersSelectors.isAllSelected(state),
+    isAllDeselected: _users.usersSelectors.isAllDeselected(state)
   };
 };
 
-var Browser = (0, _router.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(_Browser.default));
-var _default = Browser;
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    onLoad: function onLoad() {
+      return dispatch(_users.usersOperations.load());
+    },
+    onCreate: function onCreate() {
+      return dispatch(_users.usersOperations.showEditModal());
+    },
+    onEdit: function onEdit() {
+      return dispatch(_users.usersOperations.editFirstSelected());
+    },
+    onDelete: function onDelete(userId) {
+      return dispatch(_users.usersOperations.remove({
+        id: userId
+      }));
+    },
+    onSetSelected: function onSetSelected(userId, isSelected) {
+      return dispatch(_users.usersOperations.setSelected({
+        userId: userId,
+        isSelected: isSelected
+      }));
+    },
+    onSelectAll: function onSelectAll() {
+      return dispatch(_users.usersOperations.selectAll());
+    },
+    onDeselectAll: function onDeselectAll() {
+      return dispatch(_users.usersOperations.deselectAll());
+    }
+  };
+};
+
+var Users = (0, _reactIntl.injectIntl)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Users.default));
+var _default = Users;
 exports.default = _default;
 
 /***/ }),
-/* 172 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5097,29 +7586,49 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(__webpack_require__(6));
+var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _router = _interopRequireDefault(__webpack_require__(9));
+var _react = _interopRequireDefault(__webpack_require__(6));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(7));
 
-var _reactVirtualized = __webpack_require__(101);
+var _classnames = _interopRequireDefault(__webpack_require__(102));
+
+var _immutable = __webpack_require__(2);
+
+var _reactIntl = __webpack_require__(8);
 
 var _styles = __webpack_require__(10);
 
-var _IconButton = _interopRequireDefault(__webpack_require__(77));
+var _Table = _interopRequireDefault(__webpack_require__(103));
 
-var _Refresh = _interopRequireDefault(__webpack_require__(173));
+var _TableBody = _interopRequireDefault(__webpack_require__(104));
 
-var _Close = _interopRequireDefault(__webpack_require__(93));
+var _TableCell = _interopRequireDefault(__webpack_require__(105));
+
+var _TableHead = _interopRequireDefault(__webpack_require__(106));
+
+var _TableRow = _interopRequireDefault(__webpack_require__(107));
 
 var _Paper = _interopRequireDefault(__webpack_require__(73));
 
-var _Typography = _interopRequireDefault(__webpack_require__(71));
+var _Button = _interopRequireDefault(__webpack_require__(28));
+
+var _Checkbox = _interopRequireDefault(__webpack_require__(72));
+
+var _EditUserModal = _interopRequireDefault(__webpack_require__(212));
+
+var _ConfirmModal = _interopRequireDefault(__webpack_require__(108));
+
+var _responsiveTable = _interopRequireDefault(__webpack_require__(109));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -5137,118 +7646,668 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-var styles = function styles() {
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var styles = function styles(theme) {
   return {
-    container: {
-      flex: 1,
-      display: "flex",
-      flexDirection: "column",
-      position: "relative",
-      background: "#2a2c38"
+    paper: {
+      padding: "1rem"
     },
-    header: {
+    table: _defineProperty({}, theme.breakpoints.down("sm"), (0, _responsiveTable.default)(theme)),
+    buttons: {
+      width: "100%",
       display: "flex",
       flexDirection: "row",
-      alignItems: "center"
+      justifyContent: "flex-start",
+      alignContent: "stretch"
     },
-    headerText: {
-      flex: 1
+    button: {
+      margin: "0.5rem"
     },
-    browser: {
-      flex: 1
+    checkboxField: {
+      width: 1
+    },
+    checkbox: {
+      padding: 0
     }
   };
 };
 
-var Browser =
+var Users =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(Browser, _React$Component);
+  _inherits(Users, _React$Component);
 
-  function Browser(props) {
+  function Users(props) {
     var _this;
 
-    _classCallCheck(this, Browser);
+    _classCallCheck(this, Users);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Browser).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Users).call(this, props));
     _this.state = {
-      key: Date.now()
+      isConfirmOpen: false
     };
-    _this.handleClose = _this.handleClose.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleRefresh = _this.handleRefresh.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleCreateAction = _this.handleCreateAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleEditAction = _this.handleEditAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleDeleteAction = _this.handleDeleteAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleCancelDelete = _this.handleCancelDelete.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleConfirmDelete = _this.handleConfirmDelete.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
-  _createClass(Browser, [{
-    key: "getIframeId",
-    value: function getIframeId() {
-      return "frame-".concat(this.props.deviceId, "-").concat(this.props.host, "-").concat(this.props.port);
+  _createClass(Users, [{
+    key: "handleToggleAll",
+    value: function handleToggleAll() {
+      var forceOff = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      if (forceOff || this.props.isAllSelected) this.props.onDeselectAll();else this.props.onSelectAll();
     }
   }, {
-    key: "handleRefresh",
-    value: function handleRefresh() {
+    key: "handleToggle",
+    value: function handleToggle(userId) {
+      // eslint-disable-next-line lodash/prefer-lodash-method
+      var user = this.props.users.find(function (user) {
+        return user.get("id") === userId;
+      });
+      var isSelected = user && user.get("isSelected");
+      this.props.onSetSelected(userId, !isSelected);
+    }
+  }, {
+    key: "handleCreateAction",
+    value: function handleCreateAction() {
+      this.props.onCreate();
+    }
+  }, {
+    key: "handleEditAction",
+    value: function handleEditAction() {
+      this.props.onEdit();
+    }
+  }, {
+    key: "handleDeleteAction",
+    value: function handleDeleteAction() {
       this.setState({
-        key: Date.now()
+        isConfirmOpen: true
       });
     }
   }, {
-    key: "handleClose",
-    value: function handleClose() {
-      _router.default.push("/");
+    key: "handleCancelDelete",
+    value: function handleCancelDelete() {
+      this.setState({
+        isConfirmOpen: false
+      });
     }
+  }, {
+    key: "handleConfirmDelete",
+    value: function () {
+      var _handleConfirmDelete = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee() {
+        var _this2 = this;
+
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.setState({
+                  isConfirmOpen: false
+                });
+                _context.next = 3;
+                return Promise.all( // eslint-disable-next-line lodash/prefer-lodash-method
+                this.props.users.filter(function (user) {
+                  return user.get("isSelected");
+                }).map(function (user) {
+                  return _this2.props.onDelete(user.get("id"));
+                }));
+
+              case 3:
+                this.props.onLoad();
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function handleConfirmDelete() {
+        return _handleConfirmDelete.apply(this, arguments);
+      }
+
+      return handleConfirmDelete;
+    }()
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
-      return _react.default.createElement(_Paper.default, {
-        className: this.props.classes.container
-      }, _react.default.createElement("div", {
-        className: this.props.classes.header
-      }, _react.default.createElement(_IconButton.default, {
-        color: "inherit",
-        onClick: this.handleRefresh
-      }, _react.default.createElement(_Refresh.default, null)), _react.default.createElement(_Typography.default, {
-        variant: "h5",
-        className: this.props.classes.headerText
-      }, this.props.host, ":", this.props.port, "\xA0-\xA0", this.props.name, "\xA0", !!this.props.address && "(" + this.props.address + ")"), _react.default.createElement(_IconButton.default, {
-        color: "inherit",
-        onClick: this.handleClose
-      }, _react.default.createElement(_Close.default, null))), _react.default.createElement("div", {
-        className: this.props.classes.browser
-      }, _react.default.createElement(_reactVirtualized.AutoSizer, null, function (_ref) {
-        var width = _ref.width,
-            height = _ref.height;
-        return _react.default.createElement("iframe", {
-          key: "frame-".concat(_this2.state.key),
-          id: _this2.getIframeId(),
-          width: width,
-          height: height,
-          sandbox: "allow-forms allow-modals allow-popups allow-scripts allow-same-origin",
-          style: {
-            background: "#ffffff",
-            border: "none"
+      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
+        className: this.props.classes.buttons
+      }, _react.default.createElement(_Button.default, {
+        variant: "contained",
+        color: "secondary",
+        classes: {
+          root: this.props.classes.button
+        },
+        onClick: this.handleCreateAction
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "USERS_CREATE_BUTTON"
+      })), _react.default.createElement(_Button.default, {
+        variant: "contained",
+        color: "primary",
+        disabled: this.props.isAllDeselected,
+        classes: {
+          root: this.props.classes.button
+        },
+        onClick: this.handleEditAction
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "USERS_EDIT_BUTTON"
+      })), _react.default.createElement(_Button.default, {
+        variant: "contained",
+        color: "primary",
+        disabled: this.props.isAllDeselected,
+        classes: {
+          root: this.props.classes.button
+        },
+        onClick: this.handleDeleteAction
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "USERS_DELETE_BUTTON"
+      }))), _react.default.createElement(_Paper.default, {
+        className: this.props.classes.paper
+      }, _react.default.createElement(_Table.default, {
+        padding: "dense",
+        className: this.props.classes.table
+      }, _react.default.createElement(_TableHead.default, null, _react.default.createElement(_TableRow.default, null, _react.default.createElement(_TableCell.default, {
+        padding: "none",
+        classes: {
+          root: this.props.classes.checkboxField
+        }
+      }, _react.default.createElement(_Checkbox.default, {
+        checked: !!this.props.users.size && this.props.isAllSelected,
+        classes: {
+          root: this.props.classes.checkbox
+        },
+        indeterminate: !this.props.isAllSelected && !this.props.isAllDeselected,
+        onChange: function onChange() {
+          return _this3.handleToggleAll();
+        },
+        value: "on"
+      })), _react.default.createElement(_TableCell.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "USERS_LOGIN_COLUMN"
+      })), _react.default.createElement(_TableCell.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "USERS_ROLES_COLUMN"
+      })))), _react.default.createElement(_TableBody.default, null, this.props.users.map(function (row, index) {
+        return _react.default.createElement(_TableRow.default, {
+          key: "row-".concat(index)
+        }, _react.default.createElement(_TableCell.default, {
+          padding: "none",
+          className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected"),
+          classes: {
+            root: _this3.props.classes.checkboxField
+          }
+        }, _react.default.createElement(_Checkbox.default, {
+          checked: !!row.get("isSelected"),
+          classes: {
+            root: _this3.props.classes.checkbox
           },
-          src: "".concat(_this2.props.appOrigin, "/api/browser/").concat(_this2.props.deviceId, "/").concat(_this2.props.host, "/").concat(_this2.props.port)
-        });
-      })));
+          onChange: function onChange() {
+            return _this3.handleToggle(row.get("id"));
+          },
+          value: "on"
+        })), _react.default.createElement(_TableCell.default, {
+          className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected"),
+          component: "th",
+          scope: "row"
+        }, row.get("login")), _react.default.createElement(_TableCell.default, {
+          className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected")
+        }, row.get("roles").toJS().map(function (item) {
+          return _this3.props.intl.formatMessage({
+            id: "EDIT_USER_".concat(item, "_LABEL")
+          });
+        }).join(", ")));
+      })))), _react.default.createElement(_EditUserModal.default, null), _react.default.createElement(_ConfirmModal.default, {
+        isOpen: this.state.isConfirmOpen,
+        title: "DELETE_USER_TITLE",
+        text: "DELETE_USER_TEXT",
+        cancel: "DELETE_USER_CANCEL",
+        submit: "DELETE_USER_SUBMIT",
+        onCancel: this.handleCancelDelete,
+        onSubmit: this.handleConfirmDelete
+      }));
     }
   }]);
 
-  return Browser;
+  return Users;
 }(_react.default.Component);
 
 var _default = (0, _styles.withStyles)(styles, {
   withTheme: true
-})(Browser);
+})(Users);
 
 exports.default = _default;
 
 /***/ }),
-/* 173 */
-/***/ (function(module, exports) {
+/* 212 */
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = require("@material-ui/icons/Refresh");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _regenerator = _interopRequireDefault(__webpack_require__(1));
+
+var _immutable = __webpack_require__(2);
+
+var _reactIntl = __webpack_require__(8);
+
+var _immutable2 = __webpack_require__(18);
+
+var _reduxForm = __webpack_require__(63);
+
+var _users = __webpack_require__(78);
+
+var _createForm = _interopRequireDefault(__webpack_require__(64));
+
+var _EditUserModal = _interopRequireDefault(__webpack_require__(213));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var formName = _EditUserModal.default.formName;
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    fieldValues: _defineProperty({}, formName, (0, _immutable2.getFormValues)(formName)(state) || (0, _immutable.Map)()),
+    fieldErrors: _defineProperty({}, formName, (0, _immutable2.getFormAsyncErrors)(formName)(state) || (0, _immutable.Map)()),
+    data: _users.usersSelectors.getEditModalData(state),
+    isOpen: _users.usersSelectors.isEditModalOpen(state)
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    dispatch: dispatch,
+    updateValidation: function () {
+      var _updateValidation = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee(errors) {
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return dispatch((0, _reduxForm.startAsyncValidation)(formName));
+
+              case 2:
+                _context.next = 4;
+                return dispatch((0, _reduxForm.stopAsyncValidation)(formName, errors));
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function updateValidation(_x) {
+        return _updateValidation.apply(this, arguments);
+      }
+
+      return updateValidation;
+    }(),
+    onCancel: function onCancel() {
+      return dispatch(_users.usersOperations.hideEditModal());
+    },
+    onLoad: function onLoad() {
+      return dispatch(_users.usersOperations.load());
+    },
+    onCreate: function onCreate(login, password, isAdmin) {
+      return dispatch(_users.usersOperations.create({
+        login: login,
+        password: password,
+        isAdmin: isAdmin
+      }));
+    },
+    onEdit: function onEdit(id, login, password, isAdmin) {
+      return dispatch(_users.usersOperations.edit({
+        id: id,
+        login: login,
+        password: password,
+        isAdmin: isAdmin
+      }));
+    }
+  };
+};
+
+var EditUserModal = (0, _reactIntl.injectIntl)((0, _createForm.default)(_EditUserModal.default, mapStateToProps, mapDispatchToProps));
+var _default = EditUserModal;
+exports.default = _default;
+
+/***/ }),
+/* 213 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _regenerator = _interopRequireDefault(__webpack_require__(1));
+
+var _react = _interopRequireDefault(__webpack_require__(6));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(7));
+
+var _immutable = __webpack_require__(2);
+
+var _reactIntl = __webpack_require__(8);
+
+var _immutable2 = __webpack_require__(18);
+
+var _styles = __webpack_require__(10);
+
+var _Dialog = _interopRequireDefault(__webpack_require__(58));
+
+var _DialogActions = _interopRequireDefault(__webpack_require__(59));
+
+var _DialogContent = _interopRequireDefault(__webpack_require__(60));
+
+var _DialogContentText = _interopRequireDefault(__webpack_require__(65));
+
+var _DialogTitle = _interopRequireDefault(__webpack_require__(61));
+
+var _Grid = _interopRequireDefault(__webpack_require__(62));
+
+var _Button = _interopRequireDefault(__webpack_require__(28));
+
+var _red = _interopRequireDefault(__webpack_require__(110));
+
+var _Form2 = _interopRequireDefault(__webpack_require__(66));
+
+var _Field = _interopRequireDefault(__webpack_require__(69));
+
+var _constants = _interopRequireDefault(__webpack_require__(3));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var styles = function styles() {
+  return {
+    error: {
+      color: _red.default[500]
+    },
+    actions: {
+      paddingLeft: "1rem",
+      paddingRight: "1rem",
+      paddingBottom: "1rem"
+    }
+  };
+};
+
+var EditUserModal =
+/*#__PURE__*/
+function (_Form) {
+  _inherits(EditUserModal, _Form);
+
+  _createClass(EditUserModal, null, [{
+    key: "onSubmit",
+    value: function () {
+      var _onSubmit = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee(values, dispatch, props) {
+        var result;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (!props.data) {
+                  _context.next = 6;
+                  break;
+                }
+
+                _context.next = 3;
+                return props.onEdit(props.data.get("id"), this.getValue(props, "login"), this.getValue(props, "password"), this.getValue(props, "isAdmin") === "on");
+
+              case 3:
+                result = _context.sent;
+                _context.next = 9;
+                break;
+
+              case 6:
+                _context.next = 8;
+                return props.onCreate(this.getValue(props, "login"), this.getValue(props, "password"), this.getValue(props, "isAdmin") === "on");
+
+              case 8:
+                result = _context.sent;
+
+              case 9:
+                if (!(result === true)) {
+                  _context.next = 14;
+                  break;
+                }
+
+                _context.next = 12;
+                return props.onLoad();
+
+              case 12:
+                _context.next = 16;
+                break;
+
+              case 14:
+                if (!(result && _.isObject(result))) {
+                  _context.next = 16;
+                  break;
+                }
+
+                throw new _immutable2.SubmissionError(result);
+
+              case 16:
+                return _context.abrupt("return", result);
+
+              case 17:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function onSubmit(_x, _x2, _x3) {
+        return _onSubmit.apply(this, arguments);
+      }
+
+      return onSubmit;
+    }()
+  }, {
+    key: "getDerivedStateFromProps",
+    value: function getDerivedStateFromProps(nextProps, prevState) {
+      var state = {};
+      /* eslint-disable lodash/prefer-lodash-method */
+
+      if (prevState.isOpen !== nextProps.isOpen) {
+        var login = nextProps.data && nextProps.data.get("login");
+        var isAdmin = nextProps.data && nextProps.data.get("roles").includes(_constants.default.roles.ADMIN);
+        nextProps.dispatch(nextProps.change("login", login || ""));
+        nextProps.dispatch(nextProps.change("password", ""));
+        nextProps.dispatch(nextProps.change("isAdmin", isAdmin ? "on" : "off"));
+        nextProps.dispatch(nextProps.clearAsyncError());
+        nextProps.dispatch(nextProps.clearSubmitErrors());
+        state.isOpen = nextProps.isOpen;
+      }
+      /* eslint-enable */
+
+
+      return _.keys(state).length ? state : null;
+    }
+  }]);
+
+  function EditUserModal(props) {
+    var _this;
+
+    _classCallCheck(this, EditUserModal);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(EditUserModal).call(this, props));
+    _this.state = {
+      isOpen: props.isOpen
+    };
+    _this.submit = _this.submit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  }
+
+  _createClass(EditUserModal, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return _react.default.createElement(_Dialog.default, {
+        maxWidth: "xs",
+        fullWidth: true,
+        open: this.props.isOpen,
+        onClose: this.props.onCancel
+      }, _react.default.createElement(_DialogTitle.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: this.props.data ? "EDIT_USER_TITLE_EDIT" : "EDIT_USER_TITLE_CREATE"
+      })), this.props.error && _react.default.createElement(_DialogContent.default, null, _.map(_.isArray(this.props.error) ? this.props.error : [this.props.error], function (error, index) {
+        return _react.default.createElement(_DialogContentText.default, {
+          key: "error-".concat(index),
+          classes: {
+            root: _this2.props.classes.error
+          }
+        }, _.isArray(error) ? _react.default.createElement(_reactIntl.FormattedMessage, {
+          id: error[0],
+          values: error[1]
+        }) : _react.default.createElement(_reactIntl.FormattedMessage, {
+          id: error
+        }));
+      })), _react.default.createElement(_DialogContent.default, null, _react.default.createElement(_Grid.default, {
+        container: true,
+        spacing: 16,
+        component: "form",
+        noValidate: true,
+        autoComplete: "off",
+        onSubmit: this.submit
+      }, _react.default.createElement(_Grid.default, {
+        item: true,
+        xs: 12
+      }, _react.default.createElement(_Field.default, {
+        formFields: this.constructor.fields,
+        formProps: this.props,
+        name: "login",
+        type: "text",
+        onSubmit: this.submit
+      })), _react.default.createElement(_Grid.default, {
+        item: true,
+        xs: 12
+      }, _react.default.createElement(_Field.default, {
+        formFields: this.constructor.fields,
+        formProps: this.props,
+        name: "password",
+        type: "password",
+        onSubmit: this.submit
+      })), _react.default.createElement(_Grid.default, {
+        item: true,
+        xs: 12
+      }, _react.default.createElement(_Field.default, {
+        formFields: this.constructor.fields,
+        formProps: this.props,
+        name: "isAdmin",
+        type: "checkbox",
+        onSubmit: this.submit
+      })))), _react.default.createElement(_DialogActions.default, {
+        classes: {
+          root: this.props.classes.actions
+        }
+      }, _react.default.createElement(_Button.default, {
+        variant: "contained",
+        color: "primary",
+        disabled: this.props.submitting,
+        onClick: this.props.onCancel
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "EDIT_USER_CANCEL"
+      })), _react.default.createElement(_Button.default, {
+        variant: "contained",
+        color: "secondary",
+        disabled: this.props.submitting,
+        onClick: this.submit
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "EDIT_USER_SUBMIT"
+      }))));
+    }
+  }]);
+
+  return EditUserModal;
+}(_Form2.default);
+
+_defineProperty(EditUserModal, "propTypes", _objectSpread({}, _Form2.default.propTypes, {
+  intl: _reactIntl.intlShape,
+  theme: _propTypes.default.object.isRequired,
+  classes: _propTypes.default.object.isRequired,
+  isOpen: _propTypes.default.bool.isRequired,
+  data: _propTypes.default.instanceOf(_immutable.Map),
+  onCancel: _propTypes.default.func.isRequired,
+  onLoad: _propTypes.default.func.isRequired,
+  onCreate: _propTypes.default.func.isRequired,
+  onEdit: _propTypes.default.func.isRequired
+}));
+
+_defineProperty(EditUserModal, "formName", "editUserForm");
+
+_defineProperty(EditUserModal, "fields", {
+  login: {
+    normalize: "rows:1|remove:spaces",
+    transform: "trim",
+    label: "EDIT_USER_LOGIN_LABEL"
+  },
+  password: {
+    label: "EDIT_USER_PASSWORD_LABEL"
+  },
+  isAdmin: {
+    label: "EDIT_USER_ADMIN_LABEL"
+  }
+});
+
+var _default = (0, _styles.withStyles)(styles, {
+  withTheme: true
+})(EditUserModal);
+
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ })
 /******/ ]);

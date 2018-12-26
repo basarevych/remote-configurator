@@ -55,8 +55,7 @@ class AppAuthModal extends Form {
       this.getValue(props, "password")
     );
 
-    if (result === true) await props.onLoad();
-    else if (result && _.isObject(result)) throw new SubmissionError(result);
+    if (result && _.isObject(result)) throw new SubmissionError(result);
 
     return result;
   }

@@ -21,10 +21,14 @@ import OpenTerminalIcon from "@material-ui/icons/OpenInBrowser";
 import OpenBrowserIcon from "@material-ui/icons/Language";
 import DisconnectIcon from "@material-ui/icons/ExitToApp";
 import ProxyModal from "../../containers/Modals/ProxyModal";
+import responsiveTable from "../../styles/responsiveTable";
 
 const styles = theme => ({
   paper: {
     padding: "1rem"
+  },
+  table: {
+    [theme.breakpoints.down("sm")]: responsiveTable(theme)
   },
   statusColumn: {
     width: "40%"
@@ -51,7 +55,7 @@ const styles = theme => ({
     whiteSpace: ["nowrap", "!important"]
   },
   checkbox: {
-    padding: "0.5rem 1rem"
+    padding: 0
   }
 });
 
@@ -184,7 +188,7 @@ class Devices extends React.Component {
         </div>
 
         <Paper className={this.props.classes.paper}>
-          <Table padding="dense">
+          <Table padding="dense" className={this.props.classes.table}>
             <TableHead>
               <TableRow>
                 <TableCell
@@ -244,6 +248,7 @@ class Devices extends React.Component {
                             <span>
                               <IconButton
                                 color="inherit"
+                                classes={{ root: this.props.classes.button }}
                                 onClick={() =>
                                   this.props.onOpenTerminal(row.get("id"))
                                 }
@@ -262,6 +267,7 @@ class Devices extends React.Component {
                             <span>
                               <IconButton
                                 color="inherit"
+                                classes={{ root: this.props.classes.button }}
                                 onClick={() =>
                                   this.handleProxyModalOpen(row.get("id"))
                                 }
@@ -280,6 +286,7 @@ class Devices extends React.Component {
                             <span>
                               <IconButton
                                 color="inherit"
+                                classes={{ root: this.props.classes.button }}
                                 onClick={() =>
                                   this.props.onDisconnect(row.get("id"))
                                 }
@@ -299,6 +306,7 @@ class Devices extends React.Component {
                           variant="contained"
                           color="primary"
                           disabled={!info}
+                          classes={{ root: this.props.classes.button }}
                           onClick={() => this.props.onConnect(row.get("id"))}
                         >
                           <FormattedMessage id="DEVICES_CONNECT_BUTTON" />

@@ -11,7 +11,7 @@ const primary = "#707484";
 const secondary = "#af441d";
 
 const bgPage = "#000000";
-const bgNormal = "#44485C";
+const bgNormal = "#484e5e";
 
 const textNormal = "rgba(255, 255, 255, 0.87)";
 const textDark = "rgba(255, 255, 255, 0.54)";
@@ -90,18 +90,27 @@ module.exports = {
       padding: "1rem 2rem"
     }
   },
+  props: {
+    Dialog: {
+      scroll: "body"
+    }
+  },
   overrides: {
     MuiPaper: {
       root: {
-        background: `linear-gradient(to right bottom, ${lighten(
+        background: `linear-gradient(to bottom right, ${lighten(
           bgNormal,
           0.2
-        )}, ${lighten(bgNormal, 0.05)})`
+        )} 0, ${darken(bgNormal, 0.3)} 100%)`
       }
     },
     MuiTableRow: {
       root: {
-        height: ["100%", "!important"]
+        //height: ["100%", "!important"],
+        height: [48, "!important"],
+        "& th": {
+          fontWeight: "bold"
+        }
       }
     },
     MuiTableBody: {

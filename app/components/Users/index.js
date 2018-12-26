@@ -14,10 +14,14 @@ import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
 import EditUserModal from "../../containers/Users/EditUserModal";
 import ConfirmModal from "../Modals/ConfirmModal";
+import responsiveTable from "../../styles/responsiveTable";
 
-const styles = () => ({
+const styles = theme => ({
   paper: {
     padding: "1rem"
+  },
+  table: {
+    [theme.breakpoints.down("sm")]: responsiveTable(theme)
   },
   buttons: {
     width: "100%",
@@ -33,7 +37,7 @@ const styles = () => ({
     width: 1
   },
   checkbox: {
-    padding: "0.5rem 1rem"
+    padding: 0
   }
 });
 
@@ -140,7 +144,7 @@ class Users extends React.Component {
         </div>
 
         <Paper className={this.props.classes.paper}>
-          <Table padding="dense">
+          <Table padding="dense" className={this.props.classes.table}>
             <TableHead>
               <TableRow>
                 <TableCell
