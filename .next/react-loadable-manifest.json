@@ -225,7 +225,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "@babel/runtime/helpers/objectWithoutPropertiesLoose": [
+  "./objectWithoutPropertiesLoose": [
     {
       "id": 36,
       "name": "./node_modules/next/node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js",
@@ -233,7 +233,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "./../node_modules/webpack/buildin/global.js": [
+  "./../../node_modules/webpack/buildin/global.js": [
     {
       "id": 37,
       "name": "./node_modules/webpack/buildin/global.js",
@@ -321,7 +321,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "../common/constants": [
+  "../../common/constants": [
     {
       "id": 55,
       "name": "./common/constants.js",
@@ -345,7 +345,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "./devices": [
+  "../../state/devices": [
     {
       "id": 58,
       "name": "./app/state/devices/index.js",
@@ -473,7 +473,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "@material-ui/core/styles/colorManipulator": [
+  "./colorManipulator": [
     {
       "id": 94,
       "name": "./node_modules/@material-ui/core/styles/colorManipulator.js",
@@ -813,7 +813,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "../styles/transitions": [
+  "./transitions": [
     {
       "id": 167,
       "name": "./node_modules/@material-ui/core/styles/transitions.js",
@@ -893,7 +893,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "react-transition-group/Transition": [
+  "./Transition": [
     {
       "id": 178,
       "name": "./node_modules/react-transition-group/Transition.js",
@@ -1035,7 +1035,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "../styles/createBreakpoints": [
+  "./createBreakpoints": [
     {
       "id": 199,
       "name": "./node_modules/@material-ui/core/styles/createBreakpoints.js",
@@ -1253,7 +1253,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "@material-ui/core/colors/red": [
+  "../colors/red": [
     {
       "id": 259,
       "name": "./node_modules/@material-ui/core/colors/red.js",
@@ -1823,7 +1823,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "@material-ui/core/colors/pink": [
+  "../colors/pink": [
     {
       "id": 358,
       "name": "./node_modules/@material-ui/core/colors/pink.js",
@@ -1831,7 +1831,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "./grey": [
+  "../colors/grey": [
     {
       "id": 359,
       "name": "./node_modules/@material-ui/core/colors/grey.js",
@@ -1971,7 +1971,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "./get": [
+  "lodash/get": [
     {
       "id": 381,
       "name": "./node_modules/lodash/get.js",
@@ -2067,7 +2067,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "react-transition-group/TransitionGroup": [
+  "./TransitionGroup": [
     {
       "id": 397,
       "name": "./node_modules/react-transition-group/TransitionGroup.js",
@@ -2481,7 +2481,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "./indigo": [
+  "../colors/indigo": [
     {
       "id": 552,
       "name": "./node_modules/@material-ui/core/colors/indigo.js",
@@ -2489,7 +2489,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "./common": [
+  "../colors/common": [
     {
       "id": 553,
       "name": "./node_modules/@material-ui/core/colors/common.js",
@@ -2601,7 +2601,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "../styles/mergeClasses": [
+  "./mergeClasses": [
     {
       "id": 567,
       "name": "./node_modules/@material-ui/core/styles/mergeClasses.js",
@@ -2991,16 +2991,10 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "./isPristine": [
+  "../selectors/isPristine": [
     {
       "id": 623,
       "name": "./node_modules/redux-form/lib/selectors/isPristine.js",
-      "file": "static/chunks/commons.ba93de5dc84c7f0a3bcf.js",
-      "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
-    },
-    {
-      "id": 1512,
-      "name": "./node_modules/redux-form/es/isPristine.js",
       "file": "static/chunks/commons.ba93de5dc84c7f0a3bcf.js",
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
@@ -3329,7 +3323,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "../Popover": [
+  "@material-ui/core/Popover": [
     {
       "id": 663,
       "name": "./node_modules/@material-ui/core/Popover/index.js",
@@ -3393,7 +3387,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "../MenuList": [
+  "@material-ui/core/MenuList": [
     {
       "id": 671,
       "name": "./node_modules/@material-ui/core/MenuList/index.js",
@@ -7383,6 +7377,14 @@
     {
       "id": 1510,
       "name": "./node_modules/redux-form/es/selectors/isInvalid.js",
+      "file": "static/chunks/commons.ba93de5dc84c7f0a3bcf.js",
+      "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
+    }
+  ],
+  "./isPristine": [
+    {
+      "id": 1512,
+      "name": "./node_modules/redux-form/es/isPristine.js",
       "file": "static/chunks/commons.ba93de5dc84c7f0a3bcf.js",
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }

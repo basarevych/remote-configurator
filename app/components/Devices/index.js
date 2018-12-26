@@ -43,12 +43,16 @@ const styles = theme => ({
   button: {
     margin: "0.5rem"
   },
+  tableButton: {
+    marginLeft: "0.5rem"
+  },
   tooltip: {
     fontSize: "1rem"
   },
   progress: {
     display: "inline-block",
-    width: theme.main.spacing * 4
+    width: theme.main.spacing * 4,
+    marginLeft: "0.5rem"
   },
   collapsing: {
     width: 1,
@@ -248,7 +252,9 @@ class Devices extends React.Component {
                             <span>
                               <IconButton
                                 color="inherit"
-                                classes={{ root: this.props.classes.button }}
+                                classes={{
+                                  root: this.props.classes.tableButton
+                                }}
                                 onClick={() =>
                                   this.props.onOpenTerminal(row.get("id"))
                                 }
@@ -267,7 +273,9 @@ class Devices extends React.Component {
                             <span>
                               <IconButton
                                 color="inherit"
-                                classes={{ root: this.props.classes.button }}
+                                classes={{
+                                  root: this.props.classes.tableButton
+                                }}
                                 onClick={() =>
                                   this.handleProxyModalOpen(row.get("id"))
                                 }
@@ -286,7 +294,9 @@ class Devices extends React.Component {
                             <span>
                               <IconButton
                                 color="inherit"
-                                classes={{ root: this.props.classes.button }}
+                                classes={{
+                                  root: this.props.classes.tableButton
+                                }}
                                 onClick={() =>
                                   this.props.onDisconnect(row.get("id"))
                                 }
@@ -306,7 +316,7 @@ class Devices extends React.Component {
                           variant="contained"
                           color="primary"
                           disabled={!info}
-                          classes={{ root: this.props.classes.button }}
+                          classes={{ root: this.props.classes.tableButton }}
                           onClick={() => this.props.onConnect(row.get("id"))}
                         >
                           <FormattedMessage id="DEVICES_CONNECT_BUTTON" />

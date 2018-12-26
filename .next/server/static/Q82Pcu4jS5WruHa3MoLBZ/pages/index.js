@@ -7105,12 +7105,16 @@ var styles = function styles(theme) {
     button: {
       margin: "0.5rem"
     },
+    tableButton: {
+      marginLeft: "0.5rem"
+    },
     tooltip: {
       fontSize: "1rem"
     },
     progress: {
       display: "inline-block",
-      width: theme.main.spacing * 4
+      width: theme.main.spacing * 4,
+      marginLeft: "0.5rem"
     },
     collapsing: {
       width: 1,
@@ -7336,7 +7340,7 @@ function (_React$Component) {
         }, _react.default.createElement("span", null, _react.default.createElement(_IconButton.default, {
           color: "inherit",
           classes: {
-            root: _this3.props.classes.button
+            root: _this3.props.classes.tableButton
           },
           onClick: function onClick() {
             return _this3.props.onOpenTerminal(row.get("id"));
@@ -7352,7 +7356,7 @@ function (_React$Component) {
         }, _react.default.createElement("span", null, _react.default.createElement(_IconButton.default, {
           color: "inherit",
           classes: {
-            root: _this3.props.classes.button
+            root: _this3.props.classes.tableButton
           },
           onClick: function onClick() {
             return _this3.handleProxyModalOpen(row.get("id"));
@@ -7368,7 +7372,7 @@ function (_React$Component) {
         }, _react.default.createElement("span", null, _react.default.createElement(_IconButton.default, {
           color: "inherit",
           classes: {
-            root: _this3.props.classes.button
+            root: _this3.props.classes.tableButton
           },
           onClick: function onClick() {
             return _this3.props.onDisconnect(row.get("id"));
@@ -7381,7 +7385,7 @@ function (_React$Component) {
           color: "primary",
           disabled: !info,
           classes: {
-            root: _this3.props.classes.button
+            root: _this3.props.classes.tableButton
           },
           onClick: function onClick() {
             return _this3.props.onConnect(row.get("id"));
