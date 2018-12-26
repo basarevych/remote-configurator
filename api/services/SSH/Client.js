@@ -129,6 +129,7 @@ class Client extends EventEmitter {
                 deviceId: this.deviceId,
                 userId: info.userId,
                 client: this,
+                name: info.name,
                 username: ctx.username.toString(),
                 address: this.info.ip
               })

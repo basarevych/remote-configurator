@@ -10,6 +10,7 @@ Map({
     userId: String,
     client: SSH.Client, // ssh incoming client
     status: String, // or null
+    name: String,
     username: String,
     address: String,
     whenConnected: Number, // timestamp
@@ -53,6 +54,16 @@ const statusReducer = (state = "", action) => {
     case types.CREATE:
     case types.SET:
       if (!_.isUndefined(action.status)) return action.status;
+      break;
+  }
+  return state;
+};
+
+const nameReducer = (state = "", action) => {
+  switch (action.type) {
+    case types.CREATE:
+    case types.SET:
+      if (!_.isUndefined(action.name)) return action.name;
       break;
   }
   return state;
@@ -195,6 +206,7 @@ const deviceReducer = combineReducers({
   userId: userIdReducer,
   client: clientReducer,
   status: statusReducer,
+  name: nameReducer,
   username: usernameReducer,
   address: addressReducer,
   whenConnected: whenConnectedReducer,

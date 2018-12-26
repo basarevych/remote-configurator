@@ -38,7 +38,8 @@ class DevicesRepository extends EventEmitter {
         )
       ) {
         const user = await this.db.UserModel.findById(device.owner);
-        if (user) return { deviceId: device.id, userId: user.id };
+        if (user)
+          return { deviceId: device.id, userId: user.id, name: device.name };
       }
     }
     return null;

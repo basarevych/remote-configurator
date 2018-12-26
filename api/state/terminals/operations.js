@@ -35,9 +35,7 @@ const create = ({ deviceId, userId }) => {
       devicesSelectors.getTerminalCounter(getState(), { deviceId }) + 1;
 
     let name =
-      devicesSelectors.getUsername(getState(), { deviceId }) + " #" + counter;
-    let index = name.indexOf(name, "_");
-    if (index !== -1) name = name.slice(index);
+      devicesSelectors.getName(getState(), { deviceId }) + " #" + counter;
 
     let client = appSelectors.getService(getState(), {
       service: "ssh.terminal",

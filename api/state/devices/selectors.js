@@ -28,6 +28,9 @@ const getUserId = (state, props) =>
 const getClient = (state, props) =>
   state.getIn(["devices", props.deviceId, "client"]);
 
+const getName = (state, props) =>
+  state.getIn(["devices", props.deviceId, "name"]);
+
 const getUsername = (state, props) =>
   state.getIn(["devices", props.deviceId, "username"]);
 
@@ -75,6 +78,7 @@ module.exports = {
   getDeviceMap,
   getUserId,
   getClient,
+  getName,
   getUsername,
   getAddress,
   getWhenConnected,
