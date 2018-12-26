@@ -71,8 +71,6 @@ module.exports = withPlugins([...plugins], {
       let options = config.optimization.minimizer[0].options;
       let terserOptions = options.terserOptions;
       terserOptions.ecma = 5;
-      if (!terserOptions.mangle) terserOptions.mangle = {};
-      terserOptions.mangle.reserved = ["SubmissionError"]; // fix redux-form
       config.optimization.minimizer[0] = new TerserPlugin(options);
     }
 
