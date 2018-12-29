@@ -181,7 +181,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "../../modules/_core": [
+  "../modules/_core": [
     {
       "id": 32,
       "name": "./node_modules/core-js/library/modules/_core.js",
@@ -225,7 +225,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "@babel/runtime/helpers/objectWithoutPropertiesLoose": [
+  "./objectWithoutPropertiesLoose": [
     {
       "id": 36,
       "name": "./node_modules/next/node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js",
@@ -345,7 +345,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "../../state/devices": [
+  "./devices": [
     {
       "id": 58,
       "name": "./app/state/devices/index.js",
@@ -575,7 +575,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "./ownerDocument": [
+  "../utils/ownerDocument": [
     {
       "id": 115,
       "name": "./node_modules/@material-ui/core/utils/ownerDocument.js",
@@ -639,7 +639,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "../../modules/es6.string.iterator": [
+  "../modules/es6.string.iterator": [
     {
       "id": 131,
       "name": "./node_modules/core-js/library/modules/es6.string.iterator.js",
@@ -821,7 +821,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "./rules/StyleRule": [
+  "../rules/StyleRule": [
     {
       "id": 168,
       "name": "./node_modules/jss/lib/rules/StyleRule.js",
@@ -1051,7 +1051,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "./RuleList": [
+  "../RuleList": [
     {
       "id": 201,
       "name": "./node_modules/jss/lib/RuleList.js",
@@ -1073,7 +1073,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "./isFunction": [
+  "lodash/isFunction": [
     {
       "id": 204,
       "name": "./node_modules/lodash/isFunction.js",
@@ -1791,7 +1791,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "./components/Context": [
+  "./Context": [
     {
       "id": 354,
       "name": "./node_modules/react-redux/es/components/Context.js",
@@ -1847,7 +1847,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "./sheets": [
+  "../sheets": [
     {
       "id": 361,
       "name": "./node_modules/jss/lib/sheets.js",
@@ -1927,12 +1927,6 @@
     {
       "id": 378,
       "name": "./node_modules/lodash/keys.js",
-      "file": "static/chunks/commons.ba93de5dc84c7f0a3bcf.js",
-      "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
-    },
-    {
-      "id": 613,
-      "name": "./node_modules/redux-form/lib/structure/plain/keys.js",
       "file": "static/chunks/commons.ba93de5dc84c7f0a3bcf.js",
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     },
@@ -2065,7 +2059,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "../transport": [
+  "./transport": [
     {
       "id": 390,
       "name": "./node_modules/engine.io-client/lib/transport.js",
@@ -2519,7 +2513,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "./isObservable": [
+  "../utils/isObservable": [
     {
       "id": 557,
       "name": "./node_modules/jss/lib/utils/isObservable.js",
@@ -2543,7 +2537,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "../StyleSheet": [
+  "./StyleSheet": [
     {
       "id": 560,
       "name": "./node_modules/jss/lib/StyleSheet.js",
@@ -2599,7 +2593,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "../styles/mergeClasses": [
+  "./mergeClasses": [
     {
       "id": 567,
       "name": "./node_modules/@material-ui/core/styles/mergeClasses.js",
@@ -2911,6 +2905,14 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
+  "../plain/keys": [
+    {
+      "id": 613,
+      "name": "./node_modules/redux-form/lib/structure/plain/keys.js",
+      "file": "static/chunks/commons.ba93de5dc84c7f0a3bcf.js",
+      "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
+    }
+  ],
   "./util/shallowCompare": [
     {
       "id": 614,
@@ -2989,16 +2991,10 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "./isPristine": [
+  "../selectors/isPristine": [
     {
       "id": 623,
       "name": "./node_modules/redux-form/lib/selectors/isPristine.js",
-      "file": "static/chunks/commons.ba93de5dc84c7f0a3bcf.js",
-      "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
-    },
-    {
-      "id": 1512,
-      "name": "./node_modules/redux-form/es/isPristine.js",
       "file": "static/chunks/commons.ba93de5dc84c7f0a3bcf.js",
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
@@ -3327,7 +3323,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "../Popover": [
+  "@material-ui/core/Popover": [
     {
       "id": 663,
       "name": "./node_modules/@material-ui/core/Popover/index.js",
@@ -3515,7 +3511,7 @@
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }
   ],
-  "./lib/toFloat": [
+  "./toFloat": [
     {
       "id": 698,
       "name": "./node_modules/validator/lib/toFloat.js",
@@ -7381,6 +7377,14 @@
     {
       "id": 1510,
       "name": "./node_modules/redux-form/es/selectors/isInvalid.js",
+      "file": "static/chunks/commons.ba93de5dc84c7f0a3bcf.js",
+      "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
+    }
+  ],
+  "./isPristine": [
+    {
+      "id": 1512,
+      "name": "./node_modules/redux-form/es/isPristine.js",
       "file": "static/chunks/commons.ba93de5dc84c7f0a3bcf.js",
       "publicPath": "/_next/static/chunks/commons.ba93de5dc84c7f0a3bcf.js"
     }

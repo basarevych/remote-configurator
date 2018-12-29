@@ -91,7 +91,7 @@ module.exports = {
     }
   },
   props: {
-    Dialog: {
+    MuiDialog: {
       scroll: "body"
     }
   },
@@ -134,10 +134,6 @@ module.exports = {
     },
     MuiButton: {
       root: {
-        "&:not($containedPrimary):not($containedSecondary)": {
-          background: [lighten(bgNormal, 0.2), "!important"],
-          color: [textNormal, "!important"]
-        },
         "&$disabled": {
           "&:not($containedPrimary):not($containedSecondary)": {
             background: [lighten(bgNormal, 0.05), "!important"],
