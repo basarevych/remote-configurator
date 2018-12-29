@@ -75,7 +75,7 @@ module.exports = {
   },
   main: {
     background:
-      "linear-gradient(to right, #484e5e 0, #484e5e 15%, #161920 100%)",
+      "linear-gradient(to right, #484e5e 0, #484e5e 15%, #20252f 100%)",
     spacing: 24,
     error: {
       background: fade(textError, 0.65),
@@ -101,7 +101,7 @@ module.exports = {
         background: `linear-gradient(to bottom right, ${lighten(
           bgNormal,
           0.2
-        )} 0, ${darken(bgNormal, 0.3)} 100%)`
+        )} 0, ${darken(bgNormal, 0.2)} 100%)`
       }
     },
     MuiTableRow: {

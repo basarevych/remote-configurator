@@ -53,7 +53,9 @@ class DevicesRepository extends EventEmitter {
 
     return _.invokeMap(
       // eslint-disable-next-line lodash/prefer-lodash-method
-      await this.db.DeviceModel.find(),
+      await this.db.DeviceModel.find(
+        this.db.DeviceModel.conditions({ owner: user.id })
+      ),
       "toSanitizedObject"
     );
   }

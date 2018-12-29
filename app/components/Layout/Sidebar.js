@@ -45,7 +45,8 @@ const styles = theme => ({
     filter: "url(#logoShadow)"
   },
   logoShape: {
-    fill: "url(#logoGradient)"
+    fill: "url(#logoGradient)",
+    mask: "url(#logoMask)"
   },
   item: {
     background: [theme.sidebar.itemBackground, "!important"],
@@ -164,7 +165,6 @@ class Sidebar extends React.Component {
           <path
             d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7"
             className={this.props.classes.logoShape}
-            mask="url(#logoMask)"
           />
         </svg>
       </div>

@@ -158,6 +158,9 @@ class DeviceModel {
           key = key.slice(0, key.length - 2) + "$loki";
           if (_.isString(value)) value = parseInt(value);
         }
+        if (key === "owner" || _.endsWith(key, ".owner")) {
+          if (_.isString(value)) value = parseInt(value);
+        }
         x[key] = _.isPlainObject(value) ? deepMap(value) : value;
       });
       return x;

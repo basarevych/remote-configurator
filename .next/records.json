@@ -51,11 +51,11 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/xterm/src/xterm.css": [
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/xterm/src/addons/fullscreen/fullscreen.css": [
     {
       "modules": {
         "byIdentifier": {
-          "node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/xterm/src/xterm.css": 0,
+          "node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/xterm/src/addons/fullscreen/fullscreen.css": 0,
           "node_modules/babel-loader/lib/index.js??ref--6!node_modules/css-loader/lib/css-base.js": 1
         },
         "usedIds": {
@@ -74,11 +74,11 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/xterm/src/addons/fullscreen/fullscreen.css": [
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/xterm/src/xterm.css": [
     {
       "modules": {
         "byIdentifier": {
-          "node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/xterm/src/addons/fullscreen/fullscreen.css": 0,
+          "node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/xterm/src/xterm.css": 0,
           "node_modules/babel-loader/lib/index.js??ref--6!node_modules/css-loader/lib/css-base.js": 1
         },
         "usedIds": {
@@ -3542,12 +3542,12 @@
       "commons": 0,
       "static/runtime/webpack.js": 1,
       "static/runtime/main.js": 2,
-      "static/wBaLdkciFndl1qAS5~Q9C/pages/_app.js": 3,
-      "static/wBaLdkciFndl1qAS5~Q9C/pages/_error.js": 4,
-      "static/wBaLdkciFndl1qAS5~Q9C/pages/browser.js": 5,
-      "static/wBaLdkciFndl1qAS5~Q9C/pages/index.js": 6,
-      "static/wBaLdkciFndl1qAS5~Q9C/pages/terminal.js": 7,
-      "static/wBaLdkciFndl1qAS5~Q9C/pages/users.js": 8,
+      "static/zofUltRVWY3MHEEc6YSgp/pages/_app.js": 3,
+      "static/zofUltRVWY3MHEEc6YSgp/pages/_error.js": 4,
+      "static/zofUltRVWY3MHEEc6YSgp/pages/browser.js": 5,
+      "static/zofUltRVWY3MHEEc6YSgp/pages/index.js": 6,
+      "static/zofUltRVWY3MHEEc6YSgp/pages/terminal.js": 7,
+      "static/zofUltRVWY3MHEEc6YSgp/pages/users.js": 8,
       "polyfills": 9,
       "styles": 10
     },

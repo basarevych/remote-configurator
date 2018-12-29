@@ -7552,7 +7552,7 @@ module.exports = {
     itemSelectedHoverBorder: "4px solid ".concat(lighten(secondary, 0.05))
   },
   main: {
-    background: "linear-gradient(to right, #484e5e 0, #484e5e 15%, #161920 100%)",
+    background: "linear-gradient(to right, #484e5e 0, #484e5e 15%, #20252f 100%)",
     spacing: 24,
     error: {
       background: fade(textError, 0.65),
@@ -7575,7 +7575,7 @@ module.exports = {
   overrides: {
     MuiPaper: {
       root: {
-        background: "linear-gradient(to bottom right, ".concat(lighten(bgNormal, 0.2), " 0, ").concat(darken(bgNormal, 0.3), " 100%)")
+        background: "linear-gradient(to bottom right, ".concat(lighten(bgNormal, 0.2), " 0, ").concat(darken(bgNormal, 0.2), " 100%)")
       }
     },
     MuiTableRow: {
@@ -8537,7 +8537,8 @@ var styles = function styles(theme) {
       filter: "url(#logoShadow)"
     },
     logoShape: {
-      fill: "url(#logoGradient)"
+      fill: "url(#logoGradient)",
+      mask: "url(#logoMask)"
     },
     item: {
       background: [theme.sidebar.itemBackground, "!important"],
@@ -8652,8 +8653,7 @@ function (_React$Component) {
         in: "SourceGraphic"
       })))), _react.default.createElement("path", {
         d: "M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7",
-        className: this.props.classes.logoShape,
-        mask: "url(#logoMask)"
+        className: this.props.classes.logoShape
       })));
     }
   }, {
