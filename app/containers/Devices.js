@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
 import { injectIntl } from "react-intl";
-import { appSelectors } from "../../state/app";
-import { authSelectors } from "../../state/auth";
-import { devicesSelectors, devicesOperations } from "../../state/devices";
-import DevicesComponent from "../../components/Devices";
+import { appSelectors } from "../state/app";
+import { authSelectors } from "../state/auth";
+import { devicesSelectors, devicesOperations } from "../state/devices";
+import DevicesComponent from "../components/Devices";
 
 const mapStateToProps = state => {
   return {

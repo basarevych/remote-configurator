@@ -12,9 +12,9 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
-import EditUserModal from "../../containers/Users/EditUserModal";
-import ConfirmModal from "../Modals/ConfirmModal";
-import responsiveTable from "../../styles/responsiveTable";
+import EditUserModal from "../containers/Modals/EditUserModal";
+import ConfirmModal from "./Modals/ConfirmModal";
+import responsiveTable from "../styles/responsiveTable";
 
 const styles = theme => ({
   paper: {

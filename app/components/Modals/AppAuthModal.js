@@ -85,7 +85,7 @@ class AppAuthModal extends Form {
 
   render() {
     return (
-      <Dialog maxWidth="xs" fullWidth open={this.props.isOpen} onClose={_.noop}>
+      <Dialog maxWidth="xs" open={this.props.isOpen} onClose={_.noop}>
         <DialogTitle>
           <FormattedMessage id="APP_AUTH_TITLE" />
         </DialogTitle>

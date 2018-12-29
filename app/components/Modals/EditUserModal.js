@@ -11,11 +11,15 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import red from "@material-ui/core/colors/red";
 import Form from "../Forms/Form";
 import Field from "../Forms/Field";
+import constants from "../../../common/constants";
 
-const styles = theme => ({
-  error: theme.main.error,
+const styles = () => ({
+  error: {
+    color: red[500]
+  },
   actions: {
     paddingLeft: "1rem",
     paddingRight: "1rem",
@@ -23,7 +27,7 @@ const styles = theme => ({
   }
 });
 
-class EditDeviceModal extends Form {
+class EditUserModal extends Form {
   static propTypes = {
     ...Form.propTypes,
     intl: intlShape,
@@ -31,22 +35,25 @@ class EditDeviceModal extends Form {
     classes: PropTypes.object.isRequired,
     isOpen: PropTypes.bool.isRequired,
     data: PropTypes.instanceOf(Map),
+    onCancel: PropTypes.func.isRequired,
+    onLoad: PropTypes.func.isRequired,
     onCreate: PropTypes.func.isRequired,
     onEdit: PropTypes.func.isRequired
   };
 
-  static formName = "editCameraForm";
+  static formName = "editUserForm";
 
   static fields = {
-    name: {
+    login: {
       normalize: "rows:1|remove:spaces",
       transform: "trim",
-      label: "EDIT_DEVICE_NAME_LABEL"
+      label: "EDIT_USER_LOGIN_LABEL"
     },
     password: {
-      normalize: "rows:1",
-      transform: "trim",
-      label: "EDIT_DEVICE_PASSWORD_LABEL"
+      label: "EDIT_USER_PASSWORD_LABEL"
+    },
+    isAdmin: {
+      label: "EDIT_USER_ADMIN_LABEL"
     }
   };
 
@@ -56,13 +63,15 @@ class EditDeviceModal extends Form {
     if (props.data) {
       result = await props.onEdit(
         props.data.get("id"),
-        this.getValue(props, "name"),
-        this.getValue(props, "password")
+        this.getValue(props, "login"),
+        this.getValue(props, "password"),
+        this.getValue(props, "isAdmin") === "on"
       );
     } else {
       result = await props.onCreate(
-        this.getValue(props, "name"),
-        this.getValue(props, "password")
+        this.getValue(props, "login"),
+        this.getValue(props, "password"),
+        this.getValue(props, "isAdmin") === "on"
       );
     }
 
@@ -77,9 +86,13 @@ class EditDeviceModal extends Form {
 
     /* eslint-disable lodash/prefer-lodash-method */
     if (prevState.isOpen !== nextProps.isOpen) {
-      let name = nextProps.data && nextProps.data.get("name");
-      nextProps.dispatch(nextProps.change("name", name || ""));
+      let login = nextProps.data && nextProps.data.get("login");
+      let isAdmin =
+        nextProps.data &&
+        nextProps.data.get("roles").includes(constants.roles.ADMIN);
+      nextProps.dispatch(nextProps.change("login", login || ""));
       nextProps.dispatch(nextProps.change("password", ""));
+      nextProps.dispatch(nextProps.change("isAdmin", isAdmin ? "on" : "off"));
       nextProps.dispatch(nextProps.clearAsyncError());
       nextProps.dispatch(nextProps.clearSubmitErrors());
       state.isOpen = nextProps.isOpen;
@@ -103,7 +116,6 @@ class EditDeviceModal extends Form {
     return (
       <Dialog
         maxWidth="xs"
-        fullWidth
         open={this.props.isOpen}
         onClose={this.props.onCancel}
       >
@@ -111,8 +123,8 @@ class EditDeviceModal extends Form {
           <FormattedMessage
             id={
               this.props.data
-                ? "EDIT_DEVICE_TITLE_EDIT"
-                : "EDIT_DEVICE_TITLE_CREATE"
+                ? "EDIT_USER_TITLE_EDIT"
+                : "EDIT_USER_TITLE_CREATE"
             }
           />
         </DialogTitle>
@@ -150,7 +162,7 @@ class EditDeviceModal extends Form {
               <Field
                 formFields={this.constructor.fields}
                 formProps={this.props}
-                name="name"
+                name="login"
                 type="text"
                 onSubmit={this.submit}
               />
@@ -164,6 +176,15 @@ class EditDeviceModal extends Form {
                 onSubmit={this.submit}
               />
             </Grid>
+            <Grid item xs={12}>
+              <Field
+                formFields={this.constructor.fields}
+                formProps={this.props}
+                name="isAdmin"
+                type="checkbox"
+                onSubmit={this.submit}
+              />
+            </Grid>
           </Grid>
         </DialogContent>
         <DialogActions classes={{ root: this.props.classes.actions }}>
@@ -173,7 +194,7 @@ class EditDeviceModal extends Form {
             disabled={this.props.submitting}
             onClick={this.props.onCancel}
           >
-            <FormattedMessage id="EDIT_DEVICE_CANCEL" />
+            <FormattedMessage id="EDIT_USER_CANCEL" />
           </Button>
           <Button
             variant="contained"
@@ -181,7 +202,7 @@ class EditDeviceModal extends Form {
             disabled={this.props.submitting}
             onClick={this.submit}
           >
-            <FormattedMessage id="EDIT_DEVICE_SUBMIT" />
+            <FormattedMessage id="EDIT_USER_SUBMIT" />
           </Button>
         </DialogActions>
       </Dialog>
@@ -189,4 +210,4 @@ class EditDeviceModal extends Form {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(EditDeviceModal);
+export default withStyles(styles, { withTheme: true })(EditUserModal);

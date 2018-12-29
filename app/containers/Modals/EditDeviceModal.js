@@ -4,7 +4,7 @@ import { getFormValues, getFormAsyncErrors } from "redux-form/immutable";
 import { startAsyncValidation, stopAsyncValidation } from "redux-form";
 import { devicesSelectors, devicesOperations } from "../../state/devices";
 import createForm from "../../lib/createForm";
-import EditDeviceModalComponent from "../../components/Devices/EditDeviceModal";
+import EditDeviceModalComponent from "../../components/Modals/EditDeviceModal";
 
 const formName = EditDeviceModalComponent.formName;
 

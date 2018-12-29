@@ -15,13 +15,13 @@ import IconButton from "@material-ui/core/IconButton";
 import Checkbox from "@material-ui/core/Checkbox";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Tooltip from "@material-ui/core/Tooltip";
-import EditDeviceModal from "../../containers/Devices/EditDeviceModal";
-import ConfirmModal from "../Modals/ConfirmModal";
 import OpenTerminalIcon from "@material-ui/icons/OpenInBrowser";
 import OpenBrowserIcon from "@material-ui/icons/Language";
 import DisconnectIcon from "@material-ui/icons/ExitToApp";
-import ProxyModal from "../../containers/Modals/ProxyModal";
-import responsiveTable from "../../styles/responsiveTable";
+import EditDeviceModal from "../containers/Modals/EditDeviceModal";
+import ProxyModal from "../containers/Modals/ProxyModal";
+import ConfirmModal from "./Modals/ConfirmModal";
+import responsiveTable from "../styles/responsiveTable";
 
 const styles = theme => ({
   paper: {

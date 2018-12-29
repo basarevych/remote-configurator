@@ -94,7 +94,6 @@ class CredentialsModal extends Form {
     return (
       <Dialog
         maxWidth="xs"
-        fullWidth
         open={this.props.isOpen}
         onClose={this.handleCancel}
       >
