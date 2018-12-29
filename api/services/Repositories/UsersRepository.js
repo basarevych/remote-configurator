@@ -101,6 +101,9 @@ class UsersRepository extends EventEmitter {
     let target = await this.db.UserModel.findById(args.id);
     if (!target) return { success: false };
 
+    let devices = await this.db.DeviceModel.find({ owner: target.id });
+    await Promise.all(_.invokeMap(devices, "remove"));
+
     await target.remove();
     context.preCachePages({ path: "/users" }).catch(console.error);
     return { success: true, id: target.id };
