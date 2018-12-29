@@ -27,9 +27,9 @@ class DevicesRepository extends EventEmitter {
 
   async authenticate(context) {
     // eslint-disable-next-line lodash/prefer-lodash-method
-    const devices = await this.db.DeviceModel.find(
-      this.db.DeviceModel.conditions({ username: context.username.toString() })
-    );
+    const devices = await this.db.DeviceModel.find({
+      username: context.username.toString()
+    });
     for (let device of devices) {
       if (
         await this.auth.checkPassword(
@@ -53,9 +53,7 @@ class DevicesRepository extends EventEmitter {
 
     return _.invokeMap(
       // eslint-disable-next-line lodash/prefer-lodash-method
-      await this.db.DeviceModel.find(
-        this.db.DeviceModel.conditions({ owner: user.id })
-      ),
+      await this.db.DeviceModel.find({ owner: user.id }),
       "toSanitizedObject"
     );
   }
@@ -74,9 +72,10 @@ class DevicesRepository extends EventEmitter {
       errors.push({ key: "password", message: "ERROR_FIELD_REQUIRED" });
     if (errors.length) throw new ValidationError(errors);
 
-    let target = await this.db.DeviceModel.findOne(
-      this.db.DeviceModel.conditions({ name: args.name, owner: user.id })
-    );
+    let target = await this.db.DeviceModel.findOne({
+      name: args.name,
+      owner: user.id
+    });
     if (target) return { success: false };
 
     target = new this.db.DeviceModel({

@@ -7,6 +7,7 @@ class DeviceModel {
       data.$loki = parseInt(data.id);
       delete data.id;
     }
+    if (data.owner) data.owner = parseInt(data.owner);
     this._data = data;
 
     const now = new Date();
@@ -76,7 +77,7 @@ class DeviceModel {
   }
 
   get owner() {
-    return this._data.owner;
+    return this._data.owner && this._data.owner.toString();
   }
 
   set owner(owner) {
