@@ -51,8 +51,8 @@ class AppAuthModal extends Form {
 
   static async onSubmit(values, dispatch, props) {
     let result = await props.onSignIn(
-      this.getValue(props, "login"),
-      this.getValue(props, "password")
+      props.getValue("login"),
+      props.getValue("password")
     );
 
     if (result && _.isObject(result)) throw new SubmissionError(result);
@@ -76,11 +76,7 @@ class AppAuthModal extends Form {
   constructor(props) {
     super(props);
 
-    this.state = {
-      isOpen: props.isOpen
-    };
-
-    this.submit = this.submit.bind(this);
+    this.state = {};
   }
 
   render() {
@@ -130,22 +126,10 @@ class AppAuthModal extends Form {
             onSubmit={this.submit}
           >
             <Grid item xs={12}>
-              <Field
-                formFields={this.constructor.fields}
-                formProps={this.props}
-                name="login"
-                type="text"
-                onSubmit={this.submit}
-              />
+              <Field name="login" type="text" onSubmit={this.submit} />
             </Grid>
             <Grid item xs={12}>
-              <Field
-                formFields={this.constructor.fields}
-                formProps={this.props}
-                name="password"
-                type="password"
-                onSubmit={this.submit}
-              />
+              <Field name="password" type="password" onSubmit={this.submit} />
             </Grid>
           </Grid>
         </DialogContent>

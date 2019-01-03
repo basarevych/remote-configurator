@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 189);
+/******/ 	return __webpack_require__(__webpack_require__.s = 171);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -101,16 +101,22 @@ module.exports = require("lodash");
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports = require("@babel/runtime/regenerator");
+module.exports = require("immutable");
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {
 
-module.exports = require("immutable");
+module.exports = require("@babel/runtime/regenerator");
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports) {
+
+module.exports = require("react");
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -176,7 +182,13 @@ module.exports = {
 };
 
 /***/ }),
-/* 4 */
+/* 5 */
+/***/ (function(module, exports) {
+
+module.exports = require("prop-types");
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -209,40 +221,23 @@ var _default = _reducers.default;
 exports.default = _default;
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-module.exports = require("redux-immutable");
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-module.exports = require("react");
-
-/***/ }),
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = require("prop-types");
+module.exports = require("@material-ui/core/styles");
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-intl");
+module.exports = require("redux-immutable");
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-module.exports = require("next/router");
-
-/***/ }),
+/* 9 */,
 /* 10 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/core/styles");
+module.exports = require("next/router");
 
 /***/ }),
 /* 11 */
@@ -266,7 +261,7 @@ var devicesOperations = _interopRequireWildcard(__webpack_require__(44));
 
 exports.devicesOperations = devicesOperations;
 
-var devicesSelectors = _interopRequireWildcard(__webpack_require__(24));
+var devicesSelectors = _interopRequireWildcard(__webpack_require__(23));
 
 exports.devicesSelectors = devicesSelectors;
 
@@ -299,7 +294,7 @@ var authOperations = _interopRequireWildcard(__webpack_require__(38));
 
 exports.authOperations = authOperations;
 
-var authSelectors = _interopRequireWildcard(__webpack_require__(22));
+var authSelectors = _interopRequireWildcard(__webpack_require__(21));
 
 exports.authSelectors = authSelectors;
 
@@ -425,14 +420,13 @@ var REMOVE_STARTING = "app/histories/REMOVE_STARTING";
 exports.REMOVE_STARTING = REMOVE_STARTING;
 
 /***/ }),
-/* 18 */,
-/* 19 */
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-redux");
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -465,7 +459,7 @@ var _default = _reducers.default;
 exports.default = _default;
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -498,7 +492,7 @@ var _default = _reducers.default;
 exports.default = _default;
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -509,9 +503,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getRoles = exports.getLogin = exports.isAdmin = exports.isAuthenticated = exports.getCsrf = void 0;
 
-var _reselect = __webpack_require__(23);
+var _reselect = __webpack_require__(22);
 
-var _constants = _interopRequireDefault(__webpack_require__(3));
+var _constants = _interopRequireDefault(__webpack_require__(4));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -550,13 +544,13 @@ var getRoles = (0, _reselect.createSelector)(function (state) {
 exports.getRoles = getRoles;
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports) {
 
 module.exports = require("reselect");
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -567,9 +561,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getInteractiveModalData = exports.isInteractiveModalOpen = exports.getInteractiveModalDeviceId = exports.getCredentialsModalData = exports.getCredentialsModalDeviceId = exports.isCredentialsModalOpen = exports.getEditModalData = exports.isEditModalOpen = exports.isAllDeselected = exports.isAllSelected = exports.getNumSelected = exports.getSelected = exports.getAddress = exports.getName = exports.getOnline = exports.getList = void 0;
 
-var _reselect = __webpack_require__(23);
+var _reselect = __webpack_require__(22);
 
-var _immutable = __webpack_require__(2);
+var _immutable = __webpack_require__(1);
 
 var getList = function getList(state) {
   return state.getIn(["devices", "list"]);
@@ -705,13 +699,14 @@ var getInteractiveModalData = function getInteractiveModalData(state) {
 exports.getInteractiveModalData = getInteractiveModalData;
 
 /***/ }),
+/* 24 */,
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {
 
-var constants = __webpack_require__(3);
+var constants = __webpack_require__(4);
 
 module.exports = function isRouteAllowed(path) {
   var userRoles = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
@@ -825,7 +820,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _reduxImmutable = __webpack_require__(5);
+var _reduxImmutable = __webpack_require__(8);
 
 var types = _interopRequireWildcard(__webpack_require__(13));
 
@@ -1036,7 +1031,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.start = exports.init = exports.create = exports.gqlQuery = exports.stop = exports.setLocale = exports.setConnected = exports.setStatusCode = void 0;
 
-var _regenerator = _interopRequireDefault(__webpack_require__(1));
+var _regenerator = _interopRequireDefault(__webpack_require__(2));
 
 var _isomorphicUnfetch = _interopRequireDefault(__webpack_require__(33));
 
@@ -1046,7 +1041,7 @@ var actions = _interopRequireWildcard(__webpack_require__(35));
 
 var _auth = __webpack_require__(12);
 
-var _constants = _interopRequireDefault(__webpack_require__(3));
+var _constants = _interopRequireDefault(__webpack_require__(4));
 
 var _Storage = _interopRequireDefault(__webpack_require__(40));
 
@@ -1502,9 +1497,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _immutable = __webpack_require__(2);
+var _immutable = __webpack_require__(1);
 
-var _reduxImmutable = __webpack_require__(5);
+var _reduxImmutable = __webpack_require__(8);
 
 var types = _interopRequireWildcard(__webpack_require__(14));
 
@@ -1592,17 +1587,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.updateProfile = exports.signOut = exports.signIn = exports.setStatus = exports.setCsrf = void 0;
 
-var _regenerator = _interopRequireDefault(__webpack_require__(1));
+var _regenerator = _interopRequireDefault(__webpack_require__(2));
 
-var _router = _interopRequireDefault(__webpack_require__(9));
+var _router = _interopRequireDefault(__webpack_require__(10));
 
 var _isRouteAllowed = _interopRequireDefault(__webpack_require__(25));
 
 var actions = _interopRequireWildcard(__webpack_require__(39));
 
-var selectors = _interopRequireWildcard(__webpack_require__(22));
+var selectors = _interopRequireWildcard(__webpack_require__(21));
 
-var _app = __webpack_require__(4);
+var _app = __webpack_require__(6);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -2170,23 +2165,23 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _regenerator = _interopRequireDefault(__webpack_require__(1));
+var _regenerator = _interopRequireDefault(__webpack_require__(2));
 
-var _router = _interopRequireDefault(__webpack_require__(9));
+var _router = _interopRequireDefault(__webpack_require__(10));
 
 var _socket = _interopRequireDefault(__webpack_require__(42));
 
-var _app = __webpack_require__(4);
+var _app = __webpack_require__(6);
 
 var _auth = __webpack_require__(12);
 
 var _devices = __webpack_require__(11);
 
-var _terminals = __webpack_require__(20);
+var _terminals = __webpack_require__(19);
 
-var _histories = __webpack_require__(21);
+var _histories = __webpack_require__(20);
 
-var _constants = _interopRequireDefault(__webpack_require__(3));
+var _constants = _interopRequireDefault(__webpack_require__(4));
 
 var _package = _interopRequireDefault(__webpack_require__(55));
 
@@ -2646,9 +2641,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _reduxImmutable = __webpack_require__(5);
+var _reduxImmutable = __webpack_require__(8);
 
-var _immutable = __webpack_require__(2);
+var _immutable = __webpack_require__(1);
 
 var types = _interopRequireWildcard(__webpack_require__(15));
 
@@ -2913,19 +2908,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.disconnect = exports.openBrowser = exports.openTerminal = exports.doInteractiveAuth = exports.finishAuth = exports.cancelAuth = exports.startAuth = exports.reqRemove = exports.reqEdit = exports.reqCreate = exports.load = exports.remove = exports.editFirstSelected = exports.deselectAll = exports.selectAll = exports.setSelected = exports.hideInteractiveModal = exports.showInteractiveModal = exports.hideCredentialsModal = exports.showCredentialsModal = exports.hideEditModal = exports.showEditModal = exports.set = exports.clear = void 0;
 
-var _regenerator = _interopRequireDefault(__webpack_require__(1));
+var _regenerator = _interopRequireDefault(__webpack_require__(2));
 
-var _router = _interopRequireDefault(__webpack_require__(9));
+var _router = _interopRequireDefault(__webpack_require__(10));
 
 var actions = _interopRequireWildcard(__webpack_require__(45));
 
-var selectors = _interopRequireWildcard(__webpack_require__(24));
+var selectors = _interopRequireWildcard(__webpack_require__(23));
 
-var _app = __webpack_require__(4);
+var _app = __webpack_require__(6);
 
-var _terminals = __webpack_require__(20);
+var _terminals = __webpack_require__(19);
 
-var _constants = _interopRequireDefault(__webpack_require__(3));
+var _constants = _interopRequireDefault(__webpack_require__(4));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -3878,9 +3873,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _reduxImmutable = __webpack_require__(5);
+var _reduxImmutable = __webpack_require__(8);
 
-var _immutable = __webpack_require__(2);
+var _immutable = __webpack_require__(1);
 
 var types = _interopRequireWildcard(__webpack_require__(16));
 
@@ -3976,15 +3971,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.remove = exports.kill = exports.sendResize = exports.sendInput = exports.set = exports.clear = void 0;
 
-var _regenerator = _interopRequireDefault(__webpack_require__(1));
+var _regenerator = _interopRequireDefault(__webpack_require__(2));
 
 var actions = _interopRequireWildcard(__webpack_require__(48));
 
-var _app = __webpack_require__(4);
+var _app = __webpack_require__(6);
 
-var _histories = __webpack_require__(21);
+var _histories = __webpack_require__(20);
 
-var _constants = _interopRequireDefault(__webpack_require__(3));
+var _constants = _interopRequireDefault(__webpack_require__(4));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -4223,15 +4218,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _reduxImmutable = __webpack_require__(5);
+var _reduxImmutable = __webpack_require__(8);
 
-var _immutable = __webpack_require__(2);
+var _immutable = __webpack_require__(1);
 
 var _uuid = _interopRequireDefault(__webpack_require__(50));
 
 var types = _interopRequireWildcard(__webpack_require__(17));
 
-var _constants = _interopRequireDefault(__webpack_require__(3));
+var _constants = _interopRequireDefault(__webpack_require__(4));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -4500,7 +4495,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getList = void 0;
 
-var _immutable = __webpack_require__(2);
+var _immutable = __webpack_require__(1);
 
 var getList = function getList(state, props) {
   return state.getIn(["histories", props.historyId || props.terminalId]) || (0, _immutable.List)([]);
@@ -4736,31 +4731,31 @@ exports.isConnected = isConnected;
 /* 68 */,
 /* 69 */,
 /* 70 */,
-/* 71 */
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/Typography");
 
 /***/ }),
-/* 72 */,
-/* 73 */
+/* 75 */,
+/* 76 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/Paper");
 
 /***/ }),
-/* 74 */,
-/* 75 */,
-/* 76 */,
-/* 77 */
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/IconButton");
 
 /***/ }),
-/* 78 */,
-/* 79 */,
-/* 80 */,
 /* 81 */,
 /* 82 */,
 /* 83 */,
@@ -4773,77 +4768,34 @@ module.exports = require("@material-ui/core/IconButton");
 /* 90 */,
 /* 91 */,
 /* 92 */,
-/* 93 */
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/Close");
 
 /***/ }),
-/* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */,
 /* 98 */,
 /* 99 */,
-/* 100 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _default = function _default(theme) {
-  return {
-    "&::-webkit-scrollbar": {
-      "-webkitAppearance": "none",
-      width: "".concat(theme.spacing.unit, "px"),
-      height: "".concat(theme.spacing.unit, "px")
-    },
-    "&::-webkit-scrollbar-track": {
-      background: "transparent"
-    },
-    "&::-webkit-scrollbar-thumb": {
-      cursor: "pointer",
-      borderRadius: theme.shape.borderRadius / 2,
-      background: theme.palette.primary.main,
-      transition: "color 0.2s ease"
-    },
-    "&::-webkit-scrollbar-thumb:window-inactive": {
-      background: theme.palette.primary.main
-    },
-    "&::-webkit-scrollbar-thumb:hover": {
-      background: theme.palette.primary.light
-    }
-  };
-};
-
-exports.default = _default;
-
-/***/ }),
-/* 101 */
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-virtualized");
 
 /***/ }),
-/* 102 */,
-/* 103 */,
-/* 104 */,
-/* 105 */,
 /* 106 */,
 /* 107 */,
 /* 108 */,
 /* 109 */,
-/* 110 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/colors/red");
-
-/***/ }),
+/* 110 */,
 /* 111 */,
 /* 112 */,
 /* 113 */,
@@ -4904,32 +4856,14 @@ module.exports = require("@material-ui/core/colors/red");
 /* 168 */,
 /* 169 */,
 /* 170 */,
-/* 171 */,
-/* 172 */,
-/* 173 */,
-/* 174 */,
-/* 175 */,
-/* 176 */,
-/* 177 */,
-/* 178 */,
-/* 179 */,
-/* 180 */,
-/* 181 */,
-/* 182 */,
-/* 183 */,
-/* 184 */,
-/* 185 */,
-/* 186 */,
-/* 187 */,
-/* 188 */,
-/* 189 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(190);
+module.exports = __webpack_require__(172);
 
 
 /***/ }),
-/* 190 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4941,16 +4875,16 @@ Object.defineProperty(exports, "__esModule", {
 Object.defineProperty(exports, "default", {
   enumerable: true,
   get: function get() {
-    return _TerminalPage.default;
+    return _BrowserPage.default;
   }
 });
 
-var _TerminalPage = _interopRequireDefault(__webpack_require__(191));
+var _BrowserPage = _interopRequireDefault(__webpack_require__(173));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 191 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4961,15 +4895,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _regenerator = _interopRequireDefault(__webpack_require__(1));
+var _regenerator = _interopRequireDefault(__webpack_require__(2));
 
-var _reactRedux = __webpack_require__(19);
+var _reactRedux = __webpack_require__(18);
 
 var _auth = __webpack_require__(12);
 
 var _devices = __webpack_require__(11);
 
-var _TerminalPage = _interopRequireDefault(__webpack_require__(192));
+var _BrowserPage = _interopRequireDefault(__webpack_require__(174));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4983,11 +4917,11 @@ var mapStateToProps = function mapStateToProps(state) {
   };
 };
 
-var TerminalPage = (0, _reactRedux.connect)(mapStateToProps, null, null, {
+var BrowserPage = (0, _reactRedux.connect)(mapStateToProps, null, null, {
   pure: false
-})(_TerminalPage.default);
+})(_BrowserPage.default);
 
-TerminalPage.getInitialProps =
+BrowserPage.getInitialProps =
 /*#__PURE__*/
 function () {
   var _ref2 = _asyncToGenerator(
@@ -5006,7 +4940,9 @@ function () {
 
           case 3:
             return _context.abrupt("return", {
-              terminalId: query.terminalId
+              deviceId: query.deviceId,
+              host: query.host,
+              port: parseInt(query.port) || 0
             });
 
           case 4:
@@ -5022,11 +4958,11 @@ function () {
   };
 }();
 
-var _default = TerminalPage;
+var _default = BrowserPage;
 exports.default = _default;
 
 /***/ }),
-/* 192 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5037,13 +4973,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(__webpack_require__(6));
+var _react = _interopRequireDefault(__webpack_require__(3));
 
-var _propTypes = _interopRequireDefault(__webpack_require__(7));
+var _propTypes = _interopRequireDefault(__webpack_require__(5));
 
-var _styles = __webpack_require__(10);
+var _styles = __webpack_require__(7);
 
-var _Terminal = _interopRequireDefault(__webpack_require__(193));
+var _Browser = _interopRequireDefault(__webpack_require__(175));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5082,41 +5018,43 @@ var styles = function styles(theme) {
   };
 };
 
-var TerminalPage =
+var BrowserPage =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(TerminalPage, _React$Component);
+  _inherits(BrowserPage, _React$Component);
 
-  function TerminalPage() {
-    _classCallCheck(this, TerminalPage);
+  function BrowserPage() {
+    _classCallCheck(this, BrowserPage);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(TerminalPage).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(BrowserPage).apply(this, arguments));
   }
 
-  _createClass(TerminalPage, [{
+  _createClass(BrowserPage, [{
     key: "render",
     value: function render() {
       if (!this.props.isAuthenticated) return null;
       return _react.default.createElement("div", {
         className: this.props.classes.layout
-      }, _react.default.createElement(_Terminal.default, {
-        key: "terminal-".concat(this.props.terminalId),
-        terminalId: this.props.terminalId
+      }, _react.default.createElement(_Browser.default, {
+        key: "browser-".concat(this.props.deviceId, "-").concat(this.props.host, "-").concat(this.props.port),
+        deviceId: this.props.deviceId,
+        host: this.props.host,
+        port: this.props.port
       }));
     }
   }]);
 
-  return TerminalPage;
+  return BrowserPage;
 }(_react.default.Component);
 
 var _default = (0, _styles.withStyles)(styles, {
   withTheme: true
-})(TerminalPage);
+})(BrowserPage);
 
 exports.default = _default;
 
 /***/ }),
-/* 193 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5127,60 +5065,32 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _reactRedux = __webpack_require__(19);
+var _reactRedux = __webpack_require__(18);
 
-var _immutable = __webpack_require__(2);
+var _router = __webpack_require__(10);
 
-var _router = __webpack_require__(9);
+var _Browser = _interopRequireDefault(__webpack_require__(176));
 
-var _Terminal = _interopRequireDefault(__webpack_require__(194));
+var _app = __webpack_require__(6);
 
-var _terminals = __webpack_require__(20);
-
-var _histories = __webpack_require__(21);
+var _devices = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, props) {
   return {
-    isConnected: _terminals.terminalsSelectors.hasTerminal(state, props),
-    name: _terminals.terminalsSelectors.getTerminalName(state, props),
-    address: _terminals.terminalsSelectors.getTerminalAddress(state, props),
-    history: _histories.historiesSelectors.getList(state, props) || (0, _immutable.List)([])
+    appOrigin: _app.appSelectors.getAppOrigin(state),
+    name: _devices.devicesSelectors.getName(state, props),
+    address: _devices.devicesSelectors.getAddress(state, props)
   };
 };
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch, props) {
-  return {
-    onInput: function onInput(data) {
-      return dispatch(_terminals.terminalsOperations.sendInput({
-        terminalId: props.terminalId,
-        data: data
-      }));
-    },
-    onResize: function onResize(cols, rows, width, height) {
-      return dispatch(_terminals.terminalsOperations.sendResize({
-        terminalId: props.terminalId,
-        cols: cols,
-        rows: rows,
-        width: width,
-        height: height
-      }));
-    },
-    onClose: function onClose() {
-      return dispatch(_terminals.terminalsOperations.kill({
-        terminalId: props.terminalId
-      }));
-    }
-  };
-};
-
-var Terminal = (0, _router.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Terminal.default));
-var _default = Terminal;
+var Browser = (0, _router.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(_Browser.default));
+var _default = Browser;
 exports.default = _default;
 
 /***/ }),
-/* 194 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5191,45 +5101,25 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(__webpack_require__(6));
+var _react = _interopRequireDefault(__webpack_require__(3));
 
-var _router = _interopRequireDefault(__webpack_require__(9));
+var _router = _interopRequireDefault(__webpack_require__(10));
 
-var _propTypes = _interopRequireDefault(__webpack_require__(7));
+var _propTypes = _interopRequireDefault(__webpack_require__(5));
 
-var _immutable = __webpack_require__(2);
+var _reactVirtualized = __webpack_require__(105);
 
-var _reactVirtualized = __webpack_require__(101);
+var _styles = __webpack_require__(7);
 
-var _reactIntl = __webpack_require__(8);
+var _IconButton = _interopRequireDefault(__webpack_require__(80));
 
-var _styles = __webpack_require__(10);
+var _Refresh = _interopRequireDefault(__webpack_require__(177));
 
-var _IconButton = _interopRequireDefault(__webpack_require__(77));
+var _Close = _interopRequireDefault(__webpack_require__(97));
 
-var _Close = _interopRequireDefault(__webpack_require__(93));
+var _Paper = _interopRequireDefault(__webpack_require__(76));
 
-var _Paper = _interopRequireDefault(__webpack_require__(73));
-
-var _Typography = _interopRequireDefault(__webpack_require__(71));
-
-var _XTerm = _interopRequireDefault(__webpack_require__(195));
-
-var _grey = _interopRequireDefault(__webpack_require__(200));
-
-var _blue = _interopRequireDefault(__webpack_require__(201));
-
-var _cyan = _interopRequireDefault(__webpack_require__(202));
-
-var _green = _interopRequireDefault(__webpack_require__(203));
-
-var _pink = _interopRequireDefault(__webpack_require__(204));
-
-var _red = _interopRequireDefault(__webpack_require__(110));
-
-var _yellow = _interopRequireDefault(__webpack_require__(205));
-
-var _styledScroll = _interopRequireDefault(__webpack_require__(100));
+var _Typography = _interopRequireDefault(__webpack_require__(74));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5251,7 +5141,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-var styles = function styles(theme) {
+var styles = function styles() {
   return {
     container: {
       flex: 1,
@@ -5261,7 +5151,6 @@ var styles = function styles(theme) {
       background: "#2a2c38"
     },
     header: {
-      marginLeft: "1rem",
       display: "flex",
       flexDirection: "row",
       alignItems: "center"
@@ -5269,477 +5158,101 @@ var styles = function styles(theme) {
     headerText: {
       flex: 1
     },
-    placeholder: {
-      flex: 1,
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center"
-    },
-    terminal: {
-      flex: 1,
-      padding: "1rem",
-      borderRadius: theme.shape.borderRadius,
-      "& .xterm .xterm-viewport": (0, _styledScroll.default)(theme)
+    browser: {
+      flex: 1
     }
   };
 };
 
-var Terminal =
+var Browser =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(Terminal, _React$Component);
+  _inherits(Browser, _React$Component);
 
-  function Terminal(props) {
+  function Browser(props) {
     var _this;
 
-    _classCallCheck(this, Terminal);
+    _classCallCheck(this, Browser);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Terminal).call(this, props));
-    _this.lastRecordId = null;
-    _this.xterm = _react.default.createRef();
-    _this.container = _react.default.createRef();
-    _this.handleKey = _this.handleKey.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handlePaste = _this.handlePaste.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleResize = _this.handleResize.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Browser).call(this, props));
+    _this.state = {
+      key: Date.now()
+    };
     _this.handleClose = _this.handleClose.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleRefresh = _this.handleRefresh.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
-  _createClass(Terminal, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.updateHistory();
+  _createClass(Browser, [{
+    key: "getIframeId",
+    value: function getIframeId() {
+      return "frame-".concat(this.props.deviceId, "-").concat(this.props.host, "-").concat(this.props.port);
     }
   }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      this.updateHistory();
-    }
-  }, {
-    key: "handleKey",
-    value: function handleKey(data) {
-      if (this.props.isConnected) this.props.onInput(data);
-    }
-  }, {
-    key: "handlePaste",
-    value: function handlePaste(data) {
-      if (this.props.isConnected) this.props.onInput(data);
-    }
-  }, {
-    key: "handleResize",
-    value: function handleResize(cols, rows, width, height) {
-      if (this.props.isConnected && cols && rows) this.props.onResize(cols, rows, width, height);
+    key: "handleRefresh",
+    value: function handleRefresh() {
+      this.setState({
+        key: Date.now()
+      });
     }
   }, {
     key: "handleClose",
     value: function handleClose() {
-      this.props.onClose();
-
       _router.default.push("/");
-    }
-  }, {
-    key: "updateHistory",
-    value: function updateHistory() {
-      var _this2 = this;
-
-      if (this.xterm.current && this.props.history.size) {
-        var term = this.xterm.current.getTerminal();
-        var newData = [];
-        var found = false; // eslint-disable-next-line lodash/prefer-lodash-method
-
-        this.props.history.forEach(function (item) {
-          if (found) newData.push(item.get("data"));else if (item.get("recordId") === _this2.lastRecordId) found = true;
-        });
-
-        if (!found) {
-          // eslint-disable-next-line lodash/prefer-lodash-method
-          newData = this.props.history.map(function (item) {
-            return item.get("data");
-          }).toJS();
-        }
-
-        if (newData.length) {
-          term.write(newData.join(""));
-          this.lastRecordId = this.props.history.last().get("recordId");
-        }
-      }
-    }
-  }, {
-    key: "renderPlaceholder",
-    value: function renderPlaceholder() {
-      return _react.default.createElement("div", {
-        className: this.props.classes.placeholder
-      }, _react.default.createElement(_Typography.default, {
-        variant: "h5",
-        color: "inherit"
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "TERMINAL_NOT_CONNECTED_LABEL"
-      })));
-    }
-  }, {
-    key: "renderTerminal",
-    value: function renderTerminal() {
-      var _this3 = this;
-
-      return _react.default.createElement("div", {
-        className: this.props.classes.terminal
-      }, _react.default.createElement(_reactVirtualized.AutoSizer, null, function (_ref) {
-        var width = _ref.width,
-            height = _ref.height;
-        return _react.default.createElement(_XTerm.default, {
-          ref: _this3.xterm,
-          width: width,
-          height: height,
-          onKey: _this3.handleKey,
-          onPaste: _this3.handlePaste,
-          onResize: _this3.handleResize,
-          options: {
-            fontFamily: '"Roboto Mono", monospace',
-            fontSize: 14,
-            allowTransparency: true,
-            theme: {
-              background: "#2a2c38",
-              foreground: _grey.default[100],
-              cursor: _grey.default[50],
-              cursorAccent: _grey.default[200],
-              //selection: theme._lightBlue50,
-              black: "#2a2c38",
-              blue: _blue.default[500],
-              cyan: _cyan.default[500],
-              green: _green.default[500],
-              magenta: _pink.default[500],
-              red: _red.default[500],
-              yellow: _yellow.default[500],
-              white: _grey.default[100],
-              brightBlack: _grey.default[700],
-              brightBlue: _blue.default[200],
-              brightCyan: _cyan.default[200],
-              brightGreen: _green.default[200],
-              brightMagenta: _pink.default[200],
-              brightRed: _red.default[200],
-              brightYellow: _yellow.default[200],
-              brightWhite: _grey.default[50]
-            }
-          }
-        });
-      }));
     }
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return _react.default.createElement(_Paper.default, {
         className: this.props.classes.container
       }, _react.default.createElement("div", {
         className: this.props.classes.header
-      }, _react.default.createElement(_Typography.default, {
+      }, _react.default.createElement(_IconButton.default, {
+        color: "inherit",
+        onClick: this.handleRefresh
+      }, _react.default.createElement(_Refresh.default, null)), _react.default.createElement(_Typography.default, {
         variant: "h5",
         className: this.props.classes.headerText
-      }, this.props.name, "\xA0", !!this.props.address && "(" + this.props.address + ")"), _react.default.createElement(_IconButton.default, {
+      }, this.props.host, ":", this.props.port, "\xA0-\xA0", this.props.name, "\xA0", !!this.props.address && "(" + this.props.address + ")"), _react.default.createElement(_IconButton.default, {
         color: "inherit",
         onClick: this.handleClose
-      }, _react.default.createElement(_Close.default, null))), this.props.isConnected ? this.renderTerminal() : this.renderPlaceholder());
+      }, _react.default.createElement(_Close.default, null))), _react.default.createElement("div", {
+        className: this.props.classes.browser
+      }, _react.default.createElement(_reactVirtualized.AutoSizer, null, function (_ref) {
+        var width = _ref.width,
+            height = _ref.height;
+        return _react.default.createElement("iframe", {
+          key: "frame-".concat(_this2.state.key),
+          id: _this2.getIframeId(),
+          width: width,
+          height: height,
+          sandbox: "allow-forms allow-modals allow-popups allow-scripts allow-same-origin",
+          style: {
+            background: "#ffffff",
+            border: "none"
+          },
+          src: "".concat(_this2.props.appOrigin, "/api/browser/").concat(_this2.props.deviceId, "/").concat(_this2.props.host, "/").concat(_this2.props.port)
+        });
+      })));
     }
   }]);
 
-  return Terminal;
+  return Browser;
 }(_react.default.Component);
 
 var _default = (0, _styles.withStyles)(styles, {
   withTheme: true
-})(Terminal);
+})(Browser);
 
 exports.default = _default;
 
 /***/ }),
-/* 195 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var React = _interopRequireWildcard(__webpack_require__(6));
-
-var _propTypes = _interopRequireDefault(__webpack_require__(7));
-
-var _xterm = __webpack_require__(196);
-
-var fit = _interopRequireWildcard(__webpack_require__(197));
-
-var fullscreen = _interopRequireWildcard(__webpack_require__(198));
-
-var search = _interopRequireWildcard(__webpack_require__(199));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var XTerm =
-/*#__PURE__*/
-function (_React$PureComponent) {
-  _inherits(XTerm, _React$PureComponent);
-
-  function XTerm(props) {
-    var _this;
-
-    _classCallCheck(this, XTerm);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(XTerm).call(this, props));
-    _this.state = {
-      isFocused: false
-    };
-    _this.refTerm = React.createRef();
-    _this.onResize = _this.onResize.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.onContextMenu = _this.onContextMenu.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    return _this;
-  }
-
-  _createClass(XTerm, [{
-    key: "applyAddon",
-    value: function applyAddon(addon) {
-      _xterm.Terminal.applyAddon(addon);
-    }
-  }, {
-    key: "getTerminal",
-    value: function getTerminal() {
-      return this.xterm;
-    }
-  }, {
-    key: "write",
-    value: function write(data) {
-      this.xterm && this.xterm.write(data);
-    }
-  }, {
-    key: "writeln",
-    value: function writeln(data) {
-      this.xterm && this.xterm.writeln(data);
-    }
-  }, {
-    key: "focus",
-    value: function focus() {
-      this.xterm && this.xterm.focus();
-    }
-  }, {
-    key: "fit",
-    value: function fit() {
-      this.xterm && this.xterm.fit();
-    }
-  }, {
-    key: "resize",
-    value: function resize(cols, rows) {
-      this.xterm && this.xterm.resize(Math.round(cols), Math.round(rows));
-    }
-  }, {
-    key: "setOption",
-    value: function setOption(key, value) {
-      this.xterm && this.xterm.setOption(key, value);
-    }
-  }, {
-    key: "refresh",
-    value: function refresh() {
-      this.xterm && this.xterm.refresh(0, this.xterm.rows - 1);
-    }
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      _xterm.Terminal.applyAddon(fit);
-
-      _xterm.Terminal.applyAddon(fullscreen);
-
-      _xterm.Terminal.applyAddon(search);
-
-      this.xterm = new _xterm.Terminal(this.props.options);
-      this.xterm.open(this.refTerm.current);
-      var origResize = this.xterm.resize;
-
-      this.xterm.resize = function (cols, rows) {
-        if (_this2.props.onResize) {
-          _this2.props.onResize(cols, rows, _this2.refTerm.current ? _this2.refTerm.current.offsetWidth : 640, _this2.refTerm.current ? _this2.refTerm.current.offsetHeight : 480);
-        }
-
-        origResize.call(_this2.xterm, cols, rows);
-      };
-
-      this.xterm.on('focus', this.focusChanged.bind(this, true));
-      this.xterm.on('blur', this.focusChanged.bind(this, false));
-      this.xterm.on('data', this.onData.bind(this));
-      this.xterm.on('key', this.onKey.bind(this));
-      this.xterm.on('paste', this.onPaste.bind(this));
-      if (this.props.onContextMenu) this.xterm.element.addEventListener('contextmenu', this.onContextMenu);
-
-      if (typeof window !== 'undefined') {
-        window.addEventListener('resize', this.onResize);
-        window.addEventListener('orientationchange', this.onResize);
-        setTimeout(function () {
-          return _this2.fit();
-        });
-      }
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      if (this.props.onContextMenu) this.xterm.element.removeEventListener('contextmenu', this.onContextMenu);
-
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('resize', this.onResize);
-        window.removeEventListener('orientationchange', this.onResize);
-      }
-
-      this.xterm.destroy();
-      this.xterm = null;
-    }
-  }, {
-    key: "focusChanged",
-    value: function focusChanged(focused) {
-      this.setState({
-        isFocused: focused
-      });
-    }
-  }, {
-    key: "onData",
-    value: function onData(data) {
-      this.props.onData && this.props.onData(data);
-    }
-  }, {
-    key: "onKey",
-    value: function onKey(key, ev) {
-      this.props.onKey && this.props.onKey({
-        altKey: ev.altKey,
-        ctrlKey: ev.ctrlKey,
-        metaKey: ev.metaKey,
-        keyCode: ev.keyCode,
-        key: key
-      });
-    }
-  }, {
-    key: "onPaste",
-    value: function onPaste(data) {
-      this.props.onPaste && this.props.onPaste(data);
-    }
-  }, {
-    key: "onContextMenu",
-    value: function onContextMenu(e) {
-      this.props.onContextMenu && this.props.onContextMenu(e);
-    }
-  }, {
-    key: "onResize",
-    value: function onResize() {
-      var _this3 = this;
-
-      setTimeout(function () {
-        return _this3.xterm && _this3.xterm.fit();
-      }, 250);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return React.createElement("div", {
-        ref: this.refTerm,
-        className: this.props.className,
-        style: {
-          width: this.props.width || '100%',
-          height: this.props.height || '100%'
-        }
-      });
-    }
-  }]);
-
-  return XTerm;
-}(React.PureComponent);
-
-_defineProperty(XTerm, "defaultProps", {
-  options: {}
-});
-
-var _default = XTerm;
-exports.default = _default;
-
-/***/ }),
-/* 196 */
+/* 177 */
 /***/ (function(module, exports) {
 
-module.exports = require("xterm");
-
-/***/ }),
-/* 197 */
-/***/ (function(module, exports) {
-
-module.exports = require("xterm/dist/addons/fit/fit");
-
-/***/ }),
-/* 198 */
-/***/ (function(module, exports) {
-
-module.exports = require("xterm/dist/addons/fullscreen/fullscreen");
-
-/***/ }),
-/* 199 */
-/***/ (function(module, exports) {
-
-module.exports = require("xterm/dist/addons/search/search");
-
-/***/ }),
-/* 200 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/colors/grey");
-
-/***/ }),
-/* 201 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/colors/blue");
-
-/***/ }),
-/* 202 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/colors/cyan");
-
-/***/ }),
-/* 203 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/colors/green");
-
-/***/ }),
-/* 204 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/colors/pink");
-
-/***/ }),
-/* 205 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/colors/yellow");
+module.exports = require("@material-ui/icons/Refresh");
 
 /***/ })
 /******/ ]);

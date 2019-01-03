@@ -101,6 +101,7 @@ class UsersRepository extends EventEmitter {
     let target = await this.db.UserModel.findById(args.id);
     if (!target) return { success: false };
 
+    // eslint-disable-next-line lodash/prefer-lodash-method
     let devices = await this.db.DeviceModel.find({ owner: target.id });
     await Promise.all(_.invokeMap(devices, "remove"));
 

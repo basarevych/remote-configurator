@@ -56,13 +56,13 @@ class EditDeviceModal extends Form {
     if (props.data) {
       result = await props.onEdit(
         props.data.get("id"),
-        this.getValue(props, "name"),
-        this.getValue(props, "password")
+        props.getValue("name"),
+        props.getValue("password")
       );
     } else {
       result = await props.onCreate(
-        this.getValue(props, "name"),
-        this.getValue(props, "password")
+        props.getValue("name"),
+        props.getValue("password")
       );
     }
 
@@ -92,11 +92,7 @@ class EditDeviceModal extends Form {
   constructor(props) {
     super(props);
 
-    this.state = {
-      isOpen: props.isOpen
-    };
-
-    this.submit = this.submit.bind(this);
+    this.state = {};
   }
 
   render() {
@@ -146,22 +142,10 @@ class EditDeviceModal extends Form {
             onSubmit={this.submit}
           >
             <Grid item xs={12}>
-              <Field
-                formFields={this.constructor.fields}
-                formProps={this.props}
-                name="name"
-                type="text"
-                onSubmit={this.submit}
-              />
+              <Field name="name" type="text" onSubmit={this.submit} />
             </Grid>
             <Grid item xs={12}>
-              <Field
-                formFields={this.constructor.fields}
-                formProps={this.props}
-                name="password"
-                type="password"
-                onSubmit={this.submit}
-              />
+              <Field name="password" type="password" onSubmit={this.submit} />
             </Grid>
           </Grid>
         </DialogContent>

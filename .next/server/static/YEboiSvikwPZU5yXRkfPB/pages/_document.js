@@ -88,27 +88,20 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 160);
+/******/ 	return __webpack_require__(__webpack_require__.s = 163);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 1:
-/***/ (function(module, exports) {
-
-module.exports = require("@babel/runtime/regenerator");
-
-/***/ }),
-
-/***/ 160:
+/***/ 163:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(161);
+module.exports = __webpack_require__(164);
 
 
 /***/ }),
 
-/***/ 161:
+/***/ 164:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -119,15 +112,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _regenerator = _interopRequireDefault(__webpack_require__(1));
+var _regenerator = _interopRequireDefault(__webpack_require__(2));
 
-var _react = _interopRequireDefault(__webpack_require__(6));
+var _react = _interopRequireDefault(__webpack_require__(3));
 
-var _propTypes = _interopRequireDefault(__webpack_require__(7));
+var _propTypes = _interopRequireDefault(__webpack_require__(5));
 
-var _document = _interopRequireWildcard(__webpack_require__(162));
+var _document = _interopRequireWildcard(__webpack_require__(165));
 
-var _server = _interopRequireDefault(__webpack_require__(163));
+var _server = _interopRequireDefault(__webpack_require__(166));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -248,28 +241,35 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 162:
+/***/ 165:
 /***/ (function(module, exports) {
 
 module.exports = require("next/document");
 
 /***/ }),
 
-/***/ 163:
+/***/ 166:
 /***/ (function(module, exports) {
 
 module.exports = require("styled-jsx/server");
 
 /***/ }),
 
-/***/ 6:
+/***/ 2:
+/***/ (function(module, exports) {
+
+module.exports = require("@babel/runtime/regenerator");
+
+/***/ }),
+
+/***/ 3:
 /***/ (function(module, exports) {
 
 module.exports = require("react");
 
 /***/ }),
 
-/***/ 7:
+/***/ 5:
 /***/ (function(module, exports) {
 
 module.exports = require("prop-types");

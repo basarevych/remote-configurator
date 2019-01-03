@@ -61,11 +61,11 @@ class ProxyModal extends Form {
 
   static async onSubmit(values, dispatch, props) {
     props.onFinish(
-      this.getValue(props, "host"),
-      this.getValue(props, "port"),
-      this.getValue(props, "isAuthNeeded") === "on",
-      this.getValue(props, "login"),
-      this.getValue(props, "password")
+      props.getValue("host"),
+      props.getValue("port"),
+      !!props.getValue("isAuthNeeded"),
+      props.getValue("login"),
+      props.getValue("password")
     );
     props.onClose();
 
@@ -76,9 +76,9 @@ class ProxyModal extends Form {
     let state = {};
 
     if (prevState.isOpen !== nextProps.isOpen) {
-      if (!ProxyModal.getValue(nextProps, "host"))
+      if (!nextProps.getValue("host"))
         nextProps.dispatch(nextProps.change("host", "localhost"));
-      if (!ProxyModal.getValue(nextProps, "port"))
+      if (!nextProps.getValue("port"))
         nextProps.dispatch(nextProps.change("port", "80"));
       nextProps.dispatch(nextProps.clearAsyncError());
       nextProps.dispatch(nextProps.clearSubmitErrors());
@@ -91,20 +91,7 @@ class ProxyModal extends Form {
   constructor(props) {
     super(props);
 
-    this.state = {
-      isOpen: props.isOpen
-    };
-
-    this.handleCancel = this.handleCancel.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  async handleCancel() {
-    this.props.onClose();
-  }
-
-  async handleSubmit() {
-    return super.submit();
+    this.state = {};
   }
 
   render() {
@@ -112,7 +99,7 @@ class ProxyModal extends Form {
       <Dialog
         maxWidth="xs"
         open={this.props.isOpen}
-        onClose={this.handleCancel}
+        onClose={this.props.onCancel}
       >
         <DialogTitle>
           <FormattedMessage id="PROXY_MODAL_TITLE" />: {this.props.name}
@@ -124,30 +111,16 @@ class ProxyModal extends Form {
             component="form"
             noValidate
             autoComplete="off"
-            onSubmit={this.handleSubmit}
+            onSubmit={this.submit}
           >
             <Grid item xs={12}>
-              <Field
-                formFields={this.constructor.fields}
-                formProps={this.props}
-                name="host"
-                type="text"
-                onSubmit={this.handleSubmit}
-              />
+              <Field name="host" type="text" onSubmit={this.submit} />
+            </Grid>
+            <Grid item xs={12}>
+              <Field name="port" type="text" onSubmit={this.submit} />
             </Grid>
             <Grid item xs={12}>
               <Field
-                formFields={this.constructor.fields}
-                formProps={this.props}
-                name="port"
-                type="text"
-                onSubmit={this.handleSubmit}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Field
-                formFields={this.constructor.fields}
-                formProps={this.props}
                 name="isAuthNeeded"
                 type="checkbox"
                 onSubmit={this.submit}
@@ -155,26 +128,18 @@ class ProxyModal extends Form {
             </Grid>
             <Grid item xs={12}>
               <Field
-                formFields={this.constructor.fields}
-                formProps={this.props}
                 name="login"
                 type="text"
-                disabled={
-                  this.constructor.getValue(this.props, "isAuthNeeded") !== "on"
-                }
-                onSubmit={this.handleSubmit}
+                disabled={!this.props.getValue("isAuthNeeded")}
+                onSubmit={this.submit}
               />
             </Grid>
             <Grid item xs={12}>
               <Field
-                formFields={this.constructor.fields}
-                formProps={this.props}
                 name="password"
                 type="password"
-                disabled={
-                  this.constructor.getValue(this.props, "isAuthNeeded") !== "on"
-                }
-                onSubmit={this.handleSubmit}
+                disabled={!this.props.getValue("isAuthNeeded")}
+                onSubmit={this.submit}
               />
             </Grid>
           </Grid>
@@ -184,7 +149,7 @@ class ProxyModal extends Form {
             variant="contained"
             color="primary"
             disabled={this.props.submitting}
-            onClick={this.handleCancel}
+            onClick={this.props.onCancel}
           >
             <FormattedMessage id="PROXY_MODAL_CANCEL" />
           </Button>
@@ -192,7 +157,7 @@ class ProxyModal extends Form {
             variant="contained"
             color="secondary"
             disabled={this.props.submitting}
-            onClick={this.handleSubmit}
+            onClick={this.submit}
           >
             <FormattedMessage id="PROXY_MODAL_SUBMIT" />
           </Button>

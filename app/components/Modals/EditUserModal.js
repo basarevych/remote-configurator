@@ -11,15 +11,12 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import red from "@material-ui/core/colors/red";
 import Form from "../Forms/Form";
 import Field from "../Forms/Field";
 import constants from "../../../common/constants";
 
-const styles = () => ({
-  error: {
-    color: red[500]
-  },
+const styles = theme => ({
+  error: theme.main.error,
   actions: {
     paddingLeft: "1rem",
     paddingRight: "1rem",
@@ -63,15 +60,15 @@ class EditUserModal extends Form {
     if (props.data) {
       result = await props.onEdit(
         props.data.get("id"),
-        this.getValue(props, "login"),
-        this.getValue(props, "password"),
-        this.getValue(props, "isAdmin") === "on"
+        props.getValue("login"),
+        props.getValue("password"),
+        props.getValue("isAdmin")
       );
     } else {
       result = await props.onCreate(
-        this.getValue(props, "login"),
-        this.getValue(props, "password"),
-        this.getValue(props, "isAdmin") === "on"
+        props.getValue("login"),
+        props.getValue("password"),
+        props.getValue("isAdmin")
       );
     }
 
@@ -87,12 +84,13 @@ class EditUserModal extends Form {
     /* eslint-disable lodash/prefer-lodash-method */
     if (prevState.isOpen !== nextProps.isOpen) {
       let login = nextProps.data && nextProps.data.get("login");
-      let isAdmin =
+      let isAdmin = !!(
         nextProps.data &&
-        nextProps.data.get("roles").includes(constants.roles.ADMIN);
+        nextProps.data.get("roles").includes(constants.roles.ADMIN)
+      );
       nextProps.dispatch(nextProps.change("login", login || ""));
       nextProps.dispatch(nextProps.change("password", ""));
-      nextProps.dispatch(nextProps.change("isAdmin", isAdmin ? "on" : "off"));
+      nextProps.dispatch(nextProps.change("isAdmin", isAdmin));
       nextProps.dispatch(nextProps.clearAsyncError());
       nextProps.dispatch(nextProps.clearSubmitErrors());
       state.isOpen = nextProps.isOpen;
@@ -105,11 +103,7 @@ class EditUserModal extends Form {
   constructor(props) {
     super(props);
 
-    this.state = {
-      isOpen: props.isOpen
-    };
-
-    this.submit = this.submit.bind(this);
+    this.state = {};
   }
 
   render() {
@@ -159,31 +153,13 @@ class EditUserModal extends Form {
             onSubmit={this.submit}
           >
             <Grid item xs={12}>
-              <Field
-                formFields={this.constructor.fields}
-                formProps={this.props}
-                name="login"
-                type="text"
-                onSubmit={this.submit}
-              />
+              <Field name="login" type="text" onSubmit={this.submit} />
             </Grid>
             <Grid item xs={12}>
-              <Field
-                formFields={this.constructor.fields}
-                formProps={this.props}
-                name="password"
-                type="password"
-                onSubmit={this.submit}
-              />
+              <Field name="password" type="password" onSubmit={this.submit} />
             </Grid>
             <Grid item xs={12}>
-              <Field
-                formFields={this.constructor.fields}
-                formProps={this.props}
-                name="isAdmin"
-                type="checkbox"
-                onSubmit={this.submit}
-              />
+              <Field name="isAdmin" type="checkbox" onSubmit={this.submit} />
             </Grid>
           </Grid>
         </DialogContent>

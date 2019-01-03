@@ -46,7 +46,7 @@ class InteractiveModal extends Form {
   };
 
   static async onSubmit(values, dispatch, props) {
-    props.onFinish(this.getValue(props, "reply"));
+    props.onFinish(props.getValue("reply"));
 
     return true;
   }
@@ -67,20 +67,7 @@ class InteractiveModal extends Form {
   constructor(props) {
     super(props);
 
-    this.state = {
-      isOpen: props.isOpen
-    };
-
-    this.handleCancel = this.handleCancel.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  async handleCancel() {
-    this.props.onCancel();
-  }
-
-  async handleSubmit() {
-    return super.submit();
+    this.state = {};
   }
 
   render() {
@@ -91,7 +78,7 @@ class InteractiveModal extends Form {
       <Dialog
         maxWidth="xs"
         open={this.props.isOpen}
-        onClose={this.handleCancel}
+        onClose={this.props.onCancel}
       >
         <DialogTitle>
           <FormattedMessage id="KEYBOARD_AUTH_TITLE" />: {this.props.name}
@@ -117,16 +104,10 @@ class InteractiveModal extends Form {
             component="form"
             noValidate
             autoComplete="off"
-            onSubmit={this.handleSubmit}
+            onSubmit={this.submit}
           >
             <Grid item xs={12}>
-              <Field
-                formFields={this.constructor.fields}
-                formProps={this.props}
-                name="reply"
-                type="password"
-                onSubmit={this.handleSubmit}
-              />
+              <Field name="reply" type="password" onSubmit={this.submit} />
             </Grid>
           </Grid>
         </DialogContent>
@@ -135,7 +116,7 @@ class InteractiveModal extends Form {
             variant="contained"
             color="primary"
             disabled={this.props.submitting}
-            onClick={this.handleCancel}
+            onClick={this.props.onCancel}
           >
             <FormattedMessage id="KEYBOARD_AUTH_CANCEL" />
           </Button>
@@ -143,7 +124,7 @@ class InteractiveModal extends Form {
             variant="contained"
             color="secondary"
             disabled={this.props.submitting}
-            onClick={this.handleSubmit}
+            onClick={this.submit}
           >
             <FormattedMessage id="KEYBOARD_AUTH_SUBMIT" />
           </Button>
