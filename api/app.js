@@ -22,7 +22,6 @@ const render = require("./middleware/render");
 const headers = require("./middleware/headers");
 const throw404 = require("./middleware/throw404");
 const error = require("./middleware/error");
-const routes = require("./routes");
 const getStore = require("./state/store");
 const { appOperations } = require("./state/app");
 const l10n = require("../common/locales");
@@ -199,18 +198,12 @@ class App {
     // Initialize the singletons
     await Promise.all(_.invokeMap(this.di.singletons(), "init"));
 
-    // Routes
-    this.routes = routes(this);
-
     // Initialize Next
     this.next = nextApp({
       dev: process.env.NODE_ENV === "development"
     });
     await this.next.prepare();
     this.nextHandler = this.next.getRequestHandler();
-
-    // Initialize the routes
-    for (let route of _.keys(this.routes)) await this.routes[route].init();
 
     // Early middleware first
     if (process.env.NODE_ENV === "production")
@@ -259,8 +252,7 @@ class App {
     this.di.get("ws").io.use(helpersMiddleware.socket);
 
     // REST API is /api/*
-    for (let route of _.keys(this.routes))
-      this.express.use(constants.apiBase, this.routes[route].router);
+    await this.di.get("router").use(this.express);
 
     // GraphQL API at /graphql
     this.express.use(constants.graphqlBase, await graphql(this));

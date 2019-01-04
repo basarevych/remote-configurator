@@ -1,19 +1,31 @@
 const debug = require("debug")("app:browser");
-const BaseRoute = require("./base");
-const { proxiesSelectors } = require("../state/proxies");
-const constants = require("../../common/constants");
+const EventEmitter = require("events");
+const Router = require("express").Router;
+const { proxiesSelectors } = require("../../state/proxies");
+const constants = require("../../../common/constants");
 
 /**
  * Browser route
  */
-class BrowserRoute extends BaseRoute {
-  /**
-   * Constructor
-   * @param {App} app
-   */
+class BrowserRoute extends EventEmitter {
   constructor(app) {
     super(app);
 
+    this.app = app;
+    this.router = Router();
+  }
+
+  // eslint-disable-next-line lodash/prefer-constant
+  static get $provides() {
+    return "routes.browser";
+  }
+
+  // eslint-disable-next-line lodash/prefer-constant
+  static get $requires() {
+    return ["app"];
+  }
+
+  async init() {
     this.router.all(
       "/browser/:deviceId/:host/:port*?",
       this.allBrowser.bind(this)
