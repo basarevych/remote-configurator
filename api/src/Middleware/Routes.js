@@ -22,7 +22,7 @@ class Routes extends EventEmitter {
 
   // eslint-disable-next-line lodash/prefer-constant
   static get $requires() {
-    return ["routes.build", "routes.csrf", "routes.browser"];
+    return ["route.build", "route.csrf", "route.browser"];
   }
 
   // eslint-disable-next-line lodash/prefer-constant

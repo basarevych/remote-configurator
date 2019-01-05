@@ -6,21 +6,15 @@ const Router = require("express").Router;
  * CSRF route
  */
 class CsrfRoute extends EventEmitter {
-  constructor(app) {
+  constructor() {
     super();
 
-    this.app = app;
     this.router = Router();
   }
 
   // eslint-disable-next-line lodash/prefer-constant
   static get $provides() {
-    return "routes.csrf";
-  }
-
-  // eslint-disable-next-line lodash/prefer-constant
-  static get $requires() {
-    return ["app"];
+    return "route.csrf";
   }
 
   async init() {

@@ -8,21 +8,21 @@ const constants = require("../../../common/constants");
  * Browser route
  */
 class BrowserRoute extends EventEmitter {
-  constructor(app) {
-    super(app);
+  constructor(getState) {
+    super();
 
-    this.app = app;
+    this.getState = getState;
     this.router = Router();
   }
 
   // eslint-disable-next-line lodash/prefer-constant
   static get $provides() {
-    return "routes.browser";
+    return "route.browser";
   }
 
   // eslint-disable-next-line lodash/prefer-constant
   static get $requires() {
-    return ["app"];
+    return ["getState"];
   }
 
   async init() {
@@ -63,15 +63,16 @@ class BrowserRoute extends EventEmitter {
           debug("No device");
           code = 404;
         } else {
-          let getState = this.app.di.get("getState");
-          let proxyId = proxiesSelectors.findProxyId(getState(), {
+          let proxyId = proxiesSelectors.findProxyId(this.getState(), {
             deviceId,
             userId,
             host,
             port
           });
           if (proxyId)
-            proxy = await proxiesSelectors.getProxy(getState(), { proxyId });
+            proxy = await proxiesSelectors.getProxy(this.getState(), {
+              proxyId
+            });
           if (!proxy) {
             debug("No proxy");
             code = 404;

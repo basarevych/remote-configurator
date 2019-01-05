@@ -17,15 +17,24 @@ const jsotp = require("jsotp");
 const { proxiesSelectors } = require("../state/proxies");
 
 class Proxy extends EventEmitter {
-  constructor(app, config, di, getState, dispatch, helpers, deviceId, proxyId) {
+  constructor(
+    config,
+    di,
+    getState,
+    dispatch,
+    helpers,
+    browser,
+    deviceId,
+    proxyId
+  ) {
     super();
 
-    this.app = app;
     this.config = config;
     this.di = di;
     this.getState = getState;
     this.dispatch = dispatch;
     this.helpers = helpers;
+    this.browser = browser;
 
     this.chance = new Chance();
     this.innerServer = null;
@@ -49,12 +58,12 @@ class Proxy extends EventEmitter {
   // eslint-disable-next-line lodash/prefer-constant
   static get $requires() {
     return [
-      "app",
       "config",
       "di",
       "getState",
       "dispatch",
-      "middleware.helpers"
+      "middleware.helpers",
+      "route.browser"
     ];
   }
 
@@ -87,7 +96,7 @@ class Proxy extends EventEmitter {
         proxyId: this.proxyId
       })
     ) {
-      this.app.routes.browser.template(404, req, res);
+      this.browser.template(404, req, res);
       this.stop().catch(console.error);
       return false;
     }
@@ -98,7 +107,7 @@ class Proxy extends EventEmitter {
       })
     );
     let isValid = totp.verify(req.query.token);
-    if (!isValid) this.app.routes.browser.template(403, req, res);
+    if (!isValid) this.browser.template(403, req, res);
     return isValid;
   }
 
@@ -245,7 +254,7 @@ class Proxy extends EventEmitter {
     const proxy = httpProxy.createProxyServer({});
     proxy.on("error", (error, req, res) => {
       console.log(`Proxy ${this.proxyId}: ${error.message}`);
-      this.app.routes.browser.template(500, req, res);
+      this.browser.template(500, req, res);
     });
     proxy.once("proxyReq", (proxyReq, req) => {
       if (!req.body || !_.keys(req.body).length) return;
@@ -368,12 +377,12 @@ class Proxy extends EventEmitter {
         proxyId: this.proxyId
       })
     ) {
-      this.app.routes.browser.template(404, req, res);
+      this.browser.template(404, req, res);
       return this.stop().catch(console.error);
     }
 
     if (req.cookies[this.secretCookie] !== this.getSecret())
-      return this.app.routes.browser.template(403, req, res);
+      return this.browser.template(403, req, res);
 
     try {
       let forwardedHost = proxiesSelectors.getForwardedHost(this.getState(), {
@@ -411,7 +420,7 @@ class Proxy extends EventEmitter {
       });
     } catch (error) {
       console.error(error);
-      this.app.routes.browser.template(500, req, res);
+      this.browser.template(500, req, res);
     }
   }
 

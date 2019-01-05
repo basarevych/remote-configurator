@@ -8,21 +8,15 @@ const Router = require("express").Router;
  * Build Info route
  */
 class BuildRoute extends EventEmitter {
-  constructor(app) {
+  constructor() {
     super();
 
-    this.app = app;
     this.router = Router();
   }
 
   // eslint-disable-next-line lodash/prefer-constant
   static get $provides() {
-    return "routes.build";
-  }
-
-  // eslint-disable-next-line lodash/prefer-constant
-  static get $requires() {
-    return ["app"];
+    return "route.build";
   }
 
   async init() {
