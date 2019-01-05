@@ -1,10 +1,6 @@
-"use strict";
-
-const { makeExecutableSchema } = require("graphql-tools");
-const resolvers = require("./resolvers");
 const constants = require("../common/constants");
 
-const typeDefs = `
+module.exports = `
   scalar Date
 
   interface OperationStatus {
@@ -69,9 +65,3 @@ const typeDefs = `
     deleteDevice(id: String): DeviceOperationStatus
   }
 `;
-
-module.exports = makeExecutableSchema({
-  typeDefs,
-  resolvers,
-  resolverValidationOptions: { requireResolversForResolveType: false }
-});
