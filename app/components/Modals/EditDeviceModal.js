@@ -13,6 +13,7 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Form from "../Forms/Form";
 import Field from "../Forms/Field";
+import fields from "../../../common/forms/device";
 
 const styles = theme => ({
   error: theme.main.error,
@@ -37,18 +38,7 @@ class EditDeviceModal extends Form {
 
   static formName = "editCameraForm";
 
-  static fields = {
-    name: {
-      normalize: "rows:1|remove:spaces",
-      transform: "trim",
-      label: "EDIT_DEVICE_NAME_LABEL"
-    },
-    password: {
-      normalize: "rows:1",
-      transform: "trim",
-      label: "EDIT_DEVICE_PASSWORD_LABEL"
-    }
-  };
+  static fields = fields;
 
   static async onSubmit(values, dispatch, props) {
     let result;

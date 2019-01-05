@@ -65,13 +65,6 @@ class DevicesRepository extends EventEmitter {
     if (!user || !_.includes(user.roles, accessLevel))
       return { success: false };
 
-    let errors = [];
-    if (!args.name)
-      errors.push({ key: "name", message: "ERROR_FIELD_REQUIRED" });
-    if (!args.password)
-      errors.push({ key: "password", message: "ERROR_FIELD_REQUIRED" });
-    if (errors.length) throw this.di.get("error.validation", errors);
-
     let target = await this.db.DeviceModel.findOne({
       name: args.name,
       owner: user.id
@@ -80,8 +73,9 @@ class DevicesRepository extends EventEmitter {
 
     target = new this.db.DeviceModel({
       name: args.name,
-      username: user.login + "_" + args.name,
-      password: await this.auth.encryptPassword(args.password),
+      username: args.name && user.login + "_" + args.name,
+      password:
+        args.password && (await this.auth.encryptPassword(args.password)),
       owner: user.id
     });
 
@@ -101,14 +95,8 @@ class DevicesRepository extends EventEmitter {
     let target = await this.db.DeviceModel.findById(args.id);
     if (!target || target.owner !== user.id) return { success: false };
 
-    if (!args.name) {
-      throw this.di.get("error.validation", [
-        { key: "name", message: "ERROR_FIELD_REQUIRED" }
-      ]);
-    }
-
     target.name = args.name;
-    target.username = user.login + "_" + args.name;
+    target.username = args.name && user.login + "_" + args.name;
     if (args.password)
       target.password = await this.auth.encryptPassword(args.password);
 

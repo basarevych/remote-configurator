@@ -12,6 +12,7 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Form from "../Forms/Form";
 import Field from "../Forms/Field";
+import fields from "../../../common/forms/interactive";
 
 const styles = () => ({
   actions: {
@@ -37,13 +38,7 @@ class InteractiveModal extends Form {
 
   static formName = "interactiveAuthForm";
 
-  static fields = {
-    reply: {
-      normalize: "rows:1|remove:spaces",
-      transform: "trim",
-      label: "KEYBOARD_AUTH_REPLY_LABEL"
-    }
-  };
+  static fields = fields;
 
   static async onSubmit(values, dispatch, props) {
     props.onFinish(props.getValue("reply"));

@@ -14,6 +14,7 @@ import Button from "@material-ui/core/Button";
 import Form from "../Forms/Form";
 import Field from "../Forms/Field";
 import constants from "../../../common/constants";
+import fields from "../../../common/forms/user";
 
 const styles = theme => ({
   error: theme.main.error,
@@ -40,19 +41,7 @@ class EditUserModal extends Form {
 
   static formName = "editUserForm";
 
-  static fields = {
-    login: {
-      normalize: "rows:1|remove:spaces",
-      transform: "trim",
-      label: "EDIT_USER_LOGIN_LABEL"
-    },
-    password: {
-      label: "EDIT_USER_PASSWORD_LABEL"
-    },
-    isAdmin: {
-      label: "EDIT_USER_ADMIN_LABEL"
-    }
-  };
+  static fields = fields;
 
   static async onSubmit(values, dispatch, props) {
     let result;

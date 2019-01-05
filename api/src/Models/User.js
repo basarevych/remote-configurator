@@ -1,4 +1,8 @@
+const { fromJS } = require("immutable");
+const ValidationError = require("../Errors/ValidationError");
 const constants = require("../../../common/constants");
+const fields = require("../../../common/forms/user");
+const validate = require("../../../common/validate");
 
 /**
  * Mimics Mongoose model while using Loki embedded database
@@ -10,6 +14,14 @@ class UserModel {
       delete data.id;
     }
     this._data = data;
+
+    this._required = [
+      "whenCreated",
+      "whenUpdated",
+      "login",
+      "password",
+      "roles"
+    ];
 
     const now = new Date();
     this.whenCreated = data.whenCreated || now;
@@ -117,19 +129,28 @@ class UserModel {
   }
 
   async validate() {
-    const err = new Error("Validation error");
-    err.errors = {};
+    let errors = [];
 
-    if (!this.whenCreated)
-      err.errors.whenCreated = { message: "ERROR_FIELD_REQUIRED" };
-    if (!this.whenUpdated)
-      err.errors.whenUpdated = { message: "ERROR_FIELD_REQUIRED" };
-    if (!this.login) err.errors.login = { message: "ERROR_FIELD_REQUIRED" };
-    if (!this.password)
-      err.errors.password = { message: "ERROR_FIELD_REQUIRED" };
-    if (!this.roles) err.errors.roles = { message: "ERROR_FIELD_REQUIRED" };
+    const obj = this.toObject();
+    for (let field of _.keys(obj)) {
+      if (_.includes(this._required, field) && !this[field]) {
+        errors.push({ key: field, message: "ERROR_FIELD_REQUIRED" });
+        continue;
+      }
 
-    if (_.keys(err.errors).length) throw err;
+      const rules = fields[field];
+      if (!rules || !rules.validate) continue;
+
+      const fieldErrors = validate({}, rules.validate, obj[field], fromJS(obj));
+      if (fieldErrors.length) {
+        errors = errors.concat({
+          key: field,
+          message: fieldErrors.length === 1 ? fieldErrors[0] : fieldErrors
+        });
+      }
+    }
+
+    if (errors.length) throw new ValidationError(errors);
   }
 
   async save() {

@@ -10,6 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Form from "../Forms/Form";
 import Field from "../Forms/Field";
+import fields from "../../../common/forms/proxy";
 
 const styles = () => ({
   actions: {
@@ -33,31 +34,7 @@ class ProxyModal extends Form {
 
   static formName = "proxyForm";
 
-  static fields = {
-    host: {
-      normalize: "rows:1|remove:spaces",
-      transform: "trim",
-      label: "PROXY_HOST_LABEL"
-    },
-    port: {
-      normalize: "rows:1|integer",
-      transform: "trim",
-      label: "PROXY_PORT_LABEL"
-    },
-    isAuthNeeded: {
-      label: "PROXY_AUTH_LABEL"
-    },
-    login: {
-      normalize: "rows:1|remove:spaces",
-      transform: "trim",
-      label: "PROXY_LOGIN_LABEL"
-    },
-    password: {
-      normalize: "rows:1|remove:spaces",
-      transform: "trim",
-      label: "PROXY_PASSWORD_LABEL"
-    }
-  };
+  static fields = fields;
 
   static async onSubmit(values, dispatch, props) {
     props.onFinish(

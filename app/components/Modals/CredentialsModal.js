@@ -11,6 +11,7 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Form from "../Forms/Form";
 import Field from "../Forms/Field";
+import fields from "../../../common/forms/credentials";
 
 const styles = () => ({
   actions: {
@@ -35,18 +36,7 @@ class CredentialsModal extends Form {
 
   static formName = "credentialsAuthForm";
 
-  static fields = {
-    login: {
-      normalize: "rows:1|remove:spaces",
-      transform: "trim",
-      label: "SETUP_AUTH_LOGIN_LABEL"
-    },
-    password: {
-      normalize: "rows:1|remove:spaces",
-      transform: "trim",
-      label: "SETUP_AUTH_PASSWORD_LABEL"
-    }
-  };
+  static fields = fields;
 
   static async onSubmit(values, dispatch, props) {
     props.onFinish(props.getValue("login"), props.getValue("password"));

@@ -1026,7 +1026,7 @@ exports.default = _default;
 /* 30 */
 /***/ (function(module) {
 
-module.exports = {"MENU_DEVICES":"Device List","TITLE_DEVICES":"Remote Configurator","MENU_DEVICE":"Device","TITLE_DEVICE":"Device","MENU_USERS":"Users","TITLE_USERS":"Users","SIDEBAR_SIGN_OUT_LINK":"Sign Out","DEVICES_PAGE_WORKFLOW_TITLE":"Workflow","DEVICES_PAGE_WORKFLOW_HTML":["<ul>","<li>Create a device with unique name and a password. You will be provided with a shell command you can then"," copy-paste into the terminal of your device.</li>","<li>Enter the same password you used to create the device and the device will appear in the list below after"," connecting to this server. All further interaction with the device will be done through this encrypted SSH channel.</li>","<li>Press \"SIGN IN\" button to sign in into your device. You don't need to use root's credentials if you are"," not going to perform superuser-only operations","<li>When signed in you can then open an in-browser terminal session to this device under the credentials you used"," or create a private HTTP proxy for any port on your device</li>","</ul>"],"DEVICES_PAGE_SECURITY_TITLE":"Security Considerations","DEVICES_PAGE_SECURITY_HTML":["<ul>","<li>Credentials you use to sign in into your device are readable to this server. Although these credentials are never"," stored to disk and only live in the server's memory while the session exists, a compromised server might have a"," different idea what to do with your information.</li>","<li>A more secure apporoach would be to set up your own server (preferably after inspecting the source code) so you"," trust the credentials only to a reliable server.</li>","<li>Some web services protect their users from phishing sites, for which they detect and prevent proxies and &lt;iframe&gt;"," tags from working. You will have to configure an exception for the server in such case. For Webmin, you can achieve"," this by adding to the end of <strong>/etc/webmin/config</strong>: <pre>referers={origin}</pre></li>","</ul>"],"DEVICES_NAME_COLUMN":"Name","DEVICES_ADDRESS_COLUMN":"Address","DEVICES_CREATE_BUTTON":"Create Device","DEVICES_EDIT_BUTTON":"Edit Device","DEVICES_DELETE_BUTTON":"Delete Devices","DEVICES_CONNECT_BUTTON":"Sign In","DEVICES_OFFLINE_LABEL":"Offline","DEVICES_OPEN_TERMINAL_TIP":"Open terminal","DEVICES_OPEN_BROWSER_TIP":"Open browser","DEVICES_DISCONNECT_TIP":"Disconnect","EDIT_DEVICE_TITLE_CREATE":"Create Device","EDIT_DEVICE_TITLE_EDIT":"Edit Device","EDIT_DEVICE_NAME_LABEL":"Name","EDIT_DEVICE_PASSWORD_LABEL":"Password","EDIT_DEVICE_FAILED":"Form submission failed","EDIT_DEVICE_SUBMIT":"Submit","EDIT_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_TITLE":"Delete Devices","DELETE_DEVICE_TEXT":"Delete selected devices?","DELETE_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_SUBMIT":"Delete","PROXY_TPL_TITLE":"<h1>Proxy Reporting</h1>","PROXY_TPL_MESSAGE":"<h3>Could not fetch the page</h3>","PROXY_TPL_403":"<p>Access denied</p>","PROXY_TPL_404":"<p>Try to reopen this page from the Device List</p>","PROXY_TPL_502":"<p>Looks like nobody is listening on this port</p>","PROXY_MODAL_TITLE":"HTTP Proxy","PROXY_HOST_LABEL":"Which host to connect to?","PROXY_PORT_LABEL":"Which port to proxy?","PROXY_AUTH_LABEL":"Remote service needs HTTP BASIC AUTH","PROXY_LOGIN_LABEL":"Login","PROXY_PASSWORD_LABEL":"Password","PROXY_MODAL_CANCEL":"Cancel","PROXY_MODAL_SUBMIT":"Submit","USERS_LOGIN_COLUMN":"Login","USERS_ROLES_COLUMN":"Roles","USERS_CREATE_BUTTON":"Create User","USERS_EDIT_BUTTON":"Edit User","USERS_DELETE_BUTTON":"Delete Users","EDIT_USER_TITLE_CREATE":"Create User","EDIT_USER_TITLE_EDIT":"Edit User","EDIT_USER_LOGIN_LABEL":"Login","EDIT_USER_PASSWORD_LABEL":"Password","EDIT_USER_ADMIN_LABEL":"Administrator","EDIT_USER_CANCEL":"Cancel","EDIT_USER_SUBMIT":"Submit","EDIT_USER_FAILED":"An error occured","DELETE_USER_TITLE":"Delete Users","DELETE_USER_TEXT":"Delete selected users?","DELETE_USER_CANCEL":"Cancel","DELETE_USER_SUBMIT":"Delete","TERMINAL_CONNECTING_LABEL":"Connecting...","TERMINAL_NOT_CONNECTED_LABEL":"Not connected","APP_AUTH_TITLE":"Authentication","APP_AUTH_SELF_REGISTRATION_TITLE":"Self-registration enabled","APP_AUTH_SELF_REGISTRATION_MESSAGE":"If you are a new user, you can use any free login and the password you want to sign in","APP_AUTH_LOGIN_LABEL":"Login","APP_AUTH_PASSWORD_LABEL":"Password","APP_AUTH_SUBMIT":"Sign In","APP_AUTH_FAILED":"Invalid credentials","SETUP_AUTH_TITLE":"Authentication","SETUP_AUTH_LOGIN_LABEL":"Login","SETUP_AUTH_PASSWORD_LABEL":"Password","SETUP_AUTH_CANCEL":"Cancel","SETUP_AUTH_SUBMIT":"Submit","KEYBOARD_AUTH_TITLE":"Authentication","KEYBOARD_AUTH_REPLY_LABEL":"Response","KEYBOARD_AUTH_CANCEL":"Cancel","KEYBOARD_AUTH_SUBMIT":"Submit","ERROR_FIELD_REQUIRED":"This field is required","ERROR_INVALID_PASSWORD":"Password length must be at least 6 characters"};
+module.exports = {"MENU_DEVICES":"Device List","TITLE_DEVICES":"Remote Configurator","MENU_DEVICE":"Device","TITLE_DEVICE":"Device","MENU_USERS":"Users","TITLE_USERS":"Users","SIDEBAR_SIGN_OUT_LINK":"Sign Out","DEVICES_PAGE_WORKFLOW_TITLE":"Workflow","DEVICES_PAGE_WORKFLOW_HTML":["<ul>","<li>Create a device with unique name and a password. You will be provided with a shell command you can then"," copy-paste into the terminal of your device.</li>","<li>Enter the same password you used to create the device and the device will appear in the list below after"," connecting to this server. All further interaction with the device will be done through this encrypted SSH channel.</li>","<li>Press \"SIGN IN\" button to sign in into your device. You don't need to use root's credentials if you are"," not going to perform superuser-only operations","<li>When signed in you can then open an in-browser terminal session to this device under the credentials you used"," or create a private HTTP proxy for any port on your device</li>","</ul>"],"DEVICES_PAGE_SECURITY_TITLE":"Security Considerations","DEVICES_PAGE_SECURITY_HTML":["<ul>","<li>Credentials you use to sign in into your device are readable to this server. Although these credentials are never"," stored to disk and only live in the server's memory while the session exists, a compromised server might have a"," different idea what to do with your information.</li>","<li>A more secure apporoach would be to set up your own server (preferably after inspecting the source code) so you"," trust the credentials only to a reliable server.</li>","<li>Some web services protect their users from phishing sites, for which they detect and prevent proxies and &lt;iframe&gt;"," tags from working. You will have to configure an exception for the server in such case. For Webmin, you can achieve"," this by adding to the end of <strong>/etc/webmin/config</strong>: <pre>referers={origin}</pre></li>","</ul>"],"DEVICES_NAME_COLUMN":"Name","DEVICES_ADDRESS_COLUMN":"Address","DEVICES_CREATE_BUTTON":"Create Device","DEVICES_EDIT_BUTTON":"Edit Device","DEVICES_DELETE_BUTTON":"Delete Devices","DEVICES_CONNECT_BUTTON":"Sign In","DEVICES_OFFLINE_LABEL":"Offline","DEVICES_OPEN_TERMINAL_TIP":"Open terminal","DEVICES_OPEN_BROWSER_TIP":"Open browser","DEVICES_DISCONNECT_TIP":"Disconnect","EDIT_DEVICE_TITLE_CREATE":"Create Device","EDIT_DEVICE_TITLE_EDIT":"Edit Device","EDIT_DEVICE_NAME_LABEL":"Name","EDIT_DEVICE_PASSWORD_LABEL":"Password","EDIT_DEVICE_FAILED":"Form submission failed","EDIT_DEVICE_SUBMIT":"Submit","EDIT_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_TITLE":"Delete Devices","DELETE_DEVICE_TEXT":"Delete selected devices?","DELETE_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_SUBMIT":"Delete","PROXY_TPL_TITLE":"<h1>Proxy Reporting</h1>","PROXY_TPL_MESSAGE":"<h3>Could not fetch the page</h3>","PROXY_TPL_403":"<p>Access denied</p>","PROXY_TPL_404":"<p>Try to reopen this page from the Device List</p>","PROXY_TPL_502":"<p>Looks like nobody is listening on this port</p>","PROXY_MODAL_TITLE":"HTTP Proxy","PROXY_HOST_LABEL":"Which host to connect to?","PROXY_PORT_LABEL":"Which port to proxy?","PROXY_AUTH_LABEL":"Remote service needs HTTP BASIC AUTH","PROXY_LOGIN_LABEL":"Login","PROXY_PASSWORD_LABEL":"Password","PROXY_MODAL_CANCEL":"Cancel","PROXY_MODAL_SUBMIT":"Submit","USERS_LOGIN_COLUMN":"Login","USERS_ROLES_COLUMN":"Roles","USERS_CREATE_BUTTON":"Create User","USERS_EDIT_BUTTON":"Edit User","USERS_DELETE_BUTTON":"Delete Users","EDIT_USER_TITLE_CREATE":"Create User","EDIT_USER_TITLE_EDIT":"Edit User","EDIT_USER_LOGIN_LABEL":"Login","EDIT_USER_PASSWORD_LABEL":"Password","EDIT_USER_ADMIN_LABEL":"Administrator","EDIT_USER_CANCEL":"Cancel","EDIT_USER_SUBMIT":"Submit","EDIT_USER_FAILED":"An error occured","DELETE_USER_TITLE":"Delete Users","DELETE_USER_TEXT":"Delete selected users?","DELETE_USER_CANCEL":"Cancel","DELETE_USER_SUBMIT":"Delete","TERMINAL_CONNECTING_LABEL":"Connecting...","TERMINAL_NOT_CONNECTED_LABEL":"Not connected","APP_AUTH_TITLE":"Authentication","APP_AUTH_SELF_REGISTRATION_TITLE":"Self-registration enabled","APP_AUTH_SELF_REGISTRATION_MESSAGE":"If you are a new user, you can use any free login and the password you want to sign in","APP_AUTH_LOGIN_LABEL":"Login","APP_AUTH_PASSWORD_LABEL":"Password","APP_AUTH_SUBMIT":"Sign In","APP_AUTH_FAILED":"Invalid credentials","SETUP_AUTH_TITLE":"Authentication","SETUP_AUTH_LOGIN_LABEL":"Login","SETUP_AUTH_PASSWORD_LABEL":"Password","SETUP_AUTH_CANCEL":"Cancel","SETUP_AUTH_SUBMIT":"Submit","KEYBOARD_AUTH_TITLE":"Authentication","KEYBOARD_AUTH_REPLY_LABEL":"Response","KEYBOARD_AUTH_CANCEL":"Cancel","KEYBOARD_AUTH_SUBMIT":"Submit","ERROR_FIELD_REQUIRED":"This field is required","ERROR_INVALID_LOGIN":"Login should start with a letter and contain letters and digits only","ERROR_INVALID_PASSWORD":"Password must be at least 6 characters long"};
 
 /***/ }),
 /* 31 */
@@ -5458,20 +5458,23 @@ exports.default = _default;
 
 var validator = __webpack_require__(69);
 
-var allCountries, iso2Lookup;
-
-try {
-  var phones = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module 'country-telephone-data'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
-  allCountries = phones.allCountries;
-  iso2Lookup = phones.iso2Lookup;
-} catch (unused) {} // do nothing
+var allCountries, iso2Lookup; //const { allCountries, iso2Lookup } = require("country-telephone-data");
 
 /**
  * Normalizer function for Redux Form
- * takes input like "command1:param1:param2|command2:param1:param2"
+ * takes input like "rule1:param1:param2|rule2:param1:param2|..."
+ *
+ * trim                       remove white space from the beginning and the end of value
+ * compact:spaces             replace multiple occurences of space in a row with a single space
+ * remove:spaces              remove spaces
+ * rows:size                  forces "size" number of rows (1 if size is omitted)
+ * integer                    removes everything except digits
+ * phone                      forces international phone phormat
+ * email                      normalizes email
+ * credit_card:number         normalizes credit card number
+ * credit_card:date           normalizes credit card expiration date
+ * credit_card:secret         normalizes credit card CVV2 code
  */
-
 
 module.exports = function normalize(options, value, prevValue, allValues
 /* prevAllValues */
@@ -6029,20 +6032,25 @@ module.exports = require("redux-form");
 
 var validator = __webpack_require__(69);
 
-var allCountries, iso2Lookup;
-
-try {
-  var phones = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module 'country-telephone-data'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
-  allCountries = phones.allCountries;
-  iso2Lookup = phones.iso2Lookup;
-} catch (unused) {} // do nothing
+var allCountries, iso2Lookup; //const { allCountries, iso2Lookup } = require("country-telephone-data");
 
 /**
  * Validation function for Redux Form
- * takes input like "command1:param1:param2|command2:param1:param2"
+ * takes input like "rule1:param1:param2|rule2:param1:param2|..."
+ *
+ * re:regexp:flags:key        value should match the regular expression "regexp", second param is flags,
+ *                            third param is custom translation key used for the error message
+ *                            when ":" is needed in the regexp it should be escaped like this "\\:"
+ * required                   value is required
+ * required:otherField        value is required if otherField is not empty
+ * phone                      value is a phone number
+ * email                      value is an email
+ * password:length            value is a password of "length" characters (6 if omitted)
+ * credit_card:number         value is credit card number
+ * credit_card:date           value is credit card expiration date
+ * credit_card:secret         value is credit card CVV2 code
+ * match:otherField           value should be the same as the value of otherField
  */
-
 
 module.exports = function validate(props, options, value, allValues) {
   var rules = {};
@@ -6058,7 +6066,25 @@ module.exports = function validate(props, options, value, allValues) {
 
       var _command = params.shift();
 
-      rules[_command] = params;
+      if (_command !== "re") {
+        rules[_command] = params;
+      } else {
+        rules[_command] = [];
+        var line = params.join(":");
+        var found = false;
+
+        for (var i = 0; i < line.length; i++) {
+          if (line[i] === ":" && (i > 0 || line[i - 1] !== "\\")) {
+            rules[_command].push(line.slice(0, i));
+
+            rules[_command] = rules[_command].concat(_.split(line.slice(i + 1), ":"));
+            found = true;
+            break;
+          }
+        }
+
+        if (!found) rules[_command] = params;
+      }
     }
   } catch (err) {
     _didIteratorError = true;
@@ -6096,6 +6122,7 @@ module.exports = function validate(props, options, value, allValues) {
       if (failed) errors.push("ERROR_FIELD_REQUIRED");
     }
   } else {
+    // all the other rules only apply to non-empty value
     var _iteratorNormalCompletion2 = true;
     var _didIteratorError2 = false;
     var _iteratorError2 = undefined;
@@ -6109,6 +6136,12 @@ module.exports = function validate(props, options, value, allValues) {
         var normalized = void 0;
 
         switch (command) {
+          case "re":
+            tmp = new RegExp(rules[command][0], rules[command][1] || undefined);
+            success = value.match(tmp);
+            if (!success) errors.push(rules[command][2] || "ERROR_INVALID_PATTERN");
+            break;
+
           case "phone":
             // validate phone number in international format
             if (!validator.isEmpty(value)) {
@@ -7879,7 +7912,7 @@ module.exports = {
   overrides: {
     MuiPaper: {
       root: {
-        background: "linear-gradient(to bottom right, ".concat(lighten(bgNormal, 0.2), " 0, ").concat(darken(bgNormal, 0.2), " 100%)")
+        background: ["linear-gradient(to bottom right, ".concat(lighten(bgNormal, 0.2), " 0, ").concat(darken(bgNormal, 0.2), " 100%)"), "!important"]
       }
     },
     MuiTableRow: {
@@ -8493,11 +8526,11 @@ var _Sidebar = _interopRequireDefault(__webpack_require__(148));
 
 var _AppAuthModal = _interopRequireDefault(__webpack_require__(153));
 
-var _CredentialsModal = _interopRequireDefault(__webpack_require__(155));
+var _CredentialsModal = _interopRequireDefault(__webpack_require__(156));
 
-var _InteractiveModal = _interopRequireDefault(__webpack_require__(157));
+var _InteractiveModal = _interopRequireDefault(__webpack_require__(159));
 
-__webpack_require__(159);
+__webpack_require__(162);
 
 var _styledScroll = _interopRequireDefault(__webpack_require__(104));
 
@@ -8562,7 +8595,7 @@ var styles = function styles(theme) {
       color: theme.palette.primary.contrastText
     },
     sidebar: _.merge((_$merge = {
-      background: theme.sidebar.background,
+      background: [theme.sidebar.background, "!important"],
       border: "none",
       overflowX: "hidden",
       width: theme.sidebar.computerWidth * theme.spacing.unit
@@ -8572,7 +8605,7 @@ var styles = function styles(theme) {
       width: theme.sidebar.phoneWidth * theme.spacing.unit
     }), _$merge), (0, _styledScroll.default)(theme)),
     main: (_main = {
-      background: theme.main.background,
+      background: [theme.main.background, "!important"],
       minHeight: "100vh",
       display: "flex",
       alignItems: "stretch",
@@ -9192,6 +9225,8 @@ var _Form2 = _interopRequireDefault(__webpack_require__(67));
 
 var _Field = _interopRequireDefault(__webpack_require__(70));
 
+var _auth = _interopRequireDefault(__webpack_require__(155));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
@@ -9382,18 +9417,7 @@ _defineProperty(AppAuthModal, "propTypes", _objectSpread({}, _Form2.default.prop
 
 _defineProperty(AppAuthModal, "formName", "signInForm");
 
-_defineProperty(AppAuthModal, "fields", {
-  login: {
-    normalize: "rows:1|remove:spaces",
-    transform: "trim",
-    validate: "required",
-    label: "APP_AUTH_LOGIN_LABEL"
-  },
-  password: {
-    validate: "required",
-    label: "APP_AUTH_PASSWORD_LABEL"
-  }
-});
+_defineProperty(AppAuthModal, "fields", _auth.default);
 
 var _default = (0, _styles.withStyles)(styles, {
   withTheme: true
@@ -9404,6 +9428,62 @@ exports.default = _default;
 
 /***/ }),
 /* 155 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * {
+ *    fieldName: {
+ *      label: 'translation key',
+ *      normalize: 'rule1:param1:param2|rule2:param1:param2|...', // happens on change, optional
+ *      transform: 'rule1:param1:param2|rule2:param1:param2|...', // happens on blur, optional
+ *      validate: 'rule1:param1:param2|rule2:param1:param2|...',  // happens on blur, optional
+ *    }
+ * }
+ *
+ * Normalize and transfrom rules:
+ * trim                       remove white space from the beginning and the end of value
+ * compact:spaces             replace multiple occurences of space in a row with a single space
+ * remove:spaces              remove spaces
+ * rows:size                  forces "size" number of rows (1 if size is omitted)
+ * integer                    removes everything except digits
+ * phone                      forces international phone phormat
+ * email                      normalizes email
+ * credit_card:number         normalizes credit card number
+ * credit_card:date           normalizes credit card expiration date
+ * credit_card:secret         normalizes credit card CVV2 code
+ *
+ * Validation rules:
+ * re:regexp:flags:key        value should match the regular expression "regexp", second param is flags,
+ *                            third param is custom translation key used for the error message
+ *                            when ":" is needed in the regexp it should be escaped like this "\\:"
+ * required                   value is required
+ * required:otherField        value is required if otherField is not empty
+ * phone                      value is a phone number
+ * email                      value is an email
+ * password:length            value is a password of "length" characters (6 if omitted)
+ * credit_card:number         value is credit card number
+ * credit_card:date           value is credit card expiration date
+ * credit_card:secret         value is credit card CVV2 code
+ * match:otherField           value should be the same as the value of otherField
+ */
+module.exports = {
+  login: {
+    normalize: "rows:1|remove:spaces",
+    transform: "trim",
+    validate: "required",
+    label: "APP_AUTH_LOGIN_LABEL"
+  },
+  password: {
+    validate: "required",
+    label: "APP_AUTH_PASSWORD_LABEL"
+  }
+};
+
+/***/ }),
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9420,7 +9500,7 @@ var _devices = __webpack_require__(11);
 
 var _connectForm = _interopRequireDefault(__webpack_require__(64));
 
-var _CredentialsModal = _interopRequireDefault(__webpack_require__(156));
+var _CredentialsModal = _interopRequireDefault(__webpack_require__(157));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9453,7 +9533,7 @@ var _default = CredentialsModal;
 exports.default = _default;
 
 /***/ }),
-/* 156 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9491,6 +9571,8 @@ var _Button = _interopRequireDefault(__webpack_require__(28));
 var _Form2 = _interopRequireDefault(__webpack_require__(67));
 
 var _Field = _interopRequireDefault(__webpack_require__(70));
+
+var _credentials = _interopRequireDefault(__webpack_require__(158));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9657,7 +9739,59 @@ _defineProperty(CredentialsModal, "propTypes", _objectSpread({}, _Form2.default.
 
 _defineProperty(CredentialsModal, "formName", "credentialsAuthForm");
 
-_defineProperty(CredentialsModal, "fields", {
+_defineProperty(CredentialsModal, "fields", _credentials.default);
+
+var _default = (0, _styles.withStyles)(styles, {
+  withTheme: true
+})(CredentialsModal);
+
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+
+/***/ }),
+/* 158 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * {
+ *    fieldName: {
+ *      label: 'translation key',
+ *      normalize: 'rule1:param1:param2|rule2:param1:param2|...', // happens on change, optional
+ *      transform: 'rule1:param1:param2|rule2:param1:param2|...', // happens on blur, optional
+ *      validate: 'rule1:param1:param2|rule2:param1:param2|...',  // happens on blur, optional
+ *    }
+ * }
+ *
+ * Normalize and transfrom rules:
+ * trim                       remove white space from the beginning and the end of value
+ * compact:spaces             replace multiple occurences of space in a row with a single space
+ * remove:spaces              remove spaces
+ * rows:size                  forces "size" number of rows (1 if size is omitted)
+ * integer                    removes everything except digits
+ * phone                      forces international phone phormat
+ * email                      normalizes email
+ * credit_card:number         normalizes credit card number
+ * credit_card:date           normalizes credit card expiration date
+ * credit_card:secret         normalizes credit card CVV2 code
+ *
+ * Validation rules:
+ * re:regexp:flags:key        value should match the regular expression "regexp", second param is flags,
+ *                            third param is custom translation key used for the error message
+ *                            when ":" is needed in the regexp it should be escaped like this "\\:"
+ * required                   value is required
+ * required:otherField        value is required if otherField is not empty
+ * phone                      value is a phone number
+ * email                      value is an email
+ * password:length            value is a password of "length" characters (6 if omitted)
+ * credit_card:number         value is credit card number
+ * credit_card:date           value is credit card expiration date
+ * credit_card:secret         value is credit card CVV2 code
+ * match:otherField           value should be the same as the value of otherField
+ */
+module.exports = {
   login: {
     normalize: "rows:1|remove:spaces",
     transform: "trim",
@@ -9668,17 +9802,10 @@ _defineProperty(CredentialsModal, "fields", {
     transform: "trim",
     label: "SETUP_AUTH_PASSWORD_LABEL"
   }
-});
-
-var _default = (0, _styles.withStyles)(styles, {
-  withTheme: true
-})(CredentialsModal);
-
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+};
 
 /***/ }),
-/* 157 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9695,7 +9822,7 @@ var _devices = __webpack_require__(11);
 
 var _connectForm = _interopRequireDefault(__webpack_require__(64));
 
-var _InteractiveModal = _interopRequireDefault(__webpack_require__(158));
+var _InteractiveModal = _interopRequireDefault(__webpack_require__(160));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9727,7 +9854,7 @@ var _default = InteractiveModal;
 exports.default = _default;
 
 /***/ }),
-/* 158 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9767,6 +9894,8 @@ var _Button = _interopRequireDefault(__webpack_require__(28));
 var _Form2 = _interopRequireDefault(__webpack_require__(67));
 
 var _Field = _interopRequireDefault(__webpack_require__(70));
+
+var _interactive = _interopRequireDefault(__webpack_require__(161));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9932,13 +10061,7 @@ _defineProperty(InteractiveModal, "propTypes", _objectSpread({}, _Form2.default.
 
 _defineProperty(InteractiveModal, "formName", "interactiveAuthForm");
 
-_defineProperty(InteractiveModal, "fields", {
-  reply: {
-    normalize: "rows:1|remove:spaces",
-    transform: "trim",
-    label: "KEYBOARD_AUTH_REPLY_LABEL"
-  }
-});
+_defineProperty(InteractiveModal, "fields", _interactive.default);
 
 var _default = (0, _styles.withStyles)(styles, {
   withTheme: true
@@ -9948,32 +10071,83 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 159 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(160);
-
-__webpack_require__(161);
-
-__webpack_require__(162);
-
-/***/ }),
-/* 160 */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-/* 161 */
-/***/ (function(module, exports) {
-
-
+/**
+ * {
+ *    fieldName: {
+ *      label: 'translation key',
+ *      normalize: 'rule1:param1:param2|rule2:param1:param2|...', // happens on change, optional
+ *      transform: 'rule1:param1:param2|rule2:param1:param2|...', // happens on blur, optional
+ *      validate: 'rule1:param1:param2|rule2:param1:param2|...',  // happens on blur, optional
+ *    }
+ * }
+ *
+ * Normalize and transfrom rules:
+ * trim                       remove white space from the beginning and the end of value
+ * compact:spaces             replace multiple occurences of space in a row with a single space
+ * remove:spaces              remove spaces
+ * rows:size                  forces "size" number of rows (1 if size is omitted)
+ * integer                    removes everything except digits
+ * phone                      forces international phone phormat
+ * email                      normalizes email
+ * credit_card:number         normalizes credit card number
+ * credit_card:date           normalizes credit card expiration date
+ * credit_card:secret         normalizes credit card CVV2 code
+ *
+ * Validation rules:
+ * re:regexp:flags:key        value should match the regular expression "regexp", second param is flags,
+ *                            third param is custom translation key used for the error message
+ *                            when ":" is needed in the regexp it should be escaped like this "\\:"
+ * required                   value is required
+ * required:otherField        value is required if otherField is not empty
+ * phone                      value is a phone number
+ * email                      value is an email
+ * password:length            value is a password of "length" characters (6 if omitted)
+ * credit_card:number         value is credit card number
+ * credit_card:date           value is credit card expiration date
+ * credit_card:secret         value is credit card CVV2 code
+ * match:otherField           value should be the same as the value of otherField
+ */
+module.exports = {
+  reply: {
+    normalize: "rows:1|remove:spaces",
+    transform: "trim",
+    label: "KEYBOARD_AUTH_REPLY_LABEL"
+  }
+};
 
 /***/ }),
 /* 162 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(163);
+
+__webpack_require__(164);
+
+__webpack_require__(165);
+
+/***/ }),
+/* 163 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 164 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 165 */
 /***/ (function(module, exports) {
 
 

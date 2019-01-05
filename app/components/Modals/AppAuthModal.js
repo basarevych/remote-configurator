@@ -13,6 +13,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Form from "../Forms/Form";
 import Field from "../Forms/Field";
+import fields from "../../../common/forms/auth";
 
 const styles = theme => ({
   error: theme.main.error,
@@ -36,18 +37,7 @@ class AppAuthModal extends Form {
 
   static formName = "signInForm";
 
-  static fields = {
-    login: {
-      normalize: "rows:1|remove:spaces",
-      transform: "trim",
-      validate: "required",
-      label: "APP_AUTH_LOGIN_LABEL"
-    },
-    password: {
-      validate: "required",
-      label: "APP_AUTH_PASSWORD_LABEL"
-    }
-  };
+  static fields = fields;
 
   static async onSubmit(values, dispatch, props) {
     let result = await props.onSignIn(

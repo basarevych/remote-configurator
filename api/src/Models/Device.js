@@ -1,3 +1,8 @@
+const { fromJS } = require("immutable");
+const ValidationError = require("../Errors/ValidationError");
+const fields = require("../../../common/forms/device");
+const validate = require("../../../common/validate");
+
 /**
  * Mimics Mongoose model while using Loki embedded database
  */
@@ -9,6 +14,15 @@ class DeviceModel {
     }
     if (data.owner) data.owner = parseInt(data.owner);
     this._data = data;
+
+    this._required = [
+      "whenCreated",
+      "whenUpdated",
+      "name",
+      "username",
+      "password",
+      "owner"
+    ];
 
     const now = new Date();
     this.whenCreated = data.whenCreated || now;
@@ -120,21 +134,28 @@ class DeviceModel {
   }
 
   async validate() {
-    const err = new Error("Validation error");
-    err.errors = {};
+    let errors = [];
 
-    if (!this.whenCreated)
-      err.errors.whenCreated = { message: "ERROR_FIELD_REQUIRED" };
-    if (!this.whenUpdated)
-      err.errors.whenUpdated = { message: "ERROR_FIELD_REQUIRED" };
-    if (!this.name) err.errors.name = { message: "ERROR_FIELD_REQUIRED" };
-    if (!this.username)
-      err.errors.username = { message: "ERROR_FIELD_REQUIRED" };
-    if (!this.password)
-      err.errors.password = { message: "ERROR_FIELD_REQUIRED" };
-    if (!this.owner) err.errors.owner = { message: "ERROR_FIELD_REQUIRED" };
+    const obj = this.toObject();
+    for (let field of _.keys(obj)) {
+      if (_.includes(this._required, field) && !this[field]) {
+        errors.push({ key: field, message: "ERROR_FIELD_REQUIRED" });
+        continue;
+      }
 
-    if (_.keys(err.errors).length) throw err;
+      const rules = fields[field];
+      if (!rules || !rules.validate) continue;
+
+      const fieldErrors = validate({}, rules.validate, obj[field], fromJS(obj));
+      if (fieldErrors.length) {
+        errors = errors.concat({
+          key: field,
+          message: fieldErrors.length === 1 ? fieldErrors[0] : fieldErrors
+        });
+      }
+    }
+
+    if (errors.length) throw new ValidationError(errors);
   }
 
   async save() {

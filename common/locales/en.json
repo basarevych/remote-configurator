@@ -102,5 +102,6 @@
   "KEYBOARD_AUTH_CANCEL": "Cancel",
   "KEYBOARD_AUTH_SUBMIT": "Submit",
   "ERROR_FIELD_REQUIRED": "This field is required",
-  "ERROR_INVALID_PASSWORD": "Password length must be at least 6 characters"
+  "ERROR_INVALID_LOGIN": "Login should start with a letter and contain letters and digits only",
+  "ERROR_INVALID_PASSWORD": "Password must be at least 6 characters long"
 }

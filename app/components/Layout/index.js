@@ -55,7 +55,7 @@ const styles = theme => ({
   },
   sidebar: _.merge(
     {
-      background: theme.sidebar.background,
+      background: [theme.sidebar.background, "!important"],
       border: "none",
       overflowX: "hidden",
       width: theme.sidebar.computerWidth * theme.spacing.unit,
@@ -69,7 +69,7 @@ const styles = theme => ({
     styledScroll(theme)
   ),
   main: {
-    background: theme.main.background,
+    background: [theme.main.background, "!important"],
     minHeight: "100vh",
     display: "flex",
     alignItems: "stretch",
