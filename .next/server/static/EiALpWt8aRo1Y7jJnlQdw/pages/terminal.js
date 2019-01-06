@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 215);
+/******/ 	return __webpack_require__(__webpack_require__.s = 198);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -704,12 +704,7 @@ var getInteractiveModalData = function getInteractiveModalData(state) {
 exports.getInteractiveModalData = getInteractiveModalData;
 
 /***/ }),
-/* 24 */
-/***/ (function(module, exports) {
-
-module.exports = require("redux-form/immutable");
-
-/***/ }),
+/* 24 */,
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -818,12 +813,7 @@ var moment = __webpack_require__(36); // Add locales:
 module.exports = moment;
 
 /***/ }),
-/* 28 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/Button");
-
-/***/ }),
+/* 28 */,
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4733,2771 +4723,74 @@ var isConnected = function isConnected(state) {
 exports.isConnected = isConnected;
 
 /***/ }),
-/* 58 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(__webpack_require__(3));
-
-var _propTypes = _interopRequireDefault(__webpack_require__(5));
-
-var _immutable = __webpack_require__(1);
-
-var _reactIntl = __webpack_require__(9);
-
-var _styles = __webpack_require__(7);
-
-var _List = _interopRequireDefault(__webpack_require__(87));
-
-var _ListItem = _interopRequireDefault(__webpack_require__(88));
-
-var _ListItemIcon = _interopRequireDefault(__webpack_require__(78));
-
-var _ListItemText = _interopRequireDefault(__webpack_require__(79));
-
-var _InfoOutlined = _interopRequireDefault(__webpack_require__(89));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var styles = function styles(theme) {
-  return {
-    errorList: {
-      padding: 0
-    },
-    errorListItem: {
-      paddingTop: "0.5rem",
-      paddingLeft: "0.5rem",
-      paddingRight: 0
-    },
-    error: {
-      color: theme.palette.text.secondary
-    }
-  };
-};
-
-var Errors =
-/*#__PURE__*/
-function (_React$PureComponent) {
-  _inherits(Errors, _React$PureComponent);
-
-  function Errors() {
-    _classCallCheck(this, Errors);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(Errors).apply(this, arguments));
-  }
-
-  _createClass(Errors, [{
-    key: "render",
-    value: function render() {
-      var _this = this;
-
-      return _react.default.createElement(_List.default, {
-        classes: {
-          root: this.props.classes.errorList
-        }
-      },
-      /* eslint-disable-line */
-      this.props.errors.map(function (error, index) {
-        return _react.default.createElement(_ListItem.default, {
-          key: "error-".concat(index),
-          classes: {
-            root: _this.props.classes.errorListItem
-          }
-        }, _react.default.createElement(_ListItemIcon.default, null, _react.default.createElement(_InfoOutlined.default, {
-          className: _this.props.classes.error
-        })), _react.default.createElement(_ListItemText.default, {
-          classes: {
-            primary: _this.props.classes.error
-          },
-          primary: _this.props.intl.formatMessage({
-            id: error
-          })
-        }));
-      }));
-    }
-  }]);
-
-  return Errors;
-}(_react.default.PureComponent);
-
-var _default = (0, _reactIntl.injectIntl)((0, _styles.withStyles)(styles)(Errors));
-
-exports.default = _default;
-
-/***/ }),
-/* 59 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/Dialog");
-
-/***/ }),
-/* 60 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/DialogActions");
-
-/***/ }),
-/* 61 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/DialogContent");
-
-/***/ }),
-/* 62 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/DialogTitle");
-
-/***/ }),
-/* 63 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/Grid");
-
-/***/ }),
-/* 64 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _regenerator = _interopRequireDefault(__webpack_require__(2));
-
-var _react = _interopRequireDefault(__webpack_require__(3));
-
-var _immutable = __webpack_require__(1);
-
-var _reactRedux = __webpack_require__(18);
-
-var _immutable2 = __webpack_require__(24);
-
-var _reduxForm = __webpack_require__(83);
-
-var _Context = __webpack_require__(65);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-var _default = function _default(FormComponent, mapStateToProps, mapDispatchToProps) {
-  var withContext = function withContext(WrappedComponent) {
-    return function WithFormContext(props) {
-      return _react.default.createElement(_Context.FormNameContext.Provider, {
-        value: FormComponent.formName
-      }, _react.default.createElement(_Context.FormFieldsContext.Provider, {
-        value: FormComponent.fields
-      }, _react.default.createElement(WrappedComponent, props)));
-    };
-  };
-
-  for (var _len = arguments.length, args = new Array(_len > 3 ? _len - 3 : 0), _key = 3; _key < _len; _key++) {
-    args[_key - 3] = arguments[_key];
-  }
-
-  var Form = _reactRedux.connect.apply(void 0, [function (state, props) {
-    return _.assign(mapStateToProps ? mapStateToProps(state, props) : {}, {
-      getValue: function getValue(field) {
-        var values = (0, _immutable2.getFormValues)(FormComponent.formName)(state);
-        return field ? values && values.get(field) : values || (0, _immutable.Map)();
-      },
-      getError: function getError(field) {
-        var errors = (0, _immutable2.getFormAsyncErrors)(FormComponent.formName)(state);
-        return field ? errors && errors.get(field) : errors || (0, _immutable.Map)();
-      }
-    });
-  }, function (dispatch, props) {
-    return _.assign(mapDispatchToProps ? mapDispatchToProps(dispatch, props) : {}, {
-      dispatch: dispatch,
-      updateValidation: function () {
-        var _updateValidation = _asyncToGenerator(
-        /*#__PURE__*/
-        _regenerator.default.mark(function _callee(errors) {
-          return _regenerator.default.wrap(function _callee$(_context) {
-            while (1) {
-              switch (_context.prev = _context.next) {
-                case 0:
-                  _context.next = 2;
-                  return dispatch((0, _reduxForm.startAsyncValidation)(FormComponent.formName));
-
-                case 2:
-                  _context.next = 4;
-                  return dispatch((0, _reduxForm.stopAsyncValidation)(FormComponent.formName, errors));
-
-                case 4:
-                case "end":
-                  return _context.stop();
-              }
-            }
-          }, _callee, this);
-        }));
-
-        function updateValidation(_x) {
-          return _updateValidation.apply(this, arguments);
-        }
-
-        return updateValidation;
-      }()
-    });
-  }].concat(args))(withContext((0, _immutable2.reduxForm)({
-    form: FormComponent.formName,
-    destroyOnUnmount: false,
-    pure: false,
-    shouldAsyncValidate: function shouldAsyncValidate(_ref) {
-      var trigger = _ref.trigger;
-      return _.includes(["blur", "submit"], trigger);
-    },
-    onSubmit: FormComponent.onSubmit.bind(FormComponent),
-    onSubmitFail: FormComponent.onSubmitFail.bind(FormComponent),
-    onSubmitSuccess: FormComponent.onSubmitSuccess.bind(FormComponent),
-    onChange: FormComponent.onChange.bind(FormComponent),
-    asyncValidate: FormComponent.onValidate.bind(FormComponent)
-  })(FormComponent)));
-
-  Form.formName = FormComponent.formName;
-  return Form;
-};
-
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
-
-/***/ }),
-/* 65 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.FormFieldsContext = exports.FormNameContext = void 0;
-
-var _react = _interopRequireDefault(__webpack_require__(3));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var FormNameContext = _react.default.createContext({});
-
-exports.FormNameContext = FormNameContext;
-
-var FormFieldsContext = _react.default.createContext({});
-
-exports.FormFieldsContext = FormFieldsContext;
-
-/***/ }),
-/* 66 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/DialogContentText");
-
-/***/ }),
-/* 67 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _regenerator = _interopRequireDefault(__webpack_require__(2));
-
-var _react = _interopRequireDefault(__webpack_require__(3));
-
-var _propTypes = _interopRequireDefault(__webpack_require__(5));
-
-var _immutable = __webpack_require__(24);
-
-var _normalize = _interopRequireDefault(__webpack_require__(68));
-
-var _validate2 = _interopRequireDefault(__webpack_require__(84));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var FormComponent =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(FormComponent, _React$Component);
-
-  _createClass(FormComponent, null, [{
-    key: "onSubmit",
-    value: function onSubmit()
-    /*values, dispatch, props*/
-    {}
-  }, {
-    key: "onSubmitFail",
-    value: function onSubmitFail(error, dispatch, submitError
-    /*, props */
-    ) {
-      if (false) {}
-    }
-  }, {
-    key: "onSubmitSuccess",
-    value: function onSubmitSuccess(result
-    /*, dispatch, props */
-    ) {
-      if (false) {}
-    }
-  }, {
-    key: "onChange",
-    value: function onChange(values, dispatch, props, prevValues) {
-      // remove error status of the field changed
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = _.keys(this.cachedErrors[this.formName] || {})[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var field = _step.value;
-
-          if (values.get(field) !== prevValues.get(field)) {
-            delete this.cachedErrors[this.formName][field];
-            dispatch(props.clearAsyncError(field));
-          }
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-    }
-  }, {
-    key: "doValidate",
-    value: function () {
-      var _doValidate = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee(values, dispatch, props, blurredField) {
-        var transform,
-            fields,
-            _iteratorNormalCompletion2,
-            _didIteratorError2,
-            _iteratorError2,
-            _iterator2,
-            _step2,
-            field,
-            value,
-            transformed,
-            errors,
-            _args = arguments;
-
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                transform = _args.length > 4 && _args[4] !== undefined ? _args[4] : true;
-                _context.prev = 1;
-                // if blurred field is not set, validate all of them
-                fields = blurredField ? _.isArray(blurredField) ? blurredField : [blurredField] : _.keys(this.fields);
-                _iteratorNormalCompletion2 = true;
-                _didIteratorError2 = false;
-                _iteratorError2 = undefined;
-                _context.prev = 6;
-                _iterator2 = fields[Symbol.iterator]();
-
-              case 8:
-                if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
-                  _context.next = 24;
-                  break;
-                }
-
-                field = _step2.value;
-                value = values.get(field); // transform value first if requested
-
-                if (!(transform && this.fields[field].transform)) {
-                  _context.next = 17;
-                  break;
-                }
-
-                transformed = (0, _normalize.default)(this.fields[field].transform, value, value, values, values);
-
-                if (!(transformed !== value)) {
-                  _context.next = 17;
-                  break;
-                }
-
-                _context.next = 16;
-                return dispatch(props.change(field, transformed));
-
-              case 16:
-                value = transformed;
-
-              case 17:
-                errors = []; // validate
-
-                if (this.fields[field].validate) errors = (0, _validate2.default)(props, this.fields[field].validate, value, values); // cache result
-
-                if (!this.cachedErrors[this.formName]) this.cachedErrors[this.formName] = {};
-                if (errors.length) this.cachedErrors[this.formName][field] = errors;else delete this.cachedErrors[this.formName][field];
-
-              case 21:
-                _iteratorNormalCompletion2 = true;
-                _context.next = 8;
-                break;
-
-              case 24:
-                _context.next = 30;
-                break;
-
-              case 26:
-                _context.prev = 26;
-                _context.t0 = _context["catch"](6);
-                _didIteratorError2 = true;
-                _iteratorError2 = _context.t0;
-
-              case 30:
-                _context.prev = 30;
-                _context.prev = 31;
-
-                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-                  _iterator2.return();
-                }
-
-              case 33:
-                _context.prev = 33;
-
-                if (!_didIteratorError2) {
-                  _context.next = 36;
-                  break;
-                }
-
-                throw _iteratorError2;
-
-              case 36:
-                return _context.finish(33);
-
-              case 37:
-                return _context.finish(30);
-
-              case 38:
-                _context.next = 43;
-                break;
-
-              case 40:
-                _context.prev = 40;
-                _context.t1 = _context["catch"](1);
-                console.error(_context.t1);
-
-              case 43:
-                if (!_.keys(this.cachedErrors[this.formName] || {}).length) {
-                  _context.next = 45;
-                  break;
-                }
-
-                throw _.cloneDeep(this.cachedErrors[this.formName]);
-
-              case 45:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this, [[1, 40], [6, 26, 30, 38], [31,, 33, 37]]);
-      }));
-
-      function doValidate(_x, _x2, _x3, _x4) {
-        return _doValidate.apply(this, arguments);
-      }
-
-      return doValidate;
-    }()
-  }, {
-    key: "onValidate",
-    value: function () {
-      var _onValidate = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee2() {
-        var _this2 = this;
-
-        var _len,
-            args,
-            _key,
-            _args2 = arguments;
-
-        return _regenerator.default.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                for (_len = _args2.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-                  args[_key] = _args2[_key];
-                }
-
-                return _context2.abrupt("return", new Promise(function (resolve, reject) {
-                  setTimeout(function () {
-                    try {
-                      resolve(_this2.doValidate.apply(_this2, args));
-                    } catch (error) {
-                      reject(error);
-                    }
-                  });
-                }));
-
-              case 2:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
-      }));
-
-      function onValidate() {
-        return _onValidate.apply(this, arguments);
-      }
-
-      return onValidate;
-    }()
-  }]);
-
-  function FormComponent(props) {
-    var _this;
-
-    _classCallCheck(this, FormComponent);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(FormComponent).call(this, props));
-    _this.submit = _this.submit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    return _this;
-  }
-
-  _createClass(FormComponent, [{
-    key: "validate",
-    value: function () {
-      var _validate = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee3() {
-        var errors;
-        return _regenerator.default.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _context3.prev = 0;
-                _context3.next = 3;
-                return this.constructor.doValidate(this.props.getValue(), this.props.dispatch, this.props, undefined, false);
-
-              case 3:
-                _context3.next = 8;
-                break;
-
-              case 5:
-                _context3.prev = 5;
-                _context3.t0 = _context3["catch"](0);
-                errors = _context3.t0;
-
-              case 8:
-                _context3.next = 10;
-                return this.props.updateValidation(errors);
-
-              case 10:
-                return _context3.abrupt("return", errors ? errors : true);
-
-              case 11:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, this, [[0, 5]]);
-      }));
-
-      function validate() {
-        return _validate.apply(this, arguments);
-      }
-
-      return validate;
-    }()
-  }, {
-    key: "submit",
-    value: function () {
-      var _submit = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee4() {
-        var valid;
-        return _regenerator.default.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                _context4.prev = 0;
-                _context4.next = 3;
-                return this.validate();
-
-              case 3:
-                valid = _context4.sent;
-
-                if (!(valid !== true)) {
-                  _context4.next = 6;
-                  break;
-                }
-
-                return _context4.abrupt("return", valid);
-
-              case 6:
-                _context4.next = 8;
-                return this.props.handleSubmit();
-
-              case 8:
-                return _context4.abrupt("return", _context4.sent);
-
-              case 11:
-                _context4.prev = 11;
-                _context4.t0 = _context4["catch"](0);
-                console.error(_context4.t0);
-
-              case 14:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4, this, [[0, 11]]);
-      }));
-
-      function submit() {
-        return _submit.apply(this, arguments);
-      }
-
-      return submit;
-    }() // eslint-disable-next-line
-
-  }, {
-    key: "render",
-    value: function render() {
-      return null;
-    }
-  }]);
-
-  return FormComponent;
-}(_react.default.Component);
-
-_defineProperty(FormComponent, "formName", "baseForm");
-
-_defineProperty(FormComponent, "fields", {
-  /*
-  fieldName: {
-    normalize: 'rules', // happens on change
-    transform: 'rules', // happens on blur
-    validate: 'rules',  // happens on blur
-    label: 'ID',        // translation ID
-  },
-   */
-});
-
-_defineProperty(FormComponent, "cachedErrors", {});
-
-var _default = FormComponent;
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
-
-/***/ }),
-/* 68 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {
-
-var validator = __webpack_require__(69);
-
-var allCountries, iso2Lookup; //const { allCountries, iso2Lookup } = require("country-telephone-data");
-
-/**
- * Normalizer function for Redux Form
- * takes input like "rule1:param1:param2|rule2:param1:param2|..."
- *
- * trim                       remove white space from the beginning and the end of value
- * compact:spaces             replace multiple occurences of space in a row with a single space
- * remove:spaces              remove spaces
- * rows:size                  forces "size" number of rows (1 if size is omitted)
- * integer                    removes everything except digits
- * phone                      forces international phone phormat
- * email                      normalizes email
- * credit_card:number         normalizes credit card number
- * credit_card:date           normalizes credit card expiration date
- * credit_card:secret         normalizes credit card CVV2 code
- */
-
-module.exports = function normalize(options, value, prevValue, allValues
-/* prevAllValues */
-) {
-  var rules = {};
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
-
-  try {
-    for (var _iterator = _.split(options, "|")[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var rule = _step.value;
-
-      var params = _.split(_.trim(rule), ":");
-
-      var command = params.shift();
-      rules[command] = params;
-    }
-  } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion && _iterator.return != null) {
-        _iterator.return();
-      }
-    } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
-      }
-    }
-  }
-
-  var result = _.isUndefined(value) ? "" : _.toString(value);
-  var _iteratorNormalCompletion2 = true;
-  var _didIteratorError2 = false;
-  var _iteratorError2 = undefined;
-
-  try {
-    for (var _iterator2 = _.keys(rules)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-      var _command = _step2.value;
-      var i = void 0;
-      var tmp = void 0;
-      var search = void 0;
-      var isLongBreak = void 0;
-
-      switch (_command) {
-        case "trim":
-          // trims the input, no params
-          tmp = [];
-          isLongBreak = !!result.match(/\r\n/);
-          var _iteratorNormalCompletion3 = true;
-          var _didIteratorError3 = false;
-          var _iteratorError3 = undefined;
-
-          try {
-            for (var _iterator3 = _.split(_.trim(result), /\r\n?|\n/g)[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-              var line = _step3.value;
-              tmp.push(_.trim(line));
-            }
-          } catch (err) {
-            _didIteratorError3 = true;
-            _iteratorError3 = err;
-          } finally {
-            try {
-              if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-                _iterator3.return();
-              }
-            } finally {
-              if (_didIteratorError3) {
-                throw _iteratorError3;
-              }
-            }
-          }
-
-          result = tmp.join(isLongBreak ? "\r\n" : "\n");
-          break;
-
-        case "compact":
-          // with "spaces" param compacts spaces into single space preserving new lines
-          if (_.includes(rules[_command], "spaces")) {
-            tmp = [];
-            isLongBreak = !!result.match(/\r\n/);
-            var _iteratorNormalCompletion4 = true;
-            var _didIteratorError4 = false;
-            var _iteratorError4 = undefined;
-
-            try {
-              for (var _iterator4 = _.split(result, /\r\n?|\n/g)[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                var _line = _step4.value;
-                tmp.push(_.replace(_line, /\s+/g, " "));
-              }
-            } catch (err) {
-              _didIteratorError4 = true;
-              _iteratorError4 = err;
-            } finally {
-              try {
-                if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
-                  _iterator4.return();
-                }
-              } finally {
-                if (_didIteratorError4) {
-                  throw _iteratorError4;
-                }
-              }
-            }
-
-            result = tmp.join(isLongBreak ? "\r\n" : "\n");
-          }
-
-          break;
-
-        case "remove":
-          // with "spaces" param removes spaces inside the line preveserving new lines
-          if (_.includes(rules[_command], "spaces")) {
-            tmp = [];
-            isLongBreak = !!result.match(/\r\n/);
-            var _iteratorNormalCompletion5 = true;
-            var _didIteratorError5 = false;
-            var _iteratorError5 = undefined;
-
-            try {
-              for (var _iterator5 = _.split(result, /\r\n?|\n/g)[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                var _line2 = _step5.value;
-                tmp.push(_.replace(_line2, /\s+/g, ""));
-              }
-            } catch (err) {
-              _didIteratorError5 = true;
-              _iteratorError5 = err;
-            } finally {
-              try {
-                if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
-                  _iterator5.return();
-                }
-              } finally {
-                if (_didIteratorError5) {
-                  throw _iteratorError5;
-                }
-              }
-            }
-
-            result = tmp.join(isLongBreak ? "\r\n" : "\n");
-          }
-
-          break;
-
-        case "rows":
-          // first param is the number of rows in the result (defaults to 1)
-          tmp = _.split(result, /\r\n?|\n/g);
-          isLongBreak = !!result.match(/\r\n/);
-          result = "";
-
-          for (i = 0; i < tmp.length; i++) {
-            if (i > 0 && i < (rules[_command].length ? parseInt(rules[_command][0]) : 1)) result += isLongBreak ? "\r\n" : "\n";
-            result += tmp[i];
-          }
-
-          break;
-
-        case "integer":
-          result = _.replace(result, /[^0-9]+/g, "");
-          break;
-
-        case "phone":
-          // converts input to internations phone number format
-          // expect package 'country-telephone-data' and form field "country" to exist
-          tmp = _.replace(result, /[^0-9]+/g, "");
-          result = "";
-          i = 0;
-          search = allCountries && iso2Lookup && allCountries[iso2Lookup[allValues.get("country")]];
-
-          if (search && search.dialCode && _.startsWith(tmp, search.dialCode)) {
-            result += search.dialCode + (search.dialCode.length < tmp.length ? " " : "");
-            i = search.dialCode.length;
-          }
-
-          for (; i < tmp.length; i++) {
-            if (i === 5 || i === 8 || i === 10) result += " ";
-            result += tmp[i];
-          }
-
-          if (result.length) result = "+" + result;
-          break;
-
-        case "email":
-          // normalizes email
-          result = validator.normalizeEmail(result);
-          if (result === "@") result = "";
-          break;
-
-        case "credit_card":
-          // normalizes credit card attribute set by first param ("number", "date" or "secret")
-          switch (rules[_command].length && rules[_command][0]) {
-            case "number":
-              tmp = _.replace(result, /[^0-9]+/g, "");
-              result = "";
-
-              for (i = 0; i < tmp.length; i++) {
-                if (i > 0 && !(i % 4)) result += " ";
-                result += tmp[i];
-              }
-
-              break;
-
-            case "date":
-              tmp = _.replace(result, /[^0-9]+/g, "");
-              result = tmp.slice(0, 2);
-
-              if (tmp.length > 2) {
-                result += " / ";
-                result += tmp.slice(2);
-              }
-
-              break;
-
-            case "secret":
-              result = _.replace(result, /[^0-9]+/g, "");
-              break;
-          }
-
-          break;
-      }
-    }
-  } catch (err) {
-    _didIteratorError2 = true;
-    _iteratorError2 = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-        _iterator2.return();
-      }
-    } finally {
-      if (_didIteratorError2) {
-        throw _iteratorError2;
-      }
-    }
-  }
-
-  return result;
-};
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
-
-/***/ }),
-/* 69 */
-/***/ (function(module, exports) {
-
-module.exports = require("validator");
-
-/***/ }),
-/* 70 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(__webpack_require__(3));
-
-var _propTypes = _interopRequireDefault(__webpack_require__(5));
-
-var _reactIntl = __webpack_require__(9);
-
-var _immutable = __webpack_require__(24);
-
-var _Context = __webpack_require__(65);
-
-var _normalize2 = _interopRequireDefault(__webpack_require__(68));
-
-var _Text = _interopRequireDefault(__webpack_require__(85));
-
-var _Select = _interopRequireDefault(__webpack_require__(90));
-
-var _Checkbox = _interopRequireDefault(__webpack_require__(95));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var FormField =
-/*#__PURE__*/
-function (_React$PureComponent) {
-  _inherits(FormField, _React$PureComponent);
-
-  function FormField() {
-    _classCallCheck(this, FormField);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(FormField).apply(this, arguments));
-  }
-
-  _createClass(FormField, [{
-    key: "render",
-    value: function render() {
-      var _this = this;
-
-      var _this$props = this.props,
-          name = _this$props.name,
-          type = _this$props.type,
-          fieldProps = _objectWithoutProperties(_this$props, ["name", "type"]); // eslint-disable-line
-
-
-      var Component;
-
-      switch (this.props.type) {
-        case "text":
-        case "password":
-        case "textarea":
-          Component = _Text.default;
-          break;
-
-        case "select":
-          Component = _Select.default;
-          break;
-
-        case "checkbox":
-          Component = _Checkbox.default;
-          break;
-      }
-
-      return _react.default.createElement(_Context.FormNameContext.Consumer, null, function (formName) {
-        return _react.default.createElement(_Context.FormFieldsContext.Consumer, null, function (fields) {
-          return _react.default.createElement(_immutable.Field, _extends({
-            component: Component,
-            fieldId: "input-".concat(formName, "-").concat(name),
-            name: name,
-            type: type,
-            label: fields[name] && _this.props.intl.formatMessage({
-              id: fields[name].label
-            }),
-            normalize: function normalize(value) {
-              if (!fields[_this.props.name]) return value;
-              var options = fields[_this.props.name].normalize;
-              if (!options) return value;
-
-              for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-                args[_key - 1] = arguments[_key];
-              }
-
-              return _normalize2.default.apply(void 0, [options, value].concat(args));
-            }
-          }, fieldProps));
-        });
-      });
-    }
-  }]);
-
-  return FormField;
-}(_react.default.PureComponent);
-
-var _default = (0, _reactIntl.injectIntl)(FormField);
-
-exports.default = _default;
-
-/***/ }),
-/* 71 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/FormControl");
-
-/***/ }),
-/* 72 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/FormHelperText");
-
-/***/ }),
-/* 73 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.HIDE_EDIT_MODAL = exports.SHOW_EDIT_MODAL = exports.DESELECT_ALL = exports.SELECT_ALL = exports.SET_SELECTED = exports.SET_LIST = void 0;
-var SET_LIST = "app/users/SET_LIST";
-exports.SET_LIST = SET_LIST;
-var SET_SELECTED = "app/users/SET_SELECTED";
-exports.SET_SELECTED = SET_SELECTED;
-var SELECT_ALL = "app/users/SELECT_ALL";
-exports.SELECT_ALL = SELECT_ALL;
-var DESELECT_ALL = "app/users/DESELECT_ALL";
-exports.DESELECT_ALL = DESELECT_ALL;
-var SHOW_EDIT_MODAL = "app/users/SHOW_EDIT_MODAL";
-exports.SHOW_EDIT_MODAL = SHOW_EDIT_MODAL;
-var HIDE_EDIT_MODAL = "app/users/HIDE_EDIT_MODAL";
-exports.HIDE_EDIT_MODAL = HIDE_EDIT_MODAL;
-
-/***/ }),
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
 /* 74 */,
 /* 75 */
 /***/ (function(module, exports) {
 
-module.exports = require("@material-ui/core/Checkbox");
+module.exports = require("@material-ui/core/Typography");
 
 /***/ }),
-/* 76 */
+/* 76 */,
+/* 77 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/Paper");
 
 /***/ }),
-/* 77 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/MenuItem");
-
-/***/ }),
-/* 78 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/ListItemIcon");
-
-/***/ }),
-/* 79 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/ListItemText");
-
-/***/ }),
+/* 78 */,
+/* 79 */,
 /* 80 */,
 /* 81 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.usersSelectors = exports.usersOperations = exports.usersTypes = exports.default = void 0;
-
-var _reducers = _interopRequireDefault(__webpack_require__(99));
-
-var usersTypes = _interopRequireWildcard(__webpack_require__(73));
-
-exports.usersTypes = usersTypes;
-
-var usersOperations = _interopRequireWildcard(__webpack_require__(100));
-
-exports.usersOperations = usersOperations;
-
-var usersSelectors = _interopRequireWildcard(__webpack_require__(82));
-
-exports.usersSelectors = usersSelectors;
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = _reducers.default;
-exports.default = _default;
-
-/***/ }),
-/* 82 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.getEditModalData = exports.isEditModalOpen = exports.isAllDeselected = exports.isAllSelected = exports.getNumSelected = exports.getSelected = exports.getList = void 0;
-
-var getList = function getList(state) {
-  return state.getIn(["users", "list"]);
-};
-
-exports.getList = getList;
-
-var getSelected = function getSelected(state) {
-  return (// eslint-disable-next-line lodash/prefer-lodash-method
-    state.getIn(["users", "list"]).filter(function (item) {
-      return !!item.get("isSelected");
-    })
-  );
-};
-
-exports.getSelected = getSelected;
-
-var getNumSelected = function getNumSelected(state) {
-  return getSelected(state).size;
-};
-
-exports.getNumSelected = getNumSelected;
-
-var isAllSelected = function isAllSelected(state) {
-  return getList(state).size === getSelected(state).size;
-};
-
-exports.isAllSelected = isAllSelected;
-
-var isAllDeselected = function isAllDeselected(state) {
-  return getSelected(state).size === 0;
-};
-
-exports.isAllDeselected = isAllDeselected;
-
-var isEditModalOpen = function isEditModalOpen(state) {
-  return state.getIn(["users", "isEditModalOpen"]);
-};
-
-exports.isEditModalOpen = isEditModalOpen;
-
-var getEditModalData = function getEditModalData(state) {
-  var id = state.getIn(["users", "editModalUserId"]);
-  if (!id) return null; // eslint-disable-next-line
-
-  return state.getIn(["users", "list"]).find(function (item) {
-    return item.get("id") === id;
-  });
-};
-
-exports.getEditModalData = getEditModalData;
-
-/***/ }),
-/* 83 */
 /***/ (function(module, exports) {
 
-module.exports = require("redux-form");
+module.exports = require("@material-ui/core/IconButton");
 
 /***/ }),
-/* 84 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {
-
-var validator = __webpack_require__(69);
-
-var allCountries, iso2Lookup; //const { allCountries, iso2Lookup } = require("country-telephone-data");
-
-/**
- * Validation function for Redux Form
- * takes input like "rule1:param1:param2|rule2:param1:param2|..."
- *
- * re:regexp:flags:key        value should match the regular expression "regexp", second param is flags,
- *                            third param is custom translation key used for the error message
- *                            when ":" is needed in the regexp it should be escaped like this "\\:"
- * required                   value is required
- * required:otherField        value is required if otherField is not empty
- * phone                      value is a phone number
- * email                      value is an email
- * password:length            value is a password of "length" characters (6 if omitted)
- * credit_card:number         value is credit card number
- * credit_card:date           value is credit card expiration date
- * credit_card:secret         value is credit card CVV2 code
- * match:otherField           value should be the same as the value of otherField
- */
-
-module.exports = function validate(props, options, value, allValues) {
-  var rules = {};
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
-
-  try {
-    for (var _iterator = _.split(options, "|")[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var rule = _step.value;
-
-      var params = _.split(_.trim(rule), ":");
-
-      var _command = params.shift();
-
-      if (_command !== "re") {
-        rules[_command] = params;
-      } else {
-        rules[_command] = [];
-        var line = params.join(":");
-        var found = false;
-
-        for (var i = 0; i < line.length; i++) {
-          if (line[i] === ":" && (i > 0 || line[i - 1] !== "\\")) {
-            rules[_command].push(line.slice(0, i));
-
-            rules[_command] = rules[_command].concat(_.split(line.slice(i + 1), ":"));
-            found = true;
-            break;
-          }
-        }
-
-        if (!found) rules[_command] = params;
-      }
-    }
-  } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion && _iterator.return != null) {
-        _iterator.return();
-      }
-    } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
-      }
-    }
-  }
-
-  value = _.isUndefined(value) ? "" : _.toString(value);
-
-  var commands = _.keys(rules);
-
-  var errors = [];
-
-  if (validator.isEmpty(value)) {
-    // when string is empty only "required" command is triggered
-    if (_.includes(commands, "required")) {
-      // optional first param is the name of other field that should
-      // be non-empty for this to be triggered, always triggered otherwise
-      var failed = true;
-
-      if (allValues && rules.required.length && rules.required[0]) {
-        var other = allValues.get(rules.required[0]);
-        if (!other || !other.length) failed = false;
-      }
-
-      if (failed) errors.push("ERROR_FIELD_REQUIRED");
-    }
-  } else {
-    // all the other rules only apply to non-empty value
-    var _iteratorNormalCompletion2 = true;
-    var _didIteratorError2 = false;
-    var _iteratorError2 = undefined;
-
-    try {
-      for (var _iterator2 = commands[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-        var command = _step2.value;
-        var success = void 0;
-        var tmp = void 0;
-        var search = void 0;
-        var normalized = void 0;
-
-        switch (command) {
-          case "re":
-            tmp = new RegExp(rules[command][0], rules[command][1] || undefined);
-            success = value.match(tmp);
-            if (!success) errors.push(rules[command][2] || "ERROR_INVALID_PATTERN");
-            break;
-
-          case "phone":
-            // validate phone number in international format
-            if (!validator.isEmpty(value)) {
-              normalized = _.replace(value, /[^0-9]+/g, "");
-
-              if (normalized.length !== 12) {
-                errors.push("ERROR_INVALID_PHONE");
-              } else {
-                search = allCountries && iso2Lookup && allCountries[iso2Lookup[allValues.get("country")]];
-                if (search && search.dialCode) success = _.startsWith(normalized, search.dialCode);else success = true;
-                if (!success) errors.push("ERROR_INVALID_PHONE_COUNTRY");
-              }
-            }
-
-            break;
-
-          case "email":
-            // validate email
-            if (!validator.isEmpty(value) && !validator.isEmail(value)) errors.push("ERROR_INVALID_EMAIL");
-            break;
-
-          case "password":
-            // validate password, first param is password length (6 by default)
-            if (value.length < (rules[command].length && rules[command][0] || 6)) {
-              errors.push("ERROR_INVALID_PASSWORD");
-            }
-
-            break;
-
-          case "credit_card":
-            // validate credit card attribute set by first param ("number", "date" or "secret")
-            normalized = _.replace(value, /[^0-9]+/g, "");
-
-            switch (rules[command].length && rules[command][0]) {
-              case "number":
-                if (normalized.length !== 16 || !validator.isCreditCard(normalized)) errors.push("ERROR_INVALID_CREDIT_CARD_NUMBER");
-                break;
-
-              case "date":
-                if (normalized.length !== 4) {
-                  errors.push("ERROR_INVALID_CREDIT_CARD_DATE");
-                } else {
-                  tmp = [parseInt(normalized.slice(0, 2)), parseInt(normalized.slice(2))];
-                  if (tmp[0] < 1 || tmp[0] > 12 || tmp[1] < new Date().getFullYear() - 2000) errors.push("ERROR_INVALID_CREDIT_CARD_DATE");
-                }
-
-                break;
-
-              case "secret":
-                if (normalized.length !== 3) errors.push("ERROR_INVALID_CREDIT_CARD_SECRET");
-                break;
-            }
-
-            break;
-
-          case "match":
-            // this rule is triggered when field set by first param has other value than this one
-            tmp = rules[command].length && rules[command][0];
-            if (tmp && allValues && allValues.get(tmp) !== value) errors.push("ERROR_MISMATCHED_VALUES");
-            break;
-        }
-      }
-    } catch (err) {
-      _didIteratorError2 = true;
-      _iteratorError2 = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-          _iterator2.return();
-        }
-      } finally {
-        if (_didIteratorError2) {
-          throw _iteratorError2;
-        }
-      }
-    }
-  }
-
-  return errors;
-};
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
-
-/***/ }),
-/* 85 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(__webpack_require__(3));
-
-var _propTypes = _interopRequireDefault(__webpack_require__(5));
-
-var _styles = __webpack_require__(7);
-
-var _TextField = _interopRequireDefault(__webpack_require__(86));
-
-var _Errors = _interopRequireDefault(__webpack_require__(58));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-var styles = function styles() {
-  return {
-    formHelper: {
-      margin: 0
-    }
-  };
-};
-
-var MyText =
-/*#__PURE__*/
-function (_React$PureComponent) {
-  _inherits(MyText, _React$PureComponent);
-
-  function MyText(props) {
-    var _this;
-
-    _classCallCheck(this, MyText);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(MyText).call(this, props));
-    _this.input = _react.default.createRef();
-    _this.cachedValue = props.input.value;
-    _this.cachedPosition = 0;
-    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleFocus = _this.handleFocus.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleBlur = _this.handleBlur.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    return _this;
-  }
-
-  _createClass(MyText, [{
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      if (this.input.current) {
-        // fix cursor position on changing the value to the normalized variant
-        var cur = this.props.input.value || "";
-        var cached = this.cachedValue || "";
-
-        if (this.cachedPosition !== cached.length) {
-          var str = cached.substr(0, this.cachedPosition);
-          var index = cur.indexOf(str);
-          index = index === -1 ? this.cachedPosition : index + this.cachedPosition;
-          var delta = cur.length - cached.length;
-          if (delta > 0) index += delta;
-          if (index <= cur.length) this.input.current.setSelectionRange(index, index);
-        }
-      }
-
-      this.cachedValue = this.props.input.value;
-    }
-  }, {
-    key: "handleChange",
-    value: function handleChange(evt) {
-      this.cachedPosition = evt.target.selectionEnd;
-      this.cachedValue = evt.target.value;
-      this.forceUpdate();
-      return this.props.input.onChange(evt.target.value);
-    }
-  }, {
-    key: "handleFocus",
-    value: function handleFocus(evt) {
-      this.cachedPosition = evt.target.selectionEnd;
-      this.forceUpdate();
-      return this.props.input.onFocus(evt);
-    }
-  }, {
-    key: "handleBlur",
-    value: function handleBlur(evt) {
-      return this.props.input.onBlur(evt);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var errors = this.props.meta.error ? _react.default.createElement(_Errors.default, {
-        errors: this.props.meta.error
-      }) : null;
-      return _react.default.createElement(_TextField.default, {
-        className: this.props.className,
-        autoComplete: "off",
-        autoFocus: this.props.autoFocus,
-        fullWidth: true,
-        variant: this.props.variant || (this.props.type === "textarea" ? "outlined" : "standard"),
-        type: this.props.type,
-        multiline: this.props.type === "textarea",
-        rows: this.props.rows,
-        rowsMax: this.props.rows,
-        value: this.props.input.value ? this.props.input.value.toString() : "",
-        label: this.props.label,
-        disabled: this.props.meta.submitting || this.props.disabled,
-        error: !!errors,
-        FormHelperTextProps: {
-          component: errors ? "div" : undefined,
-          classes: {
-            root: this.props.classes.formHelper
-          }
-        },
-        helperText: errors || undefined,
-        onChange: this.handleChange,
-        onFocus: this.handleFocus,
-        onBlur: this.handleBlur,
-        inputRef: this.input,
-        inputProps: {
-          id: this.props.fieldId,
-          onKeyDown: function onKeyDown(evt) {
-            if (_this2.props.onSubmit && evt.keyCode === 13) {
-              evt.preventDefault();
-              evt.stopPropagation();
-
-              _this2.props.onSubmit();
-            }
-          }
-        }
-      });
-    }
-  }]);
-
-  return MyText;
-}(_react.default.PureComponent);
-
-var _default = (0, _styles.withStyles)(styles)(MyText);
-
-exports.default = _default;
-
-/***/ }),
-/* 86 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/TextField");
-
-/***/ }),
-/* 87 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/List");
-
-/***/ }),
-/* 88 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/ListItem");
-
-/***/ }),
-/* 89 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/icons/InfoOutlined");
-
-/***/ }),
-/* 90 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(__webpack_require__(3));
-
-var _propTypes = _interopRequireDefault(__webpack_require__(5));
-
-var _immutable = __webpack_require__(1);
-
-var _styles = __webpack_require__(7);
-
-var _Select = _interopRequireDefault(__webpack_require__(91));
-
-var _FormControl = _interopRequireDefault(__webpack_require__(71));
-
-var _FormHelperText = _interopRequireDefault(__webpack_require__(72));
-
-var _MenuItem = _interopRequireDefault(__webpack_require__(77));
-
-var _InputLabel = _interopRequireDefault(__webpack_require__(92));
-
-var _FilledInput = _interopRequireDefault(__webpack_require__(93));
-
-var _Input = _interopRequireDefault(__webpack_require__(94));
-
-var _Errors = _interopRequireDefault(__webpack_require__(58));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-var styles = function styles() {
-  return {
-    formHelper: {
-      margin: 0
-    }
-  };
-};
-
-var MySelect =
-/*#__PURE__*/
-function (_React$PureComponent) {
-  _inherits(MySelect, _React$PureComponent);
-
-  function MySelect(props) {
-    var _this;
-
-    _classCallCheck(this, MySelect);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(MySelect).call(this, props));
-    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleFocus = _this.handleFocus.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleBlur = _this.handleBlur.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    return _this;
-  }
-
-  _createClass(MySelect, [{
-    key: "handleChange",
-    value: function handleChange(evt) {
-      return this.props.input.onChange(evt.target.value);
-    }
-  }, {
-    key: "handleFocus",
-    value: function handleFocus(evt) {
-      return this.props.input.onFocus(evt);
-    }
-  }, {
-    key: "handleBlur",
-    value: function handleBlur(evt) {
-      return this.props.input.onBlur(evt);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var errors = this.props.meta.error ? _react.default.createElement(_FormHelperText.default, {
-        component: "div",
-        classes: {
-          root: this.props.classes.formHelper
-        }
-      }, _react.default.createElement(_Errors.default, {
-        errors: this.props.meta.error
-      })) : null;
-      var SelectInput = this.props.variant === "filled" ? _FilledInput.default : _Input.default;
-      return _react.default.createElement(_FormControl.default, {
-        className: this.props.className,
-        variant: this.props.variant || "standard",
-        fullWidth: true,
-        error: !!errors
-      }, _react.default.createElement(_InputLabel.default, {
-        htmlFor: this.props.fieldId
-      }, this.props.label), _react.default.createElement(_Select.default, {
-        value: this.props.input.value || "",
-        native: this.props.native,
-        autoFocus: this.props.autoFocus,
-        disabled: this.props.meta.submitting || this.props.disabled,
-        onChange: this.handleChange,
-        input: _react.default.createElement(SelectInput, {
-          inputProps: {
-            id: this.props.fieldId,
-            onKeyDown: function onKeyDown(evt) {
-              if (_this2.props.onSubmit && evt.keyCode === 13) {
-                evt.preventDefault();
-                evt.stopPropagation();
-
-                _this2.props.onSubmit();
-              }
-            }
-          }
-        })
-      }, !this.props.native && // eslint-disable-next-line lodash/prefer-lodash-method
-      this.props.options.map(function (item, index) {
-        return _react.default.createElement(_MenuItem.default, {
-          key: "item-".concat(index),
-          value: item.get("value")
-        }, item.get("label"));
-      }), !!this.props.native && // eslint-disable-next-line lodash/prefer-lodash-method
-      this.props.options.map(function (item, index) {
-        return _react.default.createElement("option", {
-          key: "item-".concat(index),
-          value: item.get("value")
-        }, item.get("label"));
-      })), errors);
-    }
-  }]);
-
-  return MySelect;
-}(_react.default.PureComponent);
-
-var _default = (0, _styles.withStyles)(styles)(MySelect);
-
-exports.default = _default;
-
-/***/ }),
-/* 91 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/Select");
-
-/***/ }),
-/* 92 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/InputLabel");
-
-/***/ }),
-/* 93 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/FilledInput");
-
-/***/ }),
-/* 94 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/Input");
-
-/***/ }),
-/* 95 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(__webpack_require__(3));
-
-var _propTypes = _interopRequireDefault(__webpack_require__(5));
-
-var _styles = __webpack_require__(7);
-
-var _FormControl = _interopRequireDefault(__webpack_require__(71));
-
-var _FormControlLabel = _interopRequireDefault(__webpack_require__(96));
-
-var _FormHelperText = _interopRequireDefault(__webpack_require__(72));
-
-var _Checkbox = _interopRequireDefault(__webpack_require__(75));
-
-var _Errors = _interopRequireDefault(__webpack_require__(58));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-var styles = function styles() {
-  return {
-    formHelper: {
-      margin: 0
-    },
-    label: {
-      marginLeft: 0
-    }
-  };
-};
-
-var MyCheckbox =
-/*#__PURE__*/
-function (_React$PureComponent) {
-  _inherits(MyCheckbox, _React$PureComponent);
-
-  function MyCheckbox(props) {
-    var _this;
-
-    _classCallCheck(this, MyCheckbox);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(MyCheckbox).call(this, props));
-    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleFocus = _this.handleFocus.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleBlur = _this.handleBlur.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    return _this;
-  }
-
-  _createClass(MyCheckbox, [{
-    key: "handleChange",
-    value: function handleChange(evt, isChecked) {
-      return this.props.input.onChange(isChecked);
-    }
-  }, {
-    key: "handleFocus",
-    value: function handleFocus(evt) {
-      return this.props.input.onFocus(evt);
-    }
-  }, {
-    key: "handleBlur",
-    value: function handleBlur(evt) {
-      return this.props.input.onBlur(evt);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var errors = this.props.meta.error ? _react.default.createElement(_FormHelperText.default, {
-        component: "div",
-        classes: {
-          root: this.props.classes.formHelper
-        }
-      }, _react.default.createElement(_Errors.default, {
-        errors: this.props.meta.error
-      })) : null;
-      return _react.default.createElement(_FormControl.default, {
-        className: this.props.className,
-        variant: this.props.variant || "standard",
-        fullWidth: true,
-        error: !!errors
-      }, _react.default.createElement(_FormControlLabel.default, {
-        classes: {
-          root: this.props.classes.label
-        },
-        control: _react.default.createElement(_Checkbox.default, {
-          id: this.props.fieldId,
-          value: "on",
-          autoFocus: this.props.autoFocus,
-          checked: this.props.input.value,
-          disabled: this.props.meta.submitting || this.props.disabled,
-          onChange: this.handleChange,
-          onFocus: this.handleFocus,
-          onBlur: this.handleBlur,
-          color: this.props.color || "primary"
-        }),
-        label: this.props.label
-      }), errors);
-    }
-  }]);
-
-  return MyCheckbox;
-}(_react.default.PureComponent);
-
-var _default = (0, _styles.withStyles)(styles, {
-  withTheme: true
-})(MyCheckbox);
-
-exports.default = _default;
-
-/***/ }),
-/* 96 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/FormControlLabel");
-
-/***/ }),
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
 /* 97 */,
-/* 98 */,
-/* 99 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 98 */
+/***/ (function(module, exports) {
 
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _immutable = __webpack_require__(1);
-
-var _reduxImmutable = __webpack_require__(8);
-
-var types = _interopRequireWildcard(__webpack_require__(73));
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-/* State Shape
-Map({
-  list: List([
-    Map({
-      id: String,
-      isSelected: Boolean,
-      login: String,
-      roles: [String],
-    })
-  ]),
-  editModalUserId: String, // null when creating a new user
-  isEditModalOpen: false,
-})
-*/
-var listReducer = function listReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : (0, _immutable.List)([]);
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case types.SET_LIST:
-      if (!_.isUndefined(action.list)) // eslint-disable-next-line lodash/prefer-lodash-method
-        return (0, _immutable.fromJS)(action.list).map(function (item, index) {
-          return item.set("isSelected", !!state.getIn([index, "isSelected"]));
-        });
-      break;
-
-    case types.SET_SELECTED:
-      if (!_.isUndefined(action.userId)) return state.withMutations(function (list) {
-        // eslint-disable-next-line lodash/prefer-lodash-method
-        var index = list.findIndex(function (item) {
-          return item.get("id") === action.userId;
-        });
-        if (index !== -1) list.setIn([index, "isSelected"], !!action.isSelected);
-      });
-      break;
-
-    case types.SELECT_ALL:
-      // eslint-disable-next-line lodash/prefer-lodash-method
-      return state.map(function (item) {
-        return item.set("isSelected", true);
-      });
-
-    case types.DESELECT_ALL:
-      // eslint-disable-next-line lodash/prefer-lodash-method
-      return state.map(function (item) {
-        return item.set("isSelected", false);
-      });
-  }
-
-  return state;
-};
-
-var editModalUserIdReducer = function editModalUserIdReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case types.SHOW_EDIT_MODAL:
-      return action.userId || null;
-  }
-
-  return state;
-};
-
-var isEditModalOpenReducer = function isEditModalOpenReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case types.SHOW_EDIT_MODAL:
-      return true;
-
-    case types.HIDE_EDIT_MODAL:
-      return false;
-  }
-
-  return state;
-};
-
-var reducer = (0, _reduxImmutable.combineReducers)({
-  list: listReducer,
-  editModalUserId: editModalUserIdReducer,
-  isEditModalOpen: isEditModalOpenReducer
-});
-var _default = reducer;
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+module.exports = require("@material-ui/icons/Close");
 
 /***/ }),
-/* 100 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.remove = exports.edit = exports.create = exports.load = exports.editFirstSelected = exports.deselectAll = exports.selectAll = exports.setSelected = exports.hideEditModal = exports.showEditModal = void 0;
-
-var _regenerator = _interopRequireDefault(__webpack_require__(2));
-
-var actions = _interopRequireWildcard(__webpack_require__(101));
-
-var selectors = _interopRequireWildcard(__webpack_require__(82));
-
-var _app = __webpack_require__(6);
-
-var _constants = _interopRequireDefault(__webpack_require__(4));
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-var showEditModal = actions.showEditModal;
-exports.showEditModal = showEditModal;
-var hideEditModal = actions.hideEditModal;
-exports.hideEditModal = hideEditModal;
-var setSelected = actions.setSelected;
-exports.setSelected = setSelected;
-var selectAll = actions.selectAll;
-exports.selectAll = selectAll;
-var deselectAll = actions.deselectAll;
-exports.deselectAll = deselectAll;
-
-var editFirstSelected = function editFirstSelected() {
-  return (
-    /*#__PURE__*/
-    function () {
-      var _ref = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee(dispatch, getState) {
-        var selected;
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                selected = selectors.getSelected(getState());
-
-                if (!selected.size) {
-                  _context.next = 3;
-                  break;
-                }
-
-                return _context.abrupt("return", dispatch(actions.showEditModal({
-                  userId: selected.first().get("id")
-                })));
-
-              case 3:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      return function (_x, _x2) {
-        return _ref.apply(this, arguments);
-      };
-    }()
-  );
-};
-
-exports.editFirstSelected = editFirstSelected;
-
-var load = function load() {
-  var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      req = _ref2.req;
-
-  return (
-    /*#__PURE__*/
-    function () {
-      var _ref3 = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee2(dispatch) {
-        var users, response;
-        return _regenerator.default.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                if (!req) {
-                  _context2.next = 6;
-                  break;
-                }
-
-                _context2.next = 3;
-                return req.di.get("repository.users").getUsers(req);
-
-              case 3:
-                users = _context2.sent;
-                _context2.next = 10;
-                break;
-
-              case 6:
-                _context2.next = 8;
-                return dispatch(_app.appOperations.gqlQuery("\n          query {\n            users {\n              id\n              login\n              roles\n            }\n          }\n        "));
-
-              case 8:
-                response = _context2.sent;
-                users = response && _.get(response, "data.users");
-
-              case 10:
-                _context2.next = 12;
-                return dispatch(actions.setList({
-                  list: users
-                }));
-
-              case 12:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
-      }));
-
-      return function (_x3) {
-        return _ref3.apply(this, arguments);
-      };
-    }()
-  );
-};
-
-exports.load = load;
-
-var create = function create(_ref4) {
-  var login = _ref4.login,
-      password = _ref4.password,
-      isAdmin = _ref4.isAdmin;
-  return (
-    /*#__PURE__*/
-    function () {
-      var _ref5 = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee3(dispatch) {
-        var result, response, errors, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, error;
-
-        return _regenerator.default.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                result = false;
-                _context3.prev = 1;
-                _context3.next = 4;
-                return dispatch(_app.appOperations.gqlQuery("\n          mutation ($login: String, $password: String, $roles: [UserRole]) {\n            createUser(login: $login, password: $password, roles: $roles) {\n              success\n            }\n          }\n        ", {
-                  login: login,
-                  password: password,
-                  roles: _.compact([isAdmin && _constants.default.roles.ADMIN])
-                }));
-
-              case 4:
-                response = _context3.sent;
-
-                if (!(response && _.get(response, "data.createUser.success", false))) {
-                  _context3.next = 11;
-                  break;
-                }
-
-                _context3.next = 8;
-                return dispatch(actions.hideEditModal());
-
-              case 8:
-                return _context3.abrupt("return", true);
-
-              case 11:
-                result = {};
-                errors = response && _.get(response, "errors", []);
-                _iteratorNormalCompletion = true;
-                _didIteratorError = false;
-                _iteratorError = undefined;
-                _context3.prev = 16;
-
-                for (_iterator = errors[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                  error = _step.value;
-                  if (error && error.code === "E_VALIDATION") _.merge(result, error.details);else result._error = (result._error || []).concat([error.message]);
-                }
-
-                _context3.next = 24;
-                break;
-
-              case 20:
-                _context3.prev = 20;
-                _context3.t0 = _context3["catch"](16);
-                _didIteratorError = true;
-                _iteratorError = _context3.t0;
-
-              case 24:
-                _context3.prev = 24;
-                _context3.prev = 25;
-
-                if (!_iteratorNormalCompletion && _iterator.return != null) {
-                  _iterator.return();
-                }
-
-              case 27:
-                _context3.prev = 27;
-
-                if (!_didIteratorError) {
-                  _context3.next = 30;
-                  break;
-                }
-
-                throw _iteratorError;
-
-              case 30:
-                return _context3.finish(27);
-
-              case 31:
-                return _context3.finish(24);
-
-              case 32:
-                if (!_.keys(result).length) result = {
-                  _error: "EDIT_USER_FAILED"
-                };
-
-              case 33:
-                _context3.next = 38;
-                break;
-
-              case 35:
-                _context3.prev = 35;
-                _context3.t1 = _context3["catch"](1);
-                console.error(_context3.t1);
-
-              case 38:
-                return _context3.abrupt("return", result);
-
-              case 39:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, this, [[1, 35], [16, 20, 24, 32], [25,, 27, 31]]);
-      }));
-
-      return function (_x4) {
-        return _ref5.apply(this, arguments);
-      };
-    }()
-  );
-};
-
-exports.create = create;
-
-var edit = function edit(_ref6) {
-  var id = _ref6.id,
-      login = _ref6.login,
-      password = _ref6.password,
-      isAdmin = _ref6.isAdmin;
-  return (
-    /*#__PURE__*/
-    function () {
-      var _ref7 = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee4(dispatch) {
-        var result, response, errors, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, error;
-
-        return _regenerator.default.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                result = false;
-                _context4.prev = 1;
-                _context4.next = 4;
-                return dispatch(_app.appOperations.gqlQuery("\n          mutation ($id: String, $login: String, $password: String, $roles: [UserRole]) {\n            editUser(id: $id, login: $login, password: $password, roles: $roles) {\n              success\n            }\n          }\n        ", {
-                  id: id,
-                  login: login,
-                  password: password,
-                  roles: _.compact([isAdmin && _constants.default.roles.ADMIN])
-                }));
-
-              case 4:
-                response = _context4.sent;
-
-                if (!(response && _.get(response, "data.editUser.success", false))) {
-                  _context4.next = 11;
-                  break;
-                }
-
-                _context4.next = 8;
-                return dispatch(actions.hideEditModal());
-
-              case 8:
-                return _context4.abrupt("return", true);
-
-              case 11:
-                result = {};
-                errors = response && _.get(response, "errors", []);
-                _iteratorNormalCompletion2 = true;
-                _didIteratorError2 = false;
-                _iteratorError2 = undefined;
-                _context4.prev = 16;
-
-                for (_iterator2 = errors[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                  error = _step2.value;
-                  if (error && error.code === "E_VALIDATION") _.merge(result, error.details);else result._error = (result._error || []).concat([error.message]);
-                }
-
-                _context4.next = 24;
-                break;
-
-              case 20:
-                _context4.prev = 20;
-                _context4.t0 = _context4["catch"](16);
-                _didIteratorError2 = true;
-                _iteratorError2 = _context4.t0;
-
-              case 24:
-                _context4.prev = 24;
-                _context4.prev = 25;
-
-                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-                  _iterator2.return();
-                }
-
-              case 27:
-                _context4.prev = 27;
-
-                if (!_didIteratorError2) {
-                  _context4.next = 30;
-                  break;
-                }
-
-                throw _iteratorError2;
-
-              case 30:
-                return _context4.finish(27);
-
-              case 31:
-                return _context4.finish(24);
-
-              case 32:
-                if (!_.keys(result).length) result = {
-                  _error: "EDIT_USER_FAILED"
-                };
-
-              case 33:
-                _context4.next = 38;
-                break;
-
-              case 35:
-                _context4.prev = 35;
-                _context4.t1 = _context4["catch"](1);
-                console.error(_context4.t1);
-
-              case 38:
-                return _context4.abrupt("return", result);
-
-              case 39:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4, this, [[1, 35], [16, 20, 24, 32], [25,, 27, 31]]);
-      }));
-
-      return function (_x5) {
-        return _ref7.apply(this, arguments);
-      };
-    }()
-  );
-};
-
-exports.edit = edit;
-
-var remove = function remove(_ref8) {
-  var id = _ref8.id;
-  return (
-    /*#__PURE__*/
-    function () {
-      var _ref9 = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee5(dispatch) {
-        var response;
-        return _regenerator.default.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                _context5.next = 2;
-                return dispatch(_app.appOperations.gqlQuery("\n        mutation ($id: String) {\n          deleteUser(id: $id) {\n            success\n          }\n        }\n      ", {
-                  id: id
-                }));
-
-              case 2:
-                response = _context5.sent;
-                return _context5.abrupt("return", response && _.get(response, "data.deleteUser.success") || false);
-
-              case 4:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5, this);
-      }));
-
-      return function (_x6) {
-        return _ref9.apply(this, arguments);
-      };
-    }()
-  );
-};
-
-exports.remove = remove;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
-
-/***/ }),
-/* 101 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.hideEditModal = exports.showEditModal = exports.deselectAll = exports.selectAll = exports.setSelected = exports.setList = void 0;
-
-var types = _interopRequireWildcard(__webpack_require__(73));
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-var setList = function setList(_ref) {
-  var list = _ref.list;
-  return {
-    type: types.SET_LIST,
-    list: list
-  };
-};
-
-exports.setList = setList;
-
-var setSelected = function setSelected(_ref2) {
-  var userId = _ref2.userId,
-      isSelected = _ref2.isSelected;
-  return {
-    type: types.SET_SELECTED,
-    userId: userId,
-    isSelected: isSelected
-  };
-};
-
-exports.setSelected = setSelected;
-
-var selectAll = function selectAll() {
-  return {
-    type: types.SELECT_ALL
-  };
-};
-
-exports.selectAll = selectAll;
-
-var deselectAll = function deselectAll() {
-  return {
-    type: types.DESELECT_ALL
-  };
-};
-
-exports.deselectAll = deselectAll;
-
-var showEditModal = function showEditModal() {
-  var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      userId = _ref3.userId;
-
-  return {
-    type: types.SHOW_EDIT_MODAL,
-    userId: userId
-  };
-};
-
-exports.showEditModal = showEditModal;
-
-var hideEditModal = function hideEditModal() {
-  return {
-    type: types.HIDE_EDIT_MODAL
-  };
-};
-
-exports.hideEditModal = hideEditModal;
-
-/***/ }),
+/* 99 */,
+/* 100 */,
+/* 101 */,
 /* 102 */,
 /* 103 */,
 /* 104 */,
-/* 105 */,
-/* 106 */
-/***/ (function(module, exports) {
-
-module.exports = require("classnames");
-
-/***/ }),
-/* 107 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/Table");
-
-/***/ }),
-/* 108 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/TableBody");
-
-/***/ }),
-/* 109 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/TableCell");
-
-/***/ }),
-/* 110 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/TableHead");
-
-/***/ }),
-/* 111 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/TableRow");
-
-/***/ }),
-/* 112 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(__webpack_require__(3));
-
-var _propTypes = _interopRequireDefault(__webpack_require__(5));
-
-var _reactIntl = __webpack_require__(9);
-
-var _styles = __webpack_require__(7);
-
-var _Dialog = _interopRequireDefault(__webpack_require__(59));
-
-var _DialogActions = _interopRequireDefault(__webpack_require__(60));
-
-var _DialogContent = _interopRequireDefault(__webpack_require__(61));
-
-var _DialogContentText = _interopRequireDefault(__webpack_require__(66));
-
-var _DialogTitle = _interopRequireDefault(__webpack_require__(62));
-
-var _Button = _interopRequireDefault(__webpack_require__(28));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var styles = function styles() {
-  return {
-    actions: {
-      paddingLeft: "1rem",
-      paddingRight: "1rem",
-      paddingBottom: "1rem"
-    }
-  };
-};
-
-var ConfirmModal =
-/*#__PURE__*/
-function (_React$PureComponent) {
-  _inherits(ConfirmModal, _React$PureComponent);
-
-  function ConfirmModal() {
-    _classCallCheck(this, ConfirmModal);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(ConfirmModal).apply(this, arguments));
-  }
-
-  _createClass(ConfirmModal, [{
-    key: "render",
-    value: function render() {
-      return _react.default.createElement(_Dialog.default, {
-        maxWidth: "xs",
-        open: this.props.isOpen,
-        onClose: this.props.onCancel
-      }, _react.default.createElement(_DialogTitle.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: this.props.title
-      })), _react.default.createElement(_DialogContent.default, null, _react.default.createElement(_DialogContentText.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: this.props.text,
-        values: this.props.values
-      }))), _react.default.createElement(_DialogActions.default, {
-        classes: {
-          root: this.props.classes.actions
-        }
-      }, _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "primary",
-        onClick: this.props.onCancel
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: this.props.cancel
-      })), _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "secondary",
-        onClick: this.props.onSubmit
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: this.props.submit
-      }))));
-    }
-  }]);
-
-  return ConfirmModal;
-}(_react.default.PureComponent);
-
-var _default = (0, _styles.withStyles)(styles, {
-  withTheme: true
-})(ConfirmModal);
-
-exports.default = _default;
-
-/***/ }),
-/* 113 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7510,39 +4803,25 @@ exports.default = void 0;
 
 var _default = function _default(theme) {
   return {
-    "& table": {
-      display: ["block", "!important"]
+    "&::-webkit-scrollbar": {
+      "-webkitAppearance": "none",
+      width: "".concat(theme.spacing.unit, "px"),
+      height: "".concat(theme.spacing.unit, "px")
     },
-    "& thead": {
-      display: ["none", "!important"],
-      background: [theme.palette.background.paper, "!important"]
+    "&::-webkit-scrollbar-track": {
+      background: "transparent"
     },
-    "& tbody": {
-      display: ["block", "!important"]
+    "&::-webkit-scrollbar-thumb": {
+      cursor: "pointer",
+      borderRadius: theme.shape.borderRadius / 2,
+      background: theme.palette.primary.main,
+      transition: "color 0.2s ease"
     },
-    "& th": {
-      display: ["block", "!important"],
-      width: "100%",
-      paddingLeft: ["1rem", "!important"],
-      paddingRight: ["1rem", "!important"],
-      "&:not(:last-child)": {
-        borderColor: "transparent"
-      }
+    "&::-webkit-scrollbar-thumb:window-inactive": {
+      background: theme.palette.primary.main
     },
-    "& td": {
-      display: ["block", "!important"],
-      width: "100%",
-      paddingLeft: ["1rem", "!important"],
-      paddingRight: ["1rem", "!important"],
-      "&:not(:last-child)": {
-        borderColor: "transparent"
-      }
-    },
-    "& tr": {
-      height: ["100%", "!important"],
-      display: ["block", "!important"],
-      paddingTop: ["0.25rem", "!important"],
-      marginBottom: ["0.25rem", "!important"]
+    "&::-webkit-scrollbar-thumb:hover": {
+      background: theme.palette.primary.light
     }
   };
 };
@@ -7550,6 +4829,19 @@ var _default = function _default(theme) {
 exports.default = _default;
 
 /***/ }),
+/* 106 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-virtualized");
+
+/***/ }),
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */,
 /* 114 */,
 /* 115 */,
 /* 116 */,
@@ -7634,31 +4926,14 @@ exports.default = _default;
 /* 195 */,
 /* 196 */,
 /* 197 */,
-/* 198 */,
-/* 199 */,
-/* 200 */,
-/* 201 */,
-/* 202 */,
-/* 203 */,
-/* 204 */,
-/* 205 */,
-/* 206 */,
-/* 207 */,
-/* 208 */,
-/* 209 */,
-/* 210 */,
-/* 211 */,
-/* 212 */,
-/* 213 */,
-/* 214 */,
-/* 215 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(216);
+module.exports = __webpack_require__(199);
 
 
 /***/ }),
-/* 216 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7670,16 +4945,16 @@ Object.defineProperty(exports, "__esModule", {
 Object.defineProperty(exports, "default", {
   enumerable: true,
   get: function get() {
-    return _UsersPage.default;
+    return _TerminalPage.default;
   }
 });
 
-var _UsersPage = _interopRequireDefault(__webpack_require__(217));
+var _TerminalPage = _interopRequireDefault(__webpack_require__(200));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 217 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7696,9 +4971,9 @@ var _reactRedux = __webpack_require__(18);
 
 var _auth = __webpack_require__(12);
 
-var _users = __webpack_require__(81);
+var _devices = __webpack_require__(11);
 
-var _UsersPage = _interopRequireDefault(__webpack_require__(218));
+var _TerminalPage = _interopRequireDefault(__webpack_require__(201));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7712,28 +4987,33 @@ var mapStateToProps = function mapStateToProps(state) {
   };
 };
 
-var UsersPage = (0, _reactRedux.connect)(mapStateToProps, null, null, {
+var TerminalPage = (0, _reactRedux.connect)(mapStateToProps, null, null, {
   pure: false
-})(_UsersPage.default);
+})(_TerminalPage.default);
 
-UsersPage.getInitialProps =
+TerminalPage.getInitialProps =
 /*#__PURE__*/
 function () {
   var _ref2 = _asyncToGenerator(
   /*#__PURE__*/
   _regenerator.default.mark(function _callee(_ref) {
-    var store, req;
+    var store, req, query;
     return _regenerator.default.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            store = _ref.store, req = _ref.req;
+            store = _ref.store, req = _ref.req, query = _ref.query;
             _context.next = 3;
-            return store.dispatch(_users.usersOperations.load({
+            return store.dispatch(_devices.devicesOperations.load({
               req: req
             }));
 
           case 3:
+            return _context.abrupt("return", {
+              terminalId: query.terminalId
+            });
+
+          case 4:
           case "end":
             return _context.stop();
         }
@@ -7746,11 +5026,11 @@ function () {
   };
 }();
 
-var _default = UsersPage;
+var _default = TerminalPage;
 exports.default = _default;
 
 /***/ }),
-/* 218 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7767,9 +5047,7 @@ var _propTypes = _interopRequireDefault(__webpack_require__(5));
 
 var _styles = __webpack_require__(7);
 
-var _Grid = _interopRequireDefault(__webpack_require__(63));
-
-var _Users = _interopRequireDefault(__webpack_require__(219));
+var _Terminal = _interopRequireDefault(__webpack_require__(202));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7799,6 +5077,7 @@ var styles = function styles(theme) {
       width: "100%",
       maxWidth: 1300 + 2 * theme.main.spacing,
       flex: 1,
+      display: "flex",
       padding: theme.main.spacing
     }, theme.breakpoints.down("md"), {
       padding: theme.main.spacing / 2,
@@ -7807,44 +5086,41 @@ var styles = function styles(theme) {
   };
 };
 
-var UsersPage =
+var TerminalPage =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(UsersPage, _React$Component);
+  _inherits(TerminalPage, _React$Component);
 
-  function UsersPage() {
-    _classCallCheck(this, UsersPage);
+  function TerminalPage() {
+    _classCallCheck(this, TerminalPage);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(UsersPage).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(TerminalPage).apply(this, arguments));
   }
 
-  _createClass(UsersPage, [{
+  _createClass(TerminalPage, [{
     key: "render",
     value: function render() {
       if (!this.props.isAuthenticated) return null;
       return _react.default.createElement("div", {
         className: this.props.classes.layout
-      }, _react.default.createElement(_Grid.default, {
-        container: true,
-        spacing: this.props.theme.main.spacing
-      }, _react.default.createElement(_Grid.default, {
-        item: true,
-        xs: 12
-      }, _react.default.createElement(_Users.default, null))));
+      }, _react.default.createElement(_Terminal.default, {
+        key: "terminal-".concat(this.props.terminalId),
+        terminalId: this.props.terminalId
+      }));
     }
   }]);
 
-  return UsersPage;
+  return TerminalPage;
 }(_react.default.Component);
 
 var _default = (0, _styles.withStyles)(styles, {
   withTheme: true
-})(UsersPage);
+})(TerminalPage);
 
 exports.default = _default;
 
 /***/ }),
-/* 219 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7857,59 +5133,58 @@ exports.default = void 0;
 
 var _reactRedux = __webpack_require__(18);
 
-var _reactIntl = __webpack_require__(9);
+var _immutable = __webpack_require__(1);
 
-var _users = __webpack_require__(81);
+var _router = __webpack_require__(10);
 
-var _Users = _interopRequireDefault(__webpack_require__(220));
+var _Terminal = _interopRequireDefault(__webpack_require__(203));
+
+var _terminals = __webpack_require__(19);
+
+var _histories = __webpack_require__(20);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(state, props) {
   return {
-    users: _users.usersSelectors.getList(state),
-    isAllSelected: _users.usersSelectors.isAllSelected(state),
-    isAllDeselected: _users.usersSelectors.isAllDeselected(state)
+    isConnected: _terminals.terminalsSelectors.hasTerminal(state, props),
+    name: _terminals.terminalsSelectors.getTerminalName(state, props),
+    address: _terminals.terminalsSelectors.getTerminalAddress(state, props),
+    history: _histories.historiesSelectors.getList(state, props) || (0, _immutable.List)([])
   };
 };
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+var mapDispatchToProps = function mapDispatchToProps(dispatch, props) {
   return {
-    onLoad: function onLoad() {
-      return dispatch(_users.usersOperations.load());
-    },
-    onCreate: function onCreate() {
-      return dispatch(_users.usersOperations.showEditModal());
-    },
-    onEdit: function onEdit() {
-      return dispatch(_users.usersOperations.editFirstSelected());
-    },
-    onDelete: function onDelete(userId) {
-      return dispatch(_users.usersOperations.remove({
-        id: userId
+    onInput: function onInput(data) {
+      return dispatch(_terminals.terminalsOperations.sendInput({
+        terminalId: props.terminalId,
+        data: data
       }));
     },
-    onSetSelected: function onSetSelected(userId, isSelected) {
-      return dispatch(_users.usersOperations.setSelected({
-        userId: userId,
-        isSelected: isSelected
+    onResize: function onResize(cols, rows, width, height) {
+      return dispatch(_terminals.terminalsOperations.sendResize({
+        terminalId: props.terminalId,
+        cols: cols,
+        rows: rows,
+        width: width,
+        height: height
       }));
     },
-    onSelectAll: function onSelectAll() {
-      return dispatch(_users.usersOperations.selectAll());
-    },
-    onDeselectAll: function onDeselectAll() {
-      return dispatch(_users.usersOperations.deselectAll());
+    onClose: function onClose() {
+      return dispatch(_terminals.terminalsOperations.kill({
+        terminalId: props.terminalId
+      }));
     }
   };
 };
 
-var Users = (0, _reactIntl.injectIntl)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Users.default));
-var _default = Users;
+var Terminal = (0, _router.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Terminal.default));
+var _default = Terminal;
 exports.default = _default;
 
 /***/ }),
-/* 220 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7920,49 +5195,49 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _regenerator = _interopRequireDefault(__webpack_require__(2));
-
 var _react = _interopRequireDefault(__webpack_require__(3));
+
+var _router = _interopRequireDefault(__webpack_require__(10));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(5));
 
-var _classnames = _interopRequireDefault(__webpack_require__(106));
-
 var _immutable = __webpack_require__(1);
+
+var _reactVirtualized = __webpack_require__(106);
 
 var _reactIntl = __webpack_require__(9);
 
 var _styles = __webpack_require__(7);
 
-var _Table = _interopRequireDefault(__webpack_require__(107));
+var _IconButton = _interopRequireDefault(__webpack_require__(81));
 
-var _TableBody = _interopRequireDefault(__webpack_require__(108));
+var _Close = _interopRequireDefault(__webpack_require__(98));
 
-var _TableCell = _interopRequireDefault(__webpack_require__(109));
+var _Paper = _interopRequireDefault(__webpack_require__(77));
 
-var _TableHead = _interopRequireDefault(__webpack_require__(110));
+var _Typography = _interopRequireDefault(__webpack_require__(75));
 
-var _TableRow = _interopRequireDefault(__webpack_require__(111));
+var _XTerm = _interopRequireDefault(__webpack_require__(204));
 
-var _Paper = _interopRequireDefault(__webpack_require__(76));
+var _grey = _interopRequireDefault(__webpack_require__(209));
 
-var _Button = _interopRequireDefault(__webpack_require__(28));
+var _blue = _interopRequireDefault(__webpack_require__(210));
 
-var _Checkbox = _interopRequireDefault(__webpack_require__(75));
+var _cyan = _interopRequireDefault(__webpack_require__(211));
 
-var _EditUserModal = _interopRequireDefault(__webpack_require__(221));
+var _green = _interopRequireDefault(__webpack_require__(212));
 
-var _ConfirmModal = _interopRequireDefault(__webpack_require__(112));
+var _pink = _interopRequireDefault(__webpack_require__(213));
 
-var _responsiveTable = _interopRequireDefault(__webpack_require__(113));
+var _red = _interopRequireDefault(__webpack_require__(214));
+
+var _yellow = _interopRequireDefault(__webpack_require__(215));
+
+var _styledScroll = _interopRequireDefault(__webpack_require__(105));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -7980,247 +5255,208 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 var styles = function styles(theme) {
   return {
-    paper: {
-      padding: "1rem"
+    container: {
+      flex: 1,
+      display: "flex",
+      flexDirection: "column",
+      position: "relative",
+      background: "#2a2c38"
     },
-    table: _defineProperty({}, theme.breakpoints.down("sm"), (0, _responsiveTable.default)(theme)),
-    buttons: {
-      width: "100%",
+    header: {
+      marginLeft: "1rem",
       display: "flex",
       flexDirection: "row",
-      justifyContent: "flex-start",
-      alignContent: "stretch"
+      alignItems: "center"
     },
-    button: {
-      margin: "0.5rem"
+    headerText: {
+      flex: 1
     },
-    checkboxField: {
-      width: 1
+    placeholder: {
+      flex: 1,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center"
     },
-    checkbox: {
-      padding: 0
+    terminal: {
+      flex: 1,
+      padding: "1rem",
+      borderRadius: theme.shape.borderRadius,
+      "& .xterm .xterm-viewport": (0, _styledScroll.default)(theme)
     }
   };
 };
 
-var Users =
+var Terminal =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(Users, _React$Component);
+  _inherits(Terminal, _React$Component);
 
-  function Users(props) {
+  function Terminal(props) {
     var _this;
 
-    _classCallCheck(this, Users);
+    _classCallCheck(this, Terminal);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Users).call(this, props));
-    _this.state = {
-      isConfirmOpen: false
-    };
-    _this.handleCreateAction = _this.handleCreateAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleEditAction = _this.handleEditAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleDeleteAction = _this.handleDeleteAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleCancelDelete = _this.handleCancelDelete.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleConfirmDelete = _this.handleConfirmDelete.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Terminal).call(this, props));
+    _this.lastRecordId = null;
+    _this.xterm = _react.default.createRef();
+    _this.container = _react.default.createRef();
+    _this.handleKey = _this.handleKey.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handlePaste = _this.handlePaste.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleResize = _this.handleResize.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleClose = _this.handleClose.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
-  _createClass(Users, [{
-    key: "handleToggleAll",
-    value: function handleToggleAll() {
-      var forceOff = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-      if (forceOff || this.props.isAllSelected) this.props.onDeselectAll();else this.props.onSelectAll();
+  _createClass(Terminal, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.updateHistory();
     }
   }, {
-    key: "handleToggle",
-    value: function handleToggle(userId) {
-      // eslint-disable-next-line lodash/prefer-lodash-method
-      var user = this.props.users.find(function (user) {
-        return user.get("id") === userId;
-      });
-      var isSelected = user && user.get("isSelected");
-      this.props.onSetSelected(userId, !isSelected);
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      this.updateHistory();
     }
   }, {
-    key: "handleCreateAction",
-    value: function handleCreateAction() {
-      this.props.onCreate();
+    key: "handleKey",
+    value: function handleKey(data) {
+      if (this.props.isConnected) this.props.onInput(data);
     }
   }, {
-    key: "handleEditAction",
-    value: function handleEditAction() {
-      this.props.onEdit();
+    key: "handlePaste",
+    value: function handlePaste(data) {
+      if (this.props.isConnected) this.props.onInput(data);
     }
   }, {
-    key: "handleDeleteAction",
-    value: function handleDeleteAction() {
-      this.setState({
-        isConfirmOpen: true
-      });
+    key: "handleResize",
+    value: function handleResize(cols, rows, width, height) {
+      if (this.props.isConnected && cols && rows) this.props.onResize(cols, rows, width, height);
     }
   }, {
-    key: "handleCancelDelete",
-    value: function handleCancelDelete() {
-      this.setState({
-        isConfirmOpen: false
-      });
-    }
-  }, {
-    key: "handleConfirmDelete",
-    value: function () {
-      var _handleConfirmDelete = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee() {
-        var _this2 = this;
+    key: "handleClose",
+    value: function handleClose() {
+      this.props.onClose();
 
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                this.setState({
-                  isConfirmOpen: false
-                });
-                _context.next = 3;
-                return Promise.all( // eslint-disable-next-line lodash/prefer-lodash-method
-                this.props.users.filter(function (user) {
-                  return user.get("isSelected");
-                }).map(function (user) {
-                  return _this2.props.onDelete(user.get("id"));
-                }));
+      _router.default.push("/");
+    }
+  }, {
+    key: "updateHistory",
+    value: function updateHistory() {
+      var _this2 = this;
 
-              case 3:
-                this.props.onLoad();
+      if (this.xterm.current && this.props.history.size) {
+        var term = this.xterm.current.getTerminal();
+        var newData = [];
+        var found = false; // eslint-disable-next-line lodash/prefer-lodash-method
 
-              case 4:
-              case "end":
-                return _context.stop();
+        this.props.history.forEach(function (item) {
+          if (found) newData.push(item.get("data"));else if (item.get("recordId") === _this2.lastRecordId) found = true;
+        });
+
+        if (!found) {
+          // eslint-disable-next-line lodash/prefer-lodash-method
+          newData = this.props.history.map(function (item) {
+            return item.get("data");
+          }).toJS();
+        }
+
+        if (newData.length) {
+          term.write(newData.join(""));
+          this.lastRecordId = this.props.history.last().get("recordId");
+        }
+      }
+    }
+  }, {
+    key: "renderPlaceholder",
+    value: function renderPlaceholder() {
+      return _react.default.createElement("div", {
+        className: this.props.classes.placeholder
+      }, _react.default.createElement(_Typography.default, {
+        variant: "h5",
+        color: "inherit"
+      }, _react.default.createElement(_reactIntl.FormattedMessage, {
+        id: "TERMINAL_NOT_CONNECTED_LABEL"
+      })));
+    }
+  }, {
+    key: "renderTerminal",
+    value: function renderTerminal() {
+      var _this3 = this;
+
+      return _react.default.createElement("div", {
+        className: this.props.classes.terminal
+      }, _react.default.createElement(_reactVirtualized.AutoSizer, null, function (_ref) {
+        var width = _ref.width,
+            height = _ref.height;
+        return _react.default.createElement(_XTerm.default, {
+          ref: _this3.xterm,
+          width: width,
+          height: height,
+          onKey: _this3.handleKey,
+          onPaste: _this3.handlePaste,
+          onResize: _this3.handleResize,
+          options: {
+            fontFamily: '"Roboto Mono", monospace',
+            fontSize: 14,
+            allowTransparency: true,
+            theme: {
+              background: "#2a2c38",
+              foreground: _grey.default[100],
+              cursor: _grey.default[50],
+              cursorAccent: _grey.default[200],
+              //selection: theme._lightBlue50,
+              black: "#2a2c38",
+              blue: _blue.default[500],
+              cyan: _cyan.default[500],
+              green: _green.default[500],
+              magenta: _pink.default[500],
+              red: _red.default[500],
+              yellow: _yellow.default[500],
+              white: _grey.default[100],
+              brightBlack: _grey.default[700],
+              brightBlue: _blue.default[200],
+              brightCyan: _cyan.default[200],
+              brightGreen: _green.default[200],
+              brightMagenta: _pink.default[200],
+              brightRed: _red.default[200],
+              brightYellow: _yellow.default[200],
+              brightWhite: _grey.default[50]
             }
           }
-        }, _callee, this);
+        });
       }));
-
-      function handleConfirmDelete() {
-        return _handleConfirmDelete.apply(this, arguments);
-      }
-
-      return handleConfirmDelete;
-    }()
+    }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
-
-      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
-        className: this.props.classes.buttons
-      }, _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "secondary",
-        classes: {
-          root: this.props.classes.button
-        },
-        onClick: this.handleCreateAction
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "USERS_CREATE_BUTTON"
-      })), _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "primary",
-        disabled: this.props.isAllDeselected,
-        classes: {
-          root: this.props.classes.button
-        },
-        onClick: this.handleEditAction
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "USERS_EDIT_BUTTON"
-      })), _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "primary",
-        disabled: this.props.isAllDeselected,
-        classes: {
-          root: this.props.classes.button
-        },
-        onClick: this.handleDeleteAction
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "USERS_DELETE_BUTTON"
-      }))), _react.default.createElement(_Paper.default, {
-        className: this.props.classes.paper
-      }, _react.default.createElement(_Table.default, {
-        padding: "dense",
-        className: this.props.classes.table
-      }, _react.default.createElement(_TableHead.default, null, _react.default.createElement(_TableRow.default, null, _react.default.createElement(_TableCell.default, {
-        padding: "none",
-        classes: {
-          root: this.props.classes.checkboxField
-        }
-      }, _react.default.createElement(_Checkbox.default, {
-        checked: !!this.props.users.size && this.props.isAllSelected,
-        classes: {
-          root: this.props.classes.checkbox
-        },
-        indeterminate: !this.props.isAllSelected && !this.props.isAllDeselected,
-        onChange: function onChange() {
-          return _this3.handleToggleAll();
-        },
-        value: "on"
-      })), _react.default.createElement(_TableCell.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "USERS_LOGIN_COLUMN"
-      })), _react.default.createElement(_TableCell.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "USERS_ROLES_COLUMN"
-      })))), _react.default.createElement(_TableBody.default, null, this.props.users.map(function (row, index) {
-        return _react.default.createElement(_TableRow.default, {
-          key: "row-".concat(index)
-        }, _react.default.createElement(_TableCell.default, {
-          padding: "none",
-          className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected"),
-          classes: {
-            root: _this3.props.classes.checkboxField
-          }
-        }, _react.default.createElement(_Checkbox.default, {
-          checked: !!row.get("isSelected"),
-          classes: {
-            root: _this3.props.classes.checkbox
-          },
-          onChange: function onChange() {
-            return _this3.handleToggle(row.get("id"));
-          },
-          value: "on"
-        })), _react.default.createElement(_TableCell.default, {
-          className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected"),
-          component: "th",
-          scope: "row"
-        }, row.get("login")), _react.default.createElement(_TableCell.default, {
-          className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected")
-        }, row.get("roles").toJS().map(function (item) {
-          return _this3.props.intl.formatMessage({
-            id: "EDIT_USER_".concat(item, "_LABEL")
-          });
-        }).join(", ")));
-      })))), _react.default.createElement(_EditUserModal.default, null), _react.default.createElement(_ConfirmModal.default, {
-        isOpen: this.state.isConfirmOpen,
-        title: "DELETE_USER_TITLE",
-        text: "DELETE_USER_TEXT",
-        cancel: "DELETE_USER_CANCEL",
-        submit: "DELETE_USER_SUBMIT",
-        onCancel: this.handleCancelDelete,
-        onSubmit: this.handleConfirmDelete
-      }));
+      return _react.default.createElement(_Paper.default, {
+        className: this.props.classes.container
+      }, _react.default.createElement("div", {
+        className: this.props.classes.header
+      }, _react.default.createElement(_Typography.default, {
+        variant: "h5",
+        className: this.props.classes.headerText
+      }, this.props.name, "\xA0", !!this.props.address && "(" + this.props.address + ")"), _react.default.createElement(_IconButton.default, {
+        color: "inherit",
+        onClick: this.handleClose
+      }, _react.default.createElement(_Close.default, null))), this.props.isConnected ? this.renderTerminal() : this.renderPlaceholder());
     }
   }]);
 
-  return Users;
+  return Terminal;
 }(_react.default.Component);
 
 var _default = (0, _styles.withStyles)(styles, {
   withTheme: true
-})(Users);
+})(Terminal);
 
 exports.default = _default;
 
 /***/ }),
-/* 221 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8231,404 +5467,289 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _reactIntl = __webpack_require__(9);
-
-var _users = __webpack_require__(81);
-
-var _connectForm = _interopRequireDefault(__webpack_require__(64));
-
-var _EditUserModal = _interopRequireDefault(__webpack_require__(222));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    data: _users.usersSelectors.getEditModalData(state),
-    isOpen: _users.usersSelectors.isEditModalOpen(state)
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    onCancel: function onCancel() {
-      return dispatch(_users.usersOperations.hideEditModal());
-    },
-    onLoad: function onLoad() {
-      return dispatch(_users.usersOperations.load());
-    },
-    onCreate: function onCreate(login, password, isAdmin) {
-      return dispatch(_users.usersOperations.create({
-        login: login,
-        password: password,
-        isAdmin: isAdmin
-      }));
-    },
-    onEdit: function onEdit(id, login, password, isAdmin) {
-      return dispatch(_users.usersOperations.edit({
-        id: id,
-        login: login,
-        password: password,
-        isAdmin: isAdmin
-      }));
-    }
-  };
-};
-
-var EditUserModal = (0, _reactIntl.injectIntl)((0, _connectForm.default)(_EditUserModal.default, mapStateToProps, mapDispatchToProps));
-var _default = EditUserModal;
-exports.default = _default;
-
-/***/ }),
-/* 222 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _regenerator = _interopRequireDefault(__webpack_require__(2));
-
-var _react = _interopRequireDefault(__webpack_require__(3));
+var React = _interopRequireWildcard(__webpack_require__(3));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(5));
 
-var _immutable = __webpack_require__(1);
+var _xterm = __webpack_require__(205);
 
-var _reactIntl = __webpack_require__(9);
+var fit = _interopRequireWildcard(__webpack_require__(206));
 
-var _immutable2 = __webpack_require__(24);
+var fullscreen = _interopRequireWildcard(__webpack_require__(207));
 
-var _styles = __webpack_require__(7);
-
-var _Dialog = _interopRequireDefault(__webpack_require__(59));
-
-var _DialogActions = _interopRequireDefault(__webpack_require__(60));
-
-var _DialogContent = _interopRequireDefault(__webpack_require__(61));
-
-var _DialogContentText = _interopRequireDefault(__webpack_require__(66));
-
-var _DialogTitle = _interopRequireDefault(__webpack_require__(62));
-
-var _Grid = _interopRequireDefault(__webpack_require__(63));
-
-var _Button = _interopRequireDefault(__webpack_require__(28));
-
-var _Form2 = _interopRequireDefault(__webpack_require__(67));
-
-var _Field = _interopRequireDefault(__webpack_require__(70));
-
-var _constants = _interopRequireDefault(__webpack_require__(4));
-
-var _user = _interopRequireDefault(__webpack_require__(223));
+var search = _interopRequireWildcard(__webpack_require__(208));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var styles = function styles(theme) {
-  return {
-    error: theme.main.error,
-    actions: {
-      paddingLeft: "1rem",
-      paddingRight: "1rem",
-      paddingBottom: "1rem"
-    }
-  };
-};
-
-var EditUserModal =
+var XTerm =
 /*#__PURE__*/
-function (_Form) {
-  _inherits(EditUserModal, _Form);
+function (_React$PureComponent) {
+  _inherits(XTerm, _React$PureComponent);
 
-  _createClass(EditUserModal, null, [{
-    key: "onSubmit",
-    value: function () {
-      var _onSubmit = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee(values, dispatch, props) {
-        var result;
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                if (!props.data) {
-                  _context.next = 6;
-                  break;
-                }
-
-                _context.next = 3;
-                return props.onEdit(props.data.get("id"), props.getValue("login"), props.getValue("password"), props.getValue("isAdmin"));
-
-              case 3:
-                result = _context.sent;
-                _context.next = 9;
-                break;
-
-              case 6:
-                _context.next = 8;
-                return props.onCreate(props.getValue("login"), props.getValue("password"), props.getValue("isAdmin"));
-
-              case 8:
-                result = _context.sent;
-
-              case 9:
-                if (!(result === true)) {
-                  _context.next = 14;
-                  break;
-                }
-
-                _context.next = 12;
-                return props.onLoad();
-
-              case 12:
-                _context.next = 16;
-                break;
-
-              case 14:
-                if (!(result && _.isObject(result))) {
-                  _context.next = 16;
-                  break;
-                }
-
-                throw new _immutable2.SubmissionError(result);
-
-              case 16:
-                return _context.abrupt("return", result);
-
-              case 17:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function onSubmit(_x, _x2, _x3) {
-        return _onSubmit.apply(this, arguments);
-      }
-
-      return onSubmit;
-    }()
-  }, {
-    key: "getDerivedStateFromProps",
-    value: function getDerivedStateFromProps(nextProps, prevState) {
-      var state = {};
-      /* eslint-disable lodash/prefer-lodash-method */
-
-      if (prevState.isOpen !== nextProps.isOpen) {
-        var login = nextProps.data && nextProps.data.get("login");
-        var isAdmin = !!(nextProps.data && nextProps.data.get("roles").includes(_constants.default.roles.ADMIN));
-        nextProps.dispatch(nextProps.change("login", login || ""));
-        nextProps.dispatch(nextProps.change("password", ""));
-        nextProps.dispatch(nextProps.change("isAdmin", isAdmin));
-        nextProps.dispatch(nextProps.clearAsyncError());
-        nextProps.dispatch(nextProps.clearSubmitErrors());
-        state.isOpen = nextProps.isOpen;
-      }
-      /* eslint-enable */
-
-
-      return _.keys(state).length ? state : null;
-    }
-  }]);
-
-  function EditUserModal(props) {
+  function XTerm(props) {
     var _this;
 
-    _classCallCheck(this, EditUserModal);
+    _classCallCheck(this, XTerm);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(EditUserModal).call(this, props));
-    _this.state = {};
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(XTerm).call(this, props));
+    _this.state = {
+      isFocused: false
+    };
+    _this.refTerm = React.createRef();
+    _this.onResize = _this.onResize.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onContextMenu = _this.onContextMenu.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
-  _createClass(EditUserModal, [{
-    key: "render",
-    value: function render() {
+  _createClass(XTerm, [{
+    key: "applyAddon",
+    value: function applyAddon(addon) {
+      _xterm.Terminal.applyAddon(addon);
+    }
+  }, {
+    key: "getTerminal",
+    value: function getTerminal() {
+      return this.xterm;
+    }
+  }, {
+    key: "write",
+    value: function write(data) {
+      this.xterm && this.xterm.write(data);
+    }
+  }, {
+    key: "writeln",
+    value: function writeln(data) {
+      this.xterm && this.xterm.writeln(data);
+    }
+  }, {
+    key: "focus",
+    value: function focus() {
+      this.xterm && this.xterm.focus();
+    }
+  }, {
+    key: "fit",
+    value: function fit() {
+      this.xterm && this.xterm.fit();
+    }
+  }, {
+    key: "resize",
+    value: function resize(cols, rows) {
+      this.xterm && this.xterm.resize(Math.round(cols), Math.round(rows));
+    }
+  }, {
+    key: "setOption",
+    value: function setOption(key, value) {
+      this.xterm && this.xterm.setOption(key, value);
+    }
+  }, {
+    key: "refresh",
+    value: function refresh() {
+      this.xterm && this.xterm.refresh(0, this.xterm.rows - 1);
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       var _this2 = this;
 
-      return _react.default.createElement(_Dialog.default, {
-        maxWidth: "xs",
-        open: this.props.isOpen,
-        onClose: this.props.onCancel
-      }, _react.default.createElement(_DialogTitle.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: this.props.data ? "EDIT_USER_TITLE_EDIT" : "EDIT_USER_TITLE_CREATE"
-      })), this.props.error && _react.default.createElement(_DialogContent.default, null, _.map(_.isArray(this.props.error) ? this.props.error : [this.props.error], function (error, index) {
-        return _react.default.createElement(_DialogContentText.default, {
-          key: "error-".concat(index),
-          classes: {
-            root: _this2.props.classes.error
-          }
-        }, _.isArray(error) ? _react.default.createElement(_reactIntl.FormattedMessage, {
-          id: error[0],
-          values: error[1]
-        }) : _react.default.createElement(_reactIntl.FormattedMessage, {
-          id: error
-        }));
-      })), _react.default.createElement(_DialogContent.default, null, _react.default.createElement(_Grid.default, {
-        container: true,
-        spacing: 16,
-        component: "form",
-        noValidate: true,
-        autoComplete: "off",
-        onSubmit: this.submit
-      }, _react.default.createElement(_Grid.default, {
-        item: true,
-        xs: 12
-      }, _react.default.createElement(_Field.default, {
-        name: "login",
-        type: "text",
-        onSubmit: this.submit
-      })), _react.default.createElement(_Grid.default, {
-        item: true,
-        xs: 12
-      }, _react.default.createElement(_Field.default, {
-        name: "password",
-        type: "password",
-        onSubmit: this.submit
-      })), _react.default.createElement(_Grid.default, {
-        item: true,
-        xs: 12
-      }, _react.default.createElement(_Field.default, {
-        name: "isAdmin",
-        type: "checkbox",
-        onSubmit: this.submit
-      })))), _react.default.createElement(_DialogActions.default, {
-        classes: {
-          root: this.props.classes.actions
+      _xterm.Terminal.applyAddon(fit);
+
+      _xterm.Terminal.applyAddon(fullscreen);
+
+      _xterm.Terminal.applyAddon(search);
+
+      this.xterm = new _xterm.Terminal(this.props.options);
+      this.xterm.open(this.refTerm.current);
+      var origResize = this.xterm.resize;
+
+      this.xterm.resize = function (cols, rows) {
+        if (_this2.props.onResize) {
+          _this2.props.onResize(cols, rows, _this2.refTerm.current ? _this2.refTerm.current.offsetWidth : 640, _this2.refTerm.current ? _this2.refTerm.current.offsetHeight : 480);
         }
-      }, _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "primary",
-        disabled: this.props.submitting,
-        onClick: this.props.onCancel
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "EDIT_USER_CANCEL"
-      })), _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "secondary",
-        disabled: this.props.submitting,
-        onClick: this.submit
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "EDIT_USER_SUBMIT"
-      }))));
+
+        origResize.call(_this2.xterm, cols, rows);
+      };
+
+      this.xterm.on('focus', this.focusChanged.bind(this, true));
+      this.xterm.on('blur', this.focusChanged.bind(this, false));
+      this.xterm.on('data', this.onData.bind(this));
+      this.xterm.on('key', this.onKey.bind(this));
+      this.xterm.on('paste', this.onPaste.bind(this));
+      if (this.props.onContextMenu) this.xterm.element.addEventListener('contextmenu', this.onContextMenu);
+
+      if (typeof window !== 'undefined') {
+        window.addEventListener('resize', this.onResize);
+        window.addEventListener('orientationchange', this.onResize);
+        setTimeout(function () {
+          return _this2.fit();
+        });
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      if (this.props.onContextMenu) this.xterm.element.removeEventListener('contextmenu', this.onContextMenu);
+
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', this.onResize);
+        window.removeEventListener('orientationchange', this.onResize);
+      }
+
+      this.xterm.destroy();
+      this.xterm = null;
+    }
+  }, {
+    key: "focusChanged",
+    value: function focusChanged(focused) {
+      this.setState({
+        isFocused: focused
+      });
+    }
+  }, {
+    key: "onData",
+    value: function onData(data) {
+      this.props.onData && this.props.onData(data);
+    }
+  }, {
+    key: "onKey",
+    value: function onKey(key, ev) {
+      this.props.onKey && this.props.onKey({
+        altKey: ev.altKey,
+        ctrlKey: ev.ctrlKey,
+        metaKey: ev.metaKey,
+        keyCode: ev.keyCode,
+        key: key
+      });
+    }
+  }, {
+    key: "onPaste",
+    value: function onPaste(data) {
+      this.props.onPaste && this.props.onPaste(data);
+    }
+  }, {
+    key: "onContextMenu",
+    value: function onContextMenu(e) {
+      this.props.onContextMenu && this.props.onContextMenu(e);
+    }
+  }, {
+    key: "onResize",
+    value: function onResize() {
+      var _this3 = this;
+
+      setTimeout(function () {
+        return _this3.xterm && _this3.xterm.fit();
+      }, 250);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return React.createElement("div", {
+        ref: this.refTerm,
+        className: this.props.className,
+        style: {
+          width: this.props.width || '100%',
+          height: this.props.height || '100%'
+        }
+      });
     }
   }]);
 
-  return EditUserModal;
-}(_Form2.default);
+  return XTerm;
+}(React.PureComponent);
 
-_defineProperty(EditUserModal, "propTypes", _objectSpread({}, _Form2.default.propTypes, {
-  intl: _reactIntl.intlShape,
-  theme: _propTypes.default.object.isRequired,
-  classes: _propTypes.default.object.isRequired,
-  isOpen: _propTypes.default.bool.isRequired,
-  data: _propTypes.default.instanceOf(_immutable.Map),
-  onCancel: _propTypes.default.func.isRequired,
-  onLoad: _propTypes.default.func.isRequired,
-  onCreate: _propTypes.default.func.isRequired,
-  onEdit: _propTypes.default.func.isRequired
-}));
+_defineProperty(XTerm, "defaultProps", {
+  options: {}
+});
 
-_defineProperty(EditUserModal, "formName", "editUserForm");
-
-_defineProperty(EditUserModal, "fields", _user.default);
-
-var _default = (0, _styles.withStyles)(styles, {
-  withTheme: true
-})(EditUserModal);
-
+var _default = XTerm;
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 223 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 205 */
+/***/ (function(module, exports) {
 
-"use strict";
+module.exports = require("xterm");
 
+/***/ }),
+/* 206 */
+/***/ (function(module, exports) {
 
-/**
- * {
- *    fieldName: {
- *      label: 'translation key',
- *      normalize: 'rule1:param1:param2|rule2:param1:param2|...', // happens on change, optional
- *      transform: 'rule1:param1:param2|rule2:param1:param2|...', // happens on blur, optional
- *      validate: 'rule1:param1:param2|rule2:param1:param2|...',  // happens on blur, optional
- *    }
- * }
- *
- * Normalize and transfrom rules:
- * trim                       remove white space from the beginning and the end of value
- * compact:spaces             replace multiple occurences of space in a row with a single space
- * remove:spaces              remove spaces
- * rows:size                  forces "size" number of rows (1 if size is omitted)
- * integer                    removes everything except digits
- * phone                      forces international phone phormat
- * email                      normalizes email
- * credit_card:number         normalizes credit card number
- * credit_card:date           normalizes credit card expiration date
- * credit_card:secret         normalizes credit card CVV2 code
- *
- * Validation rules:
- * re:regexp:flags:key        value should match the regular expression "regexp", second param is flags,
- *                            third param is custom translation key used for the error message
- *                            when ":" is needed in the regexp it should be escaped like this "\\:"
- * required                   value is required
- * required:otherField        value is required if otherField is not empty
- * phone                      value is a phone number
- * email                      value is an email
- * password:length            value is a password of "length" characters (6 if omitted)
- * credit_card:number         value is credit card number
- * credit_card:date           value is credit card expiration date
- * credit_card:secret         value is credit card CVV2 code
- * match:otherField           value should be the same as the value of otherField
- */
-module.exports = {
-  login: {
-    normalize: "rows:1|remove:spaces",
-    transform: "trim",
-    validate: "re:^[a-z]+[a-z0-9]*$::ERROR_INVALID_LOGIN",
-    label: "EDIT_USER_LOGIN_LABEL"
-  },
-  password: {
-    validate: "password",
-    label: "EDIT_USER_PASSWORD_LABEL"
-  },
-  isAdmin: {
-    label: "EDIT_USER_ADMIN_LABEL"
-  }
-};
+module.exports = require("xterm/dist/addons/fit/fit");
+
+/***/ }),
+/* 207 */
+/***/ (function(module, exports) {
+
+module.exports = require("xterm/dist/addons/fullscreen/fullscreen");
+
+/***/ }),
+/* 208 */
+/***/ (function(module, exports) {
+
+module.exports = require("xterm/dist/addons/search/search");
+
+/***/ }),
+/* 209 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/colors/grey");
+
+/***/ }),
+/* 210 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/colors/blue");
+
+/***/ }),
+/* 211 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/colors/cyan");
+
+/***/ }),
+/* 212 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/colors/green");
+
+/***/ }),
+/* 213 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/colors/pink");
+
+/***/ }),
+/* 214 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/colors/red");
+
+/***/ }),
+/* 215 */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/colors/yellow");
 
 /***/ })
 /******/ ]);

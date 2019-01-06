@@ -88,20 +88,20 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 166);
+/******/ 	return __webpack_require__(__webpack_require__.s = 167);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 166:
+/***/ 167:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(167);
+module.exports = __webpack_require__(168);
 
 
 /***/ }),
 
-/***/ 167:
+/***/ 168:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -118,9 +118,9 @@ var _react = _interopRequireDefault(__webpack_require__(3));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(5));
 
-var _document = _interopRequireWildcard(__webpack_require__(168));
+var _document = _interopRequireWildcard(__webpack_require__(169));
 
-var _server = _interopRequireDefault(__webpack_require__(169));
+var _server = _interopRequireDefault(__webpack_require__(170));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -241,14 +241,14 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 168:
+/***/ 169:
 /***/ (function(module, exports) {
 
 module.exports = require("next/document");
 
 /***/ }),
 
-/***/ 169:
+/***/ 170:
 /***/ (function(module, exports) {
 
 module.exports = require("styled-jsx/server");

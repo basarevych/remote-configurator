@@ -1,19 +1,13 @@
-const { fromJS } = require("immutable");
-const ValidationError = require("../Errors/ValidationError");
+const BaseModel = require("./BaseModel");
 const constants = require("../../../common/constants");
 const fields = require("../../../common/forms/user");
-const validate = require("../../../common/validate");
 
 /**
  * Mimics Mongoose model while using Loki embedded database
  */
-class UserModel {
+class UserModel extends BaseModel {
   constructor(data = {}) {
-    if (data.id) {
-      data.$loki = parseInt(data.id);
-      delete data.id;
-    }
-    this._data = data;
+    super(data);
 
     this._required = [
       "whenCreated",
@@ -22,45 +16,9 @@ class UserModel {
       "password",
       "roles"
     ];
+    this._fields = fields;
 
-    const now = new Date();
-    this.whenCreated = data.whenCreated || now;
-    this.whenUpdated = data.whenUpdated || now;
     this.roles = data.roles || [];
-  }
-
-  static get db() {
-    if (!this._db) throw new Error("Model is not initialized");
-    return this._db;
-  }
-
-  static set db(db) {
-    return (this._db = db);
-  }
-
-  get id() {
-    return this._data.$loki && this._data.$loki.toString();
-  }
-
-  set id(id) {
-    this.whenUpdated = new Date();
-    return (this._data.$loki = id && (_.isString(id) ? parseInt(id) : id));
-  }
-
-  get whenCreated() {
-    return this._data.whenCreated;
-  }
-
-  set whenCreated(whenCreated) {
-    return (this._data.whenCreated = whenCreated);
-  }
-
-  get whenUpdated() {
-    return this._data.whenUpdated;
-  }
-
-  set whenUpdated(whenUpdated) {
-    return (this._data.whenUpdated = whenUpdated);
   }
 
   get login() {
@@ -92,20 +50,12 @@ class UserModel {
     return (this._data.roles = roles);
   }
 
-  toObject() {
-    return this._data;
-  }
-
   toSanitizedObject() {
-    let obj = _.assign({}, this._data);
-    obj.id = obj.$loki && obj.$loki.toString();
-    obj.whenCreated = obj.whenCreated && obj.whenCreated.valueOf();
-    obj.whenUpdated = obj.whenUpdated && obj.whenUpdated.valueOf();
+    let obj = super.toSanitizedObject();
     obj.roles = _.filter(
       obj.roles || [],
       role => role !== constants.roles.AUTHENTICATED
     );
-    delete obj.$loki;
     delete obj.password;
     return obj;
   }
@@ -128,31 +78,6 @@ class UserModel {
     return obj && new this(obj);
   }
 
-  async validate() {
-    let errors = [];
-
-    const obj = this.toObject();
-    for (let field of _.keys(obj)) {
-      if (_.includes(this._required, field) && !this[field]) {
-        errors.push({ key: field, message: "ERROR_FIELD_REQUIRED" });
-        continue;
-      }
-
-      const rules = fields[field];
-      if (!rules || !rules.validate) continue;
-
-      const fieldErrors = validate({}, rules.validate, obj[field], fromJS(obj));
-      if (fieldErrors.length) {
-        errors = errors.concat({
-          key: field,
-          message: fieldErrors.length === 1 ? fieldErrors[0] : fieldErrors
-        });
-      }
-    }
-
-    if (errors.length) throw new ValidationError(errors);
-  }
-
   async save() {
     let obj = this.toObject();
     let result = this.id
@@ -165,21 +90,6 @@ class UserModel {
   async remove() {
     this.constructor.db.users.remove(this.toObject());
     return this.id;
-  }
-
-  static conditions(conditions) {
-    const deepMap = obj => {
-      const x = {};
-      _.forOwn(obj, function(value, key) {
-        if (key === "id" || _.endsWith(key, ".id")) {
-          key = key.slice(0, key.length - 2) + "$loki";
-          if (_.isString(value)) value = parseInt(value);
-        }
-        x[key] = _.isPlainObject(value) ? deepMap(value) : value;
-      });
-      return x;
-    };
-    return deepMap(conditions);
   }
 }
 

@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 181);
+/******/ 	return __webpack_require__(__webpack_require__.s = 216);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -4754,15 +4754,15 @@ var _reactIntl = __webpack_require__(9);
 
 var _styles = __webpack_require__(7);
 
-var _List = _interopRequireDefault(__webpack_require__(87));
+var _List = _interopRequireDefault(__webpack_require__(88));
 
-var _ListItem = _interopRequireDefault(__webpack_require__(88));
+var _ListItem = _interopRequireDefault(__webpack_require__(89));
 
-var _ListItemIcon = _interopRequireDefault(__webpack_require__(78));
+var _ListItemIcon = _interopRequireDefault(__webpack_require__(79));
 
-var _ListItemText = _interopRequireDefault(__webpack_require__(79));
+var _ListItemText = _interopRequireDefault(__webpack_require__(80));
 
-var _InfoOutlined = _interopRequireDefault(__webpack_require__(89));
+var _InfoOutlined = _interopRequireDefault(__webpack_require__(90));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4901,7 +4901,7 @@ var _reactRedux = __webpack_require__(18);
 
 var _immutable2 = __webpack_require__(24);
 
-var _reduxForm = __webpack_require__(83);
+var _reduxForm = __webpack_require__(84);
 
 var _Context = __webpack_require__(65);
 
@@ -5044,7 +5044,7 @@ var _immutable = __webpack_require__(24);
 
 var _normalize = _interopRequireDefault(__webpack_require__(68));
 
-var _validate2 = _interopRequireDefault(__webpack_require__(84));
+var _validate2 = _interopRequireDefault(__webpack_require__(85));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5456,7 +5456,9 @@ exports.default = _default;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {
 
-var validator = __webpack_require__(69);
+var tokenize = __webpack_require__(69);
+
+var validator = __webpack_require__(70);
 
 var allCountries, iso2Lookup; //const { allCountries, iso2Lookup } = require("country-telephone-data");
 
@@ -5485,11 +5487,10 @@ module.exports = function normalize(options, value, prevValue, allValues
   var _iteratorError = undefined;
 
   try {
-    for (var _iterator = _.split(options, "|")[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+    for (var _iterator = tokenize(options, "\\", "|")[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
       var rule = _step.value;
-
-      var params = _.split(_.trim(rule), ":");
-
+      var params = tokenize(rule, "\\", ":");
+      if (!params.length) continue;
       var command = params.shift();
       rules[command] = params;
     }
@@ -5519,13 +5520,12 @@ module.exports = function normalize(options, value, prevValue, allValues
       var i = void 0;
       var tmp = void 0;
       var search = void 0;
-      var isLongBreak = void 0;
+      var isLongBreak = !!result.match(/\r\n/);
 
       switch (_command) {
         case "trim":
           // trims the input, no params
           tmp = [];
-          isLongBreak = !!result.match(/\r\n/);
           var _iteratorNormalCompletion3 = true;
           var _didIteratorError3 = false;
           var _iteratorError3 = undefined;
@@ -5557,7 +5557,6 @@ module.exports = function normalize(options, value, prevValue, allValues
           // with "spaces" param compacts spaces into single space preserving new lines
           if (_.includes(rules[_command], "spaces")) {
             tmp = [];
-            isLongBreak = !!result.match(/\r\n/);
             var _iteratorNormalCompletion4 = true;
             var _didIteratorError4 = false;
             var _iteratorError4 = undefined;
@@ -5591,7 +5590,6 @@ module.exports = function normalize(options, value, prevValue, allValues
           // with "spaces" param removes spaces inside the line preveserving new lines
           if (_.includes(rules[_command], "spaces")) {
             tmp = [];
-            isLongBreak = !!result.match(/\r\n/);
             var _iteratorNormalCompletion5 = true;
             var _didIteratorError5 = false;
             var _iteratorError5 = undefined;
@@ -5624,7 +5622,6 @@ module.exports = function normalize(options, value, prevValue, allValues
         case "rows":
           // first param is the number of rows in the result (defaults to 1)
           tmp = _.split(result, /\r\n?|\n/g);
-          isLongBreak = !!result.match(/\r\n/);
           result = "";
 
           for (i = 0; i < tmp.length; i++) {
@@ -5719,12 +5716,40 @@ module.exports = function normalize(options, value, prevValue, allValues
 
 /***/ }),
 /* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function tokenize(str, esc, sep) {
+  var result = [];
+  var tmp = "";
+
+  for (var i = 0; i < str.length; i++) {
+    var c = str.charAt(i);
+
+    if (c === esc) {
+      tmp += str.charAt(++i);
+    } else if (c === sep) {
+      result.push(tmp);
+      tmp = "";
+    } else {
+      tmp += c;
+    }
+  }
+
+  result.push(tmp);
+  return result;
+};
+
+/***/ }),
+/* 70 */
 /***/ (function(module, exports) {
 
 module.exports = require("validator");
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5747,11 +5772,11 @@ var _Context = __webpack_require__(65);
 
 var _normalize2 = _interopRequireDefault(__webpack_require__(68));
 
-var _Text = _interopRequireDefault(__webpack_require__(85));
+var _Text = _interopRequireDefault(__webpack_require__(86));
 
-var _Select = _interopRequireDefault(__webpack_require__(90));
+var _Select = _interopRequireDefault(__webpack_require__(91));
 
-var _Checkbox = _interopRequireDefault(__webpack_require__(95));
+var _Checkbox = _interopRequireDefault(__webpack_require__(96));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5854,76 +5879,185 @@ var _default = (0, _reactIntl.injectIntl)(FormField);
 exports.default = _default;
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/FormControl");
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/FormHelperText");
 
 /***/ }),
-/* 73 */,
 /* 74 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = require("@material-ui/core/Typography");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.HIDE_EDIT_MODAL = exports.SHOW_EDIT_MODAL = exports.DESELECT_ALL = exports.SELECT_ALL = exports.SET_SELECTED = exports.SET_LIST = void 0;
+var SET_LIST = "app/users/SET_LIST";
+exports.SET_LIST = SET_LIST;
+var SET_SELECTED = "app/users/SET_SELECTED";
+exports.SET_SELECTED = SET_SELECTED;
+var SELECT_ALL = "app/users/SELECT_ALL";
+exports.SELECT_ALL = SELECT_ALL;
+var DESELECT_ALL = "app/users/DESELECT_ALL";
+exports.DESELECT_ALL = DESELECT_ALL;
+var SHOW_EDIT_MODAL = "app/users/SHOW_EDIT_MODAL";
+exports.SHOW_EDIT_MODAL = SHOW_EDIT_MODAL;
+var HIDE_EDIT_MODAL = "app/users/HIDE_EDIT_MODAL";
+exports.HIDE_EDIT_MODAL = HIDE_EDIT_MODAL;
 
 /***/ }),
-/* 75 */
+/* 75 */,
+/* 76 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/Checkbox");
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/Paper");
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/MenuItem");
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/ListItemIcon");
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/ListItemText");
 
 /***/ }),
-/* 80 */
-/***/ (function(module, exports) {
+/* 81 */,
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = require("@material-ui/core/IconButton");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.usersSelectors = exports.usersOperations = exports.usersTypes = exports.default = void 0;
+
+var _reducers = _interopRequireDefault(__webpack_require__(100));
+
+var usersTypes = _interopRequireWildcard(__webpack_require__(74));
+
+exports.usersTypes = usersTypes;
+
+var usersOperations = _interopRequireWildcard(__webpack_require__(101));
+
+exports.usersOperations = usersOperations;
+
+var usersSelectors = _interopRequireWildcard(__webpack_require__(83));
+
+exports.usersSelectors = usersSelectors;
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = _reducers.default;
+exports.default = _default;
 
 /***/ }),
-/* 81 */,
-/* 82 */,
 /* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getEditModalData = exports.isEditModalOpen = exports.isAllDeselected = exports.isAllSelected = exports.getNumSelected = exports.getSelected = exports.getList = void 0;
+
+var getList = function getList(state) {
+  return state.getIn(["users", "list"]);
+};
+
+exports.getList = getList;
+
+var getSelected = function getSelected(state) {
+  return (// eslint-disable-next-line lodash/prefer-lodash-method
+    state.getIn(["users", "list"]).filter(function (item) {
+      return !!item.get("isSelected");
+    })
+  );
+};
+
+exports.getSelected = getSelected;
+
+var getNumSelected = function getNumSelected(state) {
+  return getSelected(state).size;
+};
+
+exports.getNumSelected = getNumSelected;
+
+var isAllSelected = function isAllSelected(state) {
+  return getList(state).size === getSelected(state).size;
+};
+
+exports.isAllSelected = isAllSelected;
+
+var isAllDeselected = function isAllDeselected(state) {
+  return getSelected(state).size === 0;
+};
+
+exports.isAllDeselected = isAllDeselected;
+
+var isEditModalOpen = function isEditModalOpen(state) {
+  return state.getIn(["users", "isEditModalOpen"]);
+};
+
+exports.isEditModalOpen = isEditModalOpen;
+
+var getEditModalData = function getEditModalData(state) {
+  var id = state.getIn(["users", "editModalUserId"]);
+  if (!id) return null; // eslint-disable-next-line
+
+  return state.getIn(["users", "list"]).find(function (item) {
+    return item.get("id") === id;
+  });
+};
+
+exports.getEditModalData = getEditModalData;
+
+/***/ }),
+/* 84 */
 /***/ (function(module, exports) {
 
 module.exports = require("redux-form");
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {
 
-var validator = __webpack_require__(69);
+var tokenize = __webpack_require__(69);
+
+var validator = __webpack_require__(70);
 
 var allCountries, iso2Lookup; //const { allCountries, iso2Lookup } = require("country-telephone-data");
 
@@ -5931,9 +6065,7 @@ var allCountries, iso2Lookup; //const { allCountries, iso2Lookup } = require("co
  * Validation function for Redux Form
  * takes input like "rule1:param1:param2|rule2:param1:param2|..."
  *
- * re:regexp:flags:key        value should match the regular expression "regexp", second param is flags,
- *                            third param is custom translation key used for the error message
- *                            when ":" is needed in the regexp it should be escaped like this "\\:"
+ * re:regexp:flags            value should match the regular expression "regexp" with "flags"
  * required                   value is required
  * required:otherField        value is required if otherField is not empty
  * phone                      value is a phone number
@@ -5952,32 +6084,19 @@ module.exports = function validate(props, options, value, allValues) {
   var _iteratorError = undefined;
 
   try {
-    for (var _iterator = _.split(options, "|")[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+    for (var _iterator = tokenize(options, "\\", "|")[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
       var rule = _step.value;
-
-      var params = _.split(_.trim(rule), ":");
+      var params = tokenize(rule, "\\", ":");
+      if (!params.length) continue;
+      var msg = void 0;
+      if (params[0][0] === "!") msg = params.shift().slice(1);
 
       var _command = params.shift();
 
-      if (_command !== "re") {
-        rules[_command] = params;
-      } else {
-        rules[_command] = [];
-        var line = params.join(":");
-        var found = false;
-
-        for (var i = 0; i < line.length; i++) {
-          if (line[i] === ":" && (i > 0 || line[i - 1] !== "\\")) {
-            rules[_command].push(line.slice(0, i));
-
-            rules[_command] = rules[_command].concat(_.split(line.slice(i + 1), ":"));
-            found = true;
-            break;
-          }
-        }
-
-        if (!found) rules[_command] = params;
-      }
+      rules[_command] = {
+        msg: msg,
+        params: params
+      };
     }
   } catch (err) {
     _didIteratorError = true;
@@ -6007,8 +6126,8 @@ module.exports = function validate(props, options, value, allValues) {
       // be non-empty for this to be triggered, always triggered otherwise
       var failed = true;
 
-      if (allValues && rules.required.length && rules.required[0]) {
-        var other = allValues.get(rules.required[0]);
+      if (allValues && rules.required.params.length && rules.required.params[0]) {
+        var other = allValues.get(rules.required.params[0]);
         if (!other || !other.length) failed = false;
       }
 
@@ -6030,9 +6149,9 @@ module.exports = function validate(props, options, value, allValues) {
 
         switch (command) {
           case "re":
-            tmp = new RegExp(rules[command][0], rules[command][1] || undefined);
+            tmp = new RegExp(rules[command].params[0], rules[command].params[1] || undefined);
             success = value.match(tmp);
-            if (!success) errors.push(rules[command][2] || "ERROR_INVALID_PATTERN");
+            if (!success) errors.push(rules[command].msg || "ERROR_INVALID_PATTERN");
             break;
 
           case "phone":
@@ -6041,11 +6160,14 @@ module.exports = function validate(props, options, value, allValues) {
               normalized = _.replace(value, /[^0-9]+/g, "");
 
               if (normalized.length !== 12) {
-                errors.push("ERROR_INVALID_PHONE");
+                errors.push(rules[command].msg || "ERROR_INVALID_PHONE");
               } else {
                 search = allCountries && iso2Lookup && allCountries[iso2Lookup[allValues.get("country")]];
                 if (search && search.dialCode) success = _.startsWith(normalized, search.dialCode);else success = true;
-                if (!success) errors.push("ERROR_INVALID_PHONE_COUNTRY");
+
+                if (!success) {
+                  errors.push(rules[command].msg || "ERROR_INVALID_PHONE_COUNTRY");
+                }
               }
             }
 
@@ -6053,38 +6175,45 @@ module.exports = function validate(props, options, value, allValues) {
 
           case "email":
             // validate email
-            if (!validator.isEmpty(value) && !validator.isEmail(value)) errors.push("ERROR_INVALID_EMAIL");
+            if (!validator.isEmail(value)) errors.push(rules[command].msg || "ERROR_INVALID_EMAIL");
             break;
 
           case "password":
             // validate password, first param is password length (6 by default)
-            if (value.length < (rules[command].length && rules[command][0] || 6)) {
-              errors.push("ERROR_INVALID_PASSWORD");
-            }
-
+            tmp = rules[command].params.length && rules[command].params[0] || 6;
+            if (value.length < tmp) errors.push(rules[command].msg || "ERROR_INVALID_PASSWORD");
             break;
 
           case "credit_card":
             // validate credit card attribute set by first param ("number", "date" or "secret")
             normalized = _.replace(value, /[^0-9]+/g, "");
 
-            switch (rules[command].length && rules[command][0]) {
+            switch (rules[command].params.length && rules[command].params[0]) {
               case "number":
-                if (normalized.length !== 16 || !validator.isCreditCard(normalized)) errors.push("ERROR_INVALID_CREDIT_CARD_NUMBER");
+                if (normalized.length !== 16 || !validator.isCreditCard(normalized)) {
+                  errors.push(rules[command].msg || "ERROR_INVALID_CREDIT_CARD_NUMBER");
+                }
+
                 break;
 
               case "date":
                 if (normalized.length !== 4) {
-                  errors.push("ERROR_INVALID_CREDIT_CARD_DATE");
+                  errors.push(rules[command].msg || "ERROR_INVALID_CREDIT_CARD_DATE");
                 } else {
                   tmp = [parseInt(normalized.slice(0, 2)), parseInt(normalized.slice(2))];
-                  if (tmp[0] < 1 || tmp[0] > 12 || tmp[1] < new Date().getFullYear() - 2000) errors.push("ERROR_INVALID_CREDIT_CARD_DATE");
+
+                  if (tmp[0] < 1 || tmp[0] > 12 || tmp[1] < new Date().getFullYear() - 2000) {
+                    errors.push(rules[command].msg || "ERROR_INVALID_CREDIT_CARD_DATE");
+                  }
                 }
 
                 break;
 
               case "secret":
-                if (normalized.length !== 3) errors.push("ERROR_INVALID_CREDIT_CARD_SECRET");
+                if (normalized.length !== 3) {
+                  errors.push(rules[command].msg || "ERROR_INVALID_CREDIT_CARD_SECRET");
+                }
+
                 break;
             }
 
@@ -6092,8 +6221,8 @@ module.exports = function validate(props, options, value, allValues) {
 
           case "match":
             // this rule is triggered when field set by first param has other value than this one
-            tmp = rules[command].length && rules[command][0];
-            if (tmp && allValues && allValues.get(tmp) !== value) errors.push("ERROR_MISMATCHED_VALUES");
+            tmp = rules[command].params.length && rules[command].params[0];
+            if (tmp && allValues && allValues.get(tmp) !== value) errors.push(rules[command].msg || "ERROR_MISMATCHED_VALUES");
             break;
         }
       }
@@ -6118,7 +6247,7 @@ module.exports = function validate(props, options, value, allValues) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6135,7 +6264,7 @@ var _propTypes = _interopRequireDefault(__webpack_require__(5));
 
 var _styles = __webpack_require__(7);
 
-var _TextField = _interopRequireDefault(__webpack_require__(86));
+var _TextField = _interopRequireDefault(__webpack_require__(87));
 
 var _Errors = _interopRequireDefault(__webpack_require__(58));
 
@@ -6283,31 +6412,31 @@ var _default = (0, _styles.withStyles)(styles)(MyText);
 exports.default = _default;
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/TextField");
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/List");
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/ListItem");
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/InfoOutlined");
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6326,19 +6455,19 @@ var _immutable = __webpack_require__(1);
 
 var _styles = __webpack_require__(7);
 
-var _Select = _interopRequireDefault(__webpack_require__(91));
+var _Select = _interopRequireDefault(__webpack_require__(92));
 
-var _FormControl = _interopRequireDefault(__webpack_require__(71));
+var _FormControl = _interopRequireDefault(__webpack_require__(72));
 
-var _FormHelperText = _interopRequireDefault(__webpack_require__(72));
+var _FormHelperText = _interopRequireDefault(__webpack_require__(73));
 
-var _MenuItem = _interopRequireDefault(__webpack_require__(77));
+var _MenuItem = _interopRequireDefault(__webpack_require__(78));
 
-var _InputLabel = _interopRequireDefault(__webpack_require__(92));
+var _InputLabel = _interopRequireDefault(__webpack_require__(93));
 
-var _FilledInput = _interopRequireDefault(__webpack_require__(93));
+var _FilledInput = _interopRequireDefault(__webpack_require__(94));
 
-var _Input = _interopRequireDefault(__webpack_require__(94));
+var _Input = _interopRequireDefault(__webpack_require__(95));
 
 var _Errors = _interopRequireDefault(__webpack_require__(58));
 
@@ -6466,31 +6595,31 @@ var _default = (0, _styles.withStyles)(styles)(MySelect);
 exports.default = _default;
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/Select");
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/InputLabel");
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/FilledInput");
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/Input");
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6507,13 +6636,13 @@ var _propTypes = _interopRequireDefault(__webpack_require__(5));
 
 var _styles = __webpack_require__(7);
 
-var _FormControl = _interopRequireDefault(__webpack_require__(71));
+var _FormControl = _interopRequireDefault(__webpack_require__(72));
 
-var _FormControlLabel = _interopRequireDefault(__webpack_require__(96));
+var _FormControlLabel = _interopRequireDefault(__webpack_require__(97));
 
-var _FormHelperText = _interopRequireDefault(__webpack_require__(72));
+var _FormHelperText = _interopRequireDefault(__webpack_require__(73));
 
-var _Checkbox = _interopRequireDefault(__webpack_require__(75));
+var _Checkbox = _interopRequireDefault(__webpack_require__(76));
 
 var _Errors = _interopRequireDefault(__webpack_require__(58));
 
@@ -6626,78 +6755,657 @@ var _default = (0, _styles.withStyles)(styles, {
 exports.default = _default;
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/FormControlLabel");
 
 /***/ }),
-/* 97 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/icons/Close");
-
-/***/ }),
-/* 98 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/styles/colorManipulator");
-
-/***/ }),
+/* 98 */,
 /* 99 */,
-/* 100 */,
-/* 101 */,
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _immutable = __webpack_require__(1);
+
+var _reduxImmutable = __webpack_require__(8);
+
+var types = _interopRequireWildcard(__webpack_require__(74));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+/* State Shape
+Map({
+  list: List([
+    Map({
+      id: String,
+      isSelected: Boolean,
+      login: String,
+      roles: [String],
+    })
+  ]),
+  editModalUserId: String, // null when creating a new user
+  isEditModalOpen: false,
+})
+*/
+var listReducer = function listReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : (0, _immutable.List)([]);
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case types.SET_LIST:
+      if (!_.isUndefined(action.list)) // eslint-disable-next-line lodash/prefer-lodash-method
+        return (0, _immutable.fromJS)(action.list).map(function (item, index) {
+          return item.set("isSelected", !!state.getIn([index, "isSelected"]));
+        });
+      break;
+
+    case types.SET_SELECTED:
+      if (!_.isUndefined(action.userId)) return state.withMutations(function (list) {
+        // eslint-disable-next-line lodash/prefer-lodash-method
+        var index = list.findIndex(function (item) {
+          return item.get("id") === action.userId;
+        });
+        if (index !== -1) list.setIn([index, "isSelected"], !!action.isSelected);
+      });
+      break;
+
+    case types.SELECT_ALL:
+      // eslint-disable-next-line lodash/prefer-lodash-method
+      return state.map(function (item) {
+        return item.set("isSelected", true);
+      });
+
+    case types.DESELECT_ALL:
+      // eslint-disable-next-line lodash/prefer-lodash-method
+      return state.map(function (item) {
+        return item.set("isSelected", false);
+      });
+  }
+
+  return state;
+};
+
+var editModalUserIdReducer = function editModalUserIdReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case types.SHOW_EDIT_MODAL:
+      return action.userId || null;
+  }
+
+  return state;
+};
+
+var isEditModalOpenReducer = function isEditModalOpenReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case types.SHOW_EDIT_MODAL:
+      return true;
+
+    case types.HIDE_EDIT_MODAL:
+      return false;
+  }
+
+  return state;
+};
+
+var reducer = (0, _reduxImmutable.combineReducers)({
+  list: listReducer,
+  editModalUserId: editModalUserIdReducer,
+  isEditModalOpen: isEditModalOpenReducer
+});
+var _default = reducer;
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.remove = exports.edit = exports.create = exports.load = exports.editFirstSelected = exports.deselectAll = exports.selectAll = exports.setSelected = exports.hideEditModal = exports.showEditModal = void 0;
+
+var _regenerator = _interopRequireDefault(__webpack_require__(2));
+
+var actions = _interopRequireWildcard(__webpack_require__(102));
+
+var selectors = _interopRequireWildcard(__webpack_require__(83));
+
+var _app = __webpack_require__(6);
+
+var _constants = _interopRequireDefault(__webpack_require__(4));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var showEditModal = actions.showEditModal;
+exports.showEditModal = showEditModal;
+var hideEditModal = actions.hideEditModal;
+exports.hideEditModal = hideEditModal;
+var setSelected = actions.setSelected;
+exports.setSelected = setSelected;
+var selectAll = actions.selectAll;
+exports.selectAll = selectAll;
+var deselectAll = actions.deselectAll;
+exports.deselectAll = deselectAll;
+
+var editFirstSelected = function editFirstSelected() {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee(dispatch, getState) {
+        var selected;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                selected = selectors.getSelected(getState());
+
+                if (!selected.size) {
+                  _context.next = 3;
+                  break;
+                }
+
+                return _context.abrupt("return", dispatch(actions.showEditModal({
+                  userId: selected.first().get("id")
+                })));
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      return function (_x, _x2) {
+        return _ref.apply(this, arguments);
+      };
+    }()
+  );
+};
+
+exports.editFirstSelected = editFirstSelected;
+
+var load = function load() {
+  var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      req = _ref2.req;
+
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref3 = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee2(dispatch) {
+        var users, response;
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (!req) {
+                  _context2.next = 6;
+                  break;
+                }
+
+                _context2.next = 3;
+                return req.di.get("repository.users").getUsers(req);
+
+              case 3:
+                users = _context2.sent;
+                _context2.next = 10;
+                break;
+
+              case 6:
+                _context2.next = 8;
+                return dispatch(_app.appOperations.gqlQuery("\n          query {\n            users {\n              id\n              login\n              roles\n            }\n          }\n        "));
+
+              case 8:
+                response = _context2.sent;
+                users = response && _.get(response, "data.users");
+
+              case 10:
+                _context2.next = 12;
+                return dispatch(actions.setList({
+                  list: users
+                }));
+
+              case 12:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      return function (_x3) {
+        return _ref3.apply(this, arguments);
+      };
+    }()
+  );
+};
+
+exports.load = load;
+
+var create = function create(_ref4) {
+  var login = _ref4.login,
+      password = _ref4.password,
+      isAdmin = _ref4.isAdmin;
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref5 = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee3(dispatch) {
+        var result, response, errors, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, error;
+
+        return _regenerator.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                result = false;
+                _context3.prev = 1;
+                _context3.next = 4;
+                return dispatch(_app.appOperations.gqlQuery("\n          mutation ($login: String, $password: String, $roles: [UserRole]) {\n            createUser(login: $login, password: $password, roles: $roles) {\n              success\n            }\n          }\n        ", {
+                  login: login,
+                  password: password,
+                  roles: _.compact([isAdmin && _constants.default.roles.ADMIN])
+                }));
+
+              case 4:
+                response = _context3.sent;
+
+                if (!(response && _.get(response, "data.createUser.success", false))) {
+                  _context3.next = 11;
+                  break;
+                }
+
+                _context3.next = 8;
+                return dispatch(actions.hideEditModal());
+
+              case 8:
+                return _context3.abrupt("return", true);
+
+              case 11:
+                result = {};
+                errors = response && _.get(response, "errors", []);
+                _iteratorNormalCompletion = true;
+                _didIteratorError = false;
+                _iteratorError = undefined;
+                _context3.prev = 16;
+
+                for (_iterator = errors[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                  error = _step.value;
+                  if (error && error.code === "E_VALIDATION") _.merge(result, error.details);else result._error = (result._error || []).concat([error.message]);
+                }
+
+                _context3.next = 24;
+                break;
+
+              case 20:
+                _context3.prev = 20;
+                _context3.t0 = _context3["catch"](16);
+                _didIteratorError = true;
+                _iteratorError = _context3.t0;
+
+              case 24:
+                _context3.prev = 24;
+                _context3.prev = 25;
+
+                if (!_iteratorNormalCompletion && _iterator.return != null) {
+                  _iterator.return();
+                }
+
+              case 27:
+                _context3.prev = 27;
+
+                if (!_didIteratorError) {
+                  _context3.next = 30;
+                  break;
+                }
+
+                throw _iteratorError;
+
+              case 30:
+                return _context3.finish(27);
+
+              case 31:
+                return _context3.finish(24);
+
+              case 32:
+                if (!_.keys(result).length) result = {
+                  _error: "EDIT_USER_FAILED"
+                };
+
+              case 33:
+                _context3.next = 38;
+                break;
+
+              case 35:
+                _context3.prev = 35;
+                _context3.t1 = _context3["catch"](1);
+                console.error(_context3.t1);
+
+              case 38:
+                return _context3.abrupt("return", result);
+
+              case 39:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this, [[1, 35], [16, 20, 24, 32], [25,, 27, 31]]);
+      }));
+
+      return function (_x4) {
+        return _ref5.apply(this, arguments);
+      };
+    }()
+  );
+};
+
+exports.create = create;
+
+var edit = function edit(_ref6) {
+  var id = _ref6.id,
+      login = _ref6.login,
+      password = _ref6.password,
+      isAdmin = _ref6.isAdmin;
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref7 = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee4(dispatch) {
+        var result, response, errors, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, error;
+
+        return _regenerator.default.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                result = false;
+                _context4.prev = 1;
+                _context4.next = 4;
+                return dispatch(_app.appOperations.gqlQuery("\n          mutation ($id: String, $login: String, $password: String, $roles: [UserRole]) {\n            editUser(id: $id, login: $login, password: $password, roles: $roles) {\n              success\n            }\n          }\n        ", {
+                  id: id,
+                  login: login,
+                  password: password,
+                  roles: _.compact([isAdmin && _constants.default.roles.ADMIN])
+                }));
+
+              case 4:
+                response = _context4.sent;
+
+                if (!(response && _.get(response, "data.editUser.success", false))) {
+                  _context4.next = 11;
+                  break;
+                }
+
+                _context4.next = 8;
+                return dispatch(actions.hideEditModal());
+
+              case 8:
+                return _context4.abrupt("return", true);
+
+              case 11:
+                result = {};
+                errors = response && _.get(response, "errors", []);
+                _iteratorNormalCompletion2 = true;
+                _didIteratorError2 = false;
+                _iteratorError2 = undefined;
+                _context4.prev = 16;
+
+                for (_iterator2 = errors[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                  error = _step2.value;
+                  if (error && error.code === "E_VALIDATION") _.merge(result, error.details);else result._error = (result._error || []).concat([error.message]);
+                }
+
+                _context4.next = 24;
+                break;
+
+              case 20:
+                _context4.prev = 20;
+                _context4.t0 = _context4["catch"](16);
+                _didIteratorError2 = true;
+                _iteratorError2 = _context4.t0;
+
+              case 24:
+                _context4.prev = 24;
+                _context4.prev = 25;
+
+                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+                  _iterator2.return();
+                }
+
+              case 27:
+                _context4.prev = 27;
+
+                if (!_didIteratorError2) {
+                  _context4.next = 30;
+                  break;
+                }
+
+                throw _iteratorError2;
+
+              case 30:
+                return _context4.finish(27);
+
+              case 31:
+                return _context4.finish(24);
+
+              case 32:
+                if (!_.keys(result).length) result = {
+                  _error: "EDIT_USER_FAILED"
+                };
+
+              case 33:
+                _context4.next = 38;
+                break;
+
+              case 35:
+                _context4.prev = 35;
+                _context4.t1 = _context4["catch"](1);
+                console.error(_context4.t1);
+
+              case 38:
+                return _context4.abrupt("return", result);
+
+              case 39:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this, [[1, 35], [16, 20, 24, 32], [25,, 27, 31]]);
+      }));
+
+      return function (_x5) {
+        return _ref7.apply(this, arguments);
+      };
+    }()
+  );
+};
+
+exports.edit = edit;
+
+var remove = function remove(_ref8) {
+  var id = _ref8.id;
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref9 = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee5(dispatch) {
+        var response;
+        return _regenerator.default.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return dispatch(_app.appOperations.gqlQuery("\n        mutation ($id: String) {\n          deleteUser(id: $id) {\n            success\n          }\n        }\n      ", {
+                  id: id
+                }));
+
+              case 2:
+                response = _context5.sent;
+                return _context5.abrupt("return", response && _.get(response, "data.deleteUser.success") || false);
+
+              case 4:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this);
+      }));
+
+      return function (_x6) {
+        return _ref9.apply(this, arguments);
+      };
+    }()
+  );
+};
+
+exports.remove = remove;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
+
+/***/ }),
 /* 102 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = require("@material-ui/icons/OpenInBrowser");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.hideEditModal = exports.showEditModal = exports.deselectAll = exports.selectAll = exports.setSelected = exports.setList = void 0;
+
+var types = _interopRequireWildcard(__webpack_require__(74));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+var setList = function setList(_ref) {
+  var list = _ref.list;
+  return {
+    type: types.SET_LIST,
+    list: list
+  };
+};
+
+exports.setList = setList;
+
+var setSelected = function setSelected(_ref2) {
+  var userId = _ref2.userId,
+      isSelected = _ref2.isSelected;
+  return {
+    type: types.SET_SELECTED,
+    userId: userId,
+    isSelected: isSelected
+  };
+};
+
+exports.setSelected = setSelected;
+
+var selectAll = function selectAll() {
+  return {
+    type: types.SELECT_ALL
+  };
+};
+
+exports.selectAll = selectAll;
+
+var deselectAll = function deselectAll() {
+  return {
+    type: types.DESELECT_ALL
+  };
+};
+
+exports.deselectAll = deselectAll;
+
+var showEditModal = function showEditModal() {
+  var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      userId = _ref3.userId;
+
+  return {
+    type: types.SHOW_EDIT_MODAL,
+    userId: userId
+  };
+};
+
+exports.showEditModal = showEditModal;
+
+var hideEditModal = function hideEditModal() {
+  return {
+    type: types.HIDE_EDIT_MODAL
+  };
+};
+
+exports.hideEditModal = hideEditModal;
 
 /***/ }),
-/* 103 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/icons/Language");
-
-/***/ }),
+/* 103 */,
 /* 104 */,
 /* 105 */,
-/* 106 */
+/* 106 */,
+/* 107 */
 /***/ (function(module, exports) {
 
 module.exports = require("classnames");
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/Table");
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/TableBody");
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/TableCell");
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/TableHead");
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/TableRow");
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6811,7 +7519,7 @@ var _default = (0, _styles.withStyles)(styles, {
 exports.default = _default;
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6864,7 +7572,6 @@ var _default = function _default(theme) {
 exports.default = _default;
 
 /***/ }),
-/* 114 */,
 /* 115 */,
 /* 116 */,
 /* 117 */,
@@ -6931,14 +7638,49 @@ exports.default = _default;
 /* 178 */,
 /* 179 */,
 /* 180 */,
-/* 181 */
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(182);
+module.exports = __webpack_require__(217);
 
 
 /***/ }),
-/* 182 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6950,16 +7692,16 @@ Object.defineProperty(exports, "__esModule", {
 Object.defineProperty(exports, "default", {
   enumerable: true,
   get: function get() {
-    return _DevicesPage.default;
+    return _UsersPage.default;
   }
 });
 
-var _DevicesPage = _interopRequireDefault(__webpack_require__(183));
+var _UsersPage = _interopRequireDefault(__webpack_require__(218));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 183 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6974,13 +7716,11 @@ var _regenerator = _interopRequireDefault(__webpack_require__(2));
 
 var _reactRedux = __webpack_require__(18);
 
-var _app = __webpack_require__(6);
-
 var _auth = __webpack_require__(12);
 
-var _devices = __webpack_require__(11);
+var _users = __webpack_require__(82);
 
-var _DevicesPage = _interopRequireDefault(__webpack_require__(184));
+var _UsersPage = _interopRequireDefault(__webpack_require__(219));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6990,19 +7730,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    isAuthenticated: _auth.authSelectors.isAuthenticated(state),
-    storage: _app.appSelectors.getService(state, {
-      service: "storage"
-    }),
-    proxyOrigin: _app.appSelectors.getProxyOrigin(state)
+    isAuthenticated: _auth.authSelectors.isAuthenticated(state)
   };
 };
 
-var DevicesPage = (0, _reactRedux.connect)(mapStateToProps, null, null, {
+var UsersPage = (0, _reactRedux.connect)(mapStateToProps, null, null, {
   pure: false
-})(_DevicesPage.default);
+})(_UsersPage.default);
 
-DevicesPage.getInitialProps =
+UsersPage.getInitialProps =
 /*#__PURE__*/
 function () {
   var _ref2 = _asyncToGenerator(
@@ -7015,7 +7751,7 @@ function () {
           case 0:
             store = _ref.store, req = _ref.req;
             _context.next = 3;
-            return store.dispatch(_devices.devicesOperations.load({
+            return store.dispatch(_users.usersOperations.load({
               req: req
             }));
 
@@ -7032,11 +7768,11 @@ function () {
   };
 }();
 
-var _default = DevicesPage;
+var _default = UsersPage;
 exports.default = _default;
 
 /***/ }),
-/* 184 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7051,23 +7787,11 @@ var _react = _interopRequireDefault(__webpack_require__(3));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(5));
 
-var _universalUrl = __webpack_require__(185);
-
-var _reactIntl = __webpack_require__(9);
-
-var _colorManipulator = __webpack_require__(98);
-
 var _styles = __webpack_require__(7);
 
 var _Grid = _interopRequireDefault(__webpack_require__(63));
 
-var _Typography = _interopRequireDefault(__webpack_require__(74));
-
-var _IconButton = _interopRequireDefault(__webpack_require__(80));
-
-var _Close = _interopRequireDefault(__webpack_require__(97));
-
-var _Devices = _interopRequireDefault(__webpack_require__(186));
+var _Users = _interopRequireDefault(__webpack_require__(220));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7081,60 +7805,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var styles = function styles(theme) {
   return {
-    docs: {
-      width: "100%",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      background: (0, _colorManipulator.fade)(theme.palette.primary.main, 0.5),
-      "& ul": {
-        marginBottom: 0
-      },
-      "& li": {
-        marginTop: "1rem"
-      }
-    },
-    docsLayout: _defineProperty({
-      position: "relative",
-      width: "100%",
-      maxWidth: 1300 + 2 * theme.main.spacing,
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "stretch",
-      alignItems: "stretch",
-      padding: theme.main.spacing
-    }, theme.breakpoints.down("md"), {
-      flexDirection: "column",
-      padding: theme.main.spacing / 2,
-      maxWidth: 1300 + theme.main.spacing
-    }),
-    closeButton: {
-      position: "absolute",
-      top: 0,
-      right: 0
-    },
-    docFirst: {
-      flex: 1
-    },
-    docSeparator: {
-      width: 30,
-      height: 30
-    },
-    docSecond: {
-      flex: 1
-    },
     layout: _defineProperty({
       width: "100%",
       maxWidth: 1300 + 2 * theme.main.spacing,
@@ -7147,73 +7829,22 @@ var styles = function styles(theme) {
   };
 };
 
-var DevicesPage =
+var UsersPage =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(DevicesPage, _React$Component);
+  _inherits(UsersPage, _React$Component);
 
-  function DevicesPage(props) {
-    var _this;
+  function UsersPage() {
+    _classCallCheck(this, UsersPage);
 
-    _classCallCheck(this, DevicesPage);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(DevicesPage).call(this, props));
-    _this.state = {
-      isIntroDismissed: true
-    };
-    _this.handleTextClose = _this.handleTextClose.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(UsersPage).apply(this, arguments));
   }
 
-  _createClass(DevicesPage, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.setState({
-        isIntroDismissed: this.props.storage.get(DevicesPage.introDismissedKey) || false
-      });
-    }
-  }, {
-    key: "handleTextClose",
-    value: function handleTextClose() {
-      this.setState({
-        isIntroDismissed: true
-      });
-      this.props.storage.set(DevicesPage.introDismissedKey, true);
-    }
-  }, {
+  _createClass(UsersPage, [{
     key: "render",
     value: function render() {
       if (!this.props.isAuthenticated) return null;
-      return _react.default.createElement(_react.default.Fragment, null, !this.state.isIntroDismissed && _react.default.createElement("div", {
-        className: this.props.classes.docs
-      }, _react.default.createElement("div", {
-        className: this.props.classes.docsLayout
-      }, _react.default.createElement(_IconButton.default, {
-        color: "inherit",
-        className: this.props.classes.closeButton,
-        onClick: this.handleTextClose
-      }, _react.default.createElement(_Close.default, null)), " ", _react.default.createElement("div", {
-        className: this.props.classes.docFirst
-      }, _react.default.createElement(_Typography.default, {
-        variant: "h5"
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "DEVICES_PAGE_WORKFLOW_TITLE"
-      })), _react.default.createElement(_reactIntl.FormattedHTMLMessage, {
-        id: "DEVICES_PAGE_WORKFLOW_HTML"
-      })), _react.default.createElement("div", {
-        className: this.props.classes.docSeparator
-      }), _react.default.createElement("div", {
-        className: this.props.classes.docSecond
-      }, _react.default.createElement(_Typography.default, {
-        variant: "h5"
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "DEVICES_PAGE_SECURITY_TITLE"
-      })), _react.default.createElement(_reactIntl.FormattedHTMLMessage, {
-        id: "DEVICES_PAGE_SECURITY_HTML",
-        values: {
-          origin: new _universalUrl.URL(this.props.proxyOrigin).hostname
-        }
-      })))), _react.default.createElement("div", {
+      return _react.default.createElement("div", {
         className: this.props.classes.layout
       }, _react.default.createElement(_Grid.default, {
         container: true,
@@ -7221,29 +7852,21 @@ function (_React$Component) {
       }, _react.default.createElement(_Grid.default, {
         item: true,
         xs: 12
-      }, _react.default.createElement(_Devices.default, null)))));
+      }, _react.default.createElement(_Users.default, null))));
     }
   }]);
 
-  return DevicesPage;
+  return UsersPage;
 }(_react.default.Component);
-
-_defineProperty(DevicesPage, "introDismissedKey", "devicesIntroDismissed");
 
 var _default = (0, _styles.withStyles)(styles, {
   withTheme: true
-})(DevicesPage);
+})(UsersPage);
 
 exports.default = _default;
 
 /***/ }),
-/* 185 */
-/***/ (function(module, exports) {
-
-module.exports = require("universal-url");
-
-/***/ }),
-/* 186 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7258,80 +7881,57 @@ var _reactRedux = __webpack_require__(18);
 
 var _reactIntl = __webpack_require__(9);
 
-var _app = __webpack_require__(6);
+var _users = __webpack_require__(82);
 
-var _auth = __webpack_require__(12);
-
-var _devices = __webpack_require__(11);
-
-var _Devices = _interopRequireDefault(__webpack_require__(187));
+var _Users = _interopRequireDefault(__webpack_require__(221));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    sshHost: _app.appSelectors.getSshHost(state),
-    sshPort: _app.appSelectors.getSshPort(state),
-    login: _auth.authSelectors.getLogin(state) || "",
-    devices: _devices.devicesSelectors.getList(state),
-    online: _devices.devicesSelectors.getOnline(state),
-    isAllSelected: _devices.devicesSelectors.isAllSelected(state),
-    isAllDeselected: _devices.devicesSelectors.isAllDeselected(state)
+    users: _users.usersSelectors.getList(state),
+    isAllSelected: _users.usersSelectors.isAllSelected(state),
+    isAllDeselected: _users.usersSelectors.isAllDeselected(state)
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     onLoad: function onLoad() {
-      return dispatch(_devices.devicesOperations.load());
+      return dispatch(_users.usersOperations.load());
     },
     onCreate: function onCreate() {
-      return dispatch(_devices.devicesOperations.showEditModal());
+      return dispatch(_users.usersOperations.showEditModal());
     },
     onEdit: function onEdit() {
-      return dispatch(_devices.devicesOperations.editFirstSelected());
+      return dispatch(_users.usersOperations.editFirstSelected());
     },
-    onDelete: function onDelete(deviceId) {
-      return dispatch(_devices.devicesOperations.reqRemove({
-        id: deviceId
+    onDelete: function onDelete(userId) {
+      return dispatch(_users.usersOperations.remove({
+        id: userId
       }));
     },
-    onSetSelected: function onSetSelected(deviceId, isSelected) {
-      return dispatch(_devices.devicesOperations.setSelected({
-        deviceId: deviceId,
+    onSetSelected: function onSetSelected(userId, isSelected) {
+      return dispatch(_users.usersOperations.setSelected({
+        userId: userId,
         isSelected: isSelected
       }));
     },
     onSelectAll: function onSelectAll() {
-      return dispatch(_devices.devicesOperations.selectAll());
+      return dispatch(_users.usersOperations.selectAll());
     },
     onDeselectAll: function onDeselectAll() {
-      return dispatch(_devices.devicesOperations.deselectAll());
-    },
-    onConnect: function onConnect(deviceId) {
-      return dispatch(_devices.devicesOperations.startAuth({
-        deviceId: deviceId
-      }));
-    },
-    onDisconnect: function onDisconnect(deviceId) {
-      return dispatch(_devices.devicesOperations.disconnect({
-        deviceId: deviceId
-      }));
-    },
-    onOpenTerminal: function onOpenTerminal(deviceId) {
-      return dispatch(_devices.devicesOperations.openTerminal({
-        deviceId: deviceId
-      }));
+      return dispatch(_users.usersOperations.deselectAll());
     }
   };
 };
 
-var Devices = (0, _reactIntl.injectIntl)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Devices.default));
-var _default = Devices;
+var Users = (0, _reactIntl.injectIntl)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Users.default));
+var _default = Users;
 exports.default = _default;
 
 /***/ }),
-/* 187 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7348,7 +7948,7 @@ var _react = _interopRequireDefault(__webpack_require__(3));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(5));
 
-var _classnames = _interopRequireDefault(__webpack_require__(106));
+var _classnames = _interopRequireDefault(__webpack_require__(107));
 
 var _immutable = __webpack_require__(1);
 
@@ -7356,41 +7956,27 @@ var _reactIntl = __webpack_require__(9);
 
 var _styles = __webpack_require__(7);
 
-var _Table = _interopRequireDefault(__webpack_require__(107));
+var _Table = _interopRequireDefault(__webpack_require__(108));
 
-var _TableBody = _interopRequireDefault(__webpack_require__(108));
+var _TableBody = _interopRequireDefault(__webpack_require__(109));
 
-var _TableCell = _interopRequireDefault(__webpack_require__(109));
+var _TableCell = _interopRequireDefault(__webpack_require__(110));
 
-var _TableHead = _interopRequireDefault(__webpack_require__(110));
+var _TableHead = _interopRequireDefault(__webpack_require__(111));
 
-var _TableRow = _interopRequireDefault(__webpack_require__(111));
+var _TableRow = _interopRequireDefault(__webpack_require__(112));
 
-var _Paper = _interopRequireDefault(__webpack_require__(76));
+var _Paper = _interopRequireDefault(__webpack_require__(77));
 
 var _Button = _interopRequireDefault(__webpack_require__(28));
 
-var _IconButton = _interopRequireDefault(__webpack_require__(80));
+var _Checkbox = _interopRequireDefault(__webpack_require__(76));
 
-var _Checkbox = _interopRequireDefault(__webpack_require__(75));
+var _EditUserModal = _interopRequireDefault(__webpack_require__(222));
 
-var _LinearProgress = _interopRequireDefault(__webpack_require__(188));
+var _ConfirmModal = _interopRequireDefault(__webpack_require__(113));
 
-var _Tooltip = _interopRequireDefault(__webpack_require__(189));
-
-var _OpenInBrowser = _interopRequireDefault(__webpack_require__(102));
-
-var _Language = _interopRequireDefault(__webpack_require__(103));
-
-var _ExitToApp = _interopRequireDefault(__webpack_require__(190));
-
-var _EditDeviceModal = _interopRequireDefault(__webpack_require__(191));
-
-var _ProxyModal = _interopRequireDefault(__webpack_require__(194));
-
-var _ConfirmModal = _interopRequireDefault(__webpack_require__(112));
-
-var _responsiveTable = _interopRequireDefault(__webpack_require__(113));
+var _responsiveTable = _interopRequireDefault(__webpack_require__(114));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7424,9 +8010,6 @@ var styles = function styles(theme) {
       padding: "1rem"
     },
     table: _defineProperty({}, theme.breakpoints.down("sm"), (0, _responsiveTable.default)(theme)),
-    statusColumn: {
-      width: "40%"
-    },
     buttons: {
       width: "100%",
       display: "flex",
@@ -7437,20 +8020,8 @@ var styles = function styles(theme) {
     button: {
       margin: "0.5rem"
     },
-    tableButton: {
-      marginLeft: "0.5rem"
-    },
-    tooltip: {
-      fontSize: "1rem"
-    },
-    progress: {
-      display: "inline-block",
-      width: theme.main.spacing * 4,
-      marginLeft: "0.5rem"
-    },
-    collapsing: {
-      width: 1,
-      whiteSpace: ["nowrap", "!important"]
+    checkboxField: {
+      width: 1
     },
     checkbox: {
       padding: 0
@@ -7458,33 +8029,29 @@ var styles = function styles(theme) {
   };
 };
 
-var Devices =
+var Users =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(Devices, _React$Component);
+  _inherits(Users, _React$Component);
 
-  function Devices(props) {
+  function Users(props) {
     var _this;
 
-    _classCallCheck(this, Devices);
+    _classCallCheck(this, Users);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Devices).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Users).call(this, props));
     _this.state = {
-      isConfirmOpen: false,
-      isProxyModalOpen: false,
-      proxyModalDeviceId: null
+      isConfirmOpen: false
     };
     _this.handleCreateAction = _this.handleCreateAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleEditAction = _this.handleEditAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleDeleteAction = _this.handleDeleteAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleCancelDelete = _this.handleCancelDelete.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleConfirmDelete = _this.handleConfirmDelete.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleProxyModalOpen = _this.handleProxyModalOpen.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleProxyModalClose = _this.handleProxyModalClose.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
-  _createClass(Devices, [{
+  _createClass(Users, [{
     key: "handleToggleAll",
     value: function handleToggleAll() {
       var forceOff = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
@@ -7492,13 +8059,13 @@ function (_React$Component) {
     }
   }, {
     key: "handleToggle",
-    value: function handleToggle(deviceId) {
+    value: function handleToggle(userId) {
       // eslint-disable-next-line lodash/prefer-lodash-method
-      var device = this.props.devices.find(function (device) {
-        return device.get("id") === deviceId;
+      var user = this.props.users.find(function (user) {
+        return user.get("id") === userId;
       });
-      var isSelected = device && device.get("isSelected");
-      this.props.onSetSelected(deviceId, !isSelected);
+      var isSelected = user && user.get("isSelected");
+      this.props.onSetSelected(userId, !isSelected);
     }
   }, {
     key: "handleCreateAction",
@@ -7541,10 +8108,10 @@ function (_React$Component) {
                 });
                 _context.next = 3;
                 return Promise.all( // eslint-disable-next-line lodash/prefer-lodash-method
-                this.props.devices.filter(function (device) {
-                  return device.get("isSelected");
-                }).map(function (device) {
-                  return _this2.props.onDelete(device.get("id"));
+                this.props.users.filter(function (user) {
+                  return user.get("isSelected");
+                }).map(function (user) {
+                  return _this2.props.onDelete(user.get("id"));
                 }));
 
               case 3:
@@ -7565,21 +8132,6 @@ function (_React$Component) {
       return handleConfirmDelete;
     }()
   }, {
-    key: "handleProxyModalOpen",
-    value: function handleProxyModalOpen(deviceId) {
-      this.setState({
-        isProxyModalOpen: true,
-        proxyModalDeviceId: deviceId
-      });
-    }
-  }, {
-    key: "handleProxyModalClose",
-    value: function handleProxyModalClose() {
-      this.setState({
-        isProxyModalOpen: false
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -7594,7 +8146,7 @@ function (_React$Component) {
         },
         onClick: this.handleCreateAction
       }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "DEVICES_CREATE_BUTTON"
+        id: "USERS_CREATE_BUTTON"
       })), _react.default.createElement(_Button.default, {
         variant: "contained",
         color: "primary",
@@ -7604,7 +8156,7 @@ function (_React$Component) {
         },
         onClick: this.handleEditAction
       }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "DEVICES_EDIT_BUTTON"
+        id: "USERS_EDIT_BUTTON"
       })), _react.default.createElement(_Button.default, {
         variant: "contained",
         color: "primary",
@@ -7614,7 +8166,7 @@ function (_React$Component) {
         },
         onClick: this.handleDeleteAction
       }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "DEVICES_DELETE_BUTTON"
+        id: "USERS_DELETE_BUTTON"
       }))), _react.default.createElement(_Paper.default, {
         className: this.props.classes.paper
       }, _react.default.createElement(_Table.default, {
@@ -7623,10 +8175,10 @@ function (_React$Component) {
       }, _react.default.createElement(_TableHead.default, null, _react.default.createElement(_TableRow.default, null, _react.default.createElement(_TableCell.default, {
         padding: "none",
         classes: {
-          root: this.props.classes.collapsing
+          root: this.props.classes.checkboxField
         }
       }, _react.default.createElement(_Checkbox.default, {
-        checked: !!this.props.devices.size && this.props.isAllSelected,
+        checked: !!this.props.users.size && this.props.isAllSelected,
         classes: {
           root: this.props.classes.checkbox
         },
@@ -7636,21 +8188,17 @@ function (_React$Component) {
         },
         value: "on"
       })), _react.default.createElement(_TableCell.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "DEVICES_NAME_COLUMN"
+        id: "USERS_LOGIN_COLUMN"
       })), _react.default.createElement(_TableCell.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "DEVICES_ADDRESS_COLUMN"
-      })), _react.default.createElement(_TableCell.default, {
-        className: this.props.classes.statusColumn
-      }))), _react.default.createElement(_TableBody.default, null, this.props.devices.map(function (row, index) {
-        var info = _this3.props.online.get(row.get("id"));
-
+        id: "USERS_ROLES_COLUMN"
+      })))), _react.default.createElement(_TableBody.default, null, this.props.users.map(function (row, index) {
         return _react.default.createElement(_TableRow.default, {
           key: "row-".concat(index)
         }, _react.default.createElement(_TableCell.default, {
           padding: "none",
           className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected"),
           classes: {
-            root: _this3.props.classes.collapsing
+            root: _this3.props.classes.checkboxField
           }
         }, _react.default.createElement(_Checkbox.default, {
           checked: !!row.get("isSelected"),
@@ -7661,125 +8209,40 @@ function (_React$Component) {
             return _this3.handleToggle(row.get("id"));
           },
           value: "on"
-        }), info && info.get("isLoggedIn") ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_Tooltip.default, {
-          disableFocusListener: true,
-          classes: {
-            tooltip: _this3.props.classes.tooltip
-          },
-          title: _this3.props.intl.formatMessage({
-            id: "DEVICES_OPEN_TERMINAL_TIP"
-          })
-        }, _react.default.createElement("span", null, _react.default.createElement(_IconButton.default, {
-          color: "inherit",
-          classes: {
-            root: _this3.props.classes.tableButton
-          },
-          onClick: function onClick() {
-            return _this3.props.onOpenTerminal(row.get("id"));
-          }
-        }, _react.default.createElement(_OpenInBrowser.default, null)))), _react.default.createElement(_Tooltip.default, {
-          disableFocusListener: true,
-          classes: {
-            tooltip: _this3.props.classes.tooltip
-          },
-          title: _this3.props.intl.formatMessage({
-            id: "DEVICES_OPEN_BROWSER_TIP"
-          })
-        }, _react.default.createElement("span", null, _react.default.createElement(_IconButton.default, {
-          color: "inherit",
-          classes: {
-            root: _this3.props.classes.tableButton
-          },
-          onClick: function onClick() {
-            return _this3.handleProxyModalOpen(row.get("id"));
-          }
-        }, _react.default.createElement(_Language.default, null)))), _react.default.createElement(_Tooltip.default, {
-          disableFocusListener: true,
-          classes: {
-            tooltip: _this3.props.classes.tooltip
-          },
-          title: _this3.props.intl.formatMessage({
-            id: "DEVICES_DISCONNECT_TIP"
-          })
-        }, _react.default.createElement("span", null, _react.default.createElement(_IconButton.default, {
-          color: "inherit",
-          classes: {
-            root: _this3.props.classes.tableButton
-          },
-          onClick: function onClick() {
-            return _this3.props.onDisconnect(row.get("id"));
-          }
-        }, _react.default.createElement(_ExitToApp.default, null))))) : info && info.get("isLoggingIn") ? _react.default.createElement(_LinearProgress.default, {
-          className: _this3.props.classes.progress
-        }) : _react.default.createElement(_Button.default, {
-          size: "small",
-          variant: "contained",
-          color: "primary",
-          disabled: !info,
-          classes: {
-            root: _this3.props.classes.tableButton
-          },
-          onClick: function onClick() {
-            return _this3.props.onConnect(row.get("id"));
-          }
-        }, _react.default.createElement(_reactIntl.FormattedMessage, {
-          id: "DEVICES_CONNECT_BUTTON"
-        }))), _react.default.createElement(_TableCell.default, {
+        })), _react.default.createElement(_TableCell.default, {
           className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected"),
           component: "th",
           scope: "row"
-        }, row.get("name")), _react.default.createElement(_TableCell.default, {
+        }, row.get("login")), _react.default.createElement(_TableCell.default, {
           className: (0, _classnames.default)(index % 2 ? "even" : "odd", row.get("isSelected") && "selected")
-        }, info ? info.get("address") : _this3.props.intl.formatMessage({
-          id: "DEVICES_OFFLINE_LABEL"
-        })), _react.default.createElement(_TableCell.default, {
-          className: (0, _classnames.default)(_this3.props.classes.statusColumn, index % 2 ? "even" : "odd", row.get("isSelected") && "selected")
-        }, info ? info.get("status") : "ssh -p ".concat(_this3.props.sshPort, " -R 22:localhost:22 -N ").concat(_this3.props.login + "_" + row.get("name"), "@").concat(_this3.props.sshHost)));
-      })))), _react.default.createElement(_EditDeviceModal.default, null), _react.default.createElement(_ConfirmModal.default, {
+        }, row.get("roles").toJS().map(function (item) {
+          return _this3.props.intl.formatMessage({
+            id: "EDIT_USER_".concat(item, "_LABEL")
+          });
+        }).join(", ")));
+      })))), _react.default.createElement(_EditUserModal.default, null), _react.default.createElement(_ConfirmModal.default, {
         isOpen: this.state.isConfirmOpen,
-        title: "DELETE_DEVICE_TITLE",
-        text: "DELETE_DEVICE_TEXT",
-        cancel: "DELETE_DEVICE_CANCEL",
-        submit: "DELETE_DEVICE_SUBMIT",
+        title: "DELETE_USER_TITLE",
+        text: "DELETE_USER_TEXT",
+        cancel: "DELETE_USER_CANCEL",
+        submit: "DELETE_USER_SUBMIT",
         onCancel: this.handleCancelDelete,
         onSubmit: this.handleConfirmDelete
-      }), _react.default.createElement(_ProxyModal.default, {
-        isOpen: this.state.isProxyModalOpen,
-        deviceId: this.state.proxyModalDeviceId,
-        onClose: this.handleProxyModalClose
       }));
     }
   }]);
 
-  return Devices;
+  return Users;
 }(_react.default.Component);
 
 var _default = (0, _styles.withStyles)(styles, {
   withTheme: true
-})(Devices);
+})(Users);
 
 exports.default = _default;
 
 /***/ }),
-/* 188 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/LinearProgress");
-
-/***/ }),
-/* 189 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/Tooltip");
-
-/***/ }),
-/* 190 */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/icons/ExitToApp");
-
-/***/ }),
-/* 191 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7792,51 +8255,53 @@ exports.default = void 0;
 
 var _reactIntl = __webpack_require__(9);
 
-var _devices = __webpack_require__(11);
+var _users = __webpack_require__(82);
 
 var _connectForm = _interopRequireDefault(__webpack_require__(64));
 
-var _EditDeviceModal = _interopRequireDefault(__webpack_require__(192));
+var _EditUserModal = _interopRequireDefault(__webpack_require__(223));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    data: _devices.devicesSelectors.getEditModalData(state),
-    isOpen: _devices.devicesSelectors.isEditModalOpen(state)
+    data: _users.usersSelectors.getEditModalData(state),
+    isOpen: _users.usersSelectors.isEditModalOpen(state)
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     onCancel: function onCancel() {
-      return dispatch(_devices.devicesOperations.hideEditModal());
+      return dispatch(_users.usersOperations.hideEditModal());
     },
     onLoad: function onLoad() {
-      return dispatch(_devices.devicesOperations.load());
+      return dispatch(_users.usersOperations.load());
     },
-    onCreate: function onCreate(name, password) {
-      return dispatch(_devices.devicesOperations.reqCreate({
-        name: name,
-        password: password
+    onCreate: function onCreate(login, password, isAdmin) {
+      return dispatch(_users.usersOperations.create({
+        login: login,
+        password: password,
+        isAdmin: isAdmin
       }));
     },
-    onEdit: function onEdit(id, name, password) {
-      return dispatch(_devices.devicesOperations.reqEdit({
+    onEdit: function onEdit(id, login, password, isAdmin) {
+      return dispatch(_users.usersOperations.edit({
         id: id,
-        name: name,
-        password: password
+        login: login,
+        password: password,
+        isAdmin: isAdmin
       }));
     }
   };
 };
 
-var EditDeviceModal = (0, _reactIntl.injectIntl)((0, _connectForm.default)(_EditDeviceModal.default, mapStateToProps, mapDispatchToProps));
-var _default = EditDeviceModal;
+var EditUserModal = (0, _reactIntl.injectIntl)((0, _connectForm.default)(_EditUserModal.default, mapStateToProps, mapDispatchToProps));
+var _default = EditUserModal;
 exports.default = _default;
 
 /***/ }),
-/* 192 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7877,9 +8342,11 @@ var _Button = _interopRequireDefault(__webpack_require__(28));
 
 var _Form2 = _interopRequireDefault(__webpack_require__(67));
 
-var _Field = _interopRequireDefault(__webpack_require__(70));
+var _Field = _interopRequireDefault(__webpack_require__(71));
 
-var _device = _interopRequireDefault(__webpack_require__(193));
+var _constants = _interopRequireDefault(__webpack_require__(4));
+
+var _user = _interopRequireDefault(__webpack_require__(224));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7920,12 +8387,12 @@ var styles = function styles(theme) {
   };
 };
 
-var EditDeviceModal =
+var EditUserModal =
 /*#__PURE__*/
 function (_Form) {
-  _inherits(EditDeviceModal, _Form);
+  _inherits(EditUserModal, _Form);
 
-  _createClass(EditDeviceModal, null, [{
+  _createClass(EditUserModal, null, [{
     key: "onSubmit",
     value: function () {
       var _onSubmit = _asyncToGenerator(
@@ -7942,7 +8409,7 @@ function (_Form) {
                 }
 
                 _context.next = 3;
-                return props.onEdit(props.data.get("id"), props.getValue("name"), props.getValue("password"));
+                return props.onEdit(props.data.get("id"), props.getValue("login"), props.getValue("password"), props.getValue("isAdmin"));
 
               case 3:
                 result = _context.sent;
@@ -7951,7 +8418,7 @@ function (_Form) {
 
               case 6:
                 _context.next = 8;
-                return props.onCreate(props.getValue("name"), props.getValue("password"));
+                return props.onCreate(props.getValue("login"), props.getValue("password"), props.getValue("isAdmin"));
 
               case 8:
                 result = _context.sent;
@@ -8001,9 +8468,11 @@ function (_Form) {
       /* eslint-disable lodash/prefer-lodash-method */
 
       if (prevState.isOpen !== nextProps.isOpen) {
-        var name = nextProps.data && nextProps.data.get("name");
-        nextProps.dispatch(nextProps.change("name", name || ""));
+        var login = nextProps.data && nextProps.data.get("login");
+        var isAdmin = !!(nextProps.data && nextProps.data.get("roles").includes(_constants.default.roles.ADMIN));
+        nextProps.dispatch(nextProps.change("login", login || ""));
         nextProps.dispatch(nextProps.change("password", ""));
+        nextProps.dispatch(nextProps.change("isAdmin", isAdmin));
         nextProps.dispatch(nextProps.clearAsyncError());
         nextProps.dispatch(nextProps.clearSubmitErrors());
         state.isOpen = nextProps.isOpen;
@@ -8015,17 +8484,17 @@ function (_Form) {
     }
   }]);
 
-  function EditDeviceModal(props) {
+  function EditUserModal(props) {
     var _this;
 
-    _classCallCheck(this, EditDeviceModal);
+    _classCallCheck(this, EditUserModal);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(EditDeviceModal).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(EditUserModal).call(this, props));
     _this.state = {};
     return _this;
   }
 
-  _createClass(EditDeviceModal, [{
+  _createClass(EditUserModal, [{
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -8035,7 +8504,7 @@ function (_Form) {
         open: this.props.isOpen,
         onClose: this.props.onCancel
       }, _react.default.createElement(_DialogTitle.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: this.props.data ? "EDIT_DEVICE_TITLE_EDIT" : "EDIT_DEVICE_TITLE_CREATE"
+        id: this.props.data ? "EDIT_USER_TITLE_EDIT" : "EDIT_USER_TITLE_CREATE"
       })), this.props.error && _react.default.createElement(_DialogContent.default, null, _.map(_.isArray(this.props.error) ? this.props.error : [this.props.error], function (error, index) {
         return _react.default.createElement(_DialogContentText.default, {
           key: "error-".concat(index),
@@ -8059,7 +8528,7 @@ function (_Form) {
         item: true,
         xs: 12
       }, _react.default.createElement(_Field.default, {
-        name: "name",
+        name: "login",
         type: "text",
         onSubmit: this.submit
       })), _react.default.createElement(_Grid.default, {
@@ -8068,6 +8537,13 @@ function (_Form) {
       }, _react.default.createElement(_Field.default, {
         name: "password",
         type: "password",
+        onSubmit: this.submit
+      })), _react.default.createElement(_Grid.default, {
+        item: true,
+        xs: 12
+      }, _react.default.createElement(_Field.default, {
+        name: "isAdmin",
+        type: "checkbox",
         onSubmit: this.submit
       })))), _react.default.createElement(_DialogActions.default, {
         classes: {
@@ -8079,450 +8555,64 @@ function (_Form) {
         disabled: this.props.submitting,
         onClick: this.props.onCancel
       }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "EDIT_DEVICE_CANCEL"
+        id: "EDIT_USER_CANCEL"
       })), _react.default.createElement(_Button.default, {
         variant: "contained",
         color: "secondary",
         disabled: this.props.submitting,
         onClick: this.submit
       }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "EDIT_DEVICE_SUBMIT"
+        id: "EDIT_USER_SUBMIT"
       }))));
     }
   }]);
 
-  return EditDeviceModal;
+  return EditUserModal;
 }(_Form2.default);
 
-_defineProperty(EditDeviceModal, "propTypes", _objectSpread({}, _Form2.default.propTypes, {
+_defineProperty(EditUserModal, "propTypes", _objectSpread({}, _Form2.default.propTypes, {
   intl: _reactIntl.intlShape,
   theme: _propTypes.default.object.isRequired,
   classes: _propTypes.default.object.isRequired,
   isOpen: _propTypes.default.bool.isRequired,
   data: _propTypes.default.instanceOf(_immutable.Map),
+  onCancel: _propTypes.default.func.isRequired,
+  onLoad: _propTypes.default.func.isRequired,
   onCreate: _propTypes.default.func.isRequired,
   onEdit: _propTypes.default.func.isRequired
 }));
 
-_defineProperty(EditDeviceModal, "formName", "editCameraForm");
+_defineProperty(EditUserModal, "formName", "editUserForm");
 
-_defineProperty(EditDeviceModal, "fields", _device.default);
+_defineProperty(EditUserModal, "fields", _user.default);
 
 var _default = (0, _styles.withStyles)(styles, {
   withTheme: true
-})(EditDeviceModal);
+})(EditUserModal);
 
 exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
-/* 193 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-/**
- * {
- *    fieldName: {
- *      label: 'translation key',
- *      normalize: 'rule1:param1:param2|rule2:param1:param2|...', // happens on change, optional
- *      transform: 'rule1:param1:param2|rule2:param1:param2|...', // happens on blur, optional
- *      validate: 'rule1:param1:param2|rule2:param1:param2|...',  // happens on blur, optional
- *    }
- * }
- *
- * Normalize and transfrom rules:
- * trim                       remove white space from the beginning and the end of value
- * compact:spaces             replace multiple occurences of space in a row with a single space
- * remove:spaces              remove spaces
- * rows:size                  forces "size" number of rows (1 if size is omitted)
- * integer                    removes everything except digits
- * phone                      forces international phone phormat
- * email                      normalizes email
- * credit_card:number         normalizes credit card number
- * credit_card:date           normalizes credit card expiration date
- * credit_card:secret         normalizes credit card CVV2 code
- *
- * Validation rules:
- * re:regexp:flags:key        value should match the regular expression "regexp", second param is flags,
- *                            third param is custom translation key used for the error message
- *                            when ":" is needed in the regexp it should be escaped like this "\\:"
- * required                   value is required
- * required:otherField        value is required if otherField is not empty
- * phone                      value is a phone number
- * email                      value is an email
- * password:length            value is a password of "length" characters (6 if omitted)
- * credit_card:number         value is credit card number
- * credit_card:date           value is credit card expiration date
- * credit_card:secret         value is credit card CVV2 code
- * match:otherField           value should be the same as the value of otherField
- */
 module.exports = {
-  name: {
-    normalize: "rows:1|remove:spaces",
-    transform: "trim",
-    label: "EDIT_DEVICE_NAME_LABEL"
-  },
-  password: {
-    normalize: "rows:1",
-    transform: "trim",
-    label: "EDIT_DEVICE_PASSWORD_LABEL"
-  }
-};
-
-/***/ }),
-/* 194 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _reactIntl = __webpack_require__(9);
-
-var _devices = __webpack_require__(11);
-
-var _connectForm = _interopRequireDefault(__webpack_require__(64));
-
-var _ProxyModal = _interopRequireDefault(__webpack_require__(195));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mapStateToProps = function mapStateToProps(state, props) {
-  return {
-    name: _devices.devicesSelectors.getName(state, {
-      deviceId: props.deviceId
-    })
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch, props) {
-  return {
-    onFinish: function onFinish(host, port, isAuthNeeded, username, password) {
-      return dispatch(_devices.devicesOperations.openBrowser({
-        deviceId: props.deviceId,
-        host: host,
-        port: port,
-        isAuthNeeded: isAuthNeeded,
-        username: username,
-        password: password
-      }));
-    }
-  };
-};
-
-var ProxyModal = (0, _reactIntl.injectIntl)((0, _connectForm.default)(_ProxyModal.default, mapStateToProps, mapDispatchToProps));
-var _default = ProxyModal;
-exports.default = _default;
-
-/***/ }),
-/* 195 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _regenerator = _interopRequireDefault(__webpack_require__(2));
-
-var _react = _interopRequireDefault(__webpack_require__(3));
-
-var _propTypes = _interopRequireDefault(__webpack_require__(5));
-
-var _reactIntl = __webpack_require__(9);
-
-var _styles = __webpack_require__(7);
-
-var _Dialog = _interopRequireDefault(__webpack_require__(59));
-
-var _DialogActions = _interopRequireDefault(__webpack_require__(60));
-
-var _DialogContent = _interopRequireDefault(__webpack_require__(61));
-
-var _DialogTitle = _interopRequireDefault(__webpack_require__(62));
-
-var _Grid = _interopRequireDefault(__webpack_require__(63));
-
-var _Button = _interopRequireDefault(__webpack_require__(28));
-
-var _Form2 = _interopRequireDefault(__webpack_require__(67));
-
-var _Field = _interopRequireDefault(__webpack_require__(70));
-
-var _proxy = _interopRequireDefault(__webpack_require__(196));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var styles = function styles() {
-  return {
-    actions: {
-      paddingLeft: "1rem",
-      paddingRight: "1rem",
-      paddingBottom: "1rem"
-    }
-  };
-};
-
-var ProxyModal =
-/*#__PURE__*/
-function (_Form) {
-  _inherits(ProxyModal, _Form);
-
-  _createClass(ProxyModal, null, [{
-    key: "onSubmit",
-    value: function () {
-      var _onSubmit = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee(values, dispatch, props) {
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                props.onFinish(props.getValue("host"), props.getValue("port"), !!props.getValue("isAuthNeeded"), props.getValue("login"), props.getValue("password"));
-                props.onClose();
-                return _context.abrupt("return", true);
-
-              case 3:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function onSubmit(_x, _x2, _x3) {
-        return _onSubmit.apply(this, arguments);
-      }
-
-      return onSubmit;
-    }()
-  }, {
-    key: "getDerivedStateFromProps",
-    value: function getDerivedStateFromProps(nextProps, prevState) {
-      var state = {};
-
-      if (prevState.isOpen !== nextProps.isOpen) {
-        if (!nextProps.getValue("host")) nextProps.dispatch(nextProps.change("host", "localhost"));
-        if (!nextProps.getValue("port")) nextProps.dispatch(nextProps.change("port", "80"));
-        nextProps.dispatch(nextProps.clearAsyncError());
-        nextProps.dispatch(nextProps.clearSubmitErrors());
-        state.isOpen = nextProps.isOpen;
-      }
-
-      return _.keys(state).length ? state : null;
-    }
-  }]);
-
-  function ProxyModal(props) {
-    var _this;
-
-    _classCallCheck(this, ProxyModal);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProxyModal).call(this, props));
-    _this.state = {};
-    return _this;
-  }
-
-  _createClass(ProxyModal, [{
-    key: "render",
-    value: function render() {
-      return _react.default.createElement(_Dialog.default, {
-        maxWidth: "xs",
-        open: this.props.isOpen,
-        onClose: this.props.onCancel
-      }, _react.default.createElement(_DialogTitle.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "PROXY_MODAL_TITLE"
-      }), ": ", this.props.name), _react.default.createElement(_DialogContent.default, null, _react.default.createElement(_Grid.default, {
-        container: true,
-        spacing: 16,
-        component: "form",
-        noValidate: true,
-        autoComplete: "off",
-        onSubmit: this.submit
-      }, _react.default.createElement(_Grid.default, {
-        item: true,
-        xs: 12
-      }, _react.default.createElement(_Field.default, {
-        name: "host",
-        type: "text",
-        onSubmit: this.submit
-      })), _react.default.createElement(_Grid.default, {
-        item: true,
-        xs: 12
-      }, _react.default.createElement(_Field.default, {
-        name: "port",
-        type: "text",
-        onSubmit: this.submit
-      })), _react.default.createElement(_Grid.default, {
-        item: true,
-        xs: 12
-      }, _react.default.createElement(_Field.default, {
-        name: "isAuthNeeded",
-        type: "checkbox",
-        onSubmit: this.submit
-      })), _react.default.createElement(_Grid.default, {
-        item: true,
-        xs: 12
-      }, _react.default.createElement(_Field.default, {
-        name: "login",
-        type: "text",
-        disabled: !this.props.getValue("isAuthNeeded"),
-        onSubmit: this.submit
-      })), _react.default.createElement(_Grid.default, {
-        item: true,
-        xs: 12
-      }, _react.default.createElement(_Field.default, {
-        name: "password",
-        type: "password",
-        disabled: !this.props.getValue("isAuthNeeded"),
-        onSubmit: this.submit
-      })))), _react.default.createElement(_DialogActions.default, {
-        classes: {
-          root: this.props.classes.actions
-        }
-      }, _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "primary",
-        disabled: this.props.submitting,
-        onClick: this.props.onCancel
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "PROXY_MODAL_CANCEL"
-      })), _react.default.createElement(_Button.default, {
-        variant: "contained",
-        color: "secondary",
-        disabled: this.props.submitting,
-        onClick: this.submit
-      }, _react.default.createElement(_reactIntl.FormattedMessage, {
-        id: "PROXY_MODAL_SUBMIT"
-      }))));
-    }
-  }]);
-
-  return ProxyModal;
-}(_Form2.default);
-
-_defineProperty(ProxyModal, "propTypes", _objectSpread({}, _Form2.default.propTypes, {
-  intl: _reactIntl.intlShape,
-  theme: _propTypes.default.object.isRequired,
-  classes: _propTypes.default.object.isRequired,
-  isOpen: _propTypes.default.bool.isRequired,
-  name: _propTypes.default.string,
-  onClose: _propTypes.default.func.isRequired,
-  onFinish: _propTypes.default.func.isRequired
-}));
-
-_defineProperty(ProxyModal, "formName", "proxyForm");
-
-_defineProperty(ProxyModal, "fields", _proxy.default);
-
-var _default = (0, _styles.withStyles)(styles, {
-  withTheme: true
-})(ProxyModal);
-
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
-
-/***/ }),
-/* 196 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * {
- *    fieldName: {
- *      label: 'translation key',
- *      normalize: 'rule1:param1:param2|rule2:param1:param2|...', // happens on change, optional
- *      transform: 'rule1:param1:param2|rule2:param1:param2|...', // happens on blur, optional
- *      validate: 'rule1:param1:param2|rule2:param1:param2|...',  // happens on blur, optional
- *    }
- * }
- *
- * Normalize and transfrom rules:
- * trim                       remove white space from the beginning and the end of value
- * compact:spaces             replace multiple occurences of space in a row with a single space
- * remove:spaces              remove spaces
- * rows:size                  forces "size" number of rows (1 if size is omitted)
- * integer                    removes everything except digits
- * phone                      forces international phone phormat
- * email                      normalizes email
- * credit_card:number         normalizes credit card number
- * credit_card:date           normalizes credit card expiration date
- * credit_card:secret         normalizes credit card CVV2 code
- *
- * Validation rules:
- * re:regexp:flags:key        value should match the regular expression "regexp", second param is flags,
- *                            third param is custom translation key used for the error message
- *                            when ":" is needed in the regexp it should be escaped like this "\\:"
- * required                   value is required
- * required:otherField        value is required if otherField is not empty
- * phone                      value is a phone number
- * email                      value is an email
- * password:length            value is a password of "length" characters (6 if omitted)
- * credit_card:number         value is credit card number
- * credit_card:date           value is credit card expiration date
- * credit_card:secret         value is credit card CVV2 code
- * match:otherField           value should be the same as the value of otherField
- */
-module.exports = {
-  host: {
-    normalize: "rows:1|remove:spaces",
-    transform: "trim",
-    label: "PROXY_HOST_LABEL"
-  },
-  port: {
-    normalize: "rows:1|integer",
-    transform: "trim",
-    label: "PROXY_PORT_LABEL"
-  },
-  isAuthNeeded: {
-    label: "PROXY_AUTH_LABEL"
-  },
   login: {
     normalize: "rows:1|remove:spaces",
     transform: "trim",
-    label: "PROXY_LOGIN_LABEL"
+    validate: "required|!ERROR_INVALID_LOGIN:re:^[a-z]+[a-z0-9]*$",
+    label: "EDIT_USER_LOGIN_LABEL"
   },
   password: {
-    normalize: "rows:1|remove:spaces",
-    transform: "trim",
-    label: "PROXY_PASSWORD_LABEL"
+    validate: "password",
+    label: "EDIT_USER_PASSWORD_LABEL"
+  },
+  isAdmin: {
+    label: "EDIT_USER_ADMIN_LABEL"
   }
 };
 

@@ -51,10 +51,12 @@ class AuthRepository extends EventEmitter {
         } else if (!user && this.config.selfRegistration) {
           user = new this.db.UserModel({
             login: args.login,
-            password: await this.auth.encryptPassword(args.password),
+            password:
+              args.password && (await this.auth.encryptPassword(args.password)),
             roles: args.roles || []
           });
 
+          await user.validateField("password", args.password); // before it is encrypted
           await user.validate();
           await user.save();
           context.preCachePages({ path: "/users" }).catch(console.error);
