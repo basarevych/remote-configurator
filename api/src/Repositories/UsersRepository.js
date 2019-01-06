@@ -44,7 +44,10 @@ class UsersRepository extends EventEmitter {
     if (!user || !_.includes(user.roles, accessLevel))
       return { success: false };
 
-    let target = new this.db.UserModel({
+    let target = await this.db.UserModel.findOne({ login: args.login });
+    if (target) return { success: false };
+
+    target = new this.db.UserModel({
       login: args.login,
       password:
         args.password && (await this.auth.encryptPassword(args.password)),
