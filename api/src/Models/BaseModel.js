@@ -80,9 +80,11 @@ class BaseModel {
     throw new Error("FindById is not implemented");
   }
 
-  async validateField(field, value, doThrow = true) {
+  async validateField({ field, path, value, doThrow = true }) {
+    if (!path) path = field;
+    if (!field) field = path;
     let error;
-    if (_.includes(this._required, field) && !value) {
+    if (_.includes(this._required, path) && !value) {
       error = { key: field, message: "ERROR_FIELD_REQUIRED" };
     } else {
       const rules = this._fields[field];
@@ -104,11 +106,24 @@ class BaseModel {
   async validate() {
     let errors = [];
 
-    for (let field of _.keys(this.toObject())) {
-      const error = await this.validateField(field, this[field], false);
-      if (error) errors.push(error);
-    }
+    const iterate = async (path, obj) => {
+      for (let field of _.keys(obj)) {
+        let cur = path ? path + "." + field : field;
+        if (_.isObject(obj[field])) {
+          await iterate(cur, obj[field]);
+        } else {
+          const error = await this.validateField({
+            field,
+            path: cur,
+            value: _.get(this, cur),
+            doThrow: false
+          });
+          if (error) errors.push(error);
+        }
+      }
+    };
 
+    await iterate("", this.toObject());
     if (errors.length) throw new ValidationError(errors);
   }
 

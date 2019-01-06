@@ -78,7 +78,7 @@ class DevicesRepository extends EventEmitter {
       owner: user.id
     });
 
-    await target.validateField("password", args.password); // before it is encrypted
+    await target.validateField({ field: "password", value: args.password }); // before it is encrypted
     await target.validate();
     await target.save();
     context.preCachePages({ path: "/", user }).catch(console.error);
@@ -98,7 +98,7 @@ class DevicesRepository extends EventEmitter {
     target.name = args.name;
     target.username = args.name && user.login + "_" + args.name;
     if (args.password) {
-      await target.validateField("password", args.password); // before it is encrypted
+      await target.validateField({ field: "password", value: args.password }); // before it is encrypted
       target.password = await this.auth.encryptPassword(args.password);
     }
 

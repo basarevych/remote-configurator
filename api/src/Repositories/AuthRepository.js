@@ -56,7 +56,7 @@ class AuthRepository extends EventEmitter {
             roles: args.roles || []
           });
 
-          await user.validateField("password", args.password); // before it is encrypted
+          await user.validateField({ field: "password", value: args.password }); // before it is encrypted
           await user.validate();
           await user.save();
           context.preCachePages({ path: "/users" }).catch(console.error);
