@@ -361,7 +361,7 @@ class Proxy extends EventEmitter {
   }
 
   onNock(req, res) {
-    if (!this.checkToken(req, res)) return;
+    if (!this.checkToken(req, res)) return this.browser.template(403, req, res);
 
     res.cookie(this.secretCookie, this.getSecret(), {
       expires: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000),

@@ -2,7 +2,6 @@
 
 const actions = require("./actions");
 const selectors = require("./selectors");
-const appSelectors = require("../app/selectors");
 const terminalsOperations = require("../terminals/operations");
 const terminalsSelectors = require("../terminals/selectors");
 const proxiesOperations = require("../proxies/operations");
@@ -43,13 +42,10 @@ const remove = ({ deviceId }) => {
 };
 
 const open = ({ deviceId, username, password }) => {
-  return async (dispatch, getState) => {
+  return async (dispatch, getState, di) => {
     try {
       await dispatch(set({ deviceId, isLoggingIn: true, isLoggedIn: false }));
-      let init = appSelectors.getService(getState(), {
-        service: "ssh.initiator",
-        params: [deviceId]
-      });
+      let init = di.get("ssh.initiator", deviceId);
       if (init) return init.start(username, password);
     } catch (error) {
       console.error(`Open: ${error.message}`);

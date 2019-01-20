@@ -1,1 +1,1 @@
-export { default } from "../app/containers/Pages/TerminalPage";
+export { default } from "../app/terminals/TerminalPageContainer";

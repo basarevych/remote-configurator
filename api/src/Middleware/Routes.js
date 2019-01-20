@@ -5,12 +5,14 @@ const constants = require("../../../common/constants");
  * REST API
  */
 class Routes extends EventEmitter {
-  constructor(build, csrf, browser) {
+  constructor(build, csrf, token, status, browser) {
     super();
 
     this.routes = {
       build,
       csrf,
+      token,
+      status,
       browser
     };
   }
@@ -22,7 +24,13 @@ class Routes extends EventEmitter {
 
   // eslint-disable-next-line lodash/prefer-constant
   static get $requires() {
-    return ["route.build", "route.csrf", "route.browser"];
+    return [
+      "route.build",
+      "route.csrf",
+      "route.token",
+      "route.status",
+      "route.browser"
+    ];
   }
 
   // eslint-disable-next-line lodash/prefer-constant

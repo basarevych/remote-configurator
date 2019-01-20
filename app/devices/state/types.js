@@ -1,0 +1,10 @@
+export const CLEAR = "app/devices/CLEAR";
+export const SET = "app/devices/SET";
+export const REMOVE = "app/devices/REMOVE";
+export const SET_SELECTED = "app/devices/SET_SELECTED";
+export const SELECT_ALL = "app/devices/SELECT_ALL";
+export const DESELECT_ALL = "app/devices/DESELECT_ALL";
+export const SHOW_EDIT_MODAL = "app/devices/SHOW_EDIT_MODAL";
+export const HIDE_EDIT_MODAL = "app/devices/HIDE_EDIT_MODAL";
+export const SHOW_CREDENTIALS_MODAL = "app/devices/SHOW_CREDENTIALS_MODAL";
+export const HIDE_CREDENTIALS_MODAL = "app/devices/HIDE_CREDENTIALS_MODAL";

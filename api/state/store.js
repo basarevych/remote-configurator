@@ -3,7 +3,6 @@
 const { applyMiddleware, createStore } = require("redux");
 const { combineReducers } = require("redux-immutable");
 const thunk = require("redux-thunk").default;
-const { appReducer } = require("./app");
 const { usersReducer } = require("./users");
 const { devicesReducer } = require("./devices");
 const { terminalsReducer } = require("./terminals");
@@ -11,7 +10,6 @@ const { historiesReducer } = require("./histories");
 const { proxiesReducer } = require("./proxies");
 
 let rootReducer = combineReducers({
-  app: appReducer,
   users: usersReducer,
   devices: devicesReducer,
   terminals: terminalsReducer,
@@ -19,7 +17,11 @@ let rootReducer = combineReducers({
   proxies: proxiesReducer
 });
 
-let middleware = applyMiddleware(thunk);
-
-module.exports = initialState =>
-  createStore(rootReducer, initialState, middleware);
+module.exports = (di, initialState) => {
+  const middleware = applyMiddleware(thunk.withExtraArgument(di));
+  const store = createStore(rootReducer, initialState || undefined, middleware);
+  di.registerInstance(store, "store");
+  di.registerInstance(store.getState.bind(store), "getState");
+  di.registerInstance(store.dispatch.bind(store), "dispatch");
+  return store;
+};

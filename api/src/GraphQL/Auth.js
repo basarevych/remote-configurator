@@ -1,9 +1,12 @@
 const EventEmitter = require("events");
+const { GraphQLString, GraphQLBoolean } = require("graphql");
+const { mutationWithClientMutationId } = require("graphql-relay");
 
 class Auth extends EventEmitter {
-  constructor(authRepo) {
+  constructor(di, authRepo) {
     super();
 
+    this.di = di;
     this.authRepo = authRepo;
   }
 
@@ -14,22 +17,57 @@ class Auth extends EventEmitter {
 
   // eslint-disable-next-line lodash/prefer-constant
   static get $requires() {
-    return ["repository.auth"];
+    return ["di", "repository.auth"];
   }
 
-  async gql() {
-    return {
-      Query: {
-        status: async (parent, args, context) =>
-          this.authRepo.getStatus(context, args)
+  // eslint-disable-next-line lodash/prefer-constant
+  idFetcher() {
+    return null;
+  }
+
+  // eslint-disable-next-line lodash/prefer-constant
+  typeResolver() {
+    return null;
+  }
+
+  init() {
+    this.query = {};
+
+    this.SignInMutation = mutationWithClientMutationId({
+      name: "SignIn",
+      inputFields: {
+        login: { type: GraphQLString },
+        password: { type: GraphQLString }
       },
-      Mutation: {
-        signIn: async (parent, args, context) =>
-          this.authRepo.signIn(context, args),
-        signOut: async (parent, args, context) =>
-          this.authRepo.signOut(context, args)
-      }
+      outputFields: {
+        success: {
+          type: GraphQLBoolean,
+          resolve: ({ success }) => success
+        }
+      },
+      mutateAndGetPayload: async (args, context) =>
+        await this.authRepo.signIn(context, args)
+    });
+
+    this.SignOutMutation = mutationWithClientMutationId({
+      name: "SignOut",
+      inputFields: {},
+      outputFields: {
+        success: {
+          type: GraphQLBoolean,
+          resolve: ({ success }) => success
+        }
+      },
+      mutateAndGetPayload: async (args, context) =>
+        await this.authRepo.signOut(context, args)
+    });
+
+    this.mutation = {
+      signIn: this.SignInMutation,
+      signOut: this.SignOutMutation
     };
+
+    this.subscription = {};
   }
 }
 

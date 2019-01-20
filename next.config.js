@@ -2,12 +2,12 @@
 
 const App = require("./api/app");
 const path = require("path");
-const fs = require("fs-extra");
 const DefinePlugin = require("webpack").DefinePlugin;
 const ProvidePlugin = require("webpack").ProvidePlugin;
 const ContextReplacementPlugin = require("webpack").ContextReplacementPlugin;
 const ServiceWorkerPlugin = require("serviceworker-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const RelayCompilerWebpackPlugin = require("relay-compiler-webpack-plugin");
 const withCSS = require("@zeit/next-css");
 const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
 const withPlugins = require("next-compose-plugins");
@@ -16,11 +16,6 @@ const constants = require("./common/constants");
 const l10n = require("./common/locales");
 
 let app = new App();
-
-const browsers = fs.readFileSync(
-  path.join(__dirname, ".browserslistrc"),
-  "utf8"
-);
 
 const plugins = [
   withProgressBar,
@@ -121,10 +116,31 @@ module.exports = withPlugins([...plugins], {
       new ContextReplacementPlugin(/react-intl[/\\]locale-data$/, locales)
     );
 
+    config.resolve.alias["graphql"] = path.resolve(
+      __dirname,
+      "node_modules",
+      "graphql"
+    );
+
+    if (dev) {
+      config.plugins.push(
+        new RelayCompilerWebpackPlugin({
+          schema: path.resolve(__dirname, "api", "schema.graphql"),
+          src: path.resolve(__dirname, "app")
+        })
+      );
+    }
+
     if (!isServer) {
       config.plugins.push(
         new ServiceWorkerPlugin({
-          entry: path.resolve(__dirname, "app", "lib", "serviceWorker.js"),
+          entry: path.resolve(
+            __dirname,
+            "app",
+            "app",
+            "lib",
+            "serviceWorker.js"
+          ),
           excludes: ["**/.*", "**/*.map"],
           includes: ["**/*"],
           publicPath: "/"
@@ -138,7 +154,7 @@ module.exports = withPlugins([...plugins], {
 
       if (entries["main.js"])
         entries["main.js"].unshift(
-          path.resolve(__dirname, "app", "lib", "initApp.js")
+          path.resolve(__dirname, "app", "app", "lib", "initApp.js")
         ); // polyfills and init
 
       return entries;

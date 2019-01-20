@@ -50,16 +50,6 @@ class UserModel extends BaseModel {
     return (this._data.roles = roles);
   }
 
-  toSanitizedObject() {
-    let obj = super.toSanitizedObject();
-    obj.roles = _.filter(
-      obj.roles || [],
-      role => role !== constants.roles.AUTHENTICATED
-    );
-    delete obj.password;
-    return obj;
-  }
-
   static async find(conditions) {
     return _.map(
       // eslint-disable-next-line lodash/prefer-lodash-method
@@ -76,6 +66,14 @@ class UserModel extends BaseModel {
   static async findById(id) {
     let obj = this.db.users.get(_.isString(id) ? parseInt(id) : id);
     return obj && new this(obj);
+  }
+
+  static async countDocuments(conditions) {
+    return this.db.users.count(this.conditions(conditions));
+  }
+
+  static chain() {
+    return this.db.users.chain();
   }
 
   async save() {

@@ -12,6 +12,10 @@ const secondary = "#af441d";
 
 const bgPage = "#000000";
 const bgNormal = "#484e5e";
+const bgPaper = `linear-gradient(to bottom right, ${lighten(
+  bgNormal,
+  0.2
+)} 0, ${darken(bgNormal, 0.2)} 100%)`;
 
 const textNormal = "rgba(255, 255, 255, 0.9)";
 const textDark = "rgba(255, 255, 255, 0.6)";
@@ -79,6 +83,7 @@ module.exports = {
   main: {
     background:
       "linear-gradient(to right, #484e5e 0, #484e5e 15%, #20252f 100%)",
+    paper: bgPaper,
     spacing: 24,
     error: {
       background: fade(textError, 0.65),
@@ -99,24 +104,20 @@ module.exports = {
     }
   },
   overrides: {
-    MuiPaper: {
+    MuiDialog: {
+      paper: {
+        background: [bgPaper, "!important"]
+      }
+    },
+    MuiAvatar: {
       root: {
-        background: [
-          `linear-gradient(to bottom right, ${lighten(
-            bgNormal,
-            0.2
-          )} 0, ${darken(bgNormal, 0.2)} 100%)`,
-          "!important"
-        ]
+        borderRadius: 3
       }
     },
     MuiTableRow: {
       root: {
         //height: ["100%", "!important"],
-        height: [48, "!important"],
-        "& th": {
-          fontWeight: "bold"
-        }
+        height: [48, "!important"]
       }
     },
     MuiTableBody: {
@@ -132,10 +133,23 @@ module.exports = {
       },
       head: {
         fontSize: fontSize,
+        fontWeight: "bold",
         color: textContrast
       },
       body: {
-        fontSize: fontSize
+        fontSize: fontSize,
+        "&.selected": {
+          background: primary
+        }
+      }
+    },
+    MuiTablePagination: {
+      root: {
+        borderTop: `1px solid ${textDisabled}`,
+        fontSize: "0.9rem"
+      },
+      caption: {
+        fontSize: "0.9rem"
       }
     },
     MuiButton: {

@@ -1,1 +1,1 @@
-export { default } from "../app/containers/Pages/DevicesPage";
+export { default } from "../app/index/IndexPageContainer";

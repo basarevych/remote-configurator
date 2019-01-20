@@ -8,7 +8,7 @@ module.exports = {
   password: {
     normalize: "rows:1",
     transform: "trim",
-    validate: "required|password",
+    validate: "password",
     label: "EDIT_DEVICE_PASSWORD_LABEL"
   }
 };

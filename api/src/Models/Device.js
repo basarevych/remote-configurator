@@ -57,13 +57,6 @@ class DeviceModel extends BaseModel {
       owner && (_.isString(owner) ? parseInt(owner) : owner));
   }
 
-  toSanitizedObject() {
-    let obj = super.toSanitizedObject();
-    obj.owner = obj.owner && obj.owner.toString();
-    delete obj.username;
-    return obj;
-  }
-
   static async find(conditions) {
     return _.map(
       // eslint-disable-next-line lodash/prefer-lodash-method
@@ -80,6 +73,14 @@ class DeviceModel extends BaseModel {
   static async findById(id) {
     let obj = this.db.devices.get(_.isString(id) ? parseInt(id) : id);
     return obj && new this(obj);
+  }
+
+  static async countDocuments(conditions) {
+    return this.db.devices.count(this.conditions(conditions));
+  }
+
+  static chain() {
+    return this.db.devices.chain();
   }
 
   async save() {
@@ -111,7 +112,7 @@ class DeviceModel extends BaseModel {
       });
       return x;
     };
-    return deepMap(conditions);
+    return conditions && deepMap(conditions);
   }
 }
 

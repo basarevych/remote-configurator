@@ -3,7 +3,6 @@
 const uuid = require("uuid");
 const actions = require("./actions");
 const selectors = require("./selectors");
-const appSelectors = require("../app/selectors");
 const devicesSelectors = require("../devices/selectors");
 const historiesOperations = require("../histories/operations");
 
@@ -28,7 +27,7 @@ const remove = ({ terminalId }) => {
 };
 
 const create = ({ deviceId, userId }) => {
-  return async (dispatch, getState) => {
+  return async (dispatch, getState, di) => {
     let terminalId = uuid.v4();
 
     let counter =
@@ -37,10 +36,7 @@ const create = ({ deviceId, userId }) => {
     let name =
       devicesSelectors.getName(getState(), { deviceId }) + " #" + counter;
 
-    let client = appSelectors.getService(getState(), {
-      service: "ssh.terminal",
-      params: [terminalId]
-    });
+    let client = di.get("ssh.terminal", terminalId);
     if (!client) return {};
 
     await dispatch(

@@ -1,7 +1,6 @@
 "use strict";
 
 const { createSelector } = require("reselect");
-const appSelectors = require("../app/selectors");
 
 const getProxiesMap = state => state.get("proxies");
 
@@ -73,40 +72,9 @@ const getClient = (state, props) =>
 const getStream = (state, props) =>
   state.getIn(["proxies", props.proxyId, "stream"]);
 
-const getProxy = (state, props) => {
-  const ssh = appSelectors.getService(state, { service: "ssh" });
-  return new Promise((resolve, reject) => {
-    try {
-      let onProxy, timer;
-      onProxy = ({ proxy, proxyId }) => {
-        if (proxyId === props.proxyId) {
-          ssh.removeListener("proxy", onProxy);
-          if (timer) {
-            clearTimeout(timer);
-            timer = null;
-          }
-          resolve(proxy);
-        }
-      };
-      ssh.on("proxy", onProxy);
-      timer = setTimeout(() => {
-        timer = null;
-        ssh.removeListener("proxy", onProxy);
-        resolve(null);
-      }, 60 * 1000);
-      const info = getProxyMap(state, { proxyId: props.proxyId });
-      if (info && info.get("proxy"))
-        onProxy({ proxy: info.get("proxy"), proxyId: props.proxyId });
-    } catch (error) {
-      reject(error);
-    }
-  });
-};
-
 module.exports = {
   getProxiesMap,
   hasProxy,
-  getProxy,
   findProxyId,
   isReady,
   getProxiesMapByDevice,

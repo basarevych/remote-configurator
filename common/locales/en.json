@@ -75,6 +75,7 @@
   "EDIT_USER_TITLE_EDIT": "Edit User",
   "EDIT_USER_LOGIN_LABEL": "Login",
   "EDIT_USER_PASSWORD_LABEL": "Password",
+  "EDIT_USER_AUTHENTICATED_LABEL": "Authenticated",
   "EDIT_USER_ADMIN_LABEL": "Administrator",
   "EDIT_USER_CANCEL": "Cancel",
   "EDIT_USER_SUBMIT": "Submit",
@@ -101,6 +102,7 @@
   "KEYBOARD_AUTH_REPLY_LABEL": "Response",
   "KEYBOARD_AUTH_CANCEL": "Cancel",
   "KEYBOARD_AUTH_SUBMIT": "Submit",
+  "OPERATION_FAILED": "Operations failed",
   "ERROR_FIELD_REQUIRED": "This field is required",
   "ERROR_INVALID_LOGIN": "Login should start with a letter and contain letters and digits only",
   "ERROR_INVALID_PASSWORD": "Password must be at least 6 characters long"

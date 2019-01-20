@@ -12,18 +12,24 @@ module.exports = {
   roles,
   pages: {
     "/": {
-      page: "/",
+      page: "/"
+    },
+    "/devices": {
+      page: "/devices",
       icon: "devices",
       menu: "MENU_DEVICES",
-      title: "TITLE_DEVICES"
+      title: "TITLE_DEVICES",
+      roles: [roles.AUTHENTICATED]
     },
     "/terminal": {
       page: "/terminal",
-      icon: "terminal"
+      icon: "terminal",
+      roles: [roles.AUTHENTICATED]
     },
     "/browser": {
       page: "/browser",
-      icon: "browser"
+      icon: "browser",
+      roles: [roles.AUTHENTICATED]
     },
     "/users": {
       page: "/users",

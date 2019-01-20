@@ -50,7 +50,7 @@ class Early extends EventEmitter {
     express.use(compression());
 
     // Log request
-    if (process.env.NODE_ENV !== "test") express.use(logger("dev"));
+    if (process.env.NODE_ENV !== "test") express.use(logger("short"));
 
     // Shortcuts to static
     express.use(

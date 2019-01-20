@@ -1,5 +1,7 @@
 node_modules/
 .tmp/
+**/__generated__/
+api/schema.graphql
 .env
 id_rsa
 id_rsa.pub

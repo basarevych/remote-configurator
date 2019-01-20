@@ -1,1 +1,1 @@
-export { default } from "../app/containers/Pages/BrowserPage";
+export { default } from "../app/browsers/BrowserPageContainer";

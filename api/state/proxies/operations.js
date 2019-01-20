@@ -4,7 +4,6 @@ const Chance = require("chance");
 const jsotp = require("jsotp");
 const actions = require("./actions");
 const selectors = require("./selectors");
-const appSelectors = require("../app/selectors");
 const devicesSelectors = require("../devices/selectors");
 
 const chance = new Chance();
@@ -67,9 +66,9 @@ const create = ({
   authUsername,
   authPassword
 }) => {
-  return async (dispatch, getState) => {
-    let ssh = appSelectors.getService(getState(), { service: "ssh" });
-    let config = appSelectors.getService(getState(), { service: "config" });
+  return async (dispatch, getState, di) => {
+    let ssh = di.get("ssh");
+    let config = di.get("config");
     let username = chance.string({
       length: 32,
       pool: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -79,15 +78,13 @@ const create = ({
     });
     let random = jsotp.Base32.random_gen();
 
-    let exec = appSelectors.getService(getState(), {
-      service: "ssh.exec",
-      params: [
-        deviceId,
-        `ssh -p ${config.sshPort} -R ${port}:${host}:${port} -N ${username}@${
-          config.sshOrigins[0]
-        }`
-      ]
-    });
+    let exec = di.get(
+      "ssh.exec",
+      deviceId,
+      `ssh -p ${config.sshPort} -R ${port}:${host}:${port} -N ${username}@${
+        config.sshOrigins[0]
+      }`
+    );
     if (!exec) return;
 
     let name = devicesSelectors.getUsername(getState(), { deviceId });
@@ -131,9 +128,44 @@ const create = ({
   };
 };
 
+const waitProxy = props => {
+  return async (dispatch, getState, di) => {
+    const ssh = di.get("ssh");
+    return new Promise((resolve, reject) => {
+      try {
+        let onProxy, timer;
+        onProxy = ({ proxy, proxyId }) => {
+          if (proxyId === props.proxyId) {
+            ssh.removeListener("proxy", onProxy);
+            if (timer) {
+              clearTimeout(timer);
+              timer = null;
+            }
+            resolve(proxy);
+          }
+        };
+        ssh.on("proxy", onProxy);
+        timer = setTimeout(() => {
+          timer = null;
+          ssh.removeListener("proxy", onProxy);
+          resolve(null);
+        }, 60 * 1000);
+        const info = selectors.getProxyMap(getState(), {
+          proxyId: props.proxyId
+        });
+        if (info && info.get("proxy"))
+          onProxy({ proxy: info.get("proxy"), proxyId: props.proxyId });
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+};
+
 module.exports = {
   authenticate,
   create,
   set,
-  remove
+  remove,
+  waitProxy
 };

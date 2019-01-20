@@ -1,7 +1,5 @@
 const Loki = require("lokijs");
 const EventEmitter = require("events");
-const UserModel = require("./Models/User");
-const DeviceModel = require("./Models/Device");
 const constants = require("../../common/constants");
 
 class Database extends EventEmitter {
@@ -11,11 +9,6 @@ class Database extends EventEmitter {
     this.config = config;
     this.di = di;
     this.auth = auth;
-
-    this.UserModel = UserModel;
-    this.UserModel.db = this;
-    this.DeviceModel = DeviceModel;
-    this.DeviceModel.db = this;
   }
 
   // eslint-disable-next-line lodash/prefer-constant
@@ -38,6 +31,12 @@ class Database extends EventEmitter {
 
     this.promise = new Promise((resolve, reject) => {
       try {
+        const User = this.di.get("model.user");
+        this.UserModel = User.model;
+
+        const Device = this.di.get("model.device");
+        this.DeviceModel = Device.model;
+
         this.db = new Loki(this.config.dbPath, {
           autoload: true,
           autoloadCallback: () => {

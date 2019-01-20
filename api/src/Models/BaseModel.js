@@ -30,6 +30,15 @@ class BaseModel {
     return (this._db = db);
   }
 
+  get $loki() {
+    return this._data.$loki;
+  }
+
+  set $loki($loki) {
+    this.whenUpdated = new Date();
+    return (this._data.$loki = $loki);
+  }
+
   get id() {
     return this._data.$loki && this._data.$loki.toString();
   }
@@ -59,15 +68,6 @@ class BaseModel {
     return this._data;
   }
 
-  toSanitizedObject() {
-    let obj = _.assign({}, this._data);
-    obj.id = obj.$loki && obj.$loki.toString();
-    obj.whenCreated = obj.whenCreated && obj.whenCreated.valueOf();
-    obj.whenUpdated = obj.whenUpdated && obj.whenUpdated.valueOf();
-    delete obj.$loki;
-    return obj;
-  }
-
   static async find() {
     throw new Error("Find is not implemented");
   }
@@ -83,28 +83,27 @@ class BaseModel {
   async validateField({ field, path, value, doThrow = true }) {
     if (!path) path = field;
     if (!field) field = path;
-    let error;
+    let errors = {};
     if (_.includes(this._required, path) && !value) {
-      error = { key: field, message: "ERROR_FIELD_REQUIRED" };
+      errors[field] = { message: "ERROR_FIELD_REQUIRED" };
     } else {
       const rules = this._fields[field];
       if (rules && rules.validate) {
         const obj = this.toObject();
         const fieldErrors = validate({}, rules.validate, value, fromJS(obj));
         if (fieldErrors.length) {
-          error = {
-            key: field,
+          errors[field] = {
             message: fieldErrors.length === 1 ? fieldErrors[0] : fieldErrors
           };
         }
       }
     }
-    if (error && doThrow) throw new ValidationError([error]);
-    return error || false;
+    if (_.keys(errors).length && doThrow) throw new ValidationError(errors);
+    return errors || false;
   }
 
   async validate() {
-    let errors = [];
+    let errors = {};
 
     const iterate = async (path, obj) => {
       for (let field of _.keys(obj)) {
@@ -112,19 +111,19 @@ class BaseModel {
         if (_.isObject(obj[field])) {
           await iterate(cur, obj[field]);
         } else {
-          const error = await this.validateField({
+          const fieldErrors = await this.validateField({
             field,
             path: cur,
             value: _.get(this, cur),
             doThrow: false
           });
-          if (error) errors.push(error);
+          if (fieldErrors) _.merge(errors, fieldErrors);
         }
       }
     };
 
     await iterate("", this.toObject());
-    if (errors.length) throw new ValidationError(errors);
+    if (_.keys(errors).length) throw new ValidationError(errors);
   }
 
   async save() {
@@ -147,7 +146,7 @@ class BaseModel {
       });
       return x;
     };
-    return deepMap(conditions);
+    return conditions && deepMap(conditions);
   }
 }
 

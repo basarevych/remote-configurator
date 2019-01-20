@@ -555,8 +555,7 @@ class WebSocket extends EventEmitter {
         doCreate = true;
       }
 
-      proxiesSelectors
-        .getProxy(this.getState(), { proxyId })
+      this.dispatch(proxiesOperations.waitProxy({ proxyId }))
         .then(proxy => cb(!!proxy))
         .catch(error => {
           cb(false);

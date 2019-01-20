@@ -1,24 +1,31 @@
 "use strict";
 
 if (!global._) global._ = require("lodash");
+require("isomorphic-unfetch");
 
 const nextApp = require("next");
 const Injectt = require("injectt");
 const path = require("path");
 const url = require("url");
 const express = require("express");
+const { PubSub } = require("graphql-subscriptions");
 const getStore = require("./state/store");
-const { appOperations } = require("./state/app");
 const constants = require("../common/constants");
 const styles = require("../common/themes");
 const l10n = require("../common/locales");
 
 require("dotenv").config({ path: path.join(__dirname, "..", "/.env") });
-if (!process.env.NODE_ENV) process.env.NODE_ENV = "production";
 
 let appHost = process.env.APP_HOST || "0.0.0.0";
 let appPort = parseInt(process.env.APP_PORT, 10) || 3000;
 let appOrigins = process.env.APP_ORIGINS;
+let appSubscriptionsPort =
+  parseInt(process.env.APP_SUBSCRIPTIONS_PORT, 10) || 3001;
+let appSubscriptionsServer =
+  process.env.APP_SUBSCRIPTIONS_SERVER ||
+  `ws://localhost:${appSubscriptionsPort}`;
+let appInnerServer =
+  process.env.APP_INNER_SERVER || `http://localhost:${appPort}`;
 let appStatic = process.env.APP_STATIC || "";
 let appTrustProxy = process.env.APP_TRUST_PROXY === "true" ? 1 : 0;
 let appOnlineUsers = parseInt(process.env.APP_ONLINE_USERS, 10) || 50;
@@ -46,6 +53,10 @@ let proxyInnerHost = process.env.PROXY_INNER_HOST || "127.0.0.1";
 let proxyInnerPortLow = parseInt(process.env.PROXY_INNER_PORT_LOW, 10) || 40000;
 let proxyInnerPortHigh =
   parseInt(process.env.PROXY_INNER_PORT_HIGH, 10) || 60000;
+
+if (!process.env.NODE_ENV) process.env.NODE_ENV = "production";
+if (!process.env.APP_INNER_SERVER)
+  process.env.APP_INNER_SERVER = appInnerServer;
 
 /**
  * The application
@@ -123,6 +134,9 @@ class App {
       appHost,
       appPort,
       appOrigins,
+      appSubscriptionsPort,
+      appSubscriptionsServer,
+      appInnerServer,
       appStatic,
       appTrustProxy,
       appOnlineUsers,
@@ -151,29 +165,25 @@ class App {
       proxyInnerPortHigh
     };
 
-    this.di = new Injectt();
-    this.di.registerInstance(this, "app");
-    this.di.registerInstance(this.config, "config");
-
+    // Express
     this.express = express();
     this.express.set("port", this.config.appPort);
     this.express.set("trust proxy", this.config.appTrustProxy);
+
+    // Dependency injection container
+    this.di = new Injectt();
+    this.di.load(path.resolve(__dirname, "src"));
+    this.di.registerInstance(this, "app");
+    this.di.registerInstance(this.config, "config");
+    this.di.registerInstance(new PubSub(), "pubsub");
+
+    // Redux store
+    this.store = getStore(this.di);
   }
 
-  async init({ server }) {
-    this.server = server;
-    this.di.load(path.resolve(__dirname, "src"));
-
-    // Create and initialize the store
-    this.store = getStore();
-    this.di.registerInstance(this.store, "store");
-    this.di.registerInstance(this.store.getState.bind(this.store), "getState");
-    this.di.registerInstance(this.store.dispatch.bind(this.store), "dispatch");
-    await this.store.dispatch(
-      appOperations.init({
-        di: this.di
-      })
-    );
+  async init({ mainServer, subscriptionsServer }) {
+    this.server = mainServer;
+    this.subscriptions = subscriptionsServer;
 
     // Initialize the singletons
     await Promise.all(_.invokeMap(this.di.singletons(), "init"));
@@ -196,6 +206,7 @@ class App {
     return {
       page: constants.pages[path] && constants.pages[path].page,
       query: _.assign({}, query || {}, {
+        subscriptionsServer: this.config.appSubscriptionsServer,
         locale: locale || l10n.defaultLocale || null,
         theme: theme || styles.defaultTheme || null,
         appOrigin: this.config.appOrigins[0],

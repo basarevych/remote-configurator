@@ -1,17 +1,18 @@
 const debug = require("debug")("app:browser");
 const EventEmitter = require("events");
 const Router = require("express").Router;
-const { proxiesSelectors } = require("../../state/proxies");
+const { proxiesSelectors, proxiesOperations } = require("../../state/proxies");
 const constants = require("../../../common/constants");
 
 /**
  * Browser route
  */
 class BrowserRoute extends EventEmitter {
-  constructor(getState) {
+  constructor(getState, dispatch) {
     super();
 
     this.getState = getState;
+    this.dispatch = dispatch;
     this.router = Router();
   }
 
@@ -22,7 +23,7 @@ class BrowserRoute extends EventEmitter {
 
   // eslint-disable-next-line lodash/prefer-constant
   static get $requires() {
-    return ["getState"];
+    return ["getState", "dispatch"];
   }
 
   async init() {
@@ -69,10 +70,11 @@ class BrowserRoute extends EventEmitter {
             host,
             port
           });
-          if (proxyId)
-            proxy = await proxiesSelectors.getProxy(this.getState(), {
-              proxyId
-            });
+          if (proxyId) {
+            proxy = await this.dispatch(
+              proxiesOperations.waitProxy({ proxyId })
+            );
+          }
           if (!proxy) {
             debug("No proxy");
             code = 404;

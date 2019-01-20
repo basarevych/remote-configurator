@@ -1,51 +1,65 @@
 import React from "react";
 import App, { Container } from "next/app";
 import Router from "next/router";
-import { Provider } from "react-redux";
+import { Provider as ReduxProvider } from "react-redux";
 import { MuiThemeProvider, jssPreset } from "@material-ui/core/styles";
 import { create as createJss } from "jss";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import jssExtend from "jss-extend";
 import JssProvider from "react-jss/lib/JssProvider";
-import getPageContext from "../app/lib/pageContext";
 import serialize from "../common/serialize";
 import deserialize from "../common/deserialize";
-import getStore from "../app/state/store";
-import { appOperations, appSelectors } from "../app/state/app";
-import { authSelectors } from "../app/state/auth";
+import getDiContainer from "../app/app/lib/getDiContainer";
+import getReduxStore from "../app/app/lib/getReduxStore";
+import getRelayEnvironment from "../app/app/lib/getRelayEnvironment";
+import getMaterialContext from "../app/app/lib/getMaterialContext";
+import { appOperations } from "../app/app/state";
+import { authSelectors } from "../app/auth/state";
 import constants from "../common/constants";
 import isRouteAllowed from "../common/isRouteAllowed";
-import IntlProvider from "../app/containers/Providers/IntlProvider";
-import DateProvider from "../app/containers/Providers/DateProvider";
-import Layout from "../app/containers/Layout";
+import { fetchQuery, RelayProvider } from "../app/app/providers/Relay";
+import IntlProvider from "../app/app/providers/IntlContainer";
+import DateProvider from "../app/app/providers/DateContainer";
+import Layout from "../app/app/layout/LayoutContainer";
 
 // Configure JSS
 const jss = createJss({ plugins: [...jssPreset().plugins, jssExtend()] });
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
-    let { isCreated, store } = getStore();
-
-    ctx.store = store;
     const { req, res, err, query } = ctx;
 
-    if (isCreated) {
-      await store.dispatch(
-        appOperations.create({
-          status: req && req.getAuthStatus && (await req.getAuthStatus()),
-          appOrigin: query && query.appOrigin,
-          proxyOrigin: query && query.proxyOrigin,
-          sshHost: query && query.sshHost,
-          sshPort: query && query.sshPort,
-          selfRegistration: query && query.selfRegistration
-        })
-      );
-    }
+    // Dependency Injection Container
+    const di = getDiContainer();
 
-    let statusCode = res ? res.statusCode : err ? err.statusCode : null;
-    if (!_.isFinite(statusCode) || statusCode < 200) statusCode = 200;
-    if (appSelectors.getStatusCode(store.getState()) !== statusCode)
-      await store.dispatch(appOperations.setStatusCode({ code: statusCode }));
+    // Redux Store
+    const store = getReduxStore(di);
+    const statusCode =
+      (res && res.statusCode) || (err && (err.statusCode || 500)) || 200;
+    await store.dispatch(
+      appOperations.create({
+        statusCode,
+        csrf: req && req.csrfHeader,
+        status: req && req.getAuthStatus && (await req.getAuthStatus()),
+        subscriptionsServer: query && query.subscriptionsServer,
+        appOrigin: query && query.appOrigin,
+        proxyOrigin: query && query.proxyOrigin,
+        sshHost: query && query.sshHost,
+        sshPort: query && query.sshPort,
+        selfRegistration: query && query.selfRegistration
+      })
+    );
+
+    // Relay Environment
+    const environment = getRelayEnvironment(di);
+
+    // when doing SSR we will be making own API requests on behalf of current user
+    const cookie = req && req.cookieHeader;
+    if (!process.browser && cookie) di.get("fetcher").setCookie(cookie);
+
+    ctx.statusCode = statusCode;
+    ctx.store = store;
+    ctx.fetchQuery = fetchQuery(environment);
 
     let pageProps = {};
     if (Component.getInitialProps)
@@ -53,25 +67,24 @@ class MyApp extends App {
 
     return {
       pageProps,
-      locale: query.locale,
       theme: query.theme,
-      state: serialize(store.getState())
+      reduxState: serialize(store.getState(), "redux"),
+      relayState: serialize(environment.getStore().getSource(), "relay")
     };
   }
 
   constructor(props) {
     super(props);
 
-    let { store } = getStore(deserialize(props.state));
-    this.store = store;
+    const di = getDiContainer();
+    this.reduxStore = getReduxStore(di, deserialize(props.reduxState, "redux"));
+    this.relayEnvironment = getRelayEnvironment(
+      di,
+      deserialize(props.relayState, "relay")
+    );
+    this.materialContext = getMaterialContext(props.theme);
 
-    store.dispatch(appOperations.init());
-
-    let locale = props.locale;
-    if (!locale) locale = appSelectors.getLocale(store.getState());
-    store.dispatch(appOperations.setLocale({ locale: locale }));
-
-    this.pageContext = getPageContext(props.theme);
+    this.reduxStore.dispatch(appOperations.init());
   }
 
   componentDidMount() {
@@ -83,12 +96,18 @@ class MyApp extends App {
 
       Router.onRouteChangeStart = url => {
         if (window.location.href === "/") return;
-        if (!isRouteAllowed(url, authSelectors.getRoles(this.store.getState())))
+        if (
+          !isRouteAllowed(
+            url,
+            authSelectors.getRoles(this.reduxStore.getState())
+          )
+        ) {
           window.location.href = "/";
+        }
       };
 
       setTimeout(() =>
-        this.store
+        this.reduxStore
           .dispatch(appOperations.start())
           .catch(error => console.error(error))
       );
@@ -104,27 +123,32 @@ class MyApp extends App {
 
     return (
       <Container>
-        <Provider store={this.store}>
-          <IntlProvider>
-            <DateProvider>
-              <JssProvider
-                jss={jss}
-                registry={this.pageContext.sheetsRegistry}
-                generateClassName={this.pageContext.generateClassName}
-              >
-                <MuiThemeProvider
-                  theme={this.pageContext.theme}
-                  sheetsManager={this.pageContext.sheetsManager}
+        <ReduxProvider store={this.reduxStore}>
+          <RelayProvider environment={this.relayEnvironment}>
+            <IntlProvider>
+              <DateProvider>
+                <JssProvider
+                  jss={jss}
+                  registry={this.materialContext.sheetsRegistry}
+                  generateClassName={this.materialContext.generateClassName}
                 >
-                  <CssBaseline />
-                  <Layout title={title}>
-                    <Component {...pageProps} pageContext={this.pageContext} />
-                  </Layout>
-                </MuiThemeProvider>
-              </JssProvider>
-            </DateProvider>
-          </IntlProvider>
-        </Provider>
+                  <MuiThemeProvider
+                    theme={this.materialContext.theme}
+                    sheetsManager={this.materialContext.sheetsManager}
+                  >
+                    <CssBaseline />
+                    <Layout title={title}>
+                      <Component
+                        {...pageProps}
+                        materialContext={this.materialContext}
+                      />
+                    </Layout>
+                  </MuiThemeProvider>
+                </JssProvider>
+              </DateProvider>
+            </IntlProvider>
+          </RelayProvider>
+        </ReduxProvider>
       </Container>
     );
   }

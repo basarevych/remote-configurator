@@ -1,17 +1,23 @@
 const debug = require("debug")("app:users");
 const EventEmitter = require("events");
+const { cursorToDocument } = require("../LokiConnection");
+const jwt = require("jsonwebtoken");
+const { withFilter } = require("graphql-subscriptions");
 const constants = require("../../../common/constants");
 
 const accessLevel = constants.roles.ADMIN;
 
 class UsersRepository extends EventEmitter {
-  constructor(auth, db, getState, dispatch) {
+  constructor(di, auth, config, user, getState, dispatch, pubsub) {
     super();
 
+    this.di = di;
     this.auth = auth;
-    this.db = db;
+    this.config = config;
+    this.user = user;
     this.getState = getState;
     this.dispatch = dispatch;
+    this.pubsub = pubsub;
   }
 
   // eslint-disable-next-line lodash/prefer-constant
@@ -21,86 +27,157 @@ class UsersRepository extends EventEmitter {
 
   // eslint-disable-next-line lodash/prefer-constant
   static get $requires() {
-    return ["auth", "db", "getState", "dispatch"];
+    return [
+      "di",
+      "auth",
+      "config",
+      "model.user",
+      "getState",
+      "dispatch",
+      "pubsub"
+    ];
   }
 
-  async getUsers(context) {
-    debug("users");
+  isAllowed(requester) {
+    return requester && _.includes(requester.roles, accessLevel);
+  }
 
-    let user = await context.getUser();
-    if (!user || !_.includes(user.roles, accessLevel)) return [];
-
-    return _.invokeMap(
-      // eslint-disable-next-line lodash/prefer-lodash-method
-      await this.db.UserModel.find(),
-      "toSanitizedObject"
+  subscribe(topics) {
+    return withFilter(
+      (rootValue, args, context) => {
+        try {
+          const decoded = jwt.verify(
+            args.token || "",
+            this.config.sessionSecret
+          );
+          context.userId = decoded.userId;
+        } catch (error) {
+          debug(`User subscribe: ${error.message}`);
+          context.userId = null;
+        }
+        return this.pubsub.asyncIterator(topics);
+      },
+      async (payload, args, context) => {
+        try {
+          if (!context || !context.userId) throw new Error("No user");
+          const user = await this.user.model.findById(context.userId);
+          if (!user) throw new Error("User not found");
+          if (!this.isAllowed(user)) throw new Error("Access denied");
+          return true;
+        } catch (error) {
+          debug(`User subscribe: ${error.message}`);
+          return false;
+        }
+      }
     );
   }
 
-  async createUser(context, args) {
-    debug("createUser");
+  async getUser(context, { id }) {
+    debug("getUser");
 
-    let user = await context.getUser();
-    if (!user || !_.includes(user.roles, accessLevel))
-      return { success: false };
+    let requester = await context.getUser();
+    if (!this.isAllowed(requester)) throw this.di.get("error.access");
 
-    let target = await this.db.UserModel.findOne({ login: args.login });
-    if (target) return { success: false };
+    if (!id) return null;
 
-    target = new this.db.UserModel({
-      login: args.login,
-      password:
-        args.password && (await this.auth.encryptPassword(args.password)),
-      roles: args.roles || []
-    });
-
-    await target.validateField({ field: "password", value: args.password }); // before it is encrypted
-    await target.validate();
-    await target.save();
-    context.preCachePages({ path: "/users" }).catch(console.error);
-    return { success: true, id: target.id };
+    const user = await this.user.model.findById(id);
+    if (!user) throw this.di.get("error.entityNotFound");
+    return user;
   }
 
-  async editUser(context, args) {
-    debug("editUser");
+  async countUsers(context) {
+    debug("countUsers");
 
-    let user = await context.getUser();
-    if (!user || !_.includes(user.roles, accessLevel))
-      return { success: false };
+    let requester = await context.getUser();
+    if (!this.isAllowed(requester)) throw this.di.get("error.access");
 
-    let target = await this.db.UserModel.findById(args.id);
-    if (!target) return { success: false };
+    return await this.user.model.countDocuments();
+  }
 
-    target.login = args.login;
-    if (args.password) {
-      await target.validateField({ field: "password", value: args.password }); // before it is encrypted
-      target.password = await this.auth.encryptPassword(args.password);
+  async getUsers(context, { after, first, before, last } = {}) {
+    debug("getUsers");
+
+    let requester = await context.getUser();
+    if (!this.isAllowed(requester)) throw this.di.get("error.access");
+
+    const docAfter = after && cursorToDocument(after);
+    const docBefore = before && cursorToDocument(before);
+
+    let params;
+    if (docAfter || docBefore) {
+      params = { $loki: {} };
+      if (docAfter) params.$loki.$gt = docAfter.$loki;
+      if (docBefore) params.$loki.$lt = docBefore.$loki;
     }
-    target.roles = args.roles;
-
-    await target.validate();
-    await target.save();
-    context.preCachePages({ path: "/users" }).catch(console.error);
-    return { success: true, id: target.id };
-  }
-
-  async deleteUser(context, args) {
-    debug("deleteUser");
-
-    let user = await context.getUser();
-    if (!user || !_.includes(user.roles, accessLevel))
-      return { success: false };
-
-    let target = await this.db.UserModel.findById(args.id);
-    if (!target) return { success: false };
 
     // eslint-disable-next-line lodash/prefer-lodash-method
-    let devices = await this.db.DeviceModel.find({ owner: target.id });
-    await Promise.all(_.invokeMap(devices, "remove"));
+    let query = this.user.model
+      .chain()
+      .find(params)
+      .simplesort("$loki");
+    if (first || last) query = query.limit(Math.max(first, last) + 1); // add +1 for hasNextPage
+    return _.map(await query.data(), item => new this.user.model(item));
+  }
 
-    await target.remove();
+  async createUser(context, { login, password, roles }) {
+    debug("createUser");
+
+    let requester = await context.getUser();
+    if (!this.isAllowed(requester)) throw this.di.get("error.access");
+
+    if (await this.user.model.findOne({ login }))
+      throw this.di.get("error.entityExists");
+
+    let user = new this.user.model({
+      login,
+      password: password && (await this.auth.encryptPassword(password)),
+      roles
+    });
+
+    await user.validateField({ field: "password", value: password }); // before it is encrypted
+    await user.validate();
+    await user.save();
     context.preCachePages({ path: "/users" }).catch(console.error);
-    return { success: true, id: target.id };
+    this.pubsub.publish("userCreated", { userCreated: user });
+    return user;
+  }
+
+  async editUser(context, { id, login, password, roles }) {
+    debug("editUser");
+
+    let requester = await context.getUser();
+    if (!this.isAllowed(requester)) throw this.di.get("error.access");
+
+    let user = await this.user.model.findById(id);
+    if (!user) throw this.di.get("error.entityNotFound");
+
+    user.login = login;
+    if (password) {
+      await user.validateField({ field: "password", value: password }); // before it is encrypted
+      user.password = await this.auth.encryptPassword(password);
+    }
+    user.roles = roles;
+
+    await user.validate();
+    await user.save();
+    context.preCachePages({ path: "/users" }).catch(console.error);
+    this.pubsub.publish("userUpdated", { userUpdated: user });
+    return user;
+  }
+
+  async deleteUser(context, { id }) {
+    debug("deleteUser");
+
+    let requester = await context.getUser();
+    if (!this.isAllowed(requester)) throw this.di.get("error.access");
+
+    let user = await this.user.model.findById(id);
+    if (!user) throw this.di.get("error.entityNotFound");
+
+    await user.remove();
+    context.preCachePages({ path: "/users" }).catch(console.error);
+    this.pubsub.publish("userDeleted", { userDeleted: user });
+    return user;
   }
 }
 

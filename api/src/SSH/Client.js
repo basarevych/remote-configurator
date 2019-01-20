@@ -285,8 +285,10 @@ class Client extends EventEmitter {
               info.bindAddr
             }:${info.bindPort}`
           );
-          const proxy = await proxiesSelectors.getProxy(this.getState(), {
-            proxyId: this.proxyId
+          this.dispatch(
+            proxiesOperations.waitProxy({ proxyId: this.proxyId })
+          ).then(proxy => {
+            if (proxy) return proxy.stop();
           });
           await this.dispatch(
             proxiesOperations.set({
@@ -294,7 +296,6 @@ class Client extends EventEmitter {
               proxy: null
             })
           );
-          if (proxy) await proxy.stop();
         }
         accept(info.bindPort);
         return this.stop();

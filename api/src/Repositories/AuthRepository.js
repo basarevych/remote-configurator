@@ -1,13 +1,15 @@
 const debug = require("debug")("app:auth");
+const Chance = require("chance");
 const EventEmitter = require("events");
 
 class AuthRepository extends EventEmitter {
-  constructor(config, auth, db) {
+  constructor(auth, user) {
     super();
 
-    this.config = config;
     this.auth = auth;
-    this.db = db;
+    this.user = user;
+
+    this.chance = new Chance();
   }
 
   // eslint-disable-next-line lodash/prefer-constant
@@ -17,13 +19,14 @@ class AuthRepository extends EventEmitter {
 
   // eslint-disable-next-line lodash/prefer-constant
   static get $requires() {
-    return ["config", "auth", "db"];
+    return ["auth", "model.user"];
   }
 
-  async getStatus(context) {
-    debug("status");
-
-    return context.getAuthStatus();
+  generateToken() {
+    return this.chance.string({
+      length: 32,
+      pool: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    });
   }
 
   async signIn(context, args) {
@@ -42,14 +45,14 @@ class AuthRepository extends EventEmitter {
     if (!success) {
       let user;
       if (args.login && args.password) {
-        user = await this.db.UserModel.findOne({ login: args.login });
+        user = await this.user.model.findOne({ login: args.login });
         if (
           user &&
           !(await this.auth.checkPassword(args.password, user.password))
         ) {
           user = null;
         } else if (!user && this.config.selfRegistration) {
-          user = new this.db.UserModel({
+          user = new this.user.model({
             login: args.login,
             password:
               args.password && (await this.auth.encryptPassword(args.password)),
