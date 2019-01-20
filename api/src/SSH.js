@@ -35,8 +35,8 @@ class SSH extends EventEmitter {
 
     this.promise = Promise.resolve();
 
-    const privateKeyPath = path.join(__dirname, "..", "..", "..", "id_rsa");
-    const publicKeyPath = path.join(__dirname, "..", "..", "..", "id_rsa.pub");
+    const privateKeyPath = path.join(__dirname, "..", "..", "id_rsa");
+    const publicKeyPath = path.join(__dirname, "..", "..", "id_rsa.pub");
 
     try {
       fs.accessSync(privateKeyPath);
