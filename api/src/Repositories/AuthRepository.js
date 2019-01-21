@@ -3,9 +3,10 @@ const Chance = require("chance");
 const EventEmitter = require("events");
 
 class AuthRepository extends EventEmitter {
-  constructor(auth, user) {
+  constructor(config, auth, user) {
     super();
 
+    this.config = config;
     this.auth = auth;
     this.user = user;
 
@@ -19,7 +20,7 @@ class AuthRepository extends EventEmitter {
 
   // eslint-disable-next-line lodash/prefer-constant
   static get $requires() {
-    return ["auth", "model.user"];
+    return ["config", "auth", "model.user"];
   }
 
   generateToken() {
