@@ -135,7 +135,7 @@ class DevicesRepository extends EventEmitter {
     // eslint-disable-next-line lodash/prefer-lodash-method
     let query = this.device.model
       .chain()
-      .find(params)
+      .find(this.device.model.constructor.conditions(params))
       .simplesort("$loki");
     if (first || last) query = query.limit(Math.max(first, last) + 1); // add +1 for hasNextPage
     return _.map(await query.data(), item => new this.device.model(item));
