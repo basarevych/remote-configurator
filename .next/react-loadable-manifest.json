@@ -281,7 +281,7 @@
       "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
     }
   ],
-  "./../../../node_modules/webpack/buildin/global.js": [
+  "./../node_modules/webpack/buildin/global.js": [
     {
       "id": 46,
       "name": "./node_modules/webpack/buildin/global.js",
@@ -321,7 +321,7 @@
       "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
     }
   ],
-  "@babel/runtime/helpers/objectWithoutPropertiesLoose": [
+  "./objectWithoutPropertiesLoose": [
     {
       "id": 51,
       "name": "./node_modules/next/node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js",
@@ -345,7 +345,7 @@
       "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
     }
   ],
-  "@material-ui/core/Typography": [
+  "../Typography": [
     {
       "id": 57,
       "name": "./node_modules/@material-ui/core/Typography/index.js",
@@ -385,7 +385,7 @@
       "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
     }
   ],
-  "../../../common/constants": [
+  "../common/constants": [
     {
       "id": 68,
       "name": "./common/constants.js",
@@ -489,7 +489,7 @@
       "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
     }
   ],
-  "@material-ui/core/Paper": [
+  "../Paper": [
     {
       "id": 91,
       "name": "./node_modules/@material-ui/core/Paper/index.js",
@@ -577,7 +577,7 @@
       "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
     }
   ],
-  "@material-ui/core/IconButton": [
+  "../IconButton": [
     {
       "id": 104,
       "name": "./node_modules/@material-ui/core/IconButton/index.js",
@@ -847,7 +847,7 @@
       "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
     }
   ],
-  "./createBreakpoints": [
+  "../styles/createBreakpoints": [
     {
       "id": 216,
       "name": "./node_modules/@material-ui/core/styles/createBreakpoints.js",
@@ -957,7 +957,7 @@
       "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
     }
   ],
-  "./rules/StyleRule": [
+  "../rules/StyleRule": [
     {
       "id": 246,
       "name": "./node_modules/jss/lib/rules/StyleRule.js",
@@ -1135,7 +1135,7 @@
       "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
     }
   ],
-  "@material-ui/core/colors/red": [
+  "./red": [
     {
       "id": 281,
       "name": "./node_modules/@material-ui/core/colors/red.js",
@@ -1375,7 +1375,7 @@
       "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
     }
   ],
-  "./utils/toCssValue": [
+  "../utils/toCssValue": [
     {
       "id": 479,
       "name": "./node_modules/jss/lib/utils/toCssValue.js",
@@ -1399,7 +1399,7 @@
       "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
     }
   ],
-  "./mergeClasses": [
+  "../styles/mergeClasses": [
     {
       "id": 482,
       "name": "./node_modules/@material-ui/core/styles/mergeClasses.js",
@@ -1853,7 +1853,7 @@
       "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
     }
   ],
-  "./components/Context": [
+  "./Context": [
     {
       "id": 572,
       "name": "./node_modules/react-redux/es/components/Context.js",
@@ -1893,7 +1893,7 @@
       "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
     }
   ],
-  "@material-ui/core/colors/pink": [
+  "./pink": [
     {
       "id": 577,
       "name": "./node_modules/@material-ui/core/colors/pink.js",
@@ -1901,7 +1901,7 @@
       "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
     }
   ],
-  "@material-ui/core/colors/grey": [
+  "./grey": [
     {
       "id": 578,
       "name": "./node_modules/@material-ui/core/colors/grey.js",
@@ -1987,16 +1987,10 @@
       "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
     }
   ],
-  "./isEvent": [
+  "./events/isEvent": [
     {
       "id": 592,
       "name": "./node_modules/redux-form/lib/events/isEvent.js",
-      "file": "static/chunks/commons.5134d176b1eb529fffa6.js",
-      "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
-    },
-    {
-      "id": 604,
-      "name": "./node_modules/redux-form/es/events/isEvent.js",
       "file": "static/chunks/commons.5134d176b1eb529fffa6.js",
       "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
     }
@@ -2029,12 +2023,6 @@
     {
       "id": 596,
       "name": "./node_modules/lodash/keys.js",
-      "file": "static/chunks/commons.5134d176b1eb529fffa6.js",
-      "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
-    },
-    {
-      "id": 841,
-      "name": "./node_modules/redux-form/lib/structure/plain/keys.js",
       "file": "static/chunks/commons.5134d176b1eb529fffa6.js",
       "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
     },
@@ -2095,6 +2083,14 @@
     {
       "id": 602,
       "name": "./node_modules/redux-form/lib/selectors/isValid.js",
+      "file": "static/chunks/commons.5134d176b1eb529fffa6.js",
+      "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
+    }
+  ],
+  "./isEvent": [
+    {
+      "id": 604,
+      "name": "./node_modules/redux-form/es/events/isEvent.js",
       "file": "static/chunks/commons.5134d176b1eb529fffa6.js",
       "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
     }
@@ -2875,6 +2871,12 @@
       "name": "./node_modules/redux-form/lib/isReactNative.js",
       "file": "static/chunks/commons.5134d176b1eb529fffa6.js",
       "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
+    },
+    {
+      "id": 867,
+      "name": "./node_modules/redux-form/es/isReactNative.js",
+      "file": "static/chunks/commons.5134d176b1eb529fffa6.js",
+      "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
     }
   ],
   "../plain/getIn": [
@@ -2977,6 +2979,14 @@
     {
       "id": 840,
       "name": "./node_modules/lodash/_getTag.js",
+      "file": "static/chunks/commons.5134d176b1eb529fffa6.js",
+      "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
+    }
+  ],
+  "../plain/keys": [
+    {
+      "id": 841,
+      "name": "./node_modules/redux-form/lib/structure/plain/keys.js",
       "file": "static/chunks/commons.5134d176b1eb529fffa6.js",
       "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
     }
@@ -3117,14 +3127,6 @@
     {
       "id": 870,
       "name": "./node_modules/redux-form/es/events/silenceEvent.js",
-      "file": "static/chunks/commons.5134d176b1eb529fffa6.js",
-      "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
-    }
-  ],
-  "../isReactNative": [
-    {
-      "id": 867,
-      "name": "./node_modules/redux-form/es/isReactNative.js",
       "file": "static/chunks/commons.5134d176b1eb529fffa6.js",
       "publicPath": "/_next/static/chunks/commons.5134d176b1eb529fffa6.js"
     }
