@@ -113,7 +113,7 @@ class DevicesRepository extends EventEmitter {
     let requester = await context.getUser();
     if (!this.isAllowed(requester)) throw this.di.get("error.access");
 
-    return await this.device.model.countDocuments();
+    return await this.device.model.countDocuments({ owner: requester.id });
   }
 
   async getDevices(context, { after, first, before, last } = {}) {
@@ -127,7 +127,7 @@ class DevicesRepository extends EventEmitter {
 
     let params;
     if (docAfter || docBefore) {
-      params = { $loki: {} };
+      params = { $loki: {}, owner: requester.id };
       if (docAfter) params.$loki.$gt = docAfter.$loki;
       if (docBefore) params.$loki.$lt = docBefore.$loki;
     }
