@@ -10855,7 +10855,7 @@ function (_React$Component) {
       }
 
       if (path === "/browser") {
-        text = (this.props.router.query && this.props.router.query.host) + ":" + (this.props.router.query && this.props.router.query.port);
+        text = _react.default.createElement("span", null, !!this.props.router.query && this.props.router.query.host, ":", !!this.props.router.query && this.props.router.query.port);
       }
 
       return _react.default.createElement(_MenuItem.default, {

@@ -191,10 +191,12 @@ class Sidebar extends React.Component {
         this.props.router.query.terminalId === query.terminalId;
     }
     if (path === "/browser") {
-      text =
-        (this.props.router.query && this.props.router.query.host) +
-        ":" +
-        (this.props.router.query && this.props.router.query.port);
+      text = (
+        <span>
+          {!!this.props.router.query && this.props.router.query.host}:
+          {!!this.props.router.query && this.props.router.query.port}
+        </span>
+      );
     }
 
     return (
