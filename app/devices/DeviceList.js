@@ -191,10 +191,10 @@ class DeviceList extends React.Component {
     });
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.setState({
       isIntroDismissed:
-        this.props.onGetCookie(DeviceList.introDismissedKey) || false
+        (await this.props.onGetCookie(DeviceList.introDismissedKey)) || false
     });
     this.subscribe();
   }

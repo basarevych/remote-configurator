@@ -1901,7 +1901,7 @@ var getCookie = function getCookie(_ref7) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                di.get("cookie").get(name);
+                return _context5.abrupt("return", di.get("cookie").get(name));
 
               case 1:
               case "end":

@@ -68,7 +68,7 @@ export const setCookie = ({ name, value, days }) => {
 
 export const getCookie = ({ name }) => {
   return async (dispatch, getState, di) => {
-    di.get("cookie").get(name);
+    return di.get("cookie").get(name);
   };
 };
 
