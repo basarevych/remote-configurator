@@ -125,9 +125,9 @@ class DevicesRepository extends EventEmitter {
     const docAfter = after && cursorToDocument(after);
     const docBefore = before && cursorToDocument(before);
 
-    let params;
+    let params = { owner: requester.id };
     if (docAfter || docBefore) {
-      params = { $loki: {}, owner: requester.id };
+      params.$loki = {};
       if (docAfter) params.$loki.$gt = docAfter.$loki;
       if (docBefore) params.$loki.$lt = docBefore.$loki;
     }
