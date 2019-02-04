@@ -113,7 +113,7 @@ class DevicesRepository extends EventEmitter {
     let requester = await context.getUser();
     if (!this.isAllowed(requester)) throw this.di.get("error.access");
 
-    return await this.device.model.countDocuments({ owner: requester.id });
+    return await this.device.model.countDocuments({ owner: requester.$loki });
   }
 
   async getDevices(context, { after, first, before, last } = {}) {
@@ -149,7 +149,7 @@ class DevicesRepository extends EventEmitter {
 
     let device = await this.device.model.findOne({
       name,
-      owner: requester.id
+      owner: requester.$loki
     });
     if (device) throw this.di.get("error.entityExists");
 
@@ -157,7 +157,7 @@ class DevicesRepository extends EventEmitter {
       name,
       username: name && requester.login + "_" + name,
       password: password && (await this.auth.encryptPassword(password)),
-      owner: requester.id
+      owner: requester.$loki
     });
 
     await device.validateField({ field: "password", value: password }); // before it is encrypted
@@ -175,7 +175,7 @@ class DevicesRepository extends EventEmitter {
     if (!this.isAllowed(requester)) throw this.di.get("error.access");
 
     let device = await this.device.model.findById(id);
-    if (!device || device.owner !== requester.id)
+    if (!device || device.owner !== requester.$loki)
       throw this.di.get("error.entityNotFound");
 
     device.name = name;
@@ -199,7 +199,7 @@ class DevicesRepository extends EventEmitter {
     if (!this.isAllowed(requester)) throw this.di.get("error.access");
 
     let device = await this.device.model.findById(id);
-    if (!device || device.owner !== requester.id)
+    if (!device || device.owner !== requester.$loki)
       throw this.di.get("error.entityNotFound");
 
     await device.remove();
