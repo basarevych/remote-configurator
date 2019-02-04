@@ -53,13 +53,13 @@ class UserModel extends BaseModel {
   static async find(conditions) {
     return _.map(
       // eslint-disable-next-line lodash/prefer-lodash-method
-      this.db.users.find(this.conditions(conditions)),
+      this.db.users.find(conditions),
       obj => new this(obj)
     );
   }
 
   static async findOne(conditions) {
-    let obj = this.db.users.findOne(this.conditions(conditions));
+    let obj = this.db.users.findOne(conditions);
     return obj && new this(obj);
   }
 
@@ -69,7 +69,7 @@ class UserModel extends BaseModel {
   }
 
   static async countDocuments(conditions) {
-    return this.db.users.count(this.conditions(conditions));
+    return this.db.users.count(conditions);
   }
 
   static chain() {

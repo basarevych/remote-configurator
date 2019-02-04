@@ -133,21 +133,6 @@ class BaseModel {
   async remove() {
     throw new Error("Remove is not implemented");
   }
-
-  static conditions(conditions) {
-    const deepMap = obj => {
-      const x = {};
-      _.forOwn(obj, function(value, key) {
-        if (key === "id" || _.endsWith(key, ".id")) {
-          key = key.slice(0, key.length - 2) + "$loki";
-          if (_.isString(value)) value = parseInt(value);
-        }
-        x[key] = _.isPlainObject(value) ? deepMap(value) : value;
-      });
-      return x;
-    };
-    return conditions && deepMap(conditions);
-  }
 }
 
 module.exports = BaseModel;

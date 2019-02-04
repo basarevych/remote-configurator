@@ -60,13 +60,13 @@ class DeviceModel extends BaseModel {
   static async find(conditions) {
     return _.map(
       // eslint-disable-next-line lodash/prefer-lodash-method
-      this.db.devices.find(this.conditions(conditions)),
+      this.db.devices.find(conditions),
       obj => new this(obj)
     );
   }
 
   static async findOne(conditions) {
-    let obj = this.db.devices.findOne(this.conditions(conditions));
+    let obj = this.db.devices.findOne(conditions);
     return obj && new this(obj);
   }
 
@@ -76,7 +76,7 @@ class DeviceModel extends BaseModel {
   }
 
   static async countDocuments(conditions) {
-    return this.db.devices.count(this.conditions(conditions));
+    return this.db.devices.count(conditions);
   }
 
   static chain() {
