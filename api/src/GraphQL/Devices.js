@@ -150,7 +150,7 @@ class Devices extends EventEmitter {
       mutateAndGetPayload: async (args, context) => {
         const device = await this.devicesRepo.editDevice(
           context,
-          _.assign({}, args, { id: fromGlobalId(args.id).id })
+          _.assign({}, args, { id: args.id && fromGlobalId(args.id).id })
         );
         return { device };
       }
@@ -173,7 +173,7 @@ class Devices extends EventEmitter {
       mutateAndGetPayload: async (args, context) => {
         const device = await this.devicesRepo.deleteDevice(
           context,
-          _.assign({}, args, { id: fromGlobalId(args.id).id })
+          _.assign({}, args, { id: args.id && fromGlobalId(args.id).id })
         );
         return { device };
       }
