@@ -175,7 +175,7 @@ class DevicesRepository extends EventEmitter {
     if (!this.isAllowed(requester)) throw this.di.get("error.access");
 
     let device = await this.device.model.findById(id);
-    if (!device || device.owner !== requester.$loki)
+    if (!device || device.owner !== requester.id)
       throw this.di.get("error.entityNotFound");
 
     device.name = name;
@@ -199,7 +199,7 @@ class DevicesRepository extends EventEmitter {
     if (!this.isAllowed(requester)) throw this.di.get("error.access");
 
     let device = await this.device.model.findById(id);
-    if (!device || device.owner !== requester.$loki)
+    if (!device || device.owner !== requester.id)
       throw this.di.get("error.entityNotFound");
 
     await device.remove();

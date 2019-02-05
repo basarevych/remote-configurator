@@ -489,21 +489,24 @@ class DeviceList extends React.Component {
 
           {this.props.isEditing && <EditDeviceModal />}
 
-          <ConfirmModal
-            isOpen={this.state.isConfirmOpen}
-            title="DELETE_DEVICE_TITLE"
-            text="DELETE_DEVICE_TEXT"
-            cancel="DELETE_DEVICE_CANCEL"
-            submit="DELETE_DEVICE_SUBMIT"
-            onCancel={this.handleCancelDelete}
-            onSubmit={this.handleConfirmDelete}
-          />
+          {this.state.isConfirmOpen && (
+            <ConfirmModal
+              isOpen
+              title="DELETE_DEVICE_TITLE"
+              text="DELETE_DEVICE_TEXT"
+              cancel="DELETE_DEVICE_CANCEL"
+              submit="DELETE_DEVICE_SUBMIT"
+              onCancel={this.handleCancelDelete}
+              onSubmit={this.handleConfirmDelete}
+            />
+          )}
 
-          <ProxyModal
-            isOpen={this.state.isProxyModalOpen}
-            deviceId={this.state.proxyModalDeviceId}
-            onClose={this.handleProxyModalClose}
-          />
+          {this.state.isProxyModalOpen && (
+            <ProxyModal
+              deviceId={this.state.proxyModalDeviceId}
+              onCancel={this.handleProxyModalClose}
+            />
+          )}
         </div>
       </React.Fragment>
     );

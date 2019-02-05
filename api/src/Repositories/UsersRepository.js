@@ -8,12 +8,13 @@ const constants = require("../../../common/constants");
 const accessLevel = constants.roles.ADMIN;
 
 class UsersRepository extends EventEmitter {
-  constructor(di, auth, config, user, getState, dispatch, pubsub) {
+  constructor(di, auth, config, device, user, getState, dispatch, pubsub) {
     super();
 
     this.di = di;
     this.auth = auth;
     this.config = config;
+    this.device = device;
     this.user = user;
     this.getState = getState;
     this.dispatch = dispatch;
@@ -31,6 +32,7 @@ class UsersRepository extends EventEmitter {
       "di",
       "auth",
       "config",
+      "model.device",
       "model.user",
       "getState",
       "dispatch",
@@ -173,6 +175,9 @@ class UsersRepository extends EventEmitter {
 
     let user = await this.user.model.findById(id);
     if (!user) throw this.di.get("error.entityNotFound");
+
+    let devices = await this.device.model.find({ owner: user.$loki });
+    await Promise.all(_.invokeMap(devices, "remove"));
 
     await user.remove();
     context.preCachePages({ path: "/users" }).catch(console.error);

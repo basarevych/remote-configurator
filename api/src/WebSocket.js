@@ -136,6 +136,7 @@ class WebSocket extends EventEmitter {
 
     let auth = device.get("auth");
     return {
+      name: device.get("name"),
       status: device.get("status"),
       address: device.get("address"),
       isLoggingIn: device.get("isLoggingIn"),

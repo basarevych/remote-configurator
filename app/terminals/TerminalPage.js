@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Terminal from "./TerminalContainer";
+import isRouteAllowed from "../../common/isRouteAllowed";
 
 export const styles = theme => ({
   layout: {
@@ -20,7 +21,7 @@ class TerminalPage extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     terminalId: PropTypes.string,
-    isAuthenticated: PropTypes.bool.isRequired
+    userRoles: PropTypes.array.isRequired
   };
 
   static getInitialProps({ query }) {
@@ -28,7 +29,7 @@ class TerminalPage extends React.Component {
   }
 
   render() {
-    if (!this.props.isAuthenticated) return null;
+    if (!isRouteAllowed("/terminal", this.props.userRoles)) return null;
 
     return (
       <div className={this.props.classes.layout}>

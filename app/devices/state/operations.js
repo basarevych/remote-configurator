@@ -100,7 +100,6 @@ export const finishAuth = ({ username, password }) => async (
   await dispatch(hideCredentialsModal());
 
   let socket = di.get("socket");
-  console.log(socket, deviceId);
   if (socket && deviceId) {
     socket.emit(constants.messages.CONNECT_DEVICE, {
       deviceId,

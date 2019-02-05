@@ -6,6 +6,7 @@ import * as types from "./types";
 Map({
   online: Map({
     deviceId: Map({
+      name: String,
       status: String, // or null
       address: String,
       isLoggingIn: Boolean,
@@ -23,6 +24,15 @@ Map({
   isCredentialsModalOpen: false,
 })
 */
+
+const nameReducer = (state = "", action) => {
+  switch (action.type) {
+    case types.SET:
+      if (!_.isUndefined(action.name)) return action.name;
+      break;
+  }
+  return state;
+};
 
 const statusReducer = (state = "", action) => {
   switch (action.type) {
@@ -89,6 +99,7 @@ const authReducer = combineReducers({
 });
 
 const deviceReducer = combineReducers({
+  name: nameReducer,
   status: statusReducer,
   address: addressReducer,
   isLoggingIn: isLoggingInReducer,

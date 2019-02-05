@@ -5,7 +5,7 @@ import BrowserPageComponent, { styles } from "./BrowserPage";
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: authSelectors.isAuthenticated(state)
+    userRoles: authSelectors.getRoles(state)
   };
 };
 

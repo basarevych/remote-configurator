@@ -24,9 +24,8 @@ class ProxyModal extends Form {
     ...Form.propTypes,
     intl: intlShape,
     classes: PropTypes.object.isRequired,
-    isOpen: PropTypes.bool.isRequired,
     name: PropTypes.string,
-    onClose: PropTypes.func.isRequired,
+    onCancel: PropTypes.func.isRequired,
     onFinish: PropTypes.func.isRequired
   };
 
@@ -71,11 +70,7 @@ class ProxyModal extends Form {
 
   render() {
     return (
-      <Dialog
-        maxWidth="xs"
-        open={this.props.isOpen}
-        onClose={this.props.onCancel}
-      >
+      <Dialog maxWidth="xs" open onClose={this.props.onCancel}>
         <DialogTitle>
           <FormattedMessage id="PROXY_MODAL_TITLE" />: {this.props.name}
         </DialogTitle>

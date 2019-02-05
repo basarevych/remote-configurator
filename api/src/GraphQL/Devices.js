@@ -92,11 +92,7 @@ class Devices extends EventEmitter {
         resolve: (source, args, context) =>
           this.devicesRepo.getDevice(
             context,
-            _.assign(
-              {},
-              args,
-              _.assign({}, args, { id: args.id && fromGlobalId(args.id).id })
-            )
+            _.assign({}, args, { id: args.id && fromGlobalId(args.id).id })
           )
       },
       devices: {

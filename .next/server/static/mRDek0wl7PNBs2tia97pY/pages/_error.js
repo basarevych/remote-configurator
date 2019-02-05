@@ -289,7 +289,41 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 129:
+/***/ 13:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.authSelectors = exports.authOperations = exports.authTypes = exports.default = void 0;
+
+var _reducers = _interopRequireDefault(__webpack_require__(25));
+
+var authTypes = _interopRequireWildcard(__webpack_require__(11));
+
+exports.authTypes = authTypes;
+
+var authOperations = _interopRequireWildcard(__webpack_require__(26));
+
+exports.authOperations = authOperations;
+
+var authSelectors = _interopRequireWildcard(__webpack_require__(15));
+
+exports.authSelectors = authSelectors;
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = _reducers.default;
+exports.default = _default;
+
+/***/ }),
+
+/***/ 130:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -306,7 +340,7 @@ var _react = _interopRequireDefault(__webpack_require__(2));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(3));
 
-var _ErrorMessageContainer = _interopRequireDefault(__webpack_require__(82));
+var _ErrorMessageContainer = _interopRequireDefault(__webpack_require__(83));
 
 var _state = __webpack_require__(18);
 
@@ -393,40 +427,6 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 13:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.authSelectors = exports.authOperations = exports.authTypes = exports.default = void 0;
-
-var _reducers = _interopRequireDefault(__webpack_require__(25));
-
-var authTypes = _interopRequireWildcard(__webpack_require__(11));
-
-exports.authTypes = authTypes;
-
-var authOperations = _interopRequireWildcard(__webpack_require__(26));
-
-exports.authOperations = authOperations;
-
-var authSelectors = _interopRequireWildcard(__webpack_require__(15));
-
-exports.authSelectors = authSelectors;
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = _reducers.default;
-exports.default = _default;
-
-/***/ }),
-
 /***/ 14:
 /***/ (function(module, exports) {
 
@@ -447,7 +447,7 @@ exports.getRoles = exports.getLogin = exports.isAdmin = exports.isAuthenticated 
 
 var _reselect = __webpack_require__(16);
 
-var _constants = _interopRequireDefault(__webpack_require__(7));
+var _constants = _interopRequireDefault(__webpack_require__(5));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -532,17 +532,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.appSelectors = exports.appOperations = exports.appTypes = exports.default = void 0;
 
-var _reducers = _interopRequireDefault(__webpack_require__(44));
+var _reducers = _interopRequireDefault(__webpack_require__(45));
 
 var appTypes = _interopRequireWildcard(__webpack_require__(17));
 
 exports.appTypes = appTypes;
 
-var appOperations = _interopRequireWildcard(__webpack_require__(47));
+var appOperations = _interopRequireWildcard(__webpack_require__(48));
 
 exports.appOperations = appOperations;
 
-var appSelectors = _interopRequireWildcard(__webpack_require__(50));
+var appSelectors = _interopRequireWildcard(__webpack_require__(51));
 
 exports.appSelectors = appSelectors;
 
@@ -611,7 +611,7 @@ Object.defineProperty(exports, "default", {
   }
 });
 
-var _ErrorPage = _interopRequireDefault(__webpack_require__(129));
+var _ErrorPage = _interopRequireDefault(__webpack_require__(130));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -728,7 +728,7 @@ var selectors = _interopRequireWildcard(__webpack_require__(15));
 
 var _connectForm = __webpack_require__(12);
 
-var _constants = _interopRequireDefault(__webpack_require__(7));
+var _constants = _interopRequireDefault(__webpack_require__(5));
 
 var _SignIn = _interopRequireDefault(__webpack_require__(29));
 
@@ -1027,7 +1027,7 @@ exports.default = void 0;
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _reactRelay = __webpack_require__(6);
+var _reactRelay = __webpack_require__(7);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1206,7 +1206,7 @@ exports.default = void 0;
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _reactRelay = __webpack_require__(6);
+var _reactRelay = __webpack_require__(7);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1408,10 +1408,10 @@ module.exports = {
     en: "English"
   },
   messages: {
-    en: parse(__webpack_require__(45))
+    en: parse(__webpack_require__(46))
   },
   getLocaleData: function getLocaleData() {
-    return [__webpack_require__(46)];
+    return [__webpack_require__(47)];
   }
 };
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
@@ -1424,7 +1424,7 @@ module.exports = {
 "use strict";
 
 
-var moment = __webpack_require__(49); // Add locales:
+var moment = __webpack_require__(50); // Add locales:
 //require("moment/locale/ru.js"); // en is already there
 
 
@@ -1439,7 +1439,7 @@ module.exports = require("immutable");
 
 /***/ }),
 
-/***/ 44:
+/***/ 45:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1639,21 +1639,21 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 45:
+/***/ 46:
 /***/ (function(module) {
 
 module.exports = {"MENU_DEVICES":"Device List","TITLE_DEVICES":"Remote Configurator","MENU_DEVICE":"Device","TITLE_DEVICE":"Device","MENU_USERS":"Users","TITLE_USERS":"Users","SIDEBAR_SIGN_OUT_LINK":"Sign Out","DEVICES_PAGE_WORKFLOW_TITLE":"Workflow","DEVICES_PAGE_WORKFLOW_HTML":["<ul>","<li>Create a device with unique name and a password. You will be provided with a shell command you can then"," copy-paste into the terminal of your device.</li>","<li>Enter the same password you used to create the device and the device will appear in the list below after"," connecting to this server. All further interaction with the device will be done through this encrypted SSH channel.</li>","<li>Press \"SIGN IN\" button to sign in into your device. You don't need to use root's credentials if you are"," not going to perform superuser-only operations","<li>When signed in you can then open an in-browser terminal session to this device under the credentials you used"," or create a private HTTP proxy for any port on your device</li>","</ul>"],"DEVICES_PAGE_SECURITY_TITLE":"Security Considerations","DEVICES_PAGE_SECURITY_HTML":["<ul>","<li>Credentials you use to sign in into your device are readable to this server. Although these credentials are never"," stored to disk and only live in the server's memory while the session exists, a compromised server might have a"," different idea what to do with your information.</li>","<li>A more secure apporoach would be to set up your own server (preferably after inspecting the source code) so you"," trust the credentials only to a reliable server.</li>","<li>Some web services protect their users from phishing sites, for which they detect and prevent proxies and &lt;iframe&gt;"," tags from working. You will have to configure an exception for the server in such case. For Webmin, you can achieve"," this by adding to the end of <strong>/etc/webmin/config</strong>: <pre>referers={origin}</pre></li>","</ul>"],"DEVICES_NAME_COLUMN":"Name","DEVICES_ADDRESS_COLUMN":"Address","DEVICES_CREATE_BUTTON":"Create Device","DEVICES_EDIT_BUTTON":"Edit Device","DEVICES_DELETE_BUTTON":"Delete Devices","DEVICES_CONNECT_BUTTON":"Sign In","DEVICES_OFFLINE_LABEL":"Offline","DEVICES_OPEN_TERMINAL_TIP":"Open terminal","DEVICES_OPEN_BROWSER_TIP":"Open browser","DEVICES_DISCONNECT_TIP":"Disconnect","EDIT_DEVICE_TITLE_CREATE":"Create Device","EDIT_DEVICE_TITLE_EDIT":"Edit Device","EDIT_DEVICE_NAME_LABEL":"Name","EDIT_DEVICE_PASSWORD_LABEL":"Password","EDIT_DEVICE_FAILED":"Form submission failed","EDIT_DEVICE_SUBMIT":"Submit","EDIT_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_TITLE":"Delete Devices","DELETE_DEVICE_TEXT":"Delete selected devices?","DELETE_DEVICE_CANCEL":"Cancel","DELETE_DEVICE_SUBMIT":"Delete","PROXY_TPL_TITLE":"<h1>Proxy Reporting</h1>","PROXY_TPL_MESSAGE":"<h3>Could not fetch the page</h3>","PROXY_TPL_403":"<p>Access denied</p>","PROXY_TPL_404":"<p>Try to reopen this page from the Device List</p>","PROXY_TPL_502":"<p>Looks like nobody is listening on this port</p>","PROXY_MODAL_TITLE":"HTTP Proxy","PROXY_HOST_LABEL":"Which host to connect to?","PROXY_PORT_LABEL":"Which port to proxy?","PROXY_AUTH_LABEL":"Remote service needs HTTP BASIC AUTH","PROXY_LOGIN_LABEL":"Login","PROXY_PASSWORD_LABEL":"Password","PROXY_MODAL_CANCEL":"Cancel","PROXY_MODAL_SUBMIT":"Submit","USERS_LOGIN_COLUMN":"Login","USERS_ROLES_COLUMN":"Roles","USERS_CREATE_BUTTON":"Create User","USERS_EDIT_BUTTON":"Edit User","USERS_DELETE_BUTTON":"Delete Users","EDIT_USER_TITLE_CREATE":"Create User","EDIT_USER_TITLE_EDIT":"Edit User","EDIT_USER_LOGIN_LABEL":"Login","EDIT_USER_PASSWORD_LABEL":"Password","EDIT_USER_AUTHENTICATED_LABEL":"Authenticated","EDIT_USER_ADMIN_LABEL":"Administrator","EDIT_USER_CANCEL":"Cancel","EDIT_USER_SUBMIT":"Submit","EDIT_USER_FAILED":"An error occured","DELETE_USER_TITLE":"Delete Users","DELETE_USER_TEXT":"Delete selected users?","DELETE_USER_CANCEL":"Cancel","DELETE_USER_SUBMIT":"Delete","TERMINAL_CONNECTING_LABEL":"Connecting...","TERMINAL_NOT_CONNECTED_LABEL":"Not connected","APP_AUTH_TITLE":"Authentication","APP_AUTH_SELF_REGISTRATION_TITLE":"Self-registration enabled","APP_AUTH_SELF_REGISTRATION_MESSAGE":"If you are a new user, you can use any free login and the password you want to sign in","APP_AUTH_LOGIN_LABEL":"Login","APP_AUTH_PASSWORD_LABEL":"Password","APP_AUTH_SUBMIT":"Sign In","APP_AUTH_FAILED":"Invalid credentials","SETUP_AUTH_TITLE":"Authentication","SETUP_AUTH_LOGIN_LABEL":"Login","SETUP_AUTH_PASSWORD_LABEL":"Password","SETUP_AUTH_CANCEL":"Cancel","SETUP_AUTH_SUBMIT":"Submit","KEYBOARD_AUTH_TITLE":"Authentication","KEYBOARD_AUTH_REPLY_LABEL":"Response","KEYBOARD_AUTH_CANCEL":"Cancel","KEYBOARD_AUTH_SUBMIT":"Submit","OPERATION_FAILED":"Operations failed","ERROR_FIELD_REQUIRED":"This field is required","ERROR_INVALID_LOGIN":"Login should start with a letter and contain letters and digits only","ERROR_INVALID_PASSWORD":"Password must be at least 6 characters long"};
 
 /***/ }),
 
-/***/ 46:
+/***/ 47:
 /***/ (function(module, exports) {
 
 module.exports = require("react-intl/locale-data/en.js");
 
 /***/ }),
 
-/***/ 47:
+/***/ 48:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1666,11 +1666,11 @@ exports.getToken = exports.getCookie = exports.setCookie = exports.start = expor
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var actions = _interopRequireWildcard(__webpack_require__(48));
+var actions = _interopRequireWildcard(__webpack_require__(49));
 
 var _state = __webpack_require__(13);
 
-var _constants = _interopRequireDefault(__webpack_require__(7));
+var _constants = _interopRequireDefault(__webpack_require__(5));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -1952,7 +1952,7 @@ exports.getToken = getToken;
 
 /***/ }),
 
-/***/ 48:
+/***/ 49:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2039,21 +2039,87 @@ exports.setLocale = setLocale;
 
 /***/ }),
 
-/***/ 49:
+/***/ 5:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var roles = {
+  AUTHENTICATED: "AUTHENTICATED",
+  // every one except the anonymous has this
+  ADMIN: "ADMIN"
+};
+module.exports = {
+  apiBase: "/api",
+  graphqlBase: "/graphql",
+  socketsBase: "/ws",
+  roles: roles,
+  pages: {
+    "/": {
+      page: "/"
+    },
+    "/devices": {
+      page: "/devices",
+      icon: "devices",
+      menu: "MENU_DEVICES",
+      title: "TITLE_DEVICES",
+      roles: [roles.AUTHENTICATED]
+    },
+    "/terminal": {
+      page: "/terminal",
+      icon: "terminal",
+      roles: [roles.AUTHENTICATED]
+    },
+    "/browser": {
+      page: "/browser",
+      icon: "browser",
+      roles: [roles.AUTHENTICATED]
+    },
+    "/users": {
+      page: "/users",
+      icon: "users",
+      menu: "MENU_USERS",
+      title: "TITLE_USERS",
+      roles: [roles.ADMIN]
+    }
+  },
+  messages: {
+    // client requests
+    CONNECT_DEVICE: "CONNECT_DEVICE",
+    FINISH_AUTH: "FINISH_AUTH",
+    DISCONNECT_DEVICE: "DISCONNECT_DEVICE",
+    CONNECT_TERMINAL: "CONNECT_TERMINAL",
+    TERMINAL_INPUT: "TERMINAL_INPUT",
+    TERMINAL_RESIZED: "TERMINAL_RESIZED",
+    DISCONNECT_TERMINAL: "DISCONNECT_TERMINAL",
+    CONNECT_BROWSER: "CONNECT_BROWSER",
+    // responses and commands
+    HELLO: "HELLO",
+    SET_STATUS: "SET_STATUS",
+    SET_DEVICE: "SET_DEVICE",
+    DELETE_DEVICE: "DELETE_DEVICE",
+    SET_TERMINAL: "SET_TERMINAL",
+    DELETE_TERMINAL: "DELETE_TERMINAL",
+    HISTORY: "HISTORY"
+  },
+  events: {
+    FONTS_LOADED: "FONTS_LOADED"
+  },
+  historySize: 30,
+  commandPort: 22
+};
+
+/***/ }),
+
+/***/ 50:
 /***/ (function(module, exports) {
 
 module.exports = require("moment-timezone");
 
 /***/ }),
 
-/***/ 5:
-/***/ (function(module, exports) {
-
-module.exports = require("react-intl");
-
-/***/ }),
-
-/***/ 50:
+/***/ 51:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2135,80 +2201,14 @@ exports.isConnected = isConnected;
 /***/ 6:
 /***/ (function(module, exports) {
 
-module.exports = require("react-relay");
+module.exports = require("react-intl");
 
 /***/ }),
 
 /***/ 7:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-var roles = {
-  AUTHENTICATED: "AUTHENTICATED",
-  // every one except the anonymous has this
-  ADMIN: "ADMIN"
-};
-module.exports = {
-  apiBase: "/api",
-  graphqlBase: "/graphql",
-  socketsBase: "/ws",
-  roles: roles,
-  pages: {
-    "/": {
-      page: "/"
-    },
-    "/devices": {
-      page: "/devices",
-      icon: "devices",
-      menu: "MENU_DEVICES",
-      title: "TITLE_DEVICES",
-      roles: [roles.AUTHENTICATED]
-    },
-    "/terminal": {
-      page: "/terminal",
-      icon: "terminal",
-      roles: [roles.AUTHENTICATED]
-    },
-    "/browser": {
-      page: "/browser",
-      icon: "browser",
-      roles: [roles.AUTHENTICATED]
-    },
-    "/users": {
-      page: "/users",
-      icon: "users",
-      menu: "MENU_USERS",
-      title: "TITLE_USERS",
-      roles: [roles.ADMIN]
-    }
-  },
-  messages: {
-    // client requests
-    CONNECT_DEVICE: "CONNECT_DEVICE",
-    FINISH_AUTH: "FINISH_AUTH",
-    DISCONNECT_DEVICE: "DISCONNECT_DEVICE",
-    CONNECT_TERMINAL: "CONNECT_TERMINAL",
-    TERMINAL_INPUT: "TERMINAL_INPUT",
-    TERMINAL_RESIZED: "TERMINAL_RESIZED",
-    DISCONNECT_TERMINAL: "DISCONNECT_TERMINAL",
-    CONNECT_BROWSER: "CONNECT_BROWSER",
-    // responses and commands
-    HELLO: "HELLO",
-    SET_STATUS: "SET_STATUS",
-    SET_DEVICE: "SET_DEVICE",
-    DELETE_DEVICE: "DELETE_DEVICE",
-    SET_TERMINAL: "SET_TERMINAL",
-    DELETE_TERMINAL: "DELETE_TERMINAL",
-    HISTORY: "HISTORY"
-  },
-  events: {
-    FONTS_LOADED: "FONTS_LOADED"
-  },
-  historySize: 30,
-  commandPort: 22
-};
+module.exports = require("react-relay");
 
 /***/ }),
 
@@ -2219,7 +2219,7 @@ module.exports = require("@material-ui/core/styles");
 
 /***/ }),
 
-/***/ 82:
+/***/ 83:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2230,11 +2230,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _reactIntl = __webpack_require__(5);
+var _reactIntl = __webpack_require__(6);
 
 var _styles = __webpack_require__(8);
 
-var _ErrorMessage = _interopRequireWildcard(__webpack_require__(83));
+var _ErrorMessage = _interopRequireWildcard(__webpack_require__(84));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -2244,7 +2244,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 83:
+/***/ 84:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2259,9 +2259,9 @@ var _react = _interopRequireDefault(__webpack_require__(2));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(3));
 
-var _reactIntl = __webpack_require__(5);
+var _reactIntl = __webpack_require__(6);
 
-var _httpStatusCodes = _interopRequireDefault(__webpack_require__(84));
+var _httpStatusCodes = _interopRequireDefault(__webpack_require__(85));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2368,7 +2368,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 84:
+/***/ 85:
 /***/ (function(module, exports) {
 
 module.exports = require("http-status-codes");
