@@ -9189,7 +9189,7 @@ exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {
+
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -9234,15 +9234,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -9267,62 +9267,24 @@ var ProxyModal =
 function (_Form) {
   _inherits(ProxyModal, _Form);
 
-  _createClass(ProxyModal, null, [{
-    key: "onSubmit",
-    value: function () {
-      var _onSubmit = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee(values, dispatch, props) {
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                props.onFinish(props.getValue("host"), props.getValue("port"), !!props.getValue("isAuthNeeded"), props.getValue("login"), props.getValue("password"));
-                props.onClose();
-                return _context.abrupt("return", true);
-
-              case 3:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function onSubmit(_x, _x2, _x3) {
-        return _onSubmit.apply(this, arguments);
-      }
-
-      return onSubmit;
-    }()
-  }, {
-    key: "getDerivedStateFromProps",
-    value: function getDerivedStateFromProps(nextProps, prevState) {
-      var state = {};
-
-      if (prevState.isOpen !== nextProps.isOpen) {
-        if (!nextProps.getValue("host")) nextProps.dispatch(nextProps.change("host", "localhost"));
-        if (!nextProps.getValue("port")) nextProps.dispatch(nextProps.change("port", "80"));
-        nextProps.dispatch(nextProps.clearAsyncError());
-        nextProps.dispatch(nextProps.clearSubmitErrors());
-        state.isOpen = nextProps.isOpen;
-      }
-
-      return _.keys(state).length ? state : null;
-    }
-  }]);
-
-  function ProxyModal(props) {
-    var _this;
-
+  function ProxyModal() {
     _classCallCheck(this, ProxyModal);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProxyModal).call(this, props));
-    _this.state = {};
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(ProxyModal).apply(this, arguments));
   }
 
   _createClass(ProxyModal, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.dispatch(this.props.change("host", "localhost"));
+      this.props.dispatch(this.props.change("port", "80"));
+      this.props.dispatch(this.props.change("isAuthNeeded", false));
+      this.props.dispatch(this.props.change("login", ""));
+      this.props.dispatch(this.props.change("password", ""));
+      this.props.dispatch(this.props.clearAsyncError());
+      this.props.dispatch(this.props.clearSubmitErrors());
+    }
+  }, {
     key: "render",
     value: function render() {
       return _react.default.createElement(_Dialog.default, {
@@ -9395,6 +9357,34 @@ function (_Form) {
         id: "PROXY_MODAL_SUBMIT"
       }))));
     }
+  }], [{
+    key: "onSubmit",
+    value: function () {
+      var _onSubmit = _asyncToGenerator(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee(values, dispatch, props) {
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                props.onFinish(props.getValue("host"), props.getValue("port"), props.getValue("isAuthNeeded"), props.getValue("login"), props.getValue("password"));
+                props.onClose();
+                return _context.abrupt("return", true);
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function onSubmit(_x, _x2, _x3) {
+        return _onSubmit.apply(this, arguments);
+      }
+
+      return onSubmit;
+    }()
   }]);
 
   return ProxyModal;
@@ -9414,7 +9404,6 @@ _defineProperty(ProxyModal, "fields", _proxy.default);
 
 var _default = ProxyModal;
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
 /* 235 */

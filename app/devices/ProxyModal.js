@@ -37,7 +37,7 @@ class ProxyModal extends Form {
     props.onFinish(
       props.getValue("host"),
       props.getValue("port"),
-      !!props.getValue("isAuthNeeded"),
+      props.getValue("isAuthNeeded"),
       props.getValue("login"),
       props.getValue("password")
     );
@@ -46,26 +46,14 @@ class ProxyModal extends Form {
     return true;
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    let state = {};
-
-    if (prevState.isOpen !== nextProps.isOpen) {
-      if (!nextProps.getValue("host"))
-        nextProps.dispatch(nextProps.change("host", "localhost"));
-      if (!nextProps.getValue("port"))
-        nextProps.dispatch(nextProps.change("port", "80"));
-      nextProps.dispatch(nextProps.clearAsyncError());
-      nextProps.dispatch(nextProps.clearSubmitErrors());
-      state.isOpen = nextProps.isOpen;
-    }
-
-    return _.keys(state).length ? state : null;
-  }
-
-  constructor(props) {
-    super(props);
-
-    this.state = {};
+  componentDidMount() {
+    this.props.dispatch(this.props.change("host", "localhost"));
+    this.props.dispatch(this.props.change("port", "80"));
+    this.props.dispatch(this.props.change("isAuthNeeded", false));
+    this.props.dispatch(this.props.change("login", ""));
+    this.props.dispatch(this.props.change("password", ""));
+    this.props.dispatch(this.props.clearAsyncError());
+    this.props.dispatch(this.props.clearSubmitErrors());
   }
 
   render() {
