@@ -6,9 +6,9 @@
       "external \"react\"": 2,
       "external \"prop-types\"": 3,
       "external \"immutable\"": 4,
-      "node_modules/next/dist/build/webpack/loaders/next-babel-loader.js??ref--4!common/constants.js": 5,
-      "external \"react-intl\"": 6,
-      "external \"react-relay\"": 7,
+      "external \"react-relay\"": 5,
+      "node_modules/next/dist/build/webpack/loaders/next-babel-loader.js??ref--4!common/constants.js": 6,
+      "external \"react-intl\"": 7,
       "external \"@material-ui/core/styles\"": 8,
       "external \"redux-immutable\"": 9,
       "external \"react-redux\"": 10,
@@ -563,14 +563,14 @@
   },
   "chunks": {
     "byName": {
-      "static/UJqguTG6RswdGA6yt_h_j/pages/_app.js": 0,
-      "static/UJqguTG6RswdGA6yt_h_j/pages/_document.js": 1,
-      "static/UJqguTG6RswdGA6yt_h_j/pages/_error.js": 2,
-      "static/UJqguTG6RswdGA6yt_h_j/pages/browser.js": 3,
-      "static/UJqguTG6RswdGA6yt_h_j/pages/devices.js": 4,
-      "static/UJqguTG6RswdGA6yt_h_j/pages/index.js": 5,
-      "static/UJqguTG6RswdGA6yt_h_j/pages/terminal.js": 6,
-      "static/UJqguTG6RswdGA6yt_h_j/pages/users.js": 7
+      "static/AXiejAuq4O1yZ6HBeoEYF/pages/_app.js": 0,
+      "static/AXiejAuq4O1yZ6HBeoEYF/pages/_document.js": 1,
+      "static/AXiejAuq4O1yZ6HBeoEYF/pages/_error.js": 2,
+      "static/AXiejAuq4O1yZ6HBeoEYF/pages/browser.js": 3,
+      "static/AXiejAuq4O1yZ6HBeoEYF/pages/devices.js": 4,
+      "static/AXiejAuq4O1yZ6HBeoEYF/pages/index.js": 5,
+      "static/AXiejAuq4O1yZ6HBeoEYF/pages/terminal.js": 6,
+      "static/AXiejAuq4O1yZ6HBeoEYF/pages/users.js": 7
     },
     "bySource": {},
     "usedIds": [

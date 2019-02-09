@@ -447,7 +447,7 @@ exports.getRoles = exports.getLogin = exports.isAdmin = exports.isAuthenticated 
 
 var _reselect = __webpack_require__(16);
 
-var _constants = _interopRequireDefault(__webpack_require__(5));
+var _constants = _interopRequireDefault(__webpack_require__(6));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -728,7 +728,7 @@ var selectors = _interopRequireWildcard(__webpack_require__(15));
 
 var _connectForm = __webpack_require__(12);
 
-var _constants = _interopRequireDefault(__webpack_require__(5));
+var _constants = _interopRequireDefault(__webpack_require__(6));
 
 var _SignIn = _interopRequireDefault(__webpack_require__(29));
 
@@ -1027,7 +1027,7 @@ exports.default = void 0;
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _reactRelay = __webpack_require__(7);
+var _reactRelay = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1206,7 +1206,7 @@ exports.default = void 0;
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _reactRelay = __webpack_require__(7);
+var _reactRelay = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1670,7 +1670,7 @@ var actions = _interopRequireWildcard(__webpack_require__(49));
 
 var _state = __webpack_require__(13);
 
-var _constants = _interopRequireDefault(__webpack_require__(5));
+var _constants = _interopRequireDefault(__webpack_require__(6));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -2040,75 +2040,9 @@ exports.setLocale = setLocale;
 /***/ }),
 
 /***/ 5:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-var roles = {
-  AUTHENTICATED: "AUTHENTICATED",
-  // every one except the anonymous has this
-  ADMIN: "ADMIN"
-};
-module.exports = {
-  apiBase: "/api",
-  graphqlBase: "/graphql",
-  socketsBase: "/ws",
-  roles: roles,
-  pages: {
-    "/": {
-      page: "/"
-    },
-    "/devices": {
-      page: "/devices",
-      icon: "devices",
-      menu: "MENU_DEVICES",
-      title: "TITLE_DEVICES",
-      roles: [roles.AUTHENTICATED]
-    },
-    "/terminal": {
-      page: "/terminal",
-      icon: "terminal",
-      roles: [roles.AUTHENTICATED]
-    },
-    "/browser": {
-      page: "/browser",
-      icon: "browser",
-      roles: [roles.AUTHENTICATED]
-    },
-    "/users": {
-      page: "/users",
-      icon: "users",
-      menu: "MENU_USERS",
-      title: "TITLE_USERS",
-      roles: [roles.ADMIN]
-    }
-  },
-  messages: {
-    // client requests
-    CONNECT_DEVICE: "CONNECT_DEVICE",
-    FINISH_AUTH: "FINISH_AUTH",
-    DISCONNECT_DEVICE: "DISCONNECT_DEVICE",
-    CONNECT_TERMINAL: "CONNECT_TERMINAL",
-    TERMINAL_INPUT: "TERMINAL_INPUT",
-    TERMINAL_RESIZED: "TERMINAL_RESIZED",
-    DISCONNECT_TERMINAL: "DISCONNECT_TERMINAL",
-    CONNECT_BROWSER: "CONNECT_BROWSER",
-    // responses and commands
-    HELLO: "HELLO",
-    SET_STATUS: "SET_STATUS",
-    SET_DEVICE: "SET_DEVICE",
-    DELETE_DEVICE: "DELETE_DEVICE",
-    SET_TERMINAL: "SET_TERMINAL",
-    DELETE_TERMINAL: "DELETE_TERMINAL",
-    HISTORY: "HISTORY"
-  },
-  events: {
-    FONTS_LOADED: "FONTS_LOADED"
-  },
-  historySize: 30,
-  commandPort: 22
-};
+module.exports = require("react-relay");
 
 /***/ }),
 
@@ -2199,16 +2133,82 @@ exports.isConnected = isConnected;
 /***/ }),
 
 /***/ 6:
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = require("react-intl");
+"use strict";
+
+
+var roles = {
+  AUTHENTICATED: "AUTHENTICATED",
+  // every one except the anonymous has this
+  ADMIN: "ADMIN"
+};
+module.exports = {
+  apiBase: "/api",
+  graphqlBase: "/graphql",
+  socketsBase: "/ws",
+  roles: roles,
+  pages: {
+    "/": {
+      page: "/"
+    },
+    "/devices": {
+      page: "/devices",
+      icon: "devices",
+      menu: "MENU_DEVICES",
+      title: "TITLE_DEVICES",
+      roles: [roles.AUTHENTICATED]
+    },
+    "/terminal": {
+      page: "/terminal",
+      icon: "terminal",
+      roles: [roles.AUTHENTICATED]
+    },
+    "/browser": {
+      page: "/browser",
+      icon: "browser",
+      roles: [roles.AUTHENTICATED]
+    },
+    "/users": {
+      page: "/users",
+      icon: "users",
+      menu: "MENU_USERS",
+      title: "TITLE_USERS",
+      roles: [roles.ADMIN]
+    }
+  },
+  messages: {
+    // client requests
+    CONNECT_DEVICE: "CONNECT_DEVICE",
+    FINISH_AUTH: "FINISH_AUTH",
+    DISCONNECT_DEVICE: "DISCONNECT_DEVICE",
+    CONNECT_TERMINAL: "CONNECT_TERMINAL",
+    TERMINAL_INPUT: "TERMINAL_INPUT",
+    TERMINAL_RESIZED: "TERMINAL_RESIZED",
+    DISCONNECT_TERMINAL: "DISCONNECT_TERMINAL",
+    CONNECT_BROWSER: "CONNECT_BROWSER",
+    // responses and commands
+    HELLO: "HELLO",
+    SET_STATUS: "SET_STATUS",
+    SET_DEVICE: "SET_DEVICE",
+    DELETE_DEVICE: "DELETE_DEVICE",
+    SET_TERMINAL: "SET_TERMINAL",
+    DELETE_TERMINAL: "DELETE_TERMINAL",
+    HISTORY: "HISTORY"
+  },
+  events: {
+    FONTS_LOADED: "FONTS_LOADED"
+  },
+  historySize: 30,
+  commandPort: 22
+};
 
 /***/ }),
 
 /***/ 7:
 /***/ (function(module, exports) {
 
-module.exports = require("react-relay");
+module.exports = require("react-intl");
 
 /***/ }),
 
@@ -2230,7 +2230,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _reactIntl = __webpack_require__(6);
+var _reactIntl = __webpack_require__(7);
 
 var _styles = __webpack_require__(8);
 
@@ -2259,7 +2259,7 @@ var _react = _interopRequireDefault(__webpack_require__(2));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(3));
 
-var _reactIntl = __webpack_require__(6);
+var _reactIntl = __webpack_require__(7);
 
 var _httpStatusCodes = _interopRequireDefault(__webpack_require__(85));
 

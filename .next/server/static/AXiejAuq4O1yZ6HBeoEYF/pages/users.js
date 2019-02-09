@@ -123,6 +123,12 @@ module.exports = require("immutable");
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-relay");
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -194,16 +200,10 @@ module.exports = {
 };
 
 /***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-intl");
-
-/***/ }),
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-relay");
+module.exports = require("react-intl");
 
 /***/ }),
 /* 8 */
@@ -449,7 +449,7 @@ exports.getRoles = exports.getLogin = exports.isAdmin = exports.isAuthenticated 
 
 var _reselect = __webpack_require__(16);
 
-var _constants = _interopRequireDefault(__webpack_require__(5));
+var _constants = _interopRequireDefault(__webpack_require__(6));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -692,7 +692,7 @@ var selectors = _interopRequireWildcard(__webpack_require__(15));
 
 var _connectForm = __webpack_require__(12);
 
-var _constants = _interopRequireDefault(__webpack_require__(5));
+var _constants = _interopRequireDefault(__webpack_require__(6));
 
 var _SignIn = _interopRequireDefault(__webpack_require__(29));
 
@@ -988,7 +988,7 @@ exports.default = void 0;
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _reactRelay = __webpack_require__(7);
+var _reactRelay = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1158,7 +1158,7 @@ exports.default = void 0;
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _reactRelay = __webpack_require__(7);
+var _reactRelay = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1332,7 +1332,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _reactIntl = __webpack_require__(6);
+var _reactIntl = __webpack_require__(7);
 
 var _styles = __webpack_require__(8);
 
@@ -1419,7 +1419,7 @@ module.exports = moment;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {
 
-var constants = __webpack_require__(5);
+var constants = __webpack_require__(6);
 
 module.exports = function isRouteAllowed(path) {
   var userRoles = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
@@ -1706,7 +1706,7 @@ var actions = _interopRequireWildcard(__webpack_require__(49));
 
 var _state = __webpack_require__(13);
 
-var _constants = _interopRequireDefault(__webpack_require__(5));
+var _constants = _interopRequireDefault(__webpack_require__(6));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -2161,16 +2161,21 @@ exports.isConnected = isConnected;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(_) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.subscribe = subscribe;
 exports.fetchQuery = exports.NextQueryRenderer = exports.RelayProvider = exports.RelayContext = void 0;
+
+var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
 var _react = _interopRequireDefault(__webpack_require__(2));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(3));
+
+var _reactRelay = _interopRequireDefault(__webpack_require__(5));
 
 var _relayRuntime = __webpack_require__(88);
 
@@ -2179,6 +2184,10 @@ var _relayQueryLookupRenderer = _interopRequireDefault(__webpack_require__(94));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -2270,6 +2279,111 @@ var fetchQuery = function fetchQuery(environment) {
 };
 
 exports.fetchQuery = fetchQuery;
+
+function subscribe(_ref) {
+  var environment = _ref.environment,
+      subscription = _ref.subscription,
+      variables = _ref.variables,
+      getToken = _ref.getToken,
+      minInterval = _ref.minInterval,
+      callback = _ref.callback;
+  var request = null;
+  var isDestroyed = false;
+  var callbackTime = 0;
+  var callbackTimer = null;
+  if (_.isUndefined(variables)) variables = {};
+  if (_.isUndefined(minInterval)) minInterval = 1000;
+
+  var doSubscribe =
+  /*#__PURE__*/
+  function () {
+    var _ref2 = _asyncToGenerator(
+    /*#__PURE__*/
+    _regenerator.default.mark(function _callee() {
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              if (!getToken) {
+                _context.next = 4;
+                break;
+              }
+
+              _context.next = 3;
+              return getToken();
+
+            case 3:
+              variables.token = _context.sent;
+
+            case 4:
+              if (!isDestroyed) {
+                _context.next = 6;
+                break;
+              }
+
+              return _context.abrupt("return");
+
+            case 6:
+              request = _reactRelay.default.requestSubscription(environment, {
+                subscription: subscription,
+                variables: variables,
+                onCompleted: function onCompleted() {
+                  request = null;
+                  setTimeout(function () {
+                    return doSubscribe().catch(console.error);
+                  }, 1000);
+                },
+                onError: function onError(error) {
+                  console.error(error);
+                  request = null;
+                  setTimeout(function () {
+                    return doSubscribe().catch(console.error);
+                  }, 1000);
+                },
+                onNext: function onNext() {
+                  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+                    args[_key] = arguments[_key];
+                  }
+
+                  if (isDestroyed || callbackTimer) return;
+                  var delta = Date.now() - callbackTime;
+                  callbackTimer = setTimeout(function () {
+                    callbackTime = Date.now();
+                    callbackTimer = null;
+                    if (!isDestroyed) callback.apply(void 0, args);
+                  }, delta < minInterval ? delta : 0);
+                }
+              });
+
+            case 7:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, this);
+    }));
+
+    return function doSubscribe() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  doSubscribe().catch(console.error);
+  return function () {
+    isDestroyed = true;
+
+    if (callbackTimer) {
+      clearTimeout(callbackTimer);
+      callbackTimer = null;
+    }
+
+    if (request) {
+      request.dispose();
+      request = null;
+    }
+  };
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(0)))
 
 /***/ }),
 /* 53 */
@@ -3027,7 +3141,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _reactIntl = __webpack_require__(6);
+var _reactIntl = __webpack_require__(7);
 
 var _Field = _interopRequireDefault(__webpack_require__(96));
 
@@ -3107,7 +3221,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _reactIntl = __webpack_require__(6);
+var _reactIntl = __webpack_require__(7);
 
 var _styles = __webpack_require__(8);
 
@@ -3135,7 +3249,7 @@ var _react = _interopRequireDefault(__webpack_require__(2));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(3));
 
-var _reactIntl = __webpack_require__(6);
+var _reactIntl = __webpack_require__(7);
 
 var _httpStatusCodes = _interopRequireDefault(__webpack_require__(85));
 
@@ -3570,7 +3684,7 @@ var _react = _interopRequireDefault(__webpack_require__(2));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(3));
 
-var _reactIntl = __webpack_require__(6);
+var _reactIntl = __webpack_require__(7);
 
 var _immutable = __webpack_require__(14);
 
@@ -3893,7 +4007,7 @@ var _propTypes = _interopRequireDefault(__webpack_require__(3));
 
 var _immutable = __webpack_require__(4);
 
-var _reactIntl = __webpack_require__(6);
+var _reactIntl = __webpack_require__(7);
 
 var _List = _interopRequireDefault(__webpack_require__(101));
 
@@ -4505,7 +4619,7 @@ var actions = _interopRequireWildcard(__webpack_require__(121));
 
 var selectors = _interopRequireWildcard(__webpack_require__(93));
 
-var _constants = _interopRequireDefault(__webpack_require__(5));
+var _constants = _interopRequireDefault(__webpack_require__(6));
 
 var _connectForm = __webpack_require__(12);
 
@@ -4808,7 +4922,7 @@ exports.default = void 0;
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _reactRelay = __webpack_require__(7);
+var _reactRelay = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5006,7 +5120,7 @@ exports.default = void 0;
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _reactRelay = __webpack_require__(7);
+var _reactRelay = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5205,7 +5319,7 @@ exports.default = void 0;
 
 var _regenerator = _interopRequireDefault(__webpack_require__(1));
 
-var _reactRelay = __webpack_require__(7);
+var _reactRelay = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5518,7 +5632,7 @@ var _react = _interopRequireDefault(__webpack_require__(2));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(3));
 
-var _reactIntl = __webpack_require__(6);
+var _reactIntl = __webpack_require__(7);
 
 var _Dialog = _interopRequireDefault(__webpack_require__(41));
 
@@ -5809,7 +5923,7 @@ var _react = _interopRequireDefault(__webpack_require__(2));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(3));
 
-var _reactRelay = __webpack_require__(7);
+var _reactRelay = __webpack_require__(5);
 
 var _Relay = __webpack_require__(52);
 
@@ -5952,9 +6066,9 @@ exports.default = void 0;
 
 var _reactRedux = __webpack_require__(10);
 
-var _reactRelay = __webpack_require__(7);
+var _reactRelay = __webpack_require__(5);
 
-var _reactIntl = __webpack_require__(6);
+var _reactIntl = __webpack_require__(7);
 
 var _styles = __webpack_require__(8);
 
@@ -6034,9 +6148,9 @@ var _react = _interopRequireDefault(__webpack_require__(2));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(3));
 
-var _reactIntl = __webpack_require__(6);
+var _reactIntl = __webpack_require__(7);
 
-var _reactRelay = __webpack_require__(7);
+var _reactRelay = __webpack_require__(5);
 
 var _Typography = _interopRequireDefault(__webpack_require__(87));
 
@@ -6154,115 +6268,34 @@ function (_React$Component) {
     _this.state = {
       pageSize: pageSize,
       pageNumber: 0,
-      lastVariables: {
-        first: pageSize
-      },
       isConfirmOpen: false
     };
-    _this.isDestroyed = false;
-    _this.refreshTime = 0;
-    _this.refreshTimer = null;
     _this.handleToggle = _this.handleToggle.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleCreateAction = _this.handleCreateAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleEditAction = _this.handleEditAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleDeleteAction = _this.handleDeleteAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleCancelDelete = _this.handleCancelDelete.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleConfirmDelete = _this.handleConfirmDelete.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleRefresh = _this.handleRefresh.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleRefreshAction = _this.handleRefreshAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleChangePage = _this.handleChangePage.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleChangeRowsPerPage = _this.handleChangeRowsPerPage.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
   _createClass(UserList, [{
-    key: "subscribe",
-    value: function () {
-      var _subscribe = _asyncToGenerator(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee() {
-        var _this2 = this;
-
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                if (this.subscription) this.subscription.dispose();
-
-                if (!this.isDestroyed) {
-                  _context.next = 3;
-                  break;
-                }
-
-                return _context.abrupt("return");
-
-              case 3:
-                _context.t0 = _reactRelay.requestSubscription;
-                _context.t1 = this.context;
-                _context.t2 = subscription;
-                _context.next = 8;
-                return this.props.getToken();
-
-              case 8:
-                _context.t3 = _context.sent;
-                _context.t4 = {
-                  token: _context.t3
-                };
-
-                _context.t5 = function onCompleted() {
-                  _this2.subscription = null;
-                  setTimeout(function () {
-                    return _this2.subscribe();
-                  }, 1000);
-                };
-
-                _context.t6 = function onError(error) {
-                  _this2.subscription = null;
-                  console.error(error);
-                  setTimeout(function () {
-                    return _this2.subscribe();
-                  }, 1000);
-                };
-
-                _context.t7 = function onNext() {
-                  if (_this2.refreshTimer) return;
-
-                  var delta = Date.now() - _this2.refreshTime;
-
-                  _this2.refreshTimer = setTimeout(_this2.handleRefresh, delta < 1000 ? delta : 0);
-                };
-
-                _context.t8 = {
-                  subscription: _context.t2,
-                  variables: _context.t4,
-                  onCompleted: _context.t5,
-                  onError: _context.t6,
-                  onNext: _context.t7
-                };
-                this.subscription = (0, _context.t0)(_context.t1, _context.t8);
-
-              case 15:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function subscribe() {
-        return _subscribe.apply(this, arguments);
-      }
-
-      return subscribe;
-    }()
-  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.subscribe();
+      this.unsubscribe = (0, _Relay.subscribe)({
+        subscription: subscription,
+        getToken: this.props.getToken,
+        environment: this.context,
+        callback: this.handleRefreshAction
+      });
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      var _this3 = this;
+      var _this2 = this;
 
       if (this.props.viewer.users.totalCount && this.state.pageNumber * this.state.pageSize >= this.props.viewer.users.totalCount) {
         // we fell off the list - reset to the beginning
@@ -6273,9 +6306,8 @@ function (_React$Component) {
           before: null
         };
         this.props.relay.refetch(variables, null, function () {
-          return _this3.setState({
-            pageNumber: 0,
-            lastVariables: variables
+          return _this2.setState({
+            pageNumber: 0
           });
         }, {
           force: true
@@ -6285,16 +6317,9 @@ function (_React$Component) {
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      this.isDestroyed = true;
-
-      if (this.subscription) {
-        this.subscription.dispose();
-        this.subscription = null;
-      }
-
-      if (this.refreshTimer) {
-        clearTimeout(this.refreshTimer);
-        this.refreshTimer = null;
+      if (this.unsubscribe) {
+        this.unsubscribe();
+        this.unsubscribe = null;
       }
     }
   }, {
@@ -6335,20 +6360,20 @@ function (_React$Component) {
     value: function () {
       var _handleCreateAction = _asyncToGenerator(
       /*#__PURE__*/
-      _regenerator.default.mark(function _callee2() {
-        return _regenerator.default.wrap(function _callee2$(_context2) {
+      _regenerator.default.mark(function _callee() {
+        return _regenerator.default.wrap(function _callee$(_context) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context.prev = _context.next) {
               case 0:
-                _context2.next = 2;
+                _context.next = 2;
                 return this.props.onCreate();
 
               case 2:
               case "end":
-                return _context2.stop();
+                return _context.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee, this);
       }));
 
       function handleCreateAction() {
@@ -6362,20 +6387,20 @@ function (_React$Component) {
     value: function () {
       var _handleEditAction = _asyncToGenerator(
       /*#__PURE__*/
-      _regenerator.default.mark(function _callee3() {
-        return _regenerator.default.wrap(function _callee3$(_context3) {
+      _regenerator.default.mark(function _callee2() {
+        return _regenerator.default.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                _context3.next = 2;
+                _context2.next = 2;
                 return this.props.onEdit();
 
               case 2:
               case "end":
-                return _context3.stop();
+                return _context2.stop();
             }
           }
-        }, _callee3, this);
+        }, _callee2, this);
       }));
 
       function handleEditAction() {
@@ -6403,27 +6428,27 @@ function (_React$Component) {
     value: function () {
       var _handleConfirmDelete = _asyncToGenerator(
       /*#__PURE__*/
-      _regenerator.default.mark(function _callee4() {
-        var _this4 = this;
+      _regenerator.default.mark(function _callee3() {
+        var _this3 = this;
 
-        return _regenerator.default.wrap(function _callee4$(_context4) {
+        return _regenerator.default.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context4.prev = _context4.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 this.setState({
                   isConfirmOpen: false
                 });
-                _context4.next = 3;
+                _context3.next = 3;
                 return Promise.all(_.map(this.props.selected, function (userId) {
-                  return _this4.props.onDelete(userId);
+                  return _this3.props.onDelete(userId);
                 }));
 
               case 3:
               case "end":
-                return _context4.stop();
+                return _context3.stop();
             }
           }
-        }, _callee4, this);
+        }, _callee3, this);
       }));
 
       function handleConfirmDelete() {
@@ -6433,23 +6458,18 @@ function (_React$Component) {
       return handleConfirmDelete;
     }()
   }, {
-    key: "handleRefresh",
-    value: function handleRefresh() {
-      if (this.refreshTimer) {
-        clearTimeout(this.refreshTimer);
-        this.refreshTimer = null;
-      }
-
-      if (this.isDestroyed) return;
-      this.props.relay.refetch(this.state.lastVariables, null, null, {
+    key: "handleRefreshAction",
+    value: function handleRefreshAction() {
+      this.props.relay.refetch(function (vars) {
+        return vars;
+      }, null, null, {
         force: true
       });
-      this.refreshTime = Date.now();
     }
   }, {
     key: "handleChangeRowsPerPage",
     value: function handleChangeRowsPerPage(evt) {
-      var _this5 = this;
+      var _this4 = this;
 
       var pageSize = evt.target.value;
       var variables = {
@@ -6459,10 +6479,9 @@ function (_React$Component) {
         before: null
       };
       this.props.relay.refetch(variables, null, function () {
-        return _this5.setState({
+        return _this4.setState({
           pageSize: pageSize,
-          pageNumber: 0,
-          lastVariables: variables
+          pageNumber: 0
         });
       }, {
         force: true
@@ -6471,7 +6490,7 @@ function (_React$Component) {
   }, {
     key: "handleChangePage",
     value: function handleChangePage(evt, pageNumber) {
-      var _this6 = this;
+      var _this5 = this;
 
       if (this.state.pageNumber === pageNumber) return;
       var state = {
@@ -6499,9 +6518,8 @@ function (_React$Component) {
         variables.before = _.head(this.props.viewer.users.edges).cursor;
       }
 
-      state.lastVariables = variables;
       this.props.relay.refetch(variables, null, function () {
-        return _this6.setState(state);
+        return _this5.setState(state);
       }, {
         force: true
       });
@@ -6509,7 +6527,7 @@ function (_React$Component) {
   }, {
     key: "renderTable",
     value: function renderTable() {
-      var _this7 = this;
+      var _this6 = this;
 
       return _react.default.createElement(_Paper.default, {
         className: this.props.classes.paper
@@ -6521,7 +6539,7 @@ function (_React$Component) {
         className: this.props.classes.grow
       }), _react.default.createElement(_IconButton.default, {
         color: "inherit",
-        onClick: this.handleRefresh
+        onClick: this.handleRefreshAction
       }, _react.default.createElement(_Refresh.default, null))), _react.default.createElement(_Table.default, {
         padding: "dense",
         className: this.props.classes.table
@@ -6537,7 +6555,7 @@ function (_React$Component) {
         },
         indeterminate: !this.isAllSelected() && !this.isAllDeselected(),
         onChange: function onChange() {
-          return _this7.handleToggleAll();
+          return _this6.handleToggleAll();
         },
         value: "on"
       })), _react.default.createElement(_TableCell.default, null, _react.default.createElement(_reactIntl.FormattedMessage, {
@@ -6548,7 +6566,7 @@ function (_React$Component) {
         return _react.default.createElement(_UserItemContainer.default, {
           key: edge.cursor,
           node: edge.node,
-          onToggle: _this7.handleToggle
+          onToggle: _this6.handleToggle
         });
       }))), _react.default.createElement(_TablePagination.default, {
         rowsPerPageOptions: [10, 20, 30, 50, 100],
@@ -6637,11 +6655,11 @@ exports.default = void 0;
 
 var _reactRedux = __webpack_require__(10);
 
-var _reactIntl = __webpack_require__(6);
+var _reactIntl = __webpack_require__(7);
 
 var _styles = __webpack_require__(8);
 
-var _reactRelay = __webpack_require__(7);
+var _reactRelay = __webpack_require__(5);
 
 var _state = __webpack_require__(92);
 
@@ -6682,7 +6700,7 @@ var _propTypes = _interopRequireDefault(__webpack_require__(3));
 
 var _classnames = _interopRequireDefault(__webpack_require__(139));
 
-var _reactIntl = __webpack_require__(6);
+var _reactIntl = __webpack_require__(7);
 
 var _TableCell = _interopRequireDefault(__webpack_require__(115));
 
@@ -6908,9 +6926,9 @@ var _react = _interopRequireDefault(__webpack_require__(2));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(3));
 
-var _reactIntl = __webpack_require__(6);
+var _reactIntl = __webpack_require__(7);
 
-var _reactRelay = __webpack_require__(7);
+var _reactRelay = __webpack_require__(5);
 
 var _immutable = __webpack_require__(14);
 
@@ -6936,7 +6954,7 @@ var _Form2 = _interopRequireDefault(__webpack_require__(56));
 
 var _FieldContainer = _interopRequireDefault(__webpack_require__(60));
 
-var _constants = _interopRequireDefault(__webpack_require__(5));
+var _constants = _interopRequireDefault(__webpack_require__(6));
 
 var _user = _interopRequireDefault(__webpack_require__(272));
 

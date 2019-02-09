@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FormattedMessage, FormattedHTMLMessage } from "react-intl";
-import { requestSubscription, graphql } from "react-relay";
+import { graphql } from "react-relay";
 import { fromGlobalId } from "graphql-relay";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 import Typography from "@material-ui/core/Typography";
@@ -23,7 +23,7 @@ import DeviceItem, { styles as itemStyles } from "./DeviceItemContainer";
 import EditDeviceModal from "./EditDeviceModalContainer";
 import ProxyModal from "./ProxyModalContainer";
 import ConfirmModal from "../app/modals/ConfirmModalContainer";
-import { RelayContext } from "../app/providers/Relay";
+import { RelayContext, subscribe } from "../app/providers/Relay";
 
 export const pageSize = 20;
 
@@ -138,18 +138,11 @@ class DeviceList extends React.Component {
     this.state = {
       pageSize,
       pageNumber: 0,
-      lastVariables: {
-        first: pageSize
-      },
       isConfirmOpen: false,
       isProxyModalOpen: false,
       proxyModalDeviceId: null,
       isIntroDismissed: true
     };
-
-    this.isDestroyed = false;
-    this.refreshTime = 0;
-    this.refreshTimer = null;
 
     this.handleTextClose = this.handleTextClose.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
@@ -160,43 +153,22 @@ class DeviceList extends React.Component {
     this.handleConfirmDelete = this.handleConfirmDelete.bind(this);
     this.handleProxyModalOpen = this.handleProxyModalOpen.bind(this);
     this.handleProxyModalClose = this.handleProxyModalClose.bind(this);
-    this.handleRefresh = this.handleRefresh.bind(this);
+    this.handleRefreshAction = this.handleRefreshAction.bind(this);
     this.handleChangePage = this.handleChangePage.bind(this);
     this.handleChangeRowsPerPage = this.handleChangeRowsPerPage.bind(this);
   }
 
-  async subscribe() {
-    if (this.subscription) this.subscription.dispose();
-    if (this.isDestroyed) return;
-    this.subscription = requestSubscription(this.context, {
-      subscription,
-      variables: { token: await this.props.getToken() },
-      onCompleted: () => {
-        this.subscription = null;
-        setTimeout(() => this.subscribe(), 1000);
-      },
-      onError: error => {
-        this.subscription = null;
-        console.error(error);
-        setTimeout(() => this.subscribe(), 1000);
-      },
-      onNext: () => {
-        if (this.refreshTimer) return;
-        const delta = Date.now() - this.refreshTime;
-        this.refreshTimer = setTimeout(
-          this.handleRefresh,
-          delta < 1000 ? delta : 0
-        );
-      }
-    });
-  }
-
   async componentDidMount() {
+    this.unsubscribe = subscribe({
+      subscription,
+      getToken: this.props.getToken,
+      environment: this.context,
+      callback: this.handleRefreshAction
+    });
     this.setState({
       isIntroDismissed:
         (await this.props.onGetCookie(DeviceList.introDismissedKey)) || false
     });
-    this.subscribe();
   }
 
   componentDidUpdate() {
@@ -215,21 +187,16 @@ class DeviceList extends React.Component {
       this.props.relay.refetch(
         variables,
         null,
-        () => this.setState({ pageNumber: 0, lastVariables: variables }),
+        () => this.setState({ pageNumber: 0 }),
         { force: true }
       );
     }
   }
 
   componentWillUnmount() {
-    this.isDestroyed = true;
-    if (this.subscription) {
-      this.subscription.dispose();
-      this.subscription = null;
-    }
-    if (this.refreshTimer) {
-      clearTimeout(this.refreshTimer);
-      this.refreshTimer = null;
+    if (this.unsubscribe) {
+      this.unsubscribe();
+      this.unsubscribe = null;
     }
   }
 
@@ -301,18 +268,8 @@ class DeviceList extends React.Component {
     });
   }
 
-  handleRefresh() {
-    if (this.refreshTimer) {
-      clearTimeout(this.refreshTimer);
-      this.refreshTimer = null;
-    }
-
-    if (this.isDestroyed) return;
-
-    this.props.relay.refetch(this.state.lastVariables, null, null, {
-      force: true
-    });
-    this.refreshTime = Date.now();
+  handleRefreshAction() {
+    this.props.relay.refetch(vars => vars, null, null, { force: true });
   }
 
   handleChangeRowsPerPage(evt) {
@@ -326,8 +283,7 @@ class DeviceList extends React.Component {
     this.props.relay.refetch(
       variables,
       null,
-      () =>
-        this.setState({ pageSize, pageNumber: 0, lastVariables: variables }),
+      () => this.setState({ pageSize, pageNumber: 0 }),
       { force: true }
     );
   }
@@ -353,7 +309,6 @@ class DeviceList extends React.Component {
       variables.last = this.state.pageSize;
       variables.before = _.head(this.props.viewer.devices.edges).cursor;
     }
-    state.lastVariables = variables;
 
     this.props.relay.refetch(variables, null, () => this.setState(state), {
       force: true
@@ -368,7 +323,7 @@ class DeviceList extends React.Component {
             <FormattedMessage id="TITLE_DEVICES" />
           </Typography>
           <div className={this.props.classes.grow} />
-          <IconButton color="inherit" onClick={this.handleRefresh}>
+          <IconButton color="inherit" onClick={this.handleRefreshAction}>
             <RefreshIcon />
           </IconButton>
         </Toolbar>
