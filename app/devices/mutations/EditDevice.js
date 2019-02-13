@@ -3,10 +3,8 @@ import { commitMutation, graphql } from "react-relay";
 const mutation = graphql`
   mutation EditDeviceMutation($input: EditDeviceInput!) {
     editDevice(input: $input) {
-      deviceEdge {
-        node {
-          id
-        }
+      device {
+        id
       }
     }
   }

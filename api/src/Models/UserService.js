@@ -1,9 +1,12 @@
 const EventEmitter = require("events");
 const UserModel = require("./User");
+const constants = require("../../../common/constants");
 
 class User extends EventEmitter {
   constructor(db) {
     super();
+
+    this.roles = _.values(constants.roles);
 
     this.db = db;
 

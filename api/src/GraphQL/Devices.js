@@ -113,12 +113,9 @@ class Devices extends EventEmitter {
         password: { type: GraphQLString }
       },
       outputFields: {
-        deviceEdge: {
-          type: this.DeviceEdge,
-          resolve: async ({ device }) => ({
-            cursor: documentToCursor(device),
-            node: device
-          })
+        device: {
+          type: this.Device,
+          resolve: async ({ device }) => device
         }
       },
       mutateAndGetPayload: async (args, context) => {
@@ -135,12 +132,9 @@ class Devices extends EventEmitter {
         password: { type: GraphQLString }
       },
       outputFields: {
-        deviceEdge: {
-          type: this.DeviceEdge,
-          resolve: async ({ device }) => ({
-            cursor: documentToCursor(device),
-            node: device
-          })
+        device: {
+          type: this.Device,
+          resolve: async ({ device }) => device
         }
       },
       mutateAndGetPayload: async (args, context) => {
@@ -158,12 +152,9 @@ class Devices extends EventEmitter {
         id: { type: new GraphQLNonNull(GraphQLID) }
       },
       outputFields: {
-        deviceEdge: {
-          type: this.DeviceEdge,
-          resolve: async ({ device }) => ({
-            cursor: documentToCursor(device),
-            node: device
-          })
+        device: {
+          type: this.Device,
+          resolve: async ({ device }) => device
         }
       },
       mutateAndGetPayload: async (args, context) => {

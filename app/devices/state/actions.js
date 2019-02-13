@@ -22,7 +22,10 @@ export const selectAll = ({ deviceIds }) => ({
   deviceIds
 });
 
-export const deselectAll = () => ({ type: types.DESELECT_ALL });
+export const deselectAll = ({ exceptDeviceIds }) => ({
+  type: types.DESELECT_ALL,
+  exceptDeviceIds
+});
 
 export const showEditModal = ({ deviceId } = {}) => ({
   type: types.SHOW_EDIT_MODAL,

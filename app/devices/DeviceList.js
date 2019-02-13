@@ -25,7 +25,7 @@ import ProxyModal from "./ProxyModalContainer";
 import ConfirmModal from "../app/modals/ConfirmModalContainer";
 import { RelayContext, subscribe } from "../app/providers/Relay";
 
-export const pageSize = 20;
+export const pageSize = 10;
 
 export const styles = theme => ({
   docs: {
@@ -138,24 +138,27 @@ class DeviceList extends React.Component {
     this.state = {
       pageSize,
       pageNumber: 0,
+      variables: {
+        first: pageSize
+      },
       isConfirmOpen: false,
       isProxyModalOpen: false,
       proxyModalDeviceId: null,
       isIntroDismissed: true
     };
 
-    this.handleTextClose = this.handleTextClose.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
     this.handleCreateAction = this.handleCreateAction.bind(this);
     this.handleEditAction = this.handleEditAction.bind(this);
     this.handleDeleteAction = this.handleDeleteAction.bind(this);
     this.handleCancelDelete = this.handleCancelDelete.bind(this);
     this.handleConfirmDelete = this.handleConfirmDelete.bind(this);
-    this.handleProxyModalOpen = this.handleProxyModalOpen.bind(this);
-    this.handleProxyModalClose = this.handleProxyModalClose.bind(this);
     this.handleRefreshAction = this.handleRefreshAction.bind(this);
     this.handleChangePage = this.handleChangePage.bind(this);
     this.handleChangeRowsPerPage = this.handleChangeRowsPerPage.bind(this);
+    this.handleTextClose = this.handleTextClose.bind(this);
+    this.handleProxyModalOpen = this.handleProxyModalOpen.bind(this);
+    this.handleProxyModalClose = this.handleProxyModalClose.bind(this);
   }
 
   async componentDidMount() {
@@ -172,25 +175,19 @@ class DeviceList extends React.Component {
   }
 
   componentDidUpdate() {
-    if (
-      this.props.viewer.devices.totalCount &&
-      this.state.pageNumber * this.state.pageSize >=
-        this.props.viewer.devices.totalCount
-    ) {
+    const total = _.get(this.props.viewer, "devices.totalCount", 0);
+    if (total && this.state.pageNumber * this.state.pageSize >= total) {
       // we fell off the list - reset to the beginning
-      const variables = {
-        first: this.state.pageSize,
-        after: null,
-        last: null,
-        before: null
+      let variables = {
+        first: this.state.pageSize
       };
-      this.props.relay.refetch(
-        variables,
-        null,
-        () => this.setState({ pageNumber: 0 }),
-        { force: true }
+      this.setState({ pageNumber: 0, variables }, () =>
+        this.props.relay.refetch(variables, null, null, { force: true })
       );
     }
+    this.props.onDeselectAll(
+      _.map(_.get(this.props.viewer, "devices.edges", []), "node.id")
+    );
   }
 
   componentWillUnmount() {
@@ -201,11 +198,14 @@ class DeviceList extends React.Component {
   }
 
   hasRecords() {
-    return this.props.viewer.devices.edges.length > 0;
+    return _.get(this.props.viewer, "devices.edges", []).length > 0;
   }
 
   isAllSelected() {
-    const list = _.map(this.props.viewer.devices.edges, "node.id");
+    const list = _.map(
+      _.get(this.props.viewer, "devices.edges", []),
+      "node.id"
+    );
     return _.difference(list, this.props.selected).length === 0;
   }
 
@@ -218,18 +218,17 @@ class DeviceList extends React.Component {
   }
 
   handleToggleAll(forceOff = false) {
-    if (forceOff || this.isAllSelected()) this.props.onDeselectAll();
-    else
-      this.props.onSelectAll(_.map(this.props.viewer.devices.edges, "node.id"));
+    if (forceOff || this.isAllSelected()) {
+      this.props.onDeselectAll();
+    } else {
+      this.props.onSelectAll(
+        _.map(_.get(this.props.viewer, "devices.edges", []), "node.id")
+      );
+    }
   }
 
   handleToggle(deviceId) {
     this.props.onSetSelected(deviceId, !this.isSelected(deviceId));
-  }
-
-  handleTextClose() {
-    this.setState({ isIntroDismissed: true });
-    this.props.onSetCookie(DeviceList.introDismissedKey, true);
   }
 
   async handleCreateAction() {
@@ -255,6 +254,63 @@ class DeviceList extends React.Component {
     );
   }
 
+  handleRefreshAction() {
+    this.props.relay.refetch(this.state.variables, null, null, { force: true });
+  }
+
+  handleChangeRowsPerPage(evt) {
+    const pageSize = evt.target.value;
+    let variables = {
+      first: pageSize
+    };
+    this.setState({ pageSize, pageNumber: 0, variables }, () =>
+      this.props.relay.refetch(variables, null, null, { force: true })
+    );
+  }
+
+  handleChangePage(evt, pageNumber) {
+    if (this.state.pageNumber === pageNumber) return;
+
+    let variables = {};
+
+    if (pageNumber === 0) {
+      variables.first = this.state.pageSize;
+    } else if (pageNumber > this.state.pageNumber) {
+      if (
+        pageNumber + 1 >
+        Math.ceil(
+          _.get(this.props.viewer, "devices.totalCount", 0) /
+            this.state.pageSize
+        )
+      ) {
+        return;
+      }
+      variables.first = this.state.pageSize;
+      variables.after = _.get(
+        this.props.viewer,
+        "devices.pageInfo.endCursor",
+        null
+      );
+    } else {
+      if (this.state.pageNumber <= 0) return;
+      variables.last = this.state.pageSize;
+      variables.before = _.get(
+        this.props.viewer,
+        "devices.pageInfo.startCursor",
+        null
+      );
+    }
+
+    this.setState({ pageNumber, variables }, () =>
+      this.props.relay.refetch(variables, null, null, { force: true })
+    );
+  }
+
+  handleTextClose() {
+    this.setState({ isIntroDismissed: true });
+    this.props.onSetCookie(DeviceList.introDismissedKey, true);
+  }
+
   handleProxyModalOpen(deviceId) {
     this.setState({
       isProxyModalOpen: true,
@@ -265,53 +321,6 @@ class DeviceList extends React.Component {
   handleProxyModalClose() {
     this.setState({
       isProxyModalOpen: false
-    });
-  }
-
-  handleRefreshAction() {
-    this.props.relay.refetch(vars => vars, null, null, { force: true });
-  }
-
-  handleChangeRowsPerPage(evt) {
-    const pageSize = evt.target.value;
-    const variables = {
-      first: pageSize,
-      after: null,
-      last: null,
-      before: null
-    };
-    this.props.relay.refetch(
-      variables,
-      null,
-      () => this.setState({ pageSize, pageNumber: 0 }),
-      { force: true }
-    );
-  }
-
-  handleChangePage(evt, pageNumber) {
-    if (this.state.pageNumber === pageNumber) return;
-
-    let state = { pageNumber };
-    let variables = { first: null, after: null, last: null, before: null };
-    if (pageNumber === 0) {
-      variables.first = this.state.pageSize;
-    } else if (pageNumber > this.state.pageNumber) {
-      if (
-        pageNumber + 1 >
-        Math.ceil(this.props.viewer.devices.totalCount / this.state.pageSize)
-      ) {
-        return;
-      }
-      variables.first = this.state.pageSize;
-      variables.after = _.last(this.props.viewer.devices.edges).cursor;
-    } else {
-      if (this.state.pageNumber <= 0) return;
-      variables.last = this.state.pageSize;
-      variables.before = _.head(this.props.viewer.devices.edges).cursor;
-    }
-
-    this.props.relay.refetch(variables, null, () => this.setState(state), {
-      force: true
     });
   }
 

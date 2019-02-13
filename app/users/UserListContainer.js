@@ -22,7 +22,8 @@ const mapDispatchToProps = dispatch => {
     onSetSelected: (userId, isSelected) =>
       dispatch(usersOperations.setSelected({ userId, isSelected })),
     onSelectAll: userIds => dispatch(usersOperations.selectAll({ userIds })),
-    onDeselectAll: () => dispatch(usersOperations.deselectAll())
+    onDeselectAll: exceptUserIds =>
+      dispatch(usersOperations.deselectAll({ exceptUserIds }))
   };
 };
 
@@ -48,6 +49,7 @@ const UserList = createRefetchContainer(
           edges {
             cursor
             node {
+              id
               ...UserItemContainer_node
             }
           }

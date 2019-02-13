@@ -52,7 +52,7 @@ export const reqCreate = ({ name, password }) => async (
     name,
     password
   });
-  if (_.get(data, "data.createDevice.deviceEdge.node.id", null)) {
+  if (_.get(data, "data.createDevice.device.id", null)) {
     await dispatch(actions.hideEditModal());
     return true;
   }
@@ -70,7 +70,7 @@ export const reqEdit = ({ id, name, password }) => async (
     name,
     password
   });
-  if (_.get(data, "data.editDevice.deviceEdge.node.id", null)) {
+  if (_.get(data, "data.editDevice.device.id", null)) {
     await dispatch(actions.hideEditModal());
     return true;
   }
@@ -80,7 +80,7 @@ export const reqEdit = ({ id, name, password }) => async (
 
 export const reqRemove = ({ id }) => async (dispatch, getState, di) => {
   let data = await DeleteDeviceMutation(di, { id });
-  return !!_.get(data, "data.deleteDevice.deviceEdge.node.id", null);
+  return !!_.get(data, "data.deleteDevice.device.id", null);
 };
 
 export const startAuth = ({ deviceId }) => async dispatch => {

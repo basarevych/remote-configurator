@@ -144,7 +144,14 @@ const selectedReducer = (state = Set([]), action) => {
       if (!_.isUndefined(action.deviceIds)) return Set(action.deviceIds);
       break;
     case types.DESELECT_ALL:
-      return Set([]);
+      if (_.isUndefined(action.exceptDeviceIds)) {
+        return Set([]);
+      } else {
+        return state.withMutations(set => {
+          for (let item of set.values())
+            if (!_.includes(action.exceptDeviceIds, item)) set.delete(item);
+        });
+      }
   }
   return state;
 };

@@ -10,10 +10,11 @@ const { SubscriptionServer } = require("subscriptions-transport-ws");
 const constants = require("../../common/constants");
 
 class GraphQL extends EventEmitter {
-  constructor(app, auth, users, devices) {
+  constructor(app, ws, auth, users, devices) {
     super();
 
     this.app = app;
+    this.ws = ws;
     this.auth = auth;
     this.users = users;
     this.devices = devices;
@@ -51,7 +52,7 @@ class GraphQL extends EventEmitter {
 
   // eslint-disable-next-line lodash/prefer-constant
   static get $requires() {
-    return ["app", "graphql.auth", "graphql.users", "graphql.devices"];
+    return ["app", "ws", "graphql.auth", "graphql.users", "graphql.devices"];
   }
 
   // eslint-disable-next-line lodash/prefer-constant
@@ -115,7 +116,8 @@ class GraphQL extends EventEmitter {
           subscription: this.Subscription
         });
 
-        if (this.app.subscriptions) {
+        if (this.app.server) {
+          await this.ws.init();
           this.subscriptions = SubscriptionServer.create(
             {
               schema: this.schema,
@@ -123,7 +125,7 @@ class GraphQL extends EventEmitter {
               subscribe
             },
             {
-              server: this.app.subscriptions,
+              server: this.app.server,
               path: constants.graphqlBase
             }
           );

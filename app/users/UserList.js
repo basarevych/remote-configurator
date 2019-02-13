@@ -21,7 +21,7 @@ import EditUserModal from "./EditUserModalContainer";
 import ConfirmModal from "../app/modals/ConfirmModalContainer";
 import { RelayContext, subscribe } from "../app/providers/Relay";
 
-export const pageSize = 20;
+export const pageSize = 10;
 
 export const styles = theme => ({
   layout: {
@@ -83,6 +83,9 @@ class UserList extends React.Component {
     this.state = {
       pageSize,
       pageNumber: 0,
+      variables: {
+        first: pageSize
+      },
       isConfirmOpen: false
     };
 
@@ -107,25 +110,19 @@ class UserList extends React.Component {
   }
 
   componentDidUpdate() {
-    if (
-      this.props.viewer.users.totalCount &&
-      this.state.pageNumber * this.state.pageSize >=
-        this.props.viewer.users.totalCount
-    ) {
+    const total = _.get(this.props.viewer, "users.totalCount", 0);
+    if (total && this.state.pageNumber * this.state.pageSize >= total) {
       // we fell off the list - reset to the beginning
-      const variables = {
-        first: this.state.pageSize,
-        after: null,
-        last: null,
-        before: null
+      let variables = {
+        first: this.state.pageSize
       };
-      this.props.relay.refetch(
-        variables,
-        null,
-        () => this.setState({ pageNumber: 0 }),
-        { force: true }
+      this.setState({ pageNumber: 0, variables }, () =>
+        this.props.relay.refetch(variables, null, null, { force: true })
       );
     }
+    this.props.onDeselectAll(
+      _.map(_.get(this.props.viewer, "users.edges", []), "node.id")
+    );
   }
 
   componentWillUnmount() {
@@ -136,11 +133,11 @@ class UserList extends React.Component {
   }
 
   hasRecords() {
-    return this.props.viewer.users.edges.length > 0;
+    return _.get(this.props.viewer, "users.edges", []).length > 0;
   }
 
   isAllSelected() {
-    const list = _.map(this.props.viewer.users.edges, "node.id");
+    const list = _.map(_.get(this.props.viewer, "users.edges", []), "node.id");
     return _.difference(list, this.props.selected).length === 0;
   }
 
@@ -153,9 +150,13 @@ class UserList extends React.Component {
   }
 
   handleToggleAll(forceOff = false) {
-    if (forceOff || this.isAllSelected()) this.props.onDeselectAll();
-    else
-      this.props.onSelectAll(_.map(this.props.viewer.users.edges, "node.id"));
+    if (forceOff || this.isAllSelected()) {
+      this.props.onDeselectAll();
+    } else {
+      this.props.onSelectAll(
+        _.map(_.get(this.props.viewer, "users.edges", []), "node.id")
+      );
+    }
   }
 
   handleToggle(userId) {
@@ -186,50 +187,54 @@ class UserList extends React.Component {
   }
 
   handleRefreshAction() {
-    this.props.relay.refetch(vars => vars, null, null, { force: true });
+    this.props.relay.refetch(this.state.variables, null, null, { force: true });
   }
 
   handleChangeRowsPerPage(evt) {
     const pageSize = evt.target.value;
-    const variables = {
-      first: pageSize,
-      after: null,
-      last: null,
-      before: null
+    let variables = {
+      first: pageSize
     };
-    this.props.relay.refetch(
-      variables,
-      null,
-      () => this.setState({ pageSize, pageNumber: 0 }),
-      { force: true }
+    this.setState({ pageSize, pageNumber: 0, variables }, () =>
+      this.props.relay.refetch(variables, null, null, { force: true })
     );
   }
 
   handleChangePage(evt, pageNumber) {
     if (this.state.pageNumber === pageNumber) return;
 
-    let state = { pageNumber };
-    let variables = { first: null, after: null, last: null, before: null };
+    let variables = {};
+
     if (pageNumber === 0) {
       variables.first = this.state.pageSize;
     } else if (pageNumber > this.state.pageNumber) {
       if (
         pageNumber + 1 >
-        Math.ceil(this.props.viewer.users.totalCount / this.state.pageSize)
+        Math.ceil(
+          _.get(this.props.viewer, "users.totalCount", 0) / this.state.pageSize
+        )
       ) {
         return;
       }
       variables.first = this.state.pageSize;
-      variables.after = _.last(this.props.viewer.users.edges).cursor;
+      variables.after = _.get(
+        this.props.viewer,
+        "users.pageInfo.endCursor",
+        null
+      );
     } else {
       if (this.state.pageNumber <= 0) return;
       variables.last = this.state.pageSize;
-      variables.before = _.head(this.props.viewer.users.edges).cursor;
+      variables.before = _.get(
+        this.props.viewer,
+        "users.pageInfo.startCursor",
+        null
+      );
     }
 
-    this.props.relay.refetch(variables, null, () => this.setState(state), {
-      force: true
-    });
+    this.setState({ pageNumber, variables }, () =>
+      this.props.relay.refetch(variables, null, null, { force: true })
+    );
   }
 
   renderTable() {

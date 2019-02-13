@@ -28,7 +28,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(devicesOperations.setSelected({ deviceId, isSelected })),
     onSelectAll: deviceIds =>
       dispatch(devicesOperations.selectAll({ deviceIds })),
-    onDeselectAll: () => dispatch(devicesOperations.deselectAll())
+    onDeselectAll: exceptDeviceIds =>
+      dispatch(devicesOperations.deselectAll({ exceptDeviceIds }))
   };
 };
 
@@ -54,6 +55,7 @@ const DeviceList = createRefetchContainer(
           edges {
             cursor
             node {
+              id
               ...DeviceItemContainer_node
             }
           }
