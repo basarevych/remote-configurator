@@ -40,7 +40,7 @@ if (app.config.appSslKey && app.config.appSslCert) {
 }
 
 app
-  .init({ mainServer, subscriptionsServer })
+  .init({ mainServer })
   .then(() => {
     mainServer.listen(app.config.appPort, app.config.appHost);
     mainServer.on("error", onError);
