@@ -91,7 +91,7 @@ class Users extends EventEmitter {
     });
 
     const {
-      connectionType: UsersConnection,
+      connectionType: UserConnection,
       edgeType: UserEdge
     } = connectionDefinitions({
       name: "User",
@@ -104,7 +104,7 @@ class Users extends EventEmitter {
         }
       })
     });
-    this.UsersConnection = UsersConnection;
+    this.UserConnection = UserConnection;
     this.UserEdge = UserEdge;
 
     this.query = {
@@ -120,7 +120,7 @@ class Users extends EventEmitter {
           )
       },
       users: {
-        type: this.UsersConnection,
+        type: this.UserConnection,
         args: connectionArgs,
         resolve: (source, args, context) =>
           connectionFromPromisedArray(

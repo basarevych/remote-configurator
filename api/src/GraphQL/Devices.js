@@ -67,7 +67,7 @@ class Devices extends EventEmitter {
     });
 
     const {
-      connectionType: DevicesConnection,
+      connectionType: DeviceConnection,
       edgeType: DeviceEdge
     } = connectionDefinitions({
       name: "Device",
@@ -80,7 +80,7 @@ class Devices extends EventEmitter {
         }
       })
     });
-    this.DevicesConnection = DevicesConnection;
+    this.DeviceConnection = DeviceConnection;
     this.DeviceEdge = DeviceEdge;
 
     this.query = {
@@ -96,7 +96,7 @@ class Devices extends EventEmitter {
           )
       },
       devices: {
-        type: this.DevicesConnection,
+        type: this.DeviceConnection,
         args: connectionArgs,
         resolve: (source, args, context) =>
           connectionFromPromisedArray(
