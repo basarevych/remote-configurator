@@ -98,19 +98,19 @@
       "commons": 0,
       "static/runtime/webpack.js": 1,
       "polyfills": 2,
-      "static/K0Mnfdp~WRm1TRk8Inu2s/pages/_app.js": 3,
-      "static/K0Mnfdp~WRm1TRk8Inu2s/pages/_error.js": 4,
-      "static/K0Mnfdp~WRm1TRk8Inu2s/pages/browser.js": 5,
-      "static/K0Mnfdp~WRm1TRk8Inu2s/pages/devices.js": 6,
-      "static/K0Mnfdp~WRm1TRk8Inu2s/pages/index.js": 7,
-      "static/K0Mnfdp~WRm1TRk8Inu2s/pages/terminal.js": 8,
-      "static/K0Mnfdp~WRm1TRk8Inu2s/pages/users.js": 9,
+      "static/HJGW9s3B4OvR2QlTy5Ded/pages/_app.js": 3,
+      "static/HJGW9s3B4OvR2QlTy5Ded/pages/_error.js": 4,
+      "static/HJGW9s3B4OvR2QlTy5Ded/pages/browser.js": 5,
+      "static/HJGW9s3B4OvR2QlTy5Ded/pages/devices.js": 6,
+      "static/HJGW9s3B4OvR2QlTy5Ded/pages/index.js": 7,
+      "static/HJGW9s3B4OvR2QlTy5Ded/pages/terminal.js": 8,
+      "static/HJGW9s3B4OvR2QlTy5Ded/pages/users.js": 9,
       "static/runtime/main.js": 10,
       "styles": 11
     },
     "bySource": {
-      "0 node_modules/next/dist/build/webpack/loaders/next-babel-loader.js??ref--4!app/app/lib/initApp.js {\"line\":30,\"column\":4}": 2,
-      "0 node_modules/next/dist/build/webpack/loaders/next-babel-loader.js??ref--4!app/app/lib/initApp.js {\"line\":55,\"column\":6}": 2
+      "0 node_modules/next/dist/build/webpack/loaders/next-babel-loader.js??ref--4!app/app/lib/initApp.js {\"line\":32,\"column\":4}": 2,
+      "0 node_modules/next/dist/build/webpack/loaders/next-babel-loader.js??ref--4!app/app/lib/initApp.js {\"line\":57,\"column\":6}": 2
     },
     "usedIds": [
       0,

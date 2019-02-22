@@ -1,7 +1,8 @@
 "use strict";
 
-if (!global._) global._ = require("lodash");
+require("@babel/polyfill");
 require("isomorphic-unfetch");
+if (!global._) global._ = require("lodash");
 
 const nextApp = require("next");
 const Injectt = require("injectt");
