@@ -22,7 +22,7 @@ export const selectAll = ({ deviceIds }) => ({
   deviceIds
 });
 
-export const deselectAll = ({ exceptDeviceIds }) => ({
+export const deselectAll = ({ exceptDeviceIds } = {}) => ({
   type: types.DESELECT_ALL,
   exceptDeviceIds
 });
