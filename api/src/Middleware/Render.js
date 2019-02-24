@@ -74,7 +74,7 @@ class Render extends EventEmitter {
   }
 
   async getRender({ req, res, page, query, user, force }) {
-    const id = user && user.id;
+    const id = (user && user.id) || null;
     const name = (user && user.login) || "unauthenticated";
     const cache = this.usersCache.has(id)
       ? this.usersCache.get(id).cache
@@ -112,13 +112,11 @@ class Render extends EventEmitter {
           let html = await this.app.next.renderToHTML(req, res, page, query);
           if (res.statusCode !== 200)
             throw new Error(`Could not render ${key} [User: ${name}]`);
+          console.log(`> Cached ${key} for ${name}`);
           resolve(html);
         } catch (error) {
           reject(error);
         }
-      }).then(html => {
-        console.log(`> Cached ${key} for ${name}`);
-        return html;
       })
     );
 
@@ -150,7 +148,8 @@ class Render extends EventEmitter {
           for (let locale of this.i18n.locales) {
             let req = {
               path: route,
-              cookies: { locale, theme: defaultTheme },
+              locale,
+              theme: defaultTheme,
               getUser: () =>
                 new Promise(resolve => setTimeout(() => resolve(user)))
             };

@@ -1,10 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { graphql } from "react-relay";
 import { NextQueryRenderer } from "../app/providers/Relay";
 import DeviceList, { pageSize } from "./DeviceListContainer";
 import ErrorMessage from "../app/error/ErrorMessageContainer";
-import isRouteAllowed from "../../common/isRouteAllowed";
 
 const defaultVariables = { first: pageSize };
 
@@ -23,18 +21,11 @@ export const query = graphql`
 `;
 
 class DevicesPage extends React.Component {
-  static propTypes = {
-    userRoles: PropTypes.array.isRequired
-  };
-
   static async getInitialProps({ statusCode, fetchQuery }) {
-    if (statusCode !== 200) return;
-    await fetchQuery(query, defaultVariables);
+    if (statusCode === 200) await fetchQuery(query, defaultVariables);
   }
 
   render() {
-    if (!isRouteAllowed("/devices", this.props.userRoles)) return null;
-
     return (
       <NextQueryRenderer
         query={query}

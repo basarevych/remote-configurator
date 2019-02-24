@@ -1,5 +1,6 @@
 import * as actions from "./actions";
 import * as selectors from "./selectors";
+import { appOperations } from "../../app/state";
 import { getFormErrors } from "../../app/forms/connectForm";
 import constants from "../../../common/constants";
 import SignInMutation from "../mutations/SignIn";
@@ -40,19 +41,14 @@ export const signIn = ({ login, password }) => async (
   let data = await SignInMutation(di, { login, password });
   if (_.get(data, "data.signIn.success", false)) {
     await dispatch(setStatus());
-    if (process.browser && _.isFunction(window.__NEXT_PAGE_INIT))
-      await window.__NEXT_PAGE_INIT({ store: window.__NEXT_REDUX_STORE__ });
     return true;
   }
   return getFormErrors(data, "APP_AUTH_FAILED");
 };
 
 export const signOut = () => async (dispatch, getState, di) => {
-  let data = await SignOutMutation(di);
-  if (_.get(data, "data.signOut.success", false)) {
-    await dispatch(setStatus());
-    return true;
-  }
-
-  return false;
+  await dispatch(appOperations.stop());
+  await SignOutMutation(di);
+  window.location.href = "/";
+  return true;
 };

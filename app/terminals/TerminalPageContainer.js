@@ -1,17 +1,7 @@
-import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
-import { authSelectors } from "../auth/state";
 import TerminalPageComponent, { styles } from "./TerminalPage";
 
-const mapStateToProps = state => {
-  return {
-    userRoles: authSelectors.getRoles(state)
-  };
-};
-
-const TerminalPage = withStyles(styles)(
-  connect(mapStateToProps)(TerminalPageComponent)
-);
+const TerminalPage = withStyles(styles)(TerminalPageComponent);
 TerminalPage.getInitialProps = TerminalPageComponent.getInitialProps;
 
 export default TerminalPage;

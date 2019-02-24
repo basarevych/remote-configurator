@@ -14,6 +14,7 @@ Map({
   sshPort: Number,
   selfRegistration: Boolean,
   isStarted: Boolean,
+  isStopped: Boolean,
   isConnected: Boolean, // WebSocket
 })
 */
@@ -105,8 +106,14 @@ const isStartedReducer = (state = false, action) => {
   switch (action.type) {
     case types.START:
       return true;
+  }
+  return state;
+};
+
+const isStoppedReducer = (state = false, action) => {
+  switch (action.type) {
     case types.STOP:
-      return false;
+      return true;
   }
   return state;
 };
@@ -131,6 +138,7 @@ const reducer = combineReducers({
   sshPort: sshPortReducer,
   selfRegistration: selfRegistrationReducer,
   isStarted: isStartedReducer,
+  isStopped: isStoppedReducer,
   isConnected: isConnectedReducer
 });
 

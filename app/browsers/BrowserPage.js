@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Browser from "./BrowserContainer";
-import isRouteAllowed from "../../common/isRouteAllowed";
 
 export const styles = theme => ({
   layout: {
@@ -20,7 +19,6 @@ export const styles = theme => ({
 class BrowserPage extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
-    userRoles: PropTypes.array.isRequired,
     deviceId: PropTypes.string,
     host: PropTypes.string,
     port: PropTypes.number
@@ -35,8 +33,6 @@ class BrowserPage extends React.Component {
   }
 
   render() {
-    if (!isRouteAllowed("/browser", this.props.userRoles)) return null;
-
     return (
       <div className={this.props.classes.layout}>
         <Browser

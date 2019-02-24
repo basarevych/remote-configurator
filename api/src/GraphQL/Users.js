@@ -15,10 +15,7 @@ const {
   globalIdField,
   mutationWithClientMutationId
 } = require("graphql-relay");
-const {
-  connectionFromPromisedArray,
-  documentToCursor
-} = require("../LokiConnection");
+const { connectionFromPromisedArray } = require("../LokiConnection");
 const GraphQLDate = require("./Date");
 
 class Users extends EventEmitter {
