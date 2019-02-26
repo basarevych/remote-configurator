@@ -23,14 +23,14 @@
   },
   "chunks": {
     "byName": {
-      "static/s1r99~ga_~FYwX2~Ec~Ry/pages/_app.js": 0,
-      "static/s1r99~ga_~FYwX2~Ec~Ry/pages/_document.js": 1,
-      "static/s1r99~ga_~FYwX2~Ec~Ry/pages/_error.js": 2,
-      "static/s1r99~ga_~FYwX2~Ec~Ry/pages/browser.js": 3,
-      "static/s1r99~ga_~FYwX2~Ec~Ry/pages/devices.js": 4,
-      "static/s1r99~ga_~FYwX2~Ec~Ry/pages/index.js": 5,
-      "static/s1r99~ga_~FYwX2~Ec~Ry/pages/terminal.js": 6,
-      "static/s1r99~ga_~FYwX2~Ec~Ry/pages/users.js": 7
+      "static/ZNJx1MIoRoZ0iPeBGAPAu/pages/_app.js": 0,
+      "static/ZNJx1MIoRoZ0iPeBGAPAu/pages/_document.js": 1,
+      "static/ZNJx1MIoRoZ0iPeBGAPAu/pages/_error.js": 2,
+      "static/ZNJx1MIoRoZ0iPeBGAPAu/pages/browser.js": 3,
+      "static/ZNJx1MIoRoZ0iPeBGAPAu/pages/devices.js": 4,
+      "static/ZNJx1MIoRoZ0iPeBGAPAu/pages/index.js": 5,
+      "static/ZNJx1MIoRoZ0iPeBGAPAu/pages/terminal.js": 6,
+      "static/ZNJx1MIoRoZ0iPeBGAPAu/pages/users.js": 7
     },
     "bySource": {},
     "usedIds": [
