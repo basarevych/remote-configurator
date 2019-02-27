@@ -31,7 +31,7 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/xterm/src/addons/fullscreen/fullscreen.css": [
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/xterm/src/xterm.css": [
     {
       "modules": {
         "byIdentifier": {},
@@ -48,7 +48,7 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/xterm/src/xterm.css": [
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/xterm/src/addons/fullscreen/fullscreen.css": [
     {
       "modules": {
         "byIdentifier": {},
@@ -98,13 +98,13 @@
       "commons": 0,
       "static/runtime/webpack.js": 1,
       "polyfills": 2,
-      "static/ZNJx1MIoRoZ0iPeBGAPAu/pages/_app.js": 3,
-      "static/ZNJx1MIoRoZ0iPeBGAPAu/pages/_error.js": 4,
-      "static/ZNJx1MIoRoZ0iPeBGAPAu/pages/browser.js": 5,
-      "static/ZNJx1MIoRoZ0iPeBGAPAu/pages/devices.js": 6,
-      "static/ZNJx1MIoRoZ0iPeBGAPAu/pages/index.js": 7,
-      "static/ZNJx1MIoRoZ0iPeBGAPAu/pages/terminal.js": 8,
-      "static/ZNJx1MIoRoZ0iPeBGAPAu/pages/users.js": 9,
+      "static/k9~lHlRssFRAPSX_nSV00/pages/_app.js": 3,
+      "static/k9~lHlRssFRAPSX_nSV00/pages/_error.js": 4,
+      "static/k9~lHlRssFRAPSX_nSV00/pages/browser.js": 5,
+      "static/k9~lHlRssFRAPSX_nSV00/pages/devices.js": 6,
+      "static/k9~lHlRssFRAPSX_nSV00/pages/index.js": 7,
+      "static/k9~lHlRssFRAPSX_nSV00/pages/terminal.js": 8,
+      "static/k9~lHlRssFRAPSX_nSV00/pages/users.js": 9,
       "static/runtime/main.js": 10,
       "styles": 11
     },

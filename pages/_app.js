@@ -42,7 +42,11 @@ class MyApp extends App {
         csrf: req && req.csrfHeader,
         status: req && req.getAuthStatus && (await req.getAuthStatus()),
         subscriptionsServer: query && query.subscriptionsServer,
-        googleMapsKey: query && query.googleMapsKey
+        appOrigin: query && query.appOrigin,
+        proxyOrigin: query && query.proxyOrigin,
+        sshHost: query && query.sshHost,
+        sshPort: query && query.sshPort,
+        selfRegistration: query && query.selfRegistration
       })
     );
 
