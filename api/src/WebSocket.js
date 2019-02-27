@@ -579,7 +579,19 @@ class WebSocket extends EventEmitter {
             port,
             isAuthNeeded,
             authUsername,
-            authPassword
+            authPassword,
+            onLog: async data => {
+              try {
+                await this.dispatch(
+                  devicesOperations.set({
+                    deviceId,
+                    status: data.toString()
+                  })
+                );
+              } catch (error) {
+                console.error(error);
+              }
+            }
           })
         );
       }

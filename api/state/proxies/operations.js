@@ -64,7 +64,8 @@ const create = ({
   port,
   isAuthNeeded,
   authUsername,
-  authPassword
+  authPassword,
+  onLog
 }) => {
   return async (dispatch, getState, di) => {
     let ssh = di.get("ssh");
@@ -83,7 +84,9 @@ const create = ({
       deviceId,
       `ssh -p ${config.sshPort} -R ${port}:${host}:${port} -N ${username}@${
         config.sshOrigins[0]
-      }`
+      }`,
+      onLog,
+      onLog
     );
     if (!exec) return;
 
@@ -121,7 +124,7 @@ const create = ({
     timer = setTimeout(async () => {
       timer = null;
       onProxy({ proxyId });
-    }, 20 * 1000);
+    }, 3 * 60 * 1000);
     ssh.on("proxy", onProxy);
 
     exec.start().catch(console.error);

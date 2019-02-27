@@ -13,8 +13,8 @@
     " copy-paste into the terminal of your device.</li>",
     "<li>Enter the same password you used to create the device and the device will appear in the list below after",
     " connecting to this server. All further interaction with the device will be done through this encrypted SSH channel.</li>",
-    "<li>Press \"SIGN IN\" button to sign in into your device. You don't need to use root's credentials if you are",
-    " not going to perform superuser-only operations",
+    "<li>Press \"SIGN IN\" button to sign in into your device. Please use the same user under which you typed the <strong>ssh</strong>",
+    " command above or you might get \"Host key verification failed\" error otherwise.</li>",
     "<li>When signed in you can then open an in-browser terminal session to this device under the credentials you used",
     " or create a private HTTP proxy for any port on your device</li>",
     "</ul>"

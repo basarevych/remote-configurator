@@ -41,7 +41,7 @@ class ProxyModal extends Form {
       props.getValue("login"),
       props.getValue("password")
     );
-    props.onClose();
+    props.onCancel();
 
     return true;
   }
