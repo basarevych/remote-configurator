@@ -181,9 +181,11 @@ class DeviceList extends React.Component {
       let variables = {
         first: this.state.pageSize
       };
-      this.setState({ pageNumber: 0, variables }, () =>
-        this.props.relay.refetch(variables, null, null, { force: true })
-      );
+      setTimeout(() => {
+        this.setState({ pageNumber: 0, variables }, () =>
+          this.props.relay.refetch(variables, null, null, { force: true })
+        );
+      });
     }
     this.props.onDeselectAll(
       _.map(_.get(this.props.viewer, "devices.edges", []), "node.id")

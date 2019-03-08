@@ -1,9 +1,9 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { Terminal } from 'xterm';
-import * as fit from 'xterm/dist/addons/fit/fit';
-import * as fullscreen from 'xterm/dist/addons/fullscreen/fullscreen';
-import * as search from 'xterm/dist/addons/search/search';
+import * as React from "react";
+import PropTypes from "prop-types";
+import { Terminal } from "xterm";
+import * as fit from "xterm/dist/addons/fit/fit";
+import * as fullscreen from "xterm/dist/addons/fullscreen/fullscreen";
+import * as search from "xterm/dist/addons/search/search";
 
 class XTerm extends React.PureComponent {
   static propTypes = {
@@ -15,12 +15,12 @@ class XTerm extends React.PureComponent {
     onKey: PropTypes.func,
     onPaste: PropTypes.func,
     onResize: PropTypes.func,
-    onContextMenu: PropTypes.func,
-  }
+    onContextMenu: PropTypes.func
+  };
 
   static defaultProps = {
-    options: {},
-  }
+    options: {}
+  };
 
   constructor(props) {
     super(props);
@@ -91,29 +91,29 @@ class XTerm extends React.PureComponent {
       origResize.call(this.xterm, cols, rows);
     };
 
-    this.xterm.on('focus', this.focusChanged.bind(this, true));
-    this.xterm.on('blur', this.focusChanged.bind(this, false));
-    this.xterm.on('data', this.onData.bind(this));
-    this.xterm.on('key', this.onKey.bind(this));
-    this.xterm.on('paste', this.onPaste.bind(this));
+    this.xterm.on("focus", this.focusChanged.bind(this, true));
+    this.xterm.on("blur", this.focusChanged.bind(this, false));
+    this.xterm.on("data", this.onData.bind(this));
+    this.xterm.on("key", this.onKey.bind(this));
+    this.xterm.on("paste", this.onPaste.bind(this));
 
     if (this.props.onContextMenu)
-      this.xterm.element.addEventListener('contextmenu', this.onContextMenu);
+      this.xterm.element.addEventListener("contextmenu", this.onContextMenu);
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener('resize', this.onResize);
-      window.addEventListener('orientationchange', this.onResize);
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", this.onResize);
+      window.addEventListener("orientationchange", this.onResize);
       setTimeout(() => this.fit());
     }
   }
 
   componentWillUnmount() {
     if (this.props.onContextMenu)
-      this.xterm.element.removeEventListener('contextmenu', this.onContextMenu);
+      this.xterm.element.removeEventListener("contextmenu", this.onContextMenu);
 
-    if (typeof window !== 'undefined') {
-      window.removeEventListener('resize', this.onResize);
-      window.removeEventListener('orientationchange', this.onResize);
+    if (typeof window !== "undefined") {
+      window.removeEventListener("resize", this.onResize);
+      window.removeEventListener("orientationchange", this.onResize);
     }
 
     this.xterm.destroy();
@@ -121,7 +121,7 @@ class XTerm extends React.PureComponent {
   }
 
   focusChanged(focused) {
-    this.setState({ isFocused: focused });
+    if (this.state.isFocused !== focused) this.setState({ isFocused: focused });
   }
 
   onData(data) {
@@ -129,13 +129,14 @@ class XTerm extends React.PureComponent {
   }
 
   onKey(key, ev) {
-    this.props.onKey && this.props.onKey({
-      altKey: ev.altKey,
-      ctrlKey: ev.ctrlKey,
-      metaKey: ev.metaKey,
-      keyCode: ev.keyCode,
-      key,
-    });
+    this.props.onKey &&
+      this.props.onKey({
+        altKey: ev.altKey,
+        ctrlKey: ev.ctrlKey,
+        metaKey: ev.metaKey,
+        keyCode: ev.keyCode,
+        key
+      });
   }
 
   onPaste(data) {
@@ -156,8 +157,8 @@ class XTerm extends React.PureComponent {
         ref={this.refTerm}
         className={this.props.className}
         style={{
-          width: this.props.width || '100%',
-          height: this.props.height || '100%',
+          width: this.props.width || "100%",
+          height: this.props.height || "100%"
         }}
       />
     );
