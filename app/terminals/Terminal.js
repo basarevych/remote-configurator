@@ -20,11 +20,12 @@ import styledScroll from "../app/styles/styledScroll";
 
 export const styles = theme => ({
   container: {
+    background: "#000000",
     flex: 1,
     display: "flex",
     flexDirection: "column",
     position: "relative",
-    background: "#2a2c38"
+    border: "1px solid #cccccc"
   },
   header: {
     marginLeft: "1rem",
@@ -150,12 +151,12 @@ class Terminal extends React.Component {
                 fontSize: 14,
                 allowTransparency: true,
                 theme: {
-                  background: "#2a2c38",
+                  background: "#000000",
                   foreground: grey[100],
                   cursor: grey[50],
                   cursorAccent: grey[200],
                   //selection: theme._lightBlue50,
-                  black: "#2a2c38",
+                  black: "#000000",
                   blue: blue[500],
                   cyan: cyan[500],
                   green: green[500],

@@ -16,10 +16,7 @@ import Form from "../app/forms/Form";
 import Field from "../app/forms/FieldContainer";
 import fields from "../../common/forms/device";
 
-export const styles = theme => ({
-  paper: {
-    background: theme.main.background
-  },
+export const styles = () => ({
   error: {
     color: red[500]
   },

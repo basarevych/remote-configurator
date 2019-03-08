@@ -5,45 +5,44 @@ const {
   lighten,
   fade
 } = require("@material-ui/core/styles/colorManipulator");
-const { red, blueGrey, amber } = require("@material-ui/core/colors");
+const { red, blueGrey } = require("@material-ui/core/colors");
 
-const primary = "#707484";
-const secondary = "#af441d";
+const primaryColor = "rgba(255, 255, 255, 0.9)";
+const primaryBackground = "#707484";
+
+const secondaryColor = "rgba(255, 255, 255, 0.9)";
+const secondaryBackground = "#af441d";
 
 const bgPage = "#000000";
-const bgNormal = "#484e5e";
-const bgPaper = `linear-gradient(to bottom right, ${lighten(
-  bgNormal,
-  0.2
-)} 0, ${darken(bgNormal, 0.2)} 100%)`;
+const bgNormal = "#333946";
+const bgPaper = "#484e5e";
 
-const textNormal = "rgba(255, 255, 255, 0.9)";
-const textDark = "rgba(255, 255, 255, 0.6)";
-const textDisabled = "rgba(255, 255, 255, 0.4)";
-const textContrast = "#ffffff";
+const textPrimary = "rgba(255, 255, 255, 0.9)";
+const textSecondary = "rgba(255, 255, 255, 0.6)";
+const textDisabled = "rgba(255, 255, 255, 0.35)";
 const textError = red[400];
 const textInfo = blueGrey[400];
 
 const fontSize = 14;
 
 module.exports = {
-  name: "daemon",
+  name: "dark",
   palette: {
     primary: {
-      main: primary,
-      contrastText: textContrast
+      main: primaryBackground,
+      contrastText: primaryColor
     },
     secondary: {
-      main: secondary,
-      contrastText: textContrast
+      main: secondaryBackground,
+      contrastText: secondaryColor
     },
     background: {
       default: bgPage,
-      paper: bgNormal
+      paper: bgPaper
     },
     text: {
-      primary: textNormal,
-      secondary: textDark,
+      primary: textPrimary,
+      secondary: textSecondary,
       disabled: textDisabled,
       hint: textDisabled
     },
@@ -60,49 +59,50 @@ module.exports = {
   shape: {
     borderRadius: 3
   },
+  header: {
+    color: [primaryColor, "!important"],
+    background: [primaryBackground, "!important"]
+  },
   sidebar: {
     computerWidth: 30,
     tabletWidth: 20,
     phoneWidth: 20,
     background:
       "linear-gradient(to bottom, #484e5e 0, #161920 80%, #161920 100%)",
-    color: textContrast,
+    color: "#f0f0f0",
     itemBackground: "transparent",
-    itemBorder: `4px solid transparent`,
-    itemColor: textDark,
-    itemHoverBackground: bgNormal,
-    itemHoverColor: textNormal,
-    itemHoverBorder: `4px solid ${darken(secondary, 0.3)}`,
-    itemSelectedBackground: lighten(bgNormal, 0.1),
-    itemSelectedColor: textContrast,
-    itemSelectedBorder: `4px solid ${secondary}`,
-    itemSelectedHoverBackground: lighten(bgNormal, 0.15),
-    itemSelectedHoverColor: textContrast,
-    itemSelectedHoverBorder: `4px solid ${lighten(secondary, 0.05)}`
+    itemBorder: "4px solid transparent",
+    itemColor: textSecondary,
+    itemHoverBackground: lighten(bgNormal, 0.15),
+    itemHoverColor: textPrimary,
+    itemHoverBorder: `4px solid ${darken(secondaryBackground, 0.3)}`,
+    itemSelectedBackground: lighten(bgNormal, 0.25),
+    itemSelectedColor: textPrimary,
+    itemSelectedBorder: `4px solid ${secondaryBackground}`,
+    itemSelectedHoverBackground: lighten(bgNormal, 0.35),
+    itemSelectedHoverColor: textPrimary,
+    itemSelectedHoverBorder: `4px solid ${lighten(secondaryBackground, 0.05)}`
   },
-  window: {
-    background: lighten(bgNormal, 0.25),
-    color: textNormal,
-    mapColor: textNormal,
-    mapBackground: fade(bgNormal, 0.7),
-    mapHoverBackground: fade(amber[500], 0.85),
-    mapSelectedBackground: amber[400],
-    dotInner: "#ffffff",
-    dotOuter: "#999999"
+  chart: {
+    statColor: textSecondary,
+    mapColor: textPrimary,
+    mapBackground: lighten(primaryBackground, 0.25),
+    mapHoverBackground: darken(secondaryBackground, 0.15),
+    mapSelectedBackground: secondaryBackground,
+    lineColor: lighten(secondaryBackground, 0.25),
+    areaColor: fade(primaryBackground, 0.35)
   },
   form: {
-    background: bgNormal,
-    stepperBackground: lighten(bgNormal, 0.15),
+    stepperBackground: lighten(bgPaper, 0.15),
     stepperLine: textDisabled,
-    stepperColor: fade(textDark, 0.4),
-    stepperActive: "#ffffff"
+    stepperColor: textDisabled,
+    stepperActive: textPrimary
   },
   main: {
-    background:
-      "linear-gradient(to right, #484e5e 0, #484e5e 15%, #20252f 100%)",
-    paper: bgPaper,
+    background: bgNormal,
+    color: textPrimary,
     backdrop: "rgba(0, 0, 0, 0.85)",
-    spinner: textContrast,
+    spinner: "#ffffff",
     spacing: 24,
     error: {
       background: fade(textError, 0.65),
@@ -123,9 +123,10 @@ module.exports = {
     }
   },
   overrides: {
-    MuiDialog: {
-      paper: {
-        background: [bgPaper, "!important"]
+    MuiPaper: {
+      root: {
+        background: bgPaper,
+        color: textPrimary
       }
     },
     MuiAvatar: {
@@ -154,13 +155,12 @@ module.exports = {
         fontSize: "0.9rem",
         fontWeight: "bold",
         textTransform: "uppercase",
-        color: textContrast
+        color: textPrimary
       },
       body: {
         fontSize: "1rem",
         "&.selected": {
-          background: primary,
-          color: textContrast
+          background: lighten(bgPaper, 0.15)
         }
       }
     },
@@ -175,31 +175,42 @@ module.exports = {
       toolbar: {
         height: [48, "!important"],
         minHeight: [48, "!important"]
-      }
-    },
-    MuiButton: {
-      root: {
-        "&$disabled": {
-          "&:not($containedPrimary):not($containedSecondary)": {
-            background: [lighten(bgNormal, 0.05), "!important"],
-            color: [textDisabled, "!important"]
-          },
-          "&$containedPrimary": {
-            background: [darken(primary, 0.15), "!important"],
-            color: [textDisabled, "!important"]
-          },
-          "&$containedSecondary": {
-            background: [darken(secondary, 0.15), "!important"],
-            color: [textDisabled, "!important"]
-          }
-        }
+      },
+      selectIcon: {
+        color: textSecondary
       }
     },
     MuiIconButton: {
       root: {
+        color: [textPrimary, "!important"],
         "&$disabled": {
-          "&:not($colorPrimary):not($colorSecondary)": {
-            color: [textDisabled, "!important"]
+          color: [textDisabled, "!important"]
+        }
+      }
+    },
+    MuiButton: {
+      root: {
+        "&:not($containedPrimary):not($containedSecondary)": {
+          color: [textPrimary, "!important"]
+        },
+        "&$containedPrimary": {
+          color: [primaryColor, "!important"]
+        },
+        "&$containedSecondary": {
+          color: [secondaryColor, "!important"]
+        },
+        "&$disabled": {
+          "&:not($containedPrimary):not($containedSecondary)": {
+            background: [darken(bgNormal, 0.25), "!important"],
+            color: [darken(textPrimary, 0.25), "!important"]
+          },
+          "&$containedPrimary": {
+            background: [darken(primaryBackground, 0.25), "!important"],
+            color: [darken(primaryColor, 0.25), "!important"]
+          },
+          "&$containedSecondary": {
+            background: [darken(secondaryBackground, 0.25), "!important"],
+            color: [darken(secondaryColor, 0.25), "!important"]
           }
         }
       }
@@ -208,10 +219,10 @@ module.exports = {
       root: {
         "&$underline": {
           "&:before": {
-            borderBottom: `2px solid ${textDark}`
+            borderBottom: `2px solid ${textSecondary}`
           },
           "&:after": {
-            borderBottom: `2px solid ${lighten(secondary, 0.1)}`
+            borderBottom: `2px solid ${lighten(secondaryBackground, 0.1)}`
           }
         }
       }
@@ -222,16 +233,17 @@ module.exports = {
           borderWidth: [2, "!important"]
         },
         "&:not($disabled):not($error) $notchedOutline": {
-          borderColor: [textDark, "!important"]
+          borderColor: [textSecondary, "!important"]
         },
         "&:not($disabled):not($error):hover:not($focused) $notchedOutline": {
-          borderColor: [textContrast, "!important"]
+          borderColor: [textPrimary, "!important"]
         },
         "&:not($disabled):not($error)$focused $notchedOutline": {
-          borderColor: [lighten(secondary, 0.1), "!important"]
+          borderColor: [lighten(secondaryBackground, 0.1), "!important"]
         },
         "&$disabled $notchedOutline": {
-          borderColor: [textDisabled, "!important"]
+          borderStyle: "dotted",
+          borderColor: [textSecondary, "!important"]
         }
       }
     },
@@ -263,22 +275,17 @@ module.exports = {
         pointerEvents: "none",
         zIndex: 100,
         "&$focused": {
-          color: [textContrast, "!important"],
+          color: [textPrimary, "!important"],
           "&$error": {
             color: [textError, "!important"]
           }
         },
         "&$filled": {
-          color: [textDark, "!important"],
+          color: [textSecondary, "!important"],
           "&$error": {
             color: [textError, "!important"]
           }
         }
-      }
-    },
-    MuiSelect: {
-      icon: {
-        color: textDark
       }
     },
     MuiListItemIcon: {
@@ -286,17 +293,24 @@ module.exports = {
         margin: [0, "!important"]
       }
     },
+    MuiSelect: {
+      icon: {
+        color: textSecondary
+      }
+    },
     MuiCheckbox: {
       root: {
+        color: [textSecondary, "!important"],
         "&$checked": {
-          color: [textNormal, "!important"]
+          color: [textPrimary, "!important"]
         }
       }
     },
     MuiRadio: {
       root: {
+        color: [textSecondary, "!important"],
         "&$checked": {
-          color: [textNormal, "!important"]
+          color: [textPrimary, "!important"]
         }
       }
     },
@@ -305,7 +319,7 @@ module.exports = {
         color: "#999999"
       },
       iconChecked: {
-        color: "#ffffff"
+        color: lighten(secondaryBackground, 0.15)
       }
     }
   }
