@@ -23,14 +23,14 @@
   },
   "chunks": {
     "byName": {
-      "static/rj3gtMznQAxxWi6q24oUr/pages/_app.js": 0,
-      "static/rj3gtMznQAxxWi6q24oUr/pages/_document.js": 1,
-      "static/rj3gtMznQAxxWi6q24oUr/pages/_error.js": 2,
-      "static/rj3gtMznQAxxWi6q24oUr/pages/browser.js": 3,
-      "static/rj3gtMznQAxxWi6q24oUr/pages/devices.js": 4,
-      "static/rj3gtMznQAxxWi6q24oUr/pages/index.js": 5,
-      "static/rj3gtMznQAxxWi6q24oUr/pages/terminal.js": 6,
-      "static/rj3gtMznQAxxWi6q24oUr/pages/users.js": 7
+      "static/_eO8najdB4epLP2o9gi8m/pages/_app.js": 0,
+      "static/_eO8najdB4epLP2o9gi8m/pages/_document.js": 1,
+      "static/_eO8najdB4epLP2o9gi8m/pages/_error.js": 2,
+      "static/_eO8najdB4epLP2o9gi8m/pages/browser.js": 3,
+      "static/_eO8najdB4epLP2o9gi8m/pages/devices.js": 4,
+      "static/_eO8najdB4epLP2o9gi8m/pages/index.js": 5,
+      "static/_eO8najdB4epLP2o9gi8m/pages/terminal.js": 6,
+      "static/_eO8najdB4epLP2o9gi8m/pages/users.js": 7
     },
     "bySource": {},
     "usedIds": [
