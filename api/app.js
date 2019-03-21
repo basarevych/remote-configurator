@@ -64,31 +64,15 @@ class App {
    * Constructor
    */
   constructor() {
-    if (!sessionSecret) {
-      console.error("Please define SESSION_SECRET");
-      process.exit(1);
-    }
-    if (!sessionDbPath) {
-      console.error("Please define SESSION_DB_PATH");
-      process.exit(1);
-    } else if (sessionDbPath[0] !== "/" && sessionDbPath[0] !== "\\") {
+    if (sessionDbPath && sessionDbPath[0] !== "/" && sessionDbPath[0] !== "\\")
       sessionDbPath = path.resolve(__dirname, "..", sessionDbPath);
-    }
 
-    if (!dbPath) {
-      console.error("Please define DB_PATH");
-      process.exit(1);
-    } else if (dbPath[0] !== "/" && dbPath[0] !== "\\") {
+    if (dbPath && dbPath[0] !== "/" && dbPath[0] !== "\\")
       dbPath = path.resolve(__dirname, "..", dbPath);
-    }
 
     if (appOrigins) {
       try {
         if (_.isString(appOrigins)) appOrigins = JSON.parse(appOrigins);
-        if (!_.isArray(appOrigins))
-          throw new Error(
-            "APP_ORIGINS env variable should be a JSON string of array of strings"
-          );
       } catch (error) {
         console.error("Could not parse APP_ORIGINS: ", error.message);
         process.exit(1);
@@ -101,10 +85,6 @@ class App {
       try {
         if (_.isString(appProxyOrigins))
           appProxyOrigins = JSON.parse(appProxyOrigins);
-        if (!_.isArray(appProxyOrigins))
-          throw new Error(
-            "APP_PROXY_ORIGINS env variable should be a JSON string of array of strings"
-          );
       } catch (error) {
         console.error("Could not parse APP_PROXY_ORIGINS: ", error.message);
         process.exit(1);
@@ -116,10 +96,6 @@ class App {
     if (sshOrigins) {
       try {
         if (_.isString(sshOrigins)) sshOrigins = JSON.parse(sshOrigins);
-        if (!_.isArray(sshOrigins))
-          throw new Error(
-            "SSH_ORIGINS env variable should be a JSON string of array of strings"
-          );
       } catch (error) {
         console.error("Could not parse SSH_ORIGINS: ", error.message);
         process.exit(1);
@@ -179,6 +155,35 @@ class App {
   }
 
   async init({ mainServer }) {
+    if (!this.config.sessionSecret) {
+      console.error("Please define SESSION_SECRET");
+      process.exit(1);
+    }
+    if (!this.config.sessionDbPath) {
+      console.error("Please define SESSION_DB_PATH");
+      process.exit(1);
+    }
+    if (!this.config.dbPath) {
+      console.error("Please define DB_PATH");
+      process.exit(1);
+    }
+
+    if (!_.isArray(this.config.appOrigins)) {
+      throw new Error(
+        "APP_ORIGINS env variable should be a JSON string of array of strings"
+      );
+    }
+    if (!_.isArray(this.config.appProxyOrigins)) {
+      throw new Error(
+        "APP_PROXY_ORIGINS env variable should be a JSON string of array of strings"
+      );
+    }
+    if (!_.isArray(this.config.sshOrigins)) {
+      throw new Error(
+        "SSH_ORIGINS env variable should be a JSON string of array of strings"
+      );
+    }
+
     this.server = mainServer;
 
     // Retrieve all the singletons and run their .init() method
