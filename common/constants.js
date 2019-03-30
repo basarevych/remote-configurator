@@ -19,24 +19,24 @@ module.exports = {
       icon: "devices",
       menu: "MENU_DEVICES",
       title: "TITLE_DEVICES",
-      isAllowed: roles => _.includes(roles, roles.AUTHENTICATED)
+      isAllowed: userRoles => _.includes(userRoles, roles.AUTHENTICATED)
     },
     "/terminal": {
       page: "/terminal",
       icon: "terminal",
-      isAllowed: roles => _.includes(roles, roles.AUTHENTICATED)
+      isAllowed: userRoles => _.includes(userRoles, roles.AUTHENTICATED)
     },
     "/browser": {
       page: "/browser",
       icon: "browser",
-      isAllowed: roles => _.includes(roles, roles.AUTHENTICATED)
+      isAllowed: userRoles => _.includes(userRoles, roles.AUTHENTICATED)
     },
     "/users": {
       page: "/users",
       icon: "users",
       menu: "MENU_USERS",
       title: "TITLE_USERS",
-      isAllowed: roles => _.includes(roles, roles.ADMIN)
+      isAllowed: userRoles => _.includes(userRoles, roles.ADMIN)
     }
   },
   messages: {
