@@ -63,12 +63,12 @@ class AuthRepository extends EventEmitter {
           await user.validateField({ field: "password", value: args.password }); // before it is encrypted
           await user.validate();
           await user.save();
-          context.preCachePages({ path: "/users" }).catch(console.error);
+          context.preparePages({ path: "/users" }).catch(console.error);
         }
       }
 
       if (user) {
-        context.preCachePages({ user }).catch(console.error);
+        context.preparePages({ user }).catch(console.error);
         await this.auth.signIn(user, context);
         success = true;
       }

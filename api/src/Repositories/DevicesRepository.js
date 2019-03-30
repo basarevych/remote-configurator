@@ -149,7 +149,7 @@ class DevicesRepository extends EventEmitter {
     await device.validateField({ field: "password", value: password }); // before it is encrypted
     await device.validate();
     await device.save();
-    context.preCachePages({ path: "/devices" }).catch(console.error);
+    context.preparePages({ path: "/devices" }).catch(console.error);
     this.pubsub.publish("deviceCreated", { deviceCreated: device });
     return device;
   }
@@ -173,7 +173,7 @@ class DevicesRepository extends EventEmitter {
 
     await device.validate();
     await device.save();
-    context.preCachePages({ path: "/devices" }).catch(console.error);
+    context.preparePages({ path: "/devices" }).catch(console.error);
     this.pubsub.publish("deviceUpdated", { deviceUpdated: device });
     return device;
   }
@@ -189,7 +189,7 @@ class DevicesRepository extends EventEmitter {
       throw this.di.get("error.entityNotFound");
 
     await device.remove();
-    context.preCachePages({ path: "/devices" }).catch(console.error);
+    context.preparePages({ path: "/devices" }).catch(console.error);
     this.pubsub.publish("deviceDeleted", { deviceDeleted: device });
     return device;
   }

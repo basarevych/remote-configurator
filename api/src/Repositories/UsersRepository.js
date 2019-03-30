@@ -125,7 +125,7 @@ class UsersRepository extends EventEmitter {
     await user.validateField({ field: "password", value: password }); // before it is encrypted
     await user.validate();
     await user.save();
-    context.preCachePages({ path: "/users" }).catch(console.error);
+    context.preparePages({ path: "/users" }).catch(console.error);
     this.pubsub.publish("userCreated", { userCreated: user });
     return user;
   }
@@ -148,7 +148,7 @@ class UsersRepository extends EventEmitter {
 
     await user.validate();
     await user.save();
-    context.preCachePages({ path: "/users" }).catch(console.error);
+    context.preparePages({ path: "/users" }).catch(console.error);
     this.pubsub.publish("userUpdated", { userUpdated: user });
     return user;
   }
@@ -167,7 +167,7 @@ class UsersRepository extends EventEmitter {
     await Promise.all(_.invokeMap(devices, "remove"));
 
     await user.remove();
-    context.preCachePages({ path: "/users" }).catch(console.error);
+    context.preparePages({ path: "/users" }).catch(console.error);
     this.pubsub.publish("userDeleted", { userDeleted: user });
     return user;
   }

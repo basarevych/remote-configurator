@@ -31,6 +31,11 @@ class Session extends EventEmitter {
     return "singleton";
   }
 
+  // eslint-disable-next-line lodash/prefer-constant
+  static get collection() {
+    return "frontSessions";
+  }
+
   async init() {
     if (this.promise) return this.promise;
 

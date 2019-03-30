@@ -1,7 +1,7 @@
 "use strict";
 
 const roles = {
-  AUTHENTICATED: "AUTHENTICATED", // every one except the anonymous has this
+  AUTHENTICATED: "AUTHENTICATED", // every one who is authorized has this
   ADMIN: "ADMIN"
 };
 
@@ -19,24 +19,24 @@ module.exports = {
       icon: "devices",
       menu: "MENU_DEVICES",
       title: "TITLE_DEVICES",
-      roles: [roles.AUTHENTICATED]
+      isAllowed: roles => _.includes(roles, roles.AUTHENTICATED)
     },
     "/terminal": {
       page: "/terminal",
       icon: "terminal",
-      roles: [roles.AUTHENTICATED]
+      isAllowed: roles => _.includes(roles, roles.AUTHENTICATED)
     },
     "/browser": {
       page: "/browser",
       icon: "browser",
-      roles: [roles.AUTHENTICATED]
+      isAllowed: roles => _.includes(roles, roles.AUTHENTICATED)
     },
     "/users": {
       page: "/users",
       icon: "users",
       menu: "MENU_USERS",
       title: "TITLE_USERS",
-      roles: [roles.ADMIN]
+      isAllowed: roles => _.includes(roles, roles.ADMIN)
     }
   },
   messages: {
