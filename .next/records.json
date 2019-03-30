@@ -31,7 +31,7 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/xterm/src/addons/fullscreen/fullscreen.css": [
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/xterm/src/xterm.css": [
     {
       "modules": {
         "byIdentifier": {},
@@ -48,7 +48,7 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/xterm/src/xterm.css": [
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/xterm/src/addons/fullscreen/fullscreen.css": [
     {
       "modules": {
         "byIdentifier": {},
@@ -98,13 +98,13 @@
       "commons": 0,
       "static/runtime/webpack.js": 1,
       "polyfills": 2,
-      "static/5WFYtIFvCRYvNXpaRi_xd/pages/_app.js": 3,
-      "static/5WFYtIFvCRYvNXpaRi_xd/pages/_error.js": 4,
-      "static/5WFYtIFvCRYvNXpaRi_xd/pages/browser.js": 5,
-      "static/5WFYtIFvCRYvNXpaRi_xd/pages/devices.js": 6,
-      "static/5WFYtIFvCRYvNXpaRi_xd/pages/index.js": 7,
-      "static/5WFYtIFvCRYvNXpaRi_xd/pages/terminal.js": 8,
-      "static/5WFYtIFvCRYvNXpaRi_xd/pages/users.js": 9,
+      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/_app.js": 3,
+      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/_error.js": 4,
+      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/browser.js": 5,
+      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/devices.js": 6,
+      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/index.js": 7,
+      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/terminal.js": 8,
+      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/users.js": 9,
       "static/runtime/main.js": 10,
       "styles": 11
     },

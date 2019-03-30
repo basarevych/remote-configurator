@@ -23,14 +23,14 @@
   },
   "chunks": {
     "byName": {
-      "static/5WFYtIFvCRYvNXpaRi_xd/pages/_app.js": 0,
-      "static/5WFYtIFvCRYvNXpaRi_xd/pages/_document.js": 1,
-      "static/5WFYtIFvCRYvNXpaRi_xd/pages/_error.js": 2,
-      "static/5WFYtIFvCRYvNXpaRi_xd/pages/browser.js": 3,
-      "static/5WFYtIFvCRYvNXpaRi_xd/pages/devices.js": 4,
-      "static/5WFYtIFvCRYvNXpaRi_xd/pages/index.js": 5,
-      "static/5WFYtIFvCRYvNXpaRi_xd/pages/terminal.js": 6,
-      "static/5WFYtIFvCRYvNXpaRi_xd/pages/users.js": 7
+      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/_app.js": 0,
+      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/_document.js": 1,
+      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/_error.js": 2,
+      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/browser.js": 3,
+      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/devices.js": 4,
+      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/index.js": 5,
+      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/terminal.js": 6,
+      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/users.js": 7
     },
     "bySource": {},
     "usedIds": [

@@ -114,7 +114,7 @@
   },
   "resolutions": {
     "graphql": "~14.2.0",
-    "**/graphql": "~14.1.1"
+    "**/graphql": "~14.2.0"
   },
   "scripts": {
     "lint": "eslint . --max-warnings=0",

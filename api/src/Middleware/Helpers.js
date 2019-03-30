@@ -5,12 +5,13 @@ const styles = require("../../../common/themes");
  * Helper functions on req/res objects
  */
 class Helpers extends EventEmitter {
-  constructor(app, auth, i18n) {
+  constructor(app, auth, i18n, user) {
     super();
 
     this.app = app;
     this.auth = auth;
     this.i18n = i18n;
+    this.user = user;
   }
 
   // eslint-disable-next-line lodash/prefer-constant
@@ -20,7 +21,7 @@ class Helpers extends EventEmitter {
 
   // eslint-disable-next-line lodash/prefer-constant
   static get $requires() {
-    return ["app", "auth", "i18n"];
+    return ["app", "auth", "i18n", "model.user"];
   }
 
   async init() {}

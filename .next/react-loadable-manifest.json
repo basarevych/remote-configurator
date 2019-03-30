@@ -993,12 +993,6 @@
       "publicPath": "/_next/static/chunks/commons.e85cd9f097506e616a1e.js"
     },
     {
-      "id": "a7BZ",
-      "name": "./node_modules/redux-form/lib/structure/plain/keys.js",
-      "file": "static/chunks/commons.e85cd9f097506e616a1e.js",
-      "publicPath": "/_next/static/chunks/commons.e85cd9f097506e616a1e.js"
-    },
-    {
       "id": "ioWn",
       "name": "./node_modules/redux-form/lib/structure/immutable/keys.js",
       "file": "static/chunks/commons.e85cd9f097506e616a1e.js",
@@ -1923,7 +1917,7 @@
       "publicPath": "/_next/static/chunks/commons.e85cd9f097506e616a1e.js"
     }
   ],
-  "../RuleList": [
+  "./RuleList": [
     {
       "id": "FLEz",
       "name": "./node_modules/jss/lib/RuleList.js",
@@ -3961,6 +3955,14 @@
       "publicPath": "/_next/static/chunks/commons.e85cd9f097506e616a1e.js"
     }
   ],
+  "../plain/keys": [
+    {
+      "id": "a7BZ",
+      "name": "./node_modules/redux-form/lib/structure/plain/keys.js",
+      "file": "static/chunks/commons.e85cd9f097506e616a1e.js",
+      "publicPath": "/_next/static/chunks/commons.e85cd9f097506e616a1e.js"
+    }
+  ],
   "./__generated__/DeleteDeviceMutation.graphql": [
     {
       "id": "a9Mw",
@@ -5155,7 +5157,7 @@
       "publicPath": "/_next/static/chunks/commons.e85cd9f097506e616a1e.js"
     }
   ],
-  "./get": [
+  "lodash/get": [
     {
       "id": "mwIZ",
       "name": "./node_modules/lodash/get.js",
@@ -6251,7 +6253,7 @@
       "publicPath": "/_next/static/chunks/commons.e85cd9f097506e616a1e.js"
     }
   ],
-  "./isEvent": [
+  "./events/isEvent": [
     {
       "id": "yzTH",
       "name": "./node_modules/redux-form/lib/events/isEvent.js",
