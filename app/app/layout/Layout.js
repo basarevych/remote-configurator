@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Head from "next/head";
-import { intlShape } from "react-intl";
+import { intlShape, FormattedMessage } from "react-intl";
+import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Hidden from "@material-ui/core/Hidden";
 import Drawer from "@material-ui/core/Drawer";
@@ -11,6 +12,7 @@ import AppAuthModal from "../../auth/AppAuthModalContainer";
 import CredentialsModal from "../../devices/CredentialsModalContainer";
 import InteractiveModal from "../../devices/InteractiveModalContainer";
 import ErrorPage from "../error/ErrorPage";
+import constants from "../../../common/constants";
 
 import "../styles";
 import styledScroll from "../styles/styledScroll";
@@ -34,6 +36,19 @@ export const styles = theme => ({
   },
   app: {
     position: "relative"
+  },
+  swUpdate: {
+    background: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+    zIndex: 11000,
+    position: "fixed",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    padding: "0.5rem 1rem",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
   },
   backdrop: {
     background: theme.main.backdrop,
@@ -119,11 +134,28 @@ class Layout extends React.Component {
     super(props);
 
     this.state = {
+      isUpdateNeeded: !!global.__swUpdateReady,
       isSidebarOpen: false
     };
 
     this.handleSidebarToggle = this.handleSidebarToggle.bind(this);
     this.handleSidebarClose = this.handleSidebarClose.bind(this);
+    this.doUpdate = this.doUpdate.bind(this);
+    this.showUpdateMessage = this.showUpdateMessage.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener(
+      constants.events.SW_UPDATE_READY,
+      this.showUpdateMessage
+    );
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener(
+      constants.events.SW_UPDATE_READY,
+      this.showUpdateMessage
+    );
   }
 
   handleSidebarToggle() {
@@ -132,6 +164,15 @@ class Layout extends React.Component {
 
   handleSidebarClose() {
     if (this.state.isSidebarOpen) this.setState({ isSidebarOpen: false });
+  }
+
+  doUpdate() {
+    this.setState({ isUpdateNeeded: false });
+    window.location.reload(true);
+  }
+
+  showUpdateMessage() {
+    this.setState({ isUpdateNeeded: true });
   }
 
   render() {
@@ -145,6 +186,14 @@ class Layout extends React.Component {
               {this.props.intl.formatMessage({ id: this.props.title })}
             </title>
           </Head>
+        )}
+
+        {this.state.isUpdateNeeded && (
+          <div className={this.props.classes.swUpdate}>
+            <Button variant="text" color="inherit" onClick={this.doUpdate}>
+              <FormattedMessage id="LAYOUT_SW_UPDATE_MESSAGE" />
+            </Button>
+          </div>
         )}
 
         {this.props.isError && (

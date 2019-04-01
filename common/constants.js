@@ -65,7 +65,8 @@ module.exports = {
     HISTORY: "HISTORY"
   },
   events: {
-    FONTS_LOADED: "FONTS_LOADED"
+    FONTS_LOADED: "FONTS_LOADED",
+    SW_UPDATE_READY: "SW_UPDATE_READY"
   },
   historySize: 30,
   commandPort: 22

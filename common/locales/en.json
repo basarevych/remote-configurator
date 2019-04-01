@@ -5,6 +5,7 @@
   "TITLE_DEVICE": "Device",
   "MENU_USERS": "Users",
   "TITLE_USERS": "Users",
+  "LAYOUT_SW_UPDATE_MESSAGE": "An update is available. Click here to reload the page.",
   "SIDEBAR_SIGN_OUT_LINK": "Sign Out",
   "DEVICES_PAGE_WORKFLOW_TITLE": "Workflow",
   "DEVICES_PAGE_WORKFLOW_HTML": [

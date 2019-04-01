@@ -1,19 +1,4 @@
 {
-  "serviceworker-plugin": [
-    {
-      "modules": {
-        "byIdentifier": {},
-        "usedIds": {}
-      },
-      "chunks": {
-        "byName": {},
-        "bySource": {},
-        "usedIds": [
-          0
-        ]
-      }
-    }
-  ],
   "mini-css-extract-plugin node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/react-virtualized/styles.css": [
     {
       "modules": {
@@ -98,19 +83,19 @@
       "commons": 0,
       "static/runtime/webpack.js": 1,
       "polyfills": 2,
-      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/_app.js": 3,
-      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/_error.js": 4,
-      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/browser.js": 5,
-      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/devices.js": 6,
-      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/index.js": 7,
-      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/terminal.js": 8,
-      "static/jYRXbaJ1w4m5ZblyKxOAK/pages/users.js": 9,
+      "static/KC3MKi0_LJILFsrdn3Fz5/pages/_app.js": 3,
+      "static/KC3MKi0_LJILFsrdn3Fz5/pages/_error.js": 4,
+      "static/KC3MKi0_LJILFsrdn3Fz5/pages/browser.js": 5,
+      "static/KC3MKi0_LJILFsrdn3Fz5/pages/devices.js": 6,
+      "static/KC3MKi0_LJILFsrdn3Fz5/pages/index.js": 7,
+      "static/KC3MKi0_LJILFsrdn3Fz5/pages/terminal.js": 8,
+      "static/KC3MKi0_LJILFsrdn3Fz5/pages/users.js": 9,
       "static/runtime/main.js": 10,
       "styles": 11
     },
     "bySource": {
-      "0 node_modules/next/dist/build/webpack/loaders/next-babel-loader.js??ref--4!app/app/lib/initApp.js {\"line\":32,\"column\":4}": 2,
-      "0 node_modules/next/dist/build/webpack/loaders/next-babel-loader.js??ref--4!app/app/lib/initApp.js {\"line\":57,\"column\":6}": 2
+      "0 node_modules/next/dist/build/webpack/loaders/next-babel-loader.js??ref--4!app/app/lib/initApp.js {\"line\":26,\"column\":4}": 2,
+      "0 node_modules/next/dist/build/webpack/loaders/next-babel-loader.js??ref--4!app/app/lib/initApp.js {\"line\":51,\"column\":6}": 2
     },
     "usedIds": [
       0,
