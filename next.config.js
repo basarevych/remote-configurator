@@ -117,7 +117,7 @@ module.exports = withPlugins([...plugins], {
       );
     }
 
-    if (!dev) {
+    if (!dev && !isServer) {
       config.plugins.push(
         new GenerateSW({
           cacheId: pkg.name,

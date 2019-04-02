@@ -351,7 +351,7 @@
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     }
   ],
-  "./../next/node_modules/webpack/buildin/module.js": [
+  "./../../../next/node_modules/webpack/buildin/module.js": [
     {
       "id": "1/IK",
       "name": "./node_modules/next/node_modules/webpack/buildin/module.js",
@@ -395,7 +395,7 @@
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     }
   ],
-  "@material-ui/core/IconButton": [
+  "../IconButton": [
     {
       "id": "1IiC",
       "name": "./node_modules/@material-ui/core/IconButton/index.js",
@@ -921,7 +921,7 @@
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     }
   ],
-  "@material-ui/core/Typography": [
+  "../Typography": [
     {
       "id": "6ZaM",
       "name": "./node_modules/@material-ui/core/Typography/index.js",
@@ -989,12 +989,6 @@
     {
       "id": "7GkX",
       "name": "./node_modules/lodash/keys.js",
-      "file": "static/chunks/commons.3410c359424e93433cab.js",
-      "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
-    },
-    {
-      "id": "a7BZ",
-      "name": "./node_modules/redux-form/lib/structure/plain/keys.js",
       "file": "static/chunks/commons.3410c359424e93433cab.js",
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     },
@@ -1195,7 +1189,7 @@
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     }
   ],
-  "@material-ui/core/colors/pink": [
+  "./pink": [
     {
       "id": "8rdq",
       "name": "./node_modules/@material-ui/core/colors/pink.js",
@@ -1313,7 +1307,7 @@
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     }
   ],
-  "../styles/withTheme": [
+  "./withTheme": [
     {
       "id": "A3JV",
       "name": "./node_modules/@material-ui/core/styles/withTheme.js",
@@ -1385,7 +1379,7 @@
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     }
   ],
-  "../styles/mergeClasses": [
+  "./mergeClasses": [
     {
       "id": "Ap+j",
       "name": "./node_modules/@material-ui/core/styles/mergeClasses.js",
@@ -1679,7 +1673,7 @@
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     }
   ],
-  "../../devices/state": [
+  "./state": [
     {
       "id": "DdWW",
       "name": "./app/devices/state/index.js",
@@ -2779,7 +2773,7 @@
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     }
   ],
-  "./events/silenceEvent": [
+  "./silenceEvent": [
     {
       "id": "O7AN",
       "name": "./node_modules/redux-form/lib/events/silenceEvent.js",
@@ -3289,7 +3283,7 @@
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     }
   ],
-  "./isObservable": [
+  "../utils/isObservable": [
     {
       "id": "UCXN",
       "name": "./node_modules/jss/lib/utils/isObservable.js",
@@ -3337,7 +3331,7 @@
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     }
   ],
-  "../core-js/object/assign": [
+  "@babel/runtime-corejs2/core-js/object/assign": [
     {
       "id": "UXZV",
       "name": "./node_modules/@babel/runtime-corejs2/core-js/object/assign.js",
@@ -3701,7 +3695,7 @@
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     }
   ],
-  "../StyleSheet": [
+  "./StyleSheet": [
     {
       "id": "XY0u",
       "name": "./node_modules/jss/lib/StyleSheet.js",
@@ -3963,6 +3957,14 @@
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     }
   ],
+  "../plain/keys": [
+    {
+      "id": "a7BZ",
+      "name": "./node_modules/redux-form/lib/structure/plain/keys.js",
+      "file": "static/chunks/commons.3410c359424e93433cab.js",
+      "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
+    }
+  ],
   "./__generated__/DeleteDeviceMutation.graphql": [
     {
       "id": "a9Mw",
@@ -4177,16 +4179,10 @@
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     }
   ],
-  "../helpers/typeof": [
+  "@babel/runtime/helpers/typeof": [
     {
       "id": "cDf5",
       "name": "./node_modules/@babel/runtime/helpers/typeof.js",
-      "file": "static/chunks/commons.3410c359424e93433cab.js",
-      "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
-    },
-    {
-      "id": "iZP3",
-      "name": "./node_modules/@babel/runtime-corejs2/helpers/typeof.js",
       "file": "static/chunks/commons.3410c359424e93433cab.js",
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     }
@@ -4239,7 +4235,7 @@
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     }
   ],
-  "../app/forms/connectForm": [
+  "../../app/forms/connectForm": [
     {
       "id": "ciYs",
       "name": "./app/app/forms/connectForm.js",
@@ -4757,6 +4753,14 @@
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     }
   ],
+  "../helpers/typeof": [
+    {
+      "id": "iZP3",
+      "name": "./node_modules/@babel/runtime-corejs2/helpers/typeof.js",
+      "file": "static/chunks/commons.3410c359424e93433cab.js",
+      "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
+    }
+  ],
   "core-js/library/fn/object/keys": [
     {
       "id": "iq4v",
@@ -5155,7 +5159,7 @@
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     }
   ],
-  "lodash/get": [
+  "./get": [
     {
       "id": "mwIZ",
       "name": "./node_modules/lodash/get.js",
@@ -5275,7 +5279,7 @@
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     }
   ],
-  "../../../common/constants": [
+  "../common/constants": [
     {
       "id": "o4p3",
       "name": "./common/constants.js",
@@ -5619,7 +5623,7 @@
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     }
   ],
-  "@material-ui/core/colors/grey": [
+  "./grey": [
     {
       "id": "sFvP",
       "name": "./node_modules/@material-ui/core/colors/grey.js",
@@ -5787,7 +5791,7 @@
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     }
   ],
-  "../utils/toCssValue": [
+  "./utils/toCssValue": [
     {
       "id": "uIix",
       "name": "./node_modules/jss/lib/utils/toCssValue.js",
@@ -6147,7 +6151,7 @@
       "publicPath": "/_next/static/chunks/commons.3410c359424e93433cab.js"
     }
   ],
-  "./transitions": [
+  "../styles/transitions": [
     {
       "id": "yAQS",
       "name": "./node_modules/@material-ui/core/styles/transitions.js",
