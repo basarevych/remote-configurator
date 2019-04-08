@@ -39,7 +39,7 @@
       "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
     }
   ],
-  "@material-ui/core/SvgIcon": [
+  "../../SvgIcon": [
     {
       "id": "+2mu",
       "name": "./node_modules/@material-ui/core/SvgIcon/index.js",
@@ -351,7 +351,7 @@
       "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
     }
   ],
-  "./../../../next/node_modules/webpack/buildin/module.js": [
+  "./../next/node_modules/webpack/buildin/module.js": [
     {
       "id": "1/IK",
       "name": "./node_modules/next/node_modules/webpack/buildin/module.js",
@@ -499,10 +499,16 @@
       "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
     }
   ],
-  "fbjs/lib/emptyFunction": [
+  "./emptyFunction": [
     {
       "id": "2TFQ",
       "name": "./node_modules/relay-runtime/node_modules/fbjs/lib/emptyFunction.js",
+      "file": "static/chunks/commons.e398f8a6f913644527f8.js",
+      "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
+    },
+    {
+      "id": "yDf7",
+      "name": "./node_modules/react-relay/node_modules/fbjs/lib/emptyFunction.js",
       "file": "static/chunks/commons.e398f8a6f913644527f8.js",
       "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
     }
@@ -1119,16 +1125,10 @@
       "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
     }
   ],
-  "./objectWithoutPropertiesLoose": [
+  "@babel/runtime/helpers/objectWithoutPropertiesLoose": [
     {
       "id": "8OQS",
       "name": "./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js",
-      "file": "static/chunks/commons.e398f8a6f913644527f8.js",
-      "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
-    },
-    {
-      "id": "L2E4",
-      "name": "./node_modules/@babel/runtime-corejs2/helpers/objectWithoutPropertiesLoose.js",
       "file": "static/chunks/commons.e398f8a6f913644527f8.js",
       "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
     }
@@ -1195,7 +1195,7 @@
       "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
     }
   ],
-  "../colors/pink": [
+  "@material-ui/core/colors/pink": [
     {
       "id": "8rdq",
       "name": "./node_modules/@material-ui/core/colors/pink.js",
@@ -1313,7 +1313,7 @@
       "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
     }
   ],
-  "./withTheme": [
+  "../styles/withTheme": [
     {
       "id": "A3JV",
       "name": "./node_modules/@material-ui/core/styles/withTheme.js",
@@ -1679,7 +1679,7 @@
       "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
     }
   ],
-  "./state": [
+  "../../devices/state": [
     {
       "id": "DdWW",
       "name": "./app/devices/state/index.js",
@@ -2091,7 +2091,7 @@
       "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
     }
   ],
-  "./withStyles": [
+  "../styles/withStyles": [
     {
       "id": "Hk+Y",
       "name": "./node_modules/@material-ui/core/styles/withStyles.js",
@@ -2435,6 +2435,14 @@
     {
       "id": "Kz5y",
       "name": "./node_modules/lodash/_root.js",
+      "file": "static/chunks/commons.e398f8a6f913644527f8.js",
+      "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
+    }
+  ],
+  "./objectWithoutPropertiesLoose": [
+    {
+      "id": "L2E4",
+      "name": "./node_modules/@babel/runtime-corejs2/helpers/objectWithoutPropertiesLoose.js",
       "file": "static/chunks/commons.e398f8a6f913644527f8.js",
       "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
     }
@@ -3209,7 +3217,7 @@
       "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
     }
   ],
-  "./createBreakpoints": [
+  "../styles/createBreakpoints": [
     {
       "id": "Th4q",
       "name": "./node_modules/@material-ui/core/styles/createBreakpoints.js",
@@ -3273,7 +3281,7 @@
       "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
     }
   ],
-  "./isObservable": [
+  "../utils/isObservable": [
     {
       "id": "UCXN",
       "name": "./node_modules/jss/lib/utils/isObservable.js",
@@ -3321,7 +3329,7 @@
       "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
     }
   ],
-  "@babel/runtime-corejs2/core-js/object/assign": [
+  "../core-js/object/assign": [
     {
       "id": "UXZV",
       "name": "./node_modules/@babel/runtime-corejs2/core-js/object/assign.js",
@@ -4441,7 +4449,7 @@
       "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
     }
   ],
-  "../colors/red": [
+  "@material-ui/core/colors/red": [
     {
       "id": "fWIC",
       "name": "./node_modules/@material-ui/core/colors/red.js",
@@ -5133,7 +5141,7 @@
       "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
     }
   ],
-  "lodash/get": [
+  "./get": [
     {
       "id": "mwIZ",
       "name": "./node_modules/lodash/get.js",
@@ -5581,7 +5589,7 @@
       "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
     }
   ],
-  "../colors/common": [
+  "./common": [
     {
       "id": "sAgZ",
       "name": "./node_modules/@material-ui/core/colors/common.js",
@@ -5597,7 +5605,7 @@
       "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
     }
   ],
-  "../colors/grey": [
+  "@material-ui/core/colors/grey": [
     {
       "id": "sFvP",
       "name": "./node_modules/@material-ui/core/colors/grey.js",
@@ -5949,7 +5957,7 @@
       "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
     }
   ],
-  "./colorManipulator": [
+  "@material-ui/core/styles/colorManipulator": [
     {
       "id": "wClv",
       "name": "./node_modules/@material-ui/core/styles/colorManipulator.js",
@@ -6133,14 +6141,6 @@
       "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
     }
   ],
-  "./emptyFunction": [
-    {
-      "id": "yDf7",
-      "name": "./node_modules/react-relay/node_modules/fbjs/lib/emptyFunction.js",
-      "file": "static/chunks/commons.e398f8a6f913644527f8.js",
-      "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
-    }
-  ],
   "./_Set": [
     {
       "id": "yGk4",
@@ -6261,7 +6261,7 @@
       "publicPath": "/_next/static/chunks/commons.e398f8a6f913644527f8.js"
     }
   ],
-  "./_wks-ext": [
+  "../../modules/_wks-ext": [
     {
       "id": "zLkG",
       "name": "./node_modules/core-js/library/modules/_wks-ext.js",

@@ -15,7 +15,7 @@ importScripts("/_next/static/workbox-v4.1.1/workbox-sw.js");
 workbox.setConfig({modulePathPrefix: "/_next/static/workbox-v4.1.1"});
 
 importScripts(
-  "/_next/static/precache-manifest.547f44fa7d3d33f9c28b50a3dd1cb8d8.js"
+  "/_next/static/precache-manifest.6832b0f6684325cd29f4d7549572266a.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "remote-configurator"});
