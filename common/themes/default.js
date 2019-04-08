@@ -8,19 +8,19 @@ const {
 const { red, blueGrey } = require("@material-ui/core/colors");
 
 const primaryColor = "rgba(255, 255, 255, 0.9)";
-const primaryBackground = "#707484";
+const primaryBackground = "#80838f";
 
 const secondaryColor = "rgba(255, 255, 255, 0.9)";
-const secondaryBackground = "#af441d";
+const secondaryBackground = "#c5511d";
 
-const bgNormal = "#3e4150";
-const bgPaper = "#484e5e";
+const bgNormal = "#3b3f4d";
+const bgPaper = "#585e6e";
 
 const textPrimary = "rgba(255, 255, 255, 0.9)";
 const textSecondary = "rgba(255, 255, 255, 0.6)";
 const textDisabled = "rgba(255, 255, 255, 0.35)";
 const textError = red[400];
-const textInfo = blueGrey[400];
+const textInfo = blueGrey[200];
 
 const fontSize = 14;
 
@@ -65,9 +65,13 @@ module.exports = {
   sidebar: {
     computerWidth: 30,
     tabletWidth: 20,
-    phoneWidth: 20,
-    background:
-      "linear-gradient(to bottom, #484e5e 0, #161920 80%, #161920 100%)",
+    phoneWidth: 30,
+    background: `rgb(22, 25, 32) linear-gradient(
+        to bottom,
+        rgba(72, 78, 94, 1.0) 0,
+        rgba(72, 78, 94, 0.0) 80%,
+        rgba(72, 78, 94, 0.0) 100%
+      )`,
     color: "#f0f0f0",
     itemBackground: "transparent",
     itemBorder: "4px solid transparent",
@@ -83,16 +87,16 @@ module.exports = {
     itemSelectedHoverBorder: `4px solid ${lighten(secondaryBackground, 0.05)}`
   },
   chart: {
-    statColor: textSecondary,
+    statColor: textPrimary,
     mapColor: textPrimary,
-    mapBackground: lighten(primaryBackground, 0.25),
+    mapBackground: primaryBackground,
     mapHoverBackground: secondaryBackground,
-    mapSelectedBackground: lighten(secondaryBackground, 0.25),
-    lineColor: lighten(secondaryBackground, 0.5),
-    areaColor: fade(primaryBackground, 0.5)
+    mapSelectedBackground: lighten(secondaryBackground, 0.15),
+    lineColor: textInfo,
+    areaColor: fade(textInfo, 0.25)
   },
   form: {
-    stepperBackground: lighten(bgPaper, 0.15),
+    stepperBackground: fade(primaryBackground, 0.65),
     stepperLine: textDisabled,
     stepperColor: textDisabled,
     stepperActive: textPrimary
@@ -124,10 +128,7 @@ module.exports = {
   overrides: {
     MuiPaper: {
       root: {
-        background: `linear-gradient(to bottom right, ${lighten(
-          bgPaper,
-          0.2
-        )} 0, ${darken(bgPaper, 0, 2)} 100%)`,
+        background: bgPaper,
         color: textPrimary
       }
     },
@@ -162,7 +163,7 @@ module.exports = {
       body: {
         fontSize: "1rem",
         "&.selected": {
-          background: lighten(bgNormal, 0.15)
+          background: primaryBackground
         }
       }
     },
@@ -335,10 +336,10 @@ module.exports = {
     },
     MuiSwitch: {
       icon: {
-        color: "#999999"
+        color: darken(primaryBackground, 0.1)
       },
       iconChecked: {
-        color: lighten(secondaryBackground, 0.15)
+        color: lighten(secondaryBackground, 0.25)
       }
     }
   }
