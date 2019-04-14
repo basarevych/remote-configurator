@@ -2,7 +2,6 @@ import { applyMiddleware, createStore } from "redux";
 import { combineReducers } from "redux-immutable";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import { reducer as form } from "redux-form/immutable";
 import app from "../state";
 import auth from "../../auth/state";
 import users from "../../users/state";
@@ -11,7 +10,6 @@ import terminals from "../../terminals/state";
 import histories from "../../histories/state";
 
 let rootReducer = combineReducers({
-  form,
   app,
   auth,
   users,

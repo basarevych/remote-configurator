@@ -90,7 +90,7 @@ class BaseModel {
       const rules = this._fields[field];
       if (rules && rules.validate) {
         const obj = this.toObject();
-        const fieldErrors = validate({}, rules.validate, value, fromJS(obj));
+        const fieldErrors = validate(rules.validate, value, fromJS(obj));
         if (fieldErrors.length) {
           errors[field] = {
             message: fieldErrors.length === 1 ? fieldErrors[0] : fieldErrors
@@ -98,8 +98,11 @@ class BaseModel {
         }
       }
     }
-    if (_.keys(errors).length && doThrow) throw new ValidationError(errors);
-    return errors || false;
+    if (_.keys(errors).length) {
+      if (doThrow) throw new ValidationError(errors);
+      return errors;
+    }
+    return false;
   }
 
   async validate() {
@@ -111,7 +114,7 @@ class BaseModel {
         if (_.isObject(obj[field])) {
           await iterate(cur, obj[field]);
         } else {
-          const fieldErrors = await this.validateField({
+          let fieldErrors = await this.validateField({
             field,
             path: cur,
             value: _.get(this, cur),

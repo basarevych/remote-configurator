@@ -8,7 +8,6 @@ import UserListComponent, { pageSize, styles } from "./UserList";
 
 const mapStateToProps = state => {
   return {
-    isEditing: usersSelectors.isEditModalOpen(state),
     selected: usersSelectors.getSelected(state)
   };
 };

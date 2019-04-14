@@ -8,7 +8,6 @@ import DeviceListComponent, { pageSize, styles } from "./DeviceList";
 
 const mapStateToProps = state => {
   return {
-    isEditing: devicesSelectors.isEditModalOpen(state),
     selected: devicesSelectors.getSelected(state),
     proxyOrigin: appSelectors.getProxyOrigin(state)
   };

@@ -115,7 +115,6 @@ class DeviceList extends React.Component {
     relay: PropTypes.object.isRequired,
     viewer: PropTypes.object.isRequired,
     selected: PropTypes.array.isRequired,
-    isEditing: PropTypes.bool.isRequired,
     proxyOrigin: PropTypes.string.isRequired,
     getToken: PropTypes.func.isRequired,
     onGetCookie: PropTypes.func.isRequired,
@@ -453,26 +452,23 @@ class DeviceList extends React.Component {
 
           {this.renderTable()}
 
-          {this.props.isEditing && <EditDeviceModal />}
+          <EditDeviceModal />
 
-          {this.state.isConfirmOpen && (
-            <ConfirmModal
-              isOpen
-              title="DELETE_DEVICE_TITLE"
-              text="DELETE_DEVICE_TEXT"
-              cancel="DELETE_DEVICE_CANCEL"
-              submit="DELETE_DEVICE_SUBMIT"
-              onCancel={this.handleCancelDelete}
-              onSubmit={this.handleConfirmDelete}
-            />
-          )}
+          <ConfirmModal
+            isOpen={this.state.isConfirmOpen}
+            title="DELETE_DEVICE_TITLE"
+            text="DELETE_DEVICE_TEXT"
+            cancel="DELETE_DEVICE_CANCEL"
+            submit="DELETE_DEVICE_SUBMIT"
+            onCancel={this.handleCancelDelete}
+            onSubmit={this.handleConfirmDelete}
+          />
 
-          {this.state.isProxyModalOpen && (
-            <ProxyModal
-              deviceId={this.state.proxyModalDeviceId}
-              onCancel={this.handleProxyModalClose}
-            />
-          )}
+          <ProxyModal
+            isOpen={this.state.isProxyModalOpen}
+            deviceId={this.state.proxyModalDeviceId}
+            onCancel={this.handleProxyModalClose}
+          />
         </div>
       </React.Fragment>
     );

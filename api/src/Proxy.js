@@ -192,7 +192,7 @@ class Proxy extends EventEmitter {
   async createOuterServer() {
     const app = express();
     app.use(cookieParser());
-    this.helpers.express(app);
+    this.helpers.accept({ express: app });
     app.get(this.secretPath, this.onNock.bind(this));
     app.all("*", this.onOuterConnection.bind(this));
 

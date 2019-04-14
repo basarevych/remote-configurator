@@ -47,32 +47,34 @@ class Helpers extends EventEmitter {
       }
     });
 
-    io.use((socket, next) => {
-      try {
-        this.setHelpers(socket.request, socket.request.res);
+    if (io) {
+      io.use((socket, next) => {
+        try {
+          this.setHelpers(socket.request, socket.request.res);
 
-        socket.request.recreateSession = async () =>
-          this.recreateSession(socket.request, socket.request.res);
-        socket.request.saveSession = async () =>
-          this.saveSession(socket.request, socket.request.res);
-        socket.request.loadSession = async () =>
-          this.loadSession(socket.request, socket.request.res);
+          socket.request.recreateSession = async () =>
+            this.recreateSession(socket.request, socket.request.res);
+          socket.request.saveSession = async () =>
+            this.saveSession(socket.request, socket.request.res);
+          socket.request.loadSession = async () =>
+            this.loadSession(socket.request, socket.request.res);
 
-        socket.request.getSession = async () =>
-          this.loadSession(socket.request, socket.request.res).then(
-            () => socket.request.session
-          );
-        socket.request.getUser = async () =>
-          this.loadSession(socket.request, socket.request.res).then(
-            () => socket.request.user
-          );
+          socket.request.getSession = async () =>
+            this.loadSession(socket.request, socket.request.res).then(
+              () => socket.request.session
+            );
+          socket.request.getUser = async () =>
+            this.loadSession(socket.request, socket.request.res).then(
+              () => socket.request.user
+            );
 
-        return next();
-      } catch (error) {
-        console.error(error);
-        return next(error);
-      }
-    });
+          return next();
+        } catch (error) {
+          console.error(error);
+          return next(error);
+        }
+      });
+    }
   }
 
   setHelpers(req /*, res */) {

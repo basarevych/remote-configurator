@@ -1,7 +1,7 @@
+import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import { injectIntl } from "react-intl";
 import { devicesSelectors, devicesOperations } from "./state";
-import connectForm from "../app/forms/connectForm";
 import CredentialsModalComponent, { styles } from "./CredentialsModal";
 
 const mapStateToProps = state => {
@@ -24,7 +24,10 @@ const mapDispatchToProps = dispatch => {
 
 const CredentialsModal = withStyles(styles)(
   injectIntl(
-    connectForm(CredentialsModalComponent, mapStateToProps, mapDispatchToProps)
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )(CredentialsModalComponent)
   )
 );
 export default CredentialsModal;

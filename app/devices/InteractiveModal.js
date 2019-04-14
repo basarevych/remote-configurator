@@ -8,8 +8,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import Form from "../app/forms/Form";
-import Field from "../app/forms/FieldContainer";
+import { Form, Field } from "../app/forms";
 import fields from "../../common/forms/interactive";
 
 export const styles = () => ({
@@ -20,9 +19,8 @@ export const styles = () => ({
   }
 });
 
-class InteractiveModal extends Form {
+class InteractiveModal extends React.Component {
   static propTypes = {
-    ...Form.propTypes,
     intl: intlShape,
     classes: PropTypes.object.isRequired,
     terminalId: PropTypes.string,
@@ -33,92 +31,89 @@ class InteractiveModal extends Form {
     onFinish: PropTypes.func.isRequired
   };
 
-  static formName = "interactiveAuthForm";
-
-  static fields = fields;
-
-  static async onSubmit(values, dispatch, props) {
-    props.onFinish(props.getValue("reply"));
-
-    return true;
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    let state = {};
-
-    if (prevState.isOpen !== nextProps.isOpen) {
-      nextProps.dispatch(nextProps.change("reply", ""));
-      nextProps.dispatch(nextProps.clearAsyncError());
-      nextProps.dispatch(nextProps.clearSubmitErrors());
-      state.isOpen = nextProps.isOpen;
-    }
-
-    return _.keys(state).length ? state : null;
-  }
-
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.submit = this.submit.bind(this);
+  }
+
+  async submit({ reply }) {
+    let result = await this.props.onFinish(reply);
+    return result === true ? {} : result;
   }
 
   render() {
+    if (!this.props.isOpen) return null;
     let prompts = this.props.data.prompts || [];
 
     return (
-      <Dialog
-        maxWidth="xs"
-        open={this.props.isOpen}
-        onClose={this.props.onCancel}
-      >
-        <DialogTitle>
-          <FormattedMessage id="KEYBOARD_AUTH_TITLE" />: {this.props.name}
-        </DialogTitle>
-        {this.props.banner && (
-          <DialogContent>
-            <DialogContentText>{this.props.data.banner}</DialogContentText>
-          </DialogContent>
+      <Form
+        fields={fields}
+        onSubmit={this.submit}
+        render={({ submitting, submitError, handleSubmit }) => (
+          <Dialog maxWidth="xs" open onClose={this.props.onCancel}>
+            <DialogTitle>
+              <FormattedMessage id="KEYBOARD_AUTH_TITLE" />: {this.props.name}
+            </DialogTitle>
+            {this.props.data.banner && (
+              <DialogContent>
+                <DialogContentText>{this.props.data.banner}</DialogContentText>
+              </DialogContent>
+            )}
+            <DialogContent>
+              {_.map(prompts, (item, index) => (
+                <DialogContentText key={`error-${index}`}>
+                  {item.prompt}
+                </DialogContentText>
+              ))}
+            </DialogContent>
+            {!!submitError && (
+              <DialogContent>
+                {_.map(
+                  _.isArray(submitError) ? submitError : [submitError],
+                  (error, index) => (
+                    <DialogContentText
+                      key={`error-${index}`}
+                      classes={{ root: this.props.classes.error }}
+                    >
+                      {_.isArray(error) ? (
+                        <FormattedMessage id={error[0]} values={error[1]} />
+                      ) : (
+                        <FormattedMessage id={error} />
+                      )}
+                    </DialogContentText>
+                  )
+                )}
+              </DialogContent>
+            )}
+            <DialogContent>
+              <Grid container spacing={16}>
+                <Grid item xs={12}>
+                  <Field name="reply" type="password" />
+                </Grid>
+              </Grid>
+            </DialogContent>
+            <DialogActions classes={{ root: this.props.classes.actions }}>
+              <Button
+                variant="contained"
+                color="primary"
+                disabled={submitting}
+                onClick={this.props.onCancel}
+              >
+                <FormattedMessage id="KEYBOARD_AUTH_CANCEL" />
+              </Button>
+              <Button
+                variant="contained"
+                color="secondary"
+                disabled={submitting}
+                onClick={handleSubmit}
+              >
+                <FormattedMessage id="KEYBOARD_AUTH_SUBMIT" />
+              </Button>
+            </DialogActions>
+          </Dialog>
         )}
-        <DialogContent>
-          {_.map(prompts, (item, index) => (
-            <DialogContentText key={`error-${index}`}>
-              {item.prompt}
-            </DialogContentText>
-          ))}
-        </DialogContent>
-        <DialogContent>
-          <Grid
-            container
-            spacing={16}
-            component="form"
-            noValidate
-            autoComplete="off"
-            onSubmit={this.submit}
-          >
-            <Grid item xs={12}>
-              <Field name="reply" type="password" onSubmit={this.submit} />
-            </Grid>
-          </Grid>
-        </DialogContent>
-        <DialogActions classes={{ root: this.props.classes.actions }}>
-          <Button
-            variant="contained"
-            color="primary"
-            disabled={this.props.submitting}
-            onClick={this.props.onCancel}
-          >
-            <FormattedMessage id="KEYBOARD_AUTH_CANCEL" />
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            disabled={this.props.submitting}
-            onClick={this.submit}
-          >
-            <FormattedMessage id="KEYBOARD_AUTH_SUBMIT" />
-          </Button>
-        </DialogActions>
-      </Dialog>
+      />
     );
   }
 }

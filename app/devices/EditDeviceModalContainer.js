@@ -1,10 +1,11 @@
+import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import { devicesOperations, devicesSelectors } from "./state";
-import connectForm from "../app/forms/connectForm";
 import EditDeviceModalComponent, { styles } from "./EditDeviceModal";
 
 const mapStateToProps = state => {
   return {
+    isOpen: devicesSelectors.isEditModalOpen(state),
     currentId: devicesSelectors.getEditModalDeviceId(state)
   };
 };
@@ -31,7 +32,10 @@ const mapDispatchToProps = dispatch => {
 };
 
 const EditDeviceModal = withStyles(styles)(
-  connectForm(EditDeviceModalComponent, mapStateToProps, mapDispatchToProps)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(EditDeviceModalComponent)
 );
 
 export default EditDeviceModal;

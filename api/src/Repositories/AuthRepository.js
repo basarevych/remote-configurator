@@ -30,37 +30,33 @@ class AuthRepository extends EventEmitter {
     });
   }
 
-  async signIn(context, args) {
+  async signIn(context, { login, password }) {
     debug("signIn");
 
     let success = false;
 
     let cur = await context.getUser();
     if (cur) {
-      if (args.login) {
-        if (cur.login === args.login) success = true;
+      if (login) {
+        if (cur.login === login) success = true;
         else await this.auth.signOut(context);
       }
     }
 
     if (!success) {
       let user;
-      if (args.login && args.password) {
-        user = await this.user.model.findOne({ login: args.login });
-        if (
-          user &&
-          !(await this.auth.checkPassword(args.password, user.password))
-        ) {
+      if (login && password) {
+        user = await this.user.model.findOne({ login });
+        if (user && !(await this.auth.checkPassword(password, user.password))) {
           user = null;
         } else if (!user && this.config.selfRegistration) {
           user = new this.user.model({
-            login: args.login,
-            password:
-              args.password && (await this.auth.encryptPassword(args.password)),
-            roles: args.roles || []
+            login,
+            password: password && (await this.auth.encryptPassword(password)),
+            roles: []
           });
 
-          await user.validateField({ field: "password", value: args.password }); // before it is encrypted
+          await user.validateField({ field: "password", value: password }); // before it is encrypted
           await user.validate();
           await user.save();
           context.preparePages({ path: "/users" }).catch(console.error);

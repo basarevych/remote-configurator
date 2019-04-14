@@ -1,7 +1,7 @@
+import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import { injectIntl } from "react-intl";
 import { devicesSelectors, devicesOperations } from "./state";
-import connectForm from "../app/forms/connectForm";
 import InteractiveModalComponent, { styles } from "./InteractiveModal";
 
 const mapStateToProps = state => {
@@ -23,7 +23,10 @@ const mapDispatchToProps = dispatch => {
 
 const InteractiveModal = withStyles(styles)(
   injectIntl(
-    connectForm(InteractiveModalComponent, mapStateToProps, mapDispatchToProps)
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )(InteractiveModalComponent)
   )
 );
 export default InteractiveModal;

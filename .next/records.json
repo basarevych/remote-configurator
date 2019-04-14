@@ -6,13 +6,9 @@
         "usedIds": {}
       },
       "chunks": {
-        "byName": {
-          "mini-css-extract-plugin": 0
-        },
+        "byName": {},
         "bySource": {},
-        "usedIds": [
-          0
-        ]
+        "usedIds": []
       }
     }
   ],
@@ -23,13 +19,9 @@
         "usedIds": {}
       },
       "chunks": {
-        "byName": {
-          "mini-css-extract-plugin": 0
-        },
+        "byName": {},
         "bySource": {},
-        "usedIds": [
-          0
-        ]
+        "usedIds": []
       }
     }
   ],
@@ -40,76 +32,19 @@
         "usedIds": {}
       },
       "chunks": {
-        "byName": {
-          "mini-css-extract-plugin": 0
-        },
+        "byName": {},
         "bySource": {},
-        "usedIds": [
-          0
-        ]
+        "usedIds": []
       }
     }
   ],
   "modules": {
-    "byIdentifier": {
-      "ignored node_modules/react-intl/lib ../locale-data/index.js": 0,
-      "multi app/app/lib/initApp.js node_modules/next/dist/client/next": 1,
-      "ignored node_modules/readable-stream/lib util": 2,
-      "ignored node_modules/readable-stream/lib/internal/streams util": 3,
-      "ignored node_modules/engine.io-client/lib/transports ws": 4,
-      "ignored node_modules/intl-messageformat ./lib/locales": 5,
-      "ignored node_modules/intl-relativeformat ./lib/locales": 6,
-      "css node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/react-virtualized/styles.css 0": 7,
-      "css node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/xterm/src/xterm.css 0": 8,
-      "css node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/xterm/src/addons/fullscreen/fullscreen.css 0": 9,
-      "ignored node_modules/intl ./locale-data/complete.js": 10
-    },
-    "usedIds": {
-      "0": 0,
-      "1": 1,
-      "2": 2,
-      "3": 3,
-      "4": 4,
-      "5": 5,
-      "6": 6,
-      "7": 7,
-      "8": 8,
-      "9": 9,
-      "10": 10
-    }
+    "byIdentifier": {},
+    "usedIds": {}
   },
   "chunks": {
-    "byName": {
-      "commons": 0,
-      "static/runtime/webpack.js": 1,
-      "polyfills": 2,
-      "static/VfSKzn7ND5JtMCbusLhLN/pages/_app.js": 3,
-      "static/VfSKzn7ND5JtMCbusLhLN/pages/_error.js": 4,
-      "static/VfSKzn7ND5JtMCbusLhLN/pages/browser.js": 5,
-      "static/VfSKzn7ND5JtMCbusLhLN/pages/devices.js": 6,
-      "static/VfSKzn7ND5JtMCbusLhLN/pages/index.js": 7,
-      "static/VfSKzn7ND5JtMCbusLhLN/pages/terminal.js": 8,
-      "static/VfSKzn7ND5JtMCbusLhLN/pages/users.js": 9,
-      "static/runtime/main.js": 10,
-      "styles": 11
-    },
-    "bySource": {
-      "0 node_modules/next/dist/build/webpack/loaders/next-babel-loader.js??ref--4!app/app/lib/initApp.js {\"line\":26,\"column\":4}": 2,
-      "0 node_modules/next/dist/build/webpack/loaders/next-babel-loader.js??ref--4!app/app/lib/initApp.js {\"line\":51,\"column\":6}": 2
-    },
-    "usedIds": [
-      0,
-      1,
-      10,
-      11,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9
-    ]
+    "byName": {},
+    "bySource": {},
+    "usedIds": []
   }
 }

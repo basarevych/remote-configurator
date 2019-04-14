@@ -4,11 +4,11 @@ import { intlShape, FormattedMessage } from "react-intl";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import Form from "../app/forms/Form";
-import Field from "../app/forms/FieldContainer";
+import { Form, Field } from "../app/forms";
 import fields from "../../common/forms/proxy";
 
 export const styles = () => ({
@@ -19,108 +19,117 @@ export const styles = () => ({
   }
 });
 
-class ProxyModal extends Form {
+class ProxyModal extends React.Component {
   static propTypes = {
-    ...Form.propTypes,
     intl: intlShape,
     classes: PropTypes.object.isRequired,
+    isOpen: PropTypes.bool.isRequired,
     name: PropTypes.string,
     onCancel: PropTypes.func.isRequired,
     onFinish: PropTypes.func.isRequired
   };
 
-  static formName = "proxyForm";
+  constructor(props) {
+    super(props);
 
-  static fields = fields;
-
-  static async onSubmit(values, dispatch, props) {
-    props.onFinish(
-      props.getValue("host"),
-      props.getValue("port"),
-      props.getValue("isAuthNeeded"),
-      props.getValue("login"),
-      props.getValue("password")
-    );
-    props.onCancel();
-
-    return true;
+    this.submit = this.submit.bind(this);
   }
 
-  componentDidMount() {
-    this.props.dispatch(this.props.change("host", "localhost"));
-    this.props.dispatch(this.props.change("port", "80"));
-    this.props.dispatch(this.props.change("isAuthNeeded", false));
-    this.props.dispatch(this.props.change("login", ""));
-    this.props.dispatch(this.props.change("password", ""));
-    this.props.dispatch(this.props.clearAsyncError());
-    this.props.dispatch(this.props.clearSubmitErrors());
+  async submit({ host, port, isAuthNeeded, login, password }) {
+    let result = await this.props.onFinish(
+      host,
+      port,
+      isAuthNeeded,
+      login,
+      password
+    );
+    if (result === true) {
+      this.props.onCancel();
+      return {};
+    }
+    return result;
   }
 
   render() {
+    if (!this.props.isOpen) return null;
+
     return (
-      <Dialog maxWidth="xs" open onClose={this.props.onCancel}>
-        <DialogTitle>
-          <FormattedMessage id="PROXY_MODAL_TITLE" />: {this.props.name}
-        </DialogTitle>
-        <DialogContent>
-          <Grid
-            container
-            spacing={16}
-            component="form"
-            noValidate
-            autoComplete="off"
-            onSubmit={this.submit}
-          >
-            <Grid item xs={12}>
-              <Field name="host" type="text" onSubmit={this.submit} />
-            </Grid>
-            <Grid item xs={12}>
-              <Field name="port" type="text" onSubmit={this.submit} />
-            </Grid>
-            <Grid item xs={12}>
-              <Field
-                name="isAuthNeeded"
-                type="checkbox"
-                onSubmit={this.submit}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Field
-                name="login"
-                type="text"
-                disabled={!this.props.getValue("isAuthNeeded")}
-                onSubmit={this.submit}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Field
-                name="password"
-                type="password"
-                disabled={!this.props.getValue("isAuthNeeded")}
-                onSubmit={this.submit}
-              />
-            </Grid>
-          </Grid>
-        </DialogContent>
-        <DialogActions classes={{ root: this.props.classes.actions }}>
-          <Button
-            variant="contained"
-            color="primary"
-            disabled={this.props.submitting}
-            onClick={this.props.onCancel}
-          >
-            <FormattedMessage id="PROXY_MODAL_CANCEL" />
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            disabled={this.props.submitting}
-            onClick={this.submit}
-          >
-            <FormattedMessage id="PROXY_MODAL_SUBMIT" />
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <Form
+        fields={fields}
+        initialValues={{ host: "localhost", port: "80" }}
+        onSubmit={this.submit}
+        render={({ values, submitting, submitError, handleSubmit }) => (
+          <Dialog maxWidth="xs" open onClose={this.props.onCancel}>
+            <DialogTitle>
+              <FormattedMessage id="PROXY_MODAL_TITLE" />: {this.props.name}
+            </DialogTitle>
+            {!!submitError && (
+              <DialogContent>
+                {_.map(
+                  _.isArray(submitError) ? submitError : [submitError],
+                  (error, index) => (
+                    <DialogContentText
+                      key={`error-${index}`}
+                      classes={{ root: this.props.classes.error }}
+                    >
+                      {_.isArray(error) ? (
+                        <FormattedMessage id={error[0]} values={error[1]} />
+                      ) : (
+                        <FormattedMessage id={error} />
+                      )}
+                    </DialogContentText>
+                  )
+                )}
+              </DialogContent>
+            )}
+            <DialogContent>
+              <Grid container spacing={16}>
+                <Grid item xs={12}>
+                  <Field name="host" type="text" />
+                </Grid>
+                <Grid item xs={12}>
+                  <Field name="port" type="text" />
+                </Grid>
+                <Grid item xs={12}>
+                  <Field name="isAuthNeeded" type="checkbox" />
+                </Grid>
+                <Grid item xs={12}>
+                  <Field
+                    name="login"
+                    type="text"
+                    disabled={!values.isAuthNeeded}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Field
+                    name="password"
+                    type="password"
+                    disabled={!values.isAuthNeeded}
+                  />
+                </Grid>
+              </Grid>
+            </DialogContent>
+            <DialogActions classes={{ root: this.props.classes.actions }}>
+              <Button
+                variant="contained"
+                color="primary"
+                disabled={submitting}
+                onClick={this.props.onCancel}
+              >
+                <FormattedMessage id="PROXY_MODAL_CANCEL" />
+              </Button>
+              <Button
+                variant="contained"
+                color="secondary"
+                disabled={submitting}
+                onClick={handleSubmit}
+              >
+                <FormattedMessage id="PROXY_MODAL_SUBMIT" />
+              </Button>
+            </DialogActions>
+          </Dialog>
+        )}
+      />
     );
   }
 }

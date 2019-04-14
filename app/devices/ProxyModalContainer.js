@@ -1,7 +1,7 @@
+import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import { injectIntl } from "react-intl";
 import { devicesSelectors, devicesOperations } from "./state";
-import connectForm from "../app/forms/connectForm";
 import ProxyModalComponent, { styles } from "./ProxyModal";
 
 const mapStateToProps = (state, props) => {
@@ -30,7 +30,10 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const ProxyModal = withStyles(styles)(
   injectIntl(
-    connectForm(ProxyModalComponent, mapStateToProps, mapDispatchToProps)
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )(ProxyModalComponent)
   )
 );
 export default ProxyModal;

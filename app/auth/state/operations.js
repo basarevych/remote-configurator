@@ -1,7 +1,7 @@
 import * as actions from "./actions";
 import * as selectors from "./selectors";
 import { appOperations } from "../../app/state";
-import { getFormErrors } from "../../app/forms/connectForm";
+import getFormErrors from "../../app/forms/getFormErrors";
 import constants from "../../../common/constants";
 import SignInMutation from "../mutations/SignIn";
 import SignOutMutation from "../mutations/SignOut";

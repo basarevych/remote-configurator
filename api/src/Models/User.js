@@ -1,6 +1,6 @@
 const BaseModel = require("./BaseModel");
 const constants = require("../../../common/constants");
-const fields = require("../../../common/forms/user");
+const fields = require("../../../common/forms/createUser");
 
 /**
  * Mimics Mongoose model while using Loki embedded database

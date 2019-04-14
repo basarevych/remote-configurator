@@ -2,7 +2,7 @@ import Router from "next/router";
 import * as actions from "./actions";
 import * as selectors from "./selectors";
 import { terminalsSelectors, terminalsOperations } from "../../terminals/state";
-import { getFormErrors } from "../../app/forms/connectForm";
+import getFormErrors from "../../app/forms/getFormErrors";
 import CreateDeviceMutation from "../mutations/CreateDevice";
 import EditDeviceMutation from "../mutations/EditDevice";
 import DeleteDeviceMutation from "../mutations/DeleteDevice";

@@ -11,11 +11,11 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts("/_next/static/workbox-v4.1.1/workbox-sw.js");
-workbox.setConfig({modulePathPrefix: "/_next/static/workbox-v4.1.1"});
+importScripts("/_next/static/workbox-v4.2.0/workbox-sw.js");
+workbox.setConfig({modulePathPrefix: "/_next/static/workbox-v4.2.0"});
 
 importScripts(
-  "/_next/static/precache-manifest.6832b0f6684325cd29f4d7549572266a.js"
+  "/_next/static/precache-manifest.393fdd4d9dfda34113a43e40fbe3de94.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "remote-configurator"});
