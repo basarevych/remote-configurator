@@ -1,4 +1,3 @@
-const { fromJS } = require("immutable");
 const ValidationError = require("../Errors/ValidationError");
 const validate = require("../../../common/validate");
 
@@ -89,8 +88,7 @@ class BaseModel {
     } else {
       const rules = this._fields[field];
       if (rules && rules.validate) {
-        const obj = this.toObject();
-        const fieldErrors = validate(rules.validate, value, fromJS(obj));
+        const fieldErrors = validate(rules.validate, value, this.toObject());
         if (fieldErrors.length) {
           errors[field] = {
             message: fieldErrors.length === 1 ? fieldErrors[0] : fieldErrors
